@@ -1,0 +1,20 @@
+#summary short description for checking out development
+#labels Phase-Implementation
+
+= Introduction =
+
+This description should help you to check out and compile the development projekt.
+
+= Details =
+
+  * First you need a current eclipse version (we use *eclipse 3.4* for java). 
+
+  * After setting up eclipse to your preferences install the *gwt plugin for eclipse* (see http://code.google.com/intl/de-DE/webtoolkit/usingeclipse.html ). Now you should be able to build gwt projects. This can be tested by creating a new project (File → New... → Web Application Project). After creating the project run gwt compile project. If there are no errors your gwt plugin should be installed fine.
+
+  * Now you should install the *subclipse plugin* to be able to check out code from google code. If you have another subversion plugin for eclipse this should also work fine. For install instructions for subclipse see http://subclipse.tigris.org/servlets/ProjectProcess?pageID=p4wYuA .
+
+  * Now you are able to *check out the Development Project*. You do this with File → New... → Project... and selecting SVN → Checkout Projects from SVN.  Add the  repository location http://metafora-project.googlecode.com/svn/trunk/ and select DevelopmentForEclipse. Enter a Projectname into the next dialog and press finish. Now you should have the project into your eclipse workspace.
+
+  * If you have gwt version 2.1 you can press *compile the project* else you have to replace the gwt-comet-1.2.1.jar with the right version and update your project build path.
+
+  * If you have successfully compiled the project you can *run it as Web Application* and view it in your  local browser at http://localhost:8888 .
