@@ -17,11 +17,11 @@ import org.jivesoftware.smackx.muc.MultiUserChat;
 public class XMPPBridge implements PacketListener, MessageListener{
  
 	public static String SERVER = "metafora.ku-eichstaett.de";
-	public static String USER = "testuser";
-	public static String PASSWORD = "didPfT";
+	public static String USER = "anotherTest";
+	public static String PASSWORD = "didPfaT";
 	public static String CHATROOM = "logger@conference.metafora.ku-eichstaett.de";
-	public static String USERALIAS = "Development";
-	public static String DEVICE = "DevelopmentServer";	
+	public static String USERALIAS = "XMPPBridgeTest";
+	public static String DEVICE = "XMPPBridge_Test";	
 	
 	private static XMPPBridge instance = null;
 	
@@ -96,17 +96,15 @@ public class XMPPBridge implements PacketListener, MessageListener{
 			try {
 				connection.login(user, password, device);
 			} catch (XMPPException e) {
-				int errorcode = e.getXMPPError().getCode();
-				System.err.println("XMPP-Error: error-code: "+errorcode+", message: "+e.getMessage());
-				if(errorcode == 401 && register){
+				System.err.println("Error: "+e.getMessage());
+				if(register){
 					AccountManager manager = connection.getAccountManager();
 					manager.createAccount(user, password);
 					connection.login(user, password, device);
 				}
 			}
 		} catch (XMPPException e) {
-			int errorcode = e.getXMPPError().getCode();
-			System.err.println("XMPP-Error: error-code: "+errorcode+", message: "+e.getMessage());
+			System.err.println("XMPP-Error: "+e.getMessage());
 		}
 	}
 	
@@ -132,16 +130,12 @@ public class XMPPBridge implements PacketListener, MessageListener{
 			try {
 				multichat.join(USERALIAS);
 			} catch (XMPPException e) {
-				int errorcode = e.getXMPPError().getCode();
-				System.err.println("XMPP-Error: error-code: "+errorcode+", message: "+e.getMessage());
-				if(errorcode == 409){
-					System.err.println("XMPP: Retry with other user alias.");
-					try {
-						multichat.join(USERALIAS+System.currentTimeMillis());
-					} catch (XMPPException ex) {
-						errorcode = ex.getXMPPError().getCode();
-						System.err.println("XMPP-Error: error-code: "+errorcode+", message: "+e.getMessage());
-					}
+				System.err.println("XMPP-Error: "+e.getMessage());
+				System.err.println("XMPP: Retry with other user alias.");
+				try {
+					multichat.join(USERALIAS+System.currentTimeMillis());
+				} catch (XMPPException ex) {
+					System.err.println("XMPP-Error: "+e.getMessage());
 				}
 			}
 		}
@@ -161,8 +155,7 @@ public class XMPPBridge implements PacketListener, MessageListener{
 				try {
 					multichat.sendMessage(message);
 				} catch (XMPPException e) {
-					int errorcode = e.getXMPPError().getCode();
-					System.err.println("XMPP-Error: error-code: "+errorcode+", message: "+e.getMessage());
+					System.err.println("XMPP-Error: "+e.getMessage());
 				}
 			}
 		}
@@ -179,8 +172,7 @@ public class XMPPBridge implements PacketListener, MessageListener{
 			try {
 				chat.sendMessage(message);
 			} catch (XMPPException e) {
-				int errorcode = e.getXMPPError().getCode();
-				System.err.println("XMPP-Error: error-code: "+errorcode+", message: "+e.getMessage());
+				System.err.println("XMPP-Error: "+e.getMessage());
 			}
 		}
 	}
