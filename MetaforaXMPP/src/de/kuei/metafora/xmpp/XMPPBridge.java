@@ -297,24 +297,32 @@ public class XMPPBridge implements PacketListener, MessageListener {
 	public void sendMessage(String message) {
 		logger.debug("XMPPBridge: sendMessage("+message+")");
 		
-		if (!connection.isConnected()) {
-			logger.debug("XMPPBridge: sendMessage: -> connect(true)");
-			connect(true);
-		}
-
-		if (connection.isConnected()) {
-			if (!multichat.isJoined()) {
-				logger.debug("XMPPBridge: sendMessage: -> connectToChat()");
-				connectToChat();
+		if (connection != null){
+			if (!connection.isConnected()) {
+				logger.debug("XMPPBridge: sendMessage: -> connect(true)");
+				connect(true);
 			}
-
-			if (multichat.isJoined()) {
-				try {
-					multichat.sendMessage(message);
-				} catch (XMPPException e) {
-					logger.error(e.getMessage());
-					logger.debug(e.getStackTrace().toString());
+	
+			if (connection.isConnected()) {
+				if (multichat == null || !multichat.isJoined()) {
+					logger.debug("XMPPBridge: sendMessage: -> connectToChat()");
+					connectToChat();
 				}
+	
+				if (multichat.isJoined()) {
+					try {
+						multichat.sendMessage(message);
+					} catch (XMPPException e) {
+						logger.error(e.getMessage());
+						logger.debug(e.getStackTrace().toString());
+					}
+				}
+				else {
+					logger.error("MultiChat is null");
+				}
+			}
+			else {
+				logger.error("Connection is null");
 			}
 		}
 	}

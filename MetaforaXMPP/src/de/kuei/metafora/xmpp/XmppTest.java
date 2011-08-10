@@ -26,12 +26,20 @@ public class XmppTest {
 		
 		
 		try {
-			XMPPBridge.createConnection("myconn", "MyUser", "MyPassword", "logger@conference.metafora.ku-eichstaett.de", "MyUser", "XMPPBridgeTestApp");
-			XMPPBridge bridge = XMPPBridge.getConnection("myconn");
-			bridge.connect(true);
-			bridge.registerTimeListener(timeListener);
-			bridge.connectToChat();
-			bridge.sendMessage("XmppTest is online and waiting for messages!");
+//			XMPPBridge.createConnection("myconn", "MyUser", "MyPassword", "logger@conference.metafora.ku-eichstaett.de", "MyUser", "XMPPBridgeTestApp");
+//			XMPPBridge bridge = XMPPBridge.getConnection("myconn");
+//			bridge.connect(true);
+//			bridge.registerTimeListener(timeListener);
+//			bridge.connectToChat();
+//			bridge.sendMessage("XmppTest is online and waiting for messages!");
+			
+			
+			XMPPBridge.createConnection("XmppTest", "LasadCommandTest", "LasadCommandTest", "command@conference.metafora.ku-eichstaett.de", "xmppTester", "Test");
+			XMPPBridge bridge2 = XMPPBridge.getConnection("XmppTest");
+			bridge2.connect(false);
+			bridge2.registerListener(listener);
+			bridge2.sendMessage("XmppTest is online and waiting for messages!");
+			
 			
 			/*
 			XMPPBridge bridge = XMPPBridge.getTestConnection();
