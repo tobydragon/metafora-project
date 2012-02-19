@@ -1,6 +1,10 @@
 package com.analysis.client.communication.server;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import de.novanic.eventservice.client.ClientHandler;
@@ -116,7 +120,12 @@ myGWTEventService.addListener(null, myListener);
 
 	//		actionSet.addParameter("SESSION-ID", clientID); //"CLIENT-ID"
 			// Send actions to server via GWT RPC and Servlet
-			myServlet.inputToServer(actionSet, cb);
+		
+
+			Map<String, String> cr=new HashMap<String,String>();
+			
+			cr.put("type", "RequestHistory");
+			myServlet.inputToServer(cr, cb);
 		}
 		else {
 			//LASADInfo.display("Error", "Connection cannot be established.");
@@ -133,7 +142,11 @@ myGWTEventService.addListener(null, myListener);
 
 	//		actionSet.addParameter("SESSION-ID", clientID); //"CLIENT-ID"
 			// Send actions to server via GWT RPC and Servlet
-			myServlet.inputToServer(actionSet, new AsyncCallback<String>() {
+			
+			Map<String, String> cr=new HashMap<String,String>();
+			
+			cr.put("type", "RequestHistory");
+			myServlet.inputToServer(cr, new AsyncCallback<String>() {
 
 				@Override
 				public void onFailure(Throwable caught) {

@@ -22,8 +22,10 @@ import com.analysis.client.communication.server.IOManager;
 import com.analysis.client.communication.server.Server;
 
 import com.analysis.client.components.charts.Showcase;
-import com.analysis.client.components.composedforms.InterActionForm;
 import com.analysis.client.resources.Resources;
+import com.analysis.client.view.charts.ExtendedPieChart;
+import com.analysis.client.view.grids.ExtendedGroupedGrid;
+import com.analysis.client.view.widgets.ExtendedTab;
 
 
 import com.google.gwt.core.client.EntryPoint;
@@ -76,14 +78,15 @@ class VisualAnalyzer implements EntryPoint {
     	  
     	// loadingImage.setUrlAndVisibleRect(Resources.IMAGES.loaderImage().getSafeUri(), 10, 10, 400, 400);
     	
-    	 RootPanel.get().add(loadingImage,500,200);
+    	
+    	   RootPanel.get().add(loadingImage,500,200);
     	
     
     	//Server.getInstance()
    
     	// IOManager io=new IOManager();
     	 
-    	 Server.getInstance().sendActionPackage("yyyyyyyyyy",new AsyncCallback<String>() {
+    	 Server.getInstance().sendActionPackage("RequestHistory",new AsyncCallback<String>() {
 				public void onFailure(Throwable caught) {
 					
 					
@@ -97,14 +100,19 @@ class VisualAnalyzer implements EntryPoint {
 					
 					
 					RootPanel.get().remove(loadingImage);
-					DataProcess.initializeInterActionHistory(result);
-					  VerticalPanel vp=new VerticalPanel();
-			    	  InterActionForm iaf=new InterActionForm();
-			    	  vp.add(iaf);
-			    	  RootPanel.get().add(vp);
+					DataProcess.initializeInterActionHistory(result.toString());
+					  //VerticalPanel vp=new VerticalPanel();
+					ExtendedTab tabs=new ExtendedTab("ddd");
+			    	  ExtendedPieChart iaf=new ExtendedPieChart();
+			    	  ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid("");
+			    	  tabs.addTab("Table View",indicatorTable);
+			    	  tabs.addTab("Views", iaf);
+			    	  
+			    	  RootPanel.get().add(tabs.renderExtendedTabPanel());
 										
 				}
 			});
+    	 
     	 
     	 //io.sendToServer("RequestHistory",);
     	  //DialogBox db=new DialogBox();

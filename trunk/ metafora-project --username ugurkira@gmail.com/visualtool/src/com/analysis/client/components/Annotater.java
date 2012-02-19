@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-import com.analysis.client.components.grids.GroupingGrid;
+import com.analysis.client.view.grids.ExtendedGroupedGrid;
 import com.google.gwt.core.client.JsArray;
 
 //import com.google.gwt.user.client.ui.Button;
@@ -127,7 +127,7 @@ public class Annotater {
 		              if(type==null)
 		            	  type="";
 		            
-		              GroupingGrid aa =new GroupingGrid(type);
+		              ExtendedGroupedGrid aa =new ExtendedGroupedGrid(type);
 		              aa.setStyleName("grid", true);
 		              button.setStyleName("button", true);
 		              button.setWidth("200px");

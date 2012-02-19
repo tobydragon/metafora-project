@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sources>
-<historysource type="file" path="resources/interactionlist.xml"  active="true"/>
+<historysource type="file" path="resources/xml/test/analysisChannelOutput.xml"  active="true"/>
 
 <historysource type="xmpp" user="BasilicaLoggerTestUgur" password="BasilicaLoggerTestUgur" chatroom="logger@conference.metafora.ku-eichstaett.de" alias="BasilicaLoggerTestUgur" device="BasilicaLoggerTestUgur"  active="false"/>
 </sources>

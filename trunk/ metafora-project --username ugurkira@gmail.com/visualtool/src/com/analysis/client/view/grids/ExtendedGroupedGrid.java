@@ -5,7 +5,7 @@
  * 
  * http://extjs.com/license
  */
-package com.analysis.client.components.grids;
+package com.analysis.client.view.grids;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,24 +29,22 @@ import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Element;
 
-public class GroupingGrid extends LayoutContainer {
+public class ExtendedGroupedGrid extends LayoutContainer {
 
 	String groupingItem="";
 	List<User> users;
-	public GroupingGrid(String _groupingItem){
+	public ExtendedGroupedGrid(String _groupingItem){
 		
 		groupingItem=_groupingItem;
 	}
 	
 	
-public GroupingGrid(String _groupingItem,List<User> myusers){
+public ExtendedGroupedGrid(String _groupingItem,List<User> myusers){
 		
 		groupingItem=_groupingItem;
 		users=myusers;
 	}
 	
-	
-	//public GroupingGrid(String _groupingItem,List<ActionObject> ObjecList)
 	
 	
   @Override
@@ -64,7 +62,6 @@ public GroupingGrid(String _groupingItem,List<User> myusers){
     ColumnConfig time = new ColumnConfig("time", "Time", 60);
     ColumnConfig date = new ColumnConfig("date", "Date", 20);
     date.setDateTimeFormat(DateTimeFormat.getFormat("MM/dd/y"));
-   // ColumnConfig groupingItem = new ColumnConfig("groupingItem", "GroupingItem",20);
     
 
     List<ColumnConfig> config = new ArrayList<ColumnConfig>();

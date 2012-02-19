@@ -1,4 +1,4 @@
-package com.analysis.client.components.composedforms;
+package com.analysis.client.view.charts;
 
 
 
@@ -18,11 +18,11 @@ import com.analysis.client.communication.resources.DataProcess;
 import com.analysis.client.components.ActionContent;
 import com.analysis.client.components.ActionObject;
 import com.analysis.client.components.charts.Showcase;
-import com.analysis.client.components.grids.GroupingGrid;
 import com.analysis.client.datamodels.DefaultModel;
 import com.analysis.client.datamodels.User;
 import com.analysis.client.options.GroupingOptions;
 import com.analysis.client.utils.GWTDateUtils;
+import com.analysis.client.view.grids.ExtendedGroupedGrid;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedListener;
@@ -56,7 +56,7 @@ import com.google.gwt.visualization.client.events.SelectHandler;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart.PieOptions;
 
-public class InterActionForm extends VerticalPanel {
+public class ExtendedPieChart extends VerticalPanel {
 	
 	Map<Integer, String>subsection = new HashMap<Integer, String>();
 	
@@ -64,12 +64,12 @@ public class InterActionForm extends VerticalPanel {
 	public String Item="";
 	public  PieChart pie=null;
 	
-	public InterActionForm(){
+	public ExtendedPieChart(){
 		
 		createFilterHeader();
 	}
 
-public InterActionForm(String title){
+public ExtendedPieChart(String title){
 	this.setId("interActionForm");
 	this.add(new Label(title));
 	createFilterHeader();
@@ -442,7 +442,7 @@ public InterActionForm(String title){
 		               }
 		      		
 		               
-		              GroupingGrid aa =new GroupingGrid(type,users);
+		              ExtendedGroupedGrid aa =new ExtendedGroupedGrid(type,users);
 		              aa.setStyleName("grid", true);
 		              button.setStyleName("button", true);
 		              button.setWidth("200px");
