@@ -3,6 +3,8 @@ package com.analysis.client.communication.objects;
 public class CommonFormatStrings {
 	
 
+	//Action Properties
+	public static final String CF_TYPE_STRING = "type";
 	//crossItem
 	public static final String ID_STRING = "id";
 	public static final String TYPE_STRING = "type";
