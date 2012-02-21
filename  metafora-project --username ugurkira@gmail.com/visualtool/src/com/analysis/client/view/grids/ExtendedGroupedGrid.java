@@ -13,7 +13,7 @@ import java.util.List;
 
 import com.analysis.client.TestData;
 
-import com.analysis.client.datamodels.User;
+import com.analysis.client.datamodels.Indicator;
 import com.analysis.client.resources.Resources;
 import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
@@ -32,29 +32,36 @@ import com.google.gwt.user.client.Element;
 public class ExtendedGroupedGrid extends LayoutContainer {
 
 	String groupingItem="";
-	List<User> users;
+	List<Indicator> indicators;
 	public ExtendedGroupedGrid(String _groupingItem){
 		
 		groupingItem=_groupingItem;
 	}
 	
 	
-public ExtendedGroupedGrid(String _groupingItem,List<User> myusers){
+public ExtendedGroupedGrid(String _groupingItem,List<Indicator> _indicator){
 		
 		groupingItem=_groupingItem;
-		users=myusers;
+		indicators=_indicator;
 	}
 	
-	
+
+
+
+public ExtendedGroupedGrid(List<Indicator> _indicator){
+		
+		indicators=_indicator;
+	}
+
 	
   @Override
   protected void onRender(Element parent, int index) {
     super.onRender(parent, index);
     setLayout(new FlowLayout(10));
 
-    GroupingStore<User> store = new GroupingStore<User>();
+    GroupingStore<Indicator> store = new GroupingStore<Indicator>();
   
-    store.add(users);  
+    store.add(indicators);  
     store.groupBy("date");
 
     ColumnConfig username = new ColumnConfig("name", "User", 60);
@@ -84,7 +91,7 @@ public ExtendedGroupedGrid(String _groupingItem,List<User> myusers){
       }
     });
 
-    Grid<User> grid = new Grid<User>(store, cm);
+    Grid<Indicator> grid = new Grid<Indicator>(store, cm);
     view.setShowGroupedColumn(true);
     grid.setView(view);
     grid.setBorders(true);

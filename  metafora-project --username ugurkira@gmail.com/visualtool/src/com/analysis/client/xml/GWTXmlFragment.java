@@ -14,6 +14,8 @@ import com.analysis.client.communication.objects.CfObject;
 import com.analysis.client.communication.objects.CfProperty;
 import com.analysis.client.communication.objects.CfUser;
 import com.analysis.client.communication.objects.CommonFormatStrings;
+import com.analysis.client.datamodels.ExtendedActionFilter;
+import com.analysis.client.datamodels.Configuration;
 
 import com.google.gwt.xml.client.Document;
 import com.google.gwt.xml.client.Element;
@@ -191,5 +193,100 @@ public class GWTXmlFragment {
 	//	 CfInteractionData id=new CfInteractionData(cfActions);
 		 return cfActions;
 	}
+	
+	
+	
+	public Configuration getActiveConfiguration(String rawConf){
+		doc=XMLParser.parse(rawConf);
+		NodeList nodeLst =doc.getElementsByTagName(CommonFormatStrings.CF_Configuration);
+		
+		Configuration activeConf=new Configuration();
+				
+		 for(int i=0; i< nodeLst.getLength(); i++){
+				
+			 Node actionNode = nodeLst.item(i);
+			 
+			 
+			 Element configurationEl= (Element) actionNode;
+			 System.out.println(configurationEl.getAttribute("name"));
+			 System.out.println(configurationEl.getAttribute("active"));
+			String active=configurationEl.getAttribute("active");
+			if(active==null)
+				active="";
+						 
+			 if(active.equalsIgnoreCase("1") || active.equalsIgnoreCase("true")){
+				 
+				
+				
+				String confName=configurationEl.getAttribute("name");
+				if(confName==null)
+					confName="";
+				activeConf.setName(confName);
+			
+				
+				 
+				 NodeList filters =configurationEl.getElementsByTagName(CommonFormatStrings.CF_Filter);
+					
+					
+					 for(int j=0; j< filters.getLength(); j++)
+					 {
+
+						 
+						 Node filterNode = filters.item(j);
+						 
+						 
+						 Element filterEl= (Element) filterNode;
+						 String filtername=filterEl.getAttribute("name");
+						 String filtereditable=filterEl.getAttribute("editable");
+						 
+						 if(filtername==null)
+							 filtername="";
+						 
+						System.out.println("filtername:"+filtername);
+						
+						ExtendedActionFilter activeFilter=new ExtendedActionFilter();
+						activeFilter.setName(filtername);
+						activeFilter.setEditable(filtereditable);
+						
+						
+						NodeList properties =filterEl.getElementsByTagName(CommonFormatStrings.CF_Property);
+						
+						 for(int k=0; k<properties.getLength(); k ++){
+							 
+							 Node propertyNode = properties.item(k);
+							 Element propertyEl= (Element) propertyNode;
+							 
+							 String name=propertyEl.getAttribute("name");
+							 if(name==null)
+								 name="";
+							 String value=propertyEl.getAttribute("value");
+							 if(value==null)
+								 value="";							 							 
+							 activeFilter.addProperty(name, value);	 
+							 
+							 
+							 }
+						 
+						 
+						 
+						 
+						 activeConf.addFilter(activeFilter);
+						 
+						 
+					 }
+				 
+				 
+				
+				 break;
+			 }
+			 
+		 }
+		
+		
+		return activeConf;
+	}
+	
+
+	
 	
 }

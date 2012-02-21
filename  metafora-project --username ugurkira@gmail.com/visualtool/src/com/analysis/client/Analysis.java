@@ -120,7 +120,7 @@ public class Analysis implements EntryPoint {
 				sendButton.setEnabled(false);
 				
 				serverResponseLabel.setText("");
-				greetingService.inputToServer(null,
+				greetingService.sendToServer(null,
 						new AsyncCallback<String>() {
 							public void onFailure(Throwable caught) {
 								// Show the RPC error message to the user

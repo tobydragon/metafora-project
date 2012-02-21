@@ -6,6 +6,8 @@ import java.util.Map;
 
 
 import com.extjs.gxt.ui.client.widget.Label;
+import com.extjs.gxt.ui.client.widget.TabItem;
+//import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -21,8 +23,8 @@ public class ExtendedTab extends VerticalPanel {
 	if(_lbl!=null){
 		this.add(new Label(_lbl));
 		
-		flp=new FilterListPanel("MapID","4");
-		flp.addFilter("User", "Ugur");
+		flp=new FilterListPanel();
+		//flp.addFilter("User", "Ugur");
 		this.add(flp);
 	
 	//tabPanel.setHeight("300px");
@@ -34,7 +36,9 @@ public class ExtendedTab extends VerticalPanel {
 	
 	public void addTab(String _lbl,Widget _widget){
 		
-		tabPanel.add(_widget, _lbl);
+	 
+				
+		tabPanel.add(_widget,_lbl);
 	
 		
 	}

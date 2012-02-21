@@ -96,15 +96,17 @@ class VisualAnalyzer implements EntryPoint {
 				public void onSuccess(String result) {
 					
 					
+					System.out.println("Configuration:"+result);
 					
 					
 					
 					RootPanel.get().remove(loadingImage);
 					DataProcess.initializeInterActionHistory(result.toString());
 					  //VerticalPanel vp=new VerticalPanel();
-					ExtendedTab tabs=new ExtendedTab("ddd");
+					ExtendedTab tabs=new ExtendedTab("");
+					
 			    	  ExtendedPieChart iaf=new ExtendedPieChart();
-			    	  ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid("");
+			    	  ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(DataProcess.getIndicatorList());
 			    	  tabs.addTab("Table View",indicatorTable);
 			    	  tabs.addTab("Views", iaf);
 			    	  
