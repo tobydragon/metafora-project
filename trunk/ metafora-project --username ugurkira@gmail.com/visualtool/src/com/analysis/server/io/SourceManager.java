@@ -28,6 +28,7 @@ public class SourceManager {
 	static Document doc;
 	Element element;
 	static String conf="conf/configuration.xml";
+	static String filter="conf/filterconfiguration.xml";
 
 
 	

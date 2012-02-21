@@ -5,6 +5,11 @@ public class CommonFormatStrings {
 
 	//Action Properties
 	public static final String CF_TYPE_STRING = "type";
+	public static final String CF_Configuration="configuration";
+	public static final String  CF_Filter="filter";
+	public static final String  CF_Property="property";
+	
+	
 	//crossItem
 	public static final String ID_STRING = "id";
 	public static final String TYPE_STRING = "type";

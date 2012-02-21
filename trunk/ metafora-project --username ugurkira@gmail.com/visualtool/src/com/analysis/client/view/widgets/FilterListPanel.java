@@ -18,23 +18,23 @@ public class FilterListPanel extends ContentPanel {
 	Map<String, String> _filterList;
 	
 
-	public FilterListPanel(String _property,String _value){
+	public FilterListPanel(){
 		
 		this.setCollapsible(true);
 		this.setHeading("Filter Options");
 		
 		 DOM.setStyleAttribute(this.getElement(), "border", "1px solid #000");
 	     DOM.setStyleAttribute(this.getElement(), "borderBottom", "0");
-	     this.setHeight("240px");	
+	     this.setHeight("200px");	
 		_filterList=new HashMap<String,String>();
-		_filterList.put(_property, _value);
+		
 		//ExtendedFilterItem efi=new ExtendedFilterItem(_property,_value);
 		//this.add(efi);
 		ExtendedFilterGrid ef=new ExtendedFilterGrid("");
 		ExtendedSaveFilterSet saveFilterSet=new ExtendedSaveFilterSet();
 		
 		this.add(ef);
-		this.add(saveFilterSet);
+		//this.add(saveFilterSet);
 	}
 	
 	

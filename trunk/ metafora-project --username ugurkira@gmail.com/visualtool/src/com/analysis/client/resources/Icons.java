@@ -14,6 +14,10 @@ public interface Icons extends ImageBundle {
 
   @Resource("table.png")
   AbstractImagePrototype table();
+  
+  
+  @Resource("close.png")
+  AbstractImagePrototype close();
 
   @Resource("add16.gif")
   AbstractImagePrototype add16();

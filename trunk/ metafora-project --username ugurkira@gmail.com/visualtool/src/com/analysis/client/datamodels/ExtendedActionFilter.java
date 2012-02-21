@@ -1,52 +1,56 @@
-/*
- * Ext GWT 2.2.5 - Ext for GWT
- * Copyright(c) 2007-2010, Ext JS, LLC.
- * licensing@extjs.com
- * 
- * http://extjs.com/license
- */
 package com.analysis.client.datamodels;
 
+import java.util.HashMap;
+import java.util.Map;
 
-import com.extjs.gxt.ui.client.data.BaseModel;
+public class ExtendedActionFilter {
 
+	
+	String name="";
+	String editable="true";
+	Map<String, String> properties=new HashMap<String, String>();
+	
+	
+	public void setName(String _name){
+		name=_name;
+		
+	}
+	
+	public String getName(){
+		
+		return name;
+	}
+	
+	public void setEditable(String _editable){
+		
+		editable=_editable;
+	}
+	
+	public String getEditable(){		
+		return editable;
+	}
+	public  void addProperty(String _key,String _value){
+		
+		properties.put(_key, _value);	
+		
+	}
+	
+	
+	public String getProperty(String _key){
+		
+		if(properties.containsKey(_key))
+			return properties.get(_key);
+		return "";
+		
+	}
 
-public class ExtendedActionFilter extends BaseModel {
-
-  public ExtendedActionFilter() {
-  }
-
-  public ExtendedActionFilter(String _property, String _value) {
-    set("property", _property);
-    set("value", _value);    
-  }
-
-
-  public String getProperty(){
-	  
-	  return (String) get("property");  
-  }
-  
-  public void setProperty(String _property){
-	  set("property",_property); 
-  }
-  
-
-
-  public String getValue() {
-    return (String) get("value");
-  }
-  
-  public void setValue(String _value){
-	  
-	  set("value", _value);
-  }
-
-   
-  public String toString() {
-    return getProperty();
-  }
-
-
-
+	
+	public Map<String, String> getProperties(){
+		
+		return properties;
+	}
+	
+	
+	
+	
 }

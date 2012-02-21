@@ -19,9 +19,11 @@ import com.analysis.client.components.ActionContent;
 import com.analysis.client.components.ActionObject;
 import com.analysis.client.components.charts.Showcase;
 import com.analysis.client.datamodels.DefaultModel;
-import com.analysis.client.datamodels.User;
+import com.analysis.client.datamodels.ExtendedActionFilterProperty;
+import com.analysis.client.datamodels.Indicator;
 import com.analysis.client.options.GroupingOptions;
 import com.analysis.client.utils.GWTDateUtils;
+import com.analysis.client.view.grids.ExtendedFilterGrid;
 import com.analysis.client.view.grids.ExtendedGroupedGrid;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
@@ -31,6 +33,7 @@ import com.extjs.gxt.ui.client.store.Record;
 import com.extjs.gxt.ui.client.util.Format;
 import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
+import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
@@ -58,8 +61,9 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart.Pie
 
 public class ExtendedPieChart extends VerticalPanel {
 	
-	Map<Integer, String>subsection = new HashMap<Integer, String>();
-	
+	Map<Integer, String>subsectionProperty = new HashMap<Integer, String>();
+	Map<Integer, String>subsectionValue = new HashMap<Integer, String>();
+	//Map<Integer, String>subsection = new HashMap<Integer, String>();
 	public String Type="";
 	public String Item="";
 	public  PieChart pie=null;
@@ -244,7 +248,8 @@ public ExtendedPieChart(String title){
 			    int index=0;
 			    for(String key:groupedObject.keySet()){
 			    data.setValue(index, 0, key);
-			    subsection.put(index, key);
+			    subsectionProperty.put(index, myItem);
+			    subsectionValue.put(index, key);
 			    data.setValue(index, 1, groupedObject.get(key).size());
 			    index++;
 			    }
@@ -252,15 +257,15 @@ public ExtendedPieChart(String title){
 		}
 		else if(myType.equalsIgnoreCase(CommonFormatStrings.C_CONTENT)){
 			groupedContent=new HashMap<String, List<ActionContent>>(); 
-			groupedContent=dp.groupContentByProperty(myItem);
-			
+			groupedContent=dp.groupContentByProperty(myItem);	
 			    data.addColumn(ColumnType.STRING, "Task");
 			    data.addColumn(ColumnType.NUMBER, "Hours per Day");
 			    data.addRows(groupedContent.size());
 			    int index=0;
 			    for(String key:groupedContent.keySet()){
 			    data.setValue(index, 0, key);
-			    subsection.put(index, key);
+			    subsectionProperty.put(index, myItem);
+			    subsectionValue.put(index, key);
 			    data.setValue(index, 1, groupedContent.get(key).size());
 			    index++;
 		}
@@ -276,7 +281,8 @@ public ExtendedPieChart(String title){
 			    int index=0;
 			    for(String key:groupedAction.keySet()){
 			    data.setValue(index, 0, key);
-			    subsection.put(index, key);
+			    subsectionProperty.put(index, myItem);
+			    subsectionValue.put(index, key);
 			    data.setValue(index, 1, groupedAction.get(key).size());
 			    index++;
 		}
@@ -300,7 +306,7 @@ public ExtendedPieChart(String title){
 		    options.setWidth(500);
 		    options.setHeight(400);
 		    options.set3D(true);
-		    options.setTitle("Activity Overview");		    
+		    options.setTitle("Indicator Overview");		    
 		    pie= new PieChart(data, options);  
 		    pie.addSelectHandler(createSelectHandler(pie));
 			RootPanel.get().add(pie);
@@ -308,12 +314,14 @@ public ExtendedPieChart(String title){
 	 
 	 
 	 
-	 
+	 boolean reseted=false;
 	 private SelectHandler createSelectHandler(final PieChart chart) {
 		    return new SelectHandler() {
 		      @Override
 		      public void onSelect(SelectEvent event) {
 		     
+		    	  
+		    	  
 		    	   StringBuffer b = new StringBuffer();
 		    	   int selection=-1;
 		    	    JsArray<Selection> s = chart.getSelections();
@@ -331,8 +339,48 @@ public ExtendedPieChart(String title){
 		    	        b.append(s.get(i).getColumn());
 		    	      }
 		    	    }
+		    	  
 		    	    
-		        
+		    	    
+		    	    String property=subsectionProperty.get(selection);
+		    	    String value=subsectionValue.get(selection);
+
+			          String _key=property+"-"+value;
+			        if(!DataProcess.getActiveFilters().containsKey(_key) && value!=null){
+			        DataProcess.getActiveFilters().put(_key,_key);
+			       
+			        ExtendedActionFilterProperty _filter = new ExtendedActionFilterProperty();  
+			        _filter.setProperty(property);
+			        _filter.setValue(value);
+			         
+			    	Info.display("Info","Filter for "+ value+" is added!");
+			        
+			        if(!reseted){
+			        	
+			        	reseted=true;
+			        	// ExtendedFilterGrid.getFilterSetListCombo().clearSelections();
+			        	// ExtendedFilterGrid.getExtendedFilterGrid().getStore().removeAll();
+			        	 
+			        }
+			    	
+			    	
+			        ExtendedFilterGrid.getExtendedFilterGrid().stopEditing();  
+			        ExtendedFilterGrid.getExtendedFilterGrid().getStore().insert(_filter, 0);  
+			        ExtendedFilterGrid.getExtendedFilterGrid().startEditing(ExtendedFilterGrid.getExtendedFilterGrid().getStore().indexOf(_filter), 0); 
+			        ExtendedFilterGrid.getFilterSetListCombo().clearSelections();
+				        
+			        }
+			        else {
+			        	
+			        	
+			        	Info.display("Info","Selection is<ul><li> already in Filter List</li></ul>");
+			        }
+			        
+			            
+			            
+
+			        
+		        /*
 		        
 		              final PopupPanel p = new PopupPanel();
 		              p.setStyleName("demo-popup", true);
@@ -358,33 +406,33 @@ public ExtendedPieChart(String title){
 		              if(type==null)
 		            	  type="";
 		            
-		              List<User> users=new ArrayList<User>();
+		              List<Indicator> _indicators=new ArrayList<Indicator>();
 		              
 		               if(groupedContent!=null && groupedContent.containsKey(type)){
 		            	   
 		            	   
 		            	   for(ActionContent ac: groupedContent.get(type)){
-		            	   User myuser=new User();
+		            	   Indicator myindicator=new Indicator();
 		            	   String usersString="";
 		            	   for(CfUser u : ac.ActionUsers){
 		            		   usersString=usersString+" - "+u.getid();
 		            	   }
 		            	   
 		            	   
-		            	   myuser.setName(usersString.substring(2,usersString.length()));
-		            	   myuser.setDescription(ac.Description);
+		            	   myindicator.setName(usersString.substring(2,usersString.length()));
+		            	   myindicator.setDescription(ac.Description);
 		            	
 		            	   
-		            	   myuser.setTime(GWTDateUtils.getTime(ac.time));
-		            	   myuser.setDate(GWTDateUtils.getDate(ac.time));
-		            	   users.add(myuser);
+		            	   myindicator.setTime(GWTDateUtils.getTime(ac.time));
+		            	   myindicator.setDate(GWTDateUtils.getDate(ac.time));
+		            	   _indicators.add(myindicator);
 		            	   }
 		            	   
 		               }
 		               else if(groupedObject!=null && groupedObject.containsKey(type)){
 		            	   
 		            	   for(ActionObject ac: groupedObject.get(type)){
-			            	   User myuser=new User();
+			            	   Indicator indicator=new Indicator();
 			            	   String usersString="";
 			            	   for(CfUser u : ac.ActionUsers){
 			            		   usersString=usersString+" - "+u.getid();
@@ -392,11 +440,11 @@ public ExtendedPieChart(String title){
 			            	   
 			            	   }
 			            	   
-			            	   myuser.setName(usersString.substring(2,usersString.length()));
-			            	   myuser.setDescription(ac.description);
-			            	   myuser.setTime(GWTDateUtils.getTime(ac.time));
-			            	   myuser.setDate(GWTDateUtils.getDate(ac.time));
-			            	   users.add(myuser);
+			            	   indicator.setName(usersString.substring(2,usersString.length()));
+			            	   indicator.setDescription(ac.description);
+			            	   indicator.setTime(GWTDateUtils.getTime(ac.time));
+			            	   indicator.setDate(GWTDateUtils.getDate(ac.time));
+			            	   _indicators.add(indicator);
 			            	   }		            	
 		               }
 		               
@@ -412,7 +460,7 @@ public ExtendedPieChart(String title){
 		            			CfAction activeAction=actionLists.get(k);
 		            			
 		            			List<CfUser> myusers=	activeAction.getCfUsers();
-		            			User myuser=new User();
+		            			Indicator myuser=new Indicator();
 		            		   String usersString="";
 		            		
 		            		
@@ -431,7 +479,7 @@ public ExtendedPieChart(String title){
 			            	   myuser.setTime(GWTDateUtils.getTime(activeAction.getTime()));
 			            	   myuser.setDate(GWTDateUtils.getDate(activeAction.getTime()));
 			            	   
-			            	   users.add(myuser);
+			            	   _indicators.add(myuser);
 			            	   
 		            		}
 		            		   
@@ -442,7 +490,7 @@ public ExtendedPieChart(String title){
 		               }
 		      		
 		               
-		              ExtendedGroupedGrid aa =new ExtendedGroupedGrid(type,users);
+		              ExtendedGroupedGrid aa =new ExtendedGroupedGrid(type,_indicators);
 		              aa.setStyleName("grid", true);
 		              button.setStyleName("button", true);
 		              button.setWidth("200px");
@@ -452,7 +500,7 @@ public ExtendedPieChart(String title){
 		           
 		              p.setWidget(vp); 
 		               p.center();
-		              p.show();
+		              p.show();*/
 		      }
 		    };
 		  }

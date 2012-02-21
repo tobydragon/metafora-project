@@ -11,7 +11,7 @@ import java.util.Map;
 
 import com.analysis.client.communication.objects.CfAction;
 import com.analysis.client.communication.objects.CfContent;
-import com.analysis.client.communication.objects.CfInteractionData;
+import com.analysis.client.communication.objects.ActionManagement;
 import com.analysis.client.communication.objects.CfObject;
 import com.analysis.client.communication.objects.CfUser;
 import com.analysis.client.communication.objects.CommonFormatStrings;
@@ -19,7 +19,8 @@ import com.analysis.client.communication.objects.CommonFormatStrings;
 import com.analysis.client.components.ActionContent;
 import com.analysis.client.components.ActionObject;
 import com.analysis.client.datamodels.Stock;
-import com.analysis.client.datamodels.User;
+import com.analysis.client.datamodels.Indicator;
+import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.xml.GWTXmlFragment;
 import com.google.gwt.i18n.client.DateTimeFormat;
 
@@ -27,10 +28,18 @@ public class DataProcess {
 	public static List<CfAction> Actions;
 	public static List<ActionObject> allObjects;
 	public static List<ActionContent> allContents;
-	
+	public static Map<String,String> activefilters=new HashMap<String,String>();
 
-	public DataProcess(){}
+	public DataProcess(){
+		
+		
+	}
 	
+	
+	public static Map<String,String> getActiveFilters(){
+		
+		return activefilters;
+	}
 	
 	public static void initializeInterActionHistory(String data){
 		
@@ -232,7 +241,31 @@ public void outputSortedC(Map<String, List<ActionContent>> data){
 	
 	
 	
+	public static List<Indicator> getIndicatorList(){
+		
+		List<Indicator> indicators=new ArrayList<Indicator>();
+		
+		for(CfAction ac: Actions){
 	
+			Indicator  myindicator=new Indicator();
+			
+			
+			String usersString="";
+			   for(CfUser u : ac.getCfUsers()){
+        		   usersString=usersString+" - "+u.getid();
+        	   }
+        	   
+        	   
+        	   myindicator.setName(usersString.substring(2,usersString.length()));
+        	   myindicator.setDescription(ac.getDescription());     	   
+        	   myindicator.setTime(GWTDateUtils.getTime(ac.getTime()));
+        	   myindicator.setDate(GWTDateUtils.getDate(ac.getTime()));
+        	   indicators.add(myindicator);	
+		}
+		
+		return indicators;
+		
+	}
 
 	
 	

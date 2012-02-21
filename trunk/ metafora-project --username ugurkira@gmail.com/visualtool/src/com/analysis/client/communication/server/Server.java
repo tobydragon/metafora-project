@@ -113,7 +113,7 @@ myGWTEventService.addListener(null, myListener);
 	}
 	
 	
-	public void sendActionPackage(String actionSet,AsyncCallback<String> cb) {
+	public void sendActionPackage(String _request,AsyncCallback<String> cb) {
 
 		if(connectEventService()) {
 //			LASADStatusBar.getInstance().setConnectionBusy(true);
@@ -122,10 +122,12 @@ myGWTEventService.addListener(null, myListener);
 			// Send actions to server via GWT RPC and Servlet
 		
 
-			Map<String, String> cr=new HashMap<String,String>();
+			//Map<String, String> cr=new HashMap<String,String>();
 			
-			cr.put("type", "RequestHistory");
-			myServlet.inputToServer(cr, cb);
+		
+			//cr.put("type", "RequestHistory");
+			
+			myServlet.sendToServer(_request, cb);
 		}
 		else {
 			//LASADInfo.display("Error", "Connection cannot be established.");
@@ -143,10 +145,13 @@ myGWTEventService.addListener(null, myListener);
 	//		actionSet.addParameter("SESSION-ID", clientID); //"CLIENT-ID"
 			// Send actions to server via GWT RPC and Servlet
 			
-			Map<String, String> cr=new HashMap<String,String>();
+			//Map<String, String> cr=new HashMap<String,String>();
 			
-			cr.put("type", "RequestHistory");
-			myServlet.inputToServer(cr, new AsyncCallback<String>() {
+			//cr.put("type", "RequestHistory");
+			
+			//Action cr =new Action();
+		//	cr.type="RequestHistory";
+			myServlet.sendToServer("RequestHistory", new AsyncCallback<String>() {
 
 				@Override
 				public void onFailure(Throwable caught) {

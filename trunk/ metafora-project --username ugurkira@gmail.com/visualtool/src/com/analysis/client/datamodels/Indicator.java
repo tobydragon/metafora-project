@@ -12,12 +12,12 @@ import java.util.Date;
 import com.extjs.gxt.ui.client.data.BaseModel;
 import com.extjs.gxt.ui.client.util.DateWrapper;
 
-public class User extends BaseModel {
+public class Indicator extends BaseModel {
 
-  public User() {
+  public Indicator() {
   }
 
-  public User(String name, String description,String time, String date, String groupingItem) {
+  public Indicator(String name, String description,String time, String date, String groupingItem) {
     set("name", name);
     set("description", description);
     set("time",time);

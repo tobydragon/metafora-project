@@ -8,19 +8,28 @@
 package com.analysis.client.view.grids;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
 import com.analysis.client.TestData;
 
+import com.analysis.client.communication.resources.DataProcess;
+import com.analysis.client.communication.server.Server;
 import com.analysis.client.components.ActionObject;
 import com.analysis.client.datamodels.ExtendedActionFilter;
-import com.analysis.client.datamodels.User;
+import com.analysis.client.datamodels.ExtendedActionFilterProperty;
+import com.analysis.client.datamodels.Indicator;
 import com.analysis.client.resources.Resources;
+import com.analysis.client.view.charts.ExtendedPieChart;
+import com.analysis.client.view.widgets.ExtendedTab;
+import com.analysis.client.xml.GWTXmlFragment;
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
+import com.extjs.gxt.ui.client.store.Store;
+import com.extjs.gxt.ui.client.store.StoreEvent;
 import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
@@ -46,7 +55,10 @@ import com.extjs.gxt.ui.client.widget.toolbar.LabelToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
+import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.FieldEvent;
@@ -58,12 +70,13 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 public class ExtendedFilterGrid extends LayoutContainer {
 
 	private String groupingItem="";
-	private List<User> users;
+	private List<Indicator> users;
 	
-	private Map<String, List<ExtendedActionFilter>> filterSets;
+	private Map<String, List<ExtendedActionFilterProperty>> filterSets;
 	
-	 EditorGrid<ExtendedActionFilter> grid;
-	 ListStore<ExtendedActionFilter> store;
+	 static EditorGrid<ExtendedActionFilterProperty> grid;
+	 static ListStore<ExtendedActionFilterProperty> store;
+	 static SimpleComboBox<String> filterGroup;
 	
 	public ExtendedFilterGrid(String _groupingItem){
 		
@@ -71,39 +84,42 @@ public class ExtendedFilterGrid extends LayoutContainer {
 	}
 	
 	
-public ExtendedFilterGrid(String _groupingItem,List<User> myusers){
+public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
 		
 		groupingItem=_groupingItem;
-		users=myusers;
+		users=indicator;
 	}
 	
-	
+
 	
   @Override
   protected void onRender(Element parent, int index) {
     super.onRender(parent, index);
     setLayout(new FlowLayout(1));
 
-   store = new ListStore<ExtendedActionFilter>(); 
+   store = new ListStore<ExtendedActionFilterProperty>();
+ 
     
  
-    List<ExtendedActionFilter> filters=new ArrayList<ExtendedActionFilter>();
-    ExtendedActionFilter ft=new ExtendedActionFilter();
-    ft.setProperty("MapID");
+    List<ExtendedActionFilterProperty> filters=new ArrayList<ExtendedActionFilterProperty>();
+    ExtendedActionFilterProperty ft=new ExtendedActionFilterProperty();
+  /*  ft.setProperty("MapID");
     ft.setValue("1");
-    filters.add(ft);
-    ExtendedActionFilter fts=new ExtendedActionFilter();
+    filters.add(ft);*
+    ExtendedActionFilterProperty fts=new ExtendedActionFilterProperty();
     fts.setProperty("User");
     fts.setValue("Ugur");
-    filters.add(fts);
+    filters.add(fts);*/
     
     store.add(filters);  
     ColumnConfig _property = new ColumnConfig("property", "property", 50);
     _property.setHeader("Property");  
+    _property.setWidth(198);
     
     
     ColumnConfig _value = new ColumnConfig("value", "value", 50);
     _value.setHeader("Value");
+    _value.setWidth(198);
     
     
     CheckColumnConfig checkColumn = new CheckColumnConfig("indoor", "Indoor?", 55);  
@@ -116,17 +132,17 @@ public ExtendedFilterGrid(String _groupingItem,List<User> myusers){
     
     
     
-    GridCellRenderer<ExtendedActionFilter> buttonRenderer = new GridCellRenderer<ExtendedActionFilter>() {
+    GridCellRenderer<ExtendedActionFilterProperty> buttonRenderer = new GridCellRenderer<ExtendedActionFilterProperty>() {
 
         private boolean init;
 
-        public Object render(final ExtendedActionFilter model, String property, ColumnData config, final int rowIndex,
-            final int colIndex, final ListStore<ExtendedActionFilter> store, Grid<ExtendedActionFilter> grid) {
+        public Object render(final ExtendedActionFilterProperty model, String property, ColumnData config, final int rowIndex,
+            final int colIndex, final ListStore<ExtendedActionFilterProperty> store, Grid<ExtendedActionFilterProperty> grid) {
           if (!init) {
             init = true;
-            grid.addListener(Events.ColumnResize, new Listener<GridEvent<ExtendedActionFilter>>() {
+            grid.addListener(Events.ColumnResize, new Listener<GridEvent<ExtendedActionFilterProperty>>() {
 
-              public void handleEvent(GridEvent<ExtendedActionFilter> be) {
+              public void handleEvent(GridEvent<ExtendedActionFilterProperty> be) {
                 for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
                   if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
                       && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
@@ -146,8 +162,12 @@ public ExtendedFilterGrid(String _groupingItem,List<User> myusers){
             	
             	Info.display(model.getProperty(), "<ul><li>" + model.getValue()+ "is removed!" + "</li></ul>");
             
-            	store.remove(model);
+            	String _key=model.getProperty()+"-"+model.getValue();
             	
+            	DataProcess.getActiveFilters().remove(_key);
+            	
+            	store.remove(model);
+            	filterGroup.clearSelections();
             
             
             }
@@ -165,7 +185,8 @@ public ExtendedFilterGrid(String _groupingItem,List<User> myusers){
       ColumnConfig  buttoncolumn = new ColumnConfig();
       buttoncolumn.setId("action");
       buttoncolumn.setHeader("Act.");
-      buttoncolumn.setWidth(34);
+      buttoncolumn.setWidth(35);
+      buttoncolumn.setFixed(true);
       buttoncolumn.setRenderer(buttonRenderer);
      
 
@@ -193,13 +214,42 @@ public ExtendedFilterGrid(String _groupingItem,List<User> myusers){
       }
     });
 */
-     grid = new EditorGrid<ExtendedActionFilter>(store, cm);
+     
+     grid = new EditorGrid<ExtendedActionFilterProperty>(store, cm);
+     
 //    view.setShowGroupedColumn(true);
   //  grid.setView(view);
     grid.setBorders(true);
+    /*
+    grid.addListener(Events.Add, new Listener<BaseEvent>() {
+        @Override
+        public void handleEvent(BaseEvent be) {
+        	Info.display("Info","addedd");
+        }
+    });
+    
+    grid.addListener(Events.Remove, new Listener<BaseEvent>() {
+        @Override
+        public void handleEvent(BaseEvent be) {
+        	Info.display("Info","remove");
+        }
+    });*/
    
+    grid.getStore().addListener(Store.Add, new Listener<StoreEvent<ExtendedActionFilterProperty>>() {
+          public void handleEvent(StoreEvent<ExtendedActionFilterProperty> be) {
+        	  //Info.display("Info","addedd");
+        	  
+        	//  filterGroup.clearSelections();
+          }
+        });
     
-    
+    grid.getStore().addListener(Store.Remove, new Listener<StoreEvent<ExtendedActionFilterProperty>>() {
+        public void handleEvent(StoreEvent<ExtendedActionFilterProperty> be) {
+      	 
+        	//Info.display("Info","remove");
+        	//filterGroup.clearSelections();
+        }
+      });
     
     ToolBar toolBar = new ToolBar();  
     Button add = new Button("Add Filter");  
@@ -207,7 +257,7 @@ public ExtendedFilterGrid(String _groupingItem,List<User> myusers){
   
       @Override  
       public void componentSelected(ButtonEvent ce) {  
-    ExtendedActionFilter filter = new ExtendedActionFilter();  
+    ExtendedActionFilterProperty filter = new ExtendedActionFilterProperty();  
     filter.setProperty("Tool");
     filter.setValue("Lasad");
      
@@ -225,18 +275,22 @@ public ExtendedFilterGrid(String _groupingItem,List<User> myusers){
     toolBar.add(new LabelToolItem("Filter Set:"));  
      
   
-   // toolBar.add(FilterSetComboBox());
+   toolBar.add(FilterSetComboBox());
     
     
-    Button clearbtn = new Button("Clear");  
-    add.addSelectionListener(new SelectionListener<ButtonEvent>() {  
-  
-      @Override  
-      public void componentSelected(ButtonEvent ce) {  
-    	  
-    	  Info.display("Clear","Clear");
-     
-      }  
+    Button clearbtn = new Button("Clear",new SelectionListener<ButtonEvent>() {
+
+		@Override
+		public void componentSelected(ButtonEvent ce) {
+		
+
+		    	 Info.display("le","Clear");
+		    grid.getStore().removeAll();
+		    filterGroup.clearSelections();
+		   
+			
+		}  
+   
   
     });  
     toolBar.add(clearbtn);
@@ -249,7 +303,7 @@ public ExtendedFilterGrid(String _groupingItem,List<User> myusers){
     panel.setButtonAlign(HorizontalAlignment.CENTER);
     panel.setCollapsible(false);
     panel.setFrame(true);
-    panel.setSize(260, 160);
+    panel.setSize(465, 160);
     panel.setLayout(new FitLayout());
     panel.add(grid);
 
@@ -261,9 +315,6 @@ public ExtendedFilterGrid(String _groupingItem,List<User> myusers){
       }));*/
      
     
-    
-    
-    
     grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
 
     
@@ -271,67 +322,112 @@ public ExtendedFilterGrid(String _groupingItem,List<User> myusers){
   }
   
   
+  public static EditorGrid<ExtendedActionFilterProperty> getExtendedFilterGrid(){
+	  
+	 return grid;	  
+  }
   
-  public void setFilterSet(Map<String, List<ExtendedActionFilter>> _filterSet){
+  
+  public static SimpleComboBox<String> getFilterSetListCombo(){
+		
+		return filterGroup;
+	}
+
+		
+  
+  
+  
+  public void setFilterMap(List<ExtendedActionFilter> filterList){
+	filterSets=new   HashMap<String, List<ExtendedActionFilterProperty>>();
 	  
-	  filterSets=_filterSet;
-	  
+	  for(ExtendedActionFilter af: filterList){
+		
+		  String filtername=af.getName();
+		  List<ExtendedActionFilterProperty> filterProperties=new ArrayList<ExtendedActionFilterProperty>();
+		  
+		for(String _key:af.getProperties().keySet()){
+
+			ExtendedActionFilterProperty property=new ExtendedActionFilterProperty();
+			property.setProperty(_key);
+			property.setValue(af.getProperties().get(_key));
+			filterProperties.add(property);
+			
+		}
+		
+		filterSets.put(filtername,filterProperties);
+		  
+	  }
+
+	
+	  //System.out.println("fdddddd:");
   }
   SimpleComboBox<String> FilterSetComboBox(){
 	  
-	  final SimpleComboBox<String> filterGroup = new SimpleComboBox<String>();  
+	  	filterGroup = new SimpleComboBox<String>();  
 	    filterGroup.setTriggerAction(TriggerAction.ALL);  
 	    filterGroup.setEditable(false);  
 	    filterGroup.setFireChangeEventOnSetValue(true);  
 	    filterGroup.setWidth(100); 
 	    
 	    
-	    for(String key:filterSets.keySet()){
-	    filterGroup.add(key);  
-	    }
-	    //filterGroup.add("Simple");  
-	   // filterGroup.setSimpleValue("Multi");  
+	    
+		 Server.getInstance().sendActionPackage("RequestConfiguration",new AsyncCallback<String>() {
+				public void onFailure(Throwable caught) {
+					
+					
+					
+				}
+
+				public void onSuccess(String result) {
+					
+					GWTXmlFragment gxf=new GWTXmlFragment();
+															
+					setFilterMap(gxf.getActiveConfiguration(result).getFilters());
+					
+					
+				  for(String key:filterSets.keySet()){
+					    filterGroup.add(key);  
+					    }
+				//	    filterGroup.add("Simple");  
+					//    filterGroup.setSimpleValue("Multi");  
+					    
+					    
+					    filterGroup.addListener(Events.Change, new Listener<FieldEvent>() {  
+					      public void handleEvent(FieldEvent be) {  
+					        String filterSetKey = filterGroup.getSimpleValue();
+					        
+					        
+					        if(filterSets.containsKey(filterSetKey)){
+					        
+					        	List<ExtendedActionFilterProperty> filterList=new ArrayList<ExtendedActionFilterProperty>();
+					        	
+					        	filterList=filterSets.get(filterSetKey);
+					        	store.removeAll();
+					        	for(ExtendedActionFilterProperty af: filterList){
+					        		
+					        	     grid.stopEditing();  
+					        	     store.insert(af, 0);  
+					        	     grid.startEditing(store.indexOf(af), 0); 
+					        	}
+					        	
+					        	
+					        	
+					        	
+					        }
+					        
+					        
+					      }  
+					    });
+					    
+					    
+					
+										
+				}
+			});
 	    
 	    
-	    filterGroup.addListener(Events.Change, new Listener<FieldEvent>() {  
-	      public void handleEvent(FieldEvent be) {  
-	        String filterSetKey = filterGroup.getSimpleValue();
-	        
-	        
-	        if(filterSets.containsKey(filterSetKey)){
-	        
-	        	List<ExtendedActionFilter> filterList=new ArrayList<ExtendedActionFilter>();
-	        	
-	        	filterList=filterSets.get(filterSetKey);
-	        	
-	        	for(ExtendedActionFilter af: filterList){
-	        		
-	        	     grid.stopEditing();  
-	        	     store.insert(af, 0);  
-	        	     grid.startEditing(store.indexOf(af), 0); 
-	        	}
-	        	
-	        	
-	        	
-	        	
-	        }
-	        
-	        
-	        
-	        
-	        /*if(simple){
-	        	
-	        	Info.display("Simpke","simple");
-	        }
-	        else {
-	        
-	        	Info.display("not","not");
-	        }
-	        */
-	        // sm.deselectAll();  
-	        //sm.setSelectionMode(simple ? SelectionMode.SIMPLE : SelectionMode.MULTI);  
-	      }  
-	    });
+	    
+
 	  
 	  return filterGroup;
 	  

@@ -7,11 +7,11 @@ import com.analysis.client.xml.GWTXmlFragment;
 
 
 
-public class CfInteractionData {
+public class ActionManagement {
 	
-	private static List<CfAction> cfActions;
+	private static List<CfAction> cfActions=null;
 	
-	public CfInteractionData(List<CfAction> cfActions){
+	public ActionManagement(List<CfAction> cfActions){
 		this.cfActions = cfActions;
 	}
 	/*
