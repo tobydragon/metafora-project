@@ -3,18 +3,19 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" output="test-classes" path="test"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Ugur/Desktop/Lasad/Master/gwt-visualization-1.1.2/gwt-visualization-1.1.2/gwt-visualization.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Ugur/Desktop/Lasad/Master/gwt-visualization-1.1.2/gwt-visualization-1.1.2/gwt-visualization-javadoc.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Ugur/Desktop/Lasad/Master/gwt-visualization-1.1.2/gwt-visualization-1.1.2/gwt-visualization-noredist.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/GXT"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Ugur/Desktop/jdom-1.1.2/jdom/build/jdom-1.1.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Ugur/Desktop/Lasad/Master/jar/smack.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Ugur/Desktop/Lasad/Master/jar/smackx.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ugur/Desktop/Lasad/Master/gxt-2.2.5/gxt-2.2.5/gxt-2.2.5-gwt22.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ugur/Desktop/apache-log4j-1.2.16/apache-log4j-1.2.16/log4j-1.2.16.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ugur/LASAD0605/LASAD-Client/lib/eventservice-1.2.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ugur/LASAD0605/LASAD-Client/lib/gwteventservice-1.2.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ugur/LASAD0605/LASAD-Client/lib/eventservice-rpc-1.2.1-SNAPSHOT.jar"/>
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/eventservice-1.2.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/eventservice-rpc-1.2.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/gwt-visualization-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/gwt-visualization-noredist.jar"/>
+	<classpathentry kind="lib" path="lib/gwt-visualization.jar"/>
+	<classpathentry kind="lib" path="lib/gwteventservice-1.2.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/gxt-2.2.5-gwt22.jar"/>
+	<classpathentry kind="lib" path="lib/jdom-1.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/junit-4.6.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/smack.jar"/>
+	<classpathentry kind="lib" path="lib/smackx.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
