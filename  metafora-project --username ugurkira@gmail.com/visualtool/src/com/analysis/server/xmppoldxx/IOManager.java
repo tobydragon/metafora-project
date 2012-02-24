@@ -1,4 +1,4 @@
-package com.analysis.server.xmppsx;
+package com.analysis.server.xmppoldxx;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
