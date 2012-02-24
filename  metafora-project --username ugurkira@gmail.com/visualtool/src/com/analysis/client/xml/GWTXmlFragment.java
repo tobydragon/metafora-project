@@ -14,7 +14,8 @@ import com.analysis.client.communication.objects.CfObject;
 import com.analysis.client.communication.objects.CfProperty;
 import com.analysis.client.communication.objects.CfUser;
 import com.analysis.client.communication.objects.CommonFormatStrings;
-import com.analysis.client.datamodels.ExtendedActionFilter;
+import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
+import com.analysis.client.datamodels.IndicatorFilter;
 import com.analysis.client.datamodels.Configuration;
 
 import com.google.gwt.xml.client.Document;
@@ -239,14 +240,18 @@ public class GWTXmlFragment {
 						 String filtername=filterEl.getAttribute("name");
 						 String filtereditable=filterEl.getAttribute("editable");
 						 
+				
+						 
 						 if(filtername==null)
 							 filtername="";
 						 
 						System.out.println("filtername:"+filtername);
 						
-						ExtendedActionFilter activeFilter=new ExtendedActionFilter();
+						IndicatorFilter activeFilter=new IndicatorFilter();
 						activeFilter.setName(filtername);
 						activeFilter.setEditable(filtereditable);
+						
+						
 						
 						
 						NodeList properties =filterEl.getElementsByTagName(CommonFormatStrings.CF_Property);
@@ -256,13 +261,23 @@ public class GWTXmlFragment {
 							 Node propertyNode = properties.item(k);
 							 Element propertyEl= (Element) propertyNode;
 							 
+							 String type=propertyEl.getAttribute("type");
+							 if(type==null)
+								 type="";
+							 
 							 String name=propertyEl.getAttribute("name");
 							 if(name==null)
 								 name="";
 							 String value=propertyEl.getAttribute("value");
 							 if(value==null)
-								 value="";							 							 
-							 activeFilter.addProperty(name, value);	 
+								 value="";	
+							 
+							 ExtendedIndicatorFilterItem item=new ExtendedIndicatorFilterItem();
+							 
+							 item.setType(type);
+							 item.setProperty(name);
+							 item.setValue(value);
+							 activeFilter.addFilterItem(name, item);	 
 							 
 							 
 							 }

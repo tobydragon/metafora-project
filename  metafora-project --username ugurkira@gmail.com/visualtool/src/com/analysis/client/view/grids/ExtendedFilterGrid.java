@@ -18,8 +18,8 @@ import com.analysis.client.TestData;
 import com.analysis.client.communication.resources.DataProcess;
 import com.analysis.client.communication.server.Server;
 import com.analysis.client.components.ActionObject;
-import com.analysis.client.datamodels.ExtendedActionFilter;
-import com.analysis.client.datamodels.ExtendedActionFilterProperty;
+import com.analysis.client.datamodels.IndicatorFilter;
+import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
 import com.analysis.client.datamodels.Indicator;
 import com.analysis.client.resources.Resources;
 import com.analysis.client.view.charts.ExtendedPieChart;
@@ -72,10 +72,10 @@ public class ExtendedFilterGrid extends LayoutContainer {
 	private String groupingItem="";
 	private List<Indicator> users;
 	
-	private Map<String, List<ExtendedActionFilterProperty>> filterSets;
+	private Map<String, List<ExtendedIndicatorFilterItem>> filterSets;
 	
-	 static EditorGrid<ExtendedActionFilterProperty> grid;
-	 static ListStore<ExtendedActionFilterProperty> store;
+	 static EditorGrid<ExtendedIndicatorFilterItem> grid;
+	 static ListStore<ExtendedIndicatorFilterItem> store;
 	 static SimpleComboBox<String> filterGroup;
 	
 	public ExtendedFilterGrid(String _groupingItem){
@@ -97,29 +97,39 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
     super.onRender(parent, index);
     setLayout(new FlowLayout(1));
 
-   store = new ListStore<ExtendedActionFilterProperty>();
+   store = new ListStore<ExtendedIndicatorFilterItem>();
  
     
  
-    List<ExtendedActionFilterProperty> filters=new ArrayList<ExtendedActionFilterProperty>();
-    ExtendedActionFilterProperty ft=new ExtendedActionFilterProperty();
-  /*  ft.setProperty("MapID");
+    List<ExtendedIndicatorFilterItem> filters=new ArrayList<ExtendedIndicatorFilterItem>();
+    ExtendedIndicatorFilterItem ft=new ExtendedIndicatorFilterItem();
+    ft.setProperty("MapID");
     ft.setValue("1");
-    filters.add(ft);*
-    ExtendedActionFilterProperty fts=new ExtendedActionFilterProperty();
+    ft.setType("Action");
+   
+    filters.add(ft);
+    
+    ExtendedIndicatorFilterItem fts=new ExtendedIndicatorFilterItem();
     fts.setProperty("User");
     fts.setValue("Ugur");
-    filters.add(fts);*/
+    fts.setType("Content");
+    filters.add(fts);
     
-    store.add(filters);  
+    store.add(filters);
+    
+    
+    ColumnConfig _type = new ColumnConfig("filtertype", "filtertype", 50);
+    _type.setHeader("Type");
+    _type.setWidth(100);
+    
     ColumnConfig _property = new ColumnConfig("property", "property", 50);
     _property.setHeader("Property");  
-    _property.setWidth(198);
+    _property.setWidth(100);
     
     
     ColumnConfig _value = new ColumnConfig("value", "value", 50);
     _value.setHeader("Value");
-    _value.setWidth(198);
+    _value.setWidth(100);
     
     
     CheckColumnConfig checkColumn = new CheckColumnConfig("indoor", "Indoor?", 55);  
@@ -132,17 +142,17 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
     
     
     
-    GridCellRenderer<ExtendedActionFilterProperty> buttonRenderer = new GridCellRenderer<ExtendedActionFilterProperty>() {
+    GridCellRenderer<ExtendedIndicatorFilterItem> buttonRenderer = new GridCellRenderer<ExtendedIndicatorFilterItem>() {
 
         private boolean init;
 
-        public Object render(final ExtendedActionFilterProperty model, String property, ColumnData config, final int rowIndex,
-            final int colIndex, final ListStore<ExtendedActionFilterProperty> store, Grid<ExtendedActionFilterProperty> grid) {
+        public Object render(final ExtendedIndicatorFilterItem model, String property, ColumnData config, final int rowIndex,
+            final int colIndex, final ListStore<ExtendedIndicatorFilterItem> store, Grid<ExtendedIndicatorFilterItem> grid) {
           if (!init) {
             init = true;
-            grid.addListener(Events.ColumnResize, new Listener<GridEvent<ExtendedActionFilterProperty>>() {
+            grid.addListener(Events.ColumnResize, new Listener<GridEvent<ExtendedIndicatorFilterItem>>() {
 
-              public void handleEvent(GridEvent<ExtendedActionFilterProperty> be) {
+              public void handleEvent(GridEvent<ExtendedIndicatorFilterItem> be) {
                 for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
                   if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
                       && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
@@ -193,6 +203,7 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
     
     
     List<ColumnConfig> config = new ArrayList<ColumnConfig>();
+    config.add(_type);
     config.add(_property);
     config.add(_value);
     //config.add(checkColumn);
@@ -215,7 +226,7 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
     });
 */
      
-     grid = new EditorGrid<ExtendedActionFilterProperty>(store, cm);
+     grid = new EditorGrid<ExtendedIndicatorFilterItem>(store, cm);
      
 //    view.setShowGroupedColumn(true);
   //  grid.setView(view);
@@ -235,16 +246,16 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
         }
     });*/
    
-    grid.getStore().addListener(Store.Add, new Listener<StoreEvent<ExtendedActionFilterProperty>>() {
-          public void handleEvent(StoreEvent<ExtendedActionFilterProperty> be) {
+    grid.getStore().addListener(Store.Add, new Listener<StoreEvent<ExtendedIndicatorFilterItem>>() {
+          public void handleEvent(StoreEvent<ExtendedIndicatorFilterItem> be) {
         	  //Info.display("Info","addedd");
         	  
         	//  filterGroup.clearSelections();
           }
         });
     
-    grid.getStore().addListener(Store.Remove, new Listener<StoreEvent<ExtendedActionFilterProperty>>() {
-        public void handleEvent(StoreEvent<ExtendedActionFilterProperty> be) {
+    grid.getStore().addListener(Store.Remove, new Listener<StoreEvent<ExtendedIndicatorFilterItem>>() {
+        public void handleEvent(StoreEvent<ExtendedIndicatorFilterItem> be) {
       	 
         	//Info.display("Info","remove");
         	//filterGroup.clearSelections();
@@ -257,7 +268,7 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
   
       @Override  
       public void componentSelected(ButtonEvent ce) {  
-    ExtendedActionFilterProperty filter = new ExtendedActionFilterProperty();  
+    ExtendedIndicatorFilterItem filter = new ExtendedIndicatorFilterItem();  
     filter.setProperty("Tool");
     filter.setValue("Lasad");
      
@@ -322,7 +333,7 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
   }
   
   
-  public static EditorGrid<ExtendedActionFilterProperty> getExtendedFilterGrid(){
+  public static EditorGrid<ExtendedIndicatorFilterItem> getExtendedFilterGrid(){
 	  
 	 return grid;	  
   }
@@ -337,20 +348,23 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
   
   
   
-  public void setFilterMap(List<ExtendedActionFilter> filterList){
-	filterSets=new   HashMap<String, List<ExtendedActionFilterProperty>>();
+  public void setFilterMap(List<IndicatorFilter> filterList){
+	filterSets=new   HashMap<String, List<ExtendedIndicatorFilterItem>>();
 	  
-	  for(ExtendedActionFilter af: filterList){
+	  for(IndicatorFilter af: filterList){
 		
 		  String filtername=af.getName();
-		  List<ExtendedActionFilterProperty> filterProperties=new ArrayList<ExtendedActionFilterProperty>();
+		  List<ExtendedIndicatorFilterItem> filterProperties=new ArrayList<ExtendedIndicatorFilterItem>();
 		  
 		for(String _key:af.getProperties().keySet()){
 
-			ExtendedActionFilterProperty property=new ExtendedActionFilterProperty();
-			property.setProperty(_key);
-			property.setValue(af.getProperties().get(_key));
-			filterProperties.add(property);
+			ExtendedIndicatorFilterItem filterItem=new ExtendedIndicatorFilterItem();
+			filterItem.setProperty(_key);
+			filterItem.setValue(af.getProperties().get(_key).getValue());
+			filterItem.setType(af.getProperties().get(_key).getType());
+			
+			
+			filterProperties.add(filterItem);
 			
 		}
 		
@@ -399,11 +413,11 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
 					        
 					        if(filterSets.containsKey(filterSetKey)){
 					        
-					        	List<ExtendedActionFilterProperty> filterList=new ArrayList<ExtendedActionFilterProperty>();
+					        	List<ExtendedIndicatorFilterItem> filterList=new ArrayList<ExtendedIndicatorFilterItem>();
 					        	
 					        	filterList=filterSets.get(filterSetKey);
 					        	store.removeAll();
-					        	for(ExtendedActionFilterProperty af: filterList){
+					        	for(ExtendedIndicatorFilterItem af: filterList){
 					        		
 					        	     grid.stopEditing();  
 					        	     store.insert(af, 0);  

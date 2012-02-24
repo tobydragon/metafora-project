@@ -5,23 +5,23 @@
 
 
 <filter name="Default" editable="true">
-<property name="Tool" value="Lasad"/>
-<property name="Tool" value="Metafora"/>
-<property name="User" value="Alice"/>
+<property name="Tool" value="Lasad" type="Content"/>
+<property name="Tool" value="Metafora" type="Content"/>
+<property name="User" value="Alice" type="Action"/>
 
 </filter>
 
 <filter name="UserandMap" editable="true">
-<property name="MapID" value="1"/>
-<property name="User" value="Bob"/>
+<property name="MapID" value="1" type="Action"/>
+<property name="User" value="Bob" type="Content"/>
 </filter>
 
 
 <filter name="Mixed" editable="true">
-<property name="Tool" value="Metafora"/>
-<property name="User" value="Alice"/>
-<property name="MapID" value="M1"/>
-<property name="User" value="Bob"/>
+<property name="Tool" value="Metafora" type="Content"/>
+<property name="User" value="Alice"  type="Action"/>
+<property name="MapID" value="M1" type="Object"/>
+<property name="User" value="Bob" type="Action"/>
 </filter>
 
 

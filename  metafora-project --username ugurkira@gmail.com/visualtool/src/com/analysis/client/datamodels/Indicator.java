@@ -17,8 +17,10 @@ public class Indicator extends BaseModel {
   public Indicator() {
   }
 
-  public Indicator(String name, String description,String time, String date, String groupingItem) {
+  public Indicator(String name,String actiontype,String classification, String description,String time, String date, String groupingItem) {
     set("name", name);
+    set("actiontype", actiontype);
+    set("classification", classification);
     set("description", description);
     set("time",time);
     set("date", date);
@@ -60,7 +62,23 @@ public class Indicator extends BaseModel {
 	  set("name", name);
   }
 
- 
+public void setClassification(String classification){
+	  
+	  set("classification", classification);
+  }
+
+  public String getClassification(){
+	  return (String) get("classification");
+  }
+  
+  public String getActionType() {
+	  return (String) get("actionType");  
+	  }
+	  
+	  public void setActionType(String actiontype){
+		  
+		  set("actiontype", actiontype);
+	  }
   //public void setgroupingItem(String groupingItem) {
     //set("groupingItem", groupingItem);
   //}
