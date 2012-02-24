@@ -1,4 +1,4 @@
-package com.analysis.client.communication.objects;
+package com.analysis.shared.communication.objects;
 
 public class CommonFormatStrings {
 	

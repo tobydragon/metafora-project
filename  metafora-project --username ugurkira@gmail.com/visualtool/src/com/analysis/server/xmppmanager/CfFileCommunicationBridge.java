@@ -12,8 +12,8 @@ import de.uds.commonformat.CfAction;
 import de.uds.xml.XmlConfigParser;
 import de.uds.xml.XmlFragment;*/
 
-import com.analysis.client.communication.objects.CfAction;
 import com.analysis.server.xml.XmlFragment;
+import com.analysis.shared.communication.objects.CfAction;
 
 public class CfFileCommunicationBridge implements CfCommunicationBridge{
 	Logger logger = Logger.getLogger(CfCommunicationBridge.class);

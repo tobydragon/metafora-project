@@ -1,6 +1,6 @@
 package com.analysis.server.xmppmanager;
 
-import com.analysis.client.communication.objects.CfAction;
+import com.analysis.shared.communication.objects.CfAction;
 
 
 public interface CfCommunicationBridge {

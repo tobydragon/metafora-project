@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.analysis.client.communication.objects.CfProperty;
-import com.analysis.client.communication.objects.CfUser;
+import com.analysis.shared.communication.objects.CfProperty;
+import com.analysis.shared.communication.objects.CfUser;
 
 public class ActionObject {
 

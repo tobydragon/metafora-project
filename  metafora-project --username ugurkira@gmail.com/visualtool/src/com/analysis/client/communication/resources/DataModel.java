@@ -9,12 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.analysis.client.communication.objects.CfAction;
-import com.analysis.client.communication.objects.CfContent;
-import com.analysis.client.communication.objects.CfInteractionData;
-import com.analysis.client.communication.objects.CfObject;
-import com.analysis.client.communication.objects.CfUser;
-import com.analysis.client.communication.objects.CommonFormatStrings;
 
 import com.analysis.client.components.ActionContent;
 import com.analysis.client.components.ActionObject;
@@ -24,6 +18,12 @@ import com.analysis.client.datamodels.IndicatorFilter;
 import com.analysis.client.datamodels.Indicator;
 import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.xml.GWTXmlFragment;
+import com.analysis.shared.communication.objects.CfAction;
+import com.analysis.shared.communication.objects.CfContent;
+import com.analysis.shared.communication.objects.CfInteractionData;
+import com.analysis.shared.communication.objects.CfObject;
+import com.analysis.shared.communication.objects.CfUser;
+import com.analysis.shared.communication.objects.CommonFormatStrings;
 import com.google.gwt.i18n.client.DateTimeFormat;
 
 public class DataModel {

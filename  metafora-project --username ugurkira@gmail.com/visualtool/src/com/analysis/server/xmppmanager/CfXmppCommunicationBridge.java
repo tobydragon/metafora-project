@@ -6,11 +6,11 @@ import java.util.Vector;
 import org.apache.log4j.Logger;
 
 
-import com.analysis.client.communication.objects.CfAction;
 import com.analysis.server.io.ErrorUtil;
 import com.analysis.server.xml.XmlConfigParser;
 import com.analysis.server.xmpp.XMPPBridge;
 import com.analysis.server.xmpp.XMPPMessageListener;
+import com.analysis.shared.communication.objects.CfAction;
 
 public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMessageListener{
 	Logger logger = Logger.getLogger(CfCommunicationBridge.class);

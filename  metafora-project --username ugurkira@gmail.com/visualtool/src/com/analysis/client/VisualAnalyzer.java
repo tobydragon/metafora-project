@@ -20,7 +20,6 @@ package com.analysis.client;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.analysis.client.communication.objects.CommonFormatStrings;
 import com.analysis.client.communication.resources.DataModel;
 
 import com.analysis.client.communication.server.Server;
@@ -31,6 +30,7 @@ import com.analysis.client.resources.Resources;
 import com.analysis.client.view.charts.ExtendedPieChart;
 import com.analysis.client.view.grids.ExtendedGroupedGrid;
 import com.analysis.client.view.widgets.TabDataViewPanel;
+import com.analysis.shared.communication.objects.CommonFormatStrings;
 
 
 import com.google.gwt.core.client.EntryPoint;
