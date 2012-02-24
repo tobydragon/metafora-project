@@ -16,8 +16,7 @@ import com.google.gwt.user.client.ui.AbstractImagePrototype;
 
 public interface Images extends ClientBundle {
 
-	@Source("ajax-loader.gif")
-	ImageResource loaderImage();
+	
 	
 	@Source("loading.gif")
 	ImageResource loaderImage2();
