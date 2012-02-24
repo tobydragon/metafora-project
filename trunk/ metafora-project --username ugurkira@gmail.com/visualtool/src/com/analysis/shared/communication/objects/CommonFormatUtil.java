@@ -1,4 +1,4 @@
-package com.analysis.client.communication.objects;
+package com.analysis.shared.communication.objects;
 
 //import org.apache.commons.logging.Log;
 //import org.apache.commons.logging.LogFactory;

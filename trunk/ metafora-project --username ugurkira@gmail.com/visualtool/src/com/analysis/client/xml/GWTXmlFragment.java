@@ -6,17 +6,17 @@ import java.util.List;
 
 
 
-import com.analysis.client.communication.objects.CfAction;
-import com.analysis.client.communication.objects.CfActionType;
-import com.analysis.client.communication.objects.CfContent;
 
-import com.analysis.client.communication.objects.CfObject;
-import com.analysis.client.communication.objects.CfProperty;
-import com.analysis.client.communication.objects.CfUser;
-import com.analysis.client.communication.objects.CommonFormatStrings;
 import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
 import com.analysis.client.datamodels.IndicatorFilter;
 import com.analysis.client.datamodels.Configuration;
+import com.analysis.shared.communication.objects.CfAction;
+import com.analysis.shared.communication.objects.CfActionType;
+import com.analysis.shared.communication.objects.CfContent;
+import com.analysis.shared.communication.objects.CfObject;
+import com.analysis.shared.communication.objects.CfProperty;
+import com.analysis.shared.communication.objects.CfUser;
+import com.analysis.shared.communication.objects.CommonFormatStrings;
 
 import com.google.gwt.xml.client.Document;
 import com.google.gwt.xml.client.Element;

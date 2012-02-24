@@ -9,8 +9,8 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.analysis.client.communication.objects.CfAction;
 import com.analysis.server.xml.XmlFragment;
+import com.analysis.shared.communication.objects.CfAction;
 
 //import de.dfki.lasad.agents.instances.xmpp.CfAgentInterface;
 //import de.dfki.lasad.agents.instances.xmpp.CfManagementActionAgent;

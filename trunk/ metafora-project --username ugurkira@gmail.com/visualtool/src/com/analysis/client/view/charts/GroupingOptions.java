@@ -2,9 +2,9 @@ package com.analysis.client.view.charts;
 
 import java.util.List;
 
-import com.analysis.client.communication.objects.CfAction;
-import com.analysis.client.communication.objects.CommonFormatStrings;
 import com.analysis.client.datamodels.DefaultModel;
+import com.analysis.shared.communication.objects.CfAction;
+import com.analysis.shared.communication.objects.CommonFormatStrings;
 import com.extjs.gxt.ui.client.store.ListStore;
 
 

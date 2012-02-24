@@ -1,4 +1,4 @@
-package com.analysis.client.communication.objects;
+package com.analysis.shared.communication.objects;
 
 import java.util.ArrayList;
 import java.util.List;
