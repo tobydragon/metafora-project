@@ -9,7 +9,7 @@ import com.analysis.server.io.XmlFragment;
 import com.analysis.server.io.SourceManager;
 import com.analysis.server.utils.ServerFormatStrings;
 import com.analysis.server.xmpp.StartupServlet;
-import com.analysis.server.xmppsx.XmppActionListener;
+import com.analysis.server.xmppoldxx.XmppActionListener;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
