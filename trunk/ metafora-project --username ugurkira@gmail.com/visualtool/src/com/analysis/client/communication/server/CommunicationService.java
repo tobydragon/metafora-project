@@ -14,10 +14,10 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 public interface CommunicationService extends RemoteService {
 	
 	
-	String sendToServer(String cr);
+	String sendRequest(String cr);
 
 	
-	Map<String, Map<String, String>> sendToServer(Map<String, String> cr);
+	Map<String, Map<String, String>> sendRequest(Map<String, String> cr);
 	
 	
 }

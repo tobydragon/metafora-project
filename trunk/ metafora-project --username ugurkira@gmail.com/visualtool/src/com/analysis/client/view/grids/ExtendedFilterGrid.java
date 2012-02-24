@@ -15,7 +15,7 @@ import java.util.Map;
 
 
 
-import com.analysis.client.communication.resources.DataModel;
+import com.analysis.client.communication.models.DataModel;
 import com.analysis.client.communication.server.Server;
 import com.analysis.client.components.ActionObject;
 import com.analysis.client.datamodels.IndicatorFilter;
@@ -70,7 +70,6 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 public class ExtendedFilterGrid extends LayoutContainer {
 
 	private String groupingItem="";
-	private List<Indicator> users;
 	
 	private Map<String, List<ExtendedIndicatorFilterItem>> filterSets;
 	
@@ -87,7 +86,7 @@ public class ExtendedFilterGrid extends LayoutContainer {
 public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
 		
 		groupingItem=_groupingItem;
-		users=indicator;
+	
 	}
 	
 
@@ -212,24 +211,10 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
    // config.add(groupingItem);
 
      ColumnModel cm = new ColumnModel(config);
-/*
-     GroupingView view = new GroupingView();
-    view.setShowGroupedColumn(false);
-    view.setForceFit(true);
-    
-    view.setGroupRenderer(new GridGroupRenderer() {
-      public String render(GroupColumnData data) {
-        String f = cm.getColumnById(data.field).getHeader();
-        String l = data.models.size() == 1 ? "Item" : "Items";
-        return f + ": " + data.group + " (" + data.models.size() + " " + l + ")";
-      }
-    });
-*/
+
      
      grid = new EditorGrid<ExtendedIndicatorFilterItem>(store, cm);
-     
-//    view.setShowGroupedColumn(true);
-  //  grid.setView(view);
+
     grid.setBorders(true);
     /*
     grid.addListener(Events.Add, new Listener<BaseEvent>() {
@@ -385,7 +370,7 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
 	    
 	    
 	    
-		 Server.getInstance().sendActionPackage("RequestConfiguration",new AsyncCallback<String>() {
+		 Server.getInstance().sendRequest("RequestConfiguration",new AsyncCallback<String>() {
 				public void onFailure(Throwable caught) {
 					
 					
@@ -402,8 +387,6 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
 				  for(String key:filterSets.keySet()){
 					    filterGroup.add(key);  
 					    }
-				//	    filterGroup.add("Simple");  
-					//    filterGroup.setSimpleValue("Multi");  
 					    
 					    
 					    filterGroup.addListener(Events.Change, new Listener<FieldEvent>() {  

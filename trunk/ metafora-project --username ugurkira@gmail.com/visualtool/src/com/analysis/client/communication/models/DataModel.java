@@ -1,4 +1,4 @@
-package com.analysis.client.communication.resources;
+package com.analysis.client.communication.models;
 
 import java.text.DateFormat;
 import java.text.ParseException;

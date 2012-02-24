@@ -21,45 +21,6 @@ public class RequestHandler extends RemoteServiceServlet implements
 
 
 	
-
-
-	public String inputToServer(String request){
-		
-		//System.out.println("Request1111111:"+requestType);
-		
-		//SourceManager.getConfiguration(FileOperation.read("conf/configuration.xml"));
-
-		
-		//String serverInfo = getServletContext().getServerInfo();
-		
-		//System.out.println("Server Result:"+request.get("type"));
-		
-	
-		String userAgent = getThreadLocalRequest().getHeader("User-Agent");
-
-		userAgent = escapeHtml(userAgent);
-		//String xml=handleRequest(request.get("type"));
-
-
-		return  "";
-
-		
-	}
-
-
-	
-	public String inputToServer(String requestType,String value){
-		
-		String userAgent = getThreadLocalRequest().getHeader("User-Agent");
-
-		userAgent = escapeHtml(userAgent);
-	
-		String xml=handleRequest(requestType,value);
-		
-		return  xml;
-
-		
-	}
 	String handleRequest(String requestType){
 	
 		
@@ -121,7 +82,7 @@ public class RequestHandler extends RemoteServiceServlet implements
 
 	// Comm1
 
-	public String sendToServer(String requestType) {
+	public String sendRequest(String requestType) {
 	
 		
 		
@@ -162,7 +123,7 @@ public class RequestHandler extends RemoteServiceServlet implements
 	}
 	
 	//Comm2
-	public Map<String, Map<String, String>> sendToServer(Map<String, String> cr){
+	public Map<String, Map<String, String>> sendRequest(Map<String, String> cr){
 		
 		
 		Map<String, Map<String, String>> configuration=new HashMap<String, Map<String, String>>();

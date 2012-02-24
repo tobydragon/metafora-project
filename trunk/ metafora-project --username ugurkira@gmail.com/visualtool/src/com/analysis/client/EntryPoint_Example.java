@@ -120,7 +120,7 @@ public class EntryPoint_Example implements EntryPoint {
 				sendButton.setEnabled(false);
 				
 				serverResponseLabel.setText("");
-				greetingService.sendToServer(null,
+				greetingService.sendRequest(null,
 						new AsyncCallback<String>() {
 							public void onFailure(Throwable caught) {
 								// Show the RPC error message to the user

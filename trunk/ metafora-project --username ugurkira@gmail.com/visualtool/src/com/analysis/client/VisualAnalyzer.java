@@ -20,7 +20,7 @@ package com.analysis.client;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.analysis.client.communication.resources.DataModel;
+import com.analysis.client.communication.models.DataModel;
 
 import com.analysis.client.communication.server.Server;
 
@@ -89,7 +89,7 @@ class VisualAnalyzer implements EntryPoint {
    
     	// IOManager io=new IOManager();
     	 
-    	 Server.getInstance().sendActionPackage("RequestHistory",new AsyncCallback<String>() {
+    	 Server.getInstance().sendRequest("RequestHistory",new AsyncCallback<String>() {
 				public void onFailure(Throwable caught) {
 					
 					
