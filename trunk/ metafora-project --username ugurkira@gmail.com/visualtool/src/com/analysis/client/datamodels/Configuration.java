@@ -7,7 +7,7 @@ public class Configuration {
 
 	String name="";
 	
-	List<ExtendedActionFilter> filters=new ArrayList<ExtendedActionFilter>();
+	List<IndicatorFilter> filters=new ArrayList<IndicatorFilter>();
 	
 	public void setName(String _name){
 		
@@ -19,13 +19,13 @@ public class Configuration {
 		return name;
 	}
 	
-	public void addFilter(ExtendedActionFilter af){
+	public void addFilter(IndicatorFilter af){
 		
 		filters.add(af);
 	}
 	
 	
-	public List<ExtendedActionFilter> getFilters(){
+	public List<IndicatorFilter> getFilters(){
 		
 		return filters;
 	}

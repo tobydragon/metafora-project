@@ -64,15 +64,26 @@ public ExtendedGroupedGrid(List<Indicator> _indicator){
     store.add(indicators);  
     store.groupBy("date");
 
-    ColumnConfig username = new ColumnConfig("name", "User", 60);
-    ColumnConfig description = new ColumnConfig("description", "Description", 60);
-    ColumnConfig time = new ColumnConfig("time", "Time", 60);
+    ColumnConfig username = new ColumnConfig("name", "User", 50);
+    username.setWidth(70);
+    ColumnConfig actionType = new ColumnConfig("actiontype", "Action", 50);
+    actionType.setWidth(70);
+    ColumnConfig classification = new ColumnConfig("classification", "Classification", 60);
+    classification.setWidth(80);
+    ColumnConfig description = new ColumnConfig("description", "Description", 50);
+    description.setWidth(300);
+    ColumnConfig time = new ColumnConfig("time", "Time", 50);
+    time.setWidth(75);
     ColumnConfig date = new ColumnConfig("date", "Date", 20);
+    date.setWidth(75);
+    
     date.setDateTimeFormat(DateTimeFormat.getFormat("MM/dd/y"));
     
 
     List<ColumnConfig> config = new ArrayList<ColumnConfig>();
     config.add(username);
+    config.add(actionType);
+    config.add(classification);
     config.add(description);
     config.add(time);
     config.add(date);

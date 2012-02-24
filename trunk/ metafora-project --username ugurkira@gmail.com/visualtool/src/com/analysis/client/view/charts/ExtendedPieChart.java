@@ -19,7 +19,7 @@ import com.analysis.client.components.ActionContent;
 import com.analysis.client.components.ActionObject;
 import com.analysis.client.components.charts.Showcase;
 import com.analysis.client.datamodels.DefaultModel;
-import com.analysis.client.datamodels.ExtendedActionFilterProperty;
+import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
 import com.analysis.client.datamodels.Indicator;
 import com.analysis.client.options.GroupingOptions;
 import com.analysis.client.utils.GWTDateUtils;
@@ -349,9 +349,10 @@ public ExtendedPieChart(String title){
 			        if(!DataProcess.getActiveFilters().containsKey(_key) && value!=null){
 			        DataProcess.getActiveFilters().put(_key,_key);
 			       
-			        ExtendedActionFilterProperty _filter = new ExtendedActionFilterProperty();  
+			        ExtendedIndicatorFilterItem _filter = new ExtendedIndicatorFilterItem();  
 			        _filter.setProperty(property);
 			        _filter.setValue(value);
+			        _filter.setType(Type);
 			         
 			    	Info.display("Info","Filter for "+ value+" is added!");
 			        

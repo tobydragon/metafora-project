@@ -11,14 +11,17 @@ package com.analysis.client.datamodels;
 import com.extjs.gxt.ui.client.data.BaseModel;
 
 
-public class ExtendedActionFilterProperty extends BaseModel {
+public class ExtendedIndicatorFilterItem extends BaseModel {
 
-  public ExtendedActionFilterProperty() {
+	
+  public ExtendedIndicatorFilterItem() {
   }
 
-  public ExtendedActionFilterProperty(String _property, String _value) {
+  
+  public ExtendedIndicatorFilterItem(String _property, String _value,String _type) {
     set("property", _property);
-    set("value", _value);    
+    set("value", _value);
+    set("filtertype", _type);
   }
 
 
@@ -42,7 +45,16 @@ public class ExtendedActionFilterProperty extends BaseModel {
 	  set("value", _value);
   }
 
+  
+  public void setType(String _type){
+	  
+	  set("filtertype", _type);
+  }
+  public String getType() {
+	    return (String) get("filtertype");
+	  }
    
+  
   public String toString() {
     return getProperty();
   }

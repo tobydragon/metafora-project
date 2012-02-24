@@ -17,11 +17,16 @@ package com.analysis.client;
 
 
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.analysis.client.communication.objects.CommonFormatStrings;
 import com.analysis.client.communication.resources.DataProcess;
 import com.analysis.client.communication.server.IOManager;
 import com.analysis.client.communication.server.Server;
 
 import com.analysis.client.components.charts.Showcase;
+import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
 import com.analysis.client.resources.Resources;
 import com.analysis.client.view.charts.ExtendedPieChart;
 import com.analysis.client.view.grids.ExtendedGroupedGrid;
@@ -104,6 +109,32 @@ class VisualAnalyzer implements EntryPoint {
 					DataProcess.initializeInterActionHistory(result.toString());
 					  //VerticalPanel vp=new VerticalPanel();
 					ExtendedTab tabs=new ExtendedTab("");
+					
+					
+					Map<String, ExtendedIndicatorFilterItem> _filterItems=new HashMap<String, ExtendedIndicatorFilterItem>();
+					
+					ExtendedIndicatorFilterItem item;
+					item=new ExtendedIndicatorFilterItem();
+					item.setType(CommonFormatStrings.CONTENT_STRING);
+					item.setProperty("INDICATOR_TYPE");
+					item.setValue("activity");
+					_filterItems.put("INDICATOR_TYPE", item);
+					
+					
+					
+					item=new ExtendedIndicatorFilterItem();
+					item.setType(CommonFormatStrings.OBJECT_STRING);
+					item.setProperty("USERNAME");
+					item.setValue("Bob");
+					_filterItems.put("USERNAME", item);
+					
+					item=new ExtendedIndicatorFilterItem();
+					item.setType(CommonFormatStrings.ACTION_STRING);
+					item.setProperty("classification");
+					item.setValue("CREATE");
+					_filterItems.put("classification", item);
+					
+					DataProcess.getIndicatorList(_filterItems);
 					
 			    	  ExtendedPieChart iaf=new ExtendedPieChart();
 			    	  ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(DataProcess.getIndicatorList());

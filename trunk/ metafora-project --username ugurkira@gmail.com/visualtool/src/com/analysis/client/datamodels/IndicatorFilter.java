@@ -3,12 +3,13 @@ package com.analysis.client.datamodels;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ExtendedActionFilter {
+public class IndicatorFilter {
 
 	
 	String name="";
 	String editable="true";
-	Map<String, String> properties=new HashMap<String, String>();
+	
+	HashMap<String, ExtendedIndicatorFilterItem> properties=new HashMap<String, ExtendedIndicatorFilterItem>();
 	
 	
 	public void setName(String _name){
@@ -21,6 +22,10 @@ public class ExtendedActionFilter {
 		return name;
 	}
 	
+	
+
+	
+	
 	public void setEditable(String _editable){
 		
 		editable=_editable;
@@ -29,23 +34,23 @@ public class ExtendedActionFilter {
 	public String getEditable(){		
 		return editable;
 	}
-	public  void addProperty(String _key,String _value){
+	public  void addFilterItem(String _key,ExtendedIndicatorFilterItem  _value){
 		
 		properties.put(_key, _value);	
 		
 	}
 	
 	
-	public String getProperty(String _key){
+	public ExtendedIndicatorFilterItem getFilterItem(String _key){
 		
 		if(properties.containsKey(_key))
 			return properties.get(_key);
-		return "";
+		return new ExtendedIndicatorFilterItem();
 		
 	}
 
 	
-	public Map<String, String> getProperties(){
+	public Map<String, ExtendedIndicatorFilterItem> getProperties(){
 		
 		return properties;
 	}

@@ -18,6 +18,8 @@ import com.analysis.client.communication.objects.CommonFormatStrings;
 
 import com.analysis.client.components.ActionContent;
 import com.analysis.client.components.ActionObject;
+import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
+import com.analysis.client.datamodels.IndicatorFilter;
 import com.analysis.client.datamodels.Stock;
 import com.analysis.client.datamodels.Indicator;
 import com.analysis.client.utils.GWTDateUtils;
@@ -257,6 +259,8 @@ public void outputSortedC(Map<String, List<ActionContent>> data){
         	   
         	   
         	   myindicator.setName(usersString.substring(2,usersString.length()));
+        	   myindicator.setActionType(ac.getCfActionType().getType());
+        	   myindicator.setClassification(ac.getCfActionType().getClassification());
         	   myindicator.setDescription(ac.getDescription());     	   
         	   myindicator.setTime(GWTDateUtils.getTime(ac.getTime()));
         	   myindicator.setDate(GWTDateUtils.getDate(ac.getTime()));
@@ -268,6 +272,181 @@ public void outputSortedC(Map<String, List<ActionContent>> data){
 	}
 
 	
+	
+	public static List<Indicator> getIndicatorList(Map<String, ExtendedIndicatorFilterItem> _filterItems){
+		
+		List<Indicator> indicators=new ArrayList<Indicator>();
+		
+		for(CfAction ac: Actions){
+	
+			//ac.g
+		
+			for(String _key:_filterItems.keySet()){
+			ExtendedIndicatorFilterItem	 activeFilterItem=_filterItems.get(_key);
+			Indicator  myindicator=new Indicator();
+			
+			if(activeFilterItem.getType().equalsIgnoreCase(CommonFormatStrings.CONTENT_STRING)){
+							
+			if(ac.getCfContent().getContentProperties().containsKey(_key)){
+			if(ac.getCfContent().getContentProperties().get(_key).getValue().equalsIgnoreCase(activeFilterItem.getValue())){
+				
+			String usersString="";
+			   for(CfUser u : ac.getCfUsers()){
+        		   usersString=usersString+" - "+u.getid();
+        	   }
+        	   
+        	   
+        	   myindicator.setName(usersString.substring(2,usersString.length()));
+        	   myindicator.setActionType(ac.getCfActionType().getType());
+        	   myindicator.setClassification(ac.getCfActionType().getClassification());
+        	  
+        	   myindicator.setDescription(ac.getDescription());     	   
+        	   myindicator.setTime(GWTDateUtils.getTime(ac.getTime()));
+        	   myindicator.setDate(GWTDateUtils.getDate(ac.getTime()));
+        	   indicators.add(myindicator);	
+			}
+			}
+			}
+			
+			
+			
+			else if(activeFilterItem.getType().equalsIgnoreCase(CommonFormatStrings.OBJECT_STRING)){
+				
+		
+				
+				for(CfObject ob: ac.getCfObjects()){
+					
+					if(ob.getObjectProperties().containsKey(_key)){
+						
+					if(ob.getObjectProperties().get(_key).getValue().equalsIgnoreCase(activeFilterItem.getValue())){
+							
+							
+						String usersString="";
+						   for(CfUser u : ac.getCfUsers()){
+			        		   usersString=usersString+" - "+u.getid();
+			        	   }
+			        	   
+			        	   
+			        	   myindicator.setName(usersString.substring(2,usersString.length()));
+			        	   myindicator.setActionType(ac.getCfActionType().getType());
+			        	   myindicator.setClassification(ac.getCfActionType().getClassification());
+			        	  
+			        	   myindicator.setDescription(ac.getDescription());     	   
+			        	   myindicator.setTime(GWTDateUtils.getTime(ac.getTime()));
+			        	   myindicator.setDate(GWTDateUtils.getDate(ac.getTime()));
+			        	   indicators.add(myindicator);	
+							
+						break;
+						}
+						
+					}
+					
+					
+					
+					
+				}				
+				}
+			
+			
+			else	if(activeFilterItem.getType().equalsIgnoreCase(CommonFormatStrings.ACTION_STRING)){
+				
+				if(activeFilterItem.getProperty().equalsIgnoreCase(CommonFormatStrings.A_V_User)){
+			
+				
+					
+					
+					for(CfUser user:ac.getCfUsers()){
+						
+						if(user.getid().equalsIgnoreCase(activeFilterItem.getValue())){
+							
+							String usersString="";
+							   for(CfUser u : ac.getCfUsers()){
+				        		   usersString=usersString+" - "+u.getid();
+				        	   }
+				        	   
+				        	   
+				        	   myindicator.setName(usersString.substring(2,usersString.length()));
+				        	   myindicator.setActionType(ac.getCfActionType().getType());
+				        	   myindicator.setClassification(ac.getCfActionType().getClassification());
+				        	  
+				        	   myindicator.setDescription(ac.getDescription());     	   
+				        	   myindicator.setTime(GWTDateUtils.getTime(ac.getTime()));
+				        	   myindicator.setDate(GWTDateUtils.getDate(ac.getTime()));
+				        	   indicators.add(myindicator);	
+							break;
+						}
+				
+						
+					}
+
+				}
+				
+				else if(activeFilterItem.getProperty().equalsIgnoreCase(CommonFormatStrings.ACTION_TYPE_STRING)){
+					
+					
+					if(activeFilterItem.getValue().equalsIgnoreCase(ac.getCfActionType().getType())){
+						
+						
+						
+						String usersString="";
+						   for(CfUser u : ac.getCfUsers()){
+			        		   usersString=usersString+" - "+u.getid();
+			        	   }
+			        	   
+			        	   
+			        	   myindicator.setName(usersString.substring(2,usersString.length()));
+			        	   myindicator.setActionType(ac.getCfActionType().getType());
+			        	   myindicator.setClassification(ac.getCfActionType().getClassification());
+			        	  
+			        	   myindicator.setDescription(ac.getDescription());     	   
+			        	   myindicator.setTime(GWTDateUtils.getTime(ac.getTime()));
+			        	   myindicator.setDate(GWTDateUtils.getDate(ac.getTime()));
+			        	   indicators.add(myindicator);	
+						
+					}
+					
+					
+				}
+				
+				else if(activeFilterItem.getProperty().equalsIgnoreCase(CommonFormatStrings.A_V_Classification)){
+					
+					
+					
+					if(activeFilterItem.getValue().equalsIgnoreCase(ac.getCfActionType().getClassification())){
+						
+						
+						String usersString="";
+						   for(CfUser u : ac.getCfUsers()){
+			        		   usersString=usersString+" - "+u.getid();
+			        	   }
+			        	   
+			        	   
+			        	   myindicator.setName(usersString.substring(2,usersString.length()));
+			        	   myindicator.setActionType(ac.getCfActionType().getType());
+			        	   myindicator.setClassification(ac.getCfActionType().getClassification());
+			        	  
+			        	   myindicator.setDescription(ac.getDescription());     	   
+			        	   myindicator.setTime(GWTDateUtils.getTime(ac.getTime()));
+			        	   myindicator.setDate(GWTDateUtils.getDate(ac.getTime()));
+			        	   indicators.add(myindicator);	
+						
+					}
+							
+					
+					
+				}
+				
+				}
+			
+			
+			
+			
+		}
+			}
+		
+		return indicators;
+		
+	}
 	
 	
 	

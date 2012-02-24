@@ -143,7 +143,7 @@
       <content>
         <description><![CDATA[Bob has created box 2 of type Comment]]></description>
         <properties>
-          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="INDICATOR_TYPE" value="annotation" />
           <property name="TOOL" value="LASAD" />
         </properties>
       </content>
