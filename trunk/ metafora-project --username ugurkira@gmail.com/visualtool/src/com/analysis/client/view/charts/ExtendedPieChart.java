@@ -14,14 +14,13 @@ import com.analysis.client.communication.objects.CfAction;
 import com.analysis.client.communication.objects.CfObject;
 import com.analysis.client.communication.objects.CfUser;
 import com.analysis.client.communication.objects.CommonFormatStrings;
-import com.analysis.client.communication.resources.DataProcess;
+import com.analysis.client.communication.resources.DataModel;
 import com.analysis.client.components.ActionContent;
 import com.analysis.client.components.ActionObject;
-import com.analysis.client.components.charts.Showcase;
 import com.analysis.client.datamodels.DefaultModel;
 import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
 import com.analysis.client.datamodels.Indicator;
-import com.analysis.client.options.GroupingOptions;
+import com.analysis.client.examples.charts.Showcase;
 import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.view.grids.ExtendedFilterGrid;
 import com.analysis.client.view.grids.ExtendedGroupedGrid;
@@ -225,7 +224,7 @@ public ExtendedPieChart(String title){
 	
 	public DataTable createDataTable(String myType,String myItem){
 		
-		DataProcess dp=new DataProcess();
+		DataModel dp=new DataModel();
 		DataTable data = DataTable.create();
 		
 		if(myType.equalsIgnoreCase("") || myType==null){
@@ -346,8 +345,8 @@ public ExtendedPieChart(String title){
 		    	    String value=subsectionValue.get(selection);
 
 			          String _key=property+"-"+value;
-			        if(!DataProcess.getActiveFilters().containsKey(_key) && value!=null){
-			        DataProcess.getActiveFilters().put(_key,_key);
+			        if(!DataModel.getActiveFilters().containsKey(_key) && value!=null){
+			        DataModel.getActiveFilters().put(_key,_key);
 			       
 			        ExtendedIndicatorFilterItem _filter = new ExtendedIndicatorFilterItem();  
 			        _filter.setProperty(property);
