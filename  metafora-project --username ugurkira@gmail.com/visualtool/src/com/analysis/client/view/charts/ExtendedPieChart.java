@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.analysis.client.communication.resources.DataModel;
+import com.analysis.client.communication.models.DataModel;
 import com.analysis.client.components.ActionContent;
 import com.analysis.client.components.ActionObject;
 import com.analysis.client.datamodels.DefaultModel;

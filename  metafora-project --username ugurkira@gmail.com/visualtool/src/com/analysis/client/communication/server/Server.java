@@ -72,11 +72,7 @@ public class Server {
 			public void apply(Event anEvent) {
 			
 				System.out.println("Event:" + anEvent.toString());
-				/*if (anEvent instanceof ActionPackageEvent) {
-					
-				} else {
-					//Logger.log("Unknown event type received from GWTEventService!", Logger.DEBUG_ERRORS);
-				}*/
+				
 			}
 		};
 	}
@@ -87,9 +83,7 @@ public class Server {
 		
 	
 		if(myGWTEventService.isActive() && myGWTEventService.getActiveDomains().size() == 2) {
-		//	Logger.log("connectEventService.isActiveT", Logger.DEBUG);
-			//LASADStatusBar.getInstance().setConnectionStatus("online");
-			//LASADStatusBar.getInstance().setConnectionBusy(false);
+
 			System.out.println("connected:true");
 			
 			return true;
@@ -97,10 +91,7 @@ public class Server {
 		
 		else {
 			System.out.println("connected:false");
-			//Logger.log("Problems with EventService connection", Logger.DEBUG);
-			//Logger.log("connectEventService.isActive ==" + myGWTEventService.isActive(), Logger.DEBUG);
-			//Logger.log("connectEventService.getActiveDomains().size() ==" + myGWTEventService.getActiveDomains().size(), Logger.DEBUG);
-		
+			
 myGWTEventService.removeListeners();
 			
 			// Add the default listener for server events. This could take some time, thus, we will have to wait for it...
@@ -113,45 +104,24 @@ myGWTEventService.addListener(null, myListener);
 	}
 	
 	
-	public void sendActionPackage(String _request,AsyncCallback<String> cb) {
+	public void sendRequest(String _request,AsyncCallback<String> cb) {
 
 		if(connectEventService()) {
-//			LASADStatusBar.getInstance().setConnectionBusy(true);
 
-	//		actionSet.addParameter("SESSION-ID", clientID); //"CLIENT-ID"
-			// Send actions to server via GWT RPC and Servlet
-		
-
-			//Map<String, String> cr=new HashMap<String,String>();
 			
-		
-			//cr.put("type", "RequestHistory");
-			
-			myServlet.sendToServer(_request, cb);
+			myServlet.sendRequest(_request, cb);
 		}
-		else {
-			//LASADInfo.display("Error", "Connection cannot be established.");
-		}		
+			
 	}
 
 	
 	
 // For one side communication
-	public void sendActionPackage(String actionSet) {
+	public void sendRequest(String actionSet) {
 
 		if(connectEventService()) {
-//			LASADStatusBar.getInstance().setConnectionBusy(true);
 
-	//		actionSet.addParameter("SESSION-ID", clientID); //"CLIENT-ID"
-			// Send actions to server via GWT RPC and Servlet
-			
-			//Map<String, String> cr=new HashMap<String,String>();
-			
-			//cr.put("type", "RequestHistory");
-			
-			//Action cr =new Action();
-		//	cr.type="RequestHistory";
-			myServlet.sendToServer("RequestHistory", new AsyncCallback<String>() {
+			myServlet.sendRequest("RequestHistory", new AsyncCallback<String>() {
 
 				@Override
 				public void onFailure(Throwable caught) {
@@ -169,7 +139,7 @@ myGWTEventService.addListener(null, myListener);
 			});
 		}
 		else {
-			//LASADInfo.display("Error", "Connection cannot be established.");
+			
 		}		
 	}
 	

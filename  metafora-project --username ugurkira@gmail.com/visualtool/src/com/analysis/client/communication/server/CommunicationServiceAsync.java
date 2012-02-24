@@ -10,9 +10,9 @@ import com.google.gwt.user.client.ui.Widget;
 public interface CommunicationServiceAsync {
 	//void inputToServer(Map<String, String> cr, AsyncCallback<String> callback);
 
-	void sendToServer(String cr, AsyncCallback<String> callback);
+	void sendRequest(String cr, AsyncCallback<String> callback);
 
-	void sendToServer(Map<String, String> cr,AsyncCallback<Map<String, Map<String, String>>> callback);
+	void sendRequest(Map<String, String> cr,AsyncCallback<Map<String, Map<String, String>>> callback);
 
 
 	
