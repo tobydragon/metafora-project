@@ -22,7 +22,7 @@ import java.util.Map;
 
 import com.analysis.client.communication.objects.CommonFormatStrings;
 import com.analysis.client.communication.resources.DataProcess;
-import com.analysis.client.communication.server.IOManager;
+
 import com.analysis.client.communication.server.Server;
 
 import com.analysis.client.components.charts.Showcase;

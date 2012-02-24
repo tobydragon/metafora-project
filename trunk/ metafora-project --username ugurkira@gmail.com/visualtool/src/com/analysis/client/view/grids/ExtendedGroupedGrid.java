@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import com.analysis.client.TestData;
 
 import com.analysis.client.datamodels.Indicator;
 import com.analysis.client.resources.Resources;

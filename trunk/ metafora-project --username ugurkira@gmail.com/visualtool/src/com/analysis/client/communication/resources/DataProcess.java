@@ -20,7 +20,7 @@ import com.analysis.client.components.ActionContent;
 import com.analysis.client.components.ActionObject;
 import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
 import com.analysis.client.datamodels.IndicatorFilter;
-import com.analysis.client.datamodels.Stock;
+
 import com.analysis.client.datamodels.Indicator;
 import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.xml.GWTXmlFragment;
