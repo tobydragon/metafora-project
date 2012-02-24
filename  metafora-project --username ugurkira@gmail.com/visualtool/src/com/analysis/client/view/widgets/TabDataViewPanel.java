@@ -13,12 +13,12 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 
-public class ExtendedTab extends VerticalPanel {
+public class TabDataViewPanel extends VerticalPanel {
 	
 //	private Map<String, List<Widget>> tabs;
 	FilterListPanel flp;
 	private  TabPanel tabPanel = new TabPanel();
-	public ExtendedTab(String _lbl){
+	public TabDataViewPanel(String _lbl){
 		
 	if(_lbl!=null){
 		this.add(new Label(_lbl));

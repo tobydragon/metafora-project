@@ -136,7 +136,7 @@ myGWTEventService.addListener(null, myListener);
 
 	
 	
-
+// For one side communication
 	public void sendActionPackage(String actionSet) {
 
 		if(connectEventService()) {

@@ -15,7 +15,7 @@ import java.util.Map;
 
 
 
-import com.analysis.client.communication.resources.DataProcess;
+import com.analysis.client.communication.resources.DataModel;
 import com.analysis.client.communication.server.Server;
 import com.analysis.client.components.ActionObject;
 import com.analysis.client.datamodels.IndicatorFilter;
@@ -23,7 +23,7 @@ import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
 import com.analysis.client.datamodels.Indicator;
 import com.analysis.client.resources.Resources;
 import com.analysis.client.view.charts.ExtendedPieChart;
-import com.analysis.client.view.widgets.ExtendedTab;
+import com.analysis.client.view.widgets.TabDataViewPanel;
 import com.analysis.client.xml.GWTXmlFragment;
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.store.GroupingStore;
@@ -174,7 +174,7 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
             
             	String _key=model.getProperty()+"-"+model.getValue();
             	
-            	DataProcess.getActiveFilters().remove(_key);
+            	DataModel.getActiveFilters().remove(_key);
             	
             	store.remove(model);
             	filterGroup.clearSelections();

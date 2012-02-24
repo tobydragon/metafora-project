@@ -21,16 +21,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.analysis.client.communication.objects.CommonFormatStrings;
-import com.analysis.client.communication.resources.DataProcess;
+import com.analysis.client.communication.resources.DataModel;
 
 import com.analysis.client.communication.server.Server;
 
-import com.analysis.client.components.charts.Showcase;
 import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
+import com.analysis.client.examples.charts.Showcase;
 import com.analysis.client.resources.Resources;
 import com.analysis.client.view.charts.ExtendedPieChart;
 import com.analysis.client.view.grids.ExtendedGroupedGrid;
-import com.analysis.client.view.widgets.ExtendedTab;
+import com.analysis.client.view.widgets.TabDataViewPanel;
 
 
 import com.google.gwt.core.client.EntryPoint;
@@ -106,9 +106,9 @@ class VisualAnalyzer implements EntryPoint {
 					
 					
 					RootPanel.get().remove(loadingImage);
-					DataProcess.initializeInterActionHistory(result.toString());
+					DataModel.initializeInterActionHistory(result.toString());
 					  //VerticalPanel vp=new VerticalPanel();
-					ExtendedTab tabs=new ExtendedTab("");
+					TabDataViewPanel tabs=new TabDataViewPanel("");
 					
 					
 					Map<String, ExtendedIndicatorFilterItem> _filterItems=new HashMap<String, ExtendedIndicatorFilterItem>();
@@ -134,10 +134,10 @@ class VisualAnalyzer implements EntryPoint {
 					item.setValue("CREATE");
 					_filterItems.put("classification", item);
 					
-					DataProcess.getIndicatorList(_filterItems);
+					DataModel.getIndicatorList(_filterItems);
 					
 			    	  ExtendedPieChart iaf=new ExtendedPieChart();
-			    	  ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(DataProcess.getIndicatorList());
+			    	  ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(DataModel.getIndicatorList());
 			    	  tabs.addTab("Table View",indicatorTable);
 			    	  tabs.addTab("Views", iaf);
 			    	  
