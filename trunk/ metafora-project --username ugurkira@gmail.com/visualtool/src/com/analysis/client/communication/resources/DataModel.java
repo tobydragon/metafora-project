@@ -11,7 +11,7 @@ import java.util.Map;
 
 import com.analysis.client.communication.objects.CfAction;
 import com.analysis.client.communication.objects.CfContent;
-import com.analysis.client.communication.objects.ActionManagement;
+import com.analysis.client.communication.objects.CfInteractionData;
 import com.analysis.client.communication.objects.CfObject;
 import com.analysis.client.communication.objects.CfUser;
 import com.analysis.client.communication.objects.CommonFormatStrings;
@@ -26,13 +26,13 @@ import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.xml.GWTXmlFragment;
 import com.google.gwt.i18n.client.DateTimeFormat;
 
-public class DataProcess {
+public class DataModel {
 	public static List<CfAction> Actions;
 	public static List<ActionObject> allObjects;
 	public static List<ActionContent> allContents;
 	public static Map<String,String> activefilters=new HashMap<String,String>();
 
-	public DataProcess(){
+	public DataModel(){
 		
 		
 	}
