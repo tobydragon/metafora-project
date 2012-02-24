@@ -63,9 +63,7 @@ import com.google.gwt.visualization.client.visualizations.corechart.LineChart;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
 
-/**
- * Google Visualization API in GWT demo.
- */
+
 class VisualAnalyzer implements EntryPoint {
   //private final TabPanel tabPanel = new TabPanel();
 
