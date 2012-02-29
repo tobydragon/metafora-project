@@ -1,8 +1,8 @@
 package com.analysis.server.xml;
 
+import junit.framework.TestCase;
 
-
-public class XmlConfigParserTest {
+public class XmlConfigParserTest extends TestCase {
 	
 //	public void testXmlConfigParser(){
 //		String connectionConfigFilepath = "conf/xmpp-connect-settings.xml";
@@ -24,8 +24,8 @@ public class XmlConfigParserTest {
 		connectionParser = connectionParser.getfragmentById("xmpp-channel-setting", "channelid", "command");
 		String connectionName = connectionParser.getConfigValue("connection-name");
 		String chatroom = connectionParser.getConfigValue("chatroom");
-		//assertEquals("LasadCommand", connectionName);
-	//	assertEquals("command@conference.metafora.ku-eichstaett.de", chatroom);
+		assertEquals("LasadCommand", connectionName);
+		assertEquals("command@conference.metafora.ku-eichstaett.de", chatroom);
 	}
 
 }

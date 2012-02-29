@@ -18,12 +18,12 @@ import com.analysis.client.datamodels.IndicatorFilter;
 import com.analysis.client.datamodels.Indicator;
 import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.xml.GWTXmlFragment;
-import com.analysis.shared.communication.objects.CfAction;
-import com.analysis.shared.communication.objects.CfContent;
-import com.analysis.shared.communication.objects.CfInteractionData;
-import com.analysis.shared.communication.objects.CfObject;
-import com.analysis.shared.communication.objects.CfUser;
-import com.analysis.shared.communication.objects.CommonFormatStrings;
+import com.analysis.shared.communication.objects_old.CfAction;
+import com.analysis.shared.communication.objects_old.CfContent;
+import com.analysis.shared.communication.objects_old.CfInteractionData;
+import com.analysis.shared.communication.objects_old.CfObject;
+import com.analysis.shared.communication.objects_old.CfUser;
+import com.analysis.shared.communication.objects_old.CommonFormatStrings;
 import com.google.gwt.i18n.client.DateTimeFormat;
 
 public class DataModel {

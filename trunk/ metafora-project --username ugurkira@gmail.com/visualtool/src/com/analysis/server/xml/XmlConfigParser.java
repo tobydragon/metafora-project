@@ -4,10 +4,10 @@ import java.util.List;
 
 public class XmlConfigParser {
 	
-	XmlFragment configFragment;
+	XmlFragmentInterface configFragment;
 	
  
-	public XmlConfigParser(XmlFragment newStart){
+	public XmlConfigParser(XmlFragmentInterface newStart){
 		configFragment = newStart;
 	}
 	
@@ -16,8 +16,8 @@ public class XmlConfigParser {
 	}
 	
 	public XmlConfigParser getfragmentById(String fragmentType, String idAttrName,  String id){
-		List<XmlFragment> frags = configFragment.getChildren(fragmentType);
-		for (XmlFragment frag : frags){
+		List<XmlFragmentInterface> frags = configFragment.getChildren(fragmentType);
+		for (XmlFragmentInterface frag : frags){
 			if( frag.getAttributeValue(idAttrName).equalsIgnoreCase(id)){
 				return new XmlConfigParser(frag);
 			}
