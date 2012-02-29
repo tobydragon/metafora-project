@@ -16,7 +16,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
  * The server side implementation of the RPC service.
  */
 @SuppressWarnings("serial")
-public class RequestHandler extends RemoteServiceServlet implements
+public class MainServer extends RemoteServiceServlet implements
 		CommunicationService {
 
 
