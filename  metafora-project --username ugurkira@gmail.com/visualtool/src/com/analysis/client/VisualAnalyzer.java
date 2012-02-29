@@ -30,7 +30,7 @@ import com.analysis.client.resources.Resources;
 import com.analysis.client.view.charts.ExtendedPieChart;
 import com.analysis.client.view.grids.ExtendedGroupedGrid;
 import com.analysis.client.view.widgets.TabDataViewPanel;
-import com.analysis.shared.communication.objects.CommonFormatStrings;
+import com.analysis.shared.communication.objects_old.CommonFormatStrings;
 
 
 import com.google.gwt.core.client.EntryPoint;

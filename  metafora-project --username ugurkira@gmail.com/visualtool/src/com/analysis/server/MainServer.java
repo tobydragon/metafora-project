@@ -2,13 +2,15 @@ package com.analysis.server;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.analysis.client.communication.server.CommunicationService;
-import com.analysis.server.io.FileOperation;
-import com.analysis.server.io.XmlFragment;
 
-import com.analysis.server.io.SourceManager;
+import zcom.analysis.server.io.FileOperation;
+import zcom.analysis.server.io.SourceManager;
+import zcom.analysis.server.io.XmlFragment;
+import zcom.analysis.server.xmpp.StartupServlet;
+
+import com.analysis.client.communication.server.CommunicationService;
+
 import com.analysis.server.utils.ServerFormatStrings;
-import com.analysis.server.xmpp.StartupServlet;
 import com.analysis.server.xmppoldxx.XmppActionListener;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 

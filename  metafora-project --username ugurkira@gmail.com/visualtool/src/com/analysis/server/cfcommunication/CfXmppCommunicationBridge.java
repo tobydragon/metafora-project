@@ -1,20 +1,24 @@
-package com.analysis.server.xmppmanager_delete;
+package com.analysis.server.cfcommunication;
 
 import java.util.Date;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
-import zcom.analysis.server.io.ErrorUtil;
-import zcom.analysis.server.xmpp.XMPPBridge;
-import zcom.analysis.server.xmpp.XMPPMessageListener;
-
-
+import com.analysis.server.utils.ErrorUtil;
 import com.analysis.server.xml.XmlConfigParser;
-import com.analysis.shared.communication.objects_old.CfAction;
+import com.analysis.server.xml.XmlFragment;
+import com.analysis.server.xml.XmlFragmentInterface;
+import com.analysis.server.xml.XmlUtil;
+import com.analysis.shared.commonformat.CfAction;
+import com.analysis.server.commonformatparser.CfActionParser;
+
+
+import de.kuei.metafora.xmpp.XMPPBridge;
+import de.kuei.metafora.xmpp.XMPPMessageListener;
 
 public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMessageListener{
-	Logger logger = Logger.getLogger(CfCommunicationBridge.class);
+	Logger logger = Logger.getLogger(CfXmppCommunicationBridge.class);
 	
 	private static String commandConnectionName = null;
 	private static String analysisConnectionName = null;
@@ -95,9 +99,7 @@ static String createConnection(CommunicationChannelType configType, XmlConfigPar
 
 	@Override
 	public void sendAction(CfAction actionToSend) {
-		//String  messageToSend = actionToSend.toXml().toString();
-		String  messageToSend = actionToSend.toString();
-		
+		String  messageToSend = ( CfActionParser.toXml(actionToSend) ).toString();
 		if (messageToSend != null){
 			xmppBridge.sendMessage(messageToSend);
 		}
@@ -109,8 +111,18 @@ static String createConnection(CommunicationChannelType configType, XmlConfigPar
 	}
 	@Override
 	public void newMessage(String user, String message, String arg2) {
-		for (CfCommunicationListener listener : listeners){
-			listener.receiveMessage(user, message);
+		logger.info("[newMessage] from user(" + user + ")\n" +  message);
+		
+		message = XmlUtil.convertSpecialCharactersToDescripitons(message);
+		XmlFragmentInterface actionXml = XmlFragment.getFragmentFromString(message);
+		if (actionXml != null){
+			CfAction action = CfActionParser.fromXml(actionXml);
+			for (CfCommunicationListener listener : listeners){
+				listener.processCfAction(user, action);
+			}	
+		}
+		else {
+			logger.info("[newMessage] No Action xml recognized" );
 		}
 	}
 

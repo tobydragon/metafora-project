@@ -1,7 +1,7 @@
 package com.analysis.server.xmppoldxx;
 
-import com.analysis.server.xmpp.XMPPBridge;
-import com.analysis.server.xmpp.XMPPMessageListener;
+import zcom.analysis.server.xmpp.XMPPBridge;
+import zcom.analysis.server.xmpp.XMPPMessageListener;
 
 //import com.analysis.server.xmppold.XMPPBridge;
 //import com.analysis.server.xmppold.XMPPMessageListener;

@@ -16,7 +16,9 @@ import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
-import de.uds.util.ErrorUtil;
+import com.analysis.server.utils.ErrorUtil;
+
+
 
 //wrapper class for an Element in JDOM
 //catches and prints errors, no attributes may be null
