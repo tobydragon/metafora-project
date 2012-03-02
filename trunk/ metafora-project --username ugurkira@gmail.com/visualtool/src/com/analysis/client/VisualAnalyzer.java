@@ -18,19 +18,25 @@ package com.analysis.client;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.analysis.client.communication.actionresponses.RequestHistoryCallBack;
 import com.analysis.client.communication.models.DataModel;
 
 import com.analysis.client.communication.server.Server;
 
-import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
 import com.analysis.client.examples.charts.Showcase;
 import com.analysis.client.resources.Resources;
+import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.view.charts.ExtendedPieChart;
+import com.analysis.client.view.containers.MainContainer;
 import com.analysis.client.view.grids.ExtendedGroupedGrid;
 import com.analysis.client.view.widgets.TabDataViewPanel;
+import com.analysis.shared.commonformat.CfAction;
+import com.analysis.shared.commonformat.CfActionType;
 import com.analysis.shared.communication.objects_old.CommonFormatStrings;
+import com.analysis.shared.interactionmodels.IndicatorFilterItem;
 
 
 import com.google.gwt.core.client.EntryPoint;
@@ -71,280 +77,62 @@ class VisualAnalyzer implements EntryPoint {
     VisualizationUtils.loadVisualizationApi(new Runnable() {
       public void run() {
            	 
-    	
-    	  
-    	   final Image loadingImage = new Image();
-    	   loadingImage.setResource(Resources.IMAGES.loaderImage2());
-    	   loadingImage.setWidth("200px");
-    	   loadingImage.setHeight("200px");
-    	  
-    	  
-    	// loadingImage.setUrlAndVisibleRect(Resources.IMAGES.loaderImage().getSafeUri(), 10, 10, 400, 400);
-    	
-    	
-    	   RootPanel.get().add(loadingImage,500,200);
-    	
-    
-    	//Server.getInstance()
-   
-    	// IOManager io=new IOManager();
-    	 
-    	 Server.getInstance().sendRequest("RequestHistory",new AsyncCallback<String>() {
-				public void onFailure(Throwable caught) {
-					
-					
-					
-				}
+    	  MainContainer _container=new MainContainer();
+    	  RootPanel.get().add(_container);
 
-				public void onSuccess(String result) {
-					
-					
-					System.out.println("Configuration:"+result);
-					
-					
-					
-					RootPanel.get().remove(loadingImage);
-					DataModel.initializeInterActionHistory(result.toString());
-					  //VerticalPanel vp=new VerticalPanel();
-					TabDataViewPanel tabs=new TabDataViewPanel("");
-					
-					
-					Map<String, ExtendedIndicatorFilterItem> _filterItems=new HashMap<String, ExtendedIndicatorFilterItem>();
-					
-					ExtendedIndicatorFilterItem item;
-					item=new ExtendedIndicatorFilterItem();
-					item.setType(CommonFormatStrings.CONTENT_STRING);
-					item.setProperty("INDICATOR_TYPE");
-					item.setValue("activity");
-					_filterItems.put("INDICATOR_TYPE", item);
-					
-					
-					
-					item=new ExtendedIndicatorFilterItem();
-					item.setType(CommonFormatStrings.OBJECT_STRING);
-					item.setProperty("USERNAME");
-					item.setValue("Bob");
-					_filterItems.put("USERNAME", item);
-					
-					item=new ExtendedIndicatorFilterItem();
-					item.setType(CommonFormatStrings.ACTION_STRING);
-					item.setProperty("classification");
-					item.setValue("CREATE");
-					_filterItems.put("classification", item);
-					
-					DataModel.getIndicatorList(_filterItems);
-					
-			    	  ExtendedPieChart iaf=new ExtendedPieChart();
-			    	  ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(DataModel.getIndicatorList());
-			    	  tabs.addTab("Table View",indicatorTable);
-			    	  tabs.addTab("Views", iaf);
-			    	  
-			    	  RootPanel.get().add(tabs.renderExtendedTabPanel());
-										
-				}
-			});
-    	 
-    	 
-    	 //io.sendToServer("RequestHistory",);
-    	  //DialogBox db=new DialogBox();
-    	  //XmlFragment xf=new XmlFragment();
-    	  
-    	  //DataProcess dp=new DataProcess();
-    	 // dp.groupObjectByProperty("MAP_ID");
-    	  
-    	  //xf.processActions(xf.getInterAction(""));
-			 
-    	 // db.setText(xf.getInterAction(""));
-    	  //db.show();
-    	  
-    	 
-    	// RootPanel.get().add(ColumnChartWidget());
-    	 
-    	 //RootPanel.get().add(BarChartWidget());
-    	 
-        //vp.add(new Label("Visual Analyzer"));
-      //  vp.add(tabPanel);
-        //tabPanel.setWidth("1100");
-       // tabPanel.setHeight("600");
-        
-        //Annotater aa =new Annotater();
-    //    tabPanel.add(aa.createPieChart(),"Ugur");
-        
-        
-        
-        //tabPanel.selectTab(0);
-      }}, PieChart.PACKAGE, Table.PACKAGE, MotionChart.PACKAGE, OrgChart.PACKAGE,Gauge.PACKAGE);
+    	
+      }});
   }
 
  
 
-
+  //, PieChart.PACKAGE, Table.PACKAGE, MotionChart.PACKAGE, OrgChart.PACKAGE,Gauge.PACKAGE
 	
   
   
-  public Widget ColumnChartWidget() {
-	    VerticalPanel result = new VerticalPanel();
-	    com.google.gwt.visualization.client.visualizations.corechart.Options options = CoreChart.createOptions();
-	    options.setHeight(300);
-	    options.setTitle("Annotations");
-	    options.setWidth(500);
-
-	    AxisOptions vAxisOptions = AxisOptions.create();
-	    vAxisOptions.setMinValue(0);
-	    vAxisOptions.setMaxValue(20);
-	    options.setVAxisOptions(vAxisOptions);
-	    DataTable data = Showcase.getCompanyPerformanceWithNulls();
-	    ColumnChart viz = new ColumnChart(data, options);
-	    Label status = new Label();
-	    Label onMouseOverAndOutStatus = new Label();
-	    viz.addSelectHandler(createSelectHandlerForColumn(viz));
-	    
-	    
-	    
-	  //  viz.addReadyHandler(new ReadyDemo(status));
-	   // viz.addOnMouseOverHandler(new OnMouseOverDemo(onMouseOverAndOutStatus));
-	    //viz.addOnMouseOutHandler(new OnMouseOutDemo(onMouseOverAndOutStatus));
-	 
-	    result.add(status);
-	    result.add(viz);
-	    result.add(onMouseOverAndOutStatus);
-	    return result;
-	  }
-  
-  public Widget LineChartWidget() {
-	    VerticalPanel result = new VerticalPanel();
-
-	    com.google.gwt.visualization.client.visualizations.corechart.Options options = CoreChart.createOptions();
-	    options.setHeight(240);
-	    options.setTitle("Student Contributions");
-	    options.setWidth(400);
-	    options.setInterpolateNulls(true);
-	    AxisOptions vAxisOptions = AxisOptions.create();
-	    vAxisOptions.setMinValue(0);
-	    vAxisOptions.setMaxValue(2000);
-	    options.setVAxisOptions(vAxisOptions);
-
-	    DataTable data = Showcase.getCompanyPerformanceWithNulls();
-	    LineChart viz = new LineChart(data, options);
-
-	    Label status = new Label();
-	    Label onMouseOverAndOutStatus = new Label();
-	    viz.addSelectHandler(createSelectHandlerForLineChart(viz));
-	    //viz.addReadyHandler(new ReadyDemo(status));
-	    //viz.addOnMouseOverHandler(new OnMouseOverDemo(onMouseOverAndOutStatus));
-	    //viz.addOnMouseOutHandler(new OnMouseOutDemo(onMouseOverAndOutStatus));
-	    result.add(status);
-	    result.add(viz);
-	    result.add(onMouseOverAndOutStatus);
-	    return result;
-	  }
-  
-  public Widget BarChartWidget() {
-	    VerticalPanel result = new VerticalPanel();
-	    com.google.gwt.visualization.client.visualizations.corechart.Options options = com.google.gwt.visualization.client.visualizations.corechart.Options.create();
-	    options.setHeight(240);
-	    options.setTitle("Student Performance");
-	    options.setWidth(400);
-	    AxisOptions vAxisOptions = AxisOptions.create();
-	    vAxisOptions.setMinValue(0);
-	    vAxisOptions.setMaxValue(2000);
-	    options.setVAxisOptions(vAxisOptions);
-
-	    DataTable data = Showcase.getCompanyPerformance();
-	    BarChart viz = new BarChart(data, options);
-
-	    Label status = new Label();
-	    Label onMouseOverAndOutStatus = new Label();
-	    viz.addSelectHandler(createSelectHandlerForBarChart(viz));
-	    //viz.addReadyHandler(new ReadyDemo(status));
-	    //viz.addOnMouseOverHandler(new OnMouseOverDemo(onMouseOverAndOutStatus));
-	    //viz.addOnMouseOutHandler(new OnMouseOutDemo(onMouseOverAndOutStatus));
-	    result.add(status);
-	    result.add(viz);
-	    result.add(onMouseOverAndOutStatus);
-	    return result;
-	  }
-  
-  private SelectHandler createSelectHandlerForColumn(final   ColumnChart chart) {
-	    return new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-			
-				StringBuffer b = new StringBuffer();
-			    JsArray<Selection> s = chart.getSelections();
-			    for (int i = 0; i < s.length(); ++i) {
-			      if (s.get(i).isCell()) {
-			        b.append(" cell ");
-			        b.append(s.get(i).getRow());
-			        b.append(":");
-			        b.append(s.get(i).getColumn());
-			      } else if (s.get(i).isRow()) {
-			        b.append(" row ");
-			        b.append(s.get(i).getRow());
-			      } else {
-			        b.append(" column ");
-			        b.append(s.get(i).getColumn());
-			      }
-			    }
+  void sendMultipleRequest(){
+	  
+	  /*
+	  Server.getInstance().sendRequest("RequestsHistory1",new AsyncCallback<String>() {
+			public void onFailure(Throwable caught) {
+				
+				
+				
 			}
-	    	
-	    };
+
+			public void onSuccess(String result) {
+				
+				System.out.println("MyResult:"+result);
+			}});
+	   
+	   
+	   Server.getInstance().sendRequest("RequestsHistory2",new AsyncCallback<String>() {
+			public void onFailure(Throwable caught) {
+				
+				
+				
+			}
+
+			public void onSuccess(String result) {
+				
+				System.out.println("MyResult:"+result);
+			}});
+	   
+	  Server.getInstance().sendRequest("RequestsHistory3",new AsyncCallback<String>() {
+			public void onFailure(Throwable caught) {
+				
+				
+				
+			}
+
+			public void onSuccess(String result) {
+				
+				System.out.println("MyResult:"+result);
+			}});
+	  */
   }
-  
-  
-  private SelectHandler createSelectHandlerForLineChart(final  LineChart chart) {
-	    return new SelectHandler() {
 
-			@Override
-			public void onSelect(SelectEvent event) {
-			
-				StringBuffer b = new StringBuffer();
-			    JsArray<Selection> s = chart.getSelections();
-			    for (int i = 0; i < s.length(); ++i) {
-			      if (s.get(i).isCell()) {
-			        b.append(" cell ");
-			        b.append(s.get(i).getRow());
-			        b.append(":");
-			        b.append(s.get(i).getColumn());
-			      } else if (s.get(i).isRow()) {
-			        b.append(" row ");
-			        b.append(s.get(i).getRow());
-			      } else {
-			        b.append(" column ");
-			        b.append(s.get(i).getColumn());
-			      }
-			    }
-			}
-	    	
-	    };
-}
-  
-  
-  private SelectHandler createSelectHandlerForBarChart(final   BarChart chart) {
-	    return new SelectHandler() {
 
-			@Override
-			public void onSelect(SelectEvent event) {
-			
-				StringBuffer b = new StringBuffer();
-			    JsArray<Selection> s = chart.getSelections();
-			    for (int i = 0; i < s.length(); ++i) {
-			      if (s.get(i).isCell()) {
-			        b.append(" cell ");
-			        b.append(s.get(i).getRow());
-			        b.append(":");
-			        b.append(s.get(i).getColumn());
-			      } else if (s.get(i).isRow()) {
-			        b.append(" row ");
-			        b.append(s.get(i).getRow());
-			      } else {
-			        b.append(" column ");
-			        b.append(s.get(i).getColumn());
-			      }
-			    }
-			}
-	    	
-	    };
-  }
+  
+ 
 }

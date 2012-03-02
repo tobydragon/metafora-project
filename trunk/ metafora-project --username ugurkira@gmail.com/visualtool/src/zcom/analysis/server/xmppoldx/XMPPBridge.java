@@ -1,4 +1,4 @@
-package com.analysis.server.xmppoldx;
+package zcom.analysis.server.xmppoldx;
 
 import java.io.IOException;
 import java.util.Collection;

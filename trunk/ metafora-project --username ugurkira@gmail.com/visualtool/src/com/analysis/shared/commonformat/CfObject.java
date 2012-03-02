@@ -1,15 +1,24 @@
 package com.analysis.shared.commonformat;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CfObject {
+public class CfObject implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6424779097062164631L;
 	private String id;
 	private String type;
 	
 	private Map<String, CfProperty> properties;
 	
+	public CfObject(){
+		
+		
+	}
 	public CfObject(String id, String type) {
 		super();
 		this.id = id;
@@ -36,6 +45,9 @@ public class CfObject {
 		return type;
 	}
 
+	public void setType(String _type) {
+	 this.type=_type;
+	}
 
 
 	public void setId(String id) {

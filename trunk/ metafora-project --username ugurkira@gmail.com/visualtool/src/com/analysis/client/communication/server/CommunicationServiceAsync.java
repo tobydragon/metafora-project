@@ -1,8 +1,13 @@
 package com.analysis.client.communication.server;
 
+import java.util.List;
 import java.util.Map;
+
+import com.analysis.shared.commonformat.CfAction;
+import com.analysis.shared.commonformat.CfInteractionData;
+import com.analysis.shared.interactionmodels.Configuration;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Widget;
+
 
 /**
  * The async counterpart of <code>GreetingService</code>.
@@ -10,9 +15,20 @@ import com.google.gwt.user.client.ui.Widget;
 public interface CommunicationServiceAsync {
 	//void inputToServer(Map<String, String> cr, AsyncCallback<String> callback);
 
-	void sendRequest(String cr, AsyncCallback<String> callback);
+	//void sendRequest(String cr, AsyncCallback<String> callback);
 
-	void sendRequest(Map<String, String> cr,AsyncCallback<Map<String, Map<String, String>>> callback);
+	//void sendRequest(Map<String, String> cr,AsyncCallback<Map<String, Map<String, String>>> callback);
+
+	//void sendRequestHistoryAction(CfAction cfAction,
+		//	AsyncCallback<List<CfAction>> callback);
+
+	void sendRequestConfiguration(CfAction cfAction,
+			AsyncCallback<Configuration> callback);
+
+	void sendAction(CfAction cfAction, AsyncCallback<CfAction> callback);
+
+	void sendRequestHistoryAction(CfAction cfAction,
+			AsyncCallback<CfInteractionData> callback);
 
 
 	

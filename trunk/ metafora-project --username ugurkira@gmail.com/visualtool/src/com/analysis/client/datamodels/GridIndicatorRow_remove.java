@@ -12,12 +12,12 @@ import java.util.Date;
 import com.extjs.gxt.ui.client.data.BaseModel;
 import com.extjs.gxt.ui.client.util.DateWrapper;
 
-public class Indicator extends BaseModel {
+public class GridIndicatorRow_remove extends BaseModel {
 
-  public Indicator() {
+  public GridIndicatorRow_remove() {
   }
 
-  public Indicator(String name,String actiontype,String classification, String description,String time, String date, String groupingItem) {
+  public GridIndicatorRow_remove(String name,String actiontype,String classification, String description,String time, String date, String groupingItem) {
     set("name", name);
     set("actiontype", actiontype);
     set("classification", classification);

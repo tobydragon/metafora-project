@@ -1,4 +1,4 @@
-package com.analysis.server.xmppoldxx;
+package zcom.analysis.server.xmppoldxx;
 
 import zcom.analysis.server.xmpp.XMPPBridge;
 import zcom.analysis.server.xmpp.XMPPMessageListener;

@@ -22,6 +22,11 @@ public class GWTDateUtils {
 
 
 	}	
+
 	
-	
+	public static long getTimeStamp(){
+		
+		return System.currentTimeMillis();
+		
+	}
 }

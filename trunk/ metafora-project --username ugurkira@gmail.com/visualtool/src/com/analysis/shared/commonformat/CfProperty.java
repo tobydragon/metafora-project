@@ -1,6 +1,12 @@
 package com.analysis.shared.commonformat;
 
-public class CfProperty {
+import java.io.Serializable;
+
+public class CfProperty   implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7198450909563822060L;
 	private String name, value, id;
 
 	public CfProperty(String name, String value, String id) {

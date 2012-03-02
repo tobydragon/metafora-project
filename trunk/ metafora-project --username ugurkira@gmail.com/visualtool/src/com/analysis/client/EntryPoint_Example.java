@@ -120,7 +120,7 @@ public class EntryPoint_Example implements EntryPoint {
 				sendButton.setEnabled(false);
 				
 				serverResponseLabel.setText("");
-				greetingService.sendRequest(null,
+				/*greetingService.sendRequest(null,
 						new AsyncCallback<String>() {
 							public void onFailure(Throwable caught) {
 								// Show the RPC error message to the user
@@ -141,7 +141,7 @@ public class EntryPoint_Example implements EntryPoint {
 								dialogBox.center();
 								closeButton.setFocus(true);
 							}
-						});
+						});*/
 			}
 		}
 

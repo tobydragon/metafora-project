@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.analysis.client.communication.actionresponses.CfActionCallBack;
+import com.analysis.client.communication.actionresponses.RequestConfigurationCallBack;
+import com.analysis.client.communication.actionresponses.RequestHistoryCallBack;
+import com.analysis.client.utils.ClientFormatStrings;
+import com.analysis.shared.commonformat.CfAction;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import de.novanic.eventservice.client.ClientHandler;
@@ -32,26 +37,19 @@ public class Server {
 		return myInstance;
 	}
 	
-	
+	// not used for now
 	private void getClientHandler(){
-		//Logger.log("###getClientHandler getting Connection ID", Logger.DEBUG);
+	
 		RemoteEventServiceFactory gwtEventServiceFactory = RemoteEventServiceFactory.getInstance();
 		gwtEventServiceFactory.requestClientHandler(new AsyncCallback<ClientHandler>() {
-			/** If the servlet call fails, log it. */
+			
 			public void onFailure(Throwable caught) {
-			//	Logger.log("[lasad.gwt.client.communication.objects.LASADActionSender][sendActionSet] Error: RPC failure", Logger.DEBUG);
-				//Logger.log("[Error details] " + caught.toString(), Logger.DEBUG);
 			}
 
-			/**
-			 * If the servlet call is successful 
-			 * do further processing
-			 * 
-			 * @param result
-			 */
 			public void onSuccess(ClientHandler result) {
-				//Logger.log("###getClientHandler Connection ID" + result.getConnectionId(), Logger.DEBUG);
-			System.out.println("Client Success:"+result.getConnectionId());
+				
+				
+				System.out.println("Client Success:"+result.getConnectionId());
 			}
 		});
 	}
@@ -77,11 +75,9 @@ public class Server {
 		};
 	}
 	
-	
+	//not used for now
 	public boolean connectEventService() {
-		//Logger.log("connectEventService", Logger.DEBUG);
 		
-	
 		if(myGWTEventService.isActive() && myGWTEventService.getActiveDomains().size() == 2) {
 
 			System.out.println("connected:true");
@@ -94,7 +90,7 @@ public class Server {
 			
 myGWTEventService.removeListeners();
 			
-			// Add the default listener for server events. This could take some time, thus, we will have to wait for it...
+// Add the default listener for server events. This could take some time, thus, we will have to wait for it...
 myGWTEventService.addListener(null, myListener);
 			
 			
@@ -102,46 +98,29 @@ myGWTEventService.addListener(null, myListener);
 		}
 		
 	}
-	
-	
-	public void sendRequest(String _request,AsyncCallback<String> cb) {
-
-		if(connectEventService()) {
-
-			
-			myServlet.sendRequest(_request, cb);
-		}
-			
-	}
 
 	
+public void processAction(CfAction cfAction,CfActionCallBack actionCallBack)
+{
+	myServlet.sendAction(cfAction,actionCallBack);
 	
-// For one side communication
-	public void sendRequest(String actionSet) {
-
-		if(connectEventService()) {
-
-			myServlet.sendRequest("RequestHistory", new AsyncCallback<String>() {
-
-				@Override
-				public void onFailure(Throwable caught) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void onSuccess(String result) {
-					// TODO Auto-generated method stub
-					
-				}
-
-			
-			});
-		}
-		else {
-			
-		}		
-	}
+}
 	
+public void processAction(CfAction cfAction,RequestHistoryCallBack historyCallback) {
+		
+		myServlet.sendRequestHistoryAction(cfAction,historyCallback);
 	
+}
+ 
+public void processAction(CfAction cfAction,RequestConfigurationCallBack configurationCallback) {
+		
+		myServlet.sendRequestConfiguration(cfAction,configurationCallback);
+	
+}
+
+
+ 
+ 
+ 
+ 
 }

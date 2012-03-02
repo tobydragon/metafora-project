@@ -1,5 +1,6 @@
 package com.analysis.shared.commonformat;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +9,13 @@ import com.analysis.server.xml.XmlFragment;
 import com.analysis.server.xml.XmlFragmentInterface;
 
 
-public class CfAction {
+public class CfAction implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6001855127174847426L;
+
 	long time;
 	
 	CfActionType cfActionType;
@@ -17,6 +23,7 @@ public class CfAction {
 	List<CfObject> cfObjects;
 	CfContent cfContent;
 	
+	public CfAction(){}
 	
 	public CfAction(long time, CfActionType cfActionType) {
 		super();
@@ -25,6 +32,8 @@ public class CfAction {
 		this.cfUsers = new ArrayList<CfUser>();
 		this.cfObjects = new ArrayList<CfObject>();
 	}
+	
+	
 	
 	public CfAction(long time, CfActionType cfActionType, List<CfUser> cfUsers,
 			List<CfObject> cfObjects) {
@@ -59,6 +68,10 @@ public class CfAction {
 		return cfActionType;
 	}
 
+	
+	public void setCfActionType(CfActionType  _cfActionType) {
+	 cfActionType= _cfActionType;
+	}
 
 
 	public List<CfUser> getCfUsers() {

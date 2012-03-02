@@ -1,10 +1,10 @@
 package com.analysis.shared.commonformat;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+//import org.apache.commons.logging.Log;
+//import org.apache.commons.logging.LogFactory;
 
 public class CommonFormatUtil {
-	static Log logger = LogFactory.getLog(CommonFormatUtil.class);
+	//static Log logger = LogFactory.getLog(CommonFormatUtil.class);
 	
 	public static long getTime(String timeStr){
 		try {
@@ -12,7 +12,7 @@ public class CommonFormatUtil {
 			return time;
 		}
 		catch (NumberFormatException e){
-			logger.error("[getTime] Bad format of time string - " + timeStr);
+			//logger.error("[getTime] Bad format of time string - " + timeStr);
 			return 0;
 		}
 	}
