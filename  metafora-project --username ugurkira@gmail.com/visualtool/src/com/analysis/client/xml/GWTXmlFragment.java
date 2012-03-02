@@ -7,9 +7,7 @@ import java.util.List;
 
 
 
-import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
-import com.analysis.client.datamodels.IndicatorFilter;
-import com.analysis.client.datamodels.Configuration;
+
 import com.analysis.shared.communication.objects_old.CfAction;
 import com.analysis.shared.communication.objects_old.CfActionType;
 import com.analysis.shared.communication.objects_old.CfContent;
@@ -17,6 +15,9 @@ import com.analysis.shared.communication.objects_old.CfObject;
 import com.analysis.shared.communication.objects_old.CfProperty;
 import com.analysis.shared.communication.objects_old.CfUser;
 import com.analysis.shared.communication.objects_old.CommonFormatStrings;
+import com.analysis.shared.interactionmodels.Configuration;
+import com.analysis.shared.interactionmodels.IndicatorFilterItem;
+import com.analysis.shared.interactionmodels.IndicatorFilter;
 
 import com.google.gwt.xml.client.Document;
 import com.google.gwt.xml.client.Element;
@@ -272,7 +273,7 @@ public class GWTXmlFragment {
 							 if(value==null)
 								 value="";	
 							 
-							 ExtendedIndicatorFilterItem item=new ExtendedIndicatorFilterItem();
+							 IndicatorFilterItem item=new IndicatorFilterItem();
 							 
 							 item.setType(type);
 							 item.setProperty(name);

@@ -1,17 +1,23 @@
 package com.analysis.server;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import zcom.analysis.server.io.FileOperation;
 import zcom.analysis.server.io.SourceManager;
 import zcom.analysis.server.io.XmlFragment;
 import zcom.analysis.server.xmpp.StartupServlet;
+import zcom.analysis.server.xmppoldxx.XmppActionListener;
 
 import com.analysis.client.communication.server.CommunicationService;
 
 import com.analysis.server.utils.ServerFormatStrings;
-import com.analysis.server.xmppoldxx.XmppActionListener;
+import com.analysis.server.xml.XmlConfigParser;
+import com.analysis.shared.commonformat.CfAction;
+import com.analysis.shared.commonformat.CfInteractionData;
+import com.analysis.shared.interactionmodels.Configuration;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
@@ -22,143 +28,48 @@ public class MainServer extends RemoteServiceServlet implements
 		CommunicationService {
 
 
-	
-	String handleRequest(String requestType){
-	
-		
-		
-		System.out.println("From client to server!:"+requestType);
-		Map<String, String> activeConf=SourceManager.getConfiguration();
-		
-		Thread thread = new Thread(new XmppActionListener());
-		//thread.start();
-		
-		//StartupServlet aa=new StartupServlet();
-		//aa.init();
-		// XmppActionListener xa=new XmppActionListener();
-    	// xa.run();
-		String result="";
-
-		if(requestType.equalsIgnoreCase("RequestHistory")){
-			System.out.println("RH is true!:"+requestType);
-			
-			if(activeConf.get(ServerFormatStrings.Type).equalsIgnoreCase("xmpp")){
+	String configFilepath = "conf/visualtool/configuration.xml";
+	public Configuration _configuration;
+	List<CfAction> _cfActions;
+	public MainServer(){		
+		_cfActions=new ArrayList<CfAction>();
 				
-				result="xmpp is not supported  yet!";
-			}
-			else if(activeConf.get(ServerFormatStrings.Type).equalsIgnoreCase("file")){
+		XmlConfigParser connectionParser = new XmlConfigParser(configFilepath);
+		_configuration=connectionParser.toActiveConfiguration();
 				
-				result=FileOperation.read(activeConf.get(ServerFormatStrings.PATH));
-			}
-			
-			else{
-				
-				result="No Active Source";
-			}
-			
-		}
-		
-		return result;
 	}
 	
-	String handleRequest(String requestType,String value){
-		String result="";
-		if(requestType.equalsIgnoreCase("FileSource")){
-			result=FileOperation.read(value);
-			
-			
-		}
-		return result;
-	}
 	
-	private String escapeHtml(String html) {
-		if (html == null) {
-			return null;
-		}
-		return html.replaceAll("&", "&amp;").replaceAll("<", "&lt;")
-				.replaceAll(">", "&gt;");
-	}
 
-
-	static String conf="conf/filterconfiguration.xml";
-
-	// Comm1
-
-	public String sendRequest(String requestType) {
-	
-		
-		
-		System.out.println("From client to server!:"+requestType);
-		Map<String, String> activeConf=SourceManager.getConfiguration();
-		
-		Thread thread = new Thread(new XmppActionListener());
-		
-		String result="";
-
-		if(requestType.equalsIgnoreCase("RequestHistory")){
-			System.out.println("RH is true!:"+requestType);
-			
-			if(activeConf.get(ServerFormatStrings.Type).equalsIgnoreCase("xmpp")){
-				
-				result="xmpp is not supported  yet!";
-			}
-			else if(activeConf.get(ServerFormatStrings.Type).equalsIgnoreCase("file")){
-				
-				result=FileOperation.read(activeConf.get(ServerFormatStrings.PATH));
-			}
-			
-			else{
-				
-				result="No Active Source";
-			}
-			
-		}
-		
-		else if(requestType.equalsIgnoreCase("RequestConfiguration")){
-			
-			result=FileOperation.read("conf/filterconfiguration.xml");
-			
-		}
-		
-		return result;
-		
-	}
-	
-	//Comm2
-	public Map<String, Map<String, String>> sendRequest(Map<String, String> cr){
-		
-		
-		Map<String, Map<String, String>> configuration=new HashMap<String, Map<String, String>>();
-		Map<String, String> filter;
-		
-		filter=new HashMap<String, String>();
-		filter.put("configurationname", "Test");
-		configuration.put("Test", filter);
-		
-		
-		filter=new HashMap<String, String>();
-		filter.put("configurationname", "Test");
-		configuration.put("Test", filter);
-		
-		
-		
-		
+	@Override
+	public CfAction sendAction(CfAction cfAction) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-
+	/*@Override
+	public List<CfAction> sendRequestHistoryAction(CfAction cfAction) {
 	
-	/*
-	public  requestFilters(
-			Map<String, String> cr) {
-	
-		
-		for(XmlFragment xf : XmlFragment.getFragmentFromFile(conf).getChildren(ServerFormatStrings.HISTORY_SOURCE)){
-			
-			
-		}
-		
-		
-		return null;
+		return _activeAction;
 	}*/
+
+	@Override
+	public Configuration sendRequestConfiguration(CfAction cfAction) {
+
+		return _configuration;
+	}
+
+
+
+	@Override
+	public CfInteractionData sendRequestHistoryAction(CfAction cfAction) {
+		
+		CfInteractionData _interaction=new CfInteractionData();
+		_interaction.setCfActions(_cfActions);
+		
+		return _interaction;
+	}
+
+
+	
 }

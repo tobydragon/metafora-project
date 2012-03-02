@@ -1,22 +1,27 @@
 package com.analysis.shared.commonformat;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.analysis.server.xml.XmlFragment;
-import com.analysis.server.xml.XmlFragmentInterface;
 
 
-public class CfContent {
-	static Log logger = LogFactory.getLog(CfContent.class);
+public class CfContent implements Serializable  {
+	//static Log logger = LogFactory.getLog(CfContent.class);
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 798674379182318122L;
+
 	private String descripiton;
 	
 	private Map<String, CfProperty> properties;
+	
+	public CfContent(){
+		
+	}
 	
 	public CfContent(String description) {
 		super();

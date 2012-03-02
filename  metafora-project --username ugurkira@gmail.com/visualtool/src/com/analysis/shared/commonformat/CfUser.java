@@ -1,12 +1,20 @@
 package com.analysis.shared.commonformat;
 
-import com.analysis.server.xml.XmlFragment;
-import com.analysis.server.xml.XmlFragmentInterface;
+import java.io.Serializable;
 
-public class CfUser {
+
+public class CfUser implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2588487573188906683L;
 	private String id, role;
 
+	public CfUser(){
+		
+		
+	}
 	public CfUser(String id, String role) {
 		this.id = id;
 		this.role = role;

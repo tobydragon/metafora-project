@@ -14,8 +14,7 @@ import com.analysis.client.communication.models.DataModel;
 import com.analysis.client.components.ActionContent;
 import com.analysis.client.components.ActionObject;
 import com.analysis.client.datamodels.DefaultModel;
-import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
-import com.analysis.client.datamodels.Indicator;
+import com.analysis.client.datamodels.GridIndicatorRow_remove;
 import com.analysis.client.examples.charts.Showcase;
 import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.view.grids.ExtendedFilterGrid;
@@ -24,6 +23,7 @@ import com.analysis.shared.communication.objects_old.CfAction;
 import com.analysis.shared.communication.objects_old.CfObject;
 import com.analysis.shared.communication.objects_old.CfUser;
 import com.analysis.shared.communication.objects_old.CommonFormatStrings;
+import com.analysis.shared.interactionmodels.IndicatorFilterItem;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedListener;
@@ -348,7 +348,7 @@ public ExtendedPieChart(String title){
 			        if(!DataModel.getActiveFilters().containsKey(_key) && value!=null){
 			        DataModel.getActiveFilters().put(_key,_key);
 			       
-			        ExtendedIndicatorFilterItem _filter = new ExtendedIndicatorFilterItem();  
+			        IndicatorFilterItem _filter = new IndicatorFilterItem();  
 			        _filter.setProperty(property);
 			        _filter.setValue(value);
 			        _filter.setType(Type);

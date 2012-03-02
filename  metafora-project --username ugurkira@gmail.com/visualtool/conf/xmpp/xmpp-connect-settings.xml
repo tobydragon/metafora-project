@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmpp-connect-settings>
+	<xmpp-channel-setting channelid="analysis">
+		<connection-name>LasadAnalysis</connection-name>
+		<username>LasadAnalysis</username>
+		<password>LasadAnalysis</password>
+		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>LasadAnalysis</alias>
+		<device>LasadServer</device>
+		<controller-name>Metafora</controller-name>
+	</xmpp-channel-setting>
+	<xmpp-channel-setting channelid="command">
+		<connection-name>LasadCommand</connection-name>
+		<username>LasadCommand</username>
+		<password>LasadCommand</password>
+		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>LasadCommand</alias>
+		<device>LasadServer</device>
+		<controller-name>Metafora</controller-name>
+	</xmpp-channel-setting>
+	<xmpp-channel-setting channelid="analysis-test-toby">
+		<connection-name>LasadAnalysisTest</connection-name>
+		<username>LasadAnalysisTest</username>
+		<password>LasadAnalysisTest</password>
+		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>LasadAnalysisTest</alias>
+		<device>LasadTestServer</device>
+		<controller-name>Metafora-test</controller-name>
+	</xmpp-channel-setting>
+	<xmpp-channel-setting channelid="command-test-toby">
+		<connection-name>LasadCommandTest</connection-name>
+		<username>LasadCommandTest</username>
+		<password>LasadCommandTest</password>
+		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>LasadCommandTest</alias>
+		<device>LasadTestServer</device>
+		<controller-name>Metafora-test</controller-name>
+	</xmpp-channel-setting>
+	<xmpp-channel-setting channelid="analysis-test-ugur">
+		<connection-name>LasadAnalysisTestUgur</connection-name>
+		<username>LasadAnalysisTestUgur</username>
+		<password>LasadAnalysisTestUgur</password>
+		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>LasadAnalysisTestUgur</alias>
+		<device>LasadTestServerUgur</device>
+		<controller-name>Metafora-test-ugur</controller-name>
+	</xmpp-channel-setting>
+	<xmpp-channel-setting channelid="command-test-ugur">
+		<connection-name>LasadCommandTestUgur</connection-name>
+		<username>LasadCommandTestUgur</username>
+		<password>LasadCommandTestUgur</password>
+		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>LasadCommandTestUgur</alias>
+		<device>LasadTestServerUgur</device>
+		<controller-name>Metafora-test-ugur</controller-name>
+	</xmpp-channel-setting>
+</xmpp-connect-settings>

@@ -2,6 +2,11 @@ package com.analysis.server.xml;
 
 import java.util.List;
 
+import com.analysis.server.utils.ServerFormatStrings;
+import com.analysis.shared.interactionmodels.Configuration;
+import com.analysis.shared.interactionmodels.IndicatorFilter;
+import com.analysis.shared.interactionmodels.IndicatorFilterItem;
+
 public class XmlConfigParser {
 	
 	XmlFragmentInterface configFragment;
@@ -33,5 +38,50 @@ public class XmlConfigParser {
 			return null;
 		}
 	}
+	
+	
+	public Configuration toActiveConfiguration(){
+		
+		
+		Configuration _conf=new Configuration();
+		
+		for(XmlFragmentInterface confFragment: configFragment.getChildren(ServerFormatStrings.CONFIGURATION)){
+			
+		if(confFragment.getAttributeValue("active").equalsIgnoreCase("1") || confFragment.getAttributeValue("active").equalsIgnoreCase("true")){	
+			
+	   
+		_conf.setName(confFragment.getAttributeValue(ServerFormatStrings.NAME));
+		_conf.setDataSource(confFragment.getChildValue(ServerFormatStrings.DATA_SOURCE_TYPE));
+		for(XmlFragmentInterface filterFragment: confFragment.getChildren(ServerFormatStrings.FILTER)){
+			
+			IndicatorFilter indicatorFilter=new IndicatorFilter();
+			String _filterName=filterFragment.getAttributeValue(ServerFormatStrings.NAME);
+			indicatorFilter.setName(_filterName);
+			indicatorFilter.setEditable(filterFragment.getAttributeValue(ServerFormatStrings.Active));
+
+
+			for(XmlFragmentInterface propertyFragment: filterFragment.getChildren(ServerFormatStrings.PROPERTY))
+			{			
+				IndicatorFilterItem _filterItem=new IndicatorFilterItem();
+				_filterItem.setType(propertyFragment.getAttributeValue(ServerFormatStrings.Type));
+				_filterItem.setProperty(propertyFragment.getAttributeValue(ServerFormatStrings.NAME));
+				_filterItem.setValue(propertyFragment.getAttributeValue(ServerFormatStrings.VALUE));				
+				 indicatorFilter.addFilterItem(_filterName, _filterItem);
+			}
+			
+		}
+
+		break;
+		}
+
+		}
+		
+		return _conf;
+		
+	}
+	
+	
+	
+	
 
 }

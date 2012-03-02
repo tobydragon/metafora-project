@@ -1,14 +1,23 @@
 package com.analysis.shared.commonformat;
 
-public class CfActionType {
+import java.io.Serializable;
+
+public class CfActionType implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2581705673900090200L;
 	private String type, classification, succeed, logged;
 
+	public CfActionType(){}
+	
 	public CfActionType(String type, String classification, String succeed, String logged) {
 		this.type = type;
 		this.classification = classification;
 		this.succeed = succeed;
 		this.logged = logged;
 	}
+	
 	
 	public CfActionType(String type, String classification, String succeed) {
 		this(type, classification, succeed, null);

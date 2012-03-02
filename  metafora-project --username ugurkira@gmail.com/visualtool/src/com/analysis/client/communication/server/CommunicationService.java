@@ -1,8 +1,12 @@
 package com.analysis.client.communication.server;
 
 
+import java.util.List;
 import java.util.Map;
 
+import com.analysis.shared.commonformat.CfAction;
+import com.analysis.shared.commonformat.CfInteractionData;
+import com.analysis.shared.interactionmodels.Configuration;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -13,11 +17,15 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("greet")
 public interface CommunicationService extends RemoteService {
 	
+	CfAction sendAction(CfAction cfAction);
 	
-	String sendRequest(String cr);
+	CfInteractionData sendRequestHistoryAction(CfAction cfAction);
 
+	Configuration sendRequestConfiguration(CfAction cfAction);
 	
-	Map<String, Map<String, String>> sendRequest(Map<String, String> cr);
+	
+	
+	//Map<String, Map<String, String>> sendRequest(Map<String, String> cr);
 	
 	
 }

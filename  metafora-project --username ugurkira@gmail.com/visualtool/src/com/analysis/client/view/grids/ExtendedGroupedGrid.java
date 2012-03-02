@@ -12,7 +12,7 @@ import java.util.List;
 
 
 
-import com.analysis.client.datamodels.Indicator;
+import com.analysis.client.datamodels.GridIndicatorRow_remove;
 import com.analysis.client.resources.Resources;
 import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
@@ -31,14 +31,14 @@ import com.google.gwt.user.client.Element;
 public class ExtendedGroupedGrid extends LayoutContainer {
 
 	String groupingItem="";
-	List<Indicator> indicators;
+	List<GridIndicatorRow_remove> indicators;
 	public ExtendedGroupedGrid(String _groupingItem){
 		
 		groupingItem=_groupingItem;
 	}
 	
 	
-public ExtendedGroupedGrid(String _groupingItem,List<Indicator> _indicator){
+public ExtendedGroupedGrid(String _groupingItem,List<GridIndicatorRow_remove> _indicator){
 		
 		groupingItem=_groupingItem;
 		indicators=_indicator;
@@ -47,7 +47,7 @@ public ExtendedGroupedGrid(String _groupingItem,List<Indicator> _indicator){
 
 
 
-public ExtendedGroupedGrid(List<Indicator> _indicator){
+public ExtendedGroupedGrid(List<GridIndicatorRow_remove> _indicator){
 		
 		indicators=_indicator;
 	}
@@ -58,7 +58,7 @@ public ExtendedGroupedGrid(List<Indicator> _indicator){
     super.onRender(parent, index);
     setLayout(new FlowLayout(10));
 
-    GroupingStore<Indicator> store = new GroupingStore<Indicator>();
+    GroupingStore<GridIndicatorRow_remove> store = new GroupingStore<GridIndicatorRow_remove>();
   
     store.add(indicators);  
     store.groupBy("date");
@@ -101,7 +101,7 @@ public ExtendedGroupedGrid(List<Indicator> _indicator){
       }
     });
 
-    Grid<Indicator> grid = new Grid<Indicator>(store, cm);
+    Grid<GridIndicatorRow_remove> grid = new Grid<GridIndicatorRow_remove>(store, cm);
     view.setShowGroupedColumn(true);
     grid.setView(view);
     grid.setBorders(true);

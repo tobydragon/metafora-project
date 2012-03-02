@@ -5,20 +5,29 @@
  * 
  * http://extjs.com/license
  */
-package com.analysis.client.datamodels;
+package com.analysis.shared.interactionmodels;
+
+
 
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 
 
-public class ExtendedIndicatorFilterItem extends BaseModel {
+public class IndicatorFilterItem extends BaseModel {
+
 
 	
-  public ExtendedIndicatorFilterItem() {
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3416203885980295041L;
+
+
+public IndicatorFilterItem() {
   }
 
   
-  public ExtendedIndicatorFilterItem(String _property, String _value,String _type) {
+  public IndicatorFilterItem(String _property, String _value,String _type) {
     set("property", _property);
     set("value", _value);
     set("filtertype", _type);

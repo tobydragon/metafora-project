@@ -14,8 +14,8 @@ import com.google.gwt.user.client.ui.Widget;
 
 
 public class TabDataViewPanel extends VerticalPanel {
+
 	
-//	private Map<String, List<Widget>> tabs;
 	FilterListPanel flp;
 	private  TabPanel tabPanel = new TabPanel();
 	public TabDataViewPanel(String _lbl){
@@ -26,9 +26,9 @@ public class TabDataViewPanel extends VerticalPanel {
 		flp=new FilterListPanel();
 		//flp.addFilter("User", "Ugur");
 		this.add(flp);
+		tabPanel.selectTab(0);
+		this.add(tabPanel);
 	
-	//tabPanel.setHeight("300px");
-	//tabPanel.setWidth("500px");
 	}
 	}
 	
@@ -45,13 +45,13 @@ public class TabDataViewPanel extends VerticalPanel {
 	
 	
 	
-	public Widget renderExtendedTabPanel(){
+/*	public Widget renderExtendedTabPanel(){
 		
-		tabPanel.selectTab(0);
-		this.add(tabPanel);
-		return this;
+		//tabPanel.selectTab(0);
+		//this.add(tabPanel);
+		//return this;
 	}
-	
+	*/
 
 	public void switchToTab(int index){
 				

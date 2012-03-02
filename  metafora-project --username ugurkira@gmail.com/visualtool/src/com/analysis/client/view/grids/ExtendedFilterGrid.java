@@ -15,16 +15,22 @@ import java.util.Map;
 
 
 
+import com.analysis.client.communication.actionresponses.RequestConfigurationCallBack;
 import com.analysis.client.communication.models.DataModel;
 import com.analysis.client.communication.server.Server;
 import com.analysis.client.components.ActionObject;
-import com.analysis.client.datamodels.IndicatorFilter;
-import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
-import com.analysis.client.datamodels.Indicator;
+import com.analysis.client.datamodels.GridIndicatorRow_remove;
 import com.analysis.client.resources.Resources;
+import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.view.charts.ExtendedPieChart;
 import com.analysis.client.view.widgets.TabDataViewPanel;
 import com.analysis.client.xml.GWTXmlFragment;
+import com.analysis.shared.commonformat.CfAction;
+import com.analysis.shared.commonformat.CfActionType;
+
+import com.analysis.shared.interactionmodels.Configuration;
+import com.analysis.shared.interactionmodels.IndicatorFilterItem;
+import com.analysis.shared.interactionmodels.IndicatorFilter;
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
@@ -67,15 +73,15 @@ import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.button.Button;
 
-public class ExtendedFilterGrid extends LayoutContainer {
+public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfigurationCallBack {
 
 	private String groupingItem="";
 	
-	private Map<String, List<ExtendedIndicatorFilterItem>> filterSets;
+	private Map<String, IndicatorFilter> configurationFilters;
 	
-	 static EditorGrid<ExtendedIndicatorFilterItem> grid;
-	 static ListStore<ExtendedIndicatorFilterItem> store;
-	 static SimpleComboBox<String> filterGroup;
+	 static EditorGrid<IndicatorFilterItem> grid;
+	 static ListStore<IndicatorFilterItem> store;
+	 static SimpleComboBox<String> filterGroupCombo;
 	
 	public ExtendedFilterGrid(String _groupingItem){
 		
@@ -83,12 +89,7 @@ public class ExtendedFilterGrid extends LayoutContainer {
 	}
 	
 	
-public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
-		
-		groupingItem=_groupingItem;
-	
-	}
-	
+
 
 	
   @Override
@@ -96,19 +97,19 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
     super.onRender(parent, index);
     setLayout(new FlowLayout(1));
 
-   store = new ListStore<ExtendedIndicatorFilterItem>();
+   store = new ListStore<IndicatorFilterItem>();
  
     
  
-    List<ExtendedIndicatorFilterItem> filters=new ArrayList<ExtendedIndicatorFilterItem>();
-    ExtendedIndicatorFilterItem ft=new ExtendedIndicatorFilterItem();
+    List<IndicatorFilterItem> filters=new ArrayList<IndicatorFilterItem>();
+    IndicatorFilterItem ft=new IndicatorFilterItem();
     ft.setProperty("MapID");
     ft.setValue("1");
     ft.setType("Action");
    
     filters.add(ft);
     
-    ExtendedIndicatorFilterItem fts=new ExtendedIndicatorFilterItem();
+    IndicatorFilterItem fts=new IndicatorFilterItem();
     fts.setProperty("User");
     fts.setValue("Ugur");
     fts.setType("Content");
@@ -141,17 +142,17 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
     
     
     
-    GridCellRenderer<ExtendedIndicatorFilterItem> buttonRenderer = new GridCellRenderer<ExtendedIndicatorFilterItem>() {
+    GridCellRenderer<IndicatorFilterItem> buttonRenderer = new GridCellRenderer<IndicatorFilterItem>() {
 
         private boolean init;
 
-        public Object render(final ExtendedIndicatorFilterItem model, String property, ColumnData config, final int rowIndex,
-            final int colIndex, final ListStore<ExtendedIndicatorFilterItem> store, Grid<ExtendedIndicatorFilterItem> grid) {
+        public Object render(final IndicatorFilterItem model, String property, ColumnData config, final int rowIndex,
+            final int colIndex, final ListStore<IndicatorFilterItem> store, Grid<IndicatorFilterItem> grid) {
           if (!init) {
             init = true;
-            grid.addListener(Events.ColumnResize, new Listener<GridEvent<ExtendedIndicatorFilterItem>>() {
+            grid.addListener(Events.ColumnResize, new Listener<GridEvent<IndicatorFilterItem>>() {
 
-              public void handleEvent(GridEvent<ExtendedIndicatorFilterItem> be) {
+              public void handleEvent(GridEvent<IndicatorFilterItem> be) {
                 for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
                   if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
                       && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
@@ -176,7 +177,7 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
             	DataModel.getActiveFilters().remove(_key);
             	
             	store.remove(model);
-            	filterGroup.clearSelections();
+            	filterGroupCombo.clearSelections();
             
             
             }
@@ -213,7 +214,7 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
      ColumnModel cm = new ColumnModel(config);
 
      
-     grid = new EditorGrid<ExtendedIndicatorFilterItem>(store, cm);
+     grid = new EditorGrid<IndicatorFilterItem>(store, cm);
 
     grid.setBorders(true);
     /*
@@ -231,16 +232,16 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
         }
     });*/
    
-    grid.getStore().addListener(Store.Add, new Listener<StoreEvent<ExtendedIndicatorFilterItem>>() {
-          public void handleEvent(StoreEvent<ExtendedIndicatorFilterItem> be) {
+    grid.getStore().addListener(Store.Add, new Listener<StoreEvent<IndicatorFilterItem>>() {
+          public void handleEvent(StoreEvent<IndicatorFilterItem> be) {
         	  //Info.display("Info","addedd");
         	  
         	//  filterGroup.clearSelections();
           }
         });
     
-    grid.getStore().addListener(Store.Remove, new Listener<StoreEvent<ExtendedIndicatorFilterItem>>() {
-        public void handleEvent(StoreEvent<ExtendedIndicatorFilterItem> be) {
+    grid.getStore().addListener(Store.Remove, new Listener<StoreEvent<IndicatorFilterItem>>() {
+        public void handleEvent(StoreEvent<IndicatorFilterItem> be) {
       	 
         	//Info.display("Info","remove");
         	//filterGroup.clearSelections();
@@ -253,7 +254,7 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
   
       @Override  
       public void componentSelected(ButtonEvent ce) {  
-    ExtendedIndicatorFilterItem filter = new ExtendedIndicatorFilterItem();  
+    IndicatorFilterItem filter = new IndicatorFilterItem();  
     filter.setProperty("Tool");
     filter.setValue("Lasad");
      
@@ -282,7 +283,7 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
 
 		    	 Info.display("le","Clear");
 		    grid.getStore().removeAll();
-		    filterGroup.clearSelections();
+		    filterGroupCombo.clearSelections();
 		   
 			
 		}  
@@ -318,7 +319,7 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
   }
   
   
-  public static EditorGrid<ExtendedIndicatorFilterItem> getExtendedFilterGrid(){
+  public static EditorGrid<IndicatorFilterItem> getExtendedFilterGrid(){
 	  
 	 return grid;	  
   }
@@ -326,24 +327,24 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
   
   public static SimpleComboBox<String> getFilterSetListCombo(){
 		
-		return filterGroup;
+		return filterGroupCombo;
 	}
 
 		
   
-  
+  /*
   
   public void setFilterMap(List<IndicatorFilter> filterList){
-	filterSets=new   HashMap<String, List<ExtendedIndicatorFilterItem>>();
+	configurationFilters=new   HashMap<String, List<IndicatorFilterItem>>();
 	  
 	  for(IndicatorFilter af: filterList){
 		
 		  String filtername=af.getName();
-		  List<ExtendedIndicatorFilterItem> filterProperties=new ArrayList<ExtendedIndicatorFilterItem>();
+		  List<IndicatorFilterItem> filterProperties=new ArrayList<IndicatorFilterItem>();
 		  
 		for(String _key:af.getProperties().keySet()){
 
-			ExtendedIndicatorFilterItem filterItem=new ExtendedIndicatorFilterItem();
+			IndicatorFilterItem filterItem=new IndicatorFilterItem();
 			filterItem.setProperty(_key);
 			filterItem.setValue(af.getProperties().get(_key).getValue());
 			filterItem.setType(af.getProperties().get(_key).getType());
@@ -353,82 +354,40 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
 			
 		}
 		
-		filterSets.put(filtername,filterProperties);
+		configurationFilters.put(filtername,filterProperties);
 		  
 	  }
 
 	
 	  //System.out.println("fdddddd:");
   }
+  */
+  
   SimpleComboBox<String> FilterSetComboBox(){
 	  
-	  	filterGroup = new SimpleComboBox<String>();  
-	    filterGroup.setTriggerAction(TriggerAction.ALL);  
-	    filterGroup.setEditable(false);  
-	    filterGroup.setFireChangeEventOnSetValue(true);  
-	    filterGroup.setWidth(100); 
+	  	filterGroupCombo = new SimpleComboBox<String>();  
+	    filterGroupCombo.setTriggerAction(TriggerAction.ALL);  
+	    filterGroupCombo.setEditable(false);  
+	    filterGroupCombo.setFireChangeEventOnSetValue(true);  
+	    filterGroupCombo.setWidth(100); 
+   
+	    CfAction _action=new CfAction();
+	 	  _action.setTime(GWTDateUtils.getTimeStamp());
+	 	  
+	 	 CfActionType _cfActionType=new CfActionType();
+	 	 _cfActionType.setType("REQUEST_FILTER_CONFIGURATION");
+	 	 _action.setCfActionType(_cfActionType);
+	 	 
 	    
-	    
-	    
-		 Server.getInstance().sendRequest("RequestConfiguration",new AsyncCallback<String>() {
-				public void onFailure(Throwable caught) {
-					
-					
-					
-				}
+		Server.getInstance().processAction(_action,this);
 
-				public void onSuccess(String result) {
-					
-					GWTXmlFragment gxf=new GWTXmlFragment();
-															
-					setFilterMap(gxf.getActiveConfiguration(result).getFilters());
-					
-					
-				  for(String key:filterSets.keySet()){
-					    filterGroup.add(key);  
-					    }
-					    
-					    
-					    filterGroup.addListener(Events.Change, new Listener<FieldEvent>() {  
-					      public void handleEvent(FieldEvent be) {  
-					        String filterSetKey = filterGroup.getSimpleValue();
-					        
-					        
-					        if(filterSets.containsKey(filterSetKey)){
-					        
-					        	List<ExtendedIndicatorFilterItem> filterList=new ArrayList<ExtendedIndicatorFilterItem>();
-					        	
-					        	filterList=filterSets.get(filterSetKey);
-					        	store.removeAll();
-					        	for(ExtendedIndicatorFilterItem af: filterList){
-					        		
-					        	     grid.stopEditing();  
-					        	     store.insert(af, 0);  
-					        	     grid.startEditing(store.indexOf(af), 0); 
-					        	}
-					        	
-					        	
-					        	
-					        	
-					        }
-					        
-					        
-					      }  
-					    });
-					    
-					    
-					
-										
-				}
-			});
-	    
-	    
-	    
-
-	  
-	  return filterGroup;
+	    return filterGroupCombo;
 	  
   }
+  
+  
+  
+  
 /*final SimpleComboBox<String> filterGroup = new SimpleComboBox<String>();  
 	    filterGroup.setTriggerAction(TriggerAction.ALL);  
 	    filterGroup.setEditable(false);  
@@ -455,5 +414,120 @@ public ExtendedFilterGrid(String _groupingItem,List<Indicator> indicator){
 	    });
 	  
 	  return filterGroup;
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  new AsyncCallback<String>() {
+				public void onFailure(Throwable caught) {
+					
+					
+					
+				}
+
+				public void onSuccess(String result) {
+					
+					GWTXmlFragment gxf=new GWTXmlFragment();
+															
+					setFilterMap(gxf.getActiveConfiguration(result).getFilters());
+					
+					
+				  for(String key:configurationFilters.keySet()){
+					    filterGroupCombo.add(key);  
+					    }
+					    
+					    
+					    filterGroupCombo.addListener(Events.Change, new Listener<FieldEvent>() {  
+					      public void handleEvent(FieldEvent be) {  
+					        String filterSetKey = filterGroupCombo.getSimpleValue();
+					        
+					        
+					        if(configurationFilters.containsKey(filterSetKey)){
+					        
+					        	List<IndicatorFilterItem> filterList=new ArrayList<IndicatorFilterItem>();
+					        	
+					        	filterList=configurationFilters.get(filterSetKey);
+					        	store.removeAll();
+					        	for(IndicatorFilterItem af: filterList){
+					        		
+					        	     grid.stopEditing();  
+					        	     store.insert(af, 0);  
+					        	     grid.startEditing(store.indexOf(af), 0); 
+					        	}
+					        	
+					        	
+					        	
+					        	
+					        }
+					        
+					        
+					      }  
+					    });
+					    
+					    
+					
+										
+				}
+			});
+	  
+	  
+	  
 */
+
+
+@Override
+public void onFailure(Throwable caught) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+@Override
+public void onSuccess(Configuration result) {
+	
+	
+	final Map<String, IndicatorFilter> confFilters=result.getFilters();
+
+  for(String filtername: confFilters.keySet()){
+	    filterGroupCombo.add(filtername);  
+	    }
+	    
+	    
+	    filterGroupCombo.addListener(Events.Change, new Listener<FieldEvent>() {  
+	      public void handleEvent(FieldEvent be) {  
+	        String filterSetKey = filterGroupCombo.getSimpleValue();
+	        
+	        
+	        if(confFilters.containsKey(filterSetKey)){
+	        	
+	        	IndicatorFilter filter=confFilters.get(filterSetKey);
+	        	
+	        	store.removeAll();
+	        	
+	        	for(String _key: filter.getProperties().keySet()){
+	        		
+	        		IndicatorFilterItem itemFilter=filter.getFilterItem(_key);
+	        	     grid.stopEditing();  
+	        	     store.insert(itemFilter, 0);  
+	        	     grid.startEditing(store.indexOf(itemFilter), 0); 
+	        	}
+	        }
+	        
+	        
+	      }  
+	    });
+	    
+	    
+	
+	
+	
+}
+
+
+
+
+
 }

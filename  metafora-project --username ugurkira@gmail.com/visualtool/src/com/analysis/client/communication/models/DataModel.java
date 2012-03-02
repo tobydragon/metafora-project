@@ -12,10 +12,8 @@ import java.util.Map;
 
 import com.analysis.client.components.ActionContent;
 import com.analysis.client.components.ActionObject;
-import com.analysis.client.datamodels.ExtendedIndicatorFilterItem;
-import com.analysis.client.datamodels.IndicatorFilter;
 
-import com.analysis.client.datamodels.Indicator;
+import com.analysis.client.datamodels.GridIndicatorRow_remove;
 import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.xml.GWTXmlFragment;
 import com.analysis.shared.communication.objects_old.CfAction;
@@ -24,6 +22,8 @@ import com.analysis.shared.communication.objects_old.CfInteractionData;
 import com.analysis.shared.communication.objects_old.CfObject;
 import com.analysis.shared.communication.objects_old.CfUser;
 import com.analysis.shared.communication.objects_old.CommonFormatStrings;
+import com.analysis.shared.interactionmodels.IndicatorFilterItem;
+import com.analysis.shared.interactionmodels.IndicatorFilter;
 import com.google.gwt.i18n.client.DateTimeFormat;
 
 public class DataModel {
@@ -243,13 +243,13 @@ public void outputSortedC(Map<String, List<ActionContent>> data){
 	
 	
 	
-	public static List<Indicator> getIndicatorList(){
+	public static List<GridIndicatorRow_remove> getIndicatorList(){
 		
-		List<Indicator> indicators=new ArrayList<Indicator>();
+		List<GridIndicatorRow_remove> indicators=new ArrayList<GridIndicatorRow_remove>();
 		
 		for(CfAction ac: Actions){
 	
-			Indicator  myindicator=new Indicator();
+			GridIndicatorRow_remove  myindicator=new GridIndicatorRow_remove();
 			
 			
 			String usersString="";
@@ -273,17 +273,17 @@ public void outputSortedC(Map<String, List<ActionContent>> data){
 
 	
 	
-	public static List<Indicator> getIndicatorList(Map<String, ExtendedIndicatorFilterItem> _filterItems){
+	public static List<GridIndicatorRow_remove> getIndicatorList(Map<String, IndicatorFilterItem> _filterItems){
 		
-		List<Indicator> indicators=new ArrayList<Indicator>();
+		List<GridIndicatorRow_remove> indicators=new ArrayList<GridIndicatorRow_remove>();
 		
 		for(CfAction ac: Actions){
 	
 			//ac.g
 		
 			for(String _key:_filterItems.keySet()){
-			ExtendedIndicatorFilterItem	 activeFilterItem=_filterItems.get(_key);
-			Indicator  myindicator=new Indicator();
+			IndicatorFilterItem	 activeFilterItem=_filterItems.get(_key);
+			GridIndicatorRow_remove  myindicator=new GridIndicatorRow_remove();
 			
 			if(activeFilterItem.getType().equalsIgnoreCase(CommonFormatStrings.CONTENT_STRING)){
 							

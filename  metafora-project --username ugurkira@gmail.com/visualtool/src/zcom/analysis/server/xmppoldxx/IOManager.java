@@ -1,4 +1,4 @@
-package com.analysis.server.xmppoldxx;
+package zcom.analysis.server.xmppoldxx;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
