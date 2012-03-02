@@ -8,6 +8,8 @@ import java.util.Map;
 import com.analysis.shared.communication.objects_old.CfProperty;
 import com.analysis.shared.communication.objects_old.CfUser;
 
+
+
 public class ActionContent {
 	
 	public Map<String, CfProperty> actionContentProperties = new HashMap<String, CfProperty>();

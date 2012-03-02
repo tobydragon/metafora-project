@@ -13,6 +13,7 @@ public class ServerFormatStrings {
 	public static final String FILTER="filter";
 	public static final String PROPERTY="property";
 	public static final String VALUE="value";
+	public static final String EDITABLE="editable";
 	
 	
 	

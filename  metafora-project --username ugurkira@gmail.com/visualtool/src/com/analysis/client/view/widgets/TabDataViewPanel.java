@@ -26,8 +26,9 @@ public class TabDataViewPanel extends VerticalPanel {
 		flp=new FilterListPanel();
 		//flp.addFilter("User", "Ugur");
 		this.add(flp);
-		tabPanel.selectTab(0);
+		
 		this.add(tabPanel);
+		
 	
 	}
 	}
@@ -39,6 +40,7 @@ public class TabDataViewPanel extends VerticalPanel {
 	 
 				
 		tabPanel.add(_widget,_lbl);
+		tabPanel.selectTab(0);
 	
 		
 	}

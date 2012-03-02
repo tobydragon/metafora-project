@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import com.analysis.client.communication.models.DataModel;
 import com.analysis.client.components.ActionContent;
 import com.analysis.client.components.ActionObject;
@@ -19,9 +20,8 @@ import com.analysis.client.examples.charts.Showcase;
 import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.view.grids.ExtendedFilterGrid;
 import com.analysis.client.view.grids.ExtendedGroupedGrid;
+
 import com.analysis.shared.communication.objects_old.CfAction;
-import com.analysis.shared.communication.objects_old.CfObject;
-import com.analysis.shared.communication.objects_old.CfUser;
 import com.analysis.shared.communication.objects_old.CommonFormatStrings;
 import com.analysis.shared.interactionmodels.IndicatorFilterItem;
 import com.extjs.gxt.ui.client.event.Events;

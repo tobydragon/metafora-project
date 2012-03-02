@@ -8,6 +8,7 @@ import java.util.List;
 
 
 
+
 import com.analysis.shared.communication.objects_old.CfAction;
 import com.analysis.shared.communication.objects_old.CfActionType;
 import com.analysis.shared.communication.objects_old.CfContent;

@@ -379,7 +379,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	 	 _action.setCfActionType(_cfActionType);
 	 	 
 	    
-		Server.getInstance().processAction(_action,this);
+		Server.getInstance().processAction("Tool",_action,this);
 
 	    return filterGroupCombo;
 	  
@@ -388,94 +388,6 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
   
   
   
-/*final SimpleComboBox<String> filterGroup = new SimpleComboBox<String>();  
-	    filterGroup.setTriggerAction(TriggerAction.ALL);  
-	    filterGroup.setEditable(false);  
-	    filterGroup.setFireChangeEventOnSetValue(true);  
-	    filterGroup.setWidth(100);  
-	    filterGroup.add("Multi");  
-	    filterGroup.add("Simple");  
-	    filterGroup.setSimpleValue("Multi");  
-	    filterGroup.addListener(Events.Change, new Listener<FieldEvent>() {  
-	      public void handleEvent(FieldEvent be) {  
-	        boolean simple = filterGroup.getSimpleValue().equals("Simple");  
-	       
-	        if(simple){
-	        	
-	        	Info.display("Simpke","simple");
-	        }
-	        else {
-	        
-	        	Info.display("not","not");
-	        }
-	        // sm.deselectAll();  
-	        //sm.setSelectionMode(simple ? SelectionMode.SIMPLE : SelectionMode.MULTI);  
-	      }  
-	    });
-	  
-	  return filterGroup;
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  new AsyncCallback<String>() {
-				public void onFailure(Throwable caught) {
-					
-					
-					
-				}
-
-				public void onSuccess(String result) {
-					
-					GWTXmlFragment gxf=new GWTXmlFragment();
-															
-					setFilterMap(gxf.getActiveConfiguration(result).getFilters());
-					
-					
-				  for(String key:configurationFilters.keySet()){
-					    filterGroupCombo.add(key);  
-					    }
-					    
-					    
-					    filterGroupCombo.addListener(Events.Change, new Listener<FieldEvent>() {  
-					      public void handleEvent(FieldEvent be) {  
-					        String filterSetKey = filterGroupCombo.getSimpleValue();
-					        
-					        
-					        if(configurationFilters.containsKey(filterSetKey)){
-					        
-					        	List<IndicatorFilterItem> filterList=new ArrayList<IndicatorFilterItem>();
-					        	
-					        	filterList=configurationFilters.get(filterSetKey);
-					        	store.removeAll();
-					        	for(IndicatorFilterItem af: filterList){
-					        		
-					        	     grid.stopEditing();  
-					        	     store.insert(af, 0);  
-					        	     grid.startEditing(store.indexOf(af), 0); 
-					        	}
-					        	
-					        	
-					        	
-					        	
-					        }
-					        
-					        
-					      }  
-					    });
-					    
-					    
-					
-										
-				}
-			});
-	  
-	  
-	  
-*/
 
 
 @Override
@@ -504,15 +416,18 @@ public void onSuccess(Configuration result) {
 	        if(confFilters.containsKey(filterSetKey)){
 	        	
 	        	IndicatorFilter filter=confFilters.get(filterSetKey);
-	        	
+	        	Map<String, IndicatorFilterItem> _filteritemProperies=filter.getProperties();
 	        	store.removeAll();
 	        	
-	        	for(String _key: filter.getProperties().keySet()){
+	        	for(String _key: _filteritemProperies.keySet()){
+	        		IndicatorFilterItem _filterItem=new IndicatorFilterItem();
+	        		_filterItem=filter.getFilterItem(_key);
 	        		
-	        		IndicatorFilterItem itemFilter=filter.getFilterItem(_key);
+	        		
 	        	     grid.stopEditing();  
-	        	     store.insert(itemFilter, 0);  
-	        	     grid.startEditing(store.indexOf(itemFilter), 0); 
+	        	     store.insert(_filterItem, 0);  
+	        	     grid.startEditing(store.indexOf(_filterItem), 0); 
+
 	        	}
 	        }
 	        

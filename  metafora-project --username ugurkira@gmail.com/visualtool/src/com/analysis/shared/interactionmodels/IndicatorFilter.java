@@ -15,11 +15,11 @@ public class IndicatorFilter implements Serializable{
 	String name="";
 	String editable="true";
 	
-	HashMap<String, IndicatorFilterItem> properties;
+	HashMap<String, IndicatorFilterItem> _properties;
 	
 	public IndicatorFilter(){
 		
-		properties=new HashMap<String, IndicatorFilterItem>();
+		_properties=new HashMap<String, IndicatorFilterItem>();
 	}
 	
 	public void setName(String _name){
@@ -46,15 +46,15 @@ public class IndicatorFilter implements Serializable{
 	}
 	public  void addFilterItem(String _key,IndicatorFilterItem  _value){
 		
-		properties.put(_key, _value);	
+		_properties.put(_key, _value);	
 		
 	}
 	
 	
 	public IndicatorFilterItem getFilterItem(String _key){
 		
-		if(properties.containsKey(_key))
-			return properties.get(_key);
+		if(_properties.containsKey(_key))
+			return _properties.get(_key);
 		return new IndicatorFilterItem();
 		
 	}
@@ -62,7 +62,7 @@ public class IndicatorFilter implements Serializable{
 	
 	public Map<String, IndicatorFilterItem> getProperties(){
 		
-		return properties;
+		return _properties;
 	}
 	
 	
