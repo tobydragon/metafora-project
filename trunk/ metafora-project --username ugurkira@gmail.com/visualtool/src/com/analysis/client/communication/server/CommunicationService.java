@@ -17,11 +17,11 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("greet")
 public interface CommunicationService extends RemoteService {
 	
-	CfAction sendAction(CfAction cfAction);
+	CfAction sendAction(String _user,CfAction cfAction);
 	
-	CfInteractionData sendRequestHistoryAction(CfAction cfAction);
+	CfInteractionData sendRequestHistoryAction(String _user,CfAction cfAction);
 
-	Configuration sendRequestConfiguration(CfAction cfAction);
+	Configuration sendRequestConfiguration(String _user,CfAction cfAction);
 	
 	
 	

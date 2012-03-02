@@ -22,12 +22,12 @@ public interface CommunicationServiceAsync {
 	//void sendRequestHistoryAction(CfAction cfAction,
 		//	AsyncCallback<List<CfAction>> callback);
 
-	void sendRequestConfiguration(CfAction cfAction,
+	void sendRequestConfiguration(String _user,CfAction cfAction,
 			AsyncCallback<Configuration> callback);
 
-	void sendAction(CfAction cfAction, AsyncCallback<CfAction> callback);
+	void sendAction(String _user,CfAction cfAction, AsyncCallback<CfAction> callback);
 
-	void sendRequestHistoryAction(CfAction cfAction,
+	void sendRequestHistoryAction(String _user,CfAction cfAction,
 			AsyncCallback<CfInteractionData> callback);
 
 

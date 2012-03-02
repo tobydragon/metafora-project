@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import com.analysis.client.communication.actionresponses.RequestHistoryCallBack;
 import com.analysis.client.communication.models.DataModel;
 import com.analysis.client.communication.server.Server;
@@ -31,6 +32,7 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
  	   loadingImage.setResource(Resources.IMAGES.loaderImage2());
  	   loadingImage.setWidth("200px");
  	   loadingImage.setHeight("200px");
+ 	 
  	
  	   this.add(loadingImage);
  	   
@@ -38,11 +40,11 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
  	  _action.setTime(GWTDateUtils.getTimeStamp());
  	  
  	 CfActionType _cfActionType=new CfActionType();
- 	 _cfActionType.setType("REQUEST_HISTORY");
+ 	 _cfActionType.setType("START_FILE_INPUT");
  	 _action.setCfActionType(_cfActionType);
  	 
  	 
- 	   Server.getInstance().processAction(_action,this);
+ 	   Server.getInstance().processAction("Tool",_action,this);
 
 		
 	}
@@ -59,11 +61,9 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
 	
 		
 		System.out.println("Configuration:"+result);
-		
-		
-		
-		RootPanel.get().remove(loadingImage);
-		DataModel.initializeInterActionHistory(result.toString());
+
+		this.remove(loadingImage);
+		//DataModel.initializeInterActionHistory(result.toString());
 		  //VerticalPanel vp=new VerticalPanel();
 		TabDataViewPanel tabs=new TabDataViewPanel("");
 		
@@ -91,11 +91,11 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
 		item.setValue("CREATE");
 		_filterItems.put("classification", item);
 		
-		DataModel.getIndicatorList(_filterItems);
+		//DataModel.getIndicatorList(_filterItems);
 		
 		  ExtendedPieChart iaf=new ExtendedPieChart();
-		  ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(DataModel.getIndicatorList());
-		  tabs.addTab("Table View",indicatorTable);
+		 // ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(DataModel.getIndicatorList());
+		  //abs.addTab("Table View",indicatorTable);
 		  tabs.addTab("Views", iaf);
 		  RootPanel.get().add(tabs);
 		

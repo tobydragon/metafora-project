@@ -9,6 +9,8 @@ public class CfProperty   implements Serializable {
 	private static final long serialVersionUID = 7198450909563822060L;
 	private String name, value, id;
 
+	public CfProperty(){}
+	
 	public CfProperty(String name, String value, String id) {
 		this(name, value);
 		this.id = id;

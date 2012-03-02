@@ -13,6 +13,10 @@ import zcom.analysis.server.xmppoldxx.XmppActionListener;
 
 import com.analysis.client.communication.server.CommunicationService;
 
+import com.analysis.server.cfcommunication.CfAgentCommunicationManager;
+import com.analysis.server.cfcommunication.CfCommunicationListener;
+import com.analysis.server.cfcommunication.CommunicationChannelType;
+import com.analysis.server.cfcommunication.CommunicationMethodType;
 import com.analysis.server.utils.ServerFormatStrings;
 import com.analysis.server.xml.XmlConfigParser;
 import com.analysis.shared.commonformat.CfAction;
@@ -25,36 +29,37 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
  */
 @SuppressWarnings("serial")
 public class MainServer extends RemoteServiceServlet implements
-		CommunicationService {
+		CommunicationService,CfCommunicationListener {
 
 
 	String configFilepath = "conf/visualtool/configuration.xml";
 	public Configuration _configuration;
 	List<CfAction> _cfActions;
+	
+	CfAgentCommunicationManager communicationManager;
+	
 	public MainServer(){		
 		_cfActions=new ArrayList<CfAction>();
 				
 		XmlConfigParser connectionParser = new XmlConfigParser(configFilepath);
-		_configuration=connectionParser.toActiveConfiguration();
+		_configuration=connectionParser.toActiveConfiguration();		
+		communicationManager = CfAgentCommunicationManager.getInstance(getCommunicationType(_configuration.getActionSource()), CommunicationChannelType.analysis);				
+		communicationManager.register(this);
 				
 	}
 	
 	
 
 	@Override
-	public CfAction sendAction(CfAction cfAction) {
+	public CfAction sendAction(String _user,CfAction cfAction) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/*@Override
-	public List<CfAction> sendRequestHistoryAction(CfAction cfAction) {
-	
-		return _activeAction;
-	}*/
+
 
 	@Override
-	public Configuration sendRequestConfiguration(CfAction cfAction) {
+	public Configuration sendRequestConfiguration(String _user,CfAction cfAction) {
 
 		return _configuration;
 	}
@@ -62,12 +67,33 @@ public class MainServer extends RemoteServiceServlet implements
 
 
 	@Override
-	public CfInteractionData sendRequestHistoryAction(CfAction cfAction) {
+	public CfInteractionData sendRequestHistoryAction(String _user,CfAction cfAction) {
 		
+		communicationManager.sendMessage(cfAction);
+		
+		//Synchronizatio
 		CfInteractionData _interaction=new CfInteractionData();
 		_interaction.setCfActions(_cfActions);
 		
 		return _interaction;
+	}
+
+
+
+	@Override
+	public void processCfAction(String user, CfAction action) {
+		
+		_cfActions.add(action);
+		System.out.println("Action Added!:"+action.getCfActionType().getClassification());
+	}
+	
+public CommunicationMethodType getCommunicationType(String _type){
+		
+		if(_type.equalsIgnoreCase("file"))
+			return CommunicationMethodType.file;
+		else if(_type.equalsIgnoreCase("xmpp"))
+		return CommunicationMethodType.xmpp;		
+		return null;
 	}
 
 

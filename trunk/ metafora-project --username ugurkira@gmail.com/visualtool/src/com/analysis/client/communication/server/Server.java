@@ -100,21 +100,21 @@ myGWTEventService.addListener(null, myListener);
 	}
 
 	
-public void processAction(CfAction cfAction,CfActionCallBack actionCallBack)
+public void processAction(String _user,CfAction cfAction,CfActionCallBack actionCallBack)
 {
-	myServlet.sendAction(cfAction,actionCallBack);
+	myServlet.sendAction(_user,cfAction,actionCallBack);
 	
 }
 	
-public void processAction(CfAction cfAction,RequestHistoryCallBack historyCallback) {
+public void processAction(String _user,CfAction cfAction,RequestHistoryCallBack historyCallback) {
 		
-		myServlet.sendRequestHistoryAction(cfAction,historyCallback);
+		myServlet.sendRequestHistoryAction(_user, cfAction,historyCallback);
 	
 }
  
-public void processAction(CfAction cfAction,RequestConfigurationCallBack configurationCallback) {
+public void processAction(String _user,CfAction cfAction,RequestConfigurationCallBack configurationCallback) {
 		
-		myServlet.sendRequestConfiguration(cfAction,configurationCallback);
+		myServlet.sendRequestConfiguration(_user,cfAction,configurationCallback);
 	
 }
 
