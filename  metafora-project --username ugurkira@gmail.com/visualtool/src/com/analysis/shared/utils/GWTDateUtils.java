@@ -1,4 +1,4 @@
-package com.analysis.client.utils;
+package com.analysis.shared.utils;
 
 import java.util.Date;
 

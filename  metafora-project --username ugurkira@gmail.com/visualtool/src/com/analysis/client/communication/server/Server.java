@@ -8,6 +8,7 @@ import java.util.Map;
 import com.analysis.client.communication.actionresponses.CfActionCallBack;
 import com.analysis.client.communication.actionresponses.RequestConfigurationCallBack;
 import com.analysis.client.communication.actionresponses.RequestHistoryCallBack;
+import com.analysis.client.communication.actionresponses.RequestUpdateCallBack;
 import com.analysis.client.utils.ClientFormatStrings;
 import com.analysis.shared.commonformat.CfAction;
 import com.google.gwt.core.client.GWT;
@@ -118,7 +119,11 @@ public void processAction(String _user,CfAction cfAction,RequestConfigurationCal
 	
 }
 
+public void processAction(CfAction _lastcfAction,RequestUpdateCallBack updateCallback) {
+	
+	myServlet.requestUpdate(_lastcfAction,updateCallback);
 
+}
  
  
  

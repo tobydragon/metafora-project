@@ -15,7 +15,6 @@ import com.analysis.client.components.ActionContent;
 import com.analysis.client.components.ActionObject;
 
 import com.analysis.client.datamodels.GridIndicatorRow_remove;
-import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.xml.GWTXmlFragment;
 import com.analysis.shared.communication.objects_old.CfAction;
 import com.analysis.shared.communication.objects_old.CfContent;
@@ -25,6 +24,7 @@ import com.analysis.shared.communication.objects_old.CfUser;
 import com.analysis.shared.communication.objects_old.CommonFormatStrings;
 import com.analysis.shared.interactionmodels.IndicatorFilterItem;
 import com.analysis.shared.interactionmodels.IndicatorFilter;
+import com.analysis.shared.utils.GWTDateUtils;
 import com.google.gwt.i18n.client.DateTimeFormat;
 
 public class DataModel {
