@@ -21,7 +21,6 @@ import com.analysis.client.communication.server.Server;
 import com.analysis.client.components.ActionObject;
 import com.analysis.client.datamodels.GridIndicatorRow_remove;
 import com.analysis.client.resources.Resources;
-import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.view.charts.ExtendedPieChart;
 import com.analysis.client.view.widgets.TabDataViewPanel;
 import com.analysis.client.xml.GWTXmlFragment;
@@ -31,6 +30,7 @@ import com.analysis.shared.commonformat.CfActionType;
 import com.analysis.shared.interactionmodels.Configuration;
 import com.analysis.shared.interactionmodels.IndicatorFilterItem;
 import com.analysis.shared.interactionmodels.IndicatorFilter;
+import com.analysis.shared.utils.GWTDateUtils;
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
@@ -332,36 +332,6 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 
 		
   
-  /*
-  
-  public void setFilterMap(List<IndicatorFilter> filterList){
-	configurationFilters=new   HashMap<String, List<IndicatorFilterItem>>();
-	  
-	  for(IndicatorFilter af: filterList){
-		
-		  String filtername=af.getName();
-		  List<IndicatorFilterItem> filterProperties=new ArrayList<IndicatorFilterItem>();
-		  
-		for(String _key:af.getProperties().keySet()){
-
-			IndicatorFilterItem filterItem=new IndicatorFilterItem();
-			filterItem.setProperty(_key);
-			filterItem.setValue(af.getProperties().get(_key).getValue());
-			filterItem.setType(af.getProperties().get(_key).getType());
-			
-			
-			filterProperties.add(filterItem);
-			
-		}
-		
-		configurationFilters.put(filtername,filterProperties);
-		  
-	  }
-
-	
-	  //System.out.println("fdddddd:");
-  }
-  */
   
   SimpleComboBox<String> FilterSetComboBox(){
 	  

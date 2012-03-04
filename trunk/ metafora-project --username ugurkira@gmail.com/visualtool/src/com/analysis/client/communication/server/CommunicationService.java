@@ -19,7 +19,9 @@ public interface CommunicationService extends RemoteService {
 	
 	CfAction sendAction(String _user,CfAction cfAction);
 	
-	CfInteractionData sendRequestHistoryAction(String _user,CfAction cfAction);
+	List<CfAction> sendRequestHistoryAction(String _user, CfAction cfAction);
+	
+	List<CfAction> requestUpdate(CfAction _lastcfAction);
 
 	Configuration sendRequestConfiguration(String _user,CfAction cfAction);
 	

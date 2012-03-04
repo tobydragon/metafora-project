@@ -28,7 +28,10 @@ public interface CommunicationServiceAsync {
 	void sendAction(String _user,CfAction cfAction, AsyncCallback<CfAction> callback);
 
 	void sendRequestHistoryAction(String _user,CfAction cfAction,
-			AsyncCallback<CfInteractionData> callback);
+			AsyncCallback<List<CfAction>> callback);
+
+	void requestUpdate(CfAction _lastcfAction,
+			AsyncCallback<List<CfAction>> callback);
 
 
 	

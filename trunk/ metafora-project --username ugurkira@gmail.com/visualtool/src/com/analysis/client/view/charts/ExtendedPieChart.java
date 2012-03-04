@@ -17,13 +17,13 @@ import com.analysis.client.components.ActionObject;
 import com.analysis.client.datamodels.DefaultModel;
 import com.analysis.client.datamodels.GridIndicatorRow_remove;
 import com.analysis.client.examples.charts.Showcase;
-import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.view.grids.ExtendedFilterGrid;
 import com.analysis.client.view.grids.ExtendedGroupedGrid;
 
 import com.analysis.shared.communication.objects_old.CfAction;
 import com.analysis.shared.communication.objects_old.CommonFormatStrings;
 import com.analysis.shared.interactionmodels.IndicatorFilterItem;
+import com.analysis.shared.utils.GWTDateUtils;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedListener;

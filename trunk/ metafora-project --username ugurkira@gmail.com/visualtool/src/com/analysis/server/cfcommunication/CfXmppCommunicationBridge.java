@@ -25,7 +25,7 @@ public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMes
 	
 	static {
 		//config file location
-		String instanceConfigFilepath = "conf/metafora/details/agents/types/xmpp/xmpp-settings.xml";
+		String instanceConfigFilepath = "conf/xmpp/xmpp-settings.xml";
 		XmlConfigParser instanceParser = new XmlConfigParser(instanceConfigFilepath);
 
 		commandConnectionName = createConnection(CommunicationChannelType.command, instanceParser);
@@ -35,7 +35,7 @@ public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMes
 static String createConnection(CommunicationChannelType configType, XmlConfigParser instanceParser){
 	
 	try {
-		String connectionConfigFilepath = "conf/metafora/details/agents/types/xmpp/xmpp-connect-settings.xml";
+		String connectionConfigFilepath = "conf/xmpp/xmpp-connect-settings.xml";
 		XmlConfigParser connectionParser = new XmlConfigParser(connectionConfigFilepath);
 		
 		String connectionInstance = instanceParser.getConfigValue(configType.toString());

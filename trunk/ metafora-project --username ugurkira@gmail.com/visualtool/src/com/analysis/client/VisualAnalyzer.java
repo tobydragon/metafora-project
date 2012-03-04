@@ -29,7 +29,6 @@ import com.analysis.client.communication.server.Server;
 
 import com.analysis.client.examples.charts.Showcase;
 import com.analysis.client.resources.Resources;
-import com.analysis.client.utils.GWTDateUtils;
 import com.analysis.client.view.charts.ExtendedPieChart;
 import com.analysis.client.view.containers.MainContainer;
 import com.analysis.client.view.grids.ExtendedGroupedGrid;
@@ -38,6 +37,7 @@ import com.analysis.shared.commonformat.CfAction;
 import com.analysis.shared.commonformat.CfActionType;
 import com.analysis.shared.communication.objects_old.CommonFormatStrings;
 import com.analysis.shared.interactionmodels.IndicatorFilterItem;
+import com.analysis.shared.utils.GWTDateUtils;
 
 
 import com.google.gwt.core.client.EntryPoint;
