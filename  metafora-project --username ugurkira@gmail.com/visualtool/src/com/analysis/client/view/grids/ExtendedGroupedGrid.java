@@ -12,11 +12,26 @@ import java.util.List;
 
 
 
-import com.analysis.client.datamodels.GridIndicatorRow_remove;
+import com.analysis.client.datamodels.TableViewModel;
 import com.analysis.client.resources.Resources;
+import com.analysis.shared.interactionmodels.IndicatorFilterItem;
+import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
+import com.extjs.gxt.ui.client.data.ChangeEvent;
+import com.extjs.gxt.ui.client.event.BaseEvent;
+import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.GridEvent;
+import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.GroupingStore;
+import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Info;
+import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.MessageBox;
+import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
@@ -25,52 +40,55 @@ import com.extjs.gxt.ui.client.widget.grid.GroupColumnData;
 import com.extjs.gxt.ui.client.widget.grid.GroupingView;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
+import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
+import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.Timer;
+//import com.google.gwt.user.client.ui.CheckBox;
 
-public class ExtendedGroupedGrid extends LayoutContainer {
+import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.Widget;
 
-	String groupingItem="";
-	List<GridIndicatorRow_remove> indicators;
-	public ExtendedGroupedGrid(String _groupingItem){
-		
-		groupingItem=_groupingItem;
+public class ExtendedGroupedGrid extends  LayoutContainer {
+	public CheckBox autoRefresh;
+	Timer tableViewTimer;
+	List<IndicatorGridRowItem> indicators;
+	TableViewModel tvm;
+	public ExtendedGroupedGrid(){
+		tvm=new TableViewModel();
+		indicators=tvm.parseToIndicatorGridRowList();
 	}
-	
-	
-public ExtendedGroupedGrid(String _groupingItem,List<GridIndicatorRow_remove> _indicator){
-		
-		groupingItem=_groupingItem;
-		indicators=_indicator;
-	}
-	
 
-
-
-public ExtendedGroupedGrid(List<GridIndicatorRow_remove> _indicator){
+public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
 		
 		indicators=_indicator;
 	}
 
 	
-  @Override
+
+@Override
   protected void onRender(Element parent, int index) {
     super.onRender(parent, index);
-    setLayout(new FlowLayout(10));
+    setLayout(new FlowLayout(5));
 
-    GroupingStore<GridIndicatorRow_remove> store = new GroupingStore<GridIndicatorRow_remove>();
+    final GroupingStore<IndicatorGridRowItem> store = new GroupingStore<IndicatorGridRowItem>();
   
     store.add(indicators);  
-    store.groupBy("date");
+    
+    store.groupBy("classification");
 
     ColumnConfig username = new ColumnConfig("name", "User", 50);
     username.setWidth(70);
     ColumnConfig actionType = new ColumnConfig("actiontype", "Action", 50);
     actionType.setWidth(70);
+    actionType.setAlignment(HorizontalAlignment.RIGHT);
     ColumnConfig classification = new ColumnConfig("classification", "Classification", 60);
-    classification.setWidth(80);
+    classification.setWidth(70);
     ColumnConfig description = new ColumnConfig("description", "Description", 50);
-    description.setWidth(300);
+    description.setWidth(250);
     ColumnConfig time = new ColumnConfig("time", "Time", 50);
     time.setWidth(75);
     ColumnConfig date = new ColumnConfig("date", "Date", 20);
@@ -86,37 +104,123 @@ public ExtendedGroupedGrid(List<GridIndicatorRow_remove> _indicator){
     config.add(description);
     config.add(time);
     config.add(date);
-   // config.add(groupingItem);
+  
 
     final ColumnModel cm = new ColumnModel(config);
 
     GroupingView view = new GroupingView();
-    view.setShowGroupedColumn(false);
+    view.setShowGroupedColumn(true);
     view.setForceFit(true);
     view.setGroupRenderer(new GridGroupRenderer() {
       public String render(GroupColumnData data) {
         String f = cm.getColumnById(data.field).getHeader();
-        String l = data.models.size() == 1 ? "Item" : "Items";
+        String l = data.models.size() == 1 ? "Indicator" : "Indicators";
         return f + ": " + data.group + " (" + data.models.size() + " " + l + ")";
       }
     });
 
-    Grid<GridIndicatorRow_remove> grid = new Grid<GridIndicatorRow_remove>(store, cm);
+    
+    
+    
+    Grid<IndicatorGridRowItem> grid = new Grid<IndicatorGridRowItem>(store, cm);
     view.setShowGroupedColumn(true);
     grid.setView(view);
     grid.setBorders(true);
     
 
+    ToolBar toolBar = new ToolBar();  
+    Button addbtn = new Button();
+    final Label _indicatorCount=new Label();
+    _indicatorCount.setToolTip("Indicator Count");
+    addbtn.setToolTip("Refresh");
+    addbtn.setIcon(Resources.ICONS.refresh());
+    addbtn.addSelectionListener(new SelectionListener<ButtonEvent>() {  
+    	  
+        @Override  
+        public void componentSelected(ButtonEvent ce) {  
+
+        	
+        	store.removeAll(); 
+    		store.add(tvm.parseToIndicatorGridRowList());
+    		 _indicatorCount.setText("Total Indicador Count: "+store.getCount());
+        	
+        	
+        }  
+    
+      });  
+    
+    
+    
+    autoRefresh = new CheckBox();
+    autoRefresh.setBoxLabel("Auto Refresh");
+    autoRefresh.setValue(true);
+    
+    
+    autoRefresh.addListener(Events.Change, new Listener<BaseEvent>()
+            {
+        public void handleEvent(BaseEvent be)
+        {
+            
+            if (autoRefresh.getValue())
+            {
+            	
+            	 tableViewTimer.scheduleRepeating(10000);
+            	 MessageBox.alert("Info", "Auto refresh  is enabled!",null);
+            	
+            } else
+            {
+            	tableViewTimer.cancel();
+            	 MessageBox.alert("Info", "Auto refresh  is disabled!",null);
+            }
+            
+           
+        }
+    });    
+    
+    
+   
+    _indicatorCount.setText("Total Indicador Count: "+store.getCount());
+
+    toolBar.add(autoRefresh);
+    toolBar.add(addbtn);
+   
+   ToolBar _buttomBar=new ToolBar();
+   _indicatorCount.setPosition(550, 0);
+   _buttomBar.add(_indicatorCount);
+    
     ContentPanel panel = new ContentPanel();
-    panel.setHeading("Event: "+groupingItem);
+    panel.setHeading("Indicator List");
     panel.setIcon(Resources.ICONS.table());
     panel.setCollapsible(false);
     panel.setFrame(true);
-    panel.setSize(700, 500);
+    panel.setSize(625, 400);
     panel.setLayout(new FitLayout());
+   
     panel.add(grid);
+    panel.setTopComponent(toolBar);
+    panel.setBottomComponent(_buttomBar);
+   
+   
+  
     grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
     add(panel);
+    
+    tableViewTimer=new Timer(){
+    	@Override
+    	public void run() {
+    		store.removeAll(); 
+    		store.add(tvm.parseToIndicatorGridRowList());
+    		 _indicatorCount.setText("Total Indicador Count: "+store.getCount());
+    		
+          }
+        };
+        
+        tableViewTimer.scheduleRepeating(10000);
+        
+       
+    
   }
+
+
 
 }

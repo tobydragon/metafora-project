@@ -90,19 +90,17 @@ public class MainServer extends RemoteServiceServlet implements
 		 
 		return _cfActions;
 	}
-int counter=0;
+
 	@Override
 	public List<CfAction> requestUpdate(CfAction cfAction) {
 		
 		if(cfAction!=null){
-			
-			System.out.println("Server Update Request:"+counter);
-			counter++;
+		
 		return getActionUpdates(cfAction.getTime());
 		
 		
 		}
-		System.out.println("Server: No New Action Update to Send:"+counter);
+		
 		return null;
 	}
 
@@ -144,7 +142,7 @@ List<CfAction>  getActionUpdates(long _lasActionTime){
 	
 	List<CfAction> _newActionList=new ArrayList<CfAction>();
 	
-	for(int i=_cfActions.size();i>=0;i--){
+	for(int i=_cfActions.size()-1;i>=0;i--){
 		
 		if(isNewAction(_lasActionTime,_cfActions.get(i).getTime())){
 			

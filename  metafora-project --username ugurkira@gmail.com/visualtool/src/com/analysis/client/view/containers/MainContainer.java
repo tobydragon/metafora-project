@@ -9,10 +9,13 @@ import com.analysis.client.communication.actionresponses.RequestHistoryCallBack;
 import com.analysis.client.communication.models.DataModel;
 import com.analysis.client.communication.server.ActionMaintenance;
 import com.analysis.client.communication.server.Server;
+import com.analysis.client.datamodels.TableViewModel;
 import com.analysis.client.resources.Resources;
 import com.analysis.client.view.charts.ExtendedPieChart;
+import com.analysis.client.view.grids.ExtendedFilterGrid;
 import com.analysis.client.view.grids.ExtendedGroupedGrid;
-import com.analysis.client.view.widgets.TabDataViewPanel;
+import com.analysis.client.view.widgets.FilterListPanel;
+import com.analysis.client.view.widgets.MultiModelTabPanel;
 import com.analysis.shared.commonformat.CfAction;
 import com.analysis.shared.commonformat.CfActionType;
 import com.analysis.shared.commonformat.CfInteractionData;
@@ -27,13 +30,16 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class MainContainer extends VerticalPanel implements RequestHistoryCallBack{
 
 	Image loadingImage;
+	FilterListPanel flp;
 	ActionMaintenance _maintenance;
 	public MainContainer(){
-		
+	   
+	   flp=new FilterListPanel();
 	   loadingImage = new Image();
  	   loadingImage.setResource(Resources.IMAGES.loaderImage2());
  	   loadingImage.setWidth("200px");
  	   loadingImage.setHeight("200px");
+ 	   //loadingImage.setVisibleRect(200, 200, 200, 200);
  	 
  	
  	   this.add(loadingImage);
@@ -65,14 +71,17 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
 	public void onSuccess(List<CfAction> _actionList) {
 	
 		
+		if(_actionList!=null)
+			ActionMaintenance._activecfActions=_actionList;
+		
 		//System.out.println("Configuration:"+result);
 
 		this.remove(loadingImage);
 		//DataModel.initializeInterActionHistory(result.toString());
 		  //VerticalPanel vp=new VerticalPanel();
-		TabDataViewPanel tabs=new TabDataViewPanel("");
+		MultiModelTabPanel tabs=new MultiModelTabPanel();
 		
-		
+		/*
 		Map<String, IndicatorFilterItem> _filterItems=new HashMap<String, IndicatorFilterItem>();
 		
 		IndicatorFilterItem item;
@@ -96,13 +105,26 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
 		item.setValue("CREATE");
 		_filterItems.put("classification", item);
 		
-		//DataModel.getIndicatorList(_filterItems);
 		
-		  ExtendedPieChart iaf=new ExtendedPieChart();
-		 // ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(DataModel.getIndicatorList());
-		  //abs.addTab("Table View",indicatorTable);
-		  tabs.addTab("Views", iaf);
-		  RootPanel.get().add(tabs);
+		*/
+		
+		// this.add(flp);
+		 
+		 ExtendedPieChart iaf=new ExtendedPieChart();
+		 
+		 ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid();
+		  tabs.addTab("Table",indicatorTable);
+		  tabs.addTab("PieView", iaf);
+		  
+		  //this.add(tabs);
+		  VerticalPanel panel=new VerticalPanel();
+		  panel.add(flp);
+		  panel.add(tabs);
+		 
+		  RootPanel.get().add(panel);
+		 
+		  //RootPanel.get().add(this);
+		  
 		
 	}
 

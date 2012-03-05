@@ -13,19 +13,27 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 
-public class TabDataViewPanel extends VerticalPanel {
+public class MultiModelTabPanel extends VerticalPanel {
 
 	
-	FilterListPanel flp;
-	private  TabPanel tabPanel = new TabPanel();
-	public TabDataViewPanel(String _lbl){
+	
+	private  TabPanel tabPanel;
+	
+	public MultiModelTabPanel(){
+		
+		tabPanel = new TabPanel();
+		this.add(tabPanel);
+		
+	}
+
+	
+	public MultiModelTabPanel(String _lbl){
 		
 	if(_lbl!=null){
 		this.add(new Label(_lbl));
 		
-		flp=new FilterListPanel();
-		//flp.addFilter("User", "Ugur");
-		this.add(flp);
+		
+		tabPanel = new TabPanel();
 		
 		this.add(tabPanel);
 		
@@ -46,14 +54,6 @@ public class TabDataViewPanel extends VerticalPanel {
 	}
 	
 	
-	
-/*	public Widget renderExtendedTabPanel(){
-		
-		//tabPanel.selectTab(0);
-		//this.add(tabPanel);
-		//return this;
-	}
-	*/
 
 	public void switchToTab(int index){
 				

@@ -15,7 +15,7 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 	public ActionMaintenance(){
 		
 		_activecfActions=new ArrayList<CfAction>();
-		//requestUpdateTimer = new Timer();
+		
 		
 		
 	}

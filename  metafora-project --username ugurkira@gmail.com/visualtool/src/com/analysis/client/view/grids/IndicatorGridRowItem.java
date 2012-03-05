@@ -5,19 +5,19 @@
  * 
  * http://extjs.com/license
  */
-package com.analysis.client.datamodels;
+package com.analysis.client.view.grids;
 
 import java.util.Date;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 import com.extjs.gxt.ui.client.util.DateWrapper;
 
-public class GridIndicatorRow_remove extends BaseModel {
+public class IndicatorGridRowItem extends BaseModel {
 
-  public GridIndicatorRow_remove() {
+  public IndicatorGridRowItem() {
   }
 
-  public GridIndicatorRow_remove(String name,String actiontype,String classification, String description,String time, String date, String groupingItem) {
+  public IndicatorGridRowItem(String name,String actiontype,String classification, String description,String time, String date, String groupingItem) {
     set("name", name);
     set("actiontype", actiontype);
     set("classification", classification);
@@ -51,6 +51,10 @@ public class GridIndicatorRow_remove extends BaseModel {
  // public String getgroupingItem() {
    // return get("groupingItem");
   //}
+  
+//public void setgroupingItem(String groupingItem) {
+  //set("groupingItem", groupingItem);
+//}
 
 
   public String getName() {
@@ -79,9 +83,7 @@ public void setClassification(String classification){
 		  
 		  set("actiontype", actiontype);
 	  }
-  //public void setgroupingItem(String groupingItem) {
-    //set("groupingItem", groupingItem);
-  //}
+  
 
 public String getDescription(){
 	

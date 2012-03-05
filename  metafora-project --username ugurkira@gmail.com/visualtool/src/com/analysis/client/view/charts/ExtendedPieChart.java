@@ -15,10 +15,10 @@ import com.analysis.client.communication.models.DataModel;
 import com.analysis.client.components.ActionContent;
 import com.analysis.client.components.ActionObject;
 import com.analysis.client.datamodels.DefaultModel;
-import com.analysis.client.datamodels.GridIndicatorRow_remove;
 import com.analysis.client.examples.charts.Showcase;
 import com.analysis.client.view.grids.ExtendedFilterGrid;
 import com.analysis.client.view.grids.ExtendedGroupedGrid;
+import com.analysis.client.view.grids.IndicatorGridRowItem;
 
 import com.analysis.shared.communication.objects_old.CfAction;
 import com.analysis.shared.communication.objects_old.CommonFormatStrings;
@@ -363,12 +363,12 @@ public ExtendedPieChart(String title){
 			        	 
 			        }
 			    	
-			    	
+			    	/*
 			        ExtendedFilterGrid.getExtendedFilterGrid().stopEditing();  
 			        ExtendedFilterGrid.getExtendedFilterGrid().getStore().insert(_filter, 0);  
 			        ExtendedFilterGrid.getExtendedFilterGrid().startEditing(ExtendedFilterGrid.getExtendedFilterGrid().getStore().indexOf(_filter), 0); 
 			        ExtendedFilterGrid.getFilterSetListCombo().clearSelections();
-				        
+				      */  
 			        }
 			        else {
 			        	
