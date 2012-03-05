@@ -2,54 +2,36 @@ package com.analysis.client.view.charts;
 
 
 
-import java.util.ArrayList;
 
-import java.util.Date;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-
-import com.analysis.client.communication.models.DataModel;
 
 import com.analysis.client.datamodels.PieChartComboBoxModel;
 import com.analysis.client.datamodels.PieChartViewModel;
-import com.analysis.client.examples.charts.Showcase;
-import com.analysis.client.view.grids.ExtendedFilterGrid;
-import com.analysis.client.view.grids.ExtendedGroupedGrid;
-import com.analysis.client.view.grids.IndicatorGridRowItem;
 
-import com.analysis.shared.communication.objects_old.CfAction;
-import com.analysis.shared.communication.objects_old.CommonFormatStrings;
+
+
+import com.analysis.shared.commonformat.CommonFormatStrings;
 import com.analysis.shared.interactionmodels.IndicatorFilterItem;
-import com.analysis.shared.utils.GWTDateUtils;
-import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedListener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Record;
-import com.extjs.gxt.ui.client.util.Format;
-import com.extjs.gxt.ui.client.widget.ComponentManager;
+
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
-import com.extjs.gxt.ui.client.widget.MessageBox;
+
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
-import com.google.gwt.core.client.GWT;
+
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.Widget;
+
 import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.Selection;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
@@ -190,7 +172,7 @@ public ExtendedPieChart(String title){
 	    space.setWidth(600);
 	    space.setHeight(30);
 	    this.add(space);
-	    //createPieChart());
+	    
 	    
 		
 	}

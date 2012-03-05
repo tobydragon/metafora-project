@@ -1,11 +1,9 @@
 package com.analysis.client.view.charts;
 
-import java.util.List;
-
 
 import com.analysis.client.datamodels.PieChartComboBoxModel;
-import com.analysis.shared.communication.objects_old.CfAction;
-import com.analysis.shared.communication.objects_old.CommonFormatStrings;
+import com.analysis.shared.commonformat.CommonFormatStrings;
+
 import com.extjs.gxt.ui.client.store.ListStore;
 
 

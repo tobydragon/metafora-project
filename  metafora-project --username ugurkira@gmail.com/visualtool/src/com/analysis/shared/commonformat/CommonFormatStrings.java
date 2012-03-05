@@ -54,7 +54,7 @@ public class CommonFormatStrings {
 	public static final String O_OBJECT = "Object";
 	
 	public static final String O_MAP_ID = "Map ID";
-	public static final String O_V_MAP_ID = "MAP_ID";
+	public static final String O_V_MAP_ID = "MAP-ID";
 	
 	public static final String O_TEXT= "Text";
 	public static final String O_V_TEXT="TEXT";

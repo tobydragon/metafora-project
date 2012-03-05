@@ -16,13 +16,11 @@ import java.util.Map;
 
 
 import com.analysis.client.communication.actionresponses.RequestConfigurationCallBack;
-import com.analysis.client.communication.models.DataModel;
+
 import com.analysis.client.communication.server.Server;
 
 import com.analysis.client.resources.Resources;
-import com.analysis.client.view.charts.ExtendedPieChart;
-import com.analysis.client.view.widgets.MultiModelTabPanel;
-import com.analysis.client.xml.GWTXmlFragment;
+
 import com.analysis.shared.commonformat.CfAction;
 import com.analysis.shared.commonformat.CfActionType;
 
@@ -31,19 +29,19 @@ import com.analysis.shared.interactionmodels.IndicatorFilterItem;
 import com.analysis.shared.interactionmodels.IndicatorFilter;
 import com.analysis.shared.utils.GWTDateUtils;
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
-import com.extjs.gxt.ui.client.store.GroupingStore;
+
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Store;
 import com.extjs.gxt.ui.client.store.StoreEvent;
 import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.HorizontalPanel;
+
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
-import com.extjs.gxt.ui.client.widget.form.TextField;
+
 import com.extjs.gxt.ui.client.widget.grid.CellEditor;
 import com.extjs.gxt.ui.client.widget.grid.CheckColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
@@ -51,19 +49,16 @@ import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
-import com.extjs.gxt.ui.client.widget.grid.GridGroupRenderer;
-import com.extjs.gxt.ui.client.widget.grid.GroupColumnData;
-import com.extjs.gxt.ui.client.widget.grid.GroupingView;
+
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.LabelToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.google.gwt.i18n.client.DateTimeFormat;
+
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.RootPanel;
+
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
-import com.extjs.gxt.ui.client.event.BaseEvent;
+
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.FieldEvent;
@@ -205,7 +200,6 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     config.add(_type);
     config.add(_property);
     config.add(_value);
-    //config.add(checkColumn);
     config.add( buttoncolumn);
     
    // config.add(groupingItem);
