@@ -11,9 +11,6 @@ import java.util.Map;
 
 
 
-import com.analysis.client.components.ActionContent;
-import com.analysis.client.components.ActionObject;
-
 import com.analysis.client.view.grids.IndicatorGridRowItem;
 import com.analysis.client.xml.GWTXmlFragment;
 import com.analysis.shared.communication.objects_old.CfAction;
@@ -28,6 +25,7 @@ import com.analysis.shared.utils.GWTDateUtils;
 import com.google.gwt.i18n.client.DateTimeFormat;
 
 public class DataModel {
+	/*
 	public static List<CfAction> Actions;
 	public static List<ActionObject> allObjects;
 	public static List<ActionContent> allContents;
@@ -419,7 +417,7 @@ public void outputSortedC(Map<String, List<ActionContent>> data){
 		return indicators;
 		
 	}
-	
+	*/
 	
 	
 }

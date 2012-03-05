@@ -17,6 +17,7 @@ public class CfContent implements Serializable  {
 
 	private String descripiton;
 	
+	private long  _actionTime;
 	private Map<String, CfProperty> properties;
 	
 	public CfContent(){
@@ -37,6 +38,14 @@ public class CfContent implements Serializable  {
 
 	
 	
+	public void setActionTime(long _time){
+		_actionTime=_time;
+	}
+	
+	public long getActionTime(){
+		
+		return _actionTime;
+	}
 	public String getDescription() {
 		return descripiton;
 	}

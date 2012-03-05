@@ -12,9 +12,9 @@ import java.util.Map;
 
 
 import com.analysis.client.communication.models.DataModel;
-import com.analysis.client.components.ActionContent;
-import com.analysis.client.components.ActionObject;
-import com.analysis.client.datamodels.DefaultModel;
+
+import com.analysis.client.datamodels.PieChartComboBoxModel;
+import com.analysis.client.datamodels.PieChartViewModel;
 import com.analysis.client.examples.charts.Showcase;
 import com.analysis.client.view.grids.ExtendedFilterGrid;
 import com.analysis.client.view.grids.ExtendedGroupedGrid;
@@ -60,8 +60,7 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart.Pie
 
 public class ExtendedPieChart extends VerticalPanel {
 	
-	Map<Integer, String>subsectionProperty = new HashMap<Integer, String>();
-	Map<Integer, String>subsectionValue = new HashMap<Integer, String>();
+	
 	//Map<Integer, String>subsection = new HashMap<Integer, String>();
 	public String Type="";
 	public String Item="";
@@ -85,9 +84,8 @@ public ExtendedPieChart(String title){
 	HorizontalPanel hp=new HorizontalPanel();
 	
 	
-	 final ComboBox<DefaultModel> comboType = new ComboBox<DefaultModel>();
-	    
-	long l=(long) 1325841177864.0;
+	 final ComboBox<PieChartComboBoxModel> comboType = new ComboBox<PieChartComboBoxModel>();
+	
 	 comboType.setEmptyText("Select a type");
 	  
 	  
@@ -109,7 +107,7 @@ public ExtendedPieChart(String title){
 	    hp.add(new Label("Type:"));
 	    hp.add(comboType);
 	    
-	    final ComboBox<DefaultModel> comboItem = new ComboBox<DefaultModel>();
+	    final ComboBox<PieChartComboBoxModel> comboItem = new ComboBox<PieChartComboBoxModel>();
 	    comboItem.setEmptyText("Select filter type...");
 	    comboItem.setDisplayField("name");
 	    comboItem.setValueField("text");
@@ -120,13 +118,13 @@ public ExtendedPieChart(String title){
 	    comboItem.setAutoHeight(true);
 	    comboItem.setId("comboType2");
 	    
-	    comboItem.setStore(new ListStore<DefaultModel>());
+	    comboItem.setStore(new ListStore<PieChartComboBoxModel>());
 	    comboItem.setTypeAhead(true);
 	    comboItem.setTriggerAction(TriggerAction.ALL);
 	    
-	    final SelectionChangedListener<DefaultModel> comboListenerItem =new SelectionChangedListener<DefaultModel>(){
+	    final SelectionChangedListener<PieChartComboBoxModel> comboListenerItem =new SelectionChangedListener<PieChartComboBoxModel>(){
 	        @Override
-	        public void selectionChanged(SelectionChangedEvent<DefaultModel> se) { 
+	        public void selectionChanged(SelectionChangedEvent<PieChartComboBoxModel> se) { 
 
 	        
 	        	  Item=comboItem.getValue().getText();
@@ -140,11 +138,11 @@ public ExtendedPieChart(String title){
 	    
 	    
 	    
-	    SelectionChangedListener<DefaultModel> comboListener =new SelectionChangedListener<DefaultModel>(){
+	    SelectionChangedListener<PieChartComboBoxModel> comboListener =new SelectionChangedListener<PieChartComboBoxModel>(){
 	        @Override
-	        public void selectionChanged(SelectionChangedEvent<DefaultModel> se) { 
+	        public void selectionChanged(SelectionChangedEvent<PieChartComboBoxModel> se) { 
 
-	        	DefaultModel vg = se.getSelectedItem();   
+	        	PieChartComboBoxModel vg = se.getSelectedItem();   
 	        	
 	            Record record = GroupingOptions.getObjectProperties().getRecord(vg);  
 	            
@@ -173,7 +171,9 @@ public ExtendedPieChart(String title){
 	    retriveBtn.addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
 	   
-	        	createPieChart(createDataTable(Type,Item),"Ugur");
+	        	PieChartViewModel _model=new PieChartViewModel();
+	        	
+	        	createPieChart(_model.getPieChartData(Type,Item),"pieChart");
 	        
 	        	
 	        	
@@ -196,8 +196,8 @@ public ExtendedPieChart(String title){
 	}
 	
 
-	public static ListStore<DefaultModel> getFilterItems(String Type) {
-		ListStore<DefaultModel>  filters = new ListStore<DefaultModel>();
+	public static ListStore<PieChartComboBoxModel> getFilterItems(String Type) {
+		ListStore<PieChartComboBoxModel>  filters = new ListStore<PieChartComboBoxModel>();
 	    
 	  if(Type.equalsIgnoreCase(CommonFormatStrings.O_OBJECT)){
 		  
@@ -218,79 +218,29 @@ public ExtendedPieChart(String title){
 	
 	
 	
-	Map<String, List<ActionContent>>  groupedContent=null;
-	Map<String, List<ActionObject>>   groupedObject=null;
-	Map<String, List<CfAction>>   groupedAction=null;
 	
-	public DataTable createDataTable(String myType,String myItem){
-		
-		DataModel dp=new DataModel();
-		DataTable data = DataTable.create();
-		
-		if(myType.equalsIgnoreCase("") || myType==null){
-			return null;
-		}
-		else if(myItem.equalsIgnoreCase("") || myItem==null){
-			
-			return null;
-		}
-		
-		
-		if(myType.equalsIgnoreCase(CommonFormatStrings.O_OBJECT)){
-			groupedObject=new HashMap<String, List<ActionObject>>();
-			
-			groupedObject=dp.groupObjectByProperty(myItem);
-			
-			   data.addColumn(ColumnType.STRING, "Task");
-			    data.addColumn(ColumnType.NUMBER, "Hours per Day");
-			    data.addRows(groupedObject.size());
-			    int index=0;
-			    for(String key:groupedObject.keySet()){
-			    data.setValue(index, 0, key);
-			    subsectionProperty.put(index, myItem);
-			    subsectionValue.put(index, key);
-			    data.setValue(index, 1, groupedObject.get(key).size());
-			    index++;
-			    }
-						
-		}
-		else if(myType.equalsIgnoreCase(CommonFormatStrings.C_CONTENT)){
-			groupedContent=new HashMap<String, List<ActionContent>>(); 
-			groupedContent=dp.groupContentByProperty(myItem);	
-			    data.addColumn(ColumnType.STRING, "Task");
-			    data.addColumn(ColumnType.NUMBER, "Hours per Day");
-			    data.addRows(groupedContent.size());
-			    int index=0;
-			    for(String key:groupedContent.keySet()){
-			    data.setValue(index, 0, key);
-			    subsectionProperty.put(index, myItem);
-			    subsectionValue.put(index, key);
-			    data.setValue(index, 1, groupedContent.get(key).size());
-			    index++;
-		}
-	}
-		//Here
-		else if(myType.equalsIgnoreCase(CommonFormatStrings.A_Action)){
-			groupedAction=new HashMap<String, List<CfAction>>(); 
-			groupedAction=dp.groupActionByProperty(myItem);
-			
-			    data.addColumn(ColumnType.STRING, "Task");
-			    data.addColumn(ColumnType.NUMBER, "Hours per Day");
-			    data.addRows(groupedAction.size());
-			    int index=0;
-			    for(String key:groupedAction.keySet()){
-			    data.setValue(index, 0, key);
-			    subsectionProperty.put(index, myItem);
-			    subsectionValue.put(index, key);
-			    data.setValue(index, 1, groupedAction.get(key).size());
-			    index++;
-		}
-	}
+	
 
-	 
+	
+	
+	
+	DataTable getDailyActivities() {
+	    DataTable data = DataTable.create();
+	    data.addColumn(ColumnType.STRING, "Task");
+	    data.addColumn(ColumnType.NUMBER, "Hours per Day");
+	    data.addRows(5);
+	    data.setValue(0, 0, "Work");
+	    data.setValue(0, 1, 11);
+	    data.setValue(1, 0, "Eat");
+	    data.setValue(1, 1, 2);
+	    data.setValue(2, 0, "Commute");
+	    data.setValue(2, 1, 2);
+	    data.setValue(3, 0, "Watch TV");
+	    data.setValue(3, 1, 2);
+	    data.setValue(4, 0, "Sleep");
+	    data.setValue(4, 1, 7);
 	    return data;
-		
-	}
+	  }
 	
 	 public void createPieChart(DataTable data,String ID) {
 		    
@@ -310,6 +260,9 @@ public ExtendedPieChart(String title){
 		    pie.addSelectHandler(createSelectHandler(pie));
 			RootPanel.get().add(pie);
 			  }
+	 
+	 
+	 
 	 
 	 
 	 
@@ -341,19 +294,19 @@ public ExtendedPieChart(String title){
 		    	  
 		    	    
 		    	    
-		    	    String property=subsectionProperty.get(selection);
-		    	    String value=subsectionValue.get(selection);
+		    	    //String property=subsectionProperty.get(selection);
+		    	    //String value=subsectionValue.get(selection);
 
-			          String _key=property+"-"+value;
-			        if(!DataModel.getActiveFilters().containsKey(_key) && value!=null){
-			        DataModel.getActiveFilters().put(_key,_key);
+			          //String _key=property+"-"+value;
+			        //if(!DataModel.getActiveFilters().containsKey(_key) && value!=null){
+			        //DataModel.getActiveFilters().put(_key,_key);
 			       
 			        IndicatorFilterItem _filter = new IndicatorFilterItem();  
-			        _filter.setProperty(property);
-			        _filter.setValue(value);
-			        _filter.setType(Type);
+			       // _filter.setProperty(property);
+			        //_filter.setValue(value);
+			        //_filter.setType(Type);
 			         
-			    	Info.display("Info","Filter for "+ value+" is added!");
+			    	//Info.display("Info","Filter for "+ value+" is added!");
 			        
 			        if(!reseted){
 			        	
@@ -369,138 +322,14 @@ public ExtendedPieChart(String title){
 			        ExtendedFilterGrid.getExtendedFilterGrid().startEditing(ExtendedFilterGrid.getExtendedFilterGrid().getStore().indexOf(_filter), 0); 
 			        ExtendedFilterGrid.getFilterSetListCombo().clearSelections();
 				      */  
-			        }
+			        //}
 			        else {
 			        	
 			        	
 			        	Info.display("Info","Selection is<ul><li> already in Filter List</li></ul>");
 			        }
 			        
-			            
-			            
-
-			        
-		        /*
-		        
-		              final PopupPanel p = new PopupPanel();
-		              p.setStyleName("demo-popup", true);
-		            
-		             VerticalPanel vp=new VerticalPanel();
-		     
-		              
-		              HTML contents = new HTML("");
-		              contents.setWidth("400px");
-		              
-		              ClickListener   listener = new ClickListener()
-				        {
-				            public void onClick(Widget sender)
-				            {
-				               p.hide();
-				            }
-				        };
-				        
-				        
-				      Button button = new Button("Close", listener);
-		            
-		              String type=subsection.get(selection);
-		              if(type==null)
-		            	  type="";
-		            
-		              List<Indicator> _indicators=new ArrayList<Indicator>();
-		              
-		               if(groupedContent!=null && groupedContent.containsKey(type)){
-		            	   
-		            	   
-		            	   for(ActionContent ac: groupedContent.get(type)){
-		            	   Indicator myindicator=new Indicator();
-		            	   String usersString="";
-		            	   for(CfUser u : ac.ActionUsers){
-		            		   usersString=usersString+" - "+u.getid();
-		            	   }
-		            	   
-		            	   
-		            	   myindicator.setName(usersString.substring(2,usersString.length()));
-		            	   myindicator.setDescription(ac.Description);
-		            	
-		            	   
-		            	   myindicator.setTime(GWTDateUtils.getTime(ac.time));
-		            	   myindicator.setDate(GWTDateUtils.getDate(ac.time));
-		            	   _indicators.add(myindicator);
-		            	   }
-		            	   
-		               }
-		               else if(groupedObject!=null && groupedObject.containsKey(type)){
-		            	   
-		            	   for(ActionObject ac: groupedObject.get(type)){
-			            	   Indicator indicator=new Indicator();
-			            	   String usersString="";
-			            	   for(CfUser u : ac.ActionUsers){
-			            		   usersString=usersString+" - "+u.getid();
-			            	   
-			            	   
-			            	   }
-			            	   
-			            	   indicator.setName(usersString.substring(2,usersString.length()));
-			            	   indicator.setDescription(ac.description);
-			            	   indicator.setTime(GWTDateUtils.getTime(ac.time));
-			            	   indicator.setDate(GWTDateUtils.getDate(ac.time));
-			            	   _indicators.add(indicator);
-			            	   }		            	
-		               }
-		               
-		               else if(groupedAction!=null && groupedAction.containsKey(type)){
-		            	   
-		            	   
-		            	  
-		            	 //  for(int i=0;i<groupedAction.size();i++){
-		            		   
-		            		List<CfAction> actionLists=groupedAction.get(type);
-		            		  
-		            		for(int k=0;k<actionLists.size();k++){
-		            			CfAction activeAction=actionLists.get(k);
-		            			
-		            			List<CfUser> myusers=	activeAction.getCfUsers();
-		            			Indicator myuser=new Indicator();
-		            		   String usersString="";
-		            		
-		            		
-		            			for(CfUser uk : myusers){
-		            			
-		            			usersString=usersString+" - "+uk.getid();
-		            		}
-		            		
-		            			
-		            			
-		            		
-		            		  myuser.setName(usersString.substring(2,usersString.length()));
-		            		   
-			            		
-							   myuser.setDescription(activeAction.getDescription());
-			            	   myuser.setTime(GWTDateUtils.getTime(activeAction.getTime()));
-			            	   myuser.setDate(GWTDateUtils.getDate(activeAction.getTime()));
-			            	   
-			            	   _indicators.add(myuser);
-			            	   
-		            		}
-		            		   
-		            		   
-		            		   
-		            	//   }
-		            	   
-		               }
-		      		
-		               
-		              ExtendedGroupedGrid aa =new ExtendedGroupedGrid(type,_indicators);
-		              aa.setStyleName("grid", true);
-		              button.setStyleName("button", true);
-		              button.setWidth("200px");
-		              vp.add(aa);
-		              vp.add(button);
-		              vp.setStyleName("verticalpanel", true);
-		           
-		              p.setWidget(vp); 
-		               p.center();
-		              p.show();*/
+			
 		      }
 		    };
 		  }

@@ -12,6 +12,7 @@ public class CfObject implements Serializable {
 	private static final long serialVersionUID = -6424779097062164631L;
 	private String id;
 	private String type;
+	private long  _actionTime;
 	
 	private Map<String, CfProperty> properties;
 	
@@ -33,7 +34,14 @@ public class CfObject implements Serializable {
 		this.properties = properties;
 	}
 
+	public void setActionTime(long _time){
+		_actionTime=_time;
+	}
 	
+	public long getActionTime(){
+		
+		return _actionTime;
+	}
 	
 	public String getId() {
 		return id;
