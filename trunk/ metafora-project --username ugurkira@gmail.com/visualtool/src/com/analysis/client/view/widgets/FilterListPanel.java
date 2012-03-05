@@ -20,6 +20,7 @@ public class FilterListPanel extends ContentPanel {
 
 	public FilterListPanel(){
 		
+		
 		this.setCollapsible(true);
 		this.setHeading("Filter Options");
 		
@@ -30,11 +31,12 @@ public class FilterListPanel extends ContentPanel {
 		
 		//ExtendedFilterItem efi=new ExtendedFilterItem(_property,_value);
 		//this.add(efi);
-		ExtendedFilterGrid ef=new ExtendedFilterGrid("");
+		ExtendedFilterGrid ef=new ExtendedFilterGrid();
 		ExtendedSaveFilterSet saveFilterSet=new ExtendedSaveFilterSet();
 		
+		
 		this.add(ef);
-		//this.add(saveFilterSet);
+		
 	}
 	
 	

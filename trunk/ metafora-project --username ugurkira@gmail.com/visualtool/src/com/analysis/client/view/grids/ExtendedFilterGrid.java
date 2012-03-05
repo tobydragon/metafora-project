@@ -19,10 +19,9 @@ import com.analysis.client.communication.actionresponses.RequestConfigurationCal
 import com.analysis.client.communication.models.DataModel;
 import com.analysis.client.communication.server.Server;
 import com.analysis.client.components.ActionObject;
-import com.analysis.client.datamodels.GridIndicatorRow_remove;
 import com.analysis.client.resources.Resources;
 import com.analysis.client.view.charts.ExtendedPieChart;
-import com.analysis.client.view.widgets.TabDataViewPanel;
+import com.analysis.client.view.widgets.MultiModelTabPanel;
 import com.analysis.client.xml.GWTXmlFragment;
 import com.analysis.shared.commonformat.CfAction;
 import com.analysis.shared.commonformat.CfActionType;
@@ -79,9 +78,9 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	
 	private Map<String, IndicatorFilter> configurationFilters;
 	
-	 static EditorGrid<IndicatorFilterItem> grid;
-	 static ListStore<IndicatorFilterItem> store;
-	 static SimpleComboBox<String> filterGroupCombo;
+	 EditorGrid<IndicatorFilterItem> grid;
+	 ListStore<IndicatorFilterItem> store;
+	 SimpleComboBox<String> filterGroupCombo;
 	
 	public ExtendedFilterGrid(String _groupingItem){
 		
@@ -90,7 +89,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	
 	
 
-
+	public ExtendedFilterGrid(){}
 	
   @Override
   protected void onRender(Element parent, int index) {
@@ -120,16 +119,16 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     
     ColumnConfig _type = new ColumnConfig("filtertype", "filtertype", 50);
     _type.setHeader("Type");
-    _type.setWidth(100);
+    _type.setWidth(170);
     
     ColumnConfig _property = new ColumnConfig("property", "property", 50);
     _property.setHeader("Property");  
-    _property.setWidth(100);
+    _property.setWidth(170);
     
     
     ColumnConfig _value = new ColumnConfig("value", "value", 50);
     _value.setHeader("Value");
-    _value.setWidth(100);
+    _value.setWidth(170);
     
     
     CheckColumnConfig checkColumn = new CheckColumnConfig("indoor", "Indoor?", 55);  
@@ -249,8 +248,8 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
       });
     
     ToolBar toolBar = new ToolBar();  
-    Button add = new Button("Add Filter");  
-    add.addSelectionListener(new SelectionListener<ButtonEvent>() {  
+    Button addbtn = new Button("Add Filter");  
+    addbtn.addSelectionListener(new SelectionListener<ButtonEvent>() {  
   
       @Override  
       public void componentSelected(ButtonEvent ce) {  
@@ -265,7 +264,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
       }  
   
     });  
-    toolBar.add(add);  
+    toolBar.add(addbtn);  
     
     
     
@@ -298,9 +297,10 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     panel.setHeaderVisible(false);
     panel.setIcon(Resources.ICONS.table());
     panel.setButtonAlign(HorizontalAlignment.CENTER);
-    panel.setCollapsible(false);
+    panel.setCollapsible(true);
     panel.setFrame(true);
-    panel.setSize(465, 160);
+    
+    panel.setSize(650, 140);
     panel.setLayout(new FitLayout());
     panel.add(grid);
 
@@ -319,13 +319,13 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
   }
   
   
-  public static EditorGrid<IndicatorFilterItem> getExtendedFilterGrid(){
+  public  EditorGrid<IndicatorFilterItem> getExtendedFilterGrid(){
 	  
 	 return grid;	  
   }
   
   
-  public static SimpleComboBox<String> getFilterSetListCombo(){
+  public  SimpleComboBox<String> getFilterSetListCombo(){
 		
 		return filterGroupCombo;
 	}
