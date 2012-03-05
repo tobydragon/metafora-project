@@ -17,56 +17,15 @@ package com.analysis.client;
 
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-
-import com.analysis.client.communication.actionresponses.RequestHistoryCallBack;
-import com.analysis.client.communication.models.DataModel;
-
-import com.analysis.client.communication.server.Server;
-
-import com.analysis.client.examples.charts.Showcase;
-import com.analysis.client.resources.Resources;
-import com.analysis.client.view.charts.ExtendedPieChart;
 import com.analysis.client.view.containers.MainContainer;
-import com.analysis.client.view.grids.ExtendedGroupedGrid;
-import com.analysis.client.view.widgets.MultiModelTabPanel;
-import com.analysis.shared.commonformat.CfAction;
-import com.analysis.shared.commonformat.CfActionType;
-import com.analysis.shared.communication.objects_old.CommonFormatStrings;
-import com.analysis.shared.interactionmodels.IndicatorFilterItem;
-import com.analysis.shared.utils.GWTDateUtils;
 
 
 import com.google.gwt.core.client.EntryPoint;
 
 
-import com.google.gwt.core.client.JsArray;
-
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Label;
-
-
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
-
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.visualization.client.DataTable;
-import com.google.gwt.visualization.client.Selection;
 import com.google.gwt.visualization.client.VisualizationUtils;
-import com.google.gwt.visualization.client.events.SelectHandler;
-import com.google.gwt.visualization.client.visualizations.Gauge;
-import com.google.gwt.visualization.client.visualizations.MotionChart;
-import com.google.gwt.visualization.client.visualizations.OrgChart;
-import com.google.gwt.visualization.client.visualizations.Table;
-import com.google.gwt.visualization.client.visualizations.corechart.AxisOptions;
-import com.google.gwt.visualization.client.visualizations.corechart.BarChart;
-import com.google.gwt.visualization.client.visualizations.corechart.ColumnChart;
-import com.google.gwt.visualization.client.visualizations.corechart.CoreChart;
-import com.google.gwt.visualization.client.visualizations.corechart.LineChart;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
 

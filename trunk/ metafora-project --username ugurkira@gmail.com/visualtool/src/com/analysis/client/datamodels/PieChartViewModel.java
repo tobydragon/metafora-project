@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.analysis.client.communication.models.DataModel;
 import com.analysis.client.communication.server.ActionMaintenance;
 
 import com.analysis.shared.commonformat.CfAction;
