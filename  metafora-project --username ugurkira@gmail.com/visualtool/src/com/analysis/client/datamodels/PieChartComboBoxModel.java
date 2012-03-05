@@ -9,13 +9,13 @@ package com.analysis.client.datamodels;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
 
-public class DefaultModel extends BaseModelData {
+public class PieChartComboBoxModel extends BaseModelData {
 
-  public DefaultModel() {
+  public PieChartComboBoxModel() {
 
   }
 
-  public DefaultModel(String text, String name) {
+  public PieChartComboBoxModel(String text, String name) {
     setText(text);
     setName(name);
     

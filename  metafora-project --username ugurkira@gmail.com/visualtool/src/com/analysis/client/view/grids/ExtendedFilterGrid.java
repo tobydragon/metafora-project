@@ -18,7 +18,7 @@ import java.util.Map;
 import com.analysis.client.communication.actionresponses.RequestConfigurationCallBack;
 import com.analysis.client.communication.models.DataModel;
 import com.analysis.client.communication.server.Server;
-import com.analysis.client.components.ActionObject;
+
 import com.analysis.client.resources.Resources;
 import com.analysis.client.view.charts.ExtendedPieChart;
 import com.analysis.client.view.widgets.MultiModelTabPanel;
@@ -173,7 +173,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
             
             	String _key=model.getProperty()+"-"+model.getValue();
             	
-            	DataModel.getActiveFilters().remove(_key);
+            	//DataModel.getActiveFilters().remove(_key);
             	
             	store.remove(model);
             	filterGroupCombo.clearSelections();

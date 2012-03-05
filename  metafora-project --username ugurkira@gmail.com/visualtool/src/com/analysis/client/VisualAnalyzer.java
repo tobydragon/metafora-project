@@ -82,7 +82,7 @@ class VisualAnalyzer implements EntryPoint {
     	  RootPanel.get().add(_container);
 
     	
-      }});
+      }}, PieChart.PACKAGE);
   }
 
  

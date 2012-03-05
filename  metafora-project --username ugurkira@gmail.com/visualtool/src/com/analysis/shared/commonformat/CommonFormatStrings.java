@@ -37,6 +37,65 @@ public class CommonFormatStrings {
 	//CfInteractionData
 	public static final String INTERACTION_DATA_STRING = "interactiondata";
 	public static final String ACTIONS_STRING = "actions";
+	
+	
+	
+	
+	//Action Properties
+	public static final String CF_TYPE_STRING = "type";
+	public static final String CF_Configuration="configuration";
+	public static final String  CF_Filter="filter";
+	public static final String  CF_Property="property";
+	
+	
+	
+
+   //Object Filter Options
+	public static final String O_OBJECT = "Object";
+	
+	public static final String O_MAP_ID = "Map ID";
+	public static final String O_V_MAP_ID = "MAP_ID";
+	
+	public static final String O_TEXT= "Text";
+	public static final String O_V_TEXT="TEXT";
+	
+	public static final String O_USER_NAME="User";
+	public static final String O_V_USER_NAME="USERNAME";
+	
+	public static final String O_ELEMENT_TYPE="ElementType";
+	public static final String O_V_ELEMENT_TYPE="ELEMENT_TYPE";
+	
+	public static final String O_TIME="Time";
+	public static final String O_V_TIME="Time";
+	
+	//Content Filter Options
+	public static final String C_CONTENT="Content";
+	
+	public static final String C_INDICATOR_TYPE="Indicator";
+	public static final String C_V_INDICATOR_TYPE="INDICATOR_TYPE";
+		
+	public static final String C_ANNOTATION_TYPE="Annotation";
+	public static final String C_V_ANNOTATION_TYPE="ANNOTATION_TYPE";
+	
+	public static final String C_TOOL="Tool";
+	public static final String C_V_TOOL="TOOL";
+	
+	public static final String C_TIME="Time";
+	public static final String C_V_TIME="Time";
+	
+	// Action Filter Options
+	
+	public static final String A_Action="Action";
+	public static final String A_V_Action="actiontype";
+	
+	public static final String A_Classification="Classification";
+	public static final String A_V_Classification="classification";
+	
+	public static final String A_User="User";
+	public static final String A_V_User="USER_ID";
+	public static final String A_Type="Action Type";
+ 	public static final String A_V_Type="type";
+	
 
 
 
