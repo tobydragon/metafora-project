@@ -9,9 +9,11 @@ import java.util.Map;
 
 import org.jdom.Attribute;
 
-import com.analysis.server.utils.ServerFormatStrings;
+//import com.analysis.server.utils.ServerFormatStrings;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
+
+import de.uds.visualizer.server.utils.ServerFormatStrings;
 
 
 
