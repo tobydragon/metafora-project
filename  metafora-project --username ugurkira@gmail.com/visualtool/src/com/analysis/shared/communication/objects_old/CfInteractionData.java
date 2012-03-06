@@ -3,7 +3,7 @@ package com.analysis.shared.communication.objects_old;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.analysis.client.xml.GWTXmlFragment;
+import de.uds.visualizer.client.xml.GWTXmlFragment;
 
 
 

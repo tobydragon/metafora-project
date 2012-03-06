@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.List;
 
 
-import com.analysis.client.communication.servercommunication.CommunicationService;
 
 import com.analysis.server.cfcommunication.CfAgentCommunicationManager;
 import com.analysis.server.cfcommunication.CfCommunicationListener;
@@ -24,6 +23,8 @@ import com.analysis.shared.interactionmodels.Configuration;
 import com.analysis.shared.utils.GWTDateUtils;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
+import de.uds.visualizer.client.communication.servercommunication.CommunicationService;
 
 /**
  * The server side implementation of the RPC service.

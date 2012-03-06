@@ -6,7 +6,7 @@ import java.util.Map;
 //import org.apache.commons.logging.Log;
 //import org.apache.commons.logging.LogFactory;
 
-import com.analysis.client.xml.GWTXmlFragment;
+import de.uds.visualizer.client.xml.GWTXmlFragment;
 
 
 
