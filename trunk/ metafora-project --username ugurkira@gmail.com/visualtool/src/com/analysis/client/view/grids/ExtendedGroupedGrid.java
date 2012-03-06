@@ -12,6 +12,7 @@ import java.util.List;
 
 
 
+import com.analysis.client.communication.servercommunication.ActionMaintenance;
 import com.analysis.client.datamodels.TableViewModel;
 import com.analysis.client.resources.Resources;
 import com.analysis.shared.interactionmodels.IndicatorFilterItem;
@@ -57,8 +58,11 @@ public class ExtendedGroupedGrid extends  LayoutContainer {
 	Timer tableViewTimer;
 	List<IndicatorGridRowItem> indicators;
 	TableViewModel tvm;
-	public ExtendedGroupedGrid(){
-		tvm=new TableViewModel();
+	ActionMaintenance maintenance;
+	
+	public ExtendedGroupedGrid(ActionMaintenance _maintenance){
+		maintenance=_maintenance;
+		tvm=new TableViewModel(maintenance);
 		indicators=tvm.parseToIndicatorGridRowList();
 	}
 

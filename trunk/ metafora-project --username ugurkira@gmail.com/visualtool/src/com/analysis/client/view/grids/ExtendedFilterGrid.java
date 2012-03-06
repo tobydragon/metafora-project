@@ -17,7 +17,7 @@ import java.util.Map;
 
 import com.analysis.client.communication.actionresponses.RequestConfigurationCallBack;
 
-import com.analysis.client.communication.server.Server;
+import com.analysis.client.communication.servercommunication.Server;
 
 import com.analysis.client.resources.Resources;
 

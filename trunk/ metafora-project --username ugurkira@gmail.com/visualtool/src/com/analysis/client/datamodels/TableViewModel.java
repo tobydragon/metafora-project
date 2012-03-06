@@ -3,7 +3,7 @@ package com.analysis.client.datamodels;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.analysis.client.communication.server.ActionMaintenance;
+import com.analysis.client.communication.servercommunication.ActionMaintenance;
 import com.analysis.client.view.grids.IndicatorGridRowItem;
 
 import com.analysis.shared.commonformat.CfAction;
@@ -11,16 +11,25 @@ import com.analysis.shared.commonformat.CfUser;
 import com.analysis.shared.utils.GWTDateUtils;
 
 public class TableViewModel {
-
+	ActionMaintenance maintenance;
 	
 	
+	public TableViewModel(ActionMaintenance _maintenance){
+		
+		maintenance=_maintenance;
+		
+		
+	}
 	
 	public List<IndicatorGridRowItem>  parseToIndicatorGridRowList(){
 		
 		List<CfAction> _cfActions=new ArrayList<CfAction>();
-		if(ActionMaintenance._activecfActions!=null){
-			_cfActions=ActionMaintenance._activecfActions;
+		if(maintenance.getActiveActionList()!=null){
+			_cfActions.addAll(maintenance.getActiveActionList());
 			}
+		
+		
+		
 		
 		List<IndicatorGridRowItem> indicators=new ArrayList<IndicatorGridRowItem>();
 			

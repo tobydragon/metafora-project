@@ -1,4 +1,4 @@
-package com.analysis.client.communication.server;
+package com.analysis.client.communication.servercommunication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,17 +9,28 @@ import com.google.gwt.user.client.Timer;
 
 public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 
-	public static List<CfAction> _activecfActions;
+	public  List<CfAction> activecfActions;
 	
 	
 	public ActionMaintenance(){
 		
-		_activecfActions=new ArrayList<CfAction>();
+		activecfActions=new ArrayList<CfAction>();
 		
 		
 		
 	}
+	
+	
+	public List<CfAction> getActiveActionList(){
+		
+		return activecfActions;
+	} 
 
+	public void setActiveActionList(List<CfAction> _activecfActions){
+		
+		activecfActions.addAll(_activecfActions);
+		
+	}
 	public void startMaintenance(){
 		this.scheduleRepeating(5000);
 		
@@ -44,7 +55,7 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 					System.out.println("Client: No Action Update Recieved!");
 				return;
 				}
-		_activecfActions.addAll(result);
+		activecfActions.addAll(result);
 		
 	}
 
@@ -52,11 +63,11 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 	
 	CfAction getLastAction(){
 		
-		if(_activecfActions.size()<=0)
+		if(activecfActions.size()<=0)
 			return null;
 		
-		int index=_activecfActions.size()-1;
-		return _activecfActions.get(index);
+		int index=activecfActions.size()-1;
+		return activecfActions.get(index);
 	}
 
 	int counter=0;

@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 
-import com.analysis.client.communication.server.CommunicationService;
+import com.analysis.client.communication.servercommunication.CommunicationService;
 
 import com.analysis.server.cfcommunication.CfAgentCommunicationManager;
 import com.analysis.server.cfcommunication.CfCommunicationListener;
@@ -46,7 +46,7 @@ public class MainServer extends RemoteServiceServlet implements
 		_configuration=connectionParser.toActiveConfiguration();		
 		communicationManager = CfAgentCommunicationManager.getInstance(getCommunicationType(_configuration.getActionSource()), CommunicationChannelType.analysis);				
 		communicationManager.register(this);
-		
+		if(_configuration.getActionSource().equalsIgnoreCase("file")){
 		CfAction _action=new CfAction();
 	 	  _action.setTime(GWTDateUtils.getTimeStamp());
 	 	  
@@ -56,6 +56,7 @@ public class MainServer extends RemoteServiceServlet implements
 	 	_cfActionType.setSucceed("true");
 	 	_cfActionType.setLogged("true");
     	_action.setCfActionType(_cfActionType);
+		
 	
 	 	 //_pathProperty.setValue(_configuration.getActionSource())
 	 	 
@@ -63,6 +64,7 @@ public class MainServer extends RemoteServiceServlet implements
 	 	//_action.
 	
 		 communicationManager.sendMessage(_action);
+		}
 					
 	}
 	
