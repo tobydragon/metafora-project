@@ -4,7 +4,7 @@
   
       <action time="1329219014153">
       <actiontype type="indicator" classification="shouldbeinthemiddleCREATE" succeed="true" />
-      <user id="Maria" role="UserID" />
+      <user id="Ugur" role="UserID" />
       <object id="11" type="Help Request">
         <properties>
           <property name="POS-Y" value="2490" />
@@ -74,7 +74,7 @@
           <property name="POS-Y" value="2668" />
           <property name="USERNAME" value="Maria" />
           <property name="POS-X" value="2374" />
-          <property name="MAP-ID" value="2" />
+          <property name="MAP-ID" value="1" />
         </properties>
       </object>
       <content>
@@ -121,7 +121,7 @@
           <property name="POS-Y" value="2372" />
           <property name="USERNAME" value="Maria" />
           <property name="POS-X" value="2267" />
-          <property name="MAP-ID" value="2" />
+          <property name="MAP-ID" value="1" />
         </properties>
       </object>
       <content>
@@ -134,13 +134,13 @@
     </action>
     <action time="1329218448982">
       <actiontype type="indicator" classification="CREATE" succeed="true" />
-      <user id="Maria" role="UserID" />
+      <user id="Ugur" role="UserID" />
       <object id="1" type="Help Request">
         <properties>
           <property name="POS-Y" value="2372" />
           <property name="USERNAME" value="Maria" />
           <property name="POS-X" value="2267" />
-          <property name="MAP-ID" value="2" />
+          <property name="MAP-ID" value="1" />
         </properties>
       </object>
       <content>
@@ -159,7 +159,7 @@
           <property name="POS-Y" value="2414" />
           <property name="USERNAME" value="Maria" />
           <property name="POS-X" value="2350" />
-          <property name="MAP-ID" value="2" />
+          <property name="MAP-ID" value="1" />
         </properties>
       </object>
       <content>
