@@ -12,7 +12,6 @@ import java.util.List;
 
 
 
-import com.analysis.shared.interactionmodels.IndicatorFilterItem;
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.data.ChangeEvent;
 import com.extjs.gxt.ui.client.event.BaseEvent;
@@ -53,6 +52,7 @@ import com.google.gwt.user.client.ui.Widget;
 import de.uds.visualizer.client.communication.servercommunication.ActionMaintenance;
 import de.uds.visualizer.client.datamodels.TableViewModel;
 import de.uds.visualizer.client.resources.Resources;
+import de.uds.visualizer.shared.interactionmodels.IndicatorFilterItem;
 
 public class ExtendedGroupedGrid extends  LayoutContainer {
 	public CheckBox autoRefresh;

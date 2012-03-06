@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 
-import com.analysis.shared.commonformat.CfAction;
-import com.analysis.shared.commonformat.CfContent;
-import com.analysis.shared.commonformat.CfObject;
-import com.analysis.shared.commonformat.CfUser;
-import com.analysis.shared.commonformat.CommonFormatStrings;
 import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
 
 import de.uds.visualizer.client.communication.servercommunication.ActionMaintenance;
+import de.uds.visualizer.shared.commonformat.CfAction;
+import de.uds.visualizer.shared.commonformat.CfContent;
+import de.uds.visualizer.shared.commonformat.CfObject;
+import de.uds.visualizer.shared.commonformat.CfUser;
+import de.uds.visualizer.shared.commonformat.CommonFormatStrings;
 
 public class PieChartViewModel {
 	

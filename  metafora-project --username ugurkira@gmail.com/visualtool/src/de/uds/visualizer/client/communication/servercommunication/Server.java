@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.analysis.shared.commonformat.CfAction;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+
 import de.novanic.eventservice.client.ClientHandler;
 import de.novanic.eventservice.client.event.Event;
 import de.novanic.eventservice.client.event.RemoteEventService;
@@ -22,6 +22,7 @@ import de.uds.visualizer.client.communication.actionresponses.RequestConfigurati
 import de.uds.visualizer.client.communication.actionresponses.RequestHistoryCallBack;
 import de.uds.visualizer.client.communication.actionresponses.RequestUpdateCallBack;
 import de.uds.visualizer.client.utils.ClientFormatStrings;
+import de.uds.visualizer.shared.commonformat.CfAction;
 
 public class Server {
 	

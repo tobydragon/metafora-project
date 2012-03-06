@@ -3,10 +3,10 @@ package de.uds.visualizer.client.communication.servercommunication;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.analysis.shared.commonformat.CfAction;
 import com.google.gwt.user.client.Timer;
 
 import de.uds.visualizer.client.communication.actionresponses.RequestUpdateCallBack;
+import de.uds.visualizer.shared.commonformat.CfAction;
 
 public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 

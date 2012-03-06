@@ -1,11 +1,11 @@
 package de.uds.visualizer.client.view.charts;
 
 
-import com.analysis.shared.commonformat.CommonFormatStrings;
 
 import com.extjs.gxt.ui.client.store.ListStore;
 
 import de.uds.visualizer.client.datamodels.PieChartComboBoxModel;
+import de.uds.visualizer.shared.commonformat.CommonFormatStrings;
 
 
 

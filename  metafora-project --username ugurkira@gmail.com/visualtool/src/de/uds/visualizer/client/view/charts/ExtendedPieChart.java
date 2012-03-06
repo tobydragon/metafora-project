@@ -7,8 +7,6 @@ package de.uds.visualizer.client.view.charts;
 
 
 
-import com.analysis.shared.commonformat.CommonFormatStrings;
-import com.analysis.shared.interactionmodels.IndicatorFilterItem;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedListener;
 import com.extjs.gxt.ui.client.store.ListStore;
@@ -44,6 +42,8 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart.Pie
 import de.uds.visualizer.client.communication.servercommunication.ActionMaintenance;
 import de.uds.visualizer.client.datamodels.PieChartComboBoxModel;
 import de.uds.visualizer.client.datamodels.PieChartViewModel;
+import de.uds.visualizer.shared.commonformat.CommonFormatStrings;
+import de.uds.visualizer.shared.interactionmodels.IndicatorFilterItem;
 
 public class ExtendedPieChart extends VerticalPanel {
 	
