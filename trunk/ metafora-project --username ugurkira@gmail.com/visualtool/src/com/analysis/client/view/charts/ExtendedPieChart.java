@@ -16,6 +16,7 @@ import com.extjs.gxt.ui.client.event.SelectionChangedListener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Record;
 
+import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
@@ -23,7 +24,9 @@ import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
+import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
+import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -44,19 +47,27 @@ public class ExtendedPieChart extends VerticalPanel {
 	
 	
 	//Map<Integer, String>subsection = new HashMap<Integer, String>();
-	public String Type="";
-	public String Item="";
-	public  PieChart pie=null;
+	private String Type="";
+	private String Item="";
+	private PieChart pie=null;
+	private VerticalPanel _mainContainer;
+	
+	private PieChartViewModel _model;
 	
 	public ExtendedPieChart(){
 		
+		_model=new PieChartViewModel();
+		_mainContainer=new VerticalPanel();
 		createFilterHeader();
+		
 	}
 
 public ExtendedPieChart(String title){
 	this.setId("interActionForm");
 	this.add(new Label(title));
+	_mainContainer=new VerticalPanel();
 	createFilterHeader();
+	
 }
 	
 
@@ -153,10 +164,10 @@ public ExtendedPieChart(String title){
 	    retriveBtn.addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
 	   
-	        	PieChartViewModel _model=new PieChartViewModel();
 	        	
-	        	createPieChart(_model.getPieChartData(Type,Item),"pieChart");
+	       	RootPanel.get().add(createPieChart(_model.getPieChartData(Type,Item),"pieChart"));
 	        
+	       	//_mainContainer.repaint();
 	        	
 	        	
 	          }
@@ -167,11 +178,18 @@ public ExtendedPieChart(String title){
 	    hp.add(comboItem);
 	    hp.add(retriveBtn);
 
-	    this.add(hp);
+	   
+	    
+	   // this.add(hp);
 	    HorizontalPanel space=new HorizontalPanel();
 	    space.setWidth(600);
 	    space.setHeight(30);
-	    this.add(space);
+	    
+	    _mainContainer.add(hp);
+	    _mainContainer.add(space);
+	    
+	    
+	    this.add(_mainContainer);
 	    
 	    
 		
@@ -206,25 +224,8 @@ public ExtendedPieChart(String title){
 	
 	
 	
-	DataTable getDailyActivities() {
-	    DataTable data = DataTable.create();
-	    data.addColumn(ColumnType.STRING, "Task");
-	    data.addColumn(ColumnType.NUMBER, "Hours per Day");
-	    data.addRows(5);
-	    data.setValue(0, 0, "Work");
-	    data.setValue(0, 1, 11);
-	    data.setValue(1, 0, "Eat");
-	    data.setValue(1, 1, 2);
-	    data.setValue(2, 0, "Commute");
-	    data.setValue(2, 1, 2);
-	    data.setValue(3, 0, "Watch TV");
-	    data.setValue(3, 1, 2);
-	    data.setValue(4, 0, "Sleep");
-	    data.setValue(4, 1, 7);
-	    return data;
-	  }
-	
-	 public void createPieChart(DataTable data,String ID) {
+
+	 public PieChart createPieChart(DataTable data,String ID) {
 		    
 		 if(pie!=null) {
 				 if(pie.isAttached()){
@@ -240,7 +241,10 @@ public ExtendedPieChart(String title){
 		    options.setTitle("Indicator Overview");		    
 		    pie= new PieChart(data, options);  
 		    pie.addSelectHandler(createSelectHandler(pie));
-			RootPanel.get().add(pie);
+			
+		   
+		    
+		    return pie;
 			  }
 	 
 	 
@@ -275,49 +279,80 @@ public ExtendedPieChart(String title){
 		    	    }
 		    	  
 		    	    
+		    	    EditorGrid<IndicatorFilterItem> editorGrid = (EditorGrid<IndicatorFilterItem>) ComponentManager.get().get("_filterItemGrid");
+					EditorGrid<IndicatorFilterItem> _grid = editorGrid;
 		    	    
-		    	    //String property=subsectionProperty.get(selection);
-		    	    //String value=subsectionValue.get(selection);
+					SimpleComboBox<String> _filterCombo=(SimpleComboBox<String>) ComponentManager.get().get("_filterGroupCombo");
+					
+		    	    
+		    	  
+		    	    String _propertyType=Type;
+		    	    String _property=_model.getSubSectionProperty(selection);
+		    	    String _value=_model.getSubSectionValue(selection);
 
-			          //String _key=property+"-"+value;
-			        //if(!DataModel.getActiveFilters().containsKey(_key) && value!=null){
-			        //DataModel.getActiveFilters().put(_key,_key);
+		    	   
+			          String _key=_propertyType+"-"+_property+"-"+_value;
+			          
 			       
+					if(!isInFilterList(_key,_grid) && _value!=null && !_value.equalsIgnoreCase("")){
+			        
+			        
 			        IndicatorFilterItem _filter = new IndicatorFilterItem();  
-			       // _filter.setProperty(property);
-			        //_filter.setValue(value);
-			        //_filter.setType(Type);
+			        _filter.setProperty(_property);
+			        _filter.setValue(_value);
+			        _filter.setType(_propertyType);
 			         
 			    	//Info.display("Info","Filter for "+ value+" is added!");
 			        
 			        if(!reseted){
 			        	
 			        	reseted=true;
-			        	// ExtendedFilterGrid.getFilterSetListCombo().clearSelections();
-			        	// ExtendedFilterGrid.getExtendedFilterGrid().getStore().removeAll();
-			        	 
+			        	//_grid.getStore().removeAll();
+			        	_filterCombo.clearSelections();
 			        }
+			        
+			        
 			    	
-			    	/*
-			        ExtendedFilterGrid.getExtendedFilterGrid().stopEditing();  
-			        ExtendedFilterGrid.getExtendedFilterGrid().getStore().insert(_filter, 0);  
-			        ExtendedFilterGrid.getExtendedFilterGrid().startEditing(ExtendedFilterGrid.getExtendedFilterGrid().getStore().indexOf(_filter), 0); 
-			        ExtendedFilterGrid.getFilterSetListCombo().clearSelections();
-				      */  
-			        //}
+			    	
+			        _grid.stopEditing();  
+			        _grid.getStore().insert(_filter, 0);  
+			        _grid.startEditing(_grid.getStore().indexOf(_filter), 0); 
+			        _filterCombo.clearSelections();
+				       
+			        }
 			        else {
 			        	
 			        	
-			        	Info.display("Info","Selection is<ul><li> already in Filter List</li></ul>");
+			        	Info.display("Info","Selected Filter is<ul><li> already in  the filter list</li></ul>");
 			        }
 			        
 			
 		      }
 		    };
+		    
+		    
+		  
 		  }
 
 	  
 	
+	 boolean isInFilterList(String _key,EditorGrid<IndicatorFilterItem> _grid){
+		 boolean result=false;
+		 
+		 for (int i = 0; i < _grid.getStore().getCount(); i++) {
+			 
+			 IndicatorFilterItem _item=	 _grid.getStore().getAt(i);
+			 
+			String row= _item.getType()+"-"+_item.getProperty()+"-"+_item.getValue();
+			 
+			if(row.equalsIgnoreCase(_key)){
+				
+				result =true;
+			}
+		 }
+		 
+		 return result;
+	 }
 		
 
 		

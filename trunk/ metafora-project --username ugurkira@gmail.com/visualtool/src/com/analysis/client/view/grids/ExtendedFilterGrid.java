@@ -164,7 +164,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
             	
             	
             	
-            	Info.display(model.getProperty(), "<ul><li>" + model.getValue()+ "is removed!" + "</li></ul>");
+            	Info.display(model.getProperty(), "<ul><li>" + model.getValue()+ " is removed!" + "</li></ul>");
             
             	String _key=model.getProperty()+"-"+model.getValue();
             	
@@ -210,6 +210,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
      grid = new EditorGrid<IndicatorFilterItem>(store, cm);
 
     grid.setBorders(true);
+    grid.setId("_filterItemGrid");
     /*
     grid.addListener(Events.Add, new Listener<BaseEvent>() {
         @Override
@@ -274,7 +275,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 		public void componentSelected(ButtonEvent ce) {
 		
 
-		    	 Info.display("le","Clear");
+		    	 Info.display("Clear","All filters are removed!!");
 		    grid.getStore().removeAll();
 		    filterGroupCombo.clearSelections();
 		   
@@ -333,7 +334,9 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	    filterGroupCombo.setTriggerAction(TriggerAction.ALL);  
 	    filterGroupCombo.setEditable(false);  
 	    filterGroupCombo.setFireChangeEventOnSetValue(true);  
-	    filterGroupCombo.setWidth(100); 
+	    filterGroupCombo.setWidth(100);
+	    filterGroupCombo.setId("_filterGroupCombo");
+	    
    
 	    CfAction _action=new CfAction();
 	 	  _action.setTime(GWTDateUtils.getTimeStamp());

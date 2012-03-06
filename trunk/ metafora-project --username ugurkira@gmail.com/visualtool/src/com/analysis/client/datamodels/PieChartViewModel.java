@@ -25,18 +25,19 @@ public class PieChartViewModel {
 	Map<String, List<CfObject>>   _groupedObject=null;
 	Map<String, List<CfAction>>   _groupedAction=null;
 	
-	Map<Integer, String>subsectionProperty = new HashMap<Integer, String>();
-	Map<Integer, String>subsectionValue = new HashMap<Integer, String>();
+	Map<Integer, String>subsectionProperty = null;
+	Map<Integer, String>subsectionValue =null;
+	Map<String, String> activeFilters =null;
 	
 	
 	public PieChartViewModel(){
-		
-		//_groupedAction=new HashMap<String, List<CfAction>>();
-		//_groupedObject=new HashMap<String, List<CfObject>>();
-		//_groupedContent=new HashMap<String, List<CfContent>>();
+	
 		_allActions= new ArrayList<CfAction>();
 		_allObjects=new ArrayList<CfObject>();
 		_allContents=new ArrayList<CfContent>();
+		activeFilters = new HashMap<String, String>();
+		subsectionValue= new HashMap<Integer, String>();
+		subsectionProperty=new HashMap<Integer, String>();
 		sliptActions();
 		
 	}
@@ -115,7 +116,7 @@ public class PieChartViewModel {
 			    index++;
 		}
 	}
-		//Here
+		
 		else if(myType.equalsIgnoreCase(CommonFormatStrings.A_Action)){
 			_groupedAction=new HashMap<String, List<CfAction>>(); 
 			_groupedAction=groupActionByProperty(myItem);
@@ -139,6 +140,32 @@ public class PieChartViewModel {
 	}
 	
 	
+	public void addActiveFilter(String _key){
+		
+		
+		activeFilters.put(_key, _key);
+		
+	}
+	
+	
+	public boolean isInFilterList(String _key){
+		
+		return activeFilters.containsKey(_key);
+		
+	}
+	public String getSubSectionProperty(int _key){
+		
+		if(subsectionProperty.containsKey(_key))
+		return subsectionProperty.get(_key);
+		return "";
+	}
+	
+public String getSubSectionValue(int _key){
+		
+		if(subsectionValue.containsKey(_key))
+		return subsectionValue.get(_key);
+		return "";
+	}
 	
 	
 	public Map<String, List<CfObject>> groupObjectByProperty(String property){
@@ -191,7 +218,6 @@ public class PieChartViewModel {
 			
 			Map<String, List<CfAction>> map = new HashMap<String, List<CfAction>>();
 			
-			 List<CfAction>  _groupedAction=	new ArrayList<CfAction>();
 			for (CfAction myaction : _allActions) {
 				
 				
