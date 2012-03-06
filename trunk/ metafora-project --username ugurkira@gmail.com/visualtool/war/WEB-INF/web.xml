@@ -19,7 +19,7 @@
 
   <servlet>
     <servlet-name>greetServlet</servlet-name>
-    <servlet-class>com.analysis.server.MainServer</servlet-class>
+    <servlet-class>de.uds.visualizer.server.MainServer</servlet-class>
   </servlet>
   
   <servlet-mapping>
