@@ -18,13 +18,7 @@ import java.util.Map;
 
 
 
-import com.analysis.shared.commonformat.CfAction;
-import com.analysis.shared.commonformat.CfActionType;
 
-import com.analysis.shared.interactionmodels.Configuration;
-import com.analysis.shared.interactionmodels.IndicatorFilterItem;
-import com.analysis.shared.interactionmodels.IndicatorFilter;
-import com.analysis.shared.utils.GWTDateUtils;
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 
 import com.extjs.gxt.ui.client.store.ListStore;
@@ -67,6 +61,12 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import de.uds.visualizer.client.communication.actionresponses.RequestConfigurationCallBack;
 import de.uds.visualizer.client.communication.servercommunication.Server;
 import de.uds.visualizer.client.resources.Resources;
+import de.uds.visualizer.shared.commonformat.CfAction;
+import de.uds.visualizer.shared.commonformat.CfActionType;
+import de.uds.visualizer.shared.interactionmodels.Configuration;
+import de.uds.visualizer.shared.interactionmodels.IndicatorFilter;
+import de.uds.visualizer.shared.interactionmodels.IndicatorFilterItem;
+import de.uds.visualizer.shared.utils.GWTDateUtils;
 
 public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfigurationCallBack {
 

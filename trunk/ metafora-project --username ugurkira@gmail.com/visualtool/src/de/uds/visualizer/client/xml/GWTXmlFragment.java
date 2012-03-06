@@ -9,22 +9,23 @@ import java.util.List;
 
 
 
-import com.analysis.shared.communication.objects_old.CfAction;
-import com.analysis.shared.communication.objects_old.CfActionType;
-import com.analysis.shared.communication.objects_old.CfContent;
-import com.analysis.shared.communication.objects_old.CfObject;
-import com.analysis.shared.communication.objects_old.CfProperty;
-import com.analysis.shared.communication.objects_old.CfUser;
-import com.analysis.shared.communication.objects_old.CommonFormatStrings;
-import com.analysis.shared.interactionmodels.Configuration;
-import com.analysis.shared.interactionmodels.IndicatorFilterItem;
-import com.analysis.shared.interactionmodels.IndicatorFilter;
 
 import com.google.gwt.xml.client.Document;
 import com.google.gwt.xml.client.Element;
 import com.google.gwt.xml.client.Node;
 import com.google.gwt.xml.client.NodeList;
 import com.google.gwt.xml.client.XMLParser;
+
+import de.uds.visualizer.shared.communication.objects_old.CfAction;
+import de.uds.visualizer.shared.communication.objects_old.CfActionType;
+import de.uds.visualizer.shared.communication.objects_old.CfContent;
+import de.uds.visualizer.shared.communication.objects_old.CfObject;
+import de.uds.visualizer.shared.communication.objects_old.CfProperty;
+import de.uds.visualizer.shared.communication.objects_old.CfUser;
+import de.uds.visualizer.shared.communication.objects_old.CommonFormatStrings;
+import de.uds.visualizer.shared.interactionmodels.Configuration;
+import de.uds.visualizer.shared.interactionmodels.IndicatorFilter;
+import de.uds.visualizer.shared.interactionmodels.IndicatorFilterItem;
 
 
 

@@ -1,7 +1,6 @@
 package de.uds.visualizer.client;
 
 
-import com.analysis.shared.FieldVerifier;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -21,6 +20,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 import de.uds.visualizer.client.communication.servercommunication.CommunicationService;
 import de.uds.visualizer.client.communication.servercommunication.CommunicationServiceAsync;
+import de.uds.visualizer.shared.FieldVerifier;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.

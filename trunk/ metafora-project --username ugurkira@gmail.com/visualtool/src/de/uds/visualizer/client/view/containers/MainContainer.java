@@ -6,12 +6,6 @@ import java.util.Map;
 
 
 
-import com.analysis.shared.commonformat.CfAction;
-import com.analysis.shared.commonformat.CfActionType;
-import com.analysis.shared.commonformat.CfInteractionData;
-import com.analysis.shared.communication.objects_old.CommonFormatStrings;
-import com.analysis.shared.interactionmodels.IndicatorFilterItem;
-import com.analysis.shared.utils.GWTDateUtils;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -26,6 +20,12 @@ import de.uds.visualizer.client.view.grids.ExtendedFilterGrid;
 import de.uds.visualizer.client.view.grids.ExtendedGroupedGrid;
 import de.uds.visualizer.client.view.widgets.FilterListPanel;
 import de.uds.visualizer.client.view.widgets.MultiModelTabPanel;
+import de.uds.visualizer.shared.commonformat.CfAction;
+import de.uds.visualizer.shared.commonformat.CfActionType;
+import de.uds.visualizer.shared.commonformat.CfInteractionData;
+import de.uds.visualizer.shared.communication.objects_old.CommonFormatStrings;
+import de.uds.visualizer.shared.interactionmodels.IndicatorFilterItem;
+import de.uds.visualizer.shared.utils.GWTDateUtils;
 
 
 public class MainContainer extends VerticalPanel implements RequestHistoryCallBack{

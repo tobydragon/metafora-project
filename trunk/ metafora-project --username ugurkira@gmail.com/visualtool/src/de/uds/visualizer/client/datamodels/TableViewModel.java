@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import com.analysis.shared.commonformat.CfAction;
-import com.analysis.shared.commonformat.CfUser;
-import com.analysis.shared.utils.GWTDateUtils;
 
 import de.uds.visualizer.client.communication.servercommunication.ActionMaintenance;
 import de.uds.visualizer.client.view.grids.IndicatorGridRowItem;
+import de.uds.visualizer.shared.commonformat.CfAction;
+import de.uds.visualizer.shared.commonformat.CfUser;
+import de.uds.visualizer.shared.utils.GWTDateUtils;
 
 public class TableViewModel {
 	ActionMaintenance maintenance;
