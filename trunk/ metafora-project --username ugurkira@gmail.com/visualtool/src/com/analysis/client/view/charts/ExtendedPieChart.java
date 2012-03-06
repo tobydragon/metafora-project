@@ -161,7 +161,7 @@ public ExtendedPieChart(String title){
 	
 	    
 	    
-	    Button retriveBtn=new Button("Retrive");
+	    Button retriveBtn=new Button("Retrieve");
 	    retriveBtn.setWidth("50px");
 	    retriveBtn.setHeight("29px");
 	    
