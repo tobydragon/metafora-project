@@ -4,6 +4,7 @@ package com.analysis.client.view.charts;
 
 
 
+import com.analysis.client.communication.servercommunication.ActionMaintenance;
 import com.analysis.client.datamodels.PieChartComboBoxModel;
 import com.analysis.client.datamodels.PieChartViewModel;
 
@@ -50,14 +51,17 @@ public class ExtendedPieChart extends VerticalPanel {
 	private String Type="";
 	private String Item="";
 	private PieChart pie=null;
-	private VerticalPanel _mainContainer;
+	private VerticalPanel mainContainer;
 	
-	private PieChartViewModel _model;
+	private PieChartViewModel model;
+	private ActionMaintenance maintenance;
 	
-	public ExtendedPieChart(){
+	public ExtendedPieChart(ActionMaintenance _maintenance){
 		
-		_model=new PieChartViewModel();
-		_mainContainer=new VerticalPanel();
+		maintenance =_maintenance;
+		model=new PieChartViewModel(maintenance);
+		mainContainer=new VerticalPanel();
+		
 		createFilterHeader();
 		
 	}
@@ -65,7 +69,7 @@ public class ExtendedPieChart extends VerticalPanel {
 public ExtendedPieChart(String title){
 	this.setId("interActionForm");
 	this.add(new Label(title));
-	_mainContainer=new VerticalPanel();
+	mainContainer=new VerticalPanel();
 	createFilterHeader();
 	
 }
@@ -164,8 +168,7 @@ public ExtendedPieChart(String title){
 	    retriveBtn.addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
 	   
-	        	
-	       	RootPanel.get().add(createPieChart(_model.getPieChartData(Type,Item),"pieChart"));
+	       	RootPanel.get().add(createPieChart(model.getPieChartData(Type,Item),"pieChart"));
 	        
 	       	//_mainContainer.repaint();
 	        	
@@ -185,11 +188,11 @@ public ExtendedPieChart(String title){
 	    space.setWidth(600);
 	    space.setHeight(30);
 	    
-	    _mainContainer.add(hp);
-	    _mainContainer.add(space);
+	    mainContainer.add(hp);
+	    mainContainer.add(space);
 	    
 	    
-	    this.add(_mainContainer);
+	    this.add(mainContainer);
 	    
 	    
 		
@@ -287,8 +290,8 @@ public ExtendedPieChart(String title){
 		    	    
 		    	  
 		    	    String _propertyType=Type;
-		    	    String _property=_model.getSubSectionProperty(selection);
-		    	    String _value=_model.getSubSectionValue(selection);
+		    	    String _property=model.getSubSectionProperty(selection);
+		    	    String _value=model.getSubSectionValue(selection);
 
 		    	   
 			          String _key=_propertyType+"-"+_property+"-"+_value;

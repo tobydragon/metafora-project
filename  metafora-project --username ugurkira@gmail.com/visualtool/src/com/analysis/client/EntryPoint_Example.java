@@ -1,8 +1,8 @@
 package com.analysis.client;
 
 
-import com.analysis.client.communication.server.CommunicationService;
-import com.analysis.client.communication.server.CommunicationServiceAsync;
+import com.analysis.client.communication.servercommunication.CommunicationService;
+import com.analysis.client.communication.servercommunication.CommunicationServiceAsync;
 import com.analysis.shared.FieldVerifier;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;

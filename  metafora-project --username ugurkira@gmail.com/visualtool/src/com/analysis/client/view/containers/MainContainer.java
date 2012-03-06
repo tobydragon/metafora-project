@@ -7,8 +7,8 @@ import java.util.Map;
 
 import com.analysis.client.communication.actionresponses.RequestHistoryCallBack;
 
-import com.analysis.client.communication.server.ActionMaintenance;
-import com.analysis.client.communication.server.Server;
+import com.analysis.client.communication.servercommunication.ActionMaintenance;
+import com.analysis.client.communication.servercommunication.Server;
 import com.analysis.client.datamodels.TableViewModel;
 import com.analysis.client.resources.Resources;
 import com.analysis.client.view.charts.ExtendedPieChart;
@@ -31,7 +31,7 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
 
 	Image loadingImage;
 	FilterListPanel flp;
-	ActionMaintenance _maintenance;
+	ActionMaintenance maintenance;
 	public MainContainer(){
 	   
 	   flp=new FilterListPanel();
@@ -54,8 +54,8 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
  	 
  	   Server.getInstance().processAction("Tool",_action,this);
  	   
- 	  _maintenance=new ActionMaintenance();
- 	  _maintenance.startMaintenance();
+ 	  maintenance=new ActionMaintenance();
+ 	
 
 		
 	}
@@ -72,7 +72,7 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
 	
 		
 		if(_actionList!=null)
-			ActionMaintenance._activecfActions=_actionList;
+			maintenance.setActiveActionList(_actionList);
 		
 		//System.out.println("Configuration:"+result);
 
@@ -109,10 +109,10 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
 		*/
 		
 		// this.add(flp);
+		  maintenance.startMaintenance();
+		 ExtendedPieChart iaf=new ExtendedPieChart(maintenance);
 		 
-		 ExtendedPieChart iaf=new ExtendedPieChart();
-		 
-		 ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid();
+		 ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(maintenance);
 		  tabs.addTab("Table",indicatorTable);
 		  tabs.addTab("PieView", iaf);
 		  

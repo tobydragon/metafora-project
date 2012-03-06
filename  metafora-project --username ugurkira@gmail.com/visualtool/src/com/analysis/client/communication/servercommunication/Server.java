@@ -1,4 +1,4 @@
-package com.analysis.client.communication.server;
+package com.analysis.client.communication.servercommunication;
 
 
 import java.util.ArrayList;
