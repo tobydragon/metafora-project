@@ -13,7 +13,7 @@
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>   
   <inherits name="com.extjs.gxt.ui.GXT" />  -->
 <inherits name="com.extjs.gxt.ui.GXT" />
-<inherits name="de.novanic.eventservice.GWTEventService" />
+
   <inherits name='com.google.gwt.visualization.Visualization'/>
  <inherits name="com.google.gwt.xml.XML" />
     
