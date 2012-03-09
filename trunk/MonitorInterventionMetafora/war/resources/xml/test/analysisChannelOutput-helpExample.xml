@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interactiondata>
+  <actions>
+    <action time="1330418312361">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Bob" role="UserID" />
+      <object id="5" type="Help Request">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2206" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2211" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Bob has created box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418340779">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Bob" role="UserID" />
+      <object id="5" type="Help Request">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2206" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2211" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Bob has modified box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418353922">
+      <actiontype type="indicator" classification="OTHER" succeed="true" />
+      <object id="5" type="Help Request">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="The greee pattern doesn't follow the red pattern, my model is messed up" />
+          <property name="POS-Y" value="2206" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2211" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Unattended Help Request - help request with no links.]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="Unattended-Help-Request" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418405463">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="10" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2329" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2650" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has created box 2 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418409998">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="10" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2329" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2650" />
+          <property name="SELECTION" value="1" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 2 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418423142">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="10" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2257" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2609" />
+          <property name="SELECTION" value="1" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 2 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418442083">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="10" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="Try to find a relationship between the greens and the reds" />
+          <property name="POS-Y" value="2257" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2609" />
+          <property name="SELECTION" value="1" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 2 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418449221">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="14" type="link">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has created link 3 of type link]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418467557">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Bob" role="UserID" />
+      <object id="15" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2478" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2708" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Bob has created box 4 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418481496">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Bob" role="UserID" />
+      <object id="15" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2478" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2708" />
+          <property name="SELECTION" value="4" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Bob has modified box 4 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418511573">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Bob" role="UserID" />
+      <object id="15" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="There is always one more green than red, but I still don't get how to make it work..." />
+          <property name="POS-Y" value="2478" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2708" />
+          <property name="SELECTION" value="4" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Bob has modified box 4 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418531887">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="20" type="Microworld action">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2561" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2596" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has created box 6 of type Microworld action]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418535794">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="20" type="Microworld action">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2493" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2492" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 6 of type Microworld action]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418543507">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="20" type="Microworld action">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2493" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2492" />
+          <property name="SELECTION" value="3" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 6 of type Microworld action]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418546255">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="20" type="Microworld action">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2493" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2492" />
+          <property name="SELECTION" value="3" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 6 of type Microworld action]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418564988">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="20" type="Microworld action">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="that tells the computer what you told me :-)" />
+          <property name="POS-Y" value="2493" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2492" />
+          <property name="SELECTION" value="3" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 6 of type Microworld action]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418565435">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="20" type="Microworld action">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="that tells the computer what you told me :-)" />
+          <property name="POS-Y" value="2493" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2492" />
+          <property name="MAP-ID" value="2" />
+          <property name="SELECTION" value="3" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 6 of type Microworld action]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418567101">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="20" type="Microworld action">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="that tells the computer what you told me :-)" />
+          <property name="POS-Y" value="2493" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2467" />
+          <property name="MAP-ID" value="2" />
+          <property name="SELECTION" value="3" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 6 of type Microworld action]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418584759">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Bob" role="UserID" />
+      <object id="27" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2520" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2390" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Bob has created box 8 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418591677">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Bob" role="UserID" />
+      <object id="27" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2520" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2390" />
+          <property name="SELECTION" value="0" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Bob has modified box 8 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418615199">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Bob" role="UserID" />
+      <object id="27" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="Can you give an example?  Id ont' really understand what you mean..." />
+          <property name="POS-Y" value="2520" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2390" />
+          <property name="SELECTION" value="0" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Bob has modified box 8 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418616944">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Bob" role="UserID" />
+      <object id="27" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="Can you give an example?  Id ont' really understand what you mean..." />
+          <property name="POS-Y" value="2516" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2228" />
+          <property name="SELECTION" value="0" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Bob has modified box 8 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418631228">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Bob" role="UserID" />
+      <object id="27" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="Can you give an example?  I don't really understand what you mean..." />
+          <property name="POS-Y" value="2516" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2228" />
+          <property name="SELECTION" value="0" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Bob has modified box 8 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418637918">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Bob" role="UserID" />
+      <object id="5" type="Help Request">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="The greee pattern doesn't follow the red pattern, my model is messed up" />
+          <property name="POS-Y" value="2206" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2211" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Bob has modified box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418652508">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="10" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="Try to find a relationship between the greens and the reds" />
+          <property name="POS-Y" value="2226" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2535" />
+          <property name="SELECTION" value="1" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 2 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418656227">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="15" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="There is always one more green than red, but I still don't get how to make it work..." />
+          <property name="POS-Y" value="2269" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2748" />
+          <property name="SELECTION" value="4" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 4 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418659586">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="20" type="Microworld action">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="that tells the computer what you told me :-)" />
+          <property name="POS-Y" value="2468" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2725" />
+          <property name="MAP-ID" value="2" />
+          <property name="SELECTION" value="3" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 6 of type Microworld action]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418662467">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="27" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="Can you give an example?  I don't really understand what you mean..." />
+          <property name="POS-Y" value="2416" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2499" />
+          <property name="SELECTION" value="0" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 8 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418678968">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="32" type="My Microworld">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2514" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2406" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has created box 10 of type My Microworld]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418682937">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="32" type="My Microworld">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2480" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2178" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 10 of type My Microworld]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418686484">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="32" type="My Microworld">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2480" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2178" />
+          <property name="SELECTION" value="0" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 10 of type My Microworld]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418713072">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="32" type="My Microworld">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="See the properties of my model?  I had to do something similar for the blue and the red." />
+          <property name="POS-Y" value="2480" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2178" />
+          <property name="SELECTION" value="0" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 10 of type My Microworld]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418731269">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Bob" role="UserID" />
+      <object id="39" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2671" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2509" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Bob has created box 12 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418741582">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Bob" role="UserID" />
+      <object id="39" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2671" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2509" />
+          <property name="SELECTION" value="2" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Bob has modified box 12 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418786553">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Bob" role="UserID" />
+      <object id="39" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="TEXT" value="Thanks, I think i made it work.  I also found the rule for the total number of tile!! Does it look right?" />
+          <property name="POS-Y" value="2671" />
+          <property name="USERNAME" value="Bob" />
+          <property name="POS-X" value="2509" />
+          <property name="SELECTION" value="2" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Bob has modified box 12 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418810243">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="44" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2730" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2775" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has created box 14 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418816999">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="44" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2730" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2775" />
+          <property name="SELECTION" value="3" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 14 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1330418838504">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Alice" role="UserID" />
+      <object id="44" type="Comment">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2730" />
+          <property name="USERNAME" value="Alice" />
+          <property name="POS-X" value="2775" />
+          <property name="SELECTION" value="3" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Alice has modified box 14 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+  </actions>
+</interactiondata>
+

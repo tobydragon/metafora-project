@@ -1,0 +1,68 @@
+@CHARSET "UTF-8";
+.table-center
+{
+    margin-left            :    auto;
+    margin-right           :    auto;
+}
+
+.popup-panel{
+ height: 100%;
+  width: 100%;
+}
+
+.grid{
+
+ margin-left            :    auto;
+ margin-right           :    auto;
+}
+.button{
+ margin-left            :    10px;
+ margin-left            :    auto;
+ 
+ 
+ margin-right           :    auto;
+}
+
+.verticalpanel{
+
+ margin-left            :    auto;
+ margin-right           :    auto;
+}
+.demo-popup
+{
+    background-color       :    #0A2050;
+    height: 100%;
+ 	opacity:0.9;
+	filter:alpha(opacity=90);
+    width:  100%;
+    border                 :    3px solid #009;
+    vertical-align:middle 
+    
+ margin-left            :    auto;
+ margin-right           :    auto;
+}
+.demo-Composite
+{
+    margin                 :    0 auto;
+}
+
+.demo-popup-header
+{
+    background-color       :    #ff0;
+    font-size              :    90%;
+    font-weight            :    bold;
+    border-bottom          :    3px solid #009;
+    padding                :    5px;
+    text-align             :    center;
+}
+.demo-popup-message
+{
+    font-size              :    80%;
+    padding                :    15px;
+}
+.demo-popup-footer
+{
+    padding                :    5px;
+    text-align             :    center;
+    width                  :    100%;
+}
