@@ -1,0 +1,2 @@
+serviceClass: de.uds.visualizer.client.communication.servercommunication.CommunicationService
+path: A6FC043380D49D4E377DB680D9EE021A.gwt.rpc

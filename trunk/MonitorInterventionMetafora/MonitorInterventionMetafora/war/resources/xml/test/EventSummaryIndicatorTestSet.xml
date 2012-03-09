@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<interactiondata>
+	<actions>
+		<action time="1325841177861">
+			<actiontype classification="create" type="indicator" logged="false"/>
+			<user id="testUser01" user_role="student"/>
+			<object id="1" type="Element">
+				<properties>
+					<property name="MAP_ID" value="1"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[TestUser 1 created a box of type help-request.]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="user-action"/>
+					<property name="TOOL" value="lasad"/>
+				</properties>
+			</content>
+		</action>
+	</actions>
+</interactiondata>

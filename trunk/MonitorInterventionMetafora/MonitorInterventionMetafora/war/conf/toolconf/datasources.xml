@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sources>
+<source type="file" path="resources/xml/test/analysisChannelOutput.xml"  active="true"/>
+
+<source type="xmpp" active="false"/>
+
+<sources/>
