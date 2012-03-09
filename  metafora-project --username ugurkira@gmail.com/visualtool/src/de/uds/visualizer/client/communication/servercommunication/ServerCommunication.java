@@ -24,17 +24,17 @@ import de.uds.visualizer.client.communication.actionresponses.RequestUpdateCallB
 import de.uds.visualizer.client.utils.ClientFormatStrings;
 import de.uds.visualizer.shared.commonformat.CfAction;
 
-public class Server {
+public class ServerCommunication {
 	
 	private RemoteEventService myGWTEventService=null;	
 	private RemoteEventListener myListener = null;
-	private static Server myInstance = null;
+	private static ServerCommunication myInstance = null;
 	private  CommunicationServiceAsync myServlet = GWT
 	.create(CommunicationService.class);
 	
-	public static Server getInstance() {
+	public static ServerCommunication getInstance() {
 		if (myInstance == null) {
-			myInstance = new Server();
+			myInstance = new ServerCommunication();
 		}
 		return myInstance;
 	}
@@ -59,7 +59,7 @@ public class Server {
 	/**
 	 * Private constructor to support Singleton
 	 */
-	private Server() {
+	private ServerCommunication() {
 		getClientHandler();
 
 		RemoteEventServiceFactory GWTEventServiceFactory = RemoteEventServiceFactory.getInstance();

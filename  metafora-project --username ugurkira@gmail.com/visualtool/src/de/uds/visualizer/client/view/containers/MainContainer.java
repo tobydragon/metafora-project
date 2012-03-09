@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import de.uds.visualizer.client.communication.actionresponses.RequestHistoryCallBack;
 import de.uds.visualizer.client.communication.servercommunication.ActionMaintenance;
-import de.uds.visualizer.client.communication.servercommunication.Server;
+import de.uds.visualizer.client.communication.servercommunication.ServerCommunication;
 import de.uds.visualizer.client.datamodels.TableViewModel;
 import de.uds.visualizer.client.resources.Resources;
 import de.uds.visualizer.client.view.charts.ExtendedPieChart;
@@ -53,7 +53,7 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
  	 _action.setCfActionType(_cfActionType);
  	 
  	 
- 	   Server.getInstance().processAction("Tool",_action,this);
+ 	   ServerCommunication.getInstance().processAction("Tool",_action,this);
  	   
  	  maintenance=new ActionMaintenance();
  	

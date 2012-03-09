@@ -75,7 +75,7 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 	@Override
 	public void run() {
 		System.out.println("Client Update Request:"+counter);
-		Server.getInstance().processAction(getLastAction(),this);
+		ServerCommunication.getInstance().processAction(getLastAction(),this);
 		
 	}
 
