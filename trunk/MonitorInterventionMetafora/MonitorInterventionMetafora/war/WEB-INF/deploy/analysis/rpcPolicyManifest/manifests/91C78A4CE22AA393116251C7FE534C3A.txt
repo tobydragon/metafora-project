@@ -1,2 +1,0 @@
-serviceClass: com.analysis.client.GreetingService
-path: 8FFC6463B94A5A3E91C6027CF2D1E906.gwt.rpc
