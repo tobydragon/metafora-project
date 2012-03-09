@@ -1,0 +1,2 @@
+serviceClass: de.uds.MonitorInterventionMetafora.client.communication.servercommunication.CommunicationService
+path: CCB19AF4EFE2B253CF4C4DC042ECCB1F.gwt.rpc
