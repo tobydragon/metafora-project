@@ -59,7 +59,7 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.button.Button;
 
 import de.uds.visualizer.client.communication.actionresponses.RequestConfigurationCallBack;
-import de.uds.visualizer.client.communication.servercommunication.Server;
+import de.uds.visualizer.client.communication.servercommunication.ServerCommunication;
 import de.uds.visualizer.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.visualizer.client.resources.Resources;
 import de.uds.visualizer.shared.commonformat.CfAction;
@@ -339,7 +339,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	 	 _action.setCfActionType(_cfActionType);
 	 	 
 	    
-		Server.getInstance().processAction("Tool",_action,this);
+		ServerCommunication.getInstance().processAction("Tool",_action,this);
 
 	    return filterGroupCombo;
 	  
