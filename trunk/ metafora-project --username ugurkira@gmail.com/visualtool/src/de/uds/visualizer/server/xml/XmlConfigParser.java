@@ -4,8 +4,9 @@ import java.util.List;
 
 import de.uds.visualizer.server.utils.ServerFormatStrings;
 import de.uds.visualizer.shared.interactionmodels.Configuration;
+import de.uds.visualizer.shared.interactionmodels.FilterItemType;
 import de.uds.visualizer.shared.interactionmodels.IndicatorFilter;
-import de.uds.visualizer.shared.interactionmodels.IndicatorFilterItem;
+import de.uds.visualizer.shared.interactionmodels.IndicatorEntity;
 
 public class XmlConfigParser {
 	
@@ -64,11 +65,11 @@ public class XmlConfigParser {
 			 System.out.println("Filter:"+_filterName);
 			for(XmlFragmentInterface propertyFragment : filterFragment.getChildren(ServerFormatStrings.PROPERTY))
 			{			
-				IndicatorFilterItem _filterItem=new IndicatorFilterItem();
-				_filterItem.setType(propertyFragment.getAttributeValue(ServerFormatStrings.Type));
-				_filterItem.setProperty(propertyFragment.getAttributeValue(ServerFormatStrings.NAME));
+				IndicatorEntity _filterItem=new IndicatorEntity();
+				_filterItem.setType(FilterItemType.valueOf(propertyFragment.getAttributeValue(ServerFormatStrings.Type)));
+				_filterItem.setEntityName(propertyFragment.getAttributeValue(ServerFormatStrings.NAME));
 				_filterItem.setValue(propertyFragment.getAttributeValue(ServerFormatStrings.VALUE));				
-				 indicatorFilter.addFilterItem(_filterItem.getProperty(), _filterItem);
+				 indicatorFilter.addFilterItem(_filterItem.getEntityName(), _filterItem);
 
 			}
 			

@@ -17,7 +17,7 @@ public class GroupingOptions {
 	
 		
 	}
-	
+	/*
 	public static ListStore<PieChartComboBoxModel> getFilterTypes(){
 		ListStore<PieChartComboBoxModel> properties = new ListStore<PieChartComboBoxModel>();
 		properties.add(new PieChartComboBoxModel("1", CommonFormatStrings.C_CONTENT));
@@ -52,5 +52,5 @@ public class GroupingOptions {
 		properties.add(new PieChartComboBoxModel(CommonFormatStrings.A_V_User, CommonFormatStrings.A_User));
 		return properties;
 	}
-	
+	*/
 }

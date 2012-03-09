@@ -3,9 +3,6 @@ package de.uds.visualizer.shared.communication.objects_old;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.uds.visualizer.client.xml.GWTXmlFragment;
-
-
 
 public class CfAction {
 	

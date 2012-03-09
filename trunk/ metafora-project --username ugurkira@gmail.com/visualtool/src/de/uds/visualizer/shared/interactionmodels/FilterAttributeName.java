@@ -4,12 +4,12 @@ public enum FilterAttributeName {
 	ID,
 	CLASSIFICATION,
 	TYPE,
-	CONTENT,
+	ROLE,
 	TIME,
 	SUCCEED,
 	;
 	
-	public FilterAttributeName getFromString(String str){
+	public  static FilterAttributeName getFromString(String str){
 		try {
 			return valueOf(str);
 		}

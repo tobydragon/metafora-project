@@ -3,7 +3,6 @@ package de.uds.visualizer.shared.communication.objects_old;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.uds.visualizer.client.xml.GWTXmlFragment;
 
 
 

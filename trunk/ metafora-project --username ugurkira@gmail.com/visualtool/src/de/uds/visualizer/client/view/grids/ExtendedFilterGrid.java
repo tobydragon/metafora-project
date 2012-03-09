@@ -60,22 +60,23 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 
 import de.uds.visualizer.client.communication.actionresponses.RequestConfigurationCallBack;
 import de.uds.visualizer.client.communication.servercommunication.Server;
+import de.uds.visualizer.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.visualizer.client.resources.Resources;
 import de.uds.visualizer.shared.commonformat.CfAction;
 import de.uds.visualizer.shared.commonformat.CfActionType;
 import de.uds.visualizer.shared.interactionmodels.Configuration;
 import de.uds.visualizer.shared.interactionmodels.IndicatorFilter;
-import de.uds.visualizer.shared.interactionmodels.IndicatorFilterItem;
+import de.uds.visualizer.shared.interactionmodels.IndicatorEntity;
 import de.uds.visualizer.shared.utils.GWTDateUtils;
 
 public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfigurationCallBack {
 
 	private String groupingItem="";
 	
-	private Map<String, IndicatorFilter> configurationFilters;
+	private Map<String, IndicatorFilterItemGridRowModel> configurationFilters;
 	
-	 EditorGrid<IndicatorFilterItem> grid;
-	 ListStore<IndicatorFilterItem> store;
+	 EditorGrid<IndicatorFilterItemGridRowModel> grid;
+	 ListStore<IndicatorFilterItemGridRowModel> store;
 	 SimpleComboBox<String> filterGroupCombo;
 	
 	public ExtendedFilterGrid(String _groupingItem){
@@ -92,19 +93,19 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     super.onRender(parent, index);
     setLayout(new FlowLayout(1));
 
-   store = new ListStore<IndicatorFilterItem>();
+   store = new ListStore<IndicatorFilterItemGridRowModel>();
  
     
  
-    List<IndicatorFilterItem> filters=new ArrayList<IndicatorFilterItem>();
-    IndicatorFilterItem ft=new IndicatorFilterItem();
+    List<IndicatorFilterItemGridRowModel> filters=new ArrayList<IndicatorFilterItemGridRowModel>();
+    IndicatorFilterItemGridRowModel ft=new IndicatorFilterItemGridRowModel();
     ft.setProperty("MapID");
     ft.setValue("1");
     ft.setType("Action");
    
     filters.add(ft);
     
-    IndicatorFilterItem fts=new IndicatorFilterItem();
+    IndicatorFilterItemGridRowModel fts=new IndicatorFilterItemGridRowModel();
     fts.setProperty("User");
     fts.setValue("Ugur");
     fts.setType("Content");
@@ -137,17 +138,17 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     
     
     
-    GridCellRenderer<IndicatorFilterItem> buttonRenderer = new GridCellRenderer<IndicatorFilterItem>() {
+    GridCellRenderer<IndicatorFilterItemGridRowModel> buttonRenderer = new GridCellRenderer<IndicatorFilterItemGridRowModel>() {
 
         private boolean init;
 
-        public Object render(final IndicatorFilterItem model, String property, ColumnData config, final int rowIndex,
-            final int colIndex, final ListStore<IndicatorFilterItem> store, Grid<IndicatorFilterItem> grid) {
+        public Object render(final IndicatorFilterItemGridRowModel model, String property, ColumnData config, final int rowIndex,
+            final int colIndex, final ListStore<IndicatorFilterItemGridRowModel> store, Grid<IndicatorFilterItemGridRowModel> grid) {
           if (!init) {
             init = true;
-            grid.addListener(Events.ColumnResize, new Listener<GridEvent<IndicatorFilterItem>>() {
+            grid.addListener(Events.ColumnResize, new Listener<GridEvent<IndicatorFilterItemGridRowModel>>() {
 
-              public void handleEvent(GridEvent<IndicatorFilterItem> be) {
+              public void handleEvent(GridEvent<IndicatorFilterItemGridRowModel> be) {
                 for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
                   if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
                       && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
@@ -208,7 +209,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
      ColumnModel cm = new ColumnModel(config);
 
      
-     grid = new EditorGrid<IndicatorFilterItem>(store, cm);
+     grid = new EditorGrid<IndicatorFilterItemGridRowModel>(store, cm);
 
     grid.setBorders(true);
     grid.setId("_filterItemGrid");
@@ -227,16 +228,16 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
         }
     });*/
    
-    grid.getStore().addListener(Store.Add, new Listener<StoreEvent<IndicatorFilterItem>>() {
-          public void handleEvent(StoreEvent<IndicatorFilterItem> be) {
+    grid.getStore().addListener(Store.Add, new Listener<StoreEvent<IndicatorEntity>>() {
+          public void handleEvent(StoreEvent<IndicatorEntity> be) {
         	  //Info.display("Info","addedd");
         	  
         	//  filterGroup.clearSelections();
           }
         });
     
-    grid.getStore().addListener(Store.Remove, new Listener<StoreEvent<IndicatorFilterItem>>() {
-        public void handleEvent(StoreEvent<IndicatorFilterItem> be) {
+    grid.getStore().addListener(Store.Remove, new Listener<StoreEvent<IndicatorEntity>>() {
+        public void handleEvent(StoreEvent<IndicatorEntity> be) {
       	 
         	//Info.display("Info","remove");
         	//filterGroup.clearSelections();
@@ -249,7 +250,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
   
       @Override  
       public void componentSelected(ButtonEvent ce) {  
-    IndicatorFilterItem filter = new IndicatorFilterItem();  
+    	  IndicatorFilterItemGridRowModel filter = new IndicatorFilterItemGridRowModel();  
     filter.setProperty("Tool");
     filter.setValue("Lasad");
      
@@ -315,16 +316,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
   }
   
   
-  public  EditorGrid<IndicatorFilterItem> getExtendedFilterGrid(){
-	  
-	 return grid;	  
-  }
-  
-  
-  public  SimpleComboBox<String> getFilterSetListCombo(){
-		
-		return filterGroupCombo;
-	}
+
 
 		
   
@@ -384,12 +376,12 @@ public void onSuccess(Configuration result) {
 	        if(confFilters.containsKey(filterSetKey)){
 	        	
 	        	IndicatorFilter filter=confFilters.get(filterSetKey);
-	        	Map<String, IndicatorFilterItem> _filteritemProperies=filter.getProperties();
+	        	Map<String, IndicatorEntity> _filteritemProperies=filter.getProperties();
 	        	store.removeAll();
 	        	
 	        	for(String _key: _filteritemProperies.keySet()){
-	        		IndicatorFilterItem _filterItem=new IndicatorFilterItem();
-	        		_filterItem=filter.getFilterItem(_key);
+	        		IndicatorFilterItemGridRowModel _filterItem=new IndicatorFilterItemGridRowModel();
+	        		//TODO _filterItem=filter.getFilterItem(_key);
 	        		
 	        		
 	        	     grid.stopEditing();  
