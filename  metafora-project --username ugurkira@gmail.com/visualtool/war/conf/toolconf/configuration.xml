@@ -5,23 +5,23 @@
 <data-source-type>file</data-source-type>
 <filters>
 <filter name="Default" editable="true">
-<property name="Tool" value="Lasad" type="Content"/>
-<property name="Tool" value="Metafora" type="Content"/>
-<property name="User" value="Alice" type="Action"/>
+<filteritem entityname="Tool" value="Lasad" type="Content"/>
+<filteritem entityname="Tool" value="Metafora" type="Content"/>
+<filteritem entityname="User" value="Alice" type="Action"/>
 
 </filter>
 
 <filter name="UserandMap" editable="true">
-<property name="MapID" value="1" type="Action"/>
-<property name="User" value="Bob" type="Content"/>
+<filteritem entityname="MapID" value="1" type="Action"/>
+<filteritem entityname="User" value="Bob" type="Content"/>
 </filter>
 
 
 <filter name="Mixed" editable="true">
-<property name="Tool" value="Metafora" type="Content"/>
-<property name="User" value="Alice"  type="Action"/>
-<property name="MapID" value="M1" type="Object"/>
-<property name="User" value="Bob" type="Action"/>
+<filteritem entityname="Tool" value="Metafora" type="Content"/>
+<filteritem entityname="User" value="Alice"  type="Action"/>
+<filteritem entityname="MapID" value="M1" type="Object"/>
+<filteritem entityname="User" value="Bob" type="Action"/>
 </filter>
 
 </filters>

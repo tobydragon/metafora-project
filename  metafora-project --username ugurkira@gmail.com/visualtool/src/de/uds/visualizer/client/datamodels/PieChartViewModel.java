@@ -13,8 +13,12 @@ import de.uds.visualizer.client.communication.servercommunication.ActionMaintena
 import de.uds.visualizer.shared.commonformat.CfAction;
 import de.uds.visualizer.shared.commonformat.CfContent;
 import de.uds.visualizer.shared.commonformat.CfObject;
+import de.uds.visualizer.shared.commonformat.CfProperty;
 import de.uds.visualizer.shared.commonformat.CfUser;
 import de.uds.visualizer.shared.commonformat.CommonFormatStrings;
+import de.uds.visualizer.shared.interactionmodels.FilterAttributeName;
+import de.uds.visualizer.shared.interactionmodels.FilterItemType;
+import de.uds.visualizer.shared.interactionmodels.IndicatorEntity;
 
 public class PieChartViewModel {
 	
@@ -22,12 +26,13 @@ public class PieChartViewModel {
 	 List<CfAction> allActions=null;
 	 List<CfObject> allObjects=null;
 	 List<CfContent> allContents=null;
-	Map<String, List<CfContent>>  groupedContent=null;
-	Map<String, List<CfObject>>   groupedObject=null;
-	Map<String, List<CfAction>>   groupedAction=null;
+	Map<String, List<CfContent>>  groupedContents=null;
+	Map<String, List<CfObject>>   groupedObjects=null;
+	Map<String, List<CfAction>>   groupedActions=null;
+	Map<String, List<CfUser>>  	  groupedUsers=null;
 	
-	Map<Integer, String>subsectionProperty = null;
-	Map<Integer, String>subsectionValue =null;
+	Map<Integer, IndicatorEntity>indicatorEntities = null;
+	Map<Integer, IndicatorEntity>subsectionValue =null;
 	Map<String, String> activeFilters =null;
 	ActionMaintenance maintenance=null;
 	
@@ -39,8 +44,8 @@ public class PieChartViewModel {
 		allObjects=new ArrayList<CfObject>();
 		allContents=new ArrayList<CfContent>();
 		activeFilters = new HashMap<String, String>();
-		subsectionValue= new HashMap<Integer, String>();
-		subsectionProperty=new HashMap<Integer, String>();
+		subsectionValue= new HashMap<Integer, IndicatorEntity>();
+		indicatorEntities=new HashMap<Integer,IndicatorEntity>();
 		sliptActions();
 		
 	}
@@ -72,72 +77,229 @@ public class PieChartViewModel {
 	}
 	
 	
-	public DataTable getPieChartData(String myType,String myItem){
+	public List<IndicatorEntity>  getIndicatorEntities(){
+		
+		List<IndicatorEntity> _entityList=new ArrayList<IndicatorEntity>();
+		
+		
+			IndicatorEntity _entity=null;
+			
+			//Action_Type Attributes
+			
+			_entity =new IndicatorEntity();
+			_entity.setEntityName(CommonFormatStrings.A_V_Type);
+			_entity.setDisplayText(CommonFormatStrings.A_Type);
+			_entity.setType(FilterItemType.ACTION_TYPE);
+			_entityList.add(_entity);
+			
+			
+			_entity =new IndicatorEntity();
+			_entity.setEntityName(CommonFormatStrings.A_V_Classification);
+			_entity.setDisplayText(CommonFormatStrings.A_Classification);
+			_entity.setType(FilterItemType.ACTION_TYPE);
+			_entityList.add(_entity);
+			
+		
+			
+			_entity =new IndicatorEntity();
+			_entity.setEntityName(CommonFormatStrings.A_V_SUCCED);
+			_entity.setDisplayText(CommonFormatStrings.A_SUCCED);
+			_entity.setType(FilterItemType.ACTION_TYPE);
+			_entityList.add(_entity);
+			
+			//User Attributes
+			
+			_entity =new IndicatorEntity();
+			_entity.setEntityName(CommonFormatStrings.A_V_User);
+			_entity.setDisplayText(CommonFormatStrings.A_User);
+			_entity.setType(FilterItemType.USER);
+			_entityList.add(_entity);
+			
+			
+			_entity =new IndicatorEntity();
+			_entity.setEntityName(CommonFormatStrings.A_V_ROLE);
+			_entity.setDisplayText(CommonFormatStrings.A_ROLE);
+			_entity.setType(FilterItemType.USER);
+			_entityList.add(_entity);
+					
+			//Object Properties			
+			_entityList.addAll(getObjectEntities());
+			
+			//Content Properties
+			_entityList.addAll(getContentEntities());
+			
+			return _entityList;
+			
+		
+	}
+	
+	List<IndicatorEntity> getContentEntities(){
+		
+	   List<IndicatorEntity> _entityList=new ArrayList<IndicatorEntity>();
+	 
+	   Map<String,String> _entityMap=new HashMap<String,String>();
+		
+		for(CfContent _content: allContents){
+			for(String _entityName:_content.getProperties().keySet()){
+				
+				IndicatorEntity _entity =new IndicatorEntity();
+				
+				_entity.setEntityName(_entityName);
+				_entity.setType(FilterItemType.CONTENT);
+				_entity.setDisplayText(_entityName);
+				if(!_entityMap.containsKey(_entity.getEntityName())){
+				_entityList.add(_entity);
+				_entityMap.put(_entityName, _entityName);
+				
+				}
+			
+			}
+			}
+			
+	   
+		return _entityList;
+	}
+	
+	
+	
+	List<IndicatorEntity> getObjectEntities(){
+		
+		List<IndicatorEntity> _entityList=new ArrayList<IndicatorEntity>();
+		
+		IndicatorEntity _entity=null;
+		
+		//Object Attributes
+		_entity =new IndicatorEntity();
+		_entity.setEntityName(CommonFormatStrings.O_V_OBJECT_ID);
+		_entity.setDisplayText(CommonFormatStrings.O_OBJECT_ID);
+		_entity.setType(FilterItemType.OBJECT);
+		_entityList.add(_entity);
+		
+		_entity =new IndicatorEntity();
+		_entity.setEntityName(CommonFormatStrings.O_V_OBJECT_TYPE);
+		_entity.setDisplayText(CommonFormatStrings.O_OBJECT_TYPE);
+		_entity.setType(FilterItemType.OBJECT);
+		_entityList.add(_entity);
+		 Map<String,String> _entityMap=new HashMap<String,String>();
+		
+	
+			for(CfObject _obj: allObjects){
+			for(String _entityName:_obj.getProperties().keySet()){
+				
+			    _entity =new IndicatorEntity();
+				
+				_entity.setEntityName(_entityName);
+				_entity.setType(FilterItemType.OBJECT);
+				_entity.setDisplayText(_entityName);
+				
+				if(!_entityMap.containsKey(_entity.getEntityName())){
+					_entityList.add(_entity);
+					_entityMap.put(_entityName,_entityName);
+					
+					}
+				
+			}
+			}
+			
+			return _entityList;
+		
+		
+	}
+	
+	public DataTable getPieChartData(IndicatorEntity _entity){
 		
 		
 		DataTable data = DataTable.create();
 		
-		if(myType.equalsIgnoreCase("") || myType==null){
+		if(_entity==null || _entity.getEntityName().equalsIgnoreCase("")){
 			return null;
 		}
-		else if(myItem.equalsIgnoreCase("") || myItem==null){
+		else if(_entity.getType()==null){
 			
 			return null;
 		}
 		
 		
-		if(myType.equalsIgnoreCase(CommonFormatStrings.O_OBJECT)){
-			groupedObject=new HashMap<String, List<CfObject>>();
+		switch (_entity.getType()){
+		
+		case ACTION_TYPE:
 			
-			groupedObject=groupObjectByProperty(myItem);
+			groupedActions=new HashMap<String, List<CfAction>>(); 
+			groupedActions=groupActionTypesByEntityName(_entity.getEntityName());
+			
+			    data.addColumn(ColumnType.STRING, "Task");
+			    data.addColumn(ColumnType.NUMBER, "Hours per Day");
+			    data.addRows(groupedActions.size());
+			    int index=0;
+			    for(String key:groupedActions.keySet()){
+			    data.setValue(index, 0, key);
+			    _entity.setValue(key);
+			    indicatorEntities.put(index,_entity );
+			  //  subsectionValue.put(index, key);
+			    data.setValue(index, 1, groupedActions.get(key).size());
+			    index++;
+		}
+			    
+			break;
+		case USER:
+			groupedUsers=new HashMap<String, List<CfUser>>(); 
+			groupedUsers=groupUsersByEntityName(_entity.getEntityName());
+			
+			    data.addColumn(ColumnType.STRING, "Task");
+			    data.addColumn(ColumnType.NUMBER, "Hours per Day");
+			    data.addRows(groupedUsers.size());
+			     index=0;
+			    for(String key:groupedUsers.keySet()){
+			    data.setValue(index, 0, key);
+			    _entity.setValue(key);
+			    indicatorEntities.put(index,_entity );
+			   // subsectionValue.put(index, key);
+			    data.setValue(index, 1, groupedUsers.get(key).size());
+			    index++;
+			    }
+			
+			break;
+		case OBJECT:
+			
+		groupedObjects=new HashMap<String, List<CfObject>>();
+			
+			groupedObjects=groupObjectsByEntityName(_entity.getEntityName());
 			
 			   data.addColumn(ColumnType.STRING, "Task");
 			    data.addColumn(ColumnType.NUMBER, "Hours per Day");
-			    data.addRows(groupedObject.size());
-			    int index=0;
-			    for(String key:groupedObject.keySet()){
+			    data.addRows(groupedObjects.size());
+			    index=0;
+			    for(String key:groupedObjects.keySet()){
 			    data.setValue(index, 0, key);
-			    subsectionProperty.put(index, myItem);
-			    subsectionValue.put(index, key);
-			    data.setValue(index, 1, groupedObject.get(key).size());
+			    _entity.setValue(key);
+			    indicatorEntities.put(index,_entity );
+			   // subsectionValue.put(index, key);
+			    data.setValue(index, 1, groupedObjects.get(key).size());
 			    index++;
 			    }
-						
-		}
-		else if(myType.equalsIgnoreCase(CommonFormatStrings.C_CONTENT)){
-			groupedContent=new HashMap<String, List<CfContent>>(); 
-			groupedContent=groupContentByProperty(myItem);	
-			    data.addColumn(ColumnType.STRING, "Task");
-			    data.addColumn(ColumnType.NUMBER, "Hours per Day");
-			    data.addRows(groupedContent.size());
-			    int index=0;
-			    for(String key:groupedContent.keySet()){
-			    data.setValue(index, 0, key);
-			    subsectionProperty.put(index, myItem);
-			    subsectionValue.put(index, key);
-			    data.setValue(index, 1, groupedContent.get(key).size());
-			    index++;
-		}
-	}
-		
-		else if(myType.equalsIgnoreCase(CommonFormatStrings.A_Action)){
-			groupedAction=new HashMap<String, List<CfAction>>(); 
-			groupedAction=groupActionByProperty(myItem);
+			    
+			break;
 			
+		case CONTENT:
+			groupedContents=new HashMap<String, List<CfContent>>(); 
+			groupedContents=groupContentsByEntityName(_entity.getEntityName());	
 			    data.addColumn(ColumnType.STRING, "Task");
 			    data.addColumn(ColumnType.NUMBER, "Hours per Day");
-			    data.addRows(groupedAction.size());
-			    int index=0;
-			    for(String key:groupedAction.keySet()){
+			    data.addRows(groupedContents.size());
+			    index=0;
+			    for(String key:groupedContents.keySet()){
 			    data.setValue(index, 0, key);
-			    subsectionProperty.put(index, myItem);
-			    subsectionValue.put(index, key);
-			    data.setValue(index, 1, groupedAction.get(key).size());
+			    _entity.setValue(key);
+			    indicatorEntities.put(index,_entity );
+			    //subsectionValue.put(index, key);
+			    data.setValue(index, 1, groupedContents.get(key).size());
 			    index++;
-		}
-	}
+			
+			break;
+		
+			
+		}}
 
-	 
 	    return data;
 		
 	}
@@ -156,30 +318,24 @@ public class PieChartViewModel {
 		return activeFilters.containsKey(_key);
 		
 	}
-	public String getSubSectionProperty(int _key){
+	public IndicatorEntity getIndicatorEntity(int _key){
 		
-		if(subsectionProperty.containsKey(_key))
-		return subsectionProperty.get(_key);
-		return "";
+		if(indicatorEntities.containsKey(_key))
+		return indicatorEntities.get(_key);
+		return null;
 	}
+
 	
-public String getSubSectionValue(int _key){
+	
+public Map<String, List<CfObject>> groupObjectByProperty(String _property){
+	Map<String, List<CfObject>> map = new HashMap<String, List<CfObject>>();
+	for (CfObject myobject :allObjects) {
 		
-		if(subsectionValue.containsKey(_key))
-		return subsectionValue.get(_key);
-		return "";
-	}
-	
-	
-	public Map<String, List<CfObject>> groupObjectByProperty(String property){
 		
-		Map<String, List<CfObject>> map = new HashMap<String, List<CfObject>>();
-		for (CfObject myobject :allObjects) {
-		   
 		   String  key="";
-		   if(myobject.getProperties().containsKey(property)){
+		   if(myobject.getProperties().containsKey(_property)){
 			   
-			key=myobject.getPropertyValue(property);
+			key=myobject.getPropertyValue(_property);
 				    
 		   if (map.get(key) == null) {
 			   map.put(key, new ArrayList<CfObject>());
@@ -188,13 +344,79 @@ public String getSubSectionValue(int _key){
 		   map.get(key).add(myobject);
 		   }
 		}
+	
+return map;	
+}
+
+
+ Map<String, List<CfObject>> groupObjectByAttribute(String _attribute){
+
+	 
+	 
+	 
+	 Map<String, List<CfObject>> map = new HashMap<String, List<CfObject>>();
+		for (CfObject _obj :allObjects) {
+			
+				   String  key="";
+				   
+				   if(_attribute.equalsIgnoreCase(CommonFormatStrings.O_V_OBJECT_TYPE)){
+					   
+					   key=_obj.getType();
+					   if (map.get(key) == null) {
+						      map.put(key, new ArrayList<CfObject>());
+						   }
+						   map.get(key).add(_obj);
+
+				   }
+				   
+				   else if(_attribute.equalsIgnoreCase(CommonFormatStrings.O_V_OBJECT_ID)){
+					   
+					   key=_obj.getId();
+					   if (map.get(key) == null) {
+						      map.put(key, new ArrayList<CfObject>());
+						   }
+						   map.get(key).add(_obj);
+
+				   }
+		
+		}
+			
+	 
+	 
+	 
+	
+	return map;
+}
+
+
+
+	public Map<String, List<CfObject>> groupObjectsByEntityName(String _entityName){
+		
+		
+		Map<String, List<CfObject>> map = new HashMap<String, List<CfObject>>();
+		
+	
+		
+		if(FilterAttributeName.getFromString(_entityName.toUpperCase())==null){
+			map=groupObjectByProperty(_entityName);
+
+		}
+		else{
+			
+		
+			map=groupObjectByAttribute(_entityName);
+			
+		}
+			
+		
+		
 		outputSorted(map);
 		return map;	
 	}	
 	
 	
 		
-		public Map<String, List<CfContent>> groupContentByProperty(String property){
+		 Map<String, List<CfContent>> groupContentsByEntityName(String property){
 			
 			Map<String, List<CfContent>> map = new HashMap<String, List<CfContent>>();
 			for (CfContent mycontent :allContents) {
@@ -216,8 +438,46 @@ public String getSubSectionValue(int _key){
 		}
 
 		
+		 Map<String, List<CfUser>>  groupUsersByEntityName(String _entityName){
+			 
 		
-		public Map<String, List<CfAction>> groupActionByProperty(String property){
+			 Map<String, List<CfUser>> map = new HashMap<String, List<CfUser>>();
+				for (CfAction _myaction :allActions) {
+					for(CfUser _user: _myaction.getCfUsers()){
+						   String  key="";
+						   
+						   if(_entityName.equalsIgnoreCase(CommonFormatStrings.A_V_ROLE)){
+							   
+							   key=_user.getrole();
+							   if (map.get(key) == null) {
+								      map.put(key, new ArrayList<CfUser>());
+								   }
+								   map.get(key).add(_user);
+
+						   }
+						   
+						   else if(_entityName.equalsIgnoreCase(CommonFormatStrings.A_V_User)){
+							   
+							   key=_user.getid();
+							   if (map.get(key) == null) {
+								      map.put(key, new ArrayList<CfUser>());
+								   }
+								   map.get(key).add(_user);
+
+						   }
+				
+				}
+					}
+				
+				
+				
+				
+				return map;	 
+				   	
+			 
+		 }
+		
+		 Map<String, List<CfAction>> groupActionTypesByEntityName(String _entityName){
 			
 			Map<String, List<CfAction>> map = new HashMap<String, List<CfAction>>();
 			
@@ -226,7 +486,7 @@ public String getSubSectionValue(int _key){
 				
 			   String  key="";
 			   
-			   if(property.equalsIgnoreCase(CommonFormatStrings.A_V_Type)){
+			   if(_entityName.equalsIgnoreCase(CommonFormatStrings.A_V_Type)){
 				   
 				   key=myaction.getCfActionType().getType();
 				   if (map.get(key) == null) {
@@ -236,7 +496,7 @@ public String getSubSectionValue(int _key){
 
 			   }
 			   
-			   else if(property.equalsIgnoreCase(CommonFormatStrings.A_V_Classification)){
+			   else if(_entityName.equalsIgnoreCase(CommonFormatStrings.A_V_Classification)){
 	   
 				   key=myaction.getCfActionType().getClassification();
 				   if (map.get(key) == null) {
@@ -246,23 +506,18 @@ public String getSubSectionValue(int _key){
 
 			   }  
 			   
-			   else if(property.equalsIgnoreCase(CommonFormatStrings.A_V_User)){
+			   
+			   
+			   else if(_entityName.equalsIgnoreCase(CommonFormatStrings.A_V_SUCCED)){
 				   
-				  for(CfUser user:myaction.getCfUsers()){
-					  
-					  System.out.println("User:"+user.getid());
-					  key=user.getid();
-					  if (map.get(key) == null) {
-						  System.out.println("New user :"+user.getid() +" is found added a new list");
+				   key=myaction.getCfActionType().getSucceed();
+				   if (map.get(key) == null) {
 					      map.put(key, new ArrayList<CfAction>());
 					   }
 					   map.get(key).add(myaction);
-				  }
 
 			   }  
-			   		   
-			   
-			   
+
 			   
 			}
 
@@ -272,7 +527,7 @@ public String getSubSectionValue(int _key){
 		
 		
 	
-		public void ouputValues() {
+		 void ouputValues() {
 			
 			System.out.println("Object count:"+allObjects.size());
 			System.out.println("Content count:"+allContents.size());
@@ -300,7 +555,7 @@ public String getSubSectionValue(int _key){
 			}
 			
 			
-public void outputSortedA(Map<String, List<CfAction>> data){
+ void outputSortedA(Map<String, List<CfAction>> data){
 				
 				for(String mykey:data.keySet()){
 					

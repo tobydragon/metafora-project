@@ -1,12 +1,12 @@
 package de.uds.visualizer.shared.interactionmodels;
 
-public enum FilterElementType {
+public enum FilterItemType {
 	ACTION_TYPE,
 	USER,
 	OBJECT,
 	CONTENT;
 	
-	public FilterElementType getFromString(String str){
+	public static FilterItemType getFromString(String str){
 		try {
 			return valueOf(str);
 		}

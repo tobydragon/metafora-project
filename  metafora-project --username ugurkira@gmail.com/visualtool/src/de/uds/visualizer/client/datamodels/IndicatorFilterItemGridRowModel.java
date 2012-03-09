@@ -5,7 +5,7 @@
  * 
  * http://extjs.com/license
  */
-package de.uds.visualizer.shared.interactionmodels;
+package de.uds.visualizer.client.datamodels;
 
 
 
@@ -13,7 +13,7 @@ package de.uds.visualizer.shared.interactionmodels;
 import com.extjs.gxt.ui.client.data.BaseModel;
 
 
-public class IndicatorFilterItem extends BaseModel {
+public class IndicatorFilterItemGridRowModel extends BaseModel {
 
 
 	
@@ -23,11 +23,11 @@ public class IndicatorFilterItem extends BaseModel {
 	private static final long serialVersionUID = -3416203885980295041L;
 
 
-public IndicatorFilterItem() {
+public IndicatorFilterItemGridRowModel() {
   }
 
   
-  public IndicatorFilterItem(String _property, String _value,String _type) {
+  public IndicatorFilterItemGridRowModel(String _property, String _value,String _type) {
     set("property", _property);
     set("value", _value);
     set("filtertype", _type);

@@ -7,6 +7,8 @@ package de.uds.visualizer.client.view.charts;
 
 
 
+import java.util.List;
+
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedListener;
 import com.extjs.gxt.ui.client.store.ListStore;
@@ -40,17 +42,18 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart.PieOptions;
 
 import de.uds.visualizer.client.communication.servercommunication.ActionMaintenance;
+import de.uds.visualizer.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.visualizer.client.datamodels.PieChartComboBoxModel;
 import de.uds.visualizer.client.datamodels.PieChartViewModel;
 import de.uds.visualizer.shared.commonformat.CommonFormatStrings;
-import de.uds.visualizer.shared.interactionmodels.IndicatorFilterItem;
+import de.uds.visualizer.shared.interactionmodels.FilterItemType;
+import de.uds.visualizer.shared.interactionmodels.IndicatorEntity;
 
 public class ExtendedPieChart extends VerticalPanel {
 	
 	
 	//Map<Integer, String>subsection = new HashMap<Integer, String>();
-	private String Type="";
-	private String Item="";
+	private IndicatorEntity _selectedEntity=null;
 	private PieChart pie=null;
 	private VerticalPanel mainContainer;
 	
@@ -88,15 +91,15 @@ public ExtendedPieChart(String title){
 	  
 	  
 	    
-	    comboType.setDisplayField("name");
-	    comboType.setValueField("text");
+	    comboType.setDisplayField("displaytext");
+	    comboType.setValueField("entityname");
 	    comboType.setWidth(150);
 	    comboType.setEditable(false);
 	 
 	    comboType.setAutoHeight(true);
 	    comboType.setId("comboType");
-	    comboType.setStore(GroupingOptions.getFilterTypes());
-	    comboType.setTypeAhead(true);
+	    comboType.setStore(toComboBoxEntities(model.getIndicatorEntities()));
+	  //  comboType.setTypeAhead(true);
 	    comboType.setTriggerAction(TriggerAction.ALL);
 	  
 	   
@@ -104,7 +107,7 @@ public ExtendedPieChart(String title){
 	    hp.setWidth(600);
 	    hp.add(new Label("Type:"));
 	    hp.add(comboType);
-	    
+	    /*/
 	    final ComboBox<PieChartComboBoxModel> comboItem = new ComboBox<PieChartComboBoxModel>();
 	    comboItem.setEmptyText("Select filter type...");
 	    comboItem.setDisplayField("name");
@@ -134,7 +137,7 @@ public ExtendedPieChart(String title){
 	    };
 	    
 	    
-	    
+	    */
 	    
 	    SelectionChangedListener<PieChartComboBoxModel> comboListener =new SelectionChangedListener<PieChartComboBoxModel>(){
 	        @Override
@@ -142,35 +145,44 @@ public ExtendedPieChart(String title){
 
 	        	PieChartComboBoxModel vg = se.getSelectedItem();   
 	        	
-	            Record record = GroupingOptions.getObjectProperties().getRecord(vg);  
+	         //   Record record = GroupingOptions.getObjectProperties().getRecord(vg);  
 	            
-	              String filter = record.getModel().get("name");
-	              Type=filter;
+	        	_selectedEntity=new IndicatorEntity();
+	        	_selectedEntity.setEntityName(vg.getEntityName());
+	        	_selectedEntity.setDisplayText(vg.getDisplayText());
+	        	_selectedEntity.setType(vg.getItemType());
+	              String _entityName =  vg.getEntityName();
+	              String _displayText=vg.getDisplayText();
+	              FilterItemType _itemType=vg.getItemType();
+	              
+	              Info.display("Display","name:"+_entityName+" text:"+_displayText+" ItemType:"+_itemType);
+	              //Type=filter;
 	            
 	              
-	              
+	              /*
 	              comboItem.removeAllListeners();
 	              comboItem.clear();            
 	              comboItem.setStore(getFilterItems(filter));
-	              comboItem.addSelectionChangedListener(comboListenerItem);
+	              comboItem.addSelectionChangedListener(comboListenerItem);*/
 	        }
 
 	    };
 	    comboType.addSelectionChangedListener(comboListener);
-	    comboItem.addSelectionChangedListener(comboListenerItem);
+	    //comboItem.addSelectionChangedListener(comboListenerItem);
 	    
 	
 	    
 	    
 	    Button retriveBtn=new Button("Retrieve");
-	    retriveBtn.setWidth("50px");
+	    retriveBtn.setWidth("55px");
 	    retriveBtn.setHeight("29px");
 	    
 	    retriveBtn.addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
 	   
-	       	RootPanel.get().add(createPieChart(model.getPieChartData(Type,Item),"pieChart"));
-	        
+	        	if(_selectedEntity!=null){
+	       	RootPanel.get().add(createPieChart(model.getPieChartData(_selectedEntity),"pieChart"));
+	        	}
 	       	//_mainContainer.repaint();
 	        	
 	        	
@@ -178,8 +190,8 @@ public ExtendedPieChart(String title){
 	        });
 	    
 
-	    hp.add(new Label("Property:"));
-	    hp.add(comboItem);
+	    hp.add(new Label(""));
+	    //hp.add(comboItem);
 	    hp.add(retriveBtn);
 
 	   
@@ -200,24 +212,16 @@ public ExtendedPieChart(String title){
 	}
 	
 
-	public static ListStore<PieChartComboBoxModel> getFilterItems(String Type) {
-		ListStore<PieChartComboBoxModel>  filters = new ListStore<PieChartComboBoxModel>();
-	    
-	  if(Type.equalsIgnoreCase(CommonFormatStrings.O_OBJECT)){
-		  
-		  filters=GroupingOptions.getObjectProperties();
-	  }
-	  else if(Type.equalsIgnoreCase(CommonFormatStrings.C_CONTENT)){
-		  
-		  filters=GroupingOptions.getContentProperties();  
-	  }
-	  else if(Type.equalsIgnoreCase(CommonFormatStrings.A_Action)){
-		  
-		  
-		  filters=GroupingOptions.getActionProperties();
-	  }
-	     
-	    return filters;
+
+	ListStore<PieChartComboBoxModel> toComboBoxEntities(List<IndicatorEntity>  _entityList) {
+		ListStore<PieChartComboBoxModel>  _comboBoxModelList = new ListStore<PieChartComboBoxModel>();
+	    for(IndicatorEntity _ent: _entityList){
+	    	PieChartComboBoxModel _comboBoxItem=new PieChartComboBoxModel(_ent);
+	    	_comboBoxModelList.add(_comboBoxItem);
+	    	
+	    	
+	    }
+	    return  _comboBoxModelList;
 	  }
 	
 	
@@ -283,28 +287,28 @@ public ExtendedPieChart(String title){
 		    	    }
 		    	  
 		    	    
-		    	    EditorGrid<IndicatorFilterItem> editorGrid = (EditorGrid<IndicatorFilterItem>) ComponentManager.get().get("_filterItemGrid");
-					EditorGrid<IndicatorFilterItem> _grid = editorGrid;
+		    	    EditorGrid<IndicatorFilterItemGridRowModel> editorGrid = (EditorGrid<IndicatorFilterItemGridRowModel>) ComponentManager.get().get("_filterItemGrid");
+					EditorGrid<IndicatorFilterItemGridRowModel> _grid = editorGrid;
 		    	    
 					SimpleComboBox<String> _filterCombo=(SimpleComboBox<String>) ComponentManager.get().get("_filterGroupCombo");
 					
 		    	    
 		    	  
-		    	    String _propertyType=Type;
-		    	    String _property=model.getSubSectionProperty(selection);
-		    	    String _value=model.getSubSectionValue(selection);
+		    	  IndicatorEntity _entity=new IndicatorEntity();
+		    	  _entity=model.getIndicatorEntity(selection);
+		    	    
 
 		    	   
-			          String _key=_propertyType+"-"+_property+"-"+_value;
+			          String _key= _entity.getType().toString()+"-"+ _entity.getEntityName()+"-"+ _entity.getValue();
 			          
 			       
-					if(!isInFilterList(_key,_grid) && _value!=null && !_value.equalsIgnoreCase("")){
+					if(!isInFilterList(_key,_grid) && _entity!=null && !_entity.getValue().equalsIgnoreCase("")){
 			        
 			        
-			        IndicatorFilterItem _filter = new IndicatorFilterItem();  
-			        _filter.setProperty(_property);
-			        _filter.setValue(_value);
-			        _filter.setType(_propertyType);
+			       // IndicatorEntity _filter = new IndicatorEntity();  
+			        //_filter.setProperty(_property);
+			        //_filter.setValue(_value);
+			        //_filter.setType(_propertyType);
 			         
 			    	//Info.display("Info","Filter for "+ value+" is added!");
 			        
@@ -315,12 +319,13 @@ public ExtendedPieChart(String title){
 			        	_filterCombo.clearSelections();
 			        }
 			        
+
+			        IndicatorFilterItemGridRowModel  _newRow=new IndicatorFilterItemGridRowModel(_entity.getEntityName(),_entity.getValue(),_entity.getType().toString()); 
+			    	
 			        
-			    	
-			    	
 			        _grid.stopEditing();  
-			        _grid.getStore().insert(_filter, 0);  
-			        _grid.startEditing(_grid.getStore().indexOf(_filter), 0); 
+			        _grid.getStore().insert(_newRow, 0);  
+			        _grid.startEditing(_grid.getStore().indexOf(_newRow), 0); 
 			        _filterCombo.clearSelections();
 				       
 			        }
@@ -340,15 +345,15 @@ public ExtendedPieChart(String title){
 
 	  
 	
-	 boolean isInFilterList(String _key,EditorGrid<IndicatorFilterItem> _grid){
+	 boolean isInFilterList(String _key,EditorGrid<IndicatorFilterItemGridRowModel> _grid){
 		 boolean result=false;
 		 
 		 for (int i = 0; i < _grid.getStore().getCount(); i++) {
 			 
-			 IndicatorFilterItem _item=	 _grid.getStore().getAt(i);
+			 IndicatorFilterItemGridRowModel _item=	 _grid.getStore().getAt(i);
 			 
 			String row= _item.getType()+"-"+_item.getProperty()+"-"+_item.getValue();
-			 
+			
 			if(row.equalsIgnoreCase(_key)){
 				
 				result =true;
@@ -357,6 +362,8 @@ public ExtendedPieChart(String title){
 		 
 		 return result;
 	 }
+	 
+	 
 		
 
 		

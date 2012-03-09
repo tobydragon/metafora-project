@@ -1,6 +1,5 @@
 package de.uds.visualizer.shared.communication.objects_old;
 
-import de.uds.visualizer.client.xml.GWTXmlFragment;
 
 
 

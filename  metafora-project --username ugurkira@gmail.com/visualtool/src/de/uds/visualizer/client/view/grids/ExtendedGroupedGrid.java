@@ -52,7 +52,7 @@ import com.google.gwt.user.client.ui.Widget;
 import de.uds.visualizer.client.communication.servercommunication.ActionMaintenance;
 import de.uds.visualizer.client.datamodels.TableViewModel;
 import de.uds.visualizer.client.resources.Resources;
-import de.uds.visualizer.shared.interactionmodels.IndicatorFilterItem;
+import de.uds.visualizer.shared.interactionmodels.IndicatorEntity;
 
 public class ExtendedGroupedGrid extends  LayoutContainer {
 	public CheckBox autoRefresh;

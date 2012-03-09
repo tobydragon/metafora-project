@@ -22,6 +22,7 @@ public class CommonFormatStrings {
 	//CfActionType
 	public static final String CLASSIFICATION_STRING = "classification";
 	public static final String SUCCEED_STRING = "succeed";
+
 	public static final String LOGGED_STRING = "logged";
 	public static final String ACTION_TYPE_STRING = "actiontype";
 
@@ -29,6 +30,7 @@ public class CommonFormatStrings {
 	//CfAction
 	public static final String TIME_STRING = "time";
 	public static final String ACTION_STRING = "action";
+	
 	
 	//CfContent
 	public static final String DESCRIPTION_STRING = "description";
@@ -48,9 +50,13 @@ public class CommonFormatStrings {
 	public static final String  CF_Property="property";
 	
 	
-	
+	//TODO REMOVE
 
    //Object Filter Options
+	public static final String O_OBJECT_ID = "Object ID";
+	public static final String O_V_OBJECT_ID = "id";
+	public static final String O_OBJECT_TYPE = "Object Type";
+	public static final String O_V_OBJECT_TYPE = "type";
 	public static final String O_OBJECT = "Object";
 	
 	public static final String O_MAP_ID = "Map ID";
@@ -92,9 +98,20 @@ public class CommonFormatStrings {
 	public static final String A_V_Classification="classification";
 	
 	public static final String A_User="User";
-	public static final String A_V_User="USER_ID";
+	public static final String A_V_User="id";
+	
+	
+	
 	public static final String A_Type="Action Type";
  	public static final String A_V_Type="type";
+ 	
+ 	public static final String A_SUCCED="Succeed";
+ 	public static final String A_V_SUCCED="succeed";
+ 	
+ 	public static final String A_ROLE="User Role";
+ 	public static final String A_V_ROLE="role";
+ 	
+ 	
 	
 
 
