@@ -20,7 +20,7 @@
   <!-- Other module inherits                                      -->
 
   <!-- Specify the app entry point class.                         -->
-  <entry-point class='de.uds.visualizer.client.VisualAnalyzer'/>
+  <entry-point class='de.uds.MonitorInterventionMetafora.client.VisualAnalyzer'/>
   <stylesheet src='/resources/Panel.css' />
 
   <!-- Specify the paths for translatable code                    -->
