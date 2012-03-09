@@ -23,7 +23,6 @@ import de.uds.visualizer.client.view.widgets.MultiModelTabPanel;
 import de.uds.visualizer.shared.commonformat.CfAction;
 import de.uds.visualizer.shared.commonformat.CfActionType;
 import de.uds.visualizer.shared.commonformat.CfInteractionData;
-import de.uds.visualizer.shared.communication.objects_old.CommonFormatStrings;
 import de.uds.visualizer.shared.interactionmodels.IndicatorEntity;
 import de.uds.visualizer.shared.utils.GWTDateUtils;
 
