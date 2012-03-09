@@ -1,0 +1,2 @@
+serviceClass: com.analysis.client.communication.server.CommunicationService
+path: 0E7C1E3240CC2A7C8B5C428BF31AAA12.gwt.rpc
