@@ -7,8 +7,7 @@ import com.google.gwt.core.client.GWT;
 
 
 
-import de.novanic.eventservice.client.event.RemoteEventService;
-import de.novanic.eventservice.client.event.RemoteEventServiceFactory;
+
 
 import de.uds.visualizer.client.communication.actionresponses.CfActionCallBack;
 import de.uds.visualizer.client.communication.actionresponses.RequestConfigurationCallBack;
@@ -23,7 +22,7 @@ public class ServerCommunication {
 	private static ServerCommunication communicationInstance = null;
 	private  CommunicationServiceAsync serviceServlet = GWT
 	.create(CommunicationService.class);
-	private RemoteEventService myGWTEventService=null;	
+	//private RemoteEventService myGWTEventService=null;	
 	public static ServerCommunication getInstance() {
 		if (communicationInstance == null) {
 			communicationInstance = new ServerCommunication();
@@ -35,8 +34,8 @@ public class ServerCommunication {
 	private ServerCommunication() {
 		getClientHandler();
 
-		RemoteEventServiceFactory GWTEventServiceFactory = RemoteEventServiceFactory.getInstance();
-		myGWTEventService = GWTEventServiceFactory.getRemoteEventService();
+	//	RemoteEventServiceFactory GWTEventServiceFactory = RemoteEventServiceFactory.getInstance();
+		//myGWTEventService = GWTEventServiceFactory.getRemoteEventService();
 	}
 
 	
