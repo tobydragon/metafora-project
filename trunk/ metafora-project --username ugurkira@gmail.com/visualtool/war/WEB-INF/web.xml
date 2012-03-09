@@ -31,7 +31,7 @@
   
   <!-- Default page to serve -->
   <welcome-file-list>
-    <welcome-file>Analysis.html</welcome-file>
+    <welcome-file>Visualizer.html</welcome-file>
   </welcome-file-list>
 
 </web-app>
