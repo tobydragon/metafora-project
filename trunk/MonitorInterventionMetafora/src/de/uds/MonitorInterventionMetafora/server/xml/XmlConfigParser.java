@@ -63,13 +63,13 @@ public class XmlConfigParser {
 			indicatorFilter.setEditable(filterFragment.getAttributeValue(ServerFormatStrings.EDITABLE));
 
 			 System.out.println("Filter:"+_filterName);
-			for(XmlFragmentInterface propertyFragment : filterFragment.getChildren(ServerFormatStrings.PROPERTY))
+			for(XmlFragmentInterface propertyFragment : filterFragment.getChildren(ServerFormatStrings.FILTERITEM))
 			{			
 				IndicatorEntity _filterItem=new IndicatorEntity();
-				_filterItem.setType(FilterItemType.valueOf(propertyFragment.getAttributeValue(ServerFormatStrings.Type)));
-				_filterItem.setEntityName(propertyFragment.getAttributeValue(ServerFormatStrings.NAME));
+				_filterItem.setType(FilterItemType.valueOf(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
+				_filterItem.setEntityName(propertyFragment.getAttributeValue(ServerFormatStrings.ENTITYNAME));
 				_filterItem.setValue(propertyFragment.getAttributeValue(ServerFormatStrings.VALUE));				
-				 indicatorFilter.addFilterItem(_filterItem.getEntityName(), _filterItem);
+				 indicatorFilter.addIndicatorEntity(_filterItem.getEntityName(), _filterItem);
 
 			}
 			

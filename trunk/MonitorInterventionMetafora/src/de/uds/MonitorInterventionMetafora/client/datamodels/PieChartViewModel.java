@@ -233,8 +233,11 @@ public class PieChartViewModel {
 			    int index=0;
 			    for(String key:groupedActions.keySet()){
 			    data.setValue(index, 0, key);
-			    _entity.setValue(key);
-			    indicatorEntities.put(index,_entity );
+			    IndicatorEntity _newEntity=new IndicatorEntity();			    
+			    _newEntity.setEntityName(_entity.getEntityName());
+			    _newEntity.setValue(key);
+			    _newEntity.setType(_entity.getType());
+			    indicatorEntities.put(index, _newEntity);
 			  //  subsectionValue.put(index, key);
 			    data.setValue(index, 1, groupedActions.get(key).size());
 			    index++;
@@ -251,8 +254,13 @@ public class PieChartViewModel {
 			     index=0;
 			    for(String key:groupedUsers.keySet()){
 			    data.setValue(index, 0, key);
-			    _entity.setValue(key);
-			    indicatorEntities.put(index,_entity );
+			    IndicatorEntity _newEntity=new IndicatorEntity();			    
+			    _newEntity.setEntityName(_entity.getEntityName());
+			    _newEntity.setValue(key);
+			    _newEntity.setType(_entity.getType());
+			    indicatorEntities.put(index, _newEntity);
+			    
+			    
 			   // subsectionValue.put(index, key);
 			    data.setValue(index, 1, groupedUsers.get(key).size());
 			    index++;
@@ -271,8 +279,14 @@ public class PieChartViewModel {
 			    index=0;
 			    for(String key:groupedObjects.keySet()){
 			    data.setValue(index, 0, key);
-			    _entity.setValue(key);
-			    indicatorEntities.put(index,_entity );
+			    
+			    IndicatorEntity _newEntity=new IndicatorEntity();			    
+			    _newEntity.setEntityName(_entity.getEntityName());
+			    _newEntity.setValue(key);
+			    _newEntity.setType(_entity.getType());
+			    indicatorEntities.put(index, _newEntity);
+			    //_entity.setValue(key);
+			    //indicatorEntities.put(index,_entity );
 			   // subsectionValue.put(index, key);
 			    data.setValue(index, 1, groupedObjects.get(key).size());
 			    index++;
@@ -289,8 +303,15 @@ public class PieChartViewModel {
 			    index=0;
 			    for(String key:groupedContents.keySet()){
 			    data.setValue(index, 0, key);
-			    _entity.setValue(key);
-			    indicatorEntities.put(index,_entity );
+			    
+			    IndicatorEntity _newEntity=new IndicatorEntity();			    
+			    _newEntity.setEntityName(_entity.getEntityName());
+			    _newEntity.setValue(key);
+			    _newEntity.setType(_entity.getType());
+			    indicatorEntities.put(index, _newEntity);
+			    
+			    //_entity.setValue(key);
+			  //  indicatorEntities.put(index,_entity );
 			    //subsectionValue.put(index, key);
 			    data.setValue(index, 1, groupedContents.get(key).size());
 			    index++;
@@ -305,6 +326,9 @@ public class PieChartViewModel {
 	}
 	
 	
+	
+	 
+	 
 	public void addActiveFilter(String _key){
 		
 		

@@ -44,14 +44,14 @@ public class IndicatorFilter implements Serializable{
 	public String getEditable(){		
 		return editable;
 	}
-	public  void addFilterItem(String _key,IndicatorEntity  _value){
+	public  void addIndicatorEntity(String _key,IndicatorEntity  _value){
 		
 		_properties.put(_key, _value);	
 		
 	}
 	
 	
-	public IndicatorEntity getFilterItem(String _key){
+	public IndicatorEntity getIndicatorEntity(String _key){
 		
 		if(_properties.containsKey(_key))
 			return _properties.get(_key);
@@ -60,7 +60,7 @@ public class IndicatorFilter implements Serializable{
 	}
 
 	
-	public Map<String, IndicatorEntity> getProperties(){
+	public Map<String, IndicatorEntity> getEntities(){
 		
 		return _properties;
 	}
