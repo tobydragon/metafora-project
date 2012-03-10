@@ -18,6 +18,7 @@ import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
+import com.extjs.gxt.ui.client.widget.MessageBox;
 
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 
@@ -298,11 +299,19 @@ public ExtendedPieChart(String title){
 		    	  _entity=model.getIndicatorEntity(selection);
 		    	    
 
-		    	   
+		    	  if(_entity==null){
+		    		  
+		    		  
+		    		  MessageBox.info("Message","Selected Filter is<ul><li> already in  the filter list</li></ul>", null);
+		    		  return;
+		    		  
+		    	  }
+		    	  
+		    	  
 			          String _key= _entity.getType().toString()+"-"+ _entity.getEntityName()+"-"+ _entity.getValue();
 			          
 			       
-					if(!isInFilterList(_key,_grid) && _entity!=null && !_entity.getValue().equalsIgnoreCase("")){
+					if(!isInFilterList(_key,_grid) && !_entity.getValue().equalsIgnoreCase("")){
 			        
 			        
 			       // IndicatorEntity _filter = new IndicatorEntity();  
@@ -320,7 +329,7 @@ public ExtendedPieChart(String title){
 			        }
 			        
 
-			        IndicatorFilterItemGridRowModel  _newRow=new IndicatorFilterItemGridRowModel(_entity.getEntityName(),_entity.getValue(),_entity.getType().toString()); 
+			        IndicatorFilterItemGridRowModel  _newRow=new IndicatorFilterItemGridRowModel(_entity.getEntityName(),_entity.getValue(),_entity.getType().toString(),_entity.getDisplayText()); 
 			    	
 			        
 			        _grid.stopEditing();  
@@ -331,8 +340,9 @@ public ExtendedPieChart(String title){
 			        }
 			        else {
 			        	
+			        	MessageBox.info("Message","Selected Filter is<ul><li> already in  the filter list</li></ul>", null);
 			        	
-			        	Info.display("Info","Selected Filter is<ul><li> already in  the filter list</li></ul>");
+			        
 			        }
 			        
 			

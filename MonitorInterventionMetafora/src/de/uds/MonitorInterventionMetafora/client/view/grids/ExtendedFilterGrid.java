@@ -26,6 +26,7 @@ import com.extjs.gxt.ui.client.store.Store;
 import com.extjs.gxt.ui.client.store.StoreEvent;
 import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.MessageBox;
 
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
@@ -71,9 +72,7 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTDateUtils;
 
 public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfigurationCallBack {
 
-	private String groupingItem="";
 	
-	private Map<String, IndicatorFilterItemGridRowModel> configurationFilters;
 	
 	 EditorGrid<IndicatorFilterItemGridRowModel> grid;
 	 ListStore<IndicatorFilterItemGridRowModel> store;
@@ -81,7 +80,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	
 	public ExtendedFilterGrid(String _groupingItem){
 		
-		groupingItem=_groupingItem;
+		
 	}
 	
 	
@@ -164,11 +163,11 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
             public void componentSelected(ButtonEvent ce) {
 
             	
-            	
-            	
-            	Info.display(model.getProperty(), "<ul><li>" + model.getValue()+ " is removed!" + "</li></ul>");
             
-            	String _key=model.getProperty()+"-"+model.getValue();
+            	
+            	//Info.display(model.getProperty(), "<ul><li>" + model.getValue()+ " is removed!" + "</li></ul>");
+            
+            //	String _key=model.getProperty()+"-"+model.getValue();
             	
             	//DataModel.getActiveFilters().remove(_key);
             	
@@ -277,7 +276,9 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 		public void componentSelected(ButtonEvent ce) {
 		
 
-		    	 Info.display("Clear","All filters are removed!!");
+			 MessageBox.info("Message","All filters are removed!!", null);
+			
+		    	 //Info.display("Clear","All filters are removed!!");
 		    grid.getStore().removeAll();
 		    filterGroupCombo.clearSelections();
 		   
@@ -376,12 +377,19 @@ public void onSuccess(Configuration result) {
 	        if(confFilters.containsKey(filterSetKey)){
 	        	
 	        	IndicatorFilter filter=confFilters.get(filterSetKey);
-	        	Map<String, IndicatorEntity> _filteritemProperies=filter.getProperties();
+	        	Map<String, IndicatorEntity> _filteritemProperies=filter.getEntities();
 	        	store.removeAll();
 	        	
 	        	for(String _key: _filteritemProperies.keySet()){
 	        		IndicatorFilterItemGridRowModel _filterItem=new IndicatorFilterItemGridRowModel();
-	        		//TODO _filterItem=filter.getFilterItem(_key);
+	        		
+	        		
+	        		IndicatorEntity _filterEntity=filter.getIndicatorEntity(_key);
+	        		
+	        		_filterItem.setDisplayText(_filterEntity.getDisplayText());
+	        		_filterItem.setType(_filterEntity.getType().toString());
+	        		_filterItem.setProperty(_filterEntity.getEntityName());
+	        		_filterItem.setValue(_filterEntity.getValue());
 	        		
 	        		
 	        	     grid.stopEditing();  

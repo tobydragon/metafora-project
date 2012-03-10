@@ -27,13 +27,29 @@ public IndicatorFilterItemGridRowModel() {
   }
 
   
-  public IndicatorFilterItemGridRowModel(String _property, String _value,String _type) {
-    set("property", _property);
-    set("value", _value);
-    set("filtertype", _type);
+  public IndicatorFilterItemGridRowModel(String _property, String _value,String _type,String _displayText) {
+	  set("filtertype", _type);
+	  set("displaytext", _displayText);
+	  set("property", _property);
+      set("value", _value);
+   
+   
   }
 
 
+  
+  public void setDisplayText(String _displayText){
+	  
+	  set("displaytext", _displayText);
+	  
+  }
+  
+  public String getDisplayText(){
+	  
+	  return (String) get("displaytext");   
+  }
+  
+  
   public String getProperty(){
 	  
 	  return (String) get("property");  

@@ -7,21 +7,21 @@
 <filter name="Default" editable="true">
 <filteritem entityname="Tool" value="Lasad" type="Content"/>
 <filteritem entityname="Tool" value="Metafora" type="Content"/>
-<filteritem entityname="User" value="Alice" type="Action"/>
+<filteritem entityname="User" value="Alice" type="Action_Type"/>
 
 </filter>
 
 <filter name="UserandMap" editable="true">
-<filteritem entityname="MapID" value="1" type="Action"/>
+<filteritem entityname="MapID" value="1" type="Action_Type"/>
 <filteritem entityname="User" value="Bob" type="Content"/>
 </filter>
 
 
 <filter name="Mixed" editable="true">
 <filteritem entityname="Tool" value="Metafora" type="Content"/>
-<filteritem entityname="User" value="Alice"  type="Action"/>
+<filteritem entityname="User" value="Alice"  type="Action_Type"/>
 <filteritem entityname="MapID" value="M1" type="Object"/>
-<filteritem entityname="User" value="Bob" type="Action"/>
+<filteritem entityname="User" value="Bob" type="Action_Type"/>
 </filter>
 
 </filters>
