@@ -25,6 +25,7 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Store;
 import com.extjs.gxt.ui.client.store.StoreEvent;
 import com.extjs.gxt.ui.client.widget.BoxComponent;
+import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 
@@ -49,9 +50,11 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 
 import com.google.gwt.user.client.Element;
 
+
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 
 import com.extjs.gxt.ui.client.event.ButtonEvent;
+
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.FieldEvent;
 import com.extjs.gxt.ui.client.event.GridEvent;
@@ -60,7 +63,9 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.button.Button;
 
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
+import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ServerCommunication;
+import de.uds.MonitorInterventionMetafora.client.datamodels.FilterListGridModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
@@ -77,21 +82,14 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	 EditorGrid<IndicatorFilterItemGridRowModel> grid;
 	 ListStore<IndicatorFilterItemGridRowModel> store;
 	 SimpleComboBox<String> filterGroupCombo;
+	 FilterListGridModel filterModel;
 	
-	public ExtendedFilterGrid(String _groupingItem){
+	public ExtendedFilterGrid(FilterListGridModel _filterModel){
 		
-		
+		filterModel= _filterModel;
 	}
-	
 	
 
-	public ExtendedFilterGrid(){
-		
-		
-	
-		
-	}
-	
   @Override
   protected void onRender(Element parent, int index) {
     super.onRender(parent, index);
@@ -244,7 +242,9 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     
     grid.getStore().addListener(Store.Remove, new Listener<StoreEvent<IndicatorEntity>>() {
         public void handleEvent(StoreEvent<IndicatorEntity> be) {
-      	 
+        	ActionMaintenance _maint=new ActionMaintenance();
+        	_maint.refreshTableView(filterModel.getActionMaintenance());
+        	
         	//Info.display("Info","remove");
         	//filterGroup.clearSelections();
         }

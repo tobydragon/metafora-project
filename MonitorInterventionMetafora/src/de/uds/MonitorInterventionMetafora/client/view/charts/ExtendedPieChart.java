@@ -14,6 +14,7 @@ import com.extjs.gxt.ui.client.event.SelectionChangedListener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Record;
 
+import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.Info;
@@ -30,6 +31,7 @@ import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -156,7 +158,7 @@ public ExtendedPieChart(String title){
 	              String _displayText=vg.getDisplayText();
 	              FilterItemType _itemType=vg.getItemType();
 	              
-	              Info.display("Display","name:"+_entityName+" text:"+_displayText+" ItemType:"+_itemType);
+	            //  Info.display("Display","name:"+_entityName+" text:"+_displayText+" ItemType:"+_itemType);
 	              //Type=filter;
 	            
 	              
@@ -313,7 +315,7 @@ public ExtendedPieChart(String title){
 			       
 					if(!isInFilterList(_key,_grid) && !_entity.getValue().equalsIgnoreCase("")){
 			        
-			        
+
 			       // IndicatorEntity _filter = new IndicatorEntity();  
 			        //_filter.setProperty(_property);
 			        //_filter.setValue(_value);
@@ -336,6 +338,15 @@ public ExtendedPieChart(String title){
 			        _grid.getStore().insert(_newRow, 0);  
 			        _grid.startEditing(_grid.getStore().indexOf(_newRow), 0); 
 			        _filterCombo.clearSelections();
+			        
+			        //RootPanel.get().get
+			        
+			        maintenance.refreshTableView(model.getActionMaintenance());
+			         
+			         
+			        //Button _refreshBtn=  (Button) _refresh
+					
+			        //EditorGrid<IndicatorFilterItemGridRowModel> _grid = editorGrid;
 				       
 			        }
 			        else {
@@ -374,7 +385,9 @@ public ExtendedPieChart(String title){
 	 }
 	 
 	 
-		
-
+	 
+	 
+	 
+	
 		
 }

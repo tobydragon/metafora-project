@@ -10,6 +10,8 @@ import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.ScrollPanel;
 
+import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
+import de.uds.MonitorInterventionMetafora.client.datamodels.FilterListGridModel;
 import de.uds.MonitorInterventionMetafora.client.view.grids.ExtendedFilterGrid;
 
 
@@ -18,9 +20,10 @@ public class FilterListPanel extends ContentPanel {
 	
 	Map<String, String> _filterList;
 	
-
-	public FilterListPanel(){
+	ActionMaintenance maintenance;
+	public FilterListPanel(ActionMaintenance _maintenance){
 		
+		maintenance=_maintenance;
 		
 		this.setCollapsible(true);
 		this.setHeading("Filter Options");
@@ -32,7 +35,9 @@ public class FilterListPanel extends ContentPanel {
 		
 		//ExtendedFilterItem efi=new ExtendedFilterItem(_property,_value);
 		//this.add(efi);
-		ExtendedFilterGrid ef=new ExtendedFilterGrid();
+		
+		FilterListGridModel flm=new FilterListGridModel(maintenance);
+		ExtendedFilterGrid ef=new ExtendedFilterGrid(flm);
 		ExtendedSaveFilterSet saveFilterSet=new ExtendedSaveFilterSet();
 		
 		

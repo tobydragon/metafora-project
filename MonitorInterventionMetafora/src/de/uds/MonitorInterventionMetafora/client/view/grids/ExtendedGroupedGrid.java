@@ -21,6 +21,8 @@ import com.extjs.gxt.ui.client.event.GridEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.GroupingStore;
+import com.extjs.gxt.ui.client.store.Store;
+import com.extjs.gxt.ui.client.store.StoreEvent;
 import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Info;
@@ -47,12 +49,13 @@ import com.google.gwt.user.client.Timer;
 //import com.google.gwt.user.client.ui.CheckBox;
 
 import com.google.gwt.user.client.ui.ClickListener;
-import com.google.gwt.user.client.ui.Widget;
+
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+
 
 public class ExtendedGroupedGrid extends  LayoutContainer {
 	public CheckBox autoRefresh;
@@ -60,10 +63,14 @@ public class ExtendedGroupedGrid extends  LayoutContainer {
 	List<IndicatorGridRowItem> indicators;
 	TableViewModel tvm;
 	ActionMaintenance maintenance;
+	Label _indicatorCount;
+	GroupingStore<IndicatorGridRowItem> store;
 	
 	public ExtendedGroupedGrid(ActionMaintenance _maintenance){
 		maintenance=_maintenance;
 		tvm=new TableViewModel(maintenance);
+		_indicatorCount=new Label();
+		store = new GroupingStore<IndicatorGridRowItem>();
 
 	    indicators=tvm.parseToIndicatorGridRowList(false);
 		
@@ -81,7 +88,7 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
     super.onRender(parent, index);
     setLayout(new FlowLayout(5));
 
-    final GroupingStore<IndicatorGridRowItem> store = new GroupingStore<IndicatorGridRowItem>();
+    
 
     store.add(indicators);  
     
@@ -136,11 +143,21 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
     grid.setBorders(true);
     grid.setId("_tableViewGrid");
     
+    grid.getStore().addListener(Store.Add, new Listener<StoreEvent<IndicatorGridRowItem>>() {
+        public void handleEvent(StoreEvent<IndicatorGridRowItem> be) {
+      	
+        	_indicatorCount.setText("Total Indicador Count: "+store.getCount());
+        	
+        }
+      });
+    
 
     ToolBar toolBar = new ToolBar();  
     Button refreshbtn = new Button();
-    final Label _indicatorCount=new Label();
+    refreshbtn.setId("_refreshBtn");
+   
     _indicatorCount.setToolTip("Indicator Count");
+    _indicatorCount.setId("_countLableID");
     refreshbtn.setToolTip("Refresh");
     refreshbtn.setIcon(Resources.ICONS.refresh());
     refreshbtn.addSelectionListener(new SelectionListener<ButtonEvent>() {  

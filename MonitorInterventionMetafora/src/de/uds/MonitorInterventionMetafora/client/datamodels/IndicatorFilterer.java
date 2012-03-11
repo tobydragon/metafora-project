@@ -22,7 +22,7 @@ public class IndicatorFilterer {
 	//List<IndicatorEntity> filtwers;
 	
 	ActionMaintenance maintenance;
-	
+	public IndicatorFilterer(){}
 	
 	public IndicatorFilterer(ActionMaintenance _maintenance){
 		
@@ -270,6 +270,21 @@ public class IndicatorFilterer {
 		return _filteredActions;
 	}
 	
+	
+List<CfAction> getFilteredIndicatorList(List<CfAction>  _allActions){
+		
+		
+		List<CfAction> _filteredActions =new ArrayList<CfAction>();
+		
+		for(CfAction _action:_allActions){
+		if(isSatisfyFilters(_action,getActiveFiltersFromFilterGrid())){
+			
+			_filteredActions.add(_action);
+		}		
+		}		
+	
+		return _filteredActions;
+	}
 	
 	
 }
