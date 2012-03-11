@@ -13,21 +13,29 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTDateUtils;
 
 public class TableViewModel {
 	ActionMaintenance maintenance;
-	
+	IndicatorFilterer filterer;
 	
 	public TableViewModel(ActionMaintenance _maintenance){
 		
 		maintenance=_maintenance;
+		filterer=new IndicatorFilterer(maintenance);
 		
 		
 	}
 	
-	public List<IndicatorGridRowItem>  parseToIndicatorGridRowList(){
+	public List<IndicatorGridRowItem>  parseToIndicatorGridRowList(boolean _applyFilter){
 		
 		List<CfAction> _cfActions=new ArrayList<CfAction>();
-		if(maintenance.getActiveActionList()!=null){
-			_cfActions.addAll(maintenance.getActiveActionList());
+		if(maintenance.getAllActiveActionList()!=null){
+			
+			if(!_applyFilter)
+		_cfActions.addAll(maintenance.getAllActiveActionList());
+			else{
+				_cfActions.addAll(filterer.getFilteredIndicatorList());					
 			}
+			
+		//_cfActions.addAll(filterer.getFilteredIndicatorList());
+		}
 		
 		
 		

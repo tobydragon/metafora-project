@@ -64,7 +64,9 @@ public class ExtendedGroupedGrid extends  LayoutContainer {
 	public ExtendedGroupedGrid(ActionMaintenance _maintenance){
 		maintenance=_maintenance;
 		tvm=new TableViewModel(maintenance);
-		indicators=tvm.parseToIndicatorGridRowList();
+
+	    indicators=tvm.parseToIndicatorGridRowList(false);
+		
 	}
 
 public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
@@ -80,8 +82,9 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
     setLayout(new FlowLayout(5));
 
     final GroupingStore<IndicatorGridRowItem> store = new GroupingStore<IndicatorGridRowItem>();
-  
+
     store.add(indicators);  
+    
     
     store.groupBy("classification");
 
@@ -131,22 +134,23 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
     view.setShowGroupedColumn(true);
     grid.setView(view);
     grid.setBorders(true);
+    grid.setId("_tableViewGrid");
     
 
     ToolBar toolBar = new ToolBar();  
-    Button addbtn = new Button();
+    Button refreshbtn = new Button();
     final Label _indicatorCount=new Label();
     _indicatorCount.setToolTip("Indicator Count");
-    addbtn.setToolTip("Refresh");
-    addbtn.setIcon(Resources.ICONS.refresh());
-    addbtn.addSelectionListener(new SelectionListener<ButtonEvent>() {  
+    refreshbtn.setToolTip("Refresh");
+    refreshbtn.setIcon(Resources.ICONS.refresh());
+    refreshbtn.addSelectionListener(new SelectionListener<ButtonEvent>() {  
     	  
         @Override  
         public void componentSelected(ButtonEvent ce) {  
 
         	
         	store.removeAll(); 
-    		store.add(tvm.parseToIndicatorGridRowList());
+    		store.add(tvm.parseToIndicatorGridRowList(true));
     		 _indicatorCount.setText("Total Indicador Count: "+store.getCount());
         	
         	
@@ -187,7 +191,7 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
     _indicatorCount.setText("Total Indicador Count: "+store.getCount());
 
     toolBar.add(autoRefresh);
-    toolBar.add(addbtn);
+    toolBar.add(refreshbtn);
    
    ToolBar _buttomBar=new ToolBar();
    _indicatorCount.setPosition(550, 0);
@@ -202,6 +206,9 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
     panel.setLayout(new FitLayout());
    
     panel.add(grid);
+    
+    
+    
     panel.setTopComponent(toolBar);
     panel.setBottomComponent(_buttomBar);
    
@@ -210,11 +217,13 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
     grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
     add(panel);
     
+    
+    
     tableViewTimer=new Timer(){
     	@Override
     	public void run() {
     		store.removeAll(); 
-    		store.add(tvm.parseToIndicatorGridRowList());
+    		store.add(tvm.parseToIndicatorGridRowList(true));
     		 _indicatorCount.setText("Total Indicador Count: "+store.getCount());
     		
           }
