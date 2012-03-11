@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.datamodels;
+package de.uds.MonitorInterventionMetafora.client.communication.servercommunication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
+import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -254,7 +254,7 @@ public class IndicatorFilterer {
 	}
 	
 	
-	List<CfAction> getFilteredIndicatorList(){
+	public List<CfAction> getFilteredIndicatorList(){
 		
 		List<CfAction> _allActions =new ArrayList<CfAction>();
 		List<CfAction> _filteredActions =new ArrayList<CfAction>();
@@ -271,7 +271,7 @@ public class IndicatorFilterer {
 	}
 	
 	
-List<CfAction> getFilteredIndicatorList(List<CfAction>  _allActions){
+public List<CfAction> getFilteredIndicatorList(List<CfAction>  _allActions){
 		
 		
 		List<CfAction> _filteredActions =new ArrayList<CfAction>();

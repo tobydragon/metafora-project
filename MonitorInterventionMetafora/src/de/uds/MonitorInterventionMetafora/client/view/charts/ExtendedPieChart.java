@@ -4,41 +4,19 @@ package de.uds.MonitorInterventionMetafora.client.view.charts;
 
 
 
-
-
-
-import java.util.List;
-
-import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
-import com.extjs.gxt.ui.client.event.SelectionChangedListener;
-import com.extjs.gxt.ui.client.store.ListStore;
-import com.extjs.gxt.ui.client.store.Record;
-
-import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.ComponentManager;
-import com.extjs.gxt.ui.client.widget.HorizontalPanel;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
-
-import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
-import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
+
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 
 import com.google.gwt.core.client.JsArray;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Event;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.ClickListener;
-import com.google.gwt.user.client.ui.RootPanel;
 
 import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.Selection;
-import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
 import com.google.gwt.visualization.client.events.SelectHandler;
 
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
@@ -46,186 +24,59 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart.Pie
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.PieChartComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.PieChartViewModel;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
 public class ExtendedPieChart extends VerticalPanel {
 	
 	
 	//Map<Integer, String>subsection = new HashMap<Integer, String>();
-	private IndicatorEntity _selectedEntity=null;
-	private PieChart pie=null;
-	private VerticalPanel mainContainer;
+
 	
+	private  PieChart pieChart;
 	private PieChartViewModel model;
-	private ActionMaintenance maintenance;
+	//private ActionMaintenance maintenance;
+	private IndicatorEntity  entity;
 	
-	public ExtendedPieChart(ActionMaintenance _maintenance){
+	
+	public ExtendedPieChart(IndicatorEntity  _entity,PieChartViewModel _model){
+		entity=_entity;
 		
-		maintenance =_maintenance;
-		model=new PieChartViewModel(maintenance);
-		mainContainer=new VerticalPanel();
+		this.setId("_pieChartVerticalPanel");
+		//maintenance =_maintenance;
+		model=_model;
+		//model=new PieChartViewModel(maintenance);
+		this.removeAll();
+		//model.sliptActions(true);
+		this.add(createPieChart(model.getPieChartData(entity),"pieChart"));
 		
-		createFilterHeader();
+		
 		
 	}
 
 public ExtendedPieChart(String title){
-	this.setId("interActionForm");
+	this.setId("_pieChartVerticalPanel");
 	this.add(new Label(title));
-	mainContainer=new VerticalPanel();
-	createFilterHeader();
+}
+
+
+
+
+
+public PieChartViewModel getPieChartModel(){
+	
+	return model;
 	
 }
+
 	
 
 
-	void createFilterHeader(){
-	this.setWidth(650);
-	HorizontalPanel hp=new HorizontalPanel();
-	
-	
-	 final ComboBox<PieChartComboBoxModel> comboType = new ComboBox<PieChartComboBoxModel>();
-	
-	 comboType.setEmptyText("Select a type");
-	  
-	  
-	    
-	    comboType.setDisplayField("displaytext");
-	    comboType.setValueField("entityname");
-	    comboType.setWidth(150);
-	    comboType.setEditable(false);
-	 
-	    comboType.setAutoHeight(true);
-	    comboType.setId("comboType");
-	    comboType.setStore(toComboBoxEntities(model.getIndicatorEntities()));
-	  //  comboType.setTypeAhead(true);
-	    comboType.setTriggerAction(TriggerAction.ALL);
-	  
-	   
-	    
-	    hp.setWidth(600);
-	    hp.add(new Label("Type:"));
-	    hp.add(comboType);
-	    /*/
-	    final ComboBox<PieChartComboBoxModel> comboItem = new ComboBox<PieChartComboBoxModel>();
-	    comboItem.setEmptyText("Select filter type...");
-	    comboItem.setDisplayField("name");
-	    comboItem.setValueField("text");
-	    	    
-	    comboItem.setWidth(150);
-	    comboItem.setEditable(false);
-	 
-	    comboItem.setAutoHeight(true);
-	    comboItem.setId("comboType2");
-	    
-	    comboItem.setStore(new ListStore<PieChartComboBoxModel>());
-	    comboItem.setTypeAhead(true);
-	    comboItem.setTriggerAction(TriggerAction.ALL);
-	    
-	    final SelectionChangedListener<PieChartComboBoxModel> comboListenerItem =new SelectionChangedListener<PieChartComboBoxModel>(){
-	        @Override
-	        public void selectionChanged(SelectionChangedEvent<PieChartComboBoxModel> se) { 
 
-	        
-	        	  Item=comboItem.getValue().getText();
-	        	
-	        	
-	     
-	        }
-
-	    };
-	    
-	    
-	    */
-	    
-	    SelectionChangedListener<PieChartComboBoxModel> comboListener =new SelectionChangedListener<PieChartComboBoxModel>(){
-	        @Override
-	        public void selectionChanged(SelectionChangedEvent<PieChartComboBoxModel> se) { 
-
-	        	PieChartComboBoxModel vg = se.getSelectedItem();   
-	        	
-	         //   Record record = GroupingOptions.getObjectProperties().getRecord(vg);  
-	            
-	        	_selectedEntity=new IndicatorEntity();
-	        	_selectedEntity.setEntityName(vg.getEntityName());
-	        	_selectedEntity.setDisplayText(vg.getDisplayText());
-	        	_selectedEntity.setType(vg.getItemType());
-	              String _entityName =  vg.getEntityName();
-	              String _displayText=vg.getDisplayText();
-	              FilterItemType _itemType=vg.getItemType();
-	              
-	            //  Info.display("Display","name:"+_entityName+" text:"+_displayText+" ItemType:"+_itemType);
-	              //Type=filter;
-	            
-	              
-	              /*
-	              comboItem.removeAllListeners();
-	              comboItem.clear();            
-	              comboItem.setStore(getFilterItems(filter));
-	              comboItem.addSelectionChangedListener(comboListenerItem);*/
-	        }
-
-	    };
-	    comboType.addSelectionChangedListener(comboListener);
-	    //comboItem.addSelectionChangedListener(comboListenerItem);
-	    
-	
-	    
-	    
-	    Button retriveBtn=new Button("Retrieve");
-	    retriveBtn.setWidth("55px");
-	    retriveBtn.setHeight("29px");
-	    
-	    retriveBtn.addClickHandler(new ClickHandler() {
-	        public void onClick(ClickEvent event) {
-	   
-	        	if(_selectedEntity!=null){
-	       	RootPanel.get().add(createPieChart(model.getPieChartData(_selectedEntity),"pieChart"));
-	        	}
-	       	//_mainContainer.repaint();
-	        	
-	        	
-	          }
-	        });
-	    
-
-	    hp.add(new Label(""));
-	    //hp.add(comboItem);
-	    hp.add(retriveBtn);
-
-	   
-	    
-	   // this.add(hp);
-	    HorizontalPanel space=new HorizontalPanel();
-	    space.setWidth(600);
-	    space.setHeight(30);
-	    
-	    mainContainer.add(hp);
-	    mainContainer.add(space);
-	    
-	    
-	    this.add(mainContainer);
-	    
-	    
-		
-	}
 	
 
 
-	ListStore<PieChartComboBoxModel> toComboBoxEntities(List<IndicatorEntity>  _entityList) {
-		ListStore<PieChartComboBoxModel>  _comboBoxModelList = new ListStore<PieChartComboBoxModel>();
-	    for(IndicatorEntity _ent: _entityList){
-	    	PieChartComboBoxModel _comboBoxItem=new PieChartComboBoxModel(_ent);
-	    	_comboBoxModelList.add(_comboBoxItem);
-	    	
-	    	
-	    }
-	    return  _comboBoxModelList;
-	  }
+
 	
 	
 	
@@ -237,29 +88,28 @@ public ExtendedPieChart(String title){
 	
 
 	 public PieChart createPieChart(DataTable data,String ID) {
-		    
-		 if(pie!=null) {
-				 if(pie.isAttached()){
-			 pie.removeFromParent();
-				 }
-			 
-		 }
-
+		 
+	
 		    PieOptions options = PieChart.createPieOptions();
 		    options.setWidth(500);
 		    options.setHeight(400);
 		    options.set3D(true);
 		    options.setTitle("Indicator Overview");		    
-		    pie= new PieChart(data, options);  
-		    pie.addSelectHandler(createSelectHandler(pie));
-			
+		    pieChart= new PieChart(data, options);  
 		   
+		    pieChart.addSelectHandler(createSelectHandler(pieChart));
 		    
-		    return pie;
+		    
+		    return pieChart;
 			  }
 	 
 	 
 	 
+	 public PieChart getPieChart(){
+		 
+		 //pieChart.set
+		 return pieChart;
+	 }
 	 
 	 
 	 
@@ -341,7 +191,7 @@ public ExtendedPieChart(String title){
 			        
 			        //RootPanel.get().get
 			        
-			        maintenance.refreshTableView(model.getActionMaintenance());
+			        model.getActionMaintenance().refreshTableView(model.getActionMaintenance());
 			         
 			         
 			        //Button _refreshBtn=  (Button) _refresh

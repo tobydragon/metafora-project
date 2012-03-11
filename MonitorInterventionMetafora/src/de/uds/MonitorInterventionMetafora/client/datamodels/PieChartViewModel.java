@@ -6,18 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 
-import com.extjs.gxt.ui.client.event.EventType;
-import com.extjs.gxt.ui.client.widget.ComponentManager;
-import com.google.gwt.user.client.Event;
-import com.google.gwt.user.client.ui.Button;
+
 import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
+import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.IndicatorFilterer;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.FilterAttributeName;
@@ -40,28 +37,38 @@ public class PieChartViewModel {
 	Map<String, String> activeFilters =null;
 	ActionMaintenance maintenance=null;
 	
-	
+	IndicatorFilterer filterer;
 	public PieChartViewModel(ActionMaintenance _maintenance ){
 	
 		maintenance=_maintenance;
-		allActions= new ArrayList<CfAction>();
-		allObjects=new ArrayList<CfObject>();
-		allContents=new ArrayList<CfContent>();
 		activeFilters = new HashMap<String, String>();
 		subsectionValue= new HashMap<Integer, IndicatorEntity>();
 		indicatorEntities=new HashMap<Integer,IndicatorEntity>();
-		sliptActions();
+		filterer=new IndicatorFilterer(maintenance);
+		sliptActions(false);
 		
 	}
 	
 	
 	
 	
-	void sliptActions(){
+	public void sliptActions(boolean _applyFilter){
+		
+		allActions= new ArrayList<CfAction>();
+		allObjects=new ArrayList<CfObject>();
+		allContents=new ArrayList<CfContent>();
+	
+		
 		List<CfAction> _activecfActions=new ArrayList<CfAction>();
 		
+		if(!_applyFilter){
 		_activecfActions.addAll(maintenance.getAllActiveActionList());
-		allActions=_activecfActions;
+		}
+		else{
+			_activecfActions.addAll(filterer.getFilteredIndicatorList(maintenance.getAllActiveActionList()));
+		}
+		
+		allActions.addAll(_activecfActions);
 		for(CfAction _action:_activecfActions){
 			
 			for(CfObject _obj:_action.getCfObjects()){

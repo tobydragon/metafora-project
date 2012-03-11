@@ -5,12 +5,18 @@ import java.util.Map;
 
 
 
+import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.TabItem;
-//import com.extjs.gxt.ui.client.widget.TabPanel;
-import com.google.gwt.user.client.ui.TabPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.extjs.gxt.ui.client.widget.VerticalPanel;
+import com.extjs.gxt.ui.client.widget.TabPanel;
+import com.extjs.gxt.ui.client.widget.layout.FitLayout;
+//import com.google.gwt.user.client.ui.TabPanel;
+
 import com.google.gwt.user.client.ui.Widget;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.event.TabPanelEvent;
 
 
 public class MultiModelTabPanel extends VerticalPanel {
@@ -21,7 +27,21 @@ public class MultiModelTabPanel extends VerticalPanel {
 	
 	public MultiModelTabPanel(){
 		
+		
 		tabPanel = new TabPanel();
+		tabPanel.setWidth(800);
+		tabPanel.setHeight(500);
+		//tabPanel.set
+		tabPanel.addListener(Events.Select, new SelectionListener<TabPanelEvent>() {
+
+            @Override
+            public void componentSelected(TabPanelEvent ce) {
+             
+            	//Info.display("","ssss");
+            }
+        });
+    
+		
 		this.add(tabPanel);
 		
 	}
@@ -35,6 +55,7 @@ public class MultiModelTabPanel extends VerticalPanel {
 		
 		tabPanel = new TabPanel();
 		
+		
 		this.add(tabPanel);
 		
 	
@@ -42,13 +63,24 @@ public class MultiModelTabPanel extends VerticalPanel {
 	}
 	
 	
-	
-	public void addTab(String _lbl,Widget _widget){
+	public TabPanel getTabPanel(){
 		
+		return tabPanel;
+	}
+	
+	public void addTab(String _lbl,Widget _widget,boolean _closable){
+		
+	 TabItem _item=new TabItem(_lbl);
+	 _item.setLayout(new FitLayout());
 	 
-				
-		tabPanel.add(_widget,_lbl);
-		tabPanel.selectTab(0);
+	 _item.setClosable(_closable);
+	 _item.add(_widget);
+	 tabPanel.add(_item);
+	 
+	//	tabPanel.getTabBar().get
+		//tabPanel.add(item)(_widget,_lbl);
+		//tabPanel.selectTab(0);
+		
 	
 		
 	}
@@ -57,7 +89,7 @@ public class MultiModelTabPanel extends VerticalPanel {
 
 	public void switchToTab(int index){
 				
-		tabPanel.selectTab(index);
+		tabPanel.setTabIndex(index);
 	}
 	
 
