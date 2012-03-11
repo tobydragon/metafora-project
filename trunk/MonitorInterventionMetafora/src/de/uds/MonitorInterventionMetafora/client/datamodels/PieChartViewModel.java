@@ -56,7 +56,7 @@ public class PieChartViewModel {
 	void sliptActions(){
 		List<CfAction> _activecfActions=new ArrayList<CfAction>();
 		
-		_activecfActions.addAll(maintenance.getActiveActionList());
+		_activecfActions.addAll(maintenance.getAllActiveActionList());
 		allActions=_activecfActions;
 		for(CfAction _action:_activecfActions){
 			

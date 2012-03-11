@@ -85,32 +85,19 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	
 	
 
-	public ExtendedFilterGrid(){}
+	public ExtendedFilterGrid(){
+		
+		
+	
+		
+	}
 	
   @Override
   protected void onRender(Element parent, int index) {
     super.onRender(parent, index);
     setLayout(new FlowLayout(1));
 
-   store = new ListStore<IndicatorFilterItemGridRowModel>();
- 
-    
- 
-    List<IndicatorFilterItemGridRowModel> filters=new ArrayList<IndicatorFilterItemGridRowModel>();
-    IndicatorFilterItemGridRowModel ft=new IndicatorFilterItemGridRowModel();
-    ft.setProperty("MapID");
-    ft.setValue("1");
-    ft.setType("Action");
-   
-    filters.add(ft);
-    
-    IndicatorFilterItemGridRowModel fts=new IndicatorFilterItemGridRowModel();
-    fts.setProperty("User");
-    fts.setValue("Ugur");
-    fts.setType("Content");
-    filters.add(fts);
-    
-    store.add(filters);
+
     
     
     ColumnConfig _type = new ColumnConfig("filtertype", "filtertype", 50);
@@ -194,7 +181,27 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
       buttoncolumn.setFixed(true);
       buttoncolumn.setRenderer(buttonRenderer);
      
-
+	   store = new ListStore<IndicatorFilterItemGridRowModel>();
+	   
+	    
+	   
+	    List<IndicatorFilterItemGridRowModel> filters=new ArrayList<IndicatorFilterItemGridRowModel>();
+	    IndicatorFilterItemGridRowModel ft=new IndicatorFilterItemGridRowModel();
+	    ft.setProperty("MAP-ID");
+	    ft.setValue("1");
+	    ft.setType("OBJECT");
+	    
+	    
+	    filters.add(ft);
+	    
+	    IndicatorFilterItemGridRowModel fts=new IndicatorFilterItemGridRowModel();
+	    fts.setProperty("ID");
+	    fts.setValue("Ugur");
+	    fts.setType("USER");
+	    filters.add(fts);
+	    
+	    store.add(filters);
+	
     
     
     List<ColumnConfig> config = new ArrayList<ColumnConfig>();

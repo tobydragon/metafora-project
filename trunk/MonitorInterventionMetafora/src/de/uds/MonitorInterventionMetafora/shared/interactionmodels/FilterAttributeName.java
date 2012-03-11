@@ -17,6 +17,7 @@ public enum FilterAttributeName {
 			System.out.println("[FilterElementType.getFromString] bad string input");
 			return null;
 		}
+		
 	}
 
 }
