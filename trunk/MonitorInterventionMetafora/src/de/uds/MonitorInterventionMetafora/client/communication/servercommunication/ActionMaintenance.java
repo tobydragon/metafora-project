@@ -3,9 +3,21 @@ package de.uds.MonitorInterventionMetafora.client.communication.servercommunicat
 import java.util.ArrayList;
 import java.util.List;
 
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.widget.ComponentManager;
+import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
+//import com.extjs.gxt.ui.client.widget.button.Button;
+//import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.Timer;
+import com.extjs.gxt.ui.client.widget.grid.Grid;
+//import com.google.gwt.user.client.ui.Button;
+
 
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
+import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
+import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorGridRowItem;
 //import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorEntity;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
@@ -49,7 +61,23 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 	}
 	
 	
-	
+	 public void refreshTableView(ActionMaintenance _maintenance){
+		 TableViewModel tvm=new TableViewModel( _maintenance);
+			
+		 
+		   Grid<IndicatorGridRowItem> editorGrid = (Grid<IndicatorGridRowItem>) ComponentManager.get().get("_tableViewGrid");
+		   Grid<IndicatorGridRowItem> _grid = editorGrid;
+		   _grid.getStore().removeAll();
+		   _grid.getStore().add(tvm.parseToIndicatorGridRowList(true));
+		 
+		 //Button _refreshBtn =  (Button) ComponentManager.get().get("_refreshBtn").asWidget();
+        // _refreshBtn.s
+		 //if(_refreshBtn!=null)
+        //_refreshBtn.fireEvent(Events.OnClick);
+         
+		 
+	 }
+
 	
 	
 	/*

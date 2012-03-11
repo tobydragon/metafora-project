@@ -33,8 +33,8 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
 	FilterListPanel flp;
 	ActionMaintenance maintenance;
 	public MainContainer(){
+		maintenance=new ActionMaintenance();
 	   
-	   flp=new FilterListPanel();
 	   loadingImage = new Image();
  	   loadingImage.setResource(Resources.IMAGES.loaderImage2());
  	   loadingImage.setWidth("200px");
@@ -54,7 +54,7 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
  	 
  	   ServerCommunication.getInstance().processAction("Tool",_action,this);
  	   
- 	  maintenance=new ActionMaintenance();
+ 	  
  	
 
 		
@@ -79,6 +79,8 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
 		this.remove(loadingImage);
 		//DataModel.initializeInterActionHistory(result.toString());
 		  //VerticalPanel vp=new VerticalPanel();
+		
+		flp=new FilterListPanel(maintenance);
 		MultiModelTabPanel tabs=new MultiModelTabPanel();
 		
 		/*

@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 
+import com.extjs.gxt.ui.client.event.EventType;
+import com.extjs.gxt.ui.client.widget.ComponentManager;
+import com.google.gwt.user.client.Event;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
 
@@ -550,6 +554,7 @@ return map;
 		}
 		
 		
+		 
 	
 		 void ouputValues() {
 			
@@ -599,6 +604,13 @@ return map;
 				}
 				
 			}
+		
+		
+		 public ActionMaintenance getActionMaintenance(){
+				
+				return maintenance;
+			}
+
 	
 
 }
