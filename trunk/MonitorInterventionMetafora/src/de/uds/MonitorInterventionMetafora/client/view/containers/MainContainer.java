@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestHistoryCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ServerCommunication;
+import de.uds.MonitorInterventionMetafora.client.datamodels.PieChartViewModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
@@ -20,6 +21,8 @@ import de.uds.MonitorInterventionMetafora.client.view.grids.ExtendedFilterGrid;
 import de.uds.MonitorInterventionMetafora.client.view.grids.ExtendedGroupedGrid;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.MultiModelTabPanel;
+import de.uds.MonitorInterventionMetafora.client.view.widgets.PieChartFilterPanel;
+import de.uds.MonitorInterventionMetafora.client.view.widgets.PieChartFilterTypeComboBox;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
@@ -82,6 +85,8 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
 		
 		flp=new FilterListPanel(maintenance);
 		MultiModelTabPanel tabs=new MultiModelTabPanel();
+		tabs.setId("_tabMainPanel");
+	
 		
 		/*
 		Map<String, IndicatorFilterItem> _filterItems=new HashMap<String, IndicatorFilterItem>();
@@ -112,17 +117,26 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
 		
 		// this.add(flp);
 		  maintenance.startMaintenance();
-		 ExtendedPieChart iaf=new ExtendedPieChart(maintenance);
+		 
 		 
 		 ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(maintenance);
-		  tabs.addTab("Table",indicatorTable);
-		  tabs.addTab("PieView", iaf);
+		  tabs.addTab("Table",indicatorTable,false);
+		  
 		  
 		  //this.add(tabs);
 		  VerticalPanel panel=new VerticalPanel();
 		  panel.add(flp);
+		  
+		  
+		  PieChartFilterPanel _filterPieChart=new PieChartFilterPanel(maintenance);
+		 // ExtendedPieChart iaf=new ExtendedPieChart(maintenance);
+		 // iaf.setId("_pieChartPanel");
+		  tabs.addTab("Pie View", _filterPieChart,false);
+		  //tabs.getWidget(0).a
+		  
 		  panel.add(tabs);
-		 
+		  
+		  
 		  RootPanel.get().add(panel);
 		 
 		  //RootPanel.get().add(this);
