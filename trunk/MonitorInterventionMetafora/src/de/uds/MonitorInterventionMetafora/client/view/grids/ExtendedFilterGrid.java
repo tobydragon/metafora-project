@@ -282,6 +282,10 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 		    	 //Info.display("Clear","All filters are removed!!");
 		    grid.getStore().removeAll();
 		    filterGroupCombo.clearSelections();
+			
+		    filterModel.getActionMaintenance().refreshTableView(filterModel.getActionMaintenance());
+		    
+        	//_maint.refreshTableView(filterModel.getActionMaintenance());
 		   
 			
 		}  
@@ -399,6 +403,10 @@ public void onSuccess(Configuration result) {
 	        	     grid.startEditing(store.indexOf(_filterItem), 0); 
 
 	        	}
+	        	
+	        	filterModel.getActionMaintenance().refreshTableView(filterModel.getActionMaintenance());
+	        	
+	        	
 	        }
 	        
 	        
