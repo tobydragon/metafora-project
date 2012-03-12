@@ -192,12 +192,6 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	    
 	    filters.add(ft);
 	    
-	    IndicatorFilterItemGridRowModel fts=new IndicatorFilterItemGridRowModel();
-	    fts.setProperty("ID");
-	    fts.setValue("Ugur");
-	    fts.setType("USER");
-	    filters.add(fts);
-	    
 	    store.add(filters);
 	
     
@@ -305,7 +299,8 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     panel.setCollapsible(true);
     panel.setFrame(true);
     
-    panel.setSize(650, 140);
+    panel.setSize(590, 160);
+    grid.setWidth(590);
     panel.setLayout(new FitLayout());
     panel.add(grid);
 

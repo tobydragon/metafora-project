@@ -219,9 +219,9 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
     panel.setIcon(Resources.ICONS.table());
     panel.setCollapsible(false);
     panel.setFrame(true);
-    panel.setSize(625, 400);
+    panel.setSize(590, 340);
     panel.setLayout(new FitLayout());
-   
+    grid.setWidth(590);
     panel.add(grid);
     
     
