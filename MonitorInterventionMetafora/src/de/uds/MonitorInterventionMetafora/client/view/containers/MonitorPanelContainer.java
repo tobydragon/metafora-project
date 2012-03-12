@@ -30,13 +30,15 @@ import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEnti
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTDateUtils;
 
 
-public class MainContainer extends VerticalPanel implements RequestHistoryCallBack{
+public class MonitorPanelContainer extends VerticalPanel implements RequestHistoryCallBack{
 
 	Image loadingImage;
 	FilterListPanel flp;
+	
 	ActionMaintenance maintenance;
-	public MainContainer(){
+	public MonitorPanelContainer(){
 		maintenance=new ActionMaintenance();
+		
 	   
 	   loadingImage = new Image();
  	   loadingImage.setResource(Resources.IMAGES.loaderImage2());
@@ -124,7 +126,9 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
 		  
 		  
 		  //this.add(tabs);
+		
 		  VerticalPanel panel=new VerticalPanel();
+			panel.setId("allContainer");
 		  panel.add(flp);
 		  
 		  
@@ -135,9 +139,10 @@ public class MainContainer extends VerticalPanel implements RequestHistoryCallBa
 		  //tabs.getWidget(0).a
 		  
 		  panel.add(tabs);
+		 // this.add(panel);
 		  
 		  
-		  RootPanel.get().add(panel);
+		 RootPanel.get().add(panel);
 		 
 		  //RootPanel.get().add(this);
 		  
