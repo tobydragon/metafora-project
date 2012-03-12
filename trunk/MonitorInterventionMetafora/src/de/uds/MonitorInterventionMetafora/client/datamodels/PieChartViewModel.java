@@ -445,7 +445,7 @@ return map;
 			
 		
 		
-		outputSorted(map);
+		//outputSorted(map);
 		return map;	
 	}	
 	
@@ -468,7 +468,7 @@ return map;
 			   }  
 			}
 			System.out.println("Content");
-			outputSortedC(map);
+			//outputSortedC(map);
 			return map;	
 		}
 
@@ -556,7 +556,7 @@ return map;
 			   
 			}
 
-			outputSortedA(map);
+			//outputSortedA(map);
 			return map;	
 		}
 		

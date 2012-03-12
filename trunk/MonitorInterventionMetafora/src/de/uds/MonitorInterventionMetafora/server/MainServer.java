@@ -155,7 +155,6 @@ List<CfAction>  getActionUpdates(long _lasActionTime){
 		
 	}
 	
-	System.out.println(_newActionList.size()+" New Action Updates!!");
 	return _newActionList;
 	
 	

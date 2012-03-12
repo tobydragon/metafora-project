@@ -27,7 +27,9 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.visualization.client.VisualizationUtils;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
-import de.uds.MonitorInterventionMetafora.client.view.containers.MainContainer;
+import de.uds.MonitorInterventionMetafora.client.view.containers.InterventionPanelContainer;
+import de.uds.MonitorInterventionMetafora.client.view.containers.MainContainerTabPanel;
+import de.uds.MonitorInterventionMetafora.client.view.containers.MonitorPanelContainer;
 
 
 
@@ -37,9 +39,15 @@ class VisualAnalyzer implements EntryPoint {
   public void onModuleLoad() {
     VisualizationUtils.loadVisualizationApi(new Runnable() {
       public void run() {
-           	 
-    	  MainContainer _container=new MainContainer();
-    	  RootPanel.get().add(_container);
+          
+    	  
+    	  InterventionPanelContainer _interventionPanelContainer=new  InterventionPanelContainer();
+    	  MonitorPanelContainer _monitoringContainer=new MonitorPanelContainer();
+    	  MainContainerTabPanel _mainPanel=new MainContainerTabPanel();
+    	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
+    	  _mainPanel.addTab("Intervention", _interventionPanelContainer,false);
+    	  
+    	  RootPanel.get().add(_mainPanel);
 
     	
       }}, PieChart.PACKAGE);

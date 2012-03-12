@@ -185,13 +185,13 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	   
 	    List<IndicatorFilterItemGridRowModel> filters=new ArrayList<IndicatorFilterItemGridRowModel>();
 	    IndicatorFilterItemGridRowModel ft=new IndicatorFilterItemGridRowModel();
-	    ft.setProperty("MAP-ID");
+	  /*  ft.setProperty("MAP-ID");
 	    ft.setValue("1");
 	    ft.setType("OBJECT");
 	    
 	    
 	    filters.add(ft);
-	    
+	    */
 	    store.add(filters);
 	
     

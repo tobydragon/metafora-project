@@ -193,7 +193,8 @@ public PieChartViewModel getPieChartModel(){
 			        
 			        model.getActionMaintenance().refreshTableView(model.getActionMaintenance());
 			         
-			         
+			        MessageBox.info("Message","filter is added to the list ", null);
+		        	
 			        //Button _refreshBtn=  (Button) _refresh
 					
 			        //EditorGrid<IndicatorFilterItemGridRowModel> _grid = editorGrid;
