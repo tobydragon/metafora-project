@@ -219,9 +219,10 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
     panel.setIcon(Resources.ICONS.table());
     panel.setCollapsible(false);
     panel.setFrame(true);
-    panel.setSize(590, 340);
+    panel.setSize(590, 335);
     panel.setLayout(new FitLayout());
     grid.setWidth(590);
+    grid.setHeight(330);
     panel.add(grid);
     
     
@@ -234,8 +235,7 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
     grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
     add(panel);
     
-    
-    
+   
     tableViewTimer=new Timer(){
     	@Override
     	public void run() {
