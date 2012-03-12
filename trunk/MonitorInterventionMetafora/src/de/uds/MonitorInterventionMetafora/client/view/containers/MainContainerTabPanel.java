@@ -38,7 +38,7 @@ public class MainContainerTabPanel extends VerticalPanel {
 		 _item.add(_widget);
 		 _item.layout();
 		 _containerTabPanel.add(_item);
-		 _containerTabPanel.setSelection(_item);
+		 _containerTabPanel.setTabIndex(0);
 		 
 		}
 }
