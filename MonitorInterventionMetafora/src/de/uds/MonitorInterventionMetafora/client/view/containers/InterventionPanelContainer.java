@@ -10,6 +10,7 @@ public class InterventionPanelContainer extends VerticalPanel {
 	public InterventionPanelContainer(){
 		
 		this.add(new Label("Here is for intervention panel!"));
+		this.layout();
 		
 	}
 }
