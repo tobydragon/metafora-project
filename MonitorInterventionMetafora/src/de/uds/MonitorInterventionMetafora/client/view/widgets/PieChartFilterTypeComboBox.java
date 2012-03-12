@@ -73,18 +73,18 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	        			model.sliptActions(true);
 	        			_pieChart=new ExtendedPieChart(selectedEntity,model);
 	        			
+	        			
+	        			/*
 	        			Dialog dp=new Dialog();
 	        			
 	        			//dp.removeAll();
 	        			
 	        			dp.setHeight(400);
-	        			dp.setWidth(400);
-	        			
+	        			dp.setWidth(400);			
 	        			dp.add(_pieChart);
-	        			
 	        			dp.show();
 	        			dp.center();
-	        			
+	        			*/
 	        			
 	        			VerticalPanel _pieChartVerticalPanel = (VerticalPanel) ComponentManager.get().get("_pieChartFilterPanel");
 		        		if(_pieChartVerticalPanel!=null){
