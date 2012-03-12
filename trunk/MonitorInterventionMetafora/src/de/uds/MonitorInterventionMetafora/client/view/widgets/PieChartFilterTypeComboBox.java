@@ -72,6 +72,7 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	        		if(_tabPanel!=null){
 	        			model.sliptActions(true);
 	        			_pieChart=new ExtendedPieChart(selectedEntity,model);
+	        			
 	        			Dialog dp=new Dialog();
 	        			
 	        			//dp.removeAll();
@@ -85,11 +86,13 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	        			dp.center();
 	        			
 	        			
-	        			VerticalPanel _pieChartVerticalPanel = (VerticalPanel) ComponentManager.get().get("_pieChartVerticalPanel");
+	        			VerticalPanel _pieChartVerticalPanel = (VerticalPanel) ComponentManager.get().get("_pieChartFilterPanel");
 		        		if(_pieChartVerticalPanel!=null){
-		        		_pieChartVerticalPanel.removeAll();
-		        		_pieChartVerticalPanel.add(_pieChart);
-		        		_pieChartVerticalPanel.layout(true);
+		        			
+		        		//	System.out.println("Panel Bulundu!!");
+		        		//_pieChartVerticalPanel.removeAll();
+		        		//_pieChartVerticalPanel.add(_pieChart);
+		        		//_pieChartVerticalPanel.layout(true);
 		        		//_pieChartVerticalPanel.re
 		        	
 		        		}
