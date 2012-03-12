@@ -47,7 +47,7 @@ class VisualAnalyzer implements EntryPoint {
     	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
     	  _mainPanel.addTab("Intervention", _interventionPanelContainer,false);
     	  
-    	  RootPanel.get().add(_mainPanel);
+    	  RootPanel.get().add(_monitoringContainer);
 
     	
       }}, PieChart.PACKAGE);

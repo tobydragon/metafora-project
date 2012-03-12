@@ -83,9 +83,22 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	        			
 	        			dp.show();
 	        			dp.center();
+	        			
+	        			
+	        			VerticalPanel _pieChartVerticalPanel = (VerticalPanel) ComponentManager.get().get("_pieChartVerticalPanel");
+		        		if(_pieChartVerticalPanel!=null){
+		        		_pieChartVerticalPanel.removeAll();
+		        		_pieChartVerticalPanel.add(_pieChart);
+		        		_pieChartVerticalPanel.layout(true);
+		        		//_pieChartVerticalPanel.re
+		        	
+		        		}
 	        			//_tabPanel.addTab(selectedEntity.getEntityName(), _pieChart, true);
 	        			
 	        		}
+	        		
+	        		
+	        		
 	        		
 	        			
 	        			//ComponentManager.get().get("_pieChartVerticalPanel").removeFromParent();
