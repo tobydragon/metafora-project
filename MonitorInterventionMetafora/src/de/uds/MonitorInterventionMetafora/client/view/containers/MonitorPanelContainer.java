@@ -78,46 +78,11 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
 		
 		if(_actionList!=null)
 			maintenance.setActiveActionList(_actionList);
-		
-		//System.out.println("Configuration:"+result);
-
 		this.remove(loadingImage);
-		//DataModel.initializeInterActionHistory(result.toString());
-		  //VerticalPanel vp=new VerticalPanel();
-		
 		flp=new FilterListPanel(maintenance);
 		MultiModelTabPanel tabs=new MultiModelTabPanel();
 		tabs.setId("_tabMainPanel");
-	
-		
-		/*
-		Map<String, IndicatorFilterItem> _filterItems=new HashMap<String, IndicatorFilterItem>();
-		
-		IndicatorFilterItem item;
-		item=new IndicatorFilterItem();
-		item.setType(CommonFormatStrings.CONTENT_STRING);
-		item.setProperty("INDICATOR_TYPE");
-		item.setValue("activity");
-		_filterItems.put("INDICATOR_TYPE", item);
-		
-		
-		
-		item=new IndicatorFilterItem();
-		item.setType(CommonFormatStrings.OBJECT_STRING);
-		item.setProperty("USERNAME");
-		item.setValue("Bob");
-		_filterItems.put("USERNAME", item);
-		
-		item=new IndicatorFilterItem();
-		item.setType(CommonFormatStrings.ACTION_STRING);
-		item.setProperty("classification");
-		item.setValue("CREATE");
-		_filterItems.put("classification", item);
-		
-		
-		*/
-		
-		// this.add(flp);
+
 		  maintenance.startMaintenance();
 		 
 		 
@@ -130,19 +95,16 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
 		  VerticalPanel panel=new VerticalPanel();
 			panel.setId("allContainer");
 		  panel.add(flp);
-		  
-		  
 		  PieChartFilterPanel _filterPieChart=new PieChartFilterPanel(maintenance);
-		 // ExtendedPieChart iaf=new ExtendedPieChart(maintenance);
-		 // iaf.setId("_pieChartPanel");
 		  tabs.addTab("Pie View", _filterPieChart,false);
-		  //tabs.getWidget(0).a
-		  
 		  panel.add(tabs);
-		 // this.add(panel);
 		  
 		  
-		 RootPanel.get().add(panel);
+		  this.add(panel);
+		  this.layout();
+		  
+		  
+		// RootPanel.get().add(panel);
 		 
 		  //RootPanel.get().add(this);
 		  
