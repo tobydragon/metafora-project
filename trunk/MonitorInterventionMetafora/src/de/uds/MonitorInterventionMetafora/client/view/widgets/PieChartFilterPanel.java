@@ -29,7 +29,7 @@ public class PieChartFilterPanel extends VerticalPanel {
 		
 		ExtendedPieChart _pieChart=new ExtendedPieChart(_defaltEntity,model);
 		this.add(filterTypeComboBox);
-		//this.add(_pieChart);
+		this.add(_pieChart);
 		
 	}
 }
