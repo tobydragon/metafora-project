@@ -247,7 +247,7 @@ public class XMPPBridgeCurrent implements RosterListener {
 		}
 	}
 
-	public void connectToChat(String chat, String alias) {
+	public boolean connectToChat(String chat, String alias) {
 		if (connection.isConnected() && connection.isAuthenticated()
 				&& distributor != null) {
 			MultiUserChat muc = null;
@@ -261,13 +261,33 @@ public class XMPPBridgeCurrent implements RosterListener {
 			}
 
 			joinMultiUserChat(muc, alias);
-
+			
+			return true;
 		} else {
 			System.err
 					.println("XMPPBridge.connectToChat: user not logged in or not authorized!");
 		}
+		return false;
 	}
 
+	public boolean leaveChat(String chat) {
+		if (connection.isConnected() && connection.isAuthenticated()
+				&& distributor != null) {
+			MultiUserChat muc = null;
+
+			if (multiUserChats.get(chat) != null) {
+				muc = multiUserChats.get(chat);
+				muc.leave();
+				
+				return true;
+			}
+		} else {
+			System.err
+					.println("XMPPBridge.connectToChat: user not logged in or not authorized!");
+		}
+		return false;
+	}
+	
 	private void joinMultiUserChat(MultiUserChat muc, String alias) {
 		try {
 			if (alias == null) {
