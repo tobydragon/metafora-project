@@ -54,13 +54,21 @@ public class XMPPBridge {
 		this.bridge = bridge;
 		this.chat = chat;
 		
-		this.bridge.connectToChat(chat);
+		this.bridge.connectToChat(chat, null);
 	}
 
 	public void init() {
 		// ignore
 	}
 
+	public void registerPresenceListener(XMPPPresenceListener listener) {
+		this.bridge.getDistributor().addPresenceListener(listener);
+	}
+	
+	public void removePresenceListener(XMPPPresenceListener listener) {
+		this.bridge.getDistributor().removePresenceListener(listener);
+	}
+	
 	public void registerListener(XMPPMessageListener listener) {
 		this.bridge.getDistributor().addListener(listener);
 	}
@@ -95,11 +103,11 @@ public class XMPPBridge {
 	}
 
 	public void connectToChat() {
-		bridge.connectToChat(chat);
+		bridge.connectToChat(chat, null);
 	}
 
 	public void connectToChat(String chat) {
-		bridge.connectToChat(chat);
+		bridge.connectToChat(chat, null);
 	}
 
 	public void sendMessage(String message) {

@@ -5,7 +5,7 @@ import java.util.Date;
 public class XmppTest {
 
 	public static void main(String args[]) {
-		boolean simpeltest = false;
+		boolean simpeltest = true;
 		boolean compatibilitytest = false;
 		
 		if(simpeltest)
@@ -114,7 +114,7 @@ public class XmppTest {
 	}
 
 	private static void test() {
-		XMPPBridgeCurrent.setUser("KUU0004", "KUU0004");
+		XMPPBridgeCurrent.setUser("thomas", "didPfT");
 
 		try {
 			XMPPBridgeCurrent bridge = XMPPBridgeCurrent.getInstance();
@@ -136,17 +136,17 @@ public class XmppTest {
 						});
 			}
 
-			bridge.connectToChat("logger@conference.metafora.ku-eichstaett.de");
-			bridge.sendMessageToMultiUserChat(
-					"logger@conference.metafora.ku-eichstaett.de", "test!",
-					null);
-			bridge.sendMessageToMultiUserChat(
-					"logger@conference.metafora.ku-eichstaett.de", "test!",
-					"subject");
-			bridge.sendMessageToUser("testnachricht", "irgangla@jabber.org",
-					null);
-			bridge.sendMessageToUser("testnachricht", "irgangla@jabber.org",
-					"subject");
+			bridge.connectToChat("logger@conference.metafora.ku-eichstaett.de", null);
+//			bridge.sendMessageToMultiUserChat(
+//					"logger@conference.metafora.ku-eichstaett.de", "test!",
+//					null);
+//			bridge.sendMessageToMultiUserChat(
+//					"logger@conference.metafora.ku-eichstaett.de", "test!",
+//					"subject");
+//			bridge.sendMessageToUser("testnachricht", "irgangla@jabber.org",
+//					null);
+//			bridge.sendMessageToUser("testnachricht", "irgangla@jabber.org",
+//					"subject");
 
 			while (true) {
 
