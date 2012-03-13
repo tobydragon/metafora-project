@@ -96,7 +96,7 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
 			panel.setId("allContainer");
 		  panel.add(flp);
 		  PieChartFilterPanel _filterPieChart=new PieChartFilterPanel(maintenance);
-		  tabs.addTab("Pie View", _filterPieChart,false);
+		  tabs.addTab("pieChartViewTab","Pie Chart View", _filterPieChart,false);
 		  panel.add(tabs);
 		  panel.setHeight(600);
 		  

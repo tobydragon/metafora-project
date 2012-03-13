@@ -9,6 +9,8 @@ import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.Label;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
@@ -25,14 +27,14 @@ import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEnti
 
 public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	
-	
+	public int i=0;
 	private IndicatorEntity selectedEntity=null;
 	private ComboBox<PieChartComboBoxModel> comboType;
 	
 	PieChartViewModel model;
-	ExtendedPieChart _pieChart;
+	//ExtendedPieChart _newPieChart;
 	
-	private VerticalPanel pieChartPanel;
+	//private VerticalPanel pieChartPanel;
 	public PieChartFilterTypeComboBox(PieChartViewModel _model){
 		
 	
@@ -59,7 +61,7 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	    Button retriveBtn=new Button("Retrieve");
 	    retriveBtn.setWidth("55px");
 	    retriveBtn.setHeight("29px");
-	    
+	   
 	    retriveBtn.addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
 	   
@@ -67,11 +69,38 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	        		
 	        		
 	        		
-	        		MultiModelTabPanel _tabPanel = (MultiModelTabPanel) ComponentManager.get().get("_tabMainPanel");
+	        		//LayoutContainer _pieChartPanel = (LayoutContainer) ComponentManager.get().get("pieChartVerticalPanel");
 	        		
-	        		if(_tabPanel!=null){
+	        		
+	        		ExtendedPieChart _pieChartPanel = (ExtendedPieChart) ComponentManager.get().get("pieChartVerticalPanel");
+	        		
+	        		if( _pieChartPanel!=null){
 	        			model.sliptActions(true);
-	        			_pieChart=new ExtendedPieChart(selectedEntity,model);
+	        			
+	        			
+	        			
+	        			_pieChartPanel.getPieChart().draw(model.getPieChartData(selectedEntity),_pieChartPanel.getPieChartOptions());
+	        			
+	        			
+	        			//_newPieChart=new ExtendedPieChart(selectedEntity,model);
+	        			//_pieChartPanel.removeAll();
+	        			//VerticalPanel _pieChart = (VerticalPanel) ComponentManager.get().get("pieChartVerticalPanel");
+	        			
+	        			//_pieChartPanel.add(new Label("weeaseae:"+i));
+	        			//_pieChartPanel.add(_newPieChart);
+	        			
+	        		//	_pieChartPanel.repaint();
+	        			//_pieChartPanel.layout(true);
+	        			_pieChartPanel.layout();
+	        			i++;
+	        			
+	        			VerticalPanel _comboPieChartpanel = (VerticalPanel) ComponentManager.get().get("pieChartFilterPanel");
+	        			_comboPieChartpanel.layout();
+	        			//_comboPieChartpanel .repaint();
+	        		
+	        			TabItem _pieChartTable = (TabItem) ComponentManager.get().get("pieChartViewTab");
+	        			_pieChartTable.layout();
+	        			
 	        			
 	        			
 	        			/*
@@ -108,7 +137,7 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	        		
 	        		
 	        		//pieChartPanel.remove
-	        		if(pieChartPanel!=null)
+	        		/*if(pieChartPanel!=null)
 	        		{
 	        			
 	        			//RootPanel.get().add(_pieChart);
@@ -118,7 +147,7 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	        			
 	        			//RootPanel.get().remove(_chart);
 	        		}
-	        		
+	        		*/
 	        		
 	        		
 	        		

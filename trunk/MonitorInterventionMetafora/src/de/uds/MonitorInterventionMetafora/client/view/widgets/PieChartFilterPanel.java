@@ -18,7 +18,7 @@ public class PieChartFilterPanel extends VerticalPanel {
 	public PieChartFilterPanel(ActionMaintenance _maintenance){
 		this.setWidth(600);
 		maintenance=_maintenance;
-		this.setId("_pieChartFilterPanel");
+		this.setId("pieChartFilterPanel");
 		model=new PieChartViewModel(maintenance);
 		
 		
