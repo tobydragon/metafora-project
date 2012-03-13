@@ -6,12 +6,14 @@ package de.uds.MonitorInterventionMetafora.client.view.charts;
 
 import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.Label;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
+import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
 import com.google.gwt.core.client.JsArray;
 
@@ -27,7 +29,7 @@ import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemG
 import de.uds.MonitorInterventionMetafora.client.datamodels.PieChartViewModel;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
-public class ExtendedPieChart extends VerticalPanel {
+public class ExtendedPieChart extends  VerticalPanel {
 	
 	
 	//Map<Integer, String>subsection = new HashMap<Integer, String>();
@@ -42,14 +44,18 @@ public class ExtendedPieChart extends VerticalPanel {
 	public ExtendedPieChart(IndicatorEntity  _entity,PieChartViewModel _model){
 		entity=_entity;
 		
-		this.setId("_pieChartVerticalPanel");
+		this.setId("pieChartVerticalPanel");
 		//maintenance =_maintenance;
 		model=_model;
 		//model=new PieChartViewModel(maintenance);
 		this.removeAll();
 		//model.sliptActions(true);
 		this.add(createPieChart(model.getPieChartData(entity),"pieChart"));
-		
+		pieChart.setLayoutData(new FitLayout());
+	
+		//pieChart.draw(data, options)
+		this.layout(true);
+		this.doLayout();
 		
 		
 	}
@@ -57,6 +63,9 @@ public class ExtendedPieChart extends VerticalPanel {
 public ExtendedPieChart(String title){
 	this.setId("_pieChartVerticalPanel");
 	this.add(new Label(title));
+	this.layout(true);
+	this.doLayout();
+	
 }
 
 
@@ -83,19 +92,24 @@ public PieChartViewModel getPieChartModel(){
 	
 	
 
-	
+public PieOptions  getPieChartOptions(){
+		
+		  PieOptions options = PieChart.createPieOptions();
+		    options.setWidth(500);
+		    options.setHeight(400);
+		    options.set3D(true);
+		    options.setTitle("Indicator Overview");	
+		    
+		    return options;
+	}
 	
 	
 
 	 public PieChart createPieChart(DataTable data,String ID) {
 		 
 	
-		    PieOptions options = PieChart.createPieOptions();
-		    options.setWidth(500);
-		    options.setHeight(400);
-		    options.set3D(true);
-		    options.setTitle("Indicator Overview");		    
-		    pieChart= new PieChart(data, options);  
+		  	    
+		    pieChart= new PieChart(data, getPieChartOptions());  
 		   
 		    pieChart.addSelectHandler(createSelectHandler(pieChart));
 		    

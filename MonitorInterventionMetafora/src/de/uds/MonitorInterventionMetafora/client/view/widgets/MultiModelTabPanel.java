@@ -86,7 +86,24 @@ public class MultiModelTabPanel extends VerticalPanel {
 		
 	}
 	
-	
+	public void addTab(String id,String _lbl,Widget _widget,boolean _closable){
+		
+		 TabItem _item=new TabItem(_lbl);
+		 _item.setLayout(new FitLayout());
+		 
+		 _item.setClosable(_closable);
+		 _item.add(_widget);
+		 _item.setHeight(450);
+		 _item.setId(id);
+		 tabPanel.add(_item);
+		 
+		//	tabPanel.getTabBar().get
+			//tabPanel.add(item)(_widget,_lbl);
+			//tabPanel.selectTab(0);
+			
+		
+			
+		}
 
 	public void switchToTab(int index){
 				
