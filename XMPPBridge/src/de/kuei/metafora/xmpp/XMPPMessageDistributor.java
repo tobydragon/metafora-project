@@ -18,6 +18,7 @@ public class XMPPMessageDistributor implements Runnable {
 	private Vector<XMPPMessageTimeListenerLanguage> timeLanguageListeners = null;
 	private Vector<XMPPMessageListener> listeners = null;
 	private Vector<XMPPMessageTimeListener> timeListeners = null;
+	private Vector<XMPPMessageTimeListenerLanguageSubject> timeLanguageSubjectListeners = null;
 
 	private Vector<XMPPPresenceListener> presenceListeners = null;
 	
@@ -34,6 +35,7 @@ public class XMPPMessageDistributor implements Runnable {
 		timeLanguageListeners = new Vector<XMPPMessageTimeListenerLanguage>();
 		listeners = new Vector<XMPPMessageListener>();
 		timeListeners = new Vector<XMPPMessageTimeListener>();
+		timeLanguageSubjectListeners = new Vector<XMPPMessageTimeListenerLanguageSubject>();
 		
 		presenceListeners = new Vector<XMPPPresenceListener>();
 	}
@@ -54,6 +56,14 @@ public class XMPPMessageDistributor implements Runnable {
 		timeLanguageListeners.add(listener);
 	}
 
+	public void addTimeLanguageSubjectListener(XMPPMessageTimeListenerLanguageSubject listener) {
+		timeLanguageSubjectListeners.add(listener);
+	}
+	
+	public void removeTimeLanguageSubjectListener(XMPPMessageTimeListenerLanguageSubject listener) {
+		timeLanguageSubjectListeners.remove(listener);
+	}
+	
 	public void removeLanguageListener(XMPPMessageListenerLanguage listener) {
 		languageListeners.remove(listener);
 	}
@@ -99,7 +109,8 @@ public class XMPPMessageDistributor implements Runnable {
 			if (languageListeners.size() > 0
 					|| timeLanguageListeners.size() > 0 || listeners.size() > 0
 					|| timeListeners.size() > 0
-					|| presenceListeners.size() > 0) {
+					|| presenceListeners.size() > 0
+					|| timeLanguageSubjectListeners.size() > 0) {
 				Packet packet = collector.nextResult();
 				processPacket(packet);
 			}
@@ -110,11 +121,21 @@ public class XMPPMessageDistributor implements Runnable {
 		if (packet instanceof Message) {
 			Message msg = (Message) packet;
 
-			String name = msg.getFrom().substring(
-					packet.getFrom().indexOf('/') + 1);
-			String chat = msg.getFrom().substring(0,
-					packet.getFrom().indexOf('/') + 1);
-
+			String from = msg.getFrom();
+			String name = "";
+			String chat = from;
+			
+			int splitPos = from.indexOf('/');
+			if(splitPos > 0){
+				name = from.substring(splitPos+1, from.length());
+				chat = from.substring(0, splitPos);
+			}
+			
+			String subject = msg.getSubject();
+			if(subject == null){
+				subject = "";
+			}
+			
 			Collection<String> languages = msg.getBodyLanguages();
 
 			Date time = new Date();
@@ -150,6 +171,18 @@ public class XMPPMessageDistributor implements Runnable {
 					for (String lang : languages) {
 						listener.newMessage(name, msg.getBody(lang), chat,
 								time, lang);
+					}
+				}
+			}
+			
+			for (XMPPMessageTimeListenerLanguageSubject listener : timeLanguageSubjectListeners) {
+				if (languages.size() == 0) {
+					listener.newMessage(name, msg.getBody(), chat, time,
+							"unknown", subject);
+				} else {
+					for (String lang : languages) {
+						listener.newMessage(name, msg.getBody(lang), chat,
+								time, lang, subject);
 					}
 				}
 			}
@@ -198,7 +231,7 @@ public class XMPPMessageDistributor implements Runnable {
 					state = XMPPBridgeCurrent.unknown;
 				}
 			}else if(presence.getType() == Presence.Type.unavailable){
-				state = XMPPBridgeCurrent.notonline;
+				state = XMPPBridgeCurrent.offline;
 			}
 			
 			for(XMPPPresenceListener listener : presenceListeners){
