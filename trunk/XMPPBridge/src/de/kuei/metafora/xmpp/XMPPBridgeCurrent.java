@@ -33,7 +33,7 @@ public class XMPPBridgeCurrent implements RosterListener {
 	public static final String away = "away";
 	public static final String longtimeaway = "long time away";
 	public static final String unknown = "unknown";
-	public static final String notonline = "not online";
+	public static final String offline = "offline";
 
 	private static XMPPBridgeCurrent instance = null;
 
@@ -192,7 +192,7 @@ public class XMPPBridgeCurrent implements RosterListener {
 						return XMPPBridgeCurrent.longtimeaway;
 					}
 				} else if (presence.getType() == Presence.Type.unavailable) {
-					return XMPPBridgeCurrent.notonline;
+					return XMPPBridgeCurrent.offline;
 				}
 			}
 		} else {
@@ -313,6 +313,11 @@ public class XMPPBridgeCurrent implements RosterListener {
 
 	public void sendMessageToMultiUserChat(String chat, String message,
 			String subject) {
+		sendMessageToMultiUserChat(chat, message, subject, null);
+	}
+	
+	public void sendMessageToMultiUserChat(String chat, String message,
+			String subject, String language) {
 		if (connection.isConnected() && connection.isAuthenticated()) {
 			MultiUserChat muc = multiUserChats.get(chat);
 
@@ -323,8 +328,13 @@ public class XMPPBridgeCurrent implements RosterListener {
 				try {
 					Message msg = muc.createMessage();
 					msg.setBody(message);
+					
 					if (subject != null)
 						msg.setSubject(subject);
+					
+					if(language != null)
+						msg.addBody(language, message);
+					
 					muc.sendMessage(msg);
 				} catch (XMPPException e) {
 					System.err
@@ -342,13 +352,21 @@ public class XMPPBridgeCurrent implements RosterListener {
 	}
 
 	public void sendMessageToUser(String message, String user, String subject) {
+		sendMessageToUser(message, user, subject, null);
+	}
+	
+	public void sendMessageToUser(String message, String user, String subject, String language) {
 		if (connection.isConnected() && connection.isAuthenticated()) {
 			Message msg = new Message();
 			msg.setTo(user);
 			if (subject != null) {
 				msg.setSubject(subject);
-				msg.setType(Message.Type.headline);
 			}
+			
+			if(language != null){
+				msg.addBody(language, message);
+			}
+			
 			msg.setBody(message);
 
 			connection.sendPacket(msg);
