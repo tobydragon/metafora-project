@@ -22,7 +22,8 @@ public class XMPPWatcher implements Runnable{
 				System.err.println("XMPPWatcher.run: thread sleep interruption!");
 				e.printStackTrace();
 			}
-			bridge.watcher();
+			if(run)
+				bridge.watcher();
 		}
 	}
 
