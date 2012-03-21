@@ -12,6 +12,8 @@ package de.uds.MonitorInterventionMetafora.shared.interactionmodels;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 
+import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterItemType;
+
 
 public class IndicatorEntity extends BaseModel {
 

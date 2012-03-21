@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.shared.interactionmodels;
+package de.uds.MonitorInterventionMetafora.client.datamodels.attributes;
 
 public enum FilterAttributeName {
 	ID,

@@ -12,13 +12,13 @@ import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.IndicatorFilterer;
+import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterAttributeName;
+import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.FilterAttributeName;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
 public class PieChartViewModel {

@@ -15,17 +15,17 @@ import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
-import de.uds.MonitorInterventionMetafora.client.datamodels.PieChartComboBoxModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.EntityListComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.PieChartViewModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
 public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	
 	public int i=0;
 	private IndicatorEntity selectedEntity=null;
-	private ComboBox<PieChartComboBoxModel> comboType;
+	private ComboBox<EntityListComboBoxModel> comboType;
 	
 	PieChartViewModel model;
 	//ExtendedPieChart _newPieChart;
@@ -35,7 +35,7 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 		
 	
 		model=_model;
-		comboType = new ComboBox<PieChartComboBoxModel>();
+		comboType = new ComboBox<EntityListComboBoxModel>();
 		
 		comboType.setEmptyText("Select a type");
 	  
@@ -203,10 +203,10 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	
 	
 	
-	ListStore<PieChartComboBoxModel> toComboBoxEntities(List<IndicatorEntity>  _entityList) {
-		ListStore<PieChartComboBoxModel>  _comboBoxModelList = new ListStore<PieChartComboBoxModel>();
+	ListStore<EntityListComboBoxModel> toComboBoxEntities(List<IndicatorEntity>  _entityList) {
+		ListStore<EntityListComboBoxModel>  _comboBoxModelList = new ListStore<EntityListComboBoxModel>();
 	    for(IndicatorEntity _ent: _entityList){
-	    	PieChartComboBoxModel _comboBoxItem=new PieChartComboBoxModel(_ent);
+	    	EntityListComboBoxModel _comboBoxItem=new EntityListComboBoxModel(_ent);
 	    	_comboBoxModelList.add(_comboBoxItem);
 	    	
 	    	
@@ -216,11 +216,11 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	
 	
 	
-	   SelectionChangedListener<PieChartComboBoxModel> comboListener =new SelectionChangedListener<PieChartComboBoxModel>(){
+	   SelectionChangedListener<EntityListComboBoxModel> comboListener =new SelectionChangedListener<EntityListComboBoxModel>(){
 	        @Override
-	        public void selectionChanged(SelectionChangedEvent<PieChartComboBoxModel> se) { 
+	        public void selectionChanged(SelectionChangedEvent<EntityListComboBoxModel> se) { 
 
-	        	PieChartComboBoxModel vg = se.getSelectedItem();   
+	        	EntityListComboBoxModel vg = se.getSelectedItem();   
 	        	
 	         //   Record record = GroupingOptions.getObjectProperties().getRecord(vg);  
 	            

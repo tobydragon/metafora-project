@@ -2,9 +2,9 @@ package de.uds.MonitorInterventionMetafora.server.xml;
 
 import java.util.List;
 
+import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.server.utils.ServerFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
 
