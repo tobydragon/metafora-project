@@ -7,13 +7,13 @@ import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterAttributeName;
+import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.FilterAttributeName;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
 public class IndicatorFilterer {

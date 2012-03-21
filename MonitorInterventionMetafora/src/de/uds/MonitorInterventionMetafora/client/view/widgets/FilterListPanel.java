@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.VerticalPanel;
+
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.ScrollPanel;
 

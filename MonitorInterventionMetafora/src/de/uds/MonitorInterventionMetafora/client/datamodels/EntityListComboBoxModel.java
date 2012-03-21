@@ -9,22 +9,22 @@ package de.uds.MonitorInterventionMetafora.client.datamodels;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
 
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.FilterItemType;
+import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
-public class PieChartComboBoxModel extends BaseModelData {
+public class EntityListComboBoxModel extends BaseModelData {
 
   /**
 	 * 
 	 */
 	private static final long serialVersionUID = -8119756981959764189L;
 
-public PieChartComboBoxModel() {
+public EntityListComboBoxModel() {
 
   }
 
 
-public PieChartComboBoxModel(IndicatorEntity _entity) {
+public EntityListComboBoxModel(IndicatorEntity _entity) {
     setEntityName(_entity.getEntityName());
     setDisplayText(_entity.getDisplayText());
     setItemType(_entity.getType());
@@ -32,7 +32,7 @@ public PieChartComboBoxModel(IndicatorEntity _entity) {
 }
     
 
-  public PieChartComboBoxModel(String _entityName, String _displayText,FilterItemType _itemType, String _value) {
+  public EntityListComboBoxModel(String _entityName, String _displayText,FilterItemType _itemType, String _value) {
     setEntityName(_entityName);
     setDisplayText(_displayText);
     setItemType(_itemType);
