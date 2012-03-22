@@ -1,14 +1,14 @@
 package de.uds.MonitorInterventionMetafora.client.view.widgets;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 
 import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.ui.ScrollPanel;
+
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.datamodels.FilterListGridModel;
@@ -51,12 +51,6 @@ public class FilterListPanel extends ContentPanel {
 	
 	
 	
-	public  void addFilter(String _property,String _value){
-		
-		ExtendedFilterItem efi=new ExtendedFilterItem(_property,_value);
-		this.add(efi);
-		_filterList.put(_property, _value);		
-	}
 	
 	
 
