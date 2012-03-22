@@ -4,7 +4,7 @@ package de.uds.MonitorInterventionMetafora.client.view.charts;
 
 import com.extjs.gxt.ui.client.store.ListStore;
 
-import de.uds.MonitorInterventionMetafora.client.datamodels.EntityListComboBoxModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 
 

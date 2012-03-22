@@ -3,7 +3,7 @@ package de.uds.MonitorInterventionMetafora.client.view.widgets;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
-import de.uds.MonitorInterventionMetafora.client.datamodels.PieChartViewModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterAttributeName;
 import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
@@ -12,14 +12,14 @@ import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEnti
 public class PieChartFilterPanel extends VerticalPanel {
 
 	ActionMaintenance maintenance;
-	PieChartViewModel model;
+	EntityViewModel model;
 	PieChartFilterTypeComboBox filterTypeComboBox;
 	
 	public PieChartFilterPanel(ActionMaintenance _maintenance){
 		this.setWidth(600);
 		maintenance=_maintenance;
 		this.setId("pieChartFilterPanel");
-		model=new PieChartViewModel(maintenance);
+		model=new EntityViewModel(maintenance);
 		
 		
 		filterTypeComboBox =new PieChartFilterTypeComboBox(model);

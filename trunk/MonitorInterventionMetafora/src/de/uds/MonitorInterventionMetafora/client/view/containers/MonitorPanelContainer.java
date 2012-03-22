@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestHistoryCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ServerCommunication;
-import de.uds.MonitorInterventionMetafora.client.datamodels.PieChartViewModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;

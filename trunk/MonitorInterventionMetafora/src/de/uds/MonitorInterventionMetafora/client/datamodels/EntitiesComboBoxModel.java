@@ -12,19 +12,19 @@ import com.extjs.gxt.ui.client.data.BaseModelData;
 import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
-public class EntityListComboBoxModel extends BaseModelData {
+public class EntitiesComboBoxModel extends BaseModelData {
 
   /**
 	 * 
 	 */
 	private static final long serialVersionUID = -8119756981959764189L;
 
-public EntityListComboBoxModel() {
+public EntitiesComboBoxModel() {
 
   }
 
 
-public EntityListComboBoxModel(IndicatorEntity _entity) {
+public EntitiesComboBoxModel(IndicatorEntity _entity) {
     setEntityName(_entity.getEntityName());
     setDisplayText(_entity.getDisplayText());
     setItemType(_entity.getType());
@@ -32,7 +32,7 @@ public EntityListComboBoxModel(IndicatorEntity _entity) {
 }
     
 
-  public EntityListComboBoxModel(String _entityName, String _displayText,FilterItemType _itemType, String _value) {
+  public EntitiesComboBoxModel(String _entityName, String _displayText,FilterItemType _itemType, String _value) {
     setEntityName(_entityName);
     setDisplayText(_displayText);
     setItemType(_itemType);
