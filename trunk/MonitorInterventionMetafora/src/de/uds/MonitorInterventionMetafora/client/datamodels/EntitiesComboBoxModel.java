@@ -14,9 +14,7 @@ import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEnti
 
 public class EntitiesComboBoxModel extends BaseModelData {
 
-  /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -8119756981959764189L;
 
 public EntitiesComboBoxModel() {

@@ -1,6 +1,9 @@
 package de.uds.MonitorInterventionMetafora.client.view.widgets;
 
+import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
+import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.Layout;
@@ -8,6 +11,7 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
@@ -17,6 +21,7 @@ import com.google.gwt.user.client.DOM;
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
@@ -43,6 +48,7 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		entityComboBox.setDisplayField("displaytext");
 		entityComboBox.setValueField("entityname");
 		entityComboBox.setEditable(false);
+		entityComboBox.setId("_entityComboBox");
 		
 		
 		entityComboBox.setStore(model.getComboBoxEntities());
@@ -63,6 +69,7 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		operationComboBox.setPosition(0, -9);
 		operationComboBox.setEditable(false);
 		operationComboBox.setForceSelection(true);
+		operationComboBox.setId("_operationComboBox");
 		
 		operationComboBox.setTriggerAction(TriggerAction.ALL);
 		
@@ -74,11 +81,14 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		entityValueTextBox.setAllowBlank(false);
 		entityValueTextBox.setLayoutData(layout);
 		entityValueTextBox.setPosition(0, -9);
+		entityValueTextBox.setId("entityValueText");
 		
-		addButton=new Button("Add Filter");
+		
+		addButton=new Button("Add Filter",getAddButtonEvent());
 		
 		addButton.setIcon(Resources.ICONS.add());
 		addButton.setPosition(0, -9);
+		
 		
 	    // this.add(new Label("Entity"));
 	    
@@ -116,6 +126,59 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		_operations.add(_contains);
 		
 		return _operations;
+	}
+	
+	SelectionListener<ButtonEvent> getAddButtonEvent(){
+		
+		
+		SelectionListener<ButtonEvent> _addBtnEvent=new SelectionListener<ButtonEvent>() {
+
+			@Override
+			public void componentSelected(ButtonEvent ce) {
+				
+				
+				if(entityComboBox.validate() && operationComboBox.validate()&&entityValueTextBox.validate()){
+				
+				ComboBox<EntitiesComboBoxModel> entitiesCombo= (ComboBox<EntitiesComboBoxModel>) ComponentManager.get().get("_entityComboBox");
+				ComboBox<OperationsComboBoxModel> operationCombo= (ComboBox<OperationsComboBoxModel>) ComponentManager.get().get("_operationComboBox");
+				TextField<String> entityValue=(TextField<String>) ComponentManager.get().get("entityValueText");
+				
+				
+				 EditorGrid<IndicatorFilterItemGridRowModel> editorGrid = (EditorGrid<IndicatorFilterItemGridRowModel>) ComponentManager.get().get("_filterItemGrid");
+				 EditorGrid<IndicatorFilterItemGridRowModel> _grid = editorGrid;
+		    	 
+				
+				
+				EntitiesComboBoxModel selectedEntity=entitiesCombo.getValue();
+				OperationsComboBoxModel selectedOperation=operationCombo.getValue();
+				String filterValue=entityValue.getValue();
+				
+				
+				
+				
+				
+				IndicatorFilterItemGridRowModel  _newRow=new IndicatorFilterItemGridRowModel(selectedEntity.getEntityName(),filterValue,selectedEntity.getItemType().toString(),filterValue); 
+		    	
+		        
+		        _grid.stopEditing();  
+		        _grid.getStore().insert(_newRow, 0);  
+		        _grid.startEditing(_grid.getStore().indexOf(_newRow), 0); 
+		       // _filterCombo.clearSelections();
+				
+		        entitiesCombo.clear();
+		        operationCombo.clear();
+		        entityValue.clear();
+				
+				
+				
+				}
+				
+				
+			}
+			};
+		
+			
+		return  _addBtnEvent;
 	}
 	
 	
