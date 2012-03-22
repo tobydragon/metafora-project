@@ -30,18 +30,22 @@ public class FilterListPanel extends ContentPanel {
 		
 		 DOM.setStyleAttribute(this.getElement(), "border", "1px solid #000");
 	     DOM.setStyleAttribute(this.getElement(), "borderBottom", "0");
-	     this.setHeight("200px");	
+	     this.setHeight("241px");	
 		_filterList=new HashMap<String,String>();
 		
 		//ExtendedFilterItem efi=new ExtendedFilterItem(_property,_value);
 		//this.add(efi);
 		
+		//maintenance.
 		FilterListGridModel flm=new FilterListGridModel(maintenance);
 		ExtendedFilterGrid ef=new ExtendedFilterGrid(flm);
-		ExtendedSaveFilterSet saveFilterSet=new ExtendedSaveFilterSet();
+		
+		//ExtendedFilterManagementPanel fm=new ExtendedFilterManagementPanel(maintenance);
+		//ExtendedSaveFilterSet saveFilterSet=new ExtendedSaveFilterSet();
 		
 		
 		this.add(ef);
+		//this.add(fm);
 		
 	}
 	

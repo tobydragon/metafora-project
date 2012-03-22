@@ -15,8 +15,8 @@ import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
-import de.uds.MonitorInterventionMetafora.client.datamodels.EntityListComboBoxModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.PieChartViewModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
@@ -25,17 +25,17 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	
 	public int i=0;
 	private IndicatorEntity selectedEntity=null;
-	private ComboBox<EntityListComboBoxModel> comboType;
+	private ComboBox<EntitiesComboBoxModel> comboType;
 	
-	PieChartViewModel model;
+	EntityViewModel model;
 	//ExtendedPieChart _newPieChart;
 	
 	//private VerticalPanel pieChartPanel;
-	public PieChartFilterTypeComboBox(PieChartViewModel _model){
+	public PieChartFilterTypeComboBox(EntityViewModel _model){
 		
 	
 		model=_model;
-		comboType = new ComboBox<EntityListComboBoxModel>();
+		comboType = new ComboBox<EntitiesComboBoxModel>();
 		
 		comboType.setEmptyText("Select a type");
 	  
@@ -48,7 +48,7 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	 
 	    comboType.setAutoHeight(true);
 	    comboType.setId("comboType");
-	    comboType.setStore(toComboBoxEntities(model.getIndicatorEntities()));
+	    comboType.setStore(model.getComboBoxEntities());
 	  //  comboType.setTypeAhead(true);
 	    comboType.setTriggerAction(TriggerAction.ALL);
 	    comboType.addSelectionChangedListener(comboListener);
@@ -203,24 +203,15 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	
 	
 	
-	ListStore<EntityListComboBoxModel> toComboBoxEntities(List<IndicatorEntity>  _entityList) {
-		ListStore<EntityListComboBoxModel>  _comboBoxModelList = new ListStore<EntityListComboBoxModel>();
-	    for(IndicatorEntity _ent: _entityList){
-	    	EntityListComboBoxModel _comboBoxItem=new EntityListComboBoxModel(_ent);
-	    	_comboBoxModelList.add(_comboBoxItem);
-	    	
-	    	
-	    }
-	    return  _comboBoxModelList;
-	  }
-	
-	
-	
-	   SelectionChangedListener<EntityListComboBoxModel> comboListener =new SelectionChangedListener<EntityListComboBoxModel>(){
-	        @Override
-	        public void selectionChanged(SelectionChangedEvent<EntityListComboBoxModel> se) { 
 
-	        	EntityListComboBoxModel vg = se.getSelectedItem();   
+	
+	
+	
+	   SelectionChangedListener<EntitiesComboBoxModel> comboListener =new SelectionChangedListener<EntitiesComboBoxModel>(){
+	        @Override
+	        public void selectionChanged(SelectionChangedEvent<EntitiesComboBoxModel> se) { 
+
+	        	EntitiesComboBoxModel vg = se.getSelectedItem();   
 	        	
 	         //   Record record = GroupingOptions.getObjectProperties().getRecord(vg);  
 	            

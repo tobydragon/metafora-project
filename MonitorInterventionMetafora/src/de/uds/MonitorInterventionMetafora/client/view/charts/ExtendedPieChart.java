@@ -26,7 +26,7 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart.Pie
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.PieChartViewModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
 public class ExtendedPieChart extends  VerticalPanel {
@@ -36,12 +36,12 @@ public class ExtendedPieChart extends  VerticalPanel {
 
 	
 	private  PieChart pieChart;
-	private PieChartViewModel model;
+	private EntityViewModel model;
 	//private ActionMaintenance maintenance;
 	private IndicatorEntity  entity;
 	
 	
-	public ExtendedPieChart(IndicatorEntity  _entity,PieChartViewModel _model){
+	public ExtendedPieChart(IndicatorEntity  _entity,EntityViewModel _model){
 		entity=_entity;
 		
 		this.setId("pieChartVerticalPanel");
@@ -72,7 +72,7 @@ public ExtendedPieChart(String title){
 
 
 
-public PieChartViewModel getPieChartModel(){
+public EntityViewModel getPieChartModel(){
 	
 	return model;
 	

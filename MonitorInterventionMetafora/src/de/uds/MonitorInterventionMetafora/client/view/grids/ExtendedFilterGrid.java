@@ -68,6 +68,7 @@ import de.uds.MonitorInterventionMetafora.client.communication.servercommunicati
 import de.uds.MonitorInterventionMetafora.client.datamodels.FilterListGridModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
+import de.uds.MonitorInterventionMetafora.client.view.widgets.ExtendedFilterManagementPanel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
@@ -296,18 +297,23 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     
 
     ContentPanel panel = new ContentPanel();
-    panel.setTopComponent(toolBar); 
+    panel.setTopComponent(toolBar);
+    
+    ExtendedFilterManagementPanel _filterManagement=new ExtendedFilterManagementPanel(filterModel.getActionMaintenance());
+    panel.setBottomComponent(_filterManagement);
     panel.setHeaderVisible(false);
     panel.setIcon(Resources.ICONS.table());
     panel.setButtonAlign(HorizontalAlignment.CENTER);
     panel.setCollapsible(true);
     panel.setFrame(true);
     
-    panel.setSize(590, 160);
+    panel.setSize(590, 200);
     grid.setWidth(590);
-    grid.setHeight(150);
+    grid.setHeight(200);
     
     panel.setLayout(new FitLayout());
+   
+    
     panel.add(grid);
 
     /*panel.addButton(new Button("Save", new SelectionListener<ButtonEvent>() {

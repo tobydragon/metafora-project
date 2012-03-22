@@ -7,6 +7,7 @@ import java.util.Map;
 
 
 
+import com.extjs.gxt.ui.client.store.ListStore;
 import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
 
@@ -21,7 +22,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
-public class PieChartViewModel {
+public class EntityViewModel {
 	
 	
 	 List<CfAction> allActions=null;
@@ -38,7 +39,7 @@ public class PieChartViewModel {
 	ActionMaintenance maintenance=null;
 	
 	IndicatorFilterer filterer;
-	public PieChartViewModel(ActionMaintenance _maintenance ){
+	public EntityViewModel(ActionMaintenance _maintenance ){
 	
 		maintenance=_maintenance;
 		activeFilters = new HashMap<String, String>();
@@ -618,6 +619,22 @@ return map;
 				return maintenance;
 			}
 
+		 
+		public ListStore<EntitiesComboBoxModel> getComboBoxEntities(){
+			sliptActions(false);
+			 return toComboBoxEntities(getIndicatorEntities());
+		 }
+		 
+			ListStore<EntitiesComboBoxModel> toComboBoxEntities(List<IndicatorEntity>  _entityList) {
+				ListStore<EntitiesComboBoxModel>  _comboBoxModelList = new ListStore<EntitiesComboBoxModel>();
+			    for(IndicatorEntity _ent: _entityList){
+			    	EntitiesComboBoxModel _comboBoxItem=new EntitiesComboBoxModel(_ent);
+			    	_comboBoxModelList.add(_comboBoxItem);
+			    	
+			    	
+			    }
+			    return  _comboBoxModelList;
+			  }
 	
 
 }
