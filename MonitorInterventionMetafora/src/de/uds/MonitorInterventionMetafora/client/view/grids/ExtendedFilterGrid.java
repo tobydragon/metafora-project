@@ -101,25 +101,23 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     
     ColumnConfig _type = new ColumnConfig("filtertype", "filtertype", 50);
     _type.setHeader("Type");
-    _type.setWidth(170);
+    _type.setWidth(120);
     
     ColumnConfig _property = new ColumnConfig("property", "property", 50);
     _property.setHeader("Property");  
-    _property.setWidth(170);
+    _property.setWidth(120);
+    
+    ColumnConfig _operation = new ColumnConfig("operation", "operation", 50);
+    _operation.setHeader("Operation");
+    _operation.setWidth(100);
     
     
     ColumnConfig _value = new ColumnConfig("value", "value", 50);
     _value.setHeader("Value");
-    _value.setWidth(170);
+    _value.setWidth(100);
     
     
-    CheckColumnConfig checkColumn = new CheckColumnConfig("indoor", "Indoor?", 55);  
-    CellEditor checkBoxEditor = new CellEditor(new CheckBox());  
-    checkColumn.setEditor(checkBoxEditor); 
-   
-    
-    
-    
+
     
     
     
@@ -200,6 +198,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     List<ColumnConfig> config = new ArrayList<ColumnConfig>();
     config.add(_type);
     config.add(_property);
+    config.add(_operation);
     config.add(_value);
     config.add( buttoncolumn);
     
@@ -227,19 +226,18 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
         }
     });*/
    
-    grid.getStore().addListener(Store.Add, new Listener<StoreEvent<IndicatorEntity>>() {
-          public void handleEvent(StoreEvent<IndicatorEntity> be) {
-        	  //Info.display("Info","addedd");
-        	  
-        	//  filterGroup.clearSelections();
+    grid.getStore().addListener(Store.Add, new Listener<StoreEvent<IndicatorFilterItemGridRowModel>>() {
+          public void handleEvent(StoreEvent<IndicatorFilterItemGridRowModel> be) {
+        	 
+        	  filterModel.getActionMaintenance().refreshTableView();
           }
         });
     
-    grid.getStore().addListener(Store.Remove, new Listener<StoreEvent<IndicatorEntity>>() {
-        public void handleEvent(StoreEvent<IndicatorEntity> be) {
-        	ActionMaintenance _maint=new ActionMaintenance();
-        	_maint.refreshTableView(filterModel.getActionMaintenance());
-        	
+    grid.getStore().addListener(Store.Remove, new Listener<StoreEvent<IndicatorFilterItemGridRowModel>>() {
+        public void handleEvent(StoreEvent<IndicatorFilterItemGridRowModel> be) {
+        	//ActionMaintenance _maint=new ActionMaintenance();
+        	//_maint.refreshTableView(filterModel.getActionMaintenance());
+        	filterModel.getActionMaintenance().refreshTableView();
         	//Info.display("Info","remove");
         	//filterGroup.clearSelections();
         }
@@ -262,7 +260,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
       }  
   
     });  
-    toolBar.add(addbtn);  
+  //  toolBar.add(addbtn);  
     
     
     
@@ -284,7 +282,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 		    grid.getStore().removeAll();
 		    filterGroupCombo.clearSelections();
 			
-		    filterModel.getActionMaintenance().refreshTableView(filterModel.getActionMaintenance());
+		    filterModel.getActionMaintenance().refreshTableView();
 		    
         	//_maint.refreshTableView(filterModel.getActionMaintenance());
 		   
@@ -412,7 +410,7 @@ public void onSuccess(Configuration result) {
 
 	        	}
 	        	
-	        	filterModel.getActionMaintenance().refreshTableView(filterModel.getActionMaintenance());
+	        	filterModel.getActionMaintenance().refreshTableView();
 	        	
 	        	
 	        }

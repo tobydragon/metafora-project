@@ -16,6 +16,7 @@ public class ServerFormatStrings {
 	public static final String EDITABLE="editable";
 	public static final String ENTITYNAME="entityname";
 	public static final String FILTERITEM="filteritem";
+	public static final String OPERATION="operation";
 	
 	
 	
