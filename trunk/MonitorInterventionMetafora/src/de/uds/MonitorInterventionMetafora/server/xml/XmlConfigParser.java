@@ -2,8 +2,9 @@ package de.uds.MonitorInterventionMetafora.server.xml;
 
 import java.util.List;
 
-import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.server.utils.ServerFormatStrings;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
@@ -66,8 +67,9 @@ public class XmlConfigParser {
 			for(XmlFragmentInterface propertyFragment : filterFragment.getChildren(ServerFormatStrings.FILTERITEM))
 			{			
 				IndicatorEntity _filterItem=new IndicatorEntity();
-				_filterItem.setType(FilterItemType.valueOf(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
+				_filterItem.setType(FilterItemType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
 				_filterItem.setEntityName(propertyFragment.getAttributeValue(ServerFormatStrings.ENTITYNAME));
+				_filterItem.setOperationType(OperationType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.OPERATION).toUpperCase()));
 				_filterItem.setValue(propertyFragment.getAttributeValue(ServerFormatStrings.VALUE));				
 				 indicatorFilter.addIndicatorEntity(_filterItem.getEntityName(), _filterItem);
 

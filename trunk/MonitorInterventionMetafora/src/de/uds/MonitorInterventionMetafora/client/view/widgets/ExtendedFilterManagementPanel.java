@@ -23,8 +23,8 @@ import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxMode
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 
 
 public class ExtendedFilterManagementPanel extends HorizontalPanel{
@@ -120,8 +120,8 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 	ListStore<OperationsComboBoxModel>	getOperations(){
 		
 		ListStore<OperationsComboBoxModel> _operations=new ListStore<OperationsComboBoxModel>();
-		OperationsComboBoxModel _equals=new OperationsComboBoxModel("Equals",OperationType.Equals);
-		OperationsComboBoxModel _contains=new OperationsComboBoxModel("Contains",OperationType.Contains);
+		OperationsComboBoxModel _equals=new OperationsComboBoxModel("Equals",OperationType.EQUALS);
+		OperationsComboBoxModel _contains=new OperationsComboBoxModel("Contains",OperationType.CONTAINS);
 		_operations.add(_equals);
 		_operations.add(_contains);
 		
@@ -157,20 +157,18 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 				
 				
 				
-				IndicatorFilterItemGridRowModel  _newRow=new IndicatorFilterItemGridRowModel(selectedEntity.getEntityName(),filterValue,selectedEntity.getItemType().toString(),filterValue); 
+				IndicatorFilterItemGridRowModel  _newRow=new IndicatorFilterItemGridRowModel(selectedEntity.getEntityName().toUpperCase(),filterValue.toUpperCase(),selectedEntity.getItemType().toString(),filterValue.toUpperCase(), selectedOperation.getOperationType().toUpperCase()); 
 		    	
 		        
 		        _grid.stopEditing();  
 		        _grid.getStore().insert(_newRow, 0);  
 		        _grid.startEditing(_grid.getStore().indexOf(_newRow), 0); 
-		       // _filterCombo.clearSelections();
+		     
 				
 		        entitiesCombo.clear();
 		        operationCombo.clear();
 		        entityValue.clear();
-				
-				
-				
+
 				}
 				
 				

@@ -4,9 +4,9 @@ import com.extjs.gxt.ui.client.widget.VerticalPanel;
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterAttributeName;
-import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
 public class PieChartFilterPanel extends VerticalPanel {

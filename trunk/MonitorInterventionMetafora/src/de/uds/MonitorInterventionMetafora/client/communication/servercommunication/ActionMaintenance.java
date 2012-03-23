@@ -61,8 +61,9 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 	}
 	
 	
-	 public void refreshTableView(ActionMaintenance _maintenance){
-		 TableViewModel tvm=new TableViewModel( _maintenance);
+	 public void refreshTableView(){
+		 //TableViewModel tvm=new TableViewModel( _maintenance);
+		 TableViewModel tvm=new TableViewModel(this);
 			
 		 
 		   Grid<IndicatorGridRowItem> editorGrid = (Grid<IndicatorGridRowItem>) ComponentManager.get().get("_tableViewGrid");

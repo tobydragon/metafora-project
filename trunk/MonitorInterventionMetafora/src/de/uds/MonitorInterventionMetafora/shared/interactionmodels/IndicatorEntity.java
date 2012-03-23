@@ -10,34 +10,41 @@ package de.uds.MonitorInterventionMetafora.shared.interactionmodels;
 
 
 
-import com.extjs.gxt.ui.client.data.BaseModel;
+import java.io.Serializable;
 
-import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterItemType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 
 
-public class IndicatorEntity extends BaseModel {
+public class IndicatorEntity  implements Serializable{
 
 
 	
   /**
 	 * 
 	 */
-	private static final long serialVersionUID = -3416203885980295041L;
+	private static final long serialVersionUID = 3617519429426816927L;
+/**
+	 * 
+	 */
+	
 
 	private String entityName="";
 	private String displayText="";
 
+	private OperationType operationtype;
 	private FilterItemType type;
 	private String value="";
 public IndicatorEntity() {
   }
 
   
-  public IndicatorEntity(String _entityName, String _value,FilterItemType _type) {
+  public IndicatorEntity(String _entityName, String _value,FilterItemType _type,OperationType _operationtype) {
    
 	  entityName=_entityName;
 	  value=_value;
 	  type=_type;
+	 operationtype=_operationtype;
 	  
   }
 
@@ -71,7 +78,18 @@ public IndicatorEntity() {
   public FilterItemType getType() {
 	    return type;
 	  }
+  
+  public void setOperationType(OperationType _operationtype){
+	  
+	  operationtype=_operationtype;
+  }
+  
    
+ public OperationType getOperationType(){
+	  
+	  return operationtype;
+  }
+  
   public void setDisplayText(String _text){
 	  
 	  displayText=_text;

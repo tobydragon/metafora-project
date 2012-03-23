@@ -1,8 +1,8 @@
-package de.uds.MonitorInterventionMetafora.client.datamodels.attributes;
+package de.uds.MonitorInterventionMetafora.shared.datamodels.attributes;
 
 public enum OperationType {
-	Equals,
-	Contains
+	EQUALS,
+	CONTAINS
 	;
 	
 	public  static OperationType getFromString(String str){

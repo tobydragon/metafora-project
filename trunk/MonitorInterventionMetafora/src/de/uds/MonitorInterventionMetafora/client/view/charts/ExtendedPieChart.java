@@ -195,7 +195,7 @@ public PieOptions  getPieChartOptions(){
 			        }
 			        
 
-			        IndicatorFilterItemGridRowModel  _newRow=new IndicatorFilterItemGridRowModel(_entity.getEntityName(),_entity.getValue(),_entity.getType().toString(),_entity.getDisplayText()); 
+			        IndicatorFilterItemGridRowModel  _newRow=new IndicatorFilterItemGridRowModel(_entity.getEntityName(),_entity.getValue(),_entity.getType().toString(),_entity.getDisplayText(),_entity.getOperationType().toString().toUpperCase()); 
 			    	
 			        
 			        _grid.stopEditing();  
@@ -205,7 +205,7 @@ public PieOptions  getPieChartOptions(){
 			        
 			        //RootPanel.get().get
 			        
-			        model.getActionMaintenance().refreshTableView(model.getActionMaintenance());
+			        model.getActionMaintenance().refreshTableView();
 			         
 			        MessageBox.info("Message","filter is added to the list ", null);
 		        	

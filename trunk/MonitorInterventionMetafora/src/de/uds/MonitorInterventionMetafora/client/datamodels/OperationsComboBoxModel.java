@@ -9,8 +9,8 @@ package de.uds.MonitorInterventionMetafora.client.datamodels;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
 
-import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterItemType;
-import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.OperationType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
 public class OperationsComboBoxModel extends BaseModelData {

@@ -7,13 +7,14 @@ import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterAttributeName;
-import de.uds.MonitorInterventionMetafora.client.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
 public class IndicatorFilterer {
@@ -82,23 +83,58 @@ public class IndicatorFilterer {
 		
 		else if(_attribute==FilterAttributeName.TYPE){
 			
+			if(_entity.getOperationType()==OperationType.EQUALS){
 			if(_actionType.getType().equalsIgnoreCase(_entity.getValue())){
 				result= true;
-			}				
+			}
+			}
+			else if(_entity.getOperationType()==OperationType.CONTAINS){
+				
+				if(_actionType.getType().contains(_entity.getValue())){
+					result= true;
+				}
+			}
 		}
 		else if(_attribute==FilterAttributeName.CLASSIFICATION){
 			
+			
+			
+			if(_entity.getOperationType()==OperationType.EQUALS){
 			if(_actionType.getClassification().equalsIgnoreCase(_entity.getValue())){
 				result=true;
-			}		
+			}
+			
+			}
+			
+			else if(_entity.getOperationType()==OperationType.CONTAINS){
+				
+				if(_actionType.getClassification().contains(_entity.getValue())){
+					result=true;
+				}
+			}
+			
+			
 			
 		}
 		
 	else if(_attribute==FilterAttributeName.SUCCEED){
 			
+		if(_entity.getOperationType()==OperationType.EQUALS){
 			if(_actionType.getSucceed().equalsIgnoreCase(_entity.getValue())){
 				result= true;
-			}		
+			}	
+			}
+		else if(_entity.getOperationType()==OperationType.CONTAINS){
+			
+			
+			if(_actionType.getSucceed().contains(_entity.getValue())){
+				result= true;
+			}	
+			
+		}
+			
+			
+			
 			
 		}
 		
@@ -125,15 +161,39 @@ public class IndicatorFilterer {
 		
 		else if(_attribute==FilterAttributeName.ID){
 			
+			if(_entity.getOperationType()==OperationType.EQUALS){
+			
 			if(_user.getid().equalsIgnoreCase(_entity.getValue())){
 				result= true;
-			}				
+			}	
+			}
+			
+			else	if(_entity.getOperationType()==OperationType.CONTAINS){
+				
+				if(_user.getid().contains(_entity.getValue())){
+					result= true;
+				}
+				
+				
+			}
+			
+			
 		}
 		else if(_attribute==FilterAttributeName.ROLE){
 			
+			
+			if(_entity.getOperationType()==OperationType.EQUALS){
 			if(_user.getrole().equalsIgnoreCase(_entity.getValue())){
 				result=true;
-			}		
+			}	
+			}	
+			
+			else	if(_entity.getOperationType()==OperationType.CONTAINS){
+				
+				if(_user.getrole().contains(_entity.getValue())){
+					result=true;
+				}
+			}
 			
 		}
 		
@@ -155,11 +215,27 @@ public class IndicatorFilterer {
 			String _objValue=_obj.getPropertyValue(_entity.getEntityName());
 			if(_objValue!=null){
 				
+			
+				if(_entity.getOperationType()==OperationType.EQUALS){
+				
 				if(_objValue.equalsIgnoreCase(_entity.getValue())){
 					
 					
 					result=true;
 				}
+				}
+				
+				else	if(_entity.getOperationType()==OperationType.CONTAINS){
+					
+					if(_objValue.contains(_entity.getValue())){
+						
+						
+						result=true;
+					}
+				}
+				
+				
+				
 			}
 			
 		
@@ -167,15 +243,38 @@ public class IndicatorFilterer {
 		
 		else if(_attribute==FilterAttributeName.TYPE){
 			
+			
+			if(_entity.getOperationType()==OperationType.EQUALS){
+			
 			if(_obj.getType().equalsIgnoreCase(_entity.getValue())){
 				result= true;
-			}				
+			}	
+			}
+			
+			else	if(_entity.getOperationType()==OperationType.CONTAINS){
+				
+				if(_obj.getType().contains(_entity.getValue())){
+					result= true;
+				}	
+			}
+			
 		}
 		else if(_attribute==FilterAttributeName.ID){
 			
-			if(_obj.getId().equalsIgnoreCase(_entity.getValue())){
+			if(_entity.getOperationType()==OperationType.EQUALS){
+			
+				if(_obj.getId().equalsIgnoreCase(_entity.getValue())){
 				result= true;
-			}		
+			}	
+			
+			}
+			
+			else	if(_entity.getOperationType()==OperationType.CONTAINS){
+				
+				if(_obj.getId().contains(_entity.getValue())){
+					result= true;
+				}	
+			}
 			
 		}
 		
@@ -191,11 +290,22 @@ public class IndicatorFilterer {
 		String _contentValue=_content.getPropertyValue(_entity.getEntityName());
 		if(_contentValue!=null){
 			
+			if(_entity.getOperationType()==OperationType.EQUALS){
 			
 			if(_contentValue.equalsIgnoreCase(_entity.getValue())){
 				
 				result=true;
 			}
+			}
+			else	if(_entity.getOperationType()==OperationType.CONTAINS){
+				
+				if(_contentValue.contains(_entity.getValue())){
+					
+					result=true;
+				}
+			}
+			
+			
 		}
 		
 		
