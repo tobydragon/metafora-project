@@ -8,6 +8,8 @@ import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
+import com.extjs.gxt.ui.client.widget.TabItem;
+import com.extjs.gxt.ui.client.widget.TabPanel;
 
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
@@ -27,6 +29,7 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart.Pie
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
+import de.uds.MonitorInterventionMetafora.client.view.widgets.MultiModelTabPanel;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
 public class ExtendedPieChart extends  VerticalPanel {
@@ -202,18 +205,26 @@ public PieOptions  getPieChartOptions(){
 			        _grid.getStore().insert(_newRow, 0);  
 			        _grid.startEditing(_grid.getStore().indexOf(_newRow), 0); 
 			        _filterCombo.clearSelections();
-			        
-			        //RootPanel.get().get
+			       
 			        
 			        model.getActionMaintenance().refreshTableView();
 			         
-			        MessageBox.info("Message","filter is added to the list ", null);
+			        TabPanel tabPanel = (TabPanel) ComponentManager.get().get("_multiModelTabPanel");
+			        TabItem tabItem=(TabItem) ComponentManager.get().get("Table");
+	
+			        VerticalPanel verticalPanel = (VerticalPanel) ComponentManager.get().get("_tabMainPanel");
+			        MessageBox.info("Message","Filter is added to the list!", null);
+			        tabPanel.setTabIndex(0);
+			        tabPanel.repaint();
+			        tabPanel.setLayoutData(new FitLayout());
+			        tabPanel.setSelection(tabItem);
+			       
+			        refresh();
+			        verticalPanel.layout();
+			        verticalPanel.repaint();
+			        
 		        	
-			        //Button _refreshBtn=  (Button) _refresh
-					
-			        //EditorGrid<IndicatorFilterItemGridRowModel> _grid = editorGrid;
-				       
-			        }
+			   	        }
 			        else {
 			        	
 			        	MessageBox.info("Message","Selected Filter is<ul><li> already in  the filter list</li></ul>", null);
@@ -231,6 +242,12 @@ public PieOptions  getPieChartOptions(){
 
 	  
 	
+	 public void refresh(){
+		 
+		 this.layout();
+		
+		 
+	 }
 	 boolean isInFilterList(String _key,EditorGrid<IndicatorFilterItemGridRowModel> _grid){
 		 boolean result=false;
 		 

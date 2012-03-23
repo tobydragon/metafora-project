@@ -41,8 +41,10 @@ public class MultiModelTabPanel extends VerticalPanel {
             }
         });
     
-		
+		tabPanel.setId("_multiModelTabPanel");
+		//this.setId("_multiModelVerticalPanel");
 		this.add(tabPanel);
+		
 		
 	}
 
@@ -76,6 +78,7 @@ public class MultiModelTabPanel extends VerticalPanel {
 	 _item.setClosable(_closable);
 	 _item.add(_widget);
 	 _item.setHeight(450);
+	 _item.setId(_lbl);
 	 tabPanel.add(_item);
 	 
 	//	tabPanel.getTabBar().get
