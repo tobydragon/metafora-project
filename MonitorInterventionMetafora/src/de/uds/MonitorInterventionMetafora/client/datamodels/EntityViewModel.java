@@ -20,6 +20,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
 public class EntityViewModel {
@@ -249,6 +250,7 @@ public class EntityViewModel {
 			    _newEntity.setEntityName(_entity.getEntityName());
 			    _newEntity.setValue(key);
 			    _newEntity.setType(_entity.getType());
+			    _newEntity.setOperationType(OperationType.EQUALS);
 			    indicatorEntities.put(index, _newEntity);
 			  //  subsectionValue.put(index, key);
 			    data.setValue(index, 1, groupedActions.get(key).size());
@@ -270,6 +272,7 @@ public class EntityViewModel {
 			    _newEntity.setEntityName(_entity.getEntityName());
 			    _newEntity.setValue(key);
 			    _newEntity.setType(_entity.getType());
+			    _newEntity.setOperationType(OperationType.EQUALS);
 			    indicatorEntities.put(index, _newEntity);
 			    
 			    
@@ -296,6 +299,7 @@ public class EntityViewModel {
 			    _newEntity.setEntityName(_entity.getEntityName());
 			    _newEntity.setValue(key);
 			    _newEntity.setType(_entity.getType());
+			    _newEntity.setOperationType(OperationType.EQUALS);
 			    indicatorEntities.put(index, _newEntity);
 			    //_entity.setValue(key);
 			    //indicatorEntities.put(index,_entity );
@@ -320,6 +324,7 @@ public class EntityViewModel {
 			    _newEntity.setEntityName(_entity.getEntityName());
 			    _newEntity.setValue(key);
 			    _newEntity.setType(_entity.getType());
+			    _newEntity.setOperationType(OperationType.EQUALS);
 			    indicatorEntities.put(index, _newEntity);
 			    
 			    //_entity.setValue(key);
