@@ -90,7 +90,7 @@ public class IndicatorFilterer {
 			}
 			else if(_entity.getOperationType()==OperationType.CONTAINS){
 				
-				if(_actionType.getType().contains(_entity.getValue())){
+				if(_actionType.getType().toUpperCase().contains(_entity.getValue().toUpperCase())){
 					result= true;
 				}
 			}
@@ -108,7 +108,7 @@ public class IndicatorFilterer {
 			
 			else if(_entity.getOperationType()==OperationType.CONTAINS){
 				
-				if(_actionType.getClassification().contains(_entity.getValue())){
+				if(_actionType.getClassification().toUpperCase().contains(_entity.getValue().toUpperCase())){
 					result=true;
 				}
 			}
@@ -127,7 +127,7 @@ public class IndicatorFilterer {
 		else if(_entity.getOperationType()==OperationType.CONTAINS){
 			
 			
-			if(_actionType.getSucceed().contains(_entity.getValue())){
+			if(_actionType.getSucceed().toUpperCase().contains(_entity.getValue().toUpperCase())){
 				result= true;
 			}	
 			
@@ -170,7 +170,7 @@ public class IndicatorFilterer {
 			
 			else	if(_entity.getOperationType()==OperationType.CONTAINS){
 				
-				if(_user.getid().contains(_entity.getValue())){
+				if(_user.getid().toUpperCase().contains(_entity.getValue().toUpperCase())){
 					result= true;
 				}
 				
@@ -190,7 +190,7 @@ public class IndicatorFilterer {
 			
 			else	if(_entity.getOperationType()==OperationType.CONTAINS){
 				
-				if(_user.getrole().contains(_entity.getValue())){
+				if(_user.getrole().toUpperCase().contains(_entity.getValue().toUpperCase())){
 					result=true;
 				}
 			}
@@ -227,7 +227,7 @@ public class IndicatorFilterer {
 				
 				else	if(_entity.getOperationType()==OperationType.CONTAINS){
 					
-					if(_objValue.contains(_entity.getValue())){
+					if(_objValue.toUpperCase().contains(_entity.getValue().toUpperCase())){
 						
 						
 						result=true;
@@ -253,7 +253,7 @@ public class IndicatorFilterer {
 			
 			else	if(_entity.getOperationType()==OperationType.CONTAINS){
 				
-				if(_obj.getType().contains(_entity.getValue())){
+				if(_obj.getType().toUpperCase().contains(_entity.getValue().toUpperCase())){
 					result= true;
 				}	
 			}
@@ -271,7 +271,7 @@ public class IndicatorFilterer {
 			
 			else	if(_entity.getOperationType()==OperationType.CONTAINS){
 				
-				if(_obj.getId().contains(_entity.getValue())){
+				if(_obj.getId().toUpperCase().contains(_entity.getValue().toUpperCase())){
 					result= true;
 				}	
 			}
@@ -299,7 +299,7 @@ public class IndicatorFilterer {
 			}
 			else	if(_entity.getOperationType()==OperationType.CONTAINS){
 				
-				if(_contentValue.contains(_entity.getValue())){
+				if(_contentValue.toUpperCase().contains(_entity.getValue().toUpperCase())){
 					
 					result=true;
 				}
@@ -354,6 +354,7 @@ public class IndicatorFilterer {
 			IndicatorEntity _filter=new IndicatorEntity();
 			_filter.setDisplayText(_row.getDisplayText());
 			_filter.setType(FilterItemType.getFromString(_row.getType().toUpperCase()));
+			_filter.setOperationType(OperationType.getFromString(_row.getOperation().toUpperCase()));
 			_filter.setEntityName(_row.getProperty());
 			_filter.setValue(_row.getValue());
 			_activeFilters.add(_filter);
