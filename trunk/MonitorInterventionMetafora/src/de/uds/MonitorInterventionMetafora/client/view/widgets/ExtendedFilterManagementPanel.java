@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.client.view.widgets;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
+import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.Label;
@@ -12,6 +13,7 @@ import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
+import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
@@ -51,10 +53,11 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		entityComboBox.setId("_entityComboBox");
 		
 		
+		
 		entityComboBox.setStore(model.getComboBoxEntities());
 		entityComboBox.setForceSelection(true);
 
-		entityComboBox.setPosition(0, -9);
+		entityComboBox.setPosition(0, -2);
 		entityComboBox.setTriggerAction(TriggerAction.ALL);
 		
 		
@@ -62,11 +65,12 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		operationComboBox.setFieldLabel("Operation");
 		operationComboBox.setWidth(130);
 		
+		
 		operationComboBox.setDisplayField("displaytext");
 		operationComboBox.setValueField("operationtype");
 		operationComboBox.setStore(getOperations());
 		//operationComboBox.setLayoutData(layout);
-		operationComboBox.setPosition(0, -9);
+		operationComboBox.setPosition(0, -2);
 		operationComboBox.setEditable(false);
 		operationComboBox.setForceSelection(true);
 		operationComboBox.setId("_operationComboBox");
@@ -80,14 +84,18 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		entityValueTextBox.setEmptyText("Enter entity value");
 		entityValueTextBox.setAllowBlank(false);
 		entityValueTextBox.setLayoutData(layout);
-		entityValueTextBox.setPosition(0, -9);
+		entityValueTextBox.setPosition(0, -2);
 		entityValueTextBox.setId("entityValueText");
 		
 		
 		addButton=new Button("Add Filter",getAddButtonEvent());
 		
+		
 		addButton.setIcon(Resources.ICONS.add());
-		addButton.setPosition(0, -9);
+		
+		addButton.setId("ww");
+		addButton.setPosition(0,-9);
+		addButton.setLayoutData(new FitLayout());
 		
 		
 	    // this.add(new Label("Entity"));
@@ -101,10 +109,10 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		this.setBorders(true);
 		this.setSpacing(20);
 		//this.setPosition(1, 3);
-		this.setHeight(46);
+		this.setHeight(53);
 		//this.setWidth(600);
 	
-		this.setLayout(layout);
+	//	this.setLayout(layout);
 		
 		
 		
@@ -154,7 +162,8 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 				String filterValue=entityValue.getValue();
 				
 				
-				
+				if(selectedEntity==null)
+					return;
 				
 				
 				IndicatorFilterItemGridRowModel  _newRow=new IndicatorFilterItemGridRowModel(selectedEntity.getEntityName().toUpperCase(),filterValue.toUpperCase(),selectedEntity.getItemType().toString(),filterValue.toUpperCase(), selectedOperation.getOperationType().toUpperCase()); 
