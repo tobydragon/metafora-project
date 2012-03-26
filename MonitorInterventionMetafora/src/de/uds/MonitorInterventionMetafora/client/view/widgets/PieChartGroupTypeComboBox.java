@@ -46,7 +46,7 @@ public class PieChartGroupTypeComboBox extends HorizontalPanel{
 	    comboType.setEditable(false);
 	 
 	    comboType.setAutoHeight(true);
-	    comboType.setId("comboType");
+	    comboType.setId("comboPieChartType");
 	    comboType.setStore(model.getComboBoxEntities());
 	  //  comboType.setTypeAhead(true);
 	    comboType.setTriggerAction(TriggerAction.ALL);

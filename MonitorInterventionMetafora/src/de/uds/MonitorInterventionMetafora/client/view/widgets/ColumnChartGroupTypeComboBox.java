@@ -44,7 +44,7 @@ public class ColumnChartGroupTypeComboBox extends HorizontalPanel{
 	    comboType.setEditable(false);
 	 
 	    comboType.setAutoHeight(true);
-	    comboType.setId("comboType");
+	    comboType.setId("comboColumnChartType");
 	    comboType.setStore(model.getComboBoxEntities());
 	    comboType.setTriggerAction(TriggerAction.ALL);
 	    comboType.addSelectionChangedListener(comboListener);
@@ -81,8 +81,8 @@ public class ColumnChartGroupTypeComboBox extends HorizontalPanel{
 	        			_comboPieChartpanel.layout();
 	        		
 	        		
-	        			TabItem _pieChartTable = (TabItem) ComponentManager.get().get("barChartViewTab");
-	        			_pieChartTable.layout();
+	        			TabItem _barChartTable = (TabItem) ComponentManager.get().get("barChartViewTab");
+	        			_barChartTable.layout();
 	        			
 	        	
 	        			

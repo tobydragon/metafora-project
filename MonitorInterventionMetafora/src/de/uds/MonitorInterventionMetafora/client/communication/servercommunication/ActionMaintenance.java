@@ -8,6 +8,7 @@ import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 //import com.extjs.gxt.ui.client.widget.button.Button;
 //import com.google.gwt.event.dom.client.ClickEvent;
@@ -17,10 +18,12 @@ import com.extjs.gxt.ui.client.widget.grid.Grid;
 
 
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
+import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedColumnChart;
+import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
 import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorGridRowItem;
 //import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorEntity;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
@@ -109,9 +112,15 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
     			_barChartPanel.layout();
     			
     			
-    			VerticalPanel _comboPieChartpanel = (VerticalPanel) ComponentManager.get().get("barChartFilterPanel");
-    			_comboPieChartpanel.layout();
+    			VerticalPanel _comboColumnChartpanel = (VerticalPanel) ComponentManager.get().get("barChartFilterPanel");
+    			_comboColumnChartpanel.layout();
     		
+    			
+    			ComboBox<EntitiesComboBoxModel> comboColumnChartType=(ComboBox<EntitiesComboBoxModel>) ComponentManager.get().get("comboColumnChartType");
+     			
+    			//comboColumnChartType.clear();
+    			comboColumnChartType.clearSelections();
+    			
     		
     			TabItem _columnChartTable = (TabItem) ComponentManager.get().get("barChartViewTab");
     			_columnChartTable.layout();
@@ -120,51 +129,49 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
     		}
 	 
 	 
-	
-	/*
-	public List<IndicatorEntity>  parseToIndicatorEntityList(){
-		
-		List<CfAction> _cfActions=new ArrayList<CfAction>();
-		if(activecfActions!=null){
-			_cfActions.addAll(activecfActions);
-			}
-		
-		
-		
-		
-		List<IndicatorEntity> indicatorEntities=new ArrayList<IndicatorEntity>();
-			
-		
 
-		
-		for(CfAction ac: _cfActions){
-	
-			IndicatorEntity  myindicator=new IndicatorEntity();
-			
-			
-			String usersString="";
-			   for(CfUser u : ac.getCfUsers()){
-        		   usersString=usersString+" - "+u.getid();
-        	   }
-        	   
-        	   
-        	   myindicator.setName(usersString.substring(2,usersString.length()));
-        	   myindicator.setActionType(ac.getCfActionType().getType());
-        	   myindicator.setClassification(ac.getCfActionType().getClassification());
-        	   myindicator.setDescription(ac.getCfContent().getDescription());     	   
-        	   myindicator.setTime(GWTDateUtils.getTime(ac.getTime()));
-        	   myindicator.setDate(GWTDateUtils.getDate(ac.getTime()));
-        	  
-        	   
-        	   indicatorEntities.add(myindicator);	
-		}
-		
-		return indicatorEntities;
-		
-		
-	}
-	*/
-	
+	 
+	 public void refreshPieChart(){
+		 
+		 
+		 
+		 
+		 EntityViewModel model=new EntityViewModel(this);
+		 
+			ExtendedPieChart _pieChartPanel = (ExtendedPieChart) ComponentManager.get().get("pieChartVerticalPanel");
+ 		
+ 		if( _pieChartPanel!=null){
+ 			model.sliptActions(true);
+ 			
+ 			IndicatorEntity _defaltEntity=new IndicatorEntity();
+ 			_defaltEntity.setEntityName(FilterAttributeName.CLASSIFICATION.toString());
+ 			_defaltEntity.setType(FilterItemType.ACTION_TYPE);
+ 			
+ 			
+ 			_pieChartPanel.getPieChart().draw(model.getEntityDataTable(_defaltEntity),_pieChartPanel.getPieChartOptions());
+ 			
+ 		
+ 			_pieChartPanel.layout();
+ 			
+ 			
+ 			VerticalPanel _comboPieChartpanel = (VerticalPanel) ComponentManager.get().get("pieChartFilterPanel");
+ 			_comboPieChartpanel.layout();
+ 		
+ 		
+ 			ComboBox<EntitiesComboBoxModel> comboBox = (ComboBox<EntitiesComboBoxModel>) ComponentManager.get().get("comboPieChartType");
+			ComboBox<EntitiesComboBoxModel> comboPieChartType=comboBox;
+ 			
+ 			comboPieChartType.clearSelections();
+ 			
+ 			TabItem _pieChartTable = (TabItem) ComponentManager.get().get("pieChartViewTab");
+ 			_pieChartTable.layout();
+		 
+	 }
+		 
+		 
+		 
+		 
+	 }
 	
 	
 	

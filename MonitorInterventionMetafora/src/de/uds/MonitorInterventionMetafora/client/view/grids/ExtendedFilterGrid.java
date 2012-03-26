@@ -234,6 +234,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
         	  filterModel.getActionMaintenance().refreshTableView();
         	  
         	  filterModel.getActionMaintenance().refreshColumnChart();
+        	  filterModel.getActionMaintenance().refreshPieChart();
         	  
           }
         });
@@ -245,6 +246,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
         	filterModel.getActionMaintenance().refreshTableView();
 
        	  filterModel.getActionMaintenance().refreshColumnChart();
+       	filterModel.getActionMaintenance().refreshPieChart();
         	
         	
         }
