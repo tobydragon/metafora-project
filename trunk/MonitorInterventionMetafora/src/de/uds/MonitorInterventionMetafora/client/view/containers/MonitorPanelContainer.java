@@ -19,10 +19,11 @@ import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
 import de.uds.MonitorInterventionMetafora.client.view.grids.ExtendedFilterGrid;
 import de.uds.MonitorInterventionMetafora.client.view.grids.ExtendedGroupedGrid;
+import de.uds.MonitorInterventionMetafora.client.view.widgets.ColumnChartFilterPanel;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.MultiModelTabPanel;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.PieChartFilterPanel;
-import de.uds.MonitorInterventionMetafora.client.view.widgets.PieChartFilterTypeComboBox;
+import de.uds.MonitorInterventionMetafora.client.view.widgets.PieChartGroupTypeComboBox;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
@@ -96,7 +97,9 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
 			panel.setId("allContainer");
 		  panel.add(flp);
 		  PieChartFilterPanel _filterPieChart=new PieChartFilterPanel(maintenance);
+		  ColumnChartFilterPanel _filterBarChart=new ColumnChartFilterPanel(maintenance);
 		  tabs.addTab("pieChartViewTab","Pie Chart View", _filterPieChart,false);
+		  tabs.addTab("barChartViewTab","Bar Chart View", _filterBarChart,false);
 		  panel.add(tabs);
 		  panel.setHeight(600);
 		  

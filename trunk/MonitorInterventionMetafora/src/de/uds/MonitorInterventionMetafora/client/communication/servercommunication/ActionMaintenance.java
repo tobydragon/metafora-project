@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.widget.ComponentManager;
+import com.extjs.gxt.ui.client.widget.TabItem;
+import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 //import com.extjs.gxt.ui.client.widget.button.Button;
@@ -15,12 +17,16 @@ import com.extjs.gxt.ui.client.widget.grid.Grid;
 
 
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
+import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
+import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedColumnChart;
 import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorGridRowItem;
 //import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorEntity;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTDateUtils;
 
@@ -79,7 +85,41 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 		 
 	 }
 
+	 
+	 
 	
+	 public void refreshColumnChart(){
+	
+		 
+		 EntityViewModel model=new EntityViewModel(this);
+		 
+			ExtendedColumnChart _barChartPanel = (ExtendedColumnChart) ComponentManager.get().get("barChartVerticalPanel");
+    		
+    		if( _barChartPanel!=null){
+    			model.sliptActions(true);
+    			
+    			IndicatorEntity _defaltEntity=new IndicatorEntity();
+    			_defaltEntity.setEntityName(FilterAttributeName.CLASSIFICATION.toString());
+    			_defaltEntity.setType(FilterItemType.ACTION_TYPE);
+    			
+    			
+    			_barChartPanel.getBarChart().draw(model.getEntityDataTable(_defaltEntity),_barChartPanel.getBarChartOptions(model.getMaxValue()));
+    			
+    		
+    			_barChartPanel.layout();
+    			
+    			
+    			VerticalPanel _comboPieChartpanel = (VerticalPanel) ComponentManager.get().get("barChartFilterPanel");
+    			_comboPieChartpanel.layout();
+    		
+    		
+    			TabItem _columnChartTable = (TabItem) ComponentManager.get().get("barChartViewTab");
+    			_columnChartTable.layout();
+		 
+	 }
+    		}
+	 
+	 
 	
 	/*
 	public List<IndicatorEntity>  parseToIndicatorEntityList(){

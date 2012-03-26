@@ -20,7 +20,7 @@ import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
-public class PieChartFilterTypeComboBox extends HorizontalPanel{
+public class PieChartGroupTypeComboBox extends HorizontalPanel{
 	
 	public int i=0;
 	private IndicatorEntity selectedEntity=null;
@@ -30,7 +30,7 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	//ExtendedPieChart _newPieChart;
 	
 	//private VerticalPanel pieChartPanel;
-	public PieChartFilterTypeComboBox(EntityViewModel _model){
+	public PieChartGroupTypeComboBox(EntityViewModel _model){
 		
 	
 		model=_model;
@@ -74,7 +74,7 @@ public class PieChartFilterTypeComboBox extends HorizontalPanel{
 	        			
 	        			
 	        			
-	        			_pieChartPanel.getPieChart().draw(model.getPieChartData(selectedEntity),_pieChartPanel.getPieChartOptions());
+	        			_pieChartPanel.getPieChart().draw(model.getEntityDataTable(selectedEntity),_pieChartPanel.getPieChartOptions());
 	        			
 	        			
 	        			//_newPieChart=new ExtendedPieChart(selectedEntity,model);

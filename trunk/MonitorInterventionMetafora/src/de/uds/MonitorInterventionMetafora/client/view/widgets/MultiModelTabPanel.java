@@ -36,8 +36,10 @@ public class MultiModelTabPanel extends VerticalPanel {
 
             @Override
             public void componentSelected(TabPanelEvent ce) {
-             
-            	//Info.display("","ssss");
+            	
+            	
+            	//Info.display("","a"+ce.getItem().getTabIndex());
+            	
             }
         });
     
@@ -79,6 +81,9 @@ public class MultiModelTabPanel extends VerticalPanel {
 	 _item.add(_widget);
 	 _item.setHeight(450);
 	 _item.setId(_lbl);
+	 
+	
+ 
 	 tabPanel.add(_item);
 	 
 	//	tabPanel.getTabBar().get
