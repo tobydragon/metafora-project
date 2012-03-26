@@ -71,6 +71,8 @@ import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.ExtendedFilterManagementPanel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
@@ -230,6 +232,9 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
           public void handleEvent(StoreEvent<IndicatorFilterItemGridRowModel> be) {
         	 
         	  filterModel.getActionMaintenance().refreshTableView();
+        	  
+        	  filterModel.getActionMaintenance().refreshColumnChart();
+        	  
           }
         });
     
@@ -238,8 +243,10 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
         	//ActionMaintenance _maint=new ActionMaintenance();
         	//_maint.refreshTableView(filterModel.getActionMaintenance());
         	filterModel.getActionMaintenance().refreshTableView();
-        	//Info.display("Info","remove");
-        	//filterGroup.clearSelections();
+
+       	  filterModel.getActionMaintenance().refreshColumnChart();
+        	
+        	
         }
       });
     

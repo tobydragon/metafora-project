@@ -40,6 +40,7 @@ public class EntityViewModel {
 	ActionMaintenance maintenance=null;
 	
 	IndicatorFilterer filterer;
+	private int maxValue=0;
 	public EntityViewModel(ActionMaintenance _maintenance ){
 	
 		maintenance=_maintenance;
@@ -219,7 +220,34 @@ public class EntityViewModel {
 		
 	}
 	
-	public DataTable getPieChartData(IndicatorEntity _entity){
+	
+public 	int getMaxValue(){
+	
+	if(maxValue>100){
+		
+		maxValue=maxValue+5;
+	}
+	else if(maxValue>1000){
+		maxValue=maxValue+50;
+	}
+	
+	else if(maxValue>10000){
+		maxValue=maxValue+500;
+	}
+	
+	else if(maxValue>100000){
+		maxValue=maxValue+5000;
+	}
+	
+	else if(maxValue>1000000){
+		maxValue=maxValue+50000;
+	}
+	
+	return maxValue;	
+	}
+	
+
+	public DataTable getEntityDataTable(IndicatorEntity _entity){
 		
 		
 		DataTable data = DataTable.create();
@@ -241,7 +269,7 @@ public class EntityViewModel {
 			groupedActions=groupActionTypesByEntityName(_entity.getEntityName());
 			
 			    data.addColumn(ColumnType.STRING, "Task");
-			    data.addColumn(ColumnType.NUMBER, "Hours per Day");
+			    data.addColumn(ColumnType.NUMBER, "Indicator Count");
 			    data.addRows(groupedActions.size());
 			    int index=0;
 			    for(String key:groupedActions.keySet()){
@@ -252,8 +280,14 @@ public class EntityViewModel {
 			    _newEntity.setType(_entity.getType());
 			    _newEntity.setOperationType(OperationType.EQUALS);
 			    indicatorEntities.put(index, _newEntity);
-			  //  subsectionValue.put(index, key);
-			    data.setValue(index, 1, groupedActions.get(key).size());
+			 
+			    int _size=groupedActions.get(key).size();
+			    data.setValue(index, 1,_size);
+			    if(_size>maxValue){
+			    	
+			    	maxValue=_size;		
+			    }
+			    
 			    index++;
 		}
 			    
@@ -263,7 +297,7 @@ public class EntityViewModel {
 			groupedUsers=groupUsersByEntityName(_entity.getEntityName());
 			
 			    data.addColumn(ColumnType.STRING, "Task");
-			    data.addColumn(ColumnType.NUMBER, "Hours per Day");
+			    data.addColumn(ColumnType.NUMBER, "Indicator Count");
 			    data.addRows(groupedUsers.size());
 			     index=0;
 			    for(String key:groupedUsers.keySet()){
@@ -274,10 +308,13 @@ public class EntityViewModel {
 			    _newEntity.setType(_entity.getType());
 			    _newEntity.setOperationType(OperationType.EQUALS);
 			    indicatorEntities.put(index, _newEntity);
-			    
-			    
-			   // subsectionValue.put(index, key);
-			    data.setValue(index, 1, groupedUsers.get(key).size());
+		
+			    int _size=groupedUsers.get(key).size();
+			    data.setValue(index, 1, _size);
+			    if(_size>maxValue){
+			    	
+			    	maxValue=_size;		
+			    }
 			    index++;
 			    }
 			
@@ -289,7 +326,7 @@ public class EntityViewModel {
 			groupedObjects=groupObjectsByEntityName(_entity.getEntityName());
 			
 			   data.addColumn(ColumnType.STRING, "Task");
-			    data.addColumn(ColumnType.NUMBER, "Hours per Day");
+			    data.addColumn(ColumnType.NUMBER, "Indicator Count");
 			    data.addRows(groupedObjects.size());
 			    index=0;
 			    for(String key:groupedObjects.keySet()){
@@ -304,7 +341,14 @@ public class EntityViewModel {
 			    //_entity.setValue(key);
 			    //indicatorEntities.put(index,_entity );
 			   // subsectionValue.put(index, key);
-			    data.setValue(index, 1, groupedObjects.get(key).size());
+			    
+			    int _size=groupedObjects.get(key).size();
+			    data.setValue(index, 1, _size);
+			    
+			    if(_size>maxValue){
+			    	
+			    	maxValue=_size;		
+			    }
 			    index++;
 			    }
 			    
@@ -314,7 +358,7 @@ public class EntityViewModel {
 			groupedContents=new HashMap<String, List<CfContent>>(); 
 			groupedContents=groupContentsByEntityName(_entity.getEntityName());	
 			    data.addColumn(ColumnType.STRING, "Task");
-			    data.addColumn(ColumnType.NUMBER, "Hours per Day");
+			    data.addColumn(ColumnType.NUMBER, "Indicators");
 			    data.addRows(groupedContents.size());
 			    index=0;
 			    for(String key:groupedContents.keySet()){
@@ -330,7 +374,12 @@ public class EntityViewModel {
 			    //_entity.setValue(key);
 			  //  indicatorEntities.put(index,_entity );
 			    //subsectionValue.put(index, key);
-			    data.setValue(index, 1, groupedContents.get(key).size());
+			    int _size=groupedContents.get(key).size();
+			    data.setValue(index, 1, _size);
+			    if(_size>maxValue){
+			    	
+			    	maxValue=_size;		
+			    }
 			    index++;
 			
 			break;

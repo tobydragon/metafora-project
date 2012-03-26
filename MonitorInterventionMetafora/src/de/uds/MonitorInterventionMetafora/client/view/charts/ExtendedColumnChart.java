@@ -6,7 +6,6 @@ package de.uds.MonitorInterventionMetafora.client.view.charts;
 
 import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.Label;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.TabPanel;
@@ -18,53 +17,57 @@ import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
 import com.google.gwt.core.client.JsArray;
-
 import com.google.gwt.visualization.client.DataTable;
+
+
 import com.google.gwt.visualization.client.Selection;
+import com.google.gwt.visualization.client.events.OnMouseOutHandler;
+import com.google.gwt.visualization.client.events.OnMouseOverHandler;
 import com.google.gwt.visualization.client.events.SelectHandler;
 
-import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
-import com.google.gwt.visualization.client.visualizations.corechart.PieChart.PieOptions;
+import com.google.gwt.visualization.client.visualizations.corechart.AxisOptions;
+import com.google.gwt.visualization.client.visualizations.corechart.ColumnChart;
 
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
+
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
-import de.uds.MonitorInterventionMetafora.client.view.widgets.MultiModelTabPanel;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import com.google.gwt.visualization.client.visualizations.corechart.Options;
 
-public class ExtendedPieChart extends  VerticalPanel {
+public class ExtendedColumnChart extends  VerticalPanel{
 	
 	
 	//Map<Integer, String>subsection = new HashMap<Integer, String>();
 
 	
-	private  PieChart pieChart;
+	private  ColumnChart columnChart;
 	private EntityViewModel model;
-	//private ActionMaintenance maintenance;
+
+	Label status;
+    Label onMouseOverAndOutStatus;
 	private IndicatorEntity  entity;
 	
 	
-	public ExtendedPieChart(IndicatorEntity  _entity,EntityViewModel _model){
+	public ExtendedColumnChart(IndicatorEntity  _entity,EntityViewModel _model){
 		entity=_entity;
+		 status = new Label();
+		 onMouseOverAndOutStatus = new Label();
+		this.setId("barChartVerticalPanel");
 		
-		this.setId("pieChartVerticalPanel");
-		//maintenance =_maintenance;
 		model=_model;
-		//model=new PieChartViewModel(maintenance);
+		
 		this.removeAll();
-		//model.sliptActions(true);
-		this.add(createPieChart(model.getEntityDataTable(entity),"pieChart"));
-		pieChart.setLayoutData(new FitLayout());
+		this.add(renderColumnChart());
+		
 	
-		//pieChart.draw(data, options)
 		this.layout(true);
 		this.doLayout();
 		
 		
 	}
 
-public ExtendedPieChart(String title){
-	this.setId("_pieChartVerticalPanel");
+public ExtendedColumnChart(String title){
+	this.setId("_barChartVerticalPanel");
 	this.add(new Label(title));
 	this.layout(true);
 	this.doLayout();
@@ -72,66 +75,60 @@ public ExtendedPieChart(String title){
 }
 
 
+ColumnChart renderColumnChart(){
+	
+
+	DataTable barChartData=model.getEntityDataTable(entity);
+	columnChart=new ColumnChart(barChartData, getBarChartOptions(model.getMaxValue()));
+	columnChart.addOnMouseOutHandler(createMouseOutHandler());
+	columnChart.addOnMouseOverHandler(createOnMouseOverHandler());
+	
+	columnChart.setLayoutData(new FitLayout());
+	return columnChart;
+
+}
 
 
 
-public EntityViewModel getPieChartModel(){
+
+public EntityViewModel getBarChartModel(){
 	
 	return model;
 	
 }
 
-	
 
-
-
-	
-
-
-
-	
-	
-	
-	
-	
-
-public PieOptions  getPieChartOptions(){
+public Options  getBarChartOptions(int _maxValue){
 		
-		  PieOptions options = PieChart.createPieOptions();
-		    options.setWidth(500);
-		    options.setHeight(400);
-		    options.set3D(true);
-		    options.setTitle("Indicator Overview");	
-		    
-		    return options;
+	 Options options = Options.create();
+	    options.setHeight(380);
+	    //options.setTitle("Entity Bars");
+	    options.setWidth(550);
+	    options.setColors("#1876E9");
+	    
+	    AxisOptions vAxisOptions = AxisOptions.create();
+	 
+	    vAxisOptions.setMinValue(0);
+	    vAxisOptions.setMaxValue(_maxValue);
+	    options.setVAxisOptions(vAxisOptions);
+		return options;
+	
 	}
 	
 	
 
-	 public PieChart createPieChart(DataTable data,String ID) {
-		 
-	
-		  	    
-		    pieChart= new PieChart(data, getPieChartOptions());  
-		   
-		    pieChart.addSelectHandler(createSelectHandler(pieChart));
-		    
-		    
-		    return pieChart;
-			  }
 	 
 	 
-	 
-	 public PieChart getPieChart(){
+	 public ColumnChart getBarChart(){
 		 
 		 //pieChart.set
-		 return pieChart;
+		 return columnChart;
 	 }
 	 
 	 
 	 
 	 boolean reseted=false;
-	 private SelectHandler createSelectHandler(final PieChart chart) {
+	 private SelectHandler createSelectHandler(final ColumnChart chart) {
 		    return new SelectHandler() {
 		      @Override
 		      public void onSelect(SelectEvent event) {
@@ -241,6 +238,45 @@ public PieOptions  getPieChartOptions(){
 		  }
 
 	  
+	 
+	 private  OnMouseOutHandler createMouseOutHandler(){
+		 
+		 
+		 return new OnMouseOutHandler(){
+
+			@Override
+			public void onMouseOutEvent(OnMouseOutEvent event) {
+				
+				 StringBuffer b = new StringBuffer();
+				    b.append(" row: ");
+				    b.append(event.getRow());
+				    b.append(", column: ");
+				    b.append(event.getColumn());
+				    onMouseOverAndOutStatus.setText("Mouse out of " + b.toString()); 
+				
+				
+			}};
+		
+	 }
+	 
+	 
+	 private OnMouseOverHandler createOnMouseOverHandler(){
+		return new OnMouseOverHandler(){
+
+			@Override
+			public void onMouseOverEvent(OnMouseOverEvent event) {
+				
+				  int row = event.getRow();
+				    int column = event.getColumn();
+				    StringBuffer b = new StringBuffer();
+				    b.append(" row: ");
+				    b.append(row);
+				    b.append(", column: ");
+				    b.append(column);
+				    onMouseOverAndOutStatus.setText("Mouse over " + b.toString()); 
+			}}; 
+		 
+	 }
 	
 	 public void refresh(){
 		 
