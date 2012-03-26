@@ -203,7 +203,8 @@ public class XMPPBridgeCurrent implements RosterListener {
 	}
 
 	public void shutdown() {
-		watcher.stop();
+		if(watcher != null)
+			watcher.stop();
 		disconnect();
 	}
 
