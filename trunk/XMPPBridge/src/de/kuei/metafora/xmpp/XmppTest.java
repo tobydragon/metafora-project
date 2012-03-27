@@ -5,9 +5,10 @@ import java.util.Date;
 public class XmppTest {
 
 	public static void main(String args[]) {
-		boolean simpeltest = true;
+		boolean simpeltest = false;
 		boolean compatibilitytest = false;
 		boolean juggler = false;
+		boolean unity = true;
 		
 		if(simpeltest)
 			test();
@@ -15,8 +16,45 @@ public class XmppTest {
 			compatible();
 		else if(juggler)
 			juggler();
+		else if(unity)
+			unityTest();
 		else
 			testMultiUser();
+	}
+	
+	private static void unityTest(){
+		String server = "metafora.ku-eichstaett.de";
+		String user = "KUU0004";
+		String password = "KUU0004";
+		String chat = "command@conference.metafora.ku-eichstaett.de";
+		
+		String token1 = "123456789";
+		String token2 = "234567891";
+		String token3 = "345678912";
+		
+		XMPPBridgeCurrent.setServer(server);
+		XMPPBridgeCurrent.setUser(user, password);
+		
+		XMPPBridgeCurrent.setDevice(token1);
+		XMPPBridgeCurrent bridge1 = new XMPPBridgeCurrent();
+		bridge1.login(true);
+		bridge1.connectToChat(chat, token1);
+		
+		XMPPBridgeCurrent.setDevice(token2);
+		XMPPBridgeCurrent bridge2 = new XMPPBridgeCurrent();
+		bridge2.login(true);
+		bridge2.connectToChat(chat, token2);
+		
+		XMPPBridgeCurrent.setDevice(token3);
+		XMPPBridgeCurrent bridge3 = new XMPPBridgeCurrent();
+		bridge3.login(true);
+		bridge3.connectToChat(chat, token3);
+		
+		bridge1.sendMessageToMultiUserChat(chat, "A message from connection 1", null, "en");
+		bridge2.sendMessageToMultiUserChat(chat, "A message from connection 2", null, "en");
+		bridge3.sendMessageToMultiUserChat(chat, "A message from connection 3", null, "en");
+		
+		while(true);
 	}
 
 	private static void compatible(){
