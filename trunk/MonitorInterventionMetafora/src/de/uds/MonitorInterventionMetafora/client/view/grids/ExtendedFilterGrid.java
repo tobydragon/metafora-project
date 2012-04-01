@@ -76,7 +76,7 @@ import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.Operation
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
-import de.uds.MonitorInterventionMetafora.shared.utils.GWTDateUtils;
+import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfigurationCallBack {
 
@@ -354,7 +354,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	    
    
 	    CfAction _action=new CfAction();
-	 	  _action.setTime(GWTDateUtils.getTimeStamp());
+	 	  _action.setTime(GWTUtils.getTimeStamp());
 	 	  
 	 	 CfActionType _cfActionType=new CfActionType();
 	 	 _cfActionType.setType("REQUEST_FILTER_CONFIGURATION");

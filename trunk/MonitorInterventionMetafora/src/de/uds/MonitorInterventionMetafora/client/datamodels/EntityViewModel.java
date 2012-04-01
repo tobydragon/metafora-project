@@ -100,6 +100,14 @@ public class EntityViewModel {
 			
 			//Action_Type Attributes
 			
+			
+			_entity =new IndicatorEntity();
+			_entity.setEntityName(CommonFormatStrings.A_V_TIME);
+			_entity.setDisplayText(CommonFormatStrings.A_TIME);
+			_entity.setType(FilterItemType.ACTION);
+			_entityList.add(_entity);
+			
+			
 			_entity =new IndicatorEntity();
 			_entity.setEntityName(CommonFormatStrings.A_V_Type);
 			_entity.setDisplayText(CommonFormatStrings.A_Type);
@@ -262,6 +270,7 @@ public 	int getMaxValue(){
 		
 		
 		switch (_entity.getType()){
+		
 		
 		case ACTION_TYPE:
 			

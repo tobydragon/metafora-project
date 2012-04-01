@@ -31,7 +31,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
-import de.uds.MonitorInterventionMetafora.shared.utils.GWTDateUtils;
+import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 

@@ -16,6 +16,7 @@ import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAtt
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class IndicatorFilterer {
 
@@ -32,10 +33,15 @@ public class IndicatorFilterer {
 		
 	}
 	
+	
+	
 	boolean isSatisfyFilter(CfAction _action,IndicatorEntity _entity){
 		boolean result=false;
 		
 		switch(_entity.getType()){
+		case ACTION:
+			result=isSatisfyFilter(_action.getTime(),_entity);
+			break;
 		case ACTION_TYPE:
 			
 			result=isSatisfyFilter(_action.getCfActionType(),_entity);
@@ -71,6 +77,25 @@ public class IndicatorFilterer {
 		return result;
 	}
 	//type="indicator" classification="shouldbeinthemiddleCREATE" succeed="true" 
+	
+	
+	boolean isSatisfyFilter(long time,IndicatorEntity _entity){
+		
+		boolean result=false;
+		if(_entity.getOperationType()==OperationType.OCCUREDWITHIN){
+		
+			if(GWTUtils.getDifferenceInMinutes(time)<=Integer.parseInt(_entity.getValue())){
+				
+				result =true;
+			}
+			
+		
+		}
+				
+		
+		return result;
+	}
+	
 	
 	boolean isSatisfyFilter(CfActionType _actionType,IndicatorEntity _entity){
 		

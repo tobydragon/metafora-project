@@ -24,7 +24,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
-import de.uds.MonitorInterventionMetafora.shared.utils.GWTDateUtils;
+import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 /**
  * The server side implementation of the RPC service.
@@ -49,7 +49,7 @@ public class MainServer extends RemoteServiceServlet implements
 		communicationManager.register(this);
 		if(_configuration.getActionSource().equalsIgnoreCase("file")){
 		CfAction _action=new CfAction();
-	 	  _action.setTime(GWTDateUtils.getTimeStamp());
+	 	  _action.setTime(GWTUtils.getTimeStamp());
 	 	  
 	 	 CfActionType _cfActionType=new CfActionType();
 	 	 _cfActionType.setType("START_FILE_INPUT");
