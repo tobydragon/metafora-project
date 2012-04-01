@@ -10,7 +10,7 @@ import de.uds.MonitorInterventionMetafora.client.communication.servercommunicati
 import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorGridRowItem;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
-import de.uds.MonitorInterventionMetafora.shared.utils.GWTDateUtils;
+import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class TableViewModel {
 	ActionMaintenance maintenance;
@@ -65,8 +65,8 @@ public class TableViewModel {
         	   myindicator.setActionType(ac.getCfActionType().getType());
         	   myindicator.setClassification(ac.getCfActionType().getClassification());
         	   myindicator.setDescription(ac.getCfContent().getDescription());     	   
-        	   myindicator.setTime(GWTDateUtils.getTime(ac.getTime()));
-        	   myindicator.setDate(GWTDateUtils.getDate(ac.getTime()));
+        	   myindicator.setTime(GWTUtils.getTime(ac.getTime()));
+        	   myindicator.setDate(GWTUtils.getDate(ac.getTime()));
         	   indicators.add(myindicator);	
 		}
 		
@@ -121,8 +121,8 @@ public List<IndicatorGridRowItem>  parseToIndicatorGridRowList(List<CfAction> _c
         	   myindicator.setActionType(ac.getCfActionType().getType());
         	   myindicator.setClassification(ac.getCfActionType().getClassification());
         	   myindicator.setDescription(ac.getCfContent().getDescription());     	   
-        	   myindicator.setTime(GWTDateUtils.getTime(ac.getTime()));
-        	   myindicator.setDate(GWTDateUtils.getDate(ac.getTime()));
+        	   myindicator.setTime(GWTUtils.getTime(ac.getTime()));
+        	   myindicator.setDate(GWTUtils.getDate(ac.getTime()));
         	   indicators.add(myindicator);	
 		}
 		

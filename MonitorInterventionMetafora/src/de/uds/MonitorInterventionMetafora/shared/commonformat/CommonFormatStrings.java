@@ -111,6 +111,9 @@ public class CommonFormatStrings {
  	public static final String A_ROLE="User Role";
  	public static final String A_V_ROLE="role";
  	
+ 	public static final String A_TIME="Action Time";
+ 	public static final String A_V_TIME="time";
+ 	
  	
 	
 

@@ -1,6 +1,8 @@
 package de.uds.MonitorInterventionMetafora.client.view.widgets;
 
 import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
+import com.extjs.gxt.ui.client.event.SelectionChangedListener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Padding;
@@ -8,10 +10,13 @@ import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.Layout;
+import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
+import com.extjs.gxt.ui.client.widget.form.Field;
 import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.extjs.gxt.ui.client.widget.form.Validator;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
@@ -27,6 +32,8 @@ import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemG
 import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
+import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
+
 
 
 public class ExtendedFilterManagementPanel extends HorizontalPanel{
@@ -58,9 +65,10 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		entityComboBox.setForceSelection(true);
 
 		entityComboBox.setPosition(0, -2);
+		
 		entityComboBox.setTriggerAction(TriggerAction.ALL);
 		
-		
+		 
 		operationComboBox=new ComboBox<OperationsComboBoxModel>();
 		operationComboBox.setFieldLabel("Operation");
 		operationComboBox.setWidth(130);
@@ -68,7 +76,7 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		
 		operationComboBox.setDisplayField("displaytext");
 		operationComboBox.setValueField("operationtype");
-		operationComboBox.setStore(getOperations());
+		operationComboBox.setStore(getOperations(false));
 		//operationComboBox.setLayoutData(layout);
 		operationComboBox.setPosition(0, -2);
 		operationComboBox.setEditable(false);
@@ -86,6 +94,38 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		entityValueTextBox.setLayoutData(layout);
 		entityValueTextBox.setPosition(0, -2);
 		entityValueTextBox.setId("entityValueText");
+		
+		
+		
+		final SelectionChangedListener<EntitiesComboBoxModel> comboListenerItem =new SelectionChangedListener<EntitiesComboBoxModel>(){
+	        @Override
+	        public void selectionChanged(SelectionChangedEvent<EntitiesComboBoxModel> se) { 
+
+	        	if(se.getSelectedItem().getEntityName().equalsIgnoreCase("TIME")){
+	        	operationComboBox.getStore().removeAll();
+	        	operationComboBox.setStore(getOperations(true));
+	        	
+	        	
+	        	
+	        	}
+	        	else{
+	        	   	operationComboBox.getStore().removeAll();
+		        	operationComboBox.setStore(getOperations(false));
+	        		
+	        	}
+	        	
+	        	operationComboBox.clearSelections();
+	        	
+	        	
+	        	
+	     
+	        }
+
+	    };
+	  
+	entityComboBox.addSelectionChangedListener(comboListenerItem);
+	
+	
 		
 		
 		addButton=new Button("Add Filter",getAddButtonEvent());
@@ -125,14 +165,21 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 	}
 	
 	
-	ListStore<OperationsComboBoxModel>	getOperations(){
-		
+
+	ListStore<OperationsComboBoxModel>	getOperations(boolean _isTimeOperation){
 		ListStore<OperationsComboBoxModel> _operations=new ListStore<OperationsComboBoxModel>();
+		if(!_isTimeOperation){
+	
 		OperationsComboBoxModel _equals=new OperationsComboBoxModel("Equals",OperationType.EQUALS);
 		OperationsComboBoxModel _contains=new OperationsComboBoxModel("Contains",OperationType.CONTAINS);
 		_operations.add(_equals);
 		_operations.add(_contains);
-		
+		}
+		else{
+			OperationsComboBoxModel _occuredWithIn=new OperationsComboBoxModel("OccuredWithIn",OperationType.OCCUREDWITHIN);
+			_operations.add(_occuredWithIn);	
+			
+		}
 		return _operations;
 	}
 	
@@ -160,10 +207,17 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 				EntitiesComboBoxModel selectedEntity=entitiesCombo.getValue();
 				OperationsComboBoxModel selectedOperation=operationCombo.getValue();
 				String filterValue=entityValue.getValue();
-				
-				
 				if(selectedEntity==null)
 					return;
+				
+				if(OperationType.getFromString(selectedOperation.getOperationType())==OperationType.OCCUREDWITHIN&&!GWTUtils.isNumber(filterValue))
+				{
+					
+					 MessageBox.alert("Info", "Time should be an integer value  and in minute!",null);
+					 return;
+				}
+				
+				
 				
 				
 				IndicatorFilterItemGridRowModel  _newRow=new IndicatorFilterItemGridRowModel(selectedEntity.getEntityName().toUpperCase(),filterValue.toUpperCase(),selectedEntity.getItemType().toString(),filterValue.toUpperCase(), selectedOperation.getOperationType().toUpperCase()); 
@@ -174,8 +228,8 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		        _grid.startEditing(_grid.getStore().indexOf(_newRow), 0); 
 		     
 				
-		        entitiesCombo.clear();
-		        operationCombo.clear();
+		        entitiesCombo.clearSelections();
+		        operationCombo.clearSelections();
 		        entityValue.clear();
 
 				}

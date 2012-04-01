@@ -2,7 +2,8 @@ package de.uds.MonitorInterventionMetafora.shared.datamodels.attributes;
 
 public enum OperationType {
 	EQUALS,
-	CONTAINS
+	CONTAINS,
+	OCCUREDWITHIN
 	;
 	
 	public  static OperationType getFromString(String str){

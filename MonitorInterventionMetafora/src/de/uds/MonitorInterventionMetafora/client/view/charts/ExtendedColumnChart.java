@@ -83,6 +83,8 @@ ColumnChart renderColumnChart(){
 	columnChart.addOnMouseOutHandler(createMouseOutHandler());
 	columnChart.addOnMouseOverHandler(createOnMouseOverHandler());
 	
+	columnChart.addSelectHandler(createSelectHandler());
+	
 	columnChart.setLayoutData(new FitLayout());
 	return columnChart;
 
@@ -128,30 +130,15 @@ public Options  getBarChartOptions(int _maxValue){
 	 
 	 
 	 boolean reseted=false;
-	 private SelectHandler createSelectHandler(final ColumnChart chart) {
+	 int selection=-1;
+	 private SelectHandler createSelectHandler() {
 		    return new SelectHandler() {
 		      @Override
 		      public void onSelect(SelectEvent event) {
 		     
 		    	  
 		    	  
-		    	   StringBuffer b = new StringBuffer();
-		    	   int selection=-1;
-		    	    JsArray<Selection> s = chart.getSelections();
-		    	    for (int i = 0; i < s.length(); ++i) {
-		    	      if (s.get(i).isCell()) {
-		    	        b.append(" cell ");
-		    	        b.append(s.get(i).getRow());
-		    	        b.append(":");
-		    	        b.append(s.get(i).getColumn());
-		    	      } else if (s.get(i).isRow()) {
-		    	       // b.append(" row ");
-		    	      selection=s.get(i).getRow();
-		    	      } else {
-		    	        b.append(" column ");
-		    	        b.append(s.get(i).getColumn());
-		    	      }
-		    	    }
+		    	
 		    	  
 		    	    
 		    	    EditorGrid<IndicatorFilterItemGridRowModel> editorGrid = (EditorGrid<IndicatorFilterItemGridRowModel>) ComponentManager.get().get("_filterItemGrid");
@@ -179,13 +166,6 @@ public Options  getBarChartOptions(int _maxValue){
 			       
 					if(!isInFilterList(_key,_grid) && !_entity.getValue().equalsIgnoreCase("")){
 			        
-
-			       // IndicatorEntity _filter = new IndicatorEntity();  
-			        //_filter.setProperty(_property);
-			        //_filter.setValue(_value);
-			        //_filter.setType(_propertyType);
-			         
-			    	//Info.display("Info","Filter for "+ value+" is added!");
 			        
 			        if(!reseted){
 			        	
@@ -247,6 +227,8 @@ public Options  getBarChartOptions(int _maxValue){
 			@Override
 			public void onMouseOutEvent(OnMouseOutEvent event) {
 				
+				
+				selection=event.getRow();
 				 StringBuffer b = new StringBuffer();
 				    b.append(" row: ");
 				    b.append(event.getRow());
@@ -267,6 +249,7 @@ public Options  getBarChartOptions(int _maxValue){
 			public void onMouseOverEvent(OnMouseOverEvent event) {
 				
 				  int row = event.getRow();
+				  selection=row;
 				    int column = event.getColumn();
 				    StringBuffer b = new StringBuffer();
 				    b.append(" row: ");

@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.shared.datamodels.attributes;
 
 public enum FilterItemType {
+	ACTION,
 	ACTION_TYPE,
 	USER,
 	OBJECT,

@@ -28,7 +28,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
-import de.uds.MonitorInterventionMetafora.shared.utils.GWTDateUtils;
+import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 
 public class MonitorPanelContainer extends VerticalPanel implements RequestHistoryCallBack{
@@ -51,7 +51,7 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
  	   this.add(loadingImage);
  	   
  	  CfAction _action=new CfAction();
- 	  _action.setTime(GWTDateUtils.getTimeStamp());
+ 	  _action.setTime(GWTUtils.getTimeStamp());
  	  
  	 CfActionType _cfActionType=new CfActionType();
  	 _cfActionType.setType("START_FILE_INPUT");
