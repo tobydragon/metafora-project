@@ -19,30 +19,30 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
 
 //used when there are management actions and actions for specific sessions, and XMPP messages contain references for those sessions
-public class CfMultiSessionCommunicationManager_modified implements CfCommunicationListener{
-	Log logger = LogFactory.getLog(CfMultiSessionCommunicationManager_modified.class);
+public class CfMultiSessionCommunicationManager implements CfCommunicationListener{
+	Log logger = LogFactory.getLog(CfMultiSessionCommunicationManager.class);
 	
-	private static Map<CommunicationMethodType, Map<CommunicationChannelType, CfMultiSessionCommunicationManager_modified>> instanceMatrix = new Hashtable <CommunicationMethodType, Map<CommunicationChannelType, CfMultiSessionCommunicationManager_modified>>();	
+	private static Map<CommunicationMethodType, Map<CommunicationChannelType, CfMultiSessionCommunicationManager>> instanceMatrix = new Hashtable <CommunicationMethodType, Map<CommunicationChannelType, CfMultiSessionCommunicationManager>>();	
 	
 	// We only maintain one instance of the communication manager, for each method and each channel.
 	// All connections for a specific method and channel speak through this one instance.
-	public static CfMultiSessionCommunicationManager_modified getInstance(CommunicationMethodType methodType, CommunicationChannelType channelType){
+	public static CfMultiSessionCommunicationManager getInstance(CommunicationMethodType methodType, CommunicationChannelType channelType){
 		
-		Map<CommunicationChannelType, CfMultiSessionCommunicationManager_modified> channelMap = instanceMatrix.get(methodType);
+		Map<CommunicationChannelType, CfMultiSessionCommunicationManager> channelMap = instanceMatrix.get(methodType);
 		if (channelMap == null){
-			channelMap = new HashMap<CommunicationChannelType, CfMultiSessionCommunicationManager_modified>();
+			channelMap = new HashMap<CommunicationChannelType, CfMultiSessionCommunicationManager>();
 			instanceMatrix.put(methodType, channelMap);
 		}
-		CfMultiSessionCommunicationManager_modified instance = channelMap.get(channelType);
+		CfMultiSessionCommunicationManager instance = channelMap.get(channelType);
 		if (instance == null){
-			instance = new CfMultiSessionCommunicationManager_modified(methodType, channelType);
+			instance = new CfMultiSessionCommunicationManager(methodType, channelType);
 			channelMap.put(channelType, instance);
 		}
 		return instance;
 	}
 	
 	//default to xmpp
-	public static CfMultiSessionCommunicationManager_modified getInstance(CommunicationChannelType channelType){
+	public static CfMultiSessionCommunicationManager getInstance(CommunicationChannelType channelType){
 		return getInstance(CommunicationMethodType.xmpp, channelType);
 	}
 
@@ -60,7 +60,7 @@ public class CfMultiSessionCommunicationManager_modified implements CfCommunicat
 	
 	List<String> controllingUsers = new ArrayList<String>();
 	
-	public CfMultiSessionCommunicationManager_modified(CommunicationMethodType methodType, CommunicationChannelType type){
+	public CfMultiSessionCommunicationManager(CommunicationMethodType methodType, CommunicationChannelType type){
 		//*session2agentMap = new HashMap<String, CfAgentInterface>();
 		//*managementAgent = null;
 		
