@@ -37,7 +37,7 @@ public class Outbox {
 
 		//text box
 		messageTextBox = new TextBox();
-		messageTextBox.setText("Only Jesus can help you.");
+		messageTextBox.setText("");
 		messageTextBox.setPixelSize(sectionWidth, 100);		
 		messageTextBox.setFocus(true);
 		messageTextBox.selectAll();
@@ -50,7 +50,7 @@ public class Outbox {
 		sendOptionsRow.add(new Label("send as"));
 		//send mode
 		VerticalPanel sendModeRadioColumn = new VerticalPanel();
-		sendModeRadioButtonPopup = new RadioButton("sendMode", "Modal popup");
+		sendModeRadioButtonPopup = new RadioButton("sendMode", "No Interruption");
 		ClickHandler noRequestClickHandler = new ClickHandler(){
 			@Override
 			public void onClick(ClickEvent event) {
@@ -61,7 +61,10 @@ public class Outbox {
 		sendModeRadioButtonPopup.setValue(true, true);
 		sendModeRadioButtonPopup.addClickHandler(noRequestClickHandler);
 		sendModeRadioColumn.add(sendModeRadioButtonPopup);
-		sendModeRadioButtonSuggestion = new RadioButton("sendMode", "Suggestion");
+		sendModeRadioButtonSuggestion = new RadioButton("sendMode", "Low Interruption");
+		sendModeRadioButtonSuggestion.addClickHandler(noRequestClickHandler);
+		sendModeRadioColumn.add(sendModeRadioButtonSuggestion);
+		sendModeRadioButtonSuggestion = new RadioButton("sendMode", "High Interruption");
 		sendModeRadioButtonSuggestion.addClickHandler(noRequestClickHandler);
 		sendModeRadioColumn.add(sendModeRadioButtonSuggestion);
 		sendModeRadioButtonResponse = new RadioButton("sendMode", "Response to request");
