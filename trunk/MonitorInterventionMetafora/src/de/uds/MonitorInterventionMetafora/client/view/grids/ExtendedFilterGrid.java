@@ -411,6 +411,7 @@ public void onSuccess(Configuration result) {
 	        		_filterItem.setType(_filterEntity.getType().toString());
 	        		_filterItem.setProperty(_filterEntity.getEntityName());
 	        		_filterItem.setValue(_filterEntity.getValue());
+	        		_filterItem.setOperation(_filterEntity.getOperationType().toString());
 	        		
 	        		
 	        	     grid.stopEditing();  
