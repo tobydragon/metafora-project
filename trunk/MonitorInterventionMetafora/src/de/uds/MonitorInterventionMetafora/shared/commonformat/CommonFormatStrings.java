@@ -114,6 +114,15 @@ public class CommonFormatStrings {
  	public static final String A_TIME="Action Time";
  	public static final String A_V_TIME="time";
  	
+ 	//Action Values
+ 	public static final String LANDMARK="LANDMARK";
+ 	public static final String OTHER="OTHER";
+ 	public static final String TRUE="TRUE";
+ 	public static final String INDICATOR_TYPE="INDICATOR_TYPE";
+ 	public static final String ACTIVITY="activity";
+ 	
+ 	
+ 	
  	
 	
 

@@ -14,6 +14,8 @@ import java.util.List;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.CommunicationService;
+import de.uds.MonitorInterventionMetafora.server.analysis.AnalysisListener;
+import de.uds.MonitorInterventionMetafora.server.analysis.AnalysisManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
@@ -31,22 +33,31 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
  */
 @SuppressWarnings("serial")
 public class MainServer extends RemoteServiceServlet implements
-		CommunicationService,CfCommunicationListener,Comparator<CfAction> {
+		CommunicationService,CfCommunicationListener,AnalysisListener,Comparator<CfAction> {
 
 
 	String configFilepath = "conf/toolconf/configuration.xml";
 	public Configuration _configuration;
-	List<CfAction> _cfActions;
+	List<CfAction> cfActions;
+	
 	
 	CfAgentCommunicationManager communicationManager;
+	AnalysisManager analysisManager;
 	
 	public MainServer(){		
-		_cfActions=new ArrayList<CfAction>();
+		cfActions=new ArrayList<CfAction>();
 				
 		XmlConfigParser connectionParser = new XmlConfigParser(configFilepath);
 		_configuration=connectionParser.toActiveConfiguration();		
 		communicationManager = CfAgentCommunicationManager.getInstance(getCommunicationType(_configuration.getActionSource()), CommunicationChannelType.analysis);				
 		communicationManager.register(this);
+		
+		analysisManager=AnalysisManager.getAnalysisManagerInstance();
+		analysisManager.register(this);
+		
+		//analysisManager.sendToAllAgents("Uguran", null);
+		
+		
 		if(_configuration.getActionSource().equalsIgnoreCase("file")){
 		CfAction _action=new CfAction();
 	 	  _action.setTime(GWTUtils.getTimeStamp());
@@ -63,7 +74,7 @@ public class MainServer extends RemoteServiceServlet implements
 	 	 
 	 	//_configurationObject.a
 	 	//_action.
-	
+    	
 		 communicationManager.sendMessage(_action);
 		}
 					
@@ -82,6 +93,7 @@ public class MainServer extends RemoteServiceServlet implements
 	@Override
 	public Configuration sendRequestConfiguration(String _user,CfAction cfAction) {
 
+		System.out.println("Requesting configuration!");
 		return _configuration;
 	}
 
@@ -90,8 +102,8 @@ public class MainServer extends RemoteServiceServlet implements
 	@Override
 	public List<CfAction> sendRequestHistoryAction(String _user,CfAction cfAction) {
 
-		 
-		return _cfActions;
+		System.out.println("Requesting history!");
+		return cfActions;
 	}
 
 	@Override
@@ -111,9 +123,11 @@ public class MainServer extends RemoteServiceServlet implements
 	@Override
 	public void processCfAction(String user, CfAction action) {
 		
-		_cfActions.add(action);
+		System.out.println("Action form User:"+user);
+		cfActions.add(action);
+		//analysisManager.addNewAction(action);
 	
-	 Collections.sort(_cfActions,this);
+	 Collections.sort(cfActions,this);
 	
 	}
 	
@@ -145,11 +159,11 @@ List<CfAction>  getActionUpdates(long _lasActionTime){
 	
 	List<CfAction> _newActionList=new ArrayList<CfAction>();
 	
-	for(int i=_cfActions.size()-1;i>=0;i--){
+	for(int i=cfActions.size()-1;i>=0;i--){
 		
-		if(isNewAction(_lasActionTime,_cfActions.get(i).getTime())){
+		if(isNewAction(_lasActionTime,cfActions.get(i).getTime())){
 			
-			_newActionList.add(_cfActions.get(i));
+			_newActionList.add(cfActions.get(i));
 			
 		}
 		
@@ -168,6 +182,16 @@ boolean isNewAction(long _lastActionTime,long _actionTime){
 	}
 		
 	return false;
+}
+
+
+
+@Override
+public void processAnalysis(String user, CfAction action) {
+	
+	
+	System.out.println("Analis detected.User: "+user);
+	
 }
 
 

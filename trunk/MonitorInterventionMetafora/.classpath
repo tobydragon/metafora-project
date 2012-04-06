@@ -7,12 +7,12 @@
 	<classpathentry kind="lib" path="lib/gwt-visualization-javadoc.jar"/>
 	<classpathentry kind="lib" path="lib/gwt-visualization.jar"/>
 	<classpathentry kind="lib" path="lib/gxt-2.2.5-gwt22.jar"/>
-	<classpathentry kind="lib" path="lib/jdom-1.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdom-1.1.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/junit-4.6.jar"/>
-	<classpathentry kind="lib" path="lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/XMPPBridge.jar"/>
+	<classpathentry kind="lib" path="lib/log4j.properties"/>
 	<classpathentry kind="lib" path="lib/smack.jar"/>
 	<classpathentry kind="lib" path="lib/smackx.jar"/>
-	<classpathentry kind="lib" path="lib/XMPPBridge.jar"/>
-	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

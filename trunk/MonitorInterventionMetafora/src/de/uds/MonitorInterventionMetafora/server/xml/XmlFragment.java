@@ -3,9 +3,9 @@ package de.uds.MonitorInterventionMetafora.server.xml;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.StringReader;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -33,13 +33,15 @@ public class XmlFragment implements XmlFragmentInterface {
 	
 	public static synchronized XmlFragmentInterface getFragmentFromFile(String filename){
 		try {
+			System.out.println("File1:"+filename);
 			Document doc = builder.build(new File(filename));
 			XmlFragmentInterface xmlFragment =  new XmlFragment(doc);
 			logger.debug("[getFragmentFromFile] xml created - \n" + xmlFragment);
-			
+			System.out.println("File2:"+filename);
 			return xmlFragment;
 		}
 		catch (Exception e){
+			System.out.println("Error:"+filename);
    		 logger.error("[getFragmentFromFile] " + e.getMessage());
    		 logger.debug("[getFragmentFromFile] " + ErrorUtil.getStackTrace(e));
    	 	}
