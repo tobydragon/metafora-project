@@ -12,7 +12,6 @@ import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.IndicatorFilterer;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
@@ -22,6 +21,7 @@ import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAtt
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.shared.utils.IndicatorFilterer;
 
 public class EntityViewModel {
 	
@@ -96,6 +96,7 @@ public class EntityViewModel {
 		List<IndicatorEntity> _entityList=new ArrayList<IndicatorEntity>();
 		
 		
+		System.out.println("getting indicator list1");
 			IndicatorEntity _entity=null;
 			
 			//Action_Type Attributes
@@ -114,6 +115,8 @@ public class EntityViewModel {
 			_entity.setType(FilterItemType.ACTION_TYPE);
 			_entityList.add(_entity);
 			
+			System.out.println("getting indicator list2");
+			
 			
 			_entity =new IndicatorEntity();
 			_entity.setEntityName(CommonFormatStrings.A_V_Classification);
@@ -131,6 +134,8 @@ public class EntityViewModel {
 			
 			//User Attributes
 			
+			System.out.println("getting indicator list3");
+			
 			_entity =new IndicatorEntity();
 			_entity.setEntityName(CommonFormatStrings.A_V_User);
 			_entity.setDisplayText(CommonFormatStrings.A_User);
@@ -143,12 +148,14 @@ public class EntityViewModel {
 			_entity.setDisplayText(CommonFormatStrings.A_ROLE);
 			_entity.setType(FilterItemType.USER);
 			_entityList.add(_entity);
-					
+			System.out.println("getting indicator list4");
+				
 			//Object Properties			
 			_entityList.addAll(getObjectEntities());
 			
 			//Content Properties
 			_entityList.addAll(getContentEntities());
+			System.out.println("getting indicator list5");
 			
 			return _entityList;
 			

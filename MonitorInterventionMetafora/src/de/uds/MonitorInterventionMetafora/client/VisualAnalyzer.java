@@ -32,7 +32,6 @@ import de.uds.MonitorInterventionMetafora.client.view.containers.MainContainerTa
 import de.uds.MonitorInterventionMetafora.client.view.containers.MonitorPanelContainer;
 
 
-
 class VisualAnalyzer implements EntryPoint {
   //private final TabPanel tabPanel = new TabPanel();
 

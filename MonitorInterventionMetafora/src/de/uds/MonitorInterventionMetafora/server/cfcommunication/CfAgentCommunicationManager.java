@@ -11,8 +11,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
-import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
-import de.uds.MonitorInterventionMetafora.server.xml.XmlFragmentInterface;
+
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
 //import de.dfki.lasad.agents.instances.xmpp.CfAgentInterface;

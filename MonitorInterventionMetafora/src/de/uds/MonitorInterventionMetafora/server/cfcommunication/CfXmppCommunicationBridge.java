@@ -28,6 +28,8 @@ public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMes
 		String instanceConfigFilepath = "conf/xmpp/xmpp-settings.xml";
 		XmlConfigParser instanceParser = new XmlConfigParser(instanceConfigFilepath);
 
+		System.out.println("Create connection");
+		
 		commandConnectionName = createConnection(CommunicationChannelType.command, instanceParser);
 		analysisConnectionName = createConnection(CommunicationChannelType.analysis, instanceParser);	
 }
@@ -50,6 +52,7 @@ static String createConnection(CommunicationChannelType configType, XmlConfigPar
 		String alias = connectionParser.getConfigValue("alias");
 		String device = connectionParser.getConfigValue("device");
 		XMPPBridge.createConnection(connectionName, userName, password, chatroom, alias, device);
+		System.out.println("Channel created successfully!");
 		return connectionName;
 	}
 	catch(Exception e){
@@ -79,12 +82,14 @@ static String createConnection(CommunicationChannelType configType, XmlConfigPar
 		}
 
 		try{
+			System.out.println("Trying to6 send xmpp mesage");
 			xmppBridge = XMPPBridge.getConnection(connectionName);
 			xmppBridge.connect(true);
 			xmppBridge.registerListener(this);
 			xmppBridge.sendMessage(connectionName + " connected at " + System.currentTimeMillis());
 			logger.info(connectionName + " connected to xmppBridge at " + new Date());
-
+			System.out.println("message send6 successfully");
+			
 		}
 		catch(Exception e){
 			logger.error("[constructor] " + ErrorUtil.getStackTrace(e) );

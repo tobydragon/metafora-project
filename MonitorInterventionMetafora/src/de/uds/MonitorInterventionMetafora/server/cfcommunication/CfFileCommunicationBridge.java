@@ -62,13 +62,17 @@ public class CfFileCommunicationBridge implements CfCommunicationBridge{
 	}
 	
 	private XmlFragmentInterface getOrCreateFragment(String filename){
+		
+		System.out.println("trying to get interaction data!!");
 		XmlFragmentInterface fragment = XmlFragment.getFragmentFromFile(filename);
 		if (fragment == null){
+			
+			System.out.println(" interaction data fragment is not null!!");
 			fragment = new XmlFragment("interactiondata");
 			XmlFragment childfragment = new XmlFragment("actions");
 			fragment.addContent(childfragment);
 		}
-		
+		System.out.println(" interaction data fragment!!"+fragment);
 		return fragment;
 	}
 	
@@ -92,15 +96,20 @@ public class CfFileCommunicationBridge implements CfCommunicationBridge{
 	}
 	
 	private void sendMessages() {
+		
+		System.out.println("Sending individual actions!!");
 		XmlFragmentInterface actionsFrag = xmlIn.accessChild("actions");
 		for (XmlFragmentInterface actionFrag : actionsFrag.getChildren("action")){
 			CfAction action = CfActionParser.fromXml(actionFrag);
 			if (action != null){
 				for (CfCommunicationListener listener : listeners){
 					listener.processCfAction("file", action);
+					System.out.println("Sent action:"+action.getTime());
 				}
 			}
 		}
+		
+		System.out.println("All actions are sent successfully!!");
 		
 	}
 

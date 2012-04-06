@@ -6,11 +6,11 @@ import java.util.List;
 
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.IndicatorFilterer;
 import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorGridRowItem;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
+import de.uds.MonitorInterventionMetafora.shared.utils.IndicatorFilterer;
 
 public class TableViewModel {
 	ActionMaintenance maintenance;
