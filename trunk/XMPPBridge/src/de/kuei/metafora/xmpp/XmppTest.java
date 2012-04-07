@@ -8,7 +8,8 @@ public class XmppTest {
 		boolean simpeltest = false;
 		boolean compatibilitytest = false;
 		boolean juggler = false;
-		boolean unity = true;
+		boolean unity = false;
+		boolean analysis = true;
 		
 		if(simpeltest)
 			test();
@@ -18,8 +19,41 @@ public class XmppTest {
 			juggler();
 		else if(unity)
 			unityTest();
+		else if(analysis)
+			analysisRequest();
 		else
 			testMultiUser();
+	}
+	
+	private static void analysisRequest(){
+		String server = "metafora.ku-eichstaett.de";
+		String user = "KUU0004";
+		String password = "KUU0004";
+		
+		
+		String request = "<action time=\"1324400685712\"><actiontype type=\"REQUEST_ANALYSIS_HISTORY\" classification=\"other\" succeed=\"UNKOWN\" /><user id=\"visualizer\" role=\"originator\" /><user id=\"metafora-platform\" role=\"receiver\" /><object id=\"0\" type=\"element\"><properties><property name=\"REQUEST_ID\" value=\"1050\"/><property name=\"START_TIME\" value=\"1324400685712\" /></properties></object></action>";
+		
+		
+		
+		XMPPBridgeCurrent.setServer(server);
+		XMPPBridgeCurrent.setUser(user, password);
+		
+		XMPPBridgeCurrent bridge = new XMPPBridgeCurrent();
+		
+		bridge.login(true);
+		
+		bridge.getDistributor().addTimeLanguageSubjectListener(new XMPPMessageTimeListenerLanguageSubject() {
+			
+			@Override
+			public void newMessage(String user, String message, String chat, Date time,
+					String language, String subject) {
+				System.out.println(message);
+			}
+		});
+		
+		bridge.sendMessageToUser(request, "metaforaservice@metafora.ku-eichstaett.de", null);
+		
+		while(true);
 	}
 	
 	private static void unityTest(){
