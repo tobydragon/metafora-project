@@ -12,7 +12,7 @@ import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smackx.packet.DelayInfo;
 import org.jivesoftware.smackx.packet.DelayInformation;
 
-public class XMPPMessageDistributor implements Runnable {
+public class XMPPMessageDistributor implements Runnable{
 
 	private Vector<XMPPMessageListenerLanguage> languageListeners = null;
 	private Vector<XMPPMessageTimeListenerLanguage> timeLanguageListeners = null;
@@ -121,6 +121,11 @@ public class XMPPMessageDistributor implements Runnable {
 		if (packet instanceof Message) {
 			Message msg = (Message) packet;
 
+			if(msg.getBody() == null){
+				System.err.println("XMPPMessageDistributor.processPacket: packet dropped because message was null!");
+				return;
+			}
+			
 			String from = msg.getFrom();
 			String name = "";
 			String chat = from;

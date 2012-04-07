@@ -19,7 +19,7 @@ import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 import org.jivesoftware.smackx.muc.Occupant;
 
-public class XMPPBridgeCurrent implements RosterListener {
+public class XMPPBridgeCurrent implements RosterListener{
 
 	private static String SERVER = "metafora.ku-eichstaett.de";
 	private static String USER = "KUU0004";
@@ -373,7 +373,7 @@ public class XMPPBridgeCurrent implements RosterListener {
 			connection.sendPacket(msg);
 		} else {
 			System.err
-					.println("XMPPBridge.sendMessageToMultiUserChat: user not logged in or not authorized!");
+					.println("XMPPBridge.sendMessageToUser: user not logged in or not authorized!");
 		}
 	}
 

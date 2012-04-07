@@ -34,10 +34,10 @@ public class XMPPBridgeMulti {
 		return userToBridge.get(user);
 	}
 	
-	public synchronized XMPPBridgeCurrent createBridge(String server, String user, String password, String alias){
+	public synchronized XMPPBridgeCurrent createBridge(String server, String user, String password, String device){
 		XMPPBridgeCurrent.setServer(server);
 		XMPPBridgeCurrent.setUser(user, password);
-		XMPPBridgeCurrent.setAlias(alias);
+		XMPPBridgeCurrent.setDevice(device);
 		
 		XMPPBridgeCurrent bridge = new XMPPBridgeCurrent();
 		userToBridge.put(user, bridge);
