@@ -1,7 +1,9 @@
-package de.uds.MonitorInterventionMetafora.client.communication.servercommunication;
+package de.uds.MonitorInterventionMetafora.client.communication;
 
 
 
+
+import java.io.Serializable;
 
 import com.google.gwt.core.client.GWT;
 
@@ -9,16 +11,21 @@ import com.google.gwt.core.client.GWT;
 
 
 
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.CfActionCallBack;
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestHistoryCallBack;
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
+import de.uds.MonitorInterventionMetafora.client.actionresponse.CfActionCallBack;
+import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestConfigurationCallBack;
+import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestHistoryCallBack;
+import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestUpdateCallBack;
+
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
-public class ServerCommunication {
+public class ServerCommunication implements Serializable {
 	
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2406920495105425871L;
 	private static ServerCommunication communicationInstance = null;
 	private  CommunicationServiceAsync serviceServlet = GWT
 	.create(CommunicationService.class);
@@ -62,6 +69,7 @@ public void processAction(CfAction _lastcfAction,RequestUpdateCallBack updateCal
 	serviceServlet.requestUpdate(_lastcfAction,updateCallback);
 
 }
+
 
 
 // not used for now

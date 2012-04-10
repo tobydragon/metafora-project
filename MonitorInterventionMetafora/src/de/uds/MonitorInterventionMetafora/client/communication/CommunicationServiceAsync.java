@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.communication.servercommunication;
+package de.uds.MonitorInterventionMetafora.client.communication;
 
 import java.util.List;
 import java.util.Map;
@@ -33,6 +33,10 @@ public interface CommunicationServiceAsync {
 
 	void requestUpdate(CfAction _lastcfAction,
 			AsyncCallback<List<CfAction>> callback);
+	
+	void sendNotificationToAgents(CfAction cfAction, AsyncCallback<CfAction> callback);
+	
+	
 
 
 	

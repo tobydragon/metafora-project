@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.communication.servercommunication;
+package de.uds.MonitorInterventionMetafora.client.communication;
 
 
 import java.util.List;
@@ -16,7 +16,7 @@ import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration
  * The client side stub for the RPC service.
  */
 @RemoteServiceRelativePath("greet")
-public interface CommunicationService extends RemoteService {
+public interface CommunicationService  extends RemoteService  {
 	
 	CfAction sendAction(String _user,CfAction cfAction);
 	
@@ -25,6 +25,8 @@ public interface CommunicationService extends RemoteService {
 	List<CfAction> requestUpdate(CfAction _lastcfAction);
 
 	Configuration sendRequestConfiguration(String _user,CfAction cfAction);
+
+	CfAction sendNotificationToAgents(CfAction cfAction);
 	
 	
 	
