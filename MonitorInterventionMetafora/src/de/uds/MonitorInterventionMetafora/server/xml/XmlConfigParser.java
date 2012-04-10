@@ -3,7 +3,10 @@ package de.uds.MonitorInterventionMetafora.server.xml;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.user.client.rpc.IsSerializable;
+
 import de.uds.MonitorInterventionMetafora.server.analysis.NoWorkNotification;
+import de.uds.MonitorInterventionMetafora.server.analysis.Notification;
 import de.uds.MonitorInterventionMetafora.server.utils.ServerFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.NotificationType;
@@ -11,7 +14,7 @@ import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.Operation
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
-import de.uds.MonitorInterventionMetafora.shared.notifications.Notification;
+import de.uds.MonitorInterventionMetafora.shared.utils.IndicatorFilterer;
 
 public class XmlConfigParser {
 	
@@ -58,7 +61,8 @@ public class XmlConfigParser {
 		_conf.setDataSource(confFragment.getChildValue(ServerFormatStrings.DATA_SOURCE_TYPE));
 		 XmlFragmentInterface  filtersFragment=XmlFragment.getFragmentFromString(confFragment.toString()).accessChild("filters");
 		 _conf.addFilters(getFilterList(filtersFragment));
-		 _conf.addNotifications(getNotificationList(filtersFragment));
+		// XmlFragmentInterface  notificationFragment=XmlFragment.getFragmentFromString(confFragment.toString());
+		 //_conf.addNotifications(getNotificationList(notificationFragment));
 		break;
 	
 		}
@@ -70,14 +74,16 @@ public class XmlConfigParser {
 	}
 	
 	
-	List<Notification> getNotificationList(XmlFragmentInterface _filtersFragment){
+	public List<Notification> getNotificationList(){
 		
 		
 		
 		List<Notification> notifications=new ArrayList<Notification>();
 		
-		for(XmlFragmentInterface filterFragment: _filtersFragment.getChildren(ServerFormatStrings.NOTIFICATION)){
-				IndicatorFilter indicatorFilter=new IndicatorFilter();
+		//for(XmlFragmentInterface _filterFragment: configFragment.getChildren(ServerFormatStrings.NOTIFICATIONS)){
+		//_filterFragment
+			for(XmlFragmentInterface filterFragment: configFragment.getChildren(ServerFormatStrings.NOTIFICATION)){
+			IndicatorFilter indicatorFilter=new IndicatorFilter();
 				indicatorFilter.setName(ServerFormatStrings.NOTIFICATION);
 				indicatorFilter.setEditable("false");	
 				NotificationType type=NotificationType.getFromString(filterFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase());
@@ -93,8 +99,12 @@ public class XmlConfigParser {
 				}
 				
 				notifications.add(renderNotification(type,indicatorFilter));	
+
 			}
 		
+		
+		//}
+		System.out.println("Notifications are loaded!!");
 			return notifications;
 		
 		
@@ -128,10 +138,15 @@ public class XmlConfigParser {
 		switch(_type){
 		
 		case NOWORK:
+		//	IndicatorFilterer _filterer=new IndicatorFilterer();
 			NoWorkNotification _notification=new NoWorkNotification();
-			_notification.setType(NotificationType.NOWORK);
 			_notification.setFilter(_filter);
+			//_notification.setFilterer(_filterer);
+			_notification.setType(NotificationType.NOWORK);
+			
 			return _notification;
+			
+			//return null;
 		
 		};
 		return null;
