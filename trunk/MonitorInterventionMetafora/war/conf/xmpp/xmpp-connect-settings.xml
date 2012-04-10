@@ -115,7 +115,7 @@
 		<connection-name>VisualizerCommandTestUgur</connection-name>
 		<username>VisualizerCommandTestUgur</username>
 		<password>VisualizerCommandTestUgur</password>
-		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
+		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
 		<alias>VisualizerCommandTestUgur</alias>
 		<device>VisualizerCommandTestUgur</device>
 		<controller-name>Metafora-test-ugur</controller-name>
