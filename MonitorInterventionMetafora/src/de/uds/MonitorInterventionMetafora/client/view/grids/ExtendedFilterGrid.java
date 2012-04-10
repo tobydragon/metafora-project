@@ -62,9 +62,9 @@ import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.button.Button;
 
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
+import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestConfigurationCallBack;
+import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.datamodels.FilterListGridModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
@@ -398,7 +398,7 @@ public void onSuccess(Configuration result) {
 	        if(confFilters.containsKey(filterSetKey)){
 	        	
 	        	IndicatorFilter filter=confFilters.get(filterSetKey);
-	        	Map<String, IndicatorEntity> _filteritemProperies=filter.getEntities();
+	        	Map<String, IndicatorEntity> _filteritemProperies=filter.getIndicatorEntities();
 	        	store.removeAll();
 	        	
 	        	for(String _key: _filteritemProperies.keySet()){
