@@ -39,9 +39,9 @@ public class TemplatePool {
 			{
 				name = _name;
 				buttonsVPanel = new VerticalPanel();
-				if(name.equals("eXpresser"))
+				if(name.equals("Planning"))
 				{
-					final String[] messageTemplates = {"Don't forget to reflect your plan.","There seem to be too many cards that are not linked.","There seem to be too many process cards.","Consider using stages."};
+					final String[] messageTemplates = {"Don't forget to reflect on your plan.","There seem to be too many cards that are not linked.","There seem to be too many process cards.","Consider using stages."};
 					for(int i=0; i<messageTemplates.length; i++)
 					{
 						final String mt = messageTemplates[i];
@@ -68,7 +68,7 @@ public class TemplatePool {
 			}
 		};
 		//create tools
-		String[] toolNames = {"Metafora","Planning","Lasad","eXpresser", "[Sent Messages]"};
+		String[] toolNames = {"L2L2","Planning","Discussion","Building", "Reflecting", "[Sent Messages]"};
 		final ArrayList<Tool> tools = new ArrayList<Tool>();
 		TabBar tabBar = new TabBar();
 		for(String tn : toolNames)

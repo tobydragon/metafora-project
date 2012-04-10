@@ -44,7 +44,7 @@ class VisualAnalyzer implements EntryPoint {
     	  MonitorPanelContainer _monitoringContainer=new MonitorPanelContainer();
     	  MainContainerTabPanel _mainPanel=new MainContainerTabPanel();
     	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
-    	  _mainPanel.addTab("Intervention", _interventionPanelContainer,false);
+    	  _mainPanel.addTab("Feedback", _interventionPanelContainer,false);
     	  
     	  // for testing purposes put  the single container (_interventionPanelContainer or _monitoringContainer)
     	  RootPanel.get().add(_mainPanel);
