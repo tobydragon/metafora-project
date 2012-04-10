@@ -13,8 +13,7 @@ import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.CommunicationService;
-import de.uds.MonitorInterventionMetafora.server.analysis.AnalysisListener;
+import de.uds.MonitorInterventionMetafora.client.communication.CommunicationService;
 import de.uds.MonitorInterventionMetafora.server.analysis.AnalysisManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
@@ -33,7 +32,7 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
  */
 @SuppressWarnings("serial")
 public class MainServer extends RemoteServiceServlet implements
-		CommunicationService,CfCommunicationListener,AnalysisListener,Comparator<CfAction> {
+		CommunicationService,CfCommunicationListener,Comparator<CfAction> {
 
 
 	String configFilepath = "conf/toolconf/configuration.xml";
@@ -53,6 +52,7 @@ public class MainServer extends RemoteServiceServlet implements
 		communicationManager.register(this);
 		
 		analysisManager=AnalysisManager.getAnalysisManagerInstance();
+		analysisManager.setActions(cfActions);
 		analysisManager.register(this);
 		
 		//analysisManager.sendToAllAgents("Uguran", null);
@@ -125,10 +125,8 @@ public class MainServer extends RemoteServiceServlet implements
 		
 		System.out.println("Action form User:"+user);
 		cfActions.add(action);
-		//analysisManager.addNewAction(action);
-	
-	 Collections.sort(cfActions,this);
-	
+		Collections.sort(cfActions,this);
+		analysisManager.setActions(cfActions);
 	}
 	
 public CommunicationMethodType getCommunicationType(String _type){
@@ -186,13 +184,21 @@ boolean isNewAction(long _lastActionTime,long _actionTime){
 
 
 
+
+
+
 @Override
-public void processAnalysis(String user, CfAction action) {
-	
-	
-	System.out.println("Analis detected.User: "+user);
-	
+public CfAction sendNotificationToAgents(CfAction cfAction) {
+
+	AnalysisManager.getAnalysisManagerInstance().sendToAllAgents("Notification",cfAction);
+
+	System.out.println("Notifications are send to the agentss!!");
+	return new CfAction();
 }
+
+
+
+
 
 
 	

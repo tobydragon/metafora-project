@@ -17,7 +17,6 @@ public class ServerFormatStrings {
 	public static final String ENTITYNAME="entityname";
 	public static final String FILTERITEM="filteritem";
 	public static final String OPERATION="operation";
-	public static final String IGNORED_LANDMARK="IGNORED-LANDMARK";
 	public static final String NOTIFICATIONS="notifications";
 	public static final String NOTIFICATION="notification";
 	
