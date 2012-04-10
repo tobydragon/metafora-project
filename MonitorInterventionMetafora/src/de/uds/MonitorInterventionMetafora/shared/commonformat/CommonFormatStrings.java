@@ -36,6 +36,7 @@ public class CommonFormatStrings {
 	public static final String DESCRIPTION_STRING = "description";
 	public static final String CONTENT_STRING = "content";
 	
+	
 	//CfInteractionData
 	public static final String INTERACTION_DATA_STRING = "interactiondata";
 	public static final String ACTIONS_STRING = "actions";
@@ -120,6 +121,11 @@ public class CommonFormatStrings {
  	public static final String TRUE="TRUE";
  	public static final String INDICATOR_TYPE="INDICATOR_TYPE";
  	public static final String ACTIVITY="activity";
+ 	public static final String TOOL = "TOOL";
+ 	public static final String VISAULIZER_ANALYZER = "VISAULIZER-ANALYZER";
+ 	public static final String IGNORED_LANDMARK="IGNORED-LANDMARK";
+ 	public static final String ANALYSIS_TYPE="ANALYSIS-TYPE";
+ 	public static final String NOTIFICATION="NOTIFICATION";
  	
  	
  	
