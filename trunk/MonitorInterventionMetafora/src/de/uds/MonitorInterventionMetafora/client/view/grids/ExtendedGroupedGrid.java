@@ -59,6 +59,7 @@ import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEnti
 
 public class ExtendedGroupedGrid extends  LayoutContainer {
 	public CheckBox autoRefresh;
+	private boolean  ignoreNotifications;
 	Timer tableViewTimer;
 	List<IndicatorGridRowItem> indicators;
 	TableViewModel tvm;
@@ -71,7 +72,7 @@ public class ExtendedGroupedGrid extends  LayoutContainer {
 		tvm=new TableViewModel(maintenance);
 		_indicatorCount=new Label();
 		store = new GroupingStore<IndicatorGridRowItem>();
-
+		ignoreNotifications=false;
 	    indicators=tvm.parseToIndicatorGridRowList(false);
 		
 	}
@@ -204,11 +205,45 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
     });    
     
     
+    
+    
+    final CheckBox  ignoreNotification = new CheckBox();
+    ignoreNotification.setBoxLabel("Ignore Notifications");
+    ignoreNotification.setValue(false);
+    
+    
+    ignoreNotification.addListener(Events.Change, new Listener<BaseEvent>()
+            {
+        public void handleEvent(BaseEvent be)
+        {
+            
+            if (ignoreNotification.getValue())
+            {
+            	
+            	ignoreNotifications=true;
+            	
+            } else
+            {
+            	ignoreNotifications=false;
+            	
+            }
+            
+            store.removeAll(); 
+    		store.add(tvm.parseToIndicatorGridRowList(true,ignoreNotifications));
+    		 _indicatorCount.setText("Total Indicador Count: "+store.getCount());
+            
+           
+        }
+    });    
+    
+    
+    
    
     _indicatorCount.setText("Total Indicador Count: "+store.getCount());
 
     toolBar.add(autoRefresh);
     toolBar.add(refreshbtn);
+    toolBar.add(ignoreNotification);
    
    ToolBar _buttomBar=new ToolBar();
    _indicatorCount.setPosition(550, 0);
@@ -240,7 +275,7 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
     	@Override
     	public void run() {
     		store.removeAll(); 
-    		store.add(tvm.parseToIndicatorGridRowList(true));
+    		store.add(tvm.parseToIndicatorGridRowList(true,ignoreNotifications));
     		 _indicatorCount.setText("Total Indicador Count: "+store.getCount());
     		
           }
