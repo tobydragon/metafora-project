@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.Notification;
+import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
 
 
 

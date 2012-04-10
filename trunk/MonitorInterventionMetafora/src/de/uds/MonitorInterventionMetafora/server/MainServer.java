@@ -123,7 +123,7 @@ public class MainServer extends RemoteServiceServlet implements
 	@Override
 	public void processCfAction(String user, CfAction action) {
 		
-		System.out.println("Action form User:"+user);
+		System.out.println("New Action recieved form User:"+user);
 		cfActions.add(action);
 		Collections.sort(cfActions,this);
 		analysisManager.setActions(cfActions);

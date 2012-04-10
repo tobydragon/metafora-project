@@ -19,6 +19,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.NotificationType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
 import de.uds.MonitorInterventionMetafora.shared.utils.IndicatorFilterer;
 
@@ -93,7 +94,10 @@ public class NoWorkNotification  implements  Notification {
 	@Override
 	public String getDescriptionString() {
 		
-		String _description="No work  found for filter entities; ";
+		String _description="No work  found for last "+filter.getIndicatorEntities().get(CommonFormatStrings.A_V_TIME.toUpperCase()).getValue()+" min. Filter entities; ";
+		
+	
+		//String _description="";
 		for(final String _key:filter.getIndicatorEntities().keySet()){
 		
 		_description=_description+filter.getIndicatorEntities().get(_key).getEntityName()+"="+filter.getIndicatorEntities().get(_key).getValue()+", ";
