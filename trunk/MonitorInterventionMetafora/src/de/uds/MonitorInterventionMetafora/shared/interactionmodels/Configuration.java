@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.uds.MonitorInterventionMetafora.shared.notifications.Notification;
+import de.uds.MonitorInterventionMetafora.server.analysis.Notification;
 
 
 
@@ -20,12 +20,11 @@ public class Configuration implements Serializable{
 	String name="";
 	String _dataSourceType="";
 	Map<String, IndicatorFilter> filters;
-	List<Notification> notifications;
 	
 	public Configuration(){
 		
 		filters=new HashMap<String,IndicatorFilter>();
-		notifications=new ArrayList<Notification>();
+		//notifications=new ArrayList<Notification>();
 		
 		
 	}
@@ -53,7 +52,8 @@ public void addFilters(List<IndicatorFilter> _filters){
 		filters.put(_enty.name, _enty);
 	}
 	
-	public void addNotification(Notification _notification){
+/*	
+public void addNotification(Notification _notification){
 		notifications.add(_notification);
 		
 	}
@@ -70,8 +70,11 @@ public void addFilters(List<IndicatorFilter> _filters){
 		
 		return notifications;
 	}
+	*/
 	
-	public Map<String, IndicatorFilter>  getFilters(){
+
+
+public Map<String, IndicatorFilter>  getFilters(){
 		
 		return filters;
 	}

@@ -1,7 +1,9 @@
 package de.uds.MonitorInterventionMetafora.shared.interactionmodels;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -15,11 +17,11 @@ public class IndicatorFilter implements Serializable{
 	String name="";
 	String editable="true";
 	
-	HashMap<String, IndicatorEntity> _properties;
+	HashMap<String, IndicatorEntity> filterIndicatorEntities;
 	
 	public IndicatorFilter(){
 		
-		_properties=new HashMap<String, IndicatorEntity>();
+		filterIndicatorEntities=new HashMap<String, IndicatorEntity>();
 	}
 	
 	public void setName(String _name){
@@ -46,23 +48,37 @@ public class IndicatorFilter implements Serializable{
 	}
 	public  void addIndicatorEntity(String _key,IndicatorEntity  _value){
 		
-		_properties.put(_key, _value);	
+		filterIndicatorEntities.put(_key, _value);	
 		
 	}
 	
 	
 	public IndicatorEntity getIndicatorEntity(String _key){
 		
-		if(_properties.containsKey(_key))
-			return _properties.get(_key);
+		if(filterIndicatorEntities.containsKey(_key))
+			return filterIndicatorEntities.get(_key);
 		return new IndicatorEntity();
 		
 	}
 
 	
-	public Map<String, IndicatorEntity> getEntities(){
+	public List<IndicatorEntity> toIndicatorEntityList(){
 		
-		return _properties;
+		List<IndicatorEntity> indicatorEntityList=new ArrayList<IndicatorEntity>();
+		for(String _key:filterIndicatorEntities.keySet())
+		{
+			
+			indicatorEntityList.add(filterIndicatorEntities.get(_key));
+			
+		}
+		
+		return indicatorEntityList;
+	}
+	
+	
+	public Map<String, IndicatorEntity> getIndicatorEntities(){
+		
+		return filterIndicatorEntities;
 	}
 	
 	
