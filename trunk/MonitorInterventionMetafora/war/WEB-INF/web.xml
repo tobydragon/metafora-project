@@ -7,24 +7,14 @@
 
   <!-- Servlets -->
 
-
-<servlet>
-  <servlet-name>eventServiceImpl</servlet-name>
-  <servlet-class>de.novanic.eventservice.service.EventServiceImpl</servlet-class>
-</servlet>
-<servlet-mapping>
-  <servlet-name>eventServiceImpl</servlet-name>
-  <url-pattern>/analysis/gwteventservice</url-pattern>
-</servlet-mapping>
-
-  <servlet>
+ <servlet>
     <servlet-name>greetServlet</servlet-name>
     <servlet-class>de.uds.MonitorInterventionMetafora.server.MainServer</servlet-class>
   </servlet>
   
   <servlet-mapping>
     <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/analysis/greet</url-pattern>
+    <url-pattern>/MonitorInterventionMetafora/greet</url-pattern>
   </servlet-mapping>
 
 
