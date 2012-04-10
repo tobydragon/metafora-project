@@ -17,7 +17,8 @@ import com.extjs.gxt.ui.client.widget.grid.Grid;
 //import com.google.gwt.user.client.ui.Button;
 
 
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
+import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestUpdateCallBack;
+import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
