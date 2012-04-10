@@ -99,6 +99,8 @@ public CfContent getCfContent() {
 		return cfContent;
 	}
 
+
+
 	//	public XmlFragment toXml(){
 //		XmlFragment xmlFragment= new XmlFragment(CommonFormatStrings.ACTION_STRING);
 //		xmlFragment.setAttribute(CommonFormatStrings.TIME_STRING, Long.toString(time));
