@@ -14,7 +14,7 @@ import java.util.List;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationService;
-import de.uds.MonitorInterventionMetafora.server.analysis.AnalysisManager;
+import de.uds.MonitorInterventionMetafora.server.analysis.manager.AnalysisManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;

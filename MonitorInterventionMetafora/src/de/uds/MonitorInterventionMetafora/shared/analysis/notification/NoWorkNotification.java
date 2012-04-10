@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.server.analysis;
+package de.uds.MonitorInterventionMetafora.server.analysis.notification;
 
 
 
@@ -10,6 +10,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 
+import de.uds.MonitorInterventionMetafora.server.analysis.manager.AnalysisManager;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;

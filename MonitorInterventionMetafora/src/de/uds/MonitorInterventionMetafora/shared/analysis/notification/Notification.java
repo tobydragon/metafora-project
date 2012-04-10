@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.server.analysis;
+package de.uds.MonitorInterventionMetafora.server.analysis.notification;
 
 
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.server.analysis;
+package de.uds.MonitorInterventionMetafora.server.analysis.manager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +10,7 @@ import java.util.TimerTask;
 //import com.google.gwt.user.client.Timer;
 
 
+import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.utils.IndicatorFilterer;
 
