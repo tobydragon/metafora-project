@@ -67,9 +67,10 @@ public class Outbox {
 		sendModeRadioButtonSuggestion = new RadioButton("sendMode", "High Interruption");
 		sendModeRadioButtonSuggestion.addClickHandler(noRequestClickHandler);
 		sendModeRadioColumn.add(sendModeRadioButtonSuggestion);
+		//TODO: not needed anymore. Remove
 		sendModeRadioButtonResponse = new RadioButton("sendMode", "Response to request");
 		sendModeRadioButtonResponse.setEnabled(false);
-		sendModeRadioColumn.add(sendModeRadioButtonResponse);
+		//sendModeRadioColumn.add(sendModeRadioButtonResponse);
 		sendOptionsRow.add(sendModeRadioColumn);
 		vpanel.add(sendOptionsRow);
 		sendOptionsRow.add(new Label("to"));

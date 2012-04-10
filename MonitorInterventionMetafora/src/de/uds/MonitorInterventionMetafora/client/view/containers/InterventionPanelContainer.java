@@ -27,8 +27,6 @@ public class InterventionPanelContainer extends VerticalPanel {
 	public InterventionPanelContainer(){
 		INSTANCE = this;
 		
-		this.add(new Label("Here is for intervention panel!"));
-
 		final VerticalPanel top1VPanel = new VerticalPanel();
 		final VerticalPanel leftVPanel = new VerticalPanel();
 		leftVPanel.setWidth("450px");
@@ -36,25 +34,7 @@ public class InterventionPanelContainer extends VerticalPanel {
 		final HorizontalPanel top2HPanel = new HorizontalPanel();
 		
 		add(top1VPanel);
-
-		//mockRequestButtons
-		Button mockRequestButtonA = new Button("mock up a request from Agnes");
-		mockRequestButtonA.addClickHandler(new ClickHandler(){
-			@Override
-			public void onClick(ClickEvent event) {
-				mockupRequest("Agnes");
-			}
-		});
-		top1VPanel.add(mockRequestButtonA);
-		Button mockRequestButtonB = new Button("mock up a request from Bobby");
-		mockRequestButtonB.addClickHandler(new ClickHandler(){
-			@Override
-			public void onClick(ClickEvent event) {
-				mockupRequest("Bobby");
-			}
-		});
-		top1VPanel.add(mockRequestButtonB);
-		
+			
 		//left and right half of page
 		top1VPanel.add(top2HPanel);
 		top2HPanel.add(leftVPanel);
