@@ -12,7 +12,7 @@ public enum FilterItemType {
 			return valueOf(str);
 		}
 		catch (Exception e){
-			System.out.println("[FilterElementType.getFromString] bad string input");
+			//System.out.println("[FilterElementType.getFromString] bad string input");
 			return null;
 		}
 	}
