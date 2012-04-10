@@ -1,10 +1,11 @@
-package de.uds.MonitorInterventionMetafora.server.analysis;
+package de.uds.MonitorInterventionMetafora.server.analysis.manager;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
 
+import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;

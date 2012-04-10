@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.NoWorkNotification;
-import de.uds.MonitorInterventionMetafora.server.analysis.Notification;
+import de.uds.MonitorInterventionMetafora.server.analysis.notification.NoWorkNotification;
+import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
 import de.uds.MonitorInterventionMetafora.server.utils.ServerFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.NotificationType;
