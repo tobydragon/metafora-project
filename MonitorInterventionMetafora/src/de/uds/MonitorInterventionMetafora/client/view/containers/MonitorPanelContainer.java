@@ -10,9 +10,9 @@ import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestHistoryCallBack;
+import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestHistoryCallBack;
+import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
@@ -56,7 +56,7 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
  	 CfActionType _cfActionType=new CfActionType();
  	 _cfActionType.setType("START_FILE_INPUT");
  	 _action.setCfActionType(_cfActionType);
- 	 
+ 	 System.out.println("Sending start from file action");
  	 
  	   ServerCommunication.getInstance().processAction("Tool",_action,this);
  	   
@@ -69,7 +69,9 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
 	
 	@Override
 	public void onFailure(Throwable caught) {
-		// TODO Auto-generated method stub
+		
+		System.out.println("Error"+caught.toString());
+		
 		
 	}
 
