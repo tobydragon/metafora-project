@@ -35,7 +35,7 @@ public class MainServer extends RemoteServiceServlet implements
 		CommunicationService,CfCommunicationListener,Comparator<CfAction> {
 
 
-	String configFilepath = "conf/toolconf/configuration.xml";
+	String configFilepath = "conffiles/toolconf/configuration.xml";
 	public Configuration _configuration;
 	List<CfAction> cfActions;
 	
