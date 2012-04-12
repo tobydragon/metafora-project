@@ -109,6 +109,10 @@ public class MainServer extends RemoteServiceServlet implements
 	@Override
 	public List<CfAction> requestUpdate(CfAction cfAction) {
 		
+		
+		System.out.println("Working Directory = " +
+		           System.getProperty("user.dir"));
+		
 		if(cfAction!=null){
 		
 		return getActionUpdates(cfAction.getTime());
