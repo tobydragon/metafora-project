@@ -19,7 +19,7 @@ public class AnalysisManager {
 	 List<CfAction> cfActions;
 	NotificationManager notificationManager;
 	static AnalysisManager instance; 
-	String  notificationsSourceFile="conf/toolconf/notifications.xml";
+	String  notificationsSourceFile="conffiles/toolconf/notifications.xml";
 
 	
 	
