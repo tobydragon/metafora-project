@@ -24,10 +24,10 @@ public class CfFileCommunicationBridge implements CfCommunicationBridge{
 	private static String analysisConnectionNameOut = null;
 	
 	static {
-		commandConnectionNameIn = "resources/xml/test/commandChannelInput.xml";
-		analysisConnectionNameIn = "resources/xml/test/analysisChannelInput.xml";
-		commandConnectionNameOut = "resources/xml/test/commandChannelOutput.xml";
-		analysisConnectionNameOut = "resources/xml/test/analysisChannelOutput.xml";
+		commandConnectionNameIn = "conf/xml/test/commandChannelInput.xml";
+		analysisConnectionNameIn = "conf/xml/test/analysisChannelInput.xml";
+		commandConnectionNameOut = "conf/xml/test/commandChannelOutput.xml";
+		analysisConnectionNameOut = "conf/xml/test/analysisChannelOutput.xml";
 		
 		// TODO: Read filenames from config file, see static in CfXmppCommunicationBridge
 	}

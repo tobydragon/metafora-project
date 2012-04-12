@@ -41,7 +41,7 @@ public class XmlFragment implements XmlFragmentInterface {
 			return xmlFragment;
 		}
 		catch (Exception e){
-			System.out.println("Error:"+filename);
+			System.out.println("Error:"+filename+"Error::"+e.toString());
    		 logger.error("[getFragmentFromFile] " + e.getMessage());
    		 logger.debug("[getFragmentFromFile] " + ErrorUtil.getStackTrace(e));
    	 	}
