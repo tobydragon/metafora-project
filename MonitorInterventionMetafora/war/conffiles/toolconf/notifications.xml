@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<notifications>
+
+
+<notification type="nowork">
+<filteritem entityname="Tool"  operation="Equals"  value="Metafora" type="Content"/>
+<filteritem entityname="User"  operation="Equals"  value="Alice"  type="Action_Type"/>
+<filteritem entityname="MapID" operation="Equals"  value="M1" type="Object"/>
+<filteritem entityname="TIME" operation="OccuredWithIn"  value="2" type="Action"/>
+</notification>
+
+
+</notifications>

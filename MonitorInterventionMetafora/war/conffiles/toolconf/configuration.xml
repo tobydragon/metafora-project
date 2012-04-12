@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurations>
+<configuration name ="Test" active="1">
+
+<data-source-type>file</data-source-type>
+<filters>
+<filter name="Default" editable="true">
+<filteritem entityname="ID" operation="Equals"  value="Toby" type="User"/>
+
+</filter>
+
+<filter name="UserandMap" editable="true">
+<filteritem entityname="Map-ID" operation="Equals"  value="1" type="OBJECT"/>
+<filteritem entityname="classification"  operation="Equals"  value="MODIFY" type="Action_Type"/>
+</filter>
+
+
+<filter name="Mixed" editable="true">
+<filteritem entityname="Tool"  operation="Equals"  value="Metafora" type="Content"/>
+<filteritem entityname="User"  operation="Equals"  value="Alice"  type="Action_Type"/>
+<filteritem entityname="MapID" operation="Equals"  value="M1" type="Object"/>
+<filteritem entityname="User"  operation="Contains" value="Bob" type="Action_Type"/>
+</filter>
+
+</filters>
+
+</configuration>
+
+</configurations>
