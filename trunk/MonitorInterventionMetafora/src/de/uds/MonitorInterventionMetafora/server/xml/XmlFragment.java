@@ -33,6 +33,8 @@ public class XmlFragment implements XmlFragmentInterface {
 	
 	public static synchronized XmlFragmentInterface getFragmentFromFile(String filename){
 		try {
+			System.out.println("Working Directory = " +
+			           System.getProperty("user.dir"));
 			System.out.println("File1:"+filename);
 			Document doc = builder.build(new File(filename));
 			XmlFragmentInterface xmlFragment =  new XmlFragment(doc);

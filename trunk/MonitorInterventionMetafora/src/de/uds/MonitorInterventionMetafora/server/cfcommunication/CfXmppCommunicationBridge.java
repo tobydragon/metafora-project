@@ -11,6 +11,7 @@ import de.kuei.metafora.xmpp.XMPPBridge;
 import de.kuei.metafora.xmpp.XMPPMessageListener;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
 import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
+import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragmentInterface;
@@ -25,7 +26,7 @@ public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMes
 	
 	static {
 		//config file location
-		String instanceConfigFilepath = "conffiles/xmpp/xmpp-settings.xml";
+		String instanceConfigFilepath = GeneralUtil.getAplicationResourceDirectory()+"conffiles/xmpp/xmpp-settings.xml";
 		XmlConfigParser instanceParser = new XmlConfigParser(instanceConfigFilepath);
 
 		System.out.println("Create connection");
@@ -37,7 +38,7 @@ public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMes
 static String createConnection(CommunicationChannelType configType, XmlConfigParser instanceParser){
 	
 	try {
-		String connectionConfigFilepath = "conffiles/xmpp/xmpp-connect-settings.xml";
+		String connectionConfigFilepath = GeneralUtil.getAplicationResourceDirectory()+"conffiles/xmpp/xmpp-connect-settings.xml";
 		XmlConfigParser connectionParser = new XmlConfigParser(connectionConfigFilepath);
 		
 		String connectionInstance = instanceParser.getConfigValue(configType.toString());

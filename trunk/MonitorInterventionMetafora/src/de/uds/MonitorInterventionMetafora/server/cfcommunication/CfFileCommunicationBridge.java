@@ -6,6 +6,7 @@ import java.util.Vector;
 import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
+import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragmentInterface;
@@ -24,10 +25,10 @@ public class CfFileCommunicationBridge implements CfCommunicationBridge{
 	private static String analysisConnectionNameOut = null;
 	
 	static {
-		commandConnectionNameIn = "conffiles/xml/test/commandChannelInput.xml";
-		analysisConnectionNameIn = "conffiles/xml/test/analysisChannelInput.xml";
-		commandConnectionNameOut = "conffiles/xml/test/commandChannelOutput.xml";
-		analysisConnectionNameOut = "conffiles/xml/test/analysisChannelOutput.xml";
+		commandConnectionNameIn =GeneralUtil.getAplicationResourceDirectory()+ "conffiles/xml/test/commandChannelInput.xml";
+		analysisConnectionNameIn = GeneralUtil.getAplicationResourceDirectory()+"conffiles/xml/test/analysisChannelInput.xml";
+		commandConnectionNameOut = GeneralUtil.getAplicationResourceDirectory()+"conffiles/xml/test/commandChannelOutput.xml";
+		analysisConnectionNameOut =GeneralUtil.getAplicationResourceDirectory()+ "conffiles/xml/test/analysisChannelOutput.xml";
 		
 		// TODO: Read filenames from config file, see static in CfXmppCommunicationBridge
 	}

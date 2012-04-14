@@ -9,6 +9,7 @@ package de.uds.MonitorInterventionMetafora.client.view.grids;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 
@@ -17,10 +18,14 @@ import com.extjs.gxt.ui.client.data.ChangeEvent;
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.FieldEvent;
 import com.extjs.gxt.ui.client.event.GridEvent;
 import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
+import com.extjs.gxt.ui.client.event.SelectionChangedListener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.GroupingStore;
+import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Store;
 import com.extjs.gxt.ui.client.store.StoreEvent;
 import com.extjs.gxt.ui.client.widget.BoxComponent;
@@ -31,6 +36,10 @@ import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
+import com.extjs.gxt.ui.client.widget.form.ComboBox;
+import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
+import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
+import com.extjs.gxt.ui.client.widget.form.SimpleComboValue;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
@@ -52,20 +61,28 @@ import com.google.gwt.user.client.ui.ClickListener;
 
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
+import de.uds.MonitorInterventionMetafora.client.datamodels.DefaultModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
 
 
 public class ExtendedGroupedGrid extends  LayoutContainer {
-	public CheckBox autoRefresh;
+	private CheckBox autoRefresh;
 	private boolean  ignoreNotifications;
-	Timer tableViewTimer;
-	List<IndicatorGridRowItem> indicators;
-	TableViewModel tvm;
-	ActionMaintenance maintenance;
-	Label _indicatorCount;
-	GroupingStore<IndicatorGridRowItem> store;
+	private Timer tableViewTimer;
+	private List<IndicatorGridRowItem> indicators;
+	private TableViewModel tvm;
+	private ActionMaintenance maintenance;
+	private Label _indicatorCount;
+	private  Grid<IndicatorGridRowItem> grid;
+	private	GroupingStore<IndicatorGridRowItem> store;
+	public ColumnModel cm;
+	//private SimpleComboBox<ColumnConfig> groupingComboBox;
 	
 	public ExtendedGroupedGrid(ActionMaintenance _maintenance){
 		maintenance=_maintenance;
@@ -74,7 +91,7 @@ public class ExtendedGroupedGrid extends  LayoutContainer {
 		store = new GroupingStore<IndicatorGridRowItem>();
 		ignoreNotifications=false;
 	    indicators=tvm.parseToIndicatorGridRowList(false);
-		
+	   	
 	}
 
 public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
@@ -82,7 +99,78 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
 		indicators=_indicator;
 	}
 
+
+ComboBox<DefaultModel> renderGroupingComboBox(){
+	ComboBox<DefaultModel> groupingComboBox=new ComboBox<DefaultModel>();;
+	groupingComboBox.setTriggerAction(TriggerAction.ALL);  
+	groupingComboBox.setEditable(false);  
+	groupingComboBox.setFireChangeEventOnSetValue(true);  
+	groupingComboBox.setWidth(100);
+	groupingComboBox.setId("_groupingComboBox");
 	
+	
+	groupingComboBox.setDisplayField("displaytext");
+	groupingComboBox.setValueField("value");
+	ListStore<DefaultModel> _columns=new ListStore<DefaultModel>();
+	_columns.add(new DefaultModel("Un Group","nogrouping"));
+	for(ColumnConfig _column:cm.getColumns()){
+		_columns.add(new DefaultModel(_column.getHeader(),_column.getId()));
+	}
+
+	
+	final SelectionChangedListener<DefaultModel> comboListenerItem =new SelectionChangedListener<DefaultModel>(){
+        @Override
+        public void selectionChanged(SelectionChangedEvent<DefaultModel> se) { 
+
+        	String _groupbyColumn=se.getSelectedItem().getValue();
+        	
+        	if(_groupbyColumn.equalsIgnoreCase("nogrouping"))
+        	{
+        		store.clearGrouping();
+        		return;
+        	}
+        	store.groupBy(_groupbyColumn);
+        //  	store.clearGrouping();
+        	grid.disableEvents(true);
+        	grid.setView(getGridView());
+        	
+          	
+     
+        }
+
+    };
+    
+    groupingComboBox.setStore(_columns);
+  
+    groupingComboBox.addSelectionChangedListener(comboListenerItem);
+	
+
+	
+	
+	return groupingComboBox;
+}
+	
+
+GroupingView getGridView(){
+	 GroupingView view = new GroupingView();
+	    view.setShowGroupedColumn(true);
+	    view.setForceFit(true);
+	    view.setGroupRenderer(new GridGroupRenderer() {
+	      public String render(GroupColumnData data) {
+	    	  
+	    	System.out.println("Data:"+data);
+	        String f = cm.getColumnById(data.field).getHeader();
+	        String l = data.models.size() == 1 ? "Indicator" : "Indicators";
+	        return f + ": " + data.group + " (" + data.models.size() + " " + l + ")";
+	      }
+	    });
+	    
+	    
+	    view.setShowGroupedColumn(true);
+	
+	return view;
+}
+
 
 @Override
   protected void onRender(Element parent, int index) {
@@ -122,27 +210,17 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
     config.add(date);
   
 
-    final ColumnModel cm = new ColumnModel(config);
+    cm = new ColumnModel(config);
 
-    GroupingView view = new GroupingView();
-    view.setShowGroupedColumn(true);
-    view.setForceFit(true);
-    view.setGroupRenderer(new GridGroupRenderer() {
-      public String render(GroupColumnData data) {
-        String f = cm.getColumnById(data.field).getHeader();
-        String l = data.models.size() == 1 ? "Indicator" : "Indicators";
-        return f + ": " + data.group + " (" + data.models.size() + " " + l + ")";
-      }
-    });
-
+       
     
     
+    grid= new Grid<IndicatorGridRowItem>(store, cm);
     
-    Grid<IndicatorGridRowItem> grid = new Grid<IndicatorGridRowItem>(store, cm);
-    view.setShowGroupedColumn(true);
-    grid.setView(view);
+    grid.setView(getGridView());
     grid.setBorders(true);
     grid.setId("_tableViewGrid");
+    //grid.getSelectionModel().setLocked(true);
     
     grid.getStore().addListener(Store.Add, new Listener<StoreEvent<IndicatorGridRowItem>>() {
         public void handleEvent(StoreEvent<IndicatorGridRowItem> be) {
@@ -242,9 +320,10 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
     _indicatorCount.setText("Total Indicador Count: "+store.getCount());
 
     toolBar.add(autoRefresh);
-    toolBar.add(refreshbtn);
     toolBar.add(ignoreNotification);
-   
+    toolBar.add(refreshbtn);
+    toolBar.add(renderGroupingComboBox());
+    
    ToolBar _buttomBar=new ToolBar();
    _indicatorCount.setPosition(550, 0);
    _buttomBar.add(_indicatorCount);
@@ -281,7 +360,7 @@ public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
           }
         };
         
-        tableViewTimer.scheduleRepeating(10000);
+       tableViewTimer.scheduleRepeating(10000);
         
        
     

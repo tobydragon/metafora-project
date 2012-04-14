@@ -19,6 +19,7 @@ import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunic
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationMethodType;
+import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
@@ -35,7 +36,7 @@ public class MainServer extends RemoteServiceServlet implements
 		CommunicationService,CfCommunicationListener,Comparator<CfAction> {
 
 
-	String configFilepath = "conffiles/toolconf/configuration.xml";
+	String configFilepath = GeneralUtil.getAplicationResourceDirectory()+"conffiles/toolconf/configuration.xml";
 	public Configuration _configuration;
 	List<CfAction> cfActions;
 	
@@ -110,8 +111,6 @@ public class MainServer extends RemoteServiceServlet implements
 	public List<CfAction> requestUpdate(CfAction cfAction) {
 		
 		
-		System.out.println("Working Directory = " +
-		           System.getProperty("user.dir"));
 		
 		if(cfAction!=null){
 		

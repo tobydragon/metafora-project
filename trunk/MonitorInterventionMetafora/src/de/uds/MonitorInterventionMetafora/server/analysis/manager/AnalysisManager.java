@@ -7,6 +7,7 @@ import java.util.Vector;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
+import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
@@ -19,7 +20,7 @@ public class AnalysisManager {
 	 List<CfAction> cfActions;
 	NotificationManager notificationManager;
 	static AnalysisManager instance; 
-	String  notificationsSourceFile="conffiles/toolconf/notifications.xml";
+	String  notificationsSourceFile=GeneralUtil.getAplicationResourceDirectory()+"conffiles/toolconf/notifications.xml";
 
 	
 	
