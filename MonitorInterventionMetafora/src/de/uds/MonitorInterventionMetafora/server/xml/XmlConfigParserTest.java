@@ -1,5 +1,6 @@
 package de.uds.MonitorInterventionMetafora.server.xml;
 
+import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import junit.framework.TestCase;
 
 public class XmlConfigParserTest extends TestCase {
@@ -19,7 +20,7 @@ public class XmlConfigParserTest extends TestCase {
 //	}
 	
 	public void testXmlConfigParserFragment(){
-		String connectionConfigFilepath = "conffiles/metafora/details/agents/types/xmpp/xmpp-connect-settings.xml";
+		String connectionConfigFilepath = GeneralUtil.getAplicationResourceDirectory()+"conffiles/metafora/details/agents/types/xmpp/xmpp-connect-settings.xml";
 		XmlConfigParser connectionParser = new XmlConfigParser(connectionConfigFilepath);
 		connectionParser = connectionParser.getfragmentById("xmpp-channel-setting", "channelid", "command");
 		String connectionName = connectionParser.getConfigValue("connection-name");
