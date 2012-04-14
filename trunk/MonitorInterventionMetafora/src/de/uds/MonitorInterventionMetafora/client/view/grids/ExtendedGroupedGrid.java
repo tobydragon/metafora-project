@@ -157,8 +157,6 @@ GroupingView getGridView(){
 	    view.setForceFit(true);
 	    view.setGroupRenderer(new GridGroupRenderer() {
 	      public String render(GroupColumnData data) {
-	    	  
-	    	System.out.println("Data:"+data);
 	        String f = cm.getColumnById(data.field).getHeader();
 	        String l = data.models.size() == 1 ? "Indicator" : "Indicators";
 	        return f + ": " + data.group + " (" + data.models.size() + " " + l + ")";
