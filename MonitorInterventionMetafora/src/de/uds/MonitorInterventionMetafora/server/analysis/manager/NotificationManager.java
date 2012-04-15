@@ -30,7 +30,7 @@ public class NotificationManager extends TimerTask{
 		cfActions=new ArrayList<CfAction>();
 		filterAgent=new IndicatorFilterer();
 		notificationManagerTimer=new Timer();
-		notificationManagerTimer.schedule(this,0,20000);
+		notificationManagerTimer.schedule(this,0,120000);
 		
 		
 	}
@@ -44,7 +44,7 @@ public class NotificationManager extends TimerTask{
 		notifications.addAll(_notifications);
 		
 		notificationManagerTimer=new Timer();
-		notificationManagerTimer.schedule(this,0,20000);
+		notificationManagerTimer.schedule(this,0,120000);
 		
 		System.out.println("Notifcation M is initialized");
 	}
