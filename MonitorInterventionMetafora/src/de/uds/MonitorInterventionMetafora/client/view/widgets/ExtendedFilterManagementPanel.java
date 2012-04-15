@@ -30,6 +30,7 @@ import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxMode
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
@@ -44,12 +45,13 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 	private  Button addButton;
 	private ActionMaintenance maintenance;
 	private EntityViewModel model;
+	private ClientInterfaceManager interfaceManager;
 	
 	
 	public ExtendedFilterManagementPanel(ActionMaintenance _maintenance){
 		maintenance=_maintenance;
 		model=new EntityViewModel(maintenance);
-		
+		interfaceManager=new ClientInterfaceManager();
 		 FormLayout layout = new FormLayout();
 		entityComboBox = new ComboBox<EntitiesComboBoxModel>();
 	//	entityComboBox.setFieldLabel("Entity");
@@ -194,13 +196,13 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 				
 				if(entityComboBox.validate() && operationComboBox.validate()&&entityValueTextBox.validate()){
 				
-				ComboBox<EntitiesComboBoxModel> entitiesCombo= (ComboBox<EntitiesComboBoxModel>) ComponentManager.get().get("_entityComboBox");
-				ComboBox<OperationsComboBoxModel> operationCombo= (ComboBox<OperationsComboBoxModel>) ComponentManager.get().get("_operationComboBox");
-				TextField<String> entityValue=(TextField<String>) ComponentManager.get().get("entityValueText");
+				ComboBox<EntitiesComboBoxModel> entitiesCombo=interfaceManager.getFilterEntitiesComboBox();
+				ComboBox<OperationsComboBoxModel> operationCombo= interfaceManager.getOperationsComboBox();
+				TextField<String> entityValue=interfaceManager.getFilterEntityValueTextField();
 				
 				
-				 EditorGrid<IndicatorFilterItemGridRowModel> editorGrid = (EditorGrid<IndicatorFilterItemGridRowModel>) ComponentManager.get().get("_filterItemGrid");
-				 EditorGrid<IndicatorFilterItemGridRowModel> _grid = editorGrid;
+				// EditorGrid<IndicatorFilterItemGridRowModel> editorGrid = (EditorGrid<IndicatorFilterItemGridRowModel>) ComponentManager.get().get("_filterItemGrid");
+				 EditorGrid<IndicatorFilterItemGridRowModel> _grid = interfaceManager.getFilterListEditorGrid();
 		    	 
 				
 				

@@ -16,6 +16,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedColumnChart;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
@@ -25,6 +26,7 @@ public class ColumnChartGroupTypeComboBox extends HorizontalPanel{
 	//public int i=0;
 	private IndicatorEntity selectedEntity=null;
 	private ComboBox<EntitiesComboBoxModel> comboType;
+	private ClientInterfaceManager interfaceManager;
 	
 	EntityViewModel model;
 	
@@ -35,6 +37,7 @@ public class ColumnChartGroupTypeComboBox extends HorizontalPanel{
 		comboType = new ComboBox<EntitiesComboBoxModel>();
 		
 		comboType.setEmptyText("Select a type");
+		interfaceManager=new ClientInterfaceManager();
 	  
 	  
 	    
@@ -64,33 +67,33 @@ public class ColumnChartGroupTypeComboBox extends HorizontalPanel{
 	        		//LayoutContainer _pieChartPanel = (LayoutContainer) ComponentManager.get().get("pieChartVerticalPanel");
 	        		
 	        		
-	        		ExtendedColumnChart _barChartPanel = (ExtendedColumnChart) ComponentManager.get().get("barChartVerticalPanel");
+	        		ExtendedColumnChart columnChartPanel = interfaceManager.getColumnChart();
 	        		
-	        		if( _barChartPanel!=null){
+	        		if( columnChartPanel!=null){
 	        			model.sliptActions(true);
 	        			
 	        			
 	        			
-	        			_barChartPanel.getBarChart().draw(model.getEntityDataTable(selectedEntity),_barChartPanel.getBarChartOptions(model.getMaxValue()));
+	        			columnChartPanel.getBarChart().draw(model.getEntityDataTable(selectedEntity),columnChartPanel.getBarChartOptions(model.getMaxValue()));
 	        			
 	        		
-	        			_barChartPanel.layout();
+	        			columnChartPanel.layout();
 	        		//	i++;
 	        			
-	        			VerticalPanel _comboPieChartpanel = (VerticalPanel) ComponentManager.get().get("barChartFilterPanel");
+	        			VerticalPanel _comboPieChartpanel = interfaceManager.getColumnChartVerticalPanel();
 	        			_comboPieChartpanel.layout();
 	        		
 	        		
-	        			TabItem _barChartTable = (TabItem) ComponentManager.get().get("barChartViewTab");
+	        			TabItem _barChartTable = interfaceManager.getColumChartViewTabItem();
 	        			_barChartTable.layout();
 	        			
 	        	
 	        			
-	        			VerticalPanel _pieChartVerticalPanel = (VerticalPanel) ComponentManager.get().get("_barChartFilterPanel");
+	        			/*VerticalPanel _pieChartVerticalPanel = (VerticalPanel) ComponentManager.get().get("_barChartFilterPanel");
 		        		if(_pieChartVerticalPanel!=null){
 		        			
 		        		  	
-		        		}
+		        		}*/
 	        					
 	        		}
 	        		

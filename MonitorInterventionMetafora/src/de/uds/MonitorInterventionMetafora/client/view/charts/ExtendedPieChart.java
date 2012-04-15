@@ -29,6 +29,7 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart.Pie
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.MultiModelTabPanel;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 
@@ -42,6 +43,7 @@ public class ExtendedPieChart extends  VerticalPanel {
 	private EntityViewModel model;
 	//private ActionMaintenance maintenance;
 	private IndicatorEntity  entity;
+	private ClientInterfaceManager interfaceManager;
 	
 	
 	public ExtendedPieChart(IndicatorEntity  _entity,EntityViewModel _model){
@@ -59,6 +61,7 @@ public class ExtendedPieChart extends  VerticalPanel {
 		//pieChart.draw(data, options)
 		this.layout(true);
 		this.doLayout();
+		interfaceManager=new ClientInterfaceManager();
 		
 		
 	}
@@ -68,6 +71,7 @@ public ExtendedPieChart(String title){
 	this.add(new Label(title));
 	this.layout(true);
 	this.doLayout();
+	interfaceManager=new ClientInterfaceManager();
 	
 }
 
@@ -157,10 +161,10 @@ public PieOptions  getPieChartOptions(){
 		    	    }
 		    	  
 		    	    
-		    	    EditorGrid<IndicatorFilterItemGridRowModel> editorGrid = (EditorGrid<IndicatorFilterItemGridRowModel>) ComponentManager.get().get("_filterItemGrid");
-					EditorGrid<IndicatorFilterItemGridRowModel> _grid = editorGrid;
+		    	   
+					EditorGrid<IndicatorFilterItemGridRowModel> _grid = interfaceManager.getFilterListEditorGrid();
 		    	    
-					SimpleComboBox<String> _filterCombo=(SimpleComboBox<String>) ComponentManager.get().get("_filterGroupCombo");
+					SimpleComboBox<String> _filterCombo=interfaceManager.getFilterListComboBox();
 					
 		    	    
 		    	  
@@ -209,11 +213,12 @@ public PieOptions  getPieChartOptions(){
 			        
 			        model.getActionMaintenance().refreshTableView();
 			         
-			        TabPanel tabPanel = (TabPanel) ComponentManager.get().get("_multiModelTabPanel");
-			        TabItem tabItem=(TabItem) ComponentManager.get().get("Table");
+			        TabPanel tabPanel = interfaceManager.getMultiModelTabPanel();
+			        
+			        TabItem tabItem=interfaceManager.getTableViewTabItem();
 	
-			        VerticalPanel verticalPanel = (VerticalPanel) ComponentManager.get().get("_tabMainPanel");
-			        MessageBox.info("Message","Filter is added to the list!", null);
+			        VerticalPanel verticalPanel = interfaceManager.getTabPanelContainer();
+			       // MessageBox.info("Message","Filter is added to the list!", null);
 			        tabPanel.setTabIndex(0);
 			        tabPanel.repaint();
 			        tabPanel.setLayoutData(new FitLayout());

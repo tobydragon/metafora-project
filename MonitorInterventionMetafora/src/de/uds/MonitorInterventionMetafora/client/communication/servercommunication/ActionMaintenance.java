@@ -23,6 +23,7 @@ import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxMode
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedColumnChart;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
 import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorGridRowItem;
@@ -37,11 +38,13 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 
 	public  List<CfAction> activecfActions;
+	private ClientInterfaceManager interfaceManager;
 	
 	
 	public ActionMaintenance(){
 		
 		activecfActions=new ArrayList<CfAction>();
+		interfaceManager=new ClientInterfaceManager();
 		
 		
 		
@@ -76,8 +79,8 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 		 TableViewModel tvm=new TableViewModel(this);
 			
 		 
-		   Grid<IndicatorGridRowItem> editorGrid = (Grid<IndicatorGridRowItem>) ComponentManager.get().get("_tableViewGrid");
-		   Grid<IndicatorGridRowItem> _grid = editorGrid;
+		  // Grid<IndicatorGridRowItem> editorGrid = 
+		   Grid<IndicatorGridRowItem> _grid = interfaceManager.getTableViewEditorGrid();
 		   _grid.getStore().removeAll();
 		   _grid.getStore().add(tvm.parseToIndicatorGridRowList(true));
 		 
@@ -97,7 +100,7 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 		 
 		 EntityViewModel model=new EntityViewModel(this);
 		 
-			ExtendedColumnChart _barChartPanel = (ExtendedColumnChart) ComponentManager.get().get("barChartVerticalPanel");
+			ExtendedColumnChart _barChartPanel = interfaceManager.getColumnChart();
     		
     		if( _barChartPanel!=null){
     			model.sliptActions(true);
@@ -113,17 +116,15 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
     			_barChartPanel.layout();
     			
     			
-    			VerticalPanel _comboColumnChartpanel = (VerticalPanel) ComponentManager.get().get("barChartFilterPanel");
+    			VerticalPanel _comboColumnChartpanel = interfaceManager.getColumnChartVerticalPanel();
     			_comboColumnChartpanel.layout();
     		
     			
-    			ComboBox<EntitiesComboBoxModel> comboColumnChartType=(ComboBox<EntitiesComboBoxModel>) ComponentManager.get().get("comboColumnChartType");
-     			
-    			//comboColumnChartType.clear();
+    			ComboBox<EntitiesComboBoxModel> comboColumnChartType=interfaceManager.getColumnChartGroupingComboBox();
+
     			comboColumnChartType.clearSelections();
     			
-    		
-    			TabItem _columnChartTable = (TabItem) ComponentManager.get().get("barChartViewTab");
+    			TabItem _columnChartTable =interfaceManager.getColumChartViewTabItem();
     			_columnChartTable.layout();
 		 
 	 }
@@ -139,7 +140,7 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 		 
 		 EntityViewModel model=new EntityViewModel(this);
 		 
-			ExtendedPieChart _pieChartPanel = (ExtendedPieChart) ComponentManager.get().get("pieChartVerticalPanel");
+			ExtendedPieChart _pieChartPanel = interfaceManager.getExtendedPieChart();
  		
  		if( _pieChartPanel!=null){
  			model.sliptActions(true);
@@ -155,16 +156,16 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
  			_pieChartPanel.layout();
  			
  			
- 			VerticalPanel _comboPieChartpanel = (VerticalPanel) ComponentManager.get().get("pieChartFilterPanel");
+ 			VerticalPanel _comboPieChartpanel = interfaceManager.getPieChartGroupingComboContainer();
  			_comboPieChartpanel.layout();
  		
  		
- 			ComboBox<EntitiesComboBoxModel> comboBox = (ComboBox<EntitiesComboBoxModel>) ComponentManager.get().get("comboPieChartType");
-			ComboBox<EntitiesComboBoxModel> comboPieChartType=comboBox;
+ 			
+			ComboBox<EntitiesComboBoxModel> comboPieChartType=interfaceManager.getPieChartGroupingComboBox();
  			
  			comboPieChartType.clearSelections();
  			
- 			TabItem _pieChartTable = (TabItem) ComponentManager.get().get("pieChartViewTab");
+ 			TabItem _pieChartTable = interfaceManager.getPieChartViewTabItem();
  			_pieChartTable.layout();
 		 
 	 }
