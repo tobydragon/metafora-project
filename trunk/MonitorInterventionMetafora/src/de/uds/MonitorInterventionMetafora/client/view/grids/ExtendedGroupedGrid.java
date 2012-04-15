@@ -189,7 +189,7 @@ GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
             
             if(model.getColor()!=null && model.getColor()!=""){
             	
-            	System.out.println("Setting background:"+model.getColor());
+            	//System.out.println("Setting background:"+model.getColor());
             	
             return "<span style='background-color:" +model.getColor()+ "'>" + valueOfCell+ "</span>";
             		

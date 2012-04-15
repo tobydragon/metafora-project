@@ -138,7 +138,7 @@ public class TableViewModel {
         	   indicators.add(myindicator);
         	   }
         	   else{
-        		if(!ac.getCfContent().getPropertyValue(CommonFormatStrings.ANALYSIS_TYPE).equalsIgnoreCase(CommonFormatStrings.NOTIFICATION)){
+        		if(ac.getCfContent().getPropertyValue(CommonFormatStrings.ANALYSIS_TYPE)==null || !ac.getCfContent().getPropertyValue(CommonFormatStrings.ANALYSIS_TYPE).equalsIgnoreCase(CommonFormatStrings.NOTIFICATION)){
         			
         			 indicators.add(myindicator);
         		}
