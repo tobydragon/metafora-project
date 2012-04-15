@@ -68,6 +68,13 @@ public class TableViewModel {
         	   myindicator.setDescription(ac.getCfContent().getDescription());     	   
         	   myindicator.setTime(GWTUtils.getTime(ac.getTime()));
         	   myindicator.setDate(GWTUtils.getDate(ac.getTime()));
+        	   
+        	   if(ac.getCfContent().getProperty(CommonFormatStrings.COLOR)!=null){
+        		   
+        		   myindicator.setColor(ac.getCfContent().getProperty(CommonFormatStrings.COLOR).getValue()); 
+        		   
+        	   }
+        	   
         	   indicators.add(myindicator);	
 		}
 		
@@ -118,6 +125,15 @@ public class TableViewModel {
         	   myindicator.setDescription(ac.getCfContent().getDescription());     	   
         	   myindicator.setTime(GWTUtils.getTime(ac.getTime()));
         	   myindicator.setDate(GWTUtils.getDate(ac.getTime()));
+        	         	   
+        	   if(ac.getCfContent().getProperty(CommonFormatStrings.COLOR)!=null){
+        		   
+        		   myindicator.setColor(ac.getCfContent().getProperty(CommonFormatStrings.COLOR).getValue()); 
+        		   
+        	   }
+        	   
+        	   
+        	   
         	   if(!_ignoreNotification){
         	   indicators.add(myindicator);
         	   }
@@ -182,6 +198,13 @@ public List<IndicatorGridRowItem>  parseToIndicatorGridRowList(List<CfAction> _c
         	   myindicator.setDescription(ac.getCfContent().getDescription());     	   
         	   myindicator.setTime(GWTUtils.getTime(ac.getTime()));
         	   myindicator.setDate(GWTUtils.getDate(ac.getTime()));
+        	   if(ac.getCfContent().getProperty(CommonFormatStrings.COLOR)!=null){
+        		   
+        		   myindicator.setColor(ac.getCfContent().getProperty(CommonFormatStrings.COLOR).getValue()); 
+        		   
+        	   }
+        	   
+        	   
         	   indicators.add(myindicator);	
 		}
 		

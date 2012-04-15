@@ -18,6 +18,8 @@ public  interface Notification  {
 	void sendNotification();
 	String getDescriptionString();
 	void setFilter(IndicatorFilter _filters);
+	void setColor(String _color);
+	String getColor();
 	IndicatorFilter getFilter();
 	void setType(NotificationType _type);
 	NotificationType getType();

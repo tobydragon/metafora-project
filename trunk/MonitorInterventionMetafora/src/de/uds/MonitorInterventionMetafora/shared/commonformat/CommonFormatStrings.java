@@ -126,6 +126,7 @@ public class CommonFormatStrings {
  	public static final String IGNORED_LANDMARK="IGNORED-LANDMARK";
  	public static final String ANALYSIS_TYPE="ANALYSIS-TYPE";
  	public static final String NOTIFICATION="NOTIFICATION";
+ 	public static final String COLOR="COLOR";
  	
  	
  	
