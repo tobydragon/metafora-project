@@ -24,9 +24,20 @@ public class IndicatorGridRowItem extends BaseModel {
     set("description", description);
     set("time",time);
     set("date", date);
+    
     //set("groupingItem", groupingItem);
     
   }
+
+public void setColor(String _color){
+	
+	set("color", _color);
+}
+
+public String getColor(){
+	  
+	  return (String) get("color");  
+}
 
 
   public String getTime(){

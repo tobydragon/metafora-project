@@ -32,7 +32,7 @@ public class NoWorkNotification  implements  Notification {
 	 */
 	private static final long serialVersionUID = -8109458748846339834L;
 	IndicatorFilter filter;
-	//IndicatorFilterer filterer;
+	String color="";
 
 	public NoWorkNotification(){
 		
@@ -136,6 +136,13 @@ public class NoWorkNotification  implements  Notification {
 		property.setValue(CommonFormatStrings.NOTIFICATION);
 		content.addProperty(property);
 		
+		if(color!=null && color!=""){
+		property=new CfProperty();
+		property.setName(CommonFormatStrings.COLOR);
+		property.setValue(color);
+		content.addProperty(property);
+		}
+		
 		
 		final CfActionType cfActionType = new CfActionType(CommonFormatStrings.LANDMARK, 
 				CommonFormatStrings.OTHER, CommonFormatStrings.TRUE);
@@ -149,6 +156,22 @@ public class NoWorkNotification  implements  Notification {
 		final List<CfObject> _objects=new ArrayList<CfObject>();
 		return new CfAction(System.currentTimeMillis(), cfActionType,_users,_objects,content);
 	
+	}
+
+
+
+	@Override
+	public void setColor(String _color) {
+		color=_color;
+		
+	}
+
+
+
+	@Override
+	public String getColor() {
+		
+		return color;
 	}
 
 

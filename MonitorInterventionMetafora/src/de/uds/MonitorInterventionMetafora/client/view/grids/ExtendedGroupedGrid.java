@@ -14,6 +14,7 @@ import java.util.Map;
 
 
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
+import com.extjs.gxt.ui.client.data.BaseModel;
 import com.extjs.gxt.ui.client.data.ChangeEvent;
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
@@ -41,8 +42,10 @@ import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboValue;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
+import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
+import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
 import com.extjs.gxt.ui.client.widget.grid.GridGroupRenderer;
 import com.extjs.gxt.ui.client.widget.grid.GroupColumnData;
 import com.extjs.gxt.ui.client.widget.grid.GroupingView;
@@ -170,6 +173,42 @@ GroupingView getGridView(){
 }
 
 
+GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
+	
+	
+	GridCellRenderer<IndicatorGridRowItem> ColoredGrid = new GridCellRenderer<IndicatorGridRowItem>() {
+
+        @Override
+        public String render(IndicatorGridRowItem model,
+                String property, ColumnData _config,
+                int rowIndex, int colIndex,
+                ListStore<IndicatorGridRowItem> store,
+                Grid<IndicatorGridRowItem> grid) {
+
+        	String  valueOfCell =  model.get(property); 
+            
+            if(model.getColor()!=null && model.getColor()!=""){
+            	
+            	System.out.println("Setting background:"+model.getColor());
+            	
+            return "<span style='background-color:" +model.getColor()+ "'>" + valueOfCell+ "</span>";
+            		
+            }
+            
+           return valueOfCell; 
+
+
+
+        }    
+
+        };
+        
+        return ColoredGrid;
+	
+}
+
+
+
 @Override
   protected void onRender(Element parent, int index) {
     super.onRender(parent, index);
@@ -184,20 +223,46 @@ GroupingView getGridView(){
 
     ColumnConfig username = new ColumnConfig("name", "User", 50);
     username.setWidth(70);
+    username.setRenderer(getbackgroundColorRenderer());
+    
+    
+     
+    
+    
+   /* username.setRenderer(new GridCellRenderer<BaseModel>() {   
+        @Override
+        public Object render(BaseModel model, String property, ColumnData config,
+                             int rowIndex, int colIndex, ListStore<BaseModel> store,
+                             Grid<BaseModel> grid) {
+              config.style = "background-color:yellow;";
+              Object value = model.get(property);
+              return value;         
+         }
+    });*/
+    
+    
     ColumnConfig actionType = new ColumnConfig("actiontype", "Action", 50);
     actionType.setWidth(70);
     actionType.setAlignment(HorizontalAlignment.RIGHT);
+    actionType.setRenderer(getbackgroundColorRenderer());
+    
     ColumnConfig classification = new ColumnConfig("classification", "Classification", 60);
     classification.setWidth(70);
+    classification.setRenderer(getbackgroundColorRenderer());
+    
     ColumnConfig description = new ColumnConfig("description", "Description", 50);
-    description.setWidth(250);
+    description.setWidth(250);    
+    description.setRenderer(getbackgroundColorRenderer());
+    
     ColumnConfig time = new ColumnConfig("time", "Time", 50);
     time.setWidth(75);
+    time.setRenderer(getbackgroundColorRenderer());
+    
     ColumnConfig date = new ColumnConfig("date", "Date", 20);
     date.setWidth(75);
     
     date.setDateTimeFormat(DateTimeFormat.getFormat("MM/dd/y"));
-    
+    date.setRenderer(getbackgroundColorRenderer());
 
     List<ColumnConfig> config = new ArrayList<ColumnConfig>();
     config.add(username);
@@ -358,10 +423,7 @@ GroupingView getGridView(){
           }
         };
         
-       tableViewTimer.scheduleRepeating(10000);
-        
-       
-    
+       tableViewTimer.scheduleRepeating(10000); 
   }
 
 

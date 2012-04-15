@@ -87,7 +87,8 @@ public class XmlConfigParser {
 				indicatorFilter.setName(ServerFormatStrings.NOTIFICATION);
 				indicatorFilter.setEditable("false");	
 				NotificationType type=NotificationType.getFromString(filterFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase());
-			
+				String color=filterFragment.getAttributeValue(ServerFormatStrings.COLOR);
+				
 				for(XmlFragmentInterface propertyFragment : filterFragment.getChildren(ServerFormatStrings.FILTERITEM))
 				{			
 					IndicatorEntity _filterItem=new IndicatorEntity();
@@ -98,7 +99,7 @@ public class XmlConfigParser {
 					 indicatorFilter.addIndicatorEntity(_filterItem.getEntityName(), _filterItem);
 				}
 				
-				notifications.add(renderNotification(type,indicatorFilter));	
+				notifications.add(renderNotification(type,indicatorFilter,color));	
 
 			}
 		
@@ -133,7 +134,7 @@ public class XmlConfigParser {
 		return _entityfilters;
 	}
 	
-	Notification renderNotification(NotificationType _type,IndicatorFilter _filter){
+	Notification renderNotification(NotificationType _type,IndicatorFilter _filter,String _color){
 		
 		switch(_type){
 		
@@ -141,6 +142,7 @@ public class XmlConfigParser {
 		//	IndicatorFilterer _filterer=new IndicatorFilterer();
 			NoWorkNotification _notification=new NoWorkNotification();
 			_notification.setFilter(_filter);
+			_notification.setColor(_color);
 			//_notification.setFilterer(_filterer);
 			_notification.setType(NotificationType.NOWORK);
 			
