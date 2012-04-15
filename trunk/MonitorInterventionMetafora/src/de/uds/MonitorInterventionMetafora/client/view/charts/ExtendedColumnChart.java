@@ -31,6 +31,7 @@ import com.google.gwt.visualization.client.visualizations.corechart.ColumnChart;
 
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 import com.google.gwt.visualization.client.visualizations.corechart.Options;
 
@@ -42,6 +43,7 @@ public class ExtendedColumnChart extends  VerticalPanel{
 	
 	private  ColumnChart columnChart;
 	private EntityViewModel model;
+	private ClientInterfaceManager interfaceManager;
 
 	Label status;
     Label onMouseOverAndOutStatus;
@@ -53,7 +55,7 @@ public class ExtendedColumnChart extends  VerticalPanel{
 		 status = new Label();
 		 onMouseOverAndOutStatus = new Label();
 		this.setId("barChartVerticalPanel");
-		
+		interfaceManager=new ClientInterfaceManager();
 		model=_model;
 		
 		this.removeAll();
@@ -71,6 +73,7 @@ public ExtendedColumnChart(String title){
 	this.add(new Label(title));
 	this.layout(true);
 	this.doLayout();
+	interfaceManager=new ClientInterfaceManager();
 	
 }
 
@@ -141,10 +144,9 @@ public Options  getBarChartOptions(int _maxValue){
 		    	
 		    	  
 		    	    
-		    	    EditorGrid<IndicatorFilterItemGridRowModel> editorGrid = (EditorGrid<IndicatorFilterItemGridRowModel>) ComponentManager.get().get("_filterItemGrid");
-					EditorGrid<IndicatorFilterItemGridRowModel> _grid = editorGrid;
-		    	    
-					SimpleComboBox<String> _filterCombo=(SimpleComboBox<String>) ComponentManager.get().get("_filterGroupCombo");
+		    	  //  EditorGrid<IndicatorFilterItemGridRowModel> editorGrid = (EditorGrid<IndicatorFilterItemGridRowModel>) ComponentManager.get().get("_filterItemGrid");
+					EditorGrid<IndicatorFilterItemGridRowModel> _grid = interfaceManager.getFilterListEditorGrid();		    	    
+					SimpleComboBox<String> _filterCombo=interfaceManager.getFilterListComboBox();
 					
 		    	    
 		    	  
@@ -186,11 +188,10 @@ public Options  getBarChartOptions(int _maxValue){
 			        
 			        model.getActionMaintenance().refreshTableView();
 			         
-			        TabPanel tabPanel = (TabPanel) ComponentManager.get().get("_multiModelTabPanel");
-			        TabItem tabItem=(TabItem) ComponentManager.get().get("Table");
-	
-			        VerticalPanel verticalPanel = (VerticalPanel) ComponentManager.get().get("_tabMainPanel");
-			        MessageBox.info("Message","Filter is added to the list!", null);
+			        TabPanel tabPanel = interfaceManager.getMultiModelTabPanel();
+			        TabItem tabItem=interfaceManager.getTableViewTabItem();	
+			        VerticalPanel verticalPanel = interfaceManager.getTabPanelContainer();
+			        //MessageBox.info("Message","Filter is added to the list!", null);
 			        tabPanel.setTabIndex(0);
 			        tabPanel.repaint();
 			        tabPanel.setLayoutData(new FitLayout());
