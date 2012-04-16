@@ -4,11 +4,15 @@
 
 
 <notification type="nowork" color="#FF9F9F">
+<filteritem entityname="TIME" operation="OccuredWithIn"  value="5" type="Action"/>
+</notification>
+
+
+<notification type="nowork" color="#65FC29">
 <filteritem entityname="Tool"  operation="Equals"  value="Metafora" type="Content"/>
 <filteritem entityname="User"  operation="Equals"  value="Alice"  type="Action_Type"/>
 <filteritem entityname="MapID" operation="Equals"  value="M1" type="Object"/>
-<filteritem entityname="TIME" operation="OccuredWithIn"  value="2" type="Action"/>
+<filteritem entityname="TIME" operation="OccuredWithIn"  value="3" type="Action"/>
 </notification>
-
 
 </notifications>
