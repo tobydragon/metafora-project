@@ -30,7 +30,9 @@ public class MultiModelTabPanel extends VerticalPanel {
 	
 		tabPanel = new TabPanel();
 		tabPanel.setWidth(601);
-		tabPanel.setHeight(430);
+		//CCtabPanel.setHeight(445);
+		
+		tabPanel.setHeight(662);
 		//tabPanel.set
 		tabPanel.addListener(Events.Select, new SelectionListener<TabPanelEvent>() {
 

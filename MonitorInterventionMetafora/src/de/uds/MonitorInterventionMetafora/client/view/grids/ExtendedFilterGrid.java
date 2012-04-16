@@ -314,9 +314,9 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     panel.setCollapsible(true);
     panel.setFrame(true);
     
-    panel.setSize(590, 200);
+    panel.setSize(590, 123);
     grid.setWidth(590);
-    grid.setHeight(200);
+    grid.setHeight(123);
     
     panel.setLayout(new FitLayout());
    

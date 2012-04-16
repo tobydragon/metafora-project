@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.client.manager;
 
 import com.extjs.gxt.ui.client.widget.ComponentManager;
+import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
@@ -112,6 +113,13 @@ public ComboBox<OperationsComboBoxModel> getOperationsComboBox(){
 public TextField<String> getFilterEntityValueTextField(){
 	
 	return (TextField<String>) ComponentManager.get().get("entityValueText");
+}
+
+
+public ContentPanel getGroupedGridContentPanel(){
+	
+	return (ContentPanel) ComponentManager.get().get("_groupedGridPanel");
+
 }
 
 
