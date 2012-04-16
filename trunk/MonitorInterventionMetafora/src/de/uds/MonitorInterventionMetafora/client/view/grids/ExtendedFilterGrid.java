@@ -103,20 +103,20 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     
     ColumnConfig _type = new ColumnConfig("filtertype", "filtertype", 50);
     _type.setHeader("Type");
-    _type.setWidth(120);
+    _type.setWidth(240);
     
     ColumnConfig _property = new ColumnConfig("property", "property", 50);
     _property.setHeader("Property");  
-    _property.setWidth(120);
+    _property.setWidth(240);
     
     ColumnConfig _operation = new ColumnConfig("operation", "operation", 50);
     _operation.setHeader("Operation");
-    _operation.setWidth(100);
+    _operation.setWidth(200);
     
     
     ColumnConfig _value = new ColumnConfig("value", "value", 50);
     _value.setHeader("Value");
-    _value.setWidth(100);
+    _value.setWidth(240);
     
     
 
@@ -314,8 +314,8 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     panel.setCollapsible(true);
     panel.setFrame(true);
     
-    panel.setSize(590, 123);
-    grid.setWidth(590);
+    panel.setSize(960, 123);
+    grid.setWidth(950);
     grid.setHeight(123);
     
     panel.setLayout(new FitLayout());
