@@ -254,7 +254,7 @@ GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
     classification.setRenderer(getbackgroundColorRenderer());
     
     ColumnConfig description = new ColumnConfig("description", "Description", 50);
-    description.setWidth(250);    
+    description.setWidth(500);    
     description.setRenderer(getbackgroundColorRenderer());
     
     ColumnConfig time = new ColumnConfig("time", "Time", 50);
@@ -401,17 +401,17 @@ GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
     panel.setFrame(true);
     panel.setId("_groupedGridPanel");
     //CC remove
-    panel.setWidth(600);
+    panel.setWidth(960);
    
     
     // panel.setSize(590, 335);
     // panel.setWidth("100%");
     // panel.setHeight("100%");
   
-    
+   
    
     
-    grid.setWidth(590);
+    grid.setWidth(950);
     //CCgrid.setHeight(326);
     grid.setHeight(540);
    // grid.setWidth("100%");

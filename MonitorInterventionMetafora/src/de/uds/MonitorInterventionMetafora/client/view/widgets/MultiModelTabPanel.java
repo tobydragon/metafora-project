@@ -29,7 +29,7 @@ public class MultiModelTabPanel extends VerticalPanel {
 		
 	
 		tabPanel = new TabPanel();
-		tabPanel.setWidth(601);
+		tabPanel.setWidth(970);
 		//CCtabPanel.setHeight(445);
 		
 		tabPanel.setHeight(662);
