@@ -69,6 +69,7 @@ import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxMode
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
@@ -85,12 +86,14 @@ public class ExtendedGroupedGrid extends  LayoutContainer {
 	private  Grid<IndicatorGridRowItem> grid;
 	private	GroupingStore<IndicatorGridRowItem> store;
 	public ColumnModel cm;
+	private ClientInterfaceManager interfaceManager;
 	//private SimpleComboBox<ColumnConfig> groupingComboBox;
 	
 	public ExtendedGroupedGrid(ActionMaintenance _maintenance){
 		maintenance=_maintenance;
 		tvm=new TableViewModel(maintenance);
 		_indicatorCount=new Label();
+		interfaceManager=new ClientInterfaceManager();
 		store = new GroupingStore<IndicatorGridRowItem>();
 		ignoreNotifications=false;
 	    indicators=tvm.parseToIndicatorGridRowList(false);
@@ -396,10 +399,26 @@ GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
     panel.setIcon(Resources.ICONS.table());
     panel.setCollapsible(false);
     panel.setFrame(true);
-    panel.setSize(590, 335);
-    panel.setLayout(new FitLayout());
+    panel.setId("_groupedGridPanel");
+    //CC remove
+    panel.setWidth(600);
+   
+    
+    // panel.setSize(590, 335);
+    // panel.setWidth("100%");
+    // panel.setHeight("100%");
+  
+    
+   
+    
     grid.setWidth(590);
-    grid.setHeight(330);
+    //CCgrid.setHeight(326);
+    grid.setHeight(540);
+   // grid.setWidth("100%");
+   // grid.setHeight("100%");
+    
+   //grid.setAutoHeight(true);
+   // grid.setAutoWidth(true);
     panel.add(grid);
     
     
@@ -407,10 +426,14 @@ GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
     panel.setTopComponent(toolBar);
     panel.setBottomComponent(_buttomBar);
    
-   
   
-    grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
-    add(panel);
+    
+    //panel.setLayout(new FitLayout());
+   // panel.setAutoHeight(true);
+   // panel.setAutoWidth(true);
+   this.add(panel);
+   //this.setAutoHeight(true);
+   //this.setAutoWidth(true);
     
    
     tableViewTimer=new Timer(){

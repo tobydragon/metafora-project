@@ -5,13 +5,18 @@ import java.util.HashMap;
 
 import java.util.Map;
 
+import com.extjs.gxt.ui.client.event.BaseEvent;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Info;
 
 import com.google.gwt.user.client.DOM;
 
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.datamodels.FilterListGridModel;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.client.view.grids.ExtendedFilterGrid;
 
 
@@ -19,35 +24,69 @@ public class FilterListPanel extends ContentPanel {
 	
 	
 	Map<String, String> _filterList;
-	
+	private ClientInterfaceManager interfaceManager;
 	ActionMaintenance maintenance;
 	public FilterListPanel(ActionMaintenance _maintenance){
 		
 		maintenance=_maintenance;
-		
+		interfaceManager=new ClientInterfaceManager();
 		this.setCollapsible(true);
 		this.setHeading("Filter Options");
-		
-		 DOM.setStyleAttribute(this.getElement(), "border", "1px solid #000");
-	     DOM.setStyleAttribute(this.getElement(), "borderBottom", "0");
-	     this.setHeight("241px");	
+		this.setExpanded(false);
+	    this.setHeight("241px");	
 		_filterList=new HashMap<String,String>();
 		
-		//ExtendedFilterItem efi=new ExtendedFilterItem(_property,_value);
-		//this.add(efi);
+		
+		
+		
+		 this.addListener(Events.Collapse, new Listener<BaseEvent>()
+		            {
+
+		                public void handleEvent(BaseEvent be)
+		                {
+		               //interfaceManager.getGroupedGridContentPanel().setWidth(600);
+		                	if(interfaceManager.getTableViewEditorGrid()!=null)
+		               interfaceManager.getTableViewEditorGrid().setHeight(540);	
+		                	// Info.display("Collapse", "Collapse");
+		                };
+		            });
+		this.addListener(Events.Expand, new Listener<BaseEvent>()
+		            {
+
+		                public void handleEvent(BaseEvent be)
+		                {
+		                  
+		                //interfaceManager.getGroupedGridContentPanel().setWidth(600);
+		                	interfaceManager.getTableViewEditorGrid().setHeight(326);     	
+		                	
+		                	//  Info.display("Expand", "Expand");
+		                };
+		            });
+
+		
+		
+		
+		
+		
 		
 		//maintenance.
 		FilterListGridModel flm=new FilterListGridModel(maintenance);
-		ExtendedFilterGrid ef=new ExtendedFilterGrid(flm);
-		
-		//ExtendedFilterManagementPanel fm=new ExtendedFilterManagementPanel(maintenance);
-		//ExtendedSaveFilterSet saveFilterSet=new ExtendedSaveFilterSet();
+		ExtendedFilterGrid ef=new ExtendedFilterGrid(flm);		
+		this.add(ef);	
 		
 		
-		this.add(ef);
-		//this.add(fm);
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
+	
+	
 	
 	
 	

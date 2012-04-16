@@ -13,15 +13,14 @@ public class MainContainerTabPanel extends VerticalPanel {
 	TabPanel _containerTabPanel;
 	public MainContainerTabPanel(){
 		_containerTabPanel=new TabPanel();
-		_containerTabPanel.setHeight(700);
+		_containerTabPanel.setHeight(720);
 		_containerTabPanel.setWidth(1000);
 		_containerTabPanel.setLayoutData(new FitLayout());
 		
 		this.add(_containerTabPanel);
 		
-	this.setHeight(700);
+	this.setHeight(720);
 	this.setWidth(1000);
-	
 	this.setLayout(new FitLayout());
 		
 	}
