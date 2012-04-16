@@ -3,7 +3,7 @@
 <notifications>
 
 
-<notification type="nowork">
+<notification type="nowork" color="#FF9F9F">
 <filteritem entityname="Tool"  operation="Equals"  value="Metafora" type="Content"/>
 <filteritem entityname="User"  operation="Equals"  value="Alice"  type="Action_Type"/>
 <filteritem entityname="MapID" operation="Equals"  value="M1" type="Object"/>
