@@ -2,7 +2,7 @@
 <configurations>
 <configuration name ="Test" active="1">
 
-<data-source-type>file</data-source-type>
+<data-source-type>xmpp</data-source-type>
 <filters>
 <filter name="Default" editable="true">
 <filteritem entityname="ID" operation="Equals"  value="Toby" type="User"/>
