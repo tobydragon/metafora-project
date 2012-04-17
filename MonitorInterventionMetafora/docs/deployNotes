@@ -1,0 +1,9 @@
+Deployment
+
+Right-click "war" folder -> export
+
+Ensure:
+
+1) GeneralUtils.getAppicationAndResourceDirectory is set to work with Tomcat
+
+2) correct user settings for deployment in xmpp-settings.xml

@@ -82,7 +82,7 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 		  // Grid<IndicatorGridRowItem> editorGrid = 
 		   Grid<IndicatorGridRowItem> _grid = interfaceManager.getTableViewEditorGrid();
 		   _grid.getStore().removeAll();
-		   _grid.getStore().add(tvm.parseToIndicatorGridRowList(true));
+		   _grid.getStore().add(tvm.parseToIndicatorGridRowList(true, false));
 		 
 		 //Button _refreshBtn =  (Button) ComponentManager.get().get("_refreshBtn").asWidget();
         // _refreshBtn.s
