@@ -55,7 +55,9 @@ public class CfActionType implements Serializable{
 		this.logged = logged;
 	}
 	
-	
+	public String toString(){
+		return "type -" + type + "\t : classification - " + classification+ "\t : succeed - " + succeed + "\t : logged - " + logged;
+	}
 
 //	public XmlFragment toXml(){
 //		XmlFragment xmlFragment = new XmlFragment(CommonFormatStrings.ACTION_TYPE_STRING);

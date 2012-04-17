@@ -36,6 +36,10 @@ public class CfUser implements Serializable{
 		this.role = role;
 	}
 	
+	public String toString(){
+		return id + " - " + role;
+	}
+	
 //	public XmlFragment toXml(){
 //		XmlFragment xmlFragment = new XmlFragment(CommonFormatStrings.USER_STRING);
 //		xmlFragment.setAttribute(CommonFormatStrings.ID_STRING, getid());

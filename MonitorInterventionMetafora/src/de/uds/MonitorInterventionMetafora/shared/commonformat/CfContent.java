@@ -78,8 +78,13 @@ public class CfContent implements Serializable  {
 	public Map<String, CfProperty> getProperties() {
 		return properties;
 	}
-
 	
+	public String toString(){
+		String str= CommonFormatStrings.CONTENT_STRING + "\n" ;
+		str += "\t" + CommonFormatStrings.DESCRIPTION_STRING + " - " + descripiton +"\n";
+		str += "\t" + CommonFormatStrings.PROPERTIES_STRING +  " - " + properties.toString();
+		return str;	
+	}
 	
 //	public XmlFragment toXml(){
 //		XmlFragment xmlFragment= new XmlFragment(CommonFormatStrings.CONTENT_STRING);
