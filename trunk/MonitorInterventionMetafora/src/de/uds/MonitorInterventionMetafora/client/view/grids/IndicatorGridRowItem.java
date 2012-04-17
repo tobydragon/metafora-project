@@ -7,110 +7,47 @@
  */
 package de.uds.MonitorInterventionMetafora.client.view.grids;
 
-import java.util.Date;
-
 import com.extjs.gxt.ui.client.data.BaseModel;
-import com.extjs.gxt.ui.client.util.DateWrapper;
+
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
+import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class IndicatorGridRowItem extends BaseModel {
 
-  public IndicatorGridRowItem() {
-  }
+	private static final long serialVersionUID = 6376988771728912041L;
 
-  public IndicatorGridRowItem(String name,String actiontype,String classification, String description,String time, String date, String groupingItem) {
-    set("name", name);
-    set("actiontype", actiontype);
-    set("classification", classification);
-    set("description", description);
-    set("time",time);
-    set("date", date);
-    
-    //set("groupingItem", groupingItem);
-    
-  }
+	private CfAction indicator;
 
-public void setColor(String _color){
+//public IndicatorGridRowItem() {
+//  }
+
+	public IndicatorGridRowItem (CfAction indicator){
+		this.indicator = indicator;
+		setGridItemProperties();
+	}
+
+  
+	private void setGridItemProperties(){
+		
+		String usersString="";
+		for(CfUser u : indicator.getCfUsers()){
+ 		   usersString=usersString+" - "+u.getid();
+		}
+		
+		set("name", usersString);
+	    set("actiontype", indicator.getCfActionType().getType());
+	    set("classification", indicator.getCfActionType().getClassification());
+	    set("description", indicator.getCfContent().getDescription());
+	    set("time", GWTUtils.getTime(indicator.getTime()));
+	    set("date", GWTUtils.getDate(indicator.getTime()));
+	    set("tool", indicator.getCfContent().getPropertyValue("TOOL"));
+	}
 	
-	set("color", _color);
-}
-
-public String getColor(){
-	  
-	  return (String) get("color");  
-}
-
-
-  public String getTime(){
-	  
-	  return (String) get("time");  
-  }
-  
-  public void setTime(String time){
-	  set("time",time); 
-  }
-  
-  public void setDate(String date){
-	  
-	  set("date", date);
-  }
-  
-  public String getDate(){
-	  
-	  return get("date");
-	  
-  }
- // public String getgroupingItem() {
-   // return get("groupingItem");
-  //}
-  
-//public void setgroupingItem(String groupingItem) {
-  //set("groupingItem", groupingItem);
-//}
-
-
-  public String getName() {
-    return (String) get("name");
-  }
-  
-  public void setName(String name){
-	  
-	  set("name", name);
-  }
-
-public void setClassification(String classification){
-	  
-	  set("classification", classification);
-  }
-
-  public String getClassification(){
-	  return (String) get("classification");
-  }
-  
-  public String getActionType() {
-	  return (String) get("actionType");  
-	  }
-	  
-	  public void setActionType(String actiontype){
-		  
-		  set("actiontype", actiontype);
-	  }
-  
-
-public String getDescription(){
-	
-	return get("description");
-}
-public void setDescription(String description){
-	
-	set("description", description);
-}
-
-
-  
-  public String toString() {
-    return getName();
-  }
-
+	public String getColor(){
+		  return indicator.getCfContent().getPropertyValue(CommonFormatStrings.COLOR);  
+	}
 
 
 }

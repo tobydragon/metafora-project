@@ -19,10 +19,10 @@ public class GeneralUtil {
 	}
 	
 	public static String getAplicationResourceDirectory(){
-		//return "";
+		return "";
 		//System.getProperty("user.dir")
 		//return "";
 		//System.out.println("Directory:"+".."+File.separator+"webapps"+File.separator+"MonitorInterventionMetafora"+File.separator);
-		return  ".."+File.separator+"webapps"+File.separator+"MonitorInterventionMetafora"+File.separator;
+//		return  ".."+File.separator+"webapps"+File.separator+"MonitorInterventionMetafora"+File.separator;
 	}
 }

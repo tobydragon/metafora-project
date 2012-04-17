@@ -96,7 +96,7 @@ public class ExtendedGroupedGrid extends  LayoutContainer {
 		interfaceManager=new ClientInterfaceManager();
 		store = new GroupingStore<IndicatorGridRowItem>();
 		ignoreNotifications=false;
-	    indicators=tvm.parseToIndicatorGridRowList(false);
+	    indicators=tvm.parseToIndicatorGridRowList(false, false);
 	   	
 	}
 
@@ -312,7 +312,7 @@ GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
 
         	
         	store.removeAll(); 
-    		store.add(tvm.parseToIndicatorGridRowList(true));
+    		store.add(tvm.parseToIndicatorGridRowList(true, false));
     		 _indicatorCount.setText("Total Indicador Count: "+store.getCount());
         	
         	
