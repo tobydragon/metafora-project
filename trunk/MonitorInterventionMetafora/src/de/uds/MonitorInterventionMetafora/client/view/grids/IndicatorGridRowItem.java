@@ -15,20 +15,15 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatString
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class IndicatorGridRowItem extends BaseModel {
-
 	private static final long serialVersionUID = 6376988771728912041L;
 
 	private CfAction indicator;
-
-//public IndicatorGridRowItem() {
-//  }
 
 	public IndicatorGridRowItem (CfAction indicator){
 		this.indicator = indicator;
 		setGridItemProperties();
 	}
 
-  
 	private void setGridItemProperties(){
 		
 		String usersString="";
@@ -49,5 +44,8 @@ public class IndicatorGridRowItem extends BaseModel {
 		  return indicator.getCfContent().getPropertyValue(CommonFormatStrings.COLOR);  
 	}
 
+	public CfAction getIndicator() {
+		return indicator;
+	}
 
 }

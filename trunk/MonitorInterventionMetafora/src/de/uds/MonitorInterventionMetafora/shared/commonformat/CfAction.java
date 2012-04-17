@@ -100,6 +100,15 @@ public CfContent getCfContent() {
 	}
 
 
+	public String toString(){
+		String str = Long.toString(time);
+		str += "\n" + cfActionType.toString();
+		str += "\n" + cfContent.toString();
+		str += "\n" + cfUsers.toString();
+		str += "\n" + cfObjects.toString();
+		
+		return str;
+	}
 
 	//	public XmlFragment toXml(){
 //		XmlFragment xmlFragment= new XmlFragment(CommonFormatStrings.ACTION_STRING);

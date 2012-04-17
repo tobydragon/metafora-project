@@ -85,6 +85,16 @@ public class CfObject implements Serializable {
 	public Map<String, CfProperty> getProperties() {
 		return properties;
 	}
+	
+	public String toString(){
+
+		String str= CommonFormatStrings.OBJECT_STRING + "\n" ;
+		str += "\t" + CommonFormatStrings.ID_STRING + " - " + id +"\t : " +  CommonFormatStrings.TYPE_STRING + " - " + type;
+		str += "\t : " + CommonFormatStrings.PROPERTIES_STRING + " - " + properties.toString();
+		return str;	
+
+	}
+	
 //
 //	public XmlFragment toXml(){
 //		XmlFragment xmlFragment= new XmlFragment(CommonFormatStrings.OBJECT_STRING);

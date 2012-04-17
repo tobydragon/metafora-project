@@ -18,6 +18,7 @@ import com.extjs.gxt.ui.client.data.BaseModel;
 import com.extjs.gxt.ui.client.data.ChangeEvent;
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.FieldEvent;
 import com.extjs.gxt.ui.client.event.GridEvent;
@@ -47,6 +48,7 @@ import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
 import com.extjs.gxt.ui.client.widget.grid.GridGroupRenderer;
+import com.extjs.gxt.ui.client.widget.grid.GridSelectionModel;
 import com.extjs.gxt.ui.client.widget.grid.GroupColumnData;
 import com.extjs.gxt.ui.client.widget.grid.GroupingView;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
@@ -100,80 +102,70 @@ public class ExtendedGroupedGrid extends  LayoutContainer {
 	   	
 	}
 
-public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
+	public ExtendedGroupedGrid(List<IndicatorGridRowItem> _indicator){
 		
 		indicators=_indicator;
 	}
 
 
-ComboBox<DefaultModel> renderGroupingComboBox(){
-	ComboBox<DefaultModel> groupingComboBox=new ComboBox<DefaultModel>();;
-	groupingComboBox.setTriggerAction(TriggerAction.ALL);  
-	groupingComboBox.setEditable(false);  
-	groupingComboBox.setFireChangeEventOnSetValue(true);  
-	groupingComboBox.setWidth(100);
-	groupingComboBox.setId("_groupingComboBox");
-	
-	
-	groupingComboBox.setDisplayField("displaytext");
-	groupingComboBox.setValueField("value");
-	ListStore<DefaultModel> _columns=new ListStore<DefaultModel>();
-	_columns.add(new DefaultModel("Un Group","nogrouping"));
-	for(ColumnConfig _column:cm.getColumns()){
-		_columns.add(new DefaultModel(_column.getHeader(),_column.getId()));
-	}
+	ComboBox<DefaultModel> renderGroupingComboBox(){
+		ComboBox<DefaultModel> groupingComboBox=new ComboBox<DefaultModel>();;
+		groupingComboBox.setTriggerAction(TriggerAction.ALL);  
+		groupingComboBox.setEditable(false);  
+		groupingComboBox.setFireChangeEventOnSetValue(true);  
+		groupingComboBox.setWidth(100);
+		groupingComboBox.setId("_groupingComboBox");
+		
+		
+		groupingComboBox.setDisplayField("displaytext");
+		groupingComboBox.setValueField("value");
+		ListStore<DefaultModel> _columns=new ListStore<DefaultModel>();
+		_columns.add(new DefaultModel("Un Group","nogrouping"));
+		for(ColumnConfig _column:cm.getColumns()){
+			_columns.add(new DefaultModel(_column.getHeader(),_column.getId()));
+		}
 
 	
-	final SelectionChangedListener<DefaultModel> comboListenerItem =new SelectionChangedListener<DefaultModel>(){
-        @Override
-        public void selectionChanged(SelectionChangedEvent<DefaultModel> se) { 
-
-        	String _groupbyColumn=se.getSelectedItem().getValue();
-        	
-        	if(_groupbyColumn.equalsIgnoreCase("nogrouping"))
-        	{
-        		store.clearGrouping();
-        		return;
-        	}
-        	store.groupBy(_groupbyColumn);
-        //  	store.clearGrouping();
-        	grid.disableEvents(true);
-        	grid.setView(getGridView());
-        	
-          	
-     
-        }
-
-    };
+		final SelectionChangedListener<DefaultModel> comboListenerItem =new SelectionChangedListener<DefaultModel>(){
+	        @Override
+	        public void selectionChanged(SelectionChangedEvent<DefaultModel> se) { 
+	
+	        	String _groupbyColumn=se.getSelectedItem().getValue();
+	        	
+	        	if(_groupbyColumn.equalsIgnoreCase("nogrouping")){
+	        		store.clearGrouping();
+	        		return;
+	        	}
+	        	store.groupBy(_groupbyColumn);
+	        //  	store.clearGrouping();
+	        	grid.disableEvents(true);
+	        	grid.setView(getGridView());
+	        }
+		};
     
-    groupingComboBox.setStore(_columns);
-  
-    groupingComboBox.addSelectionChangedListener(comboListenerItem);
+		groupingComboBox.setStore(_columns);
+		groupingComboBox.addSelectionChangedListener(comboListenerItem);
+		return groupingComboBox;
+	}
 	
 
-	
-	
-	return groupingComboBox;
-}
-	
-
-GroupingView getGridView(){
-	 GroupingView view = new GroupingView();
-	    view.setShowGroupedColumn(true);
-	    view.setForceFit(true);
-	    view.setGroupRenderer(new GridGroupRenderer() {
-	      public String render(GroupColumnData data) {
-	        String f = cm.getColumnById(data.field).getHeader();
-	        String l = data.models.size() == 1 ? "Indicator" : "Indicators";
-	        return f + ": " + data.group + " (" + data.models.size() + " " + l + ")";
-	      }
-	    });
-	    
-	    
-	    view.setShowGroupedColumn(true);
-	
-	return view;
-}
+	GroupingView getGridView(){
+		GroupingView view = new GroupingView();
+		    view.setShowGroupedColumn(true);
+		    view.setForceFit(true);
+		    view.setGroupRenderer(new GridGroupRenderer() {
+		      public String render(GroupColumnData data) {
+		        String f = cm.getColumnById(data.field).getHeader();
+		        String l = data.models.size() == 1 ? "Indicator" : "Indicators";
+		        return f + ": " + data.group + " (" + data.models.size() + " " + l + ")";
+		      }
+		    });
+		    
+		    
+		    view.setShowGroupedColumn(true);
+		
+		return view;
+	}
 
 
 GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
@@ -283,6 +275,7 @@ GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
     
     grid= new Grid<IndicatorGridRowItem>(store, cm);
     
+    
     grid.setView(getGridView());
     grid.setBorders(true);
     grid.setId("_tableViewGrid");
@@ -291,10 +284,13 @@ GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
     grid.getStore().addListener(Store.Add, new Listener<StoreEvent<IndicatorGridRowItem>>() {
         public void handleEvent(StoreEvent<IndicatorGridRowItem> be) {
       	
-        	_indicatorCount.setText("Total Indicador Count: "+store.getCount());
+        	_indicatorCount.setText("Total Indicator Count: "+store.getCount());
         	
         }
       });
+    
+    System.out.println("Adding grid listener");
+    grid.addListener(Events.RowClick, new GridSelectionPopUpListener());
     
 
     ToolBar toolBar = new ToolBar();  
