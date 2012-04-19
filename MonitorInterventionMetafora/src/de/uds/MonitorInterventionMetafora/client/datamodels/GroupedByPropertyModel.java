@@ -48,13 +48,13 @@ public class GroupedByPropertyModel {
 		subsectionValue= new HashMap<Integer, IndicatorProperty>();
 		indicatorEntities=new HashMap<Integer,IndicatorProperty>();
 		filterer=new IndicatorFilterer(maintenance);
-		splitActions(false);
-		
+//		splitActions(false);
+		splitActions(true);
 	}
 	
 	
 	
-	
+	//TODO: Explain
 	public void splitActions(boolean _applyFilter){
 		
 		allActions= new ArrayList<CfAction>();
@@ -65,10 +65,10 @@ public class GroupedByPropertyModel {
 		List<CfAction> _activecfActions=new ArrayList<CfAction>();
 		
 		if(!_applyFilter){
-		_activecfActions.addAll(maintenance.getAllActiveActionList());
+			_activecfActions.addAll(maintenance.getAllActiveActionList());
 		}
 		else{
-			_activecfActions.addAll(filterer.getFilteredIndicatorList(maintenance.getAllActiveActionList()));
+			_activecfActions.addAll(filterer.getFilteredIndicatorList());
 		}
 		
 		allActions.addAll(_activecfActions);
@@ -312,11 +312,11 @@ public 	int getMaxValue(){
 			groupedUsers=new HashMap<String, List<CfUser>>(); 
 			groupedUsers=groupUsersByEntityName(_entity.getEntityName());
 			
-			    data.addColumn(ColumnType.STRING, "Task");
-			    data.addColumn(ColumnType.NUMBER, "Indicator Count");
-			    data.addRows(groupedUsers.size());
-			     index=0;
-			    for(String key:groupedUsers.keySet()){
+		    data.addColumn(ColumnType.STRING, "Task");
+		    data.addColumn(ColumnType.NUMBER, "Indicator Count");
+		    data.addRows(groupedUsers.size());
+		     index=0;
+		    for(String key:groupedUsers.keySet()){
 			    data.setValue(index, 0, key);
 			    IndicatorProperty _newEntity=new IndicatorProperty();			    
 			    _newEntity.setEntityName(_entity.getEntityName());
@@ -332,7 +332,7 @@ public 	int getMaxValue(){
 			    	maxValue=_size;		
 			    }
 			    index++;
-			    }
+		    }
 			
 			break;
 		case OBJECT:
