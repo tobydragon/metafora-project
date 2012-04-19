@@ -30,9 +30,9 @@ import com.google.gwt.visualization.client.visualizations.corechart.ColumnChart;
 
 
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 import com.google.gwt.visualization.client.visualizations.corechart.Options;
 
 public class ExtendedColumnChart extends  VerticalPanel{
@@ -42,15 +42,15 @@ public class ExtendedColumnChart extends  VerticalPanel{
 
 	
 	private  ColumnChart columnChart;
-	private EntityViewModel model;
+	private GroupedByPropertyModel model;
 	private ClientInterfaceManager interfaceManager;
 
 	Label status;
     Label onMouseOverAndOutStatus;
-	private IndicatorEntity  entity;
+	private IndicatorProperty  entity;
 	
 	
-	public ExtendedColumnChart(IndicatorEntity  _entity,EntityViewModel _model, ClientInterfaceManager controller){
+	public ExtendedColumnChart(IndicatorProperty  _entity,GroupedByPropertyModel _model, ClientInterfaceManager controller){
 		entity=_entity;
 		 status = new Label();
 		 onMouseOverAndOutStatus = new Label();
@@ -96,7 +96,7 @@ ColumnChart renderColumnChart(){
 
 
 
-public EntityViewModel getBarChartModel(){
+public GroupedByPropertyModel getBarChartModel(){
 	
 	return model;
 	
@@ -150,7 +150,7 @@ public Options  getBarChartOptions(int _maxValue){
 					
 		    	    
 		    	  
-		    	  IndicatorEntity _entity=new IndicatorEntity();
+		    	  IndicatorProperty _entity=new IndicatorProperty();
 		    	  _entity=model.getIndicatorEntity(selection);
 		    	    
 
@@ -186,7 +186,8 @@ public Options  getBarChartOptions(int _maxValue){
 			        _filterCombo.clearSelections();
 			       
 			        
-			        model.getActionMaintenance().refreshTableView();
+//			        model.getActionMaintenance().refreshTableView();
+			        interfaceManager.refreshTableView();
 			         
 			        TabPanel tabPanel = interfaceManager.getMultiModelTabPanel();
 			        TabItem tabItem=interfaceManager.getTableViewTabItem();	

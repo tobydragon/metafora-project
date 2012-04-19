@@ -10,7 +10,7 @@ package de.uds.MonitorInterventionMetafora.client.datamodels;
 import com.extjs.gxt.ui.client.data.BaseModelData;
 
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 
 public class EntitiesComboBoxModel extends BaseModelData {
 
@@ -22,7 +22,7 @@ public EntitiesComboBoxModel() {
   }
 
 
-public EntitiesComboBoxModel(IndicatorEntity _entity) {
+public EntitiesComboBoxModel(IndicatorProperty _entity) {
     setEntityName(_entity.getEntityName());
     setDisplayText(_entity.getDisplayText());
     setItemType(_entity.getType());

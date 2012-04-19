@@ -15,9 +15,9 @@ import java.io.Serializable;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 
-//a class representing one aspect of an indicator (to filter by).
+//a class representing one aspect of an indicator (to filter or group by).
 //This could be a standard attribute of an indicator or a property...
-public class IndicatorEntity  implements Serializable{
+public class IndicatorProperty  implements Serializable{
 
 	private static final long serialVersionUID = 3617519429426816927L;
 
@@ -30,11 +30,11 @@ public class IndicatorEntity  implements Serializable{
 	private FilterItemType type;
 	private String value="";
 
-	public IndicatorEntity() {
+	public IndicatorProperty() {
 	}
 
   
-  public IndicatorEntity(String _entityName, String _value,FilterItemType _type,OperationType _operationtype) {
+  public IndicatorProperty(String _entityName, String _value,FilterItemType _type,OperationType _operationtype) {
    
 	  entityName=_entityName;
 	  value=_value;

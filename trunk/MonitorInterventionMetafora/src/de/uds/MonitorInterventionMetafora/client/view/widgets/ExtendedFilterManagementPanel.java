@@ -27,7 +27,7 @@ import com.google.gwt.user.client.DOM;
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
@@ -44,13 +44,13 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 	private TextField<String> entityValueTextBox; 
 	private  Button addButton;
 	private ActionMaintenance maintenance;
-	private EntityViewModel model;
+	private GroupedByPropertyModel model;
 	private ClientInterfaceManager interfaceManager;
 	
 	
 	public ExtendedFilterManagementPanel(ActionMaintenance _maintenance, ClientInterfaceManager controller){
 		maintenance=_maintenance;
-		model=new EntityViewModel(maintenance);
+		model=new GroupedByPropertyModel(maintenance);
 		interfaceManager= controller;
 		 FormLayout layout = new FormLayout();
 		entityComboBox = new ComboBox<EntitiesComboBoxModel>();

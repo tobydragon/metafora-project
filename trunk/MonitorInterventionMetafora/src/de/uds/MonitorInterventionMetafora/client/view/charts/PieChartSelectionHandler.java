@@ -13,43 +13,43 @@ import com.google.gwt.visualization.client.events.SelectHandler;
 import com.google.gwt.visualization.client.events.SelectHandler.SelectEvent;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
-import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 
 public class PieChartSelectionHandler extends SelectHandler{
 
-	private final PieChart chart;
-	private ClientInterfaceManager interfaceManager;
-	private EntityViewModel model;
+	private final PieChart chartView;
+	private ClientInterfaceManager controller;
+	private GroupedByPropertyModel model;
 		
-	public PieChartSelectionHandler(final PieChart chart, EntityViewModel model, ClientInterfaceManager controller){
-		this.chart = chart;
+	public PieChartSelectionHandler(final PieChart chart, GroupedByPropertyModel model, ClientInterfaceManager controllerIn){
+		this.chartView = chart;
 		this.model = model;
-		interfaceManager = controller;
+		controller = controllerIn;
 	}
 	
 	public void onSelect(SelectEvent event) {
 
 		//get currently selected item in the pie chart
 		int selection=-1;
-		JsArray<Selection> s = chart.getSelections();
+		JsArray<Selection> s = chartView.getSelections();
 	    for (int i = 0; i < s.length(); ++i) {
 	    	if (s.get(i).isRow()) {
 		      selection=s.get(i).getRow();
 		    }
 	    }
     	
-	    IndicatorEntity entity=model.getIndicatorEntity(selection);
-  	  	//TODO: explain
+	    IndicatorProperty entity = model.getIndicatorEntity(selection);
+  	  	//TODO: explain: why entity is null if filter is already in the list?
 	    if(entity==null){
   	  		MessageBox.info("Message","Selected Filter is<ul><li> already in  the filter list</li></ul>", null);
   	  		return; 
   	  	}
 	    
-	    interfaceManager.addFilterItem(entity);
-	    interfaceManager.refreshTabPanel(); 
+	    controller.addFilterItem(entity);
+	    controller.refreshTabPanel(); 
     }
 
 }

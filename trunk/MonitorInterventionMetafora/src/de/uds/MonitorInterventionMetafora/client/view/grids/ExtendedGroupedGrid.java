@@ -73,7 +73,7 @@ import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxMo
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
 
 

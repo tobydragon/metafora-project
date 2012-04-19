@@ -3,29 +3,29 @@ package de.uds.MonitorInterventionMetafora.client.view.widgets;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
-import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedColumnChart;
-import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
+import de.uds.MonitorInterventionMetafora.client.view.charts.PieChartPanel;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 
 public class ColumnChartFilterPanel extends VerticalPanel {
 
 	ActionMaintenance maintenance;
-	EntityViewModel model;
+	GroupedByPropertyModel model;
 	ColumnChartGroupTypeComboBox filterTypeComboBox;
 	
 	public ColumnChartFilterPanel(ActionMaintenance _maintenance, ClientInterfaceManager controller){
 		this.setWidth(600);
 		maintenance=_maintenance;
 		this.setId("barChartFilterPanel");
-		model=new EntityViewModel(maintenance);
+		model=new GroupedByPropertyModel(maintenance);
 		
 		
 		filterTypeComboBox =new ColumnChartGroupTypeComboBox(model, controller);
-		IndicatorEntity _defaltEntity=new IndicatorEntity();
+		IndicatorProperty _defaltEntity=new IndicatorProperty();
 		_defaltEntity.setEntityName(FilterAttributeName.CLASSIFICATION.toString());
 		_defaltEntity.setType(FilterItemType.ACTION_TYPE);
 		
