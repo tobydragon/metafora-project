@@ -75,7 +75,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
@@ -234,23 +234,26 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     grid.getStore().addListener(Store.Add, new Listener<StoreEvent<IndicatorFilterItemGridRowModel>>() {
           public void handleEvent(StoreEvent<IndicatorFilterItemGridRowModel> be) {
         	 
-        	  filterModel.getActionMaintenance().refreshTableView();
-        	  
-        	  filterModel.getActionMaintenance().refreshColumnChart();
-        	  filterModel.getActionMaintenance().refreshPieChart();
+        	  controller.refreshViews();
+//        	  filterModel.getActionMaintenance().refreshTableView();
+//        	  
+//        	  filterModel.getActionMaintenance().refreshColumnChart();
+//        	  filterModel.getActionMaintenance().refreshPieChart();
         	  
           }
         });
     
     grid.getStore().addListener(Store.Remove, new Listener<StoreEvent<IndicatorFilterItemGridRowModel>>() {
         public void handleEvent(StoreEvent<IndicatorFilterItemGridRowModel> be) {
+        	controller.refreshViews();
+        	
         	//ActionMaintenance _maint=new ActionMaintenance();
         	//_maint.refreshTableView(filterModel.getActionMaintenance());
-        	filterModel.getActionMaintenance().refreshTableView();
-
-       	  filterModel.getActionMaintenance().refreshColumnChart();
-       	filterModel.getActionMaintenance().refreshPieChart();
-        	
+//        	filterModel.getActionMaintenance().refreshTableView();
+//
+//       	  filterModel.getActionMaintenance().refreshColumnChart();
+//       	filterModel.getActionMaintenance().refreshPieChart();	
+       	
         	
         }
       });
@@ -294,7 +297,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 		    grid.getStore().removeAll();
 		    filterGroupCombo.clearSelections();
 			
-		    filterModel.getActionMaintenance().refreshTableView();
+		    controller.refreshTableView();
 		    
         	//_maint.refreshTableView(filterModel.getActionMaintenance());
 		   
@@ -401,14 +404,14 @@ public void onSuccess(Configuration result) {
 	        if(confFilters.containsKey(filterSetKey)){
 	        	
 	        	IndicatorFilter filter=confFilters.get(filterSetKey);
-	        	Map<String, IndicatorEntity> _filteritemProperies=filter.getIndicatorEntities();
+	        	Map<String, IndicatorProperty> _filteritemProperies=filter.getIndicatorEntities();
 	        	store.removeAll();
 	        	
 	        	for(String _key: _filteritemProperies.keySet()){
 	        		IndicatorFilterItemGridRowModel _filterItem=new IndicatorFilterItemGridRowModel();
 	        		
 	        		
-	        		IndicatorEntity _filterEntity=filter.getIndicatorEntity(_key);
+	        		IndicatorProperty _filterEntity=filter.getIndicatorEntity(_key);
 	        		
 	        		_filterItem.setDisplayText(_filterEntity.getDisplayText());
 	        		_filterItem.setType(_filterEntity.getType().toString());
@@ -423,7 +426,7 @@ public void onSuccess(Configuration result) {
 
 	        	}
 	        	
-	        	filterModel.getActionMaintenance().refreshTableView();
+	        	controller.refreshTableView();
 	        	
 	        	
 	        }

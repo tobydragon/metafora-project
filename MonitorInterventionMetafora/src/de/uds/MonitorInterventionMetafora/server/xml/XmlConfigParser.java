@@ -12,7 +12,7 @@ import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterIte
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.NotificationType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
 import de.uds.MonitorInterventionMetafora.shared.utils.IndicatorFilterer;
 
@@ -91,7 +91,7 @@ public class XmlConfigParser {
 				
 				for(XmlFragmentInterface propertyFragment : filterFragment.getChildren(ServerFormatStrings.FILTERITEM))
 				{			
-					IndicatorEntity _filterItem=new IndicatorEntity();
+					IndicatorProperty _filterItem=new IndicatorProperty();
 					_filterItem.setType(FilterItemType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
 					_filterItem.setEntityName(propertyFragment.getAttributeValue(ServerFormatStrings.ENTITYNAME));
 					_filterItem.setOperationType(OperationType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.OPERATION).toUpperCase()));
@@ -121,7 +121,7 @@ public class XmlConfigParser {
 			indicatorFilter.setEditable(filterFragment.getAttributeValue(ServerFormatStrings.EDITABLE));
 			for(XmlFragmentInterface propertyFragment : filterFragment.getChildren(ServerFormatStrings.FILTERITEM))
 			{			
-				IndicatorEntity _filterItem=new IndicatorEntity();
+				IndicatorProperty _filterItem=new IndicatorProperty();
 				_filterItem.setType(FilterItemType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
 				_filterItem.setEntityName(propertyFragment.getAttributeValue(ServerFormatStrings.ENTITYNAME));
 				_filterItem.setOperationType(OperationType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.OPERATION).toUpperCase()));

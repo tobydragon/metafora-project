@@ -16,23 +16,25 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
-import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
+import de.uds.MonitorInterventionMetafora.client.view.charts.PieChartPanel;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 
 public class PieChartGroupTypeComboBox extends HorizontalPanel{
 	
 	public int i=0;
-	private IndicatorEntity selectedEntity=null;
+	private IndicatorProperty selectedEntity=null;
 	private ComboBox<EntitiesComboBoxModel> comboType;
 	
-	EntityViewModel model;
+	GroupedByPropertyModel model;
+	private final ClientInterfaceManager controller;
 	//ExtendedPieChart _newPieChart;
 	
 	//private VerticalPanel pieChartPanel;
-	public PieChartGroupTypeComboBox(EntityViewModel _model){
+	public PieChartGroupTypeComboBox(GroupedByPropertyModel _model, ClientInterfaceManager controllerIn){
 		
-	
+		this.controller = controllerIn;
 		model=_model;
 		comboType = new ComboBox<EntitiesComboBoxModel>();
 		
@@ -67,136 +69,30 @@ public class PieChartGroupTypeComboBox extends HorizontalPanel{
 	        		//LayoutContainer _pieChartPanel = (LayoutContainer) ComponentManager.get().get("pieChartVerticalPanel");
 	        		
 	        		
-	        		ExtendedPieChart _pieChartPanel = (ExtendedPieChart) ComponentManager.get().get("pieChartVerticalPanel");
+	        		PieChartPanel _pieChartPanel = (PieChartPanel) ComponentManager.get().get("pieChartVerticalPanel");
 	        		
 	        		if( _pieChartPanel!=null){
-	        			model.sliptActions(true);
+	        			model.splitActions(true);
 	        			
-	        			
-	        			
-	        			_pieChartPanel.getPieChart().draw(model.getEntityDataTable(selectedEntity),_pieChartPanel.getPieChartOptions());
-	        			
-	        			
-	        			//_newPieChart=new ExtendedPieChart(selectedEntity,model);
-	        			//_pieChartPanel.removeAll();
-	        			//VerticalPanel _pieChart = (VerticalPanel) ComponentManager.get().get("pieChartVerticalPanel");
-	        			
-	        			//_pieChartPanel.add(new Label("weeaseae:"+i));
-	        			//_pieChartPanel.add(_newPieChart);
-	        			
-	        		//	_pieChartPanel.repaint();
-	        			//_pieChartPanel.layout(true);
-	        			_pieChartPanel.layout();
-	        			i++;
-	        			
-	        			VerticalPanel _comboPieChartpanel = (VerticalPanel) ComponentManager.get().get("pieChartFilterPanel");
-	        			_comboPieChartpanel.layout();
-	        			//_comboPieChartpanel .repaint();
+	        			controller.refreshPieChart(selectedEntity);
 	        		
-	        			TabItem _pieChartTable = (TabItem) ComponentManager.get().get("pieChartViewTab");
-	        			_pieChartTable.layout();
 	        			
-	        			
-	        			
-	        			/*
-	        			Dialog dp=new Dialog();
-	        			
-	        			//dp.removeAll();
-	        			
-	        			dp.setHeight(400);
-	        			dp.setWidth(400);			
-	        			dp.add(_pieChart);
-	        			dp.show();
-	        			dp.center();*/
-	        			
-	        			
-	        			VerticalPanel _pieChartVerticalPanel = (VerticalPanel) ComponentManager.get().get("_pieChartFilterPanel");
-		        		if(_pieChartVerticalPanel!=null){
-		        			
-		        		//	System.out.println("Panel Bulundu!!");
-		        		//_pieChartVerticalPanel.removeAll();
-		        		//_pieChartVerticalPanel.add(_pieChart);
-		        		//_pieChartVerticalPanel.layout(true);
-		        		//_pieChartVerticalPanel.re
-		        	
-		        		}
-	        			//_tabPanel.addTab(selectedEntity.getEntityName(), _pieChart, true);
-	        			
+//	        			_pieChartPanel.getPieChart().draw(model.getEntityDataTable(selectedEntity),_pieChartPanel.getPieChartOptions());
+//	        			_pieChartPanel.layout();
+//	        			i++;
+//	        			VerticalPanel _comboPieChartpanel = (VerticalPanel) ComponentManager.get().get("pieChartFilterPanel");
+//	        			_comboPieChartpanel.layout();	        		
+//	        			TabItem _pieChartTable = (TabItem) ComponentManager.get().get("pieChartViewTab");
+//	        			_pieChartTable.layout();
 	        		}
-	        		
-	        		
-	        		
-	        		
-	        			
-	        			//ComponentManager.get().get("_pieChartVerticalPanel").removeFromParent();
-	        		
-	        		
-	        		//pieChartPanel.remove
-	        		/*if(pieChartPanel!=null)
-	        		{
-	        			
-	        			//RootPanel.get().add(_pieChart);
-	        			
-	        			//pieChartPanel.render(_pieChart.getElement(),0);
-	        		//	pieChartPanel.repaint();
-	        			
-	        			//RootPanel.get().remove(_chart);
-	        		}
-	        		*/
-	        		
-	        		
-	        		
-	        		
-	        		
-	        		
-	        		//((VerticalPanel) ComponentManager.get().get("_pieChartFilterPanel")).add(_pieChart);
-	        		
-	        		
-	        		//_filterPanel.add();
-	        		
-	        		
-	        		
-	        		//MultiModelTabPanel _tabPanel = (MultiModelTabPanel) ComponentManager.get().get("_tabMainPanel");
-	        		
-	        	    //if(_tabPanel!=null){
-	        	    	
-	        	    	//_tabPanel.getTabPanel().getTabBar().getTab(1).
-	        	    	//add(createPieChart(model.getPieChartData(_selectedEntity),"pieChart"),"Test" );
-	        	    	//_tabPanel.add(createPieChart(model.getPieChartData(_selectedEntity),"pieChart"));
-	        	    	
-	        	    	//_panel.getParent().ad
-	        	    	
-	        	   // }
-	        		
-	        		
-	        	  //  ExtendedPieChart _pieChart=new ExtendedPieChart(model.getActionMaintenance(),selectedEntity);
-	        	    
-	       	//RootPanel.get().add(_pieChart);
-	      // 	RootPanel.get().re
-	        	
-	        	
 	        	}
-	       	//_mainContainer.repaint();
-	        	
-	        	
 	          }
 	        });
-	    
 
-	
-	    
-	    
-	    
-	    
-	    
-	    
 	    this.setWidth(600);
 	    this.add(new Label("Type:"));
 	    this.add(comboType);
 	    this.add(retriveBtn);
-	    
-	    
-	    
 	    
 	}
 	
@@ -214,7 +110,7 @@ public class PieChartGroupTypeComboBox extends HorizontalPanel{
 	        	
 	         //   Record record = GroupingOptions.getObjectProperties().getRecord(vg);  
 	            
-	        	selectedEntity=new IndicatorEntity();
+	        	selectedEntity=new IndicatorProperty();
 	        	selectedEntity.setEntityName(vg.getEntityName());
 	        	selectedEntity.setDisplayText(vg.getDisplayText());
 	        	selectedEntity.setType(vg.getItemType());

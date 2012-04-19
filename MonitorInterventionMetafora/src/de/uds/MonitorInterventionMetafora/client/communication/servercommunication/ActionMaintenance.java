@@ -20,19 +20,19 @@ import com.extjs.gxt.ui.client.widget.grid.Grid;
 import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestUpdateCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedColumnChart;
-import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
+import de.uds.MonitorInterventionMetafora.client.view.charts.PieChartPanel;
 import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorGridRowItem;
 //import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorEntity;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
@@ -73,106 +73,106 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 	}
 	
 	
-	 public void refreshTableView(){
-		 //TableViewModel tvm=new TableViewModel( _maintenance);
-		 TableViewModel tvm=new TableViewModel(this);
-			
-		 
-		  // Grid<IndicatorGridRowItem> editorGrid = 
-		   Grid<IndicatorGridRowItem> _grid = interfaceManager.getTableViewEditorGrid();
-		   _grid.getStore().removeAll();
-		   _grid.getStore().add(tvm.parseToIndicatorGridRowList(true, false));
-		 
-		 //Button _refreshBtn =  (Button) ComponentManager.get().get("_refreshBtn").asWidget();
-        // _refreshBtn.s
-		 //if(_refreshBtn!=null)
-        //_refreshBtn.fireEvent(Events.OnClick);
-         
-		 
-	 }
+//	 public void refreshTableView(){
+//		 //TableViewModel tvm=new TableViewModel( _maintenance);
+//		 TableViewModel tvm=new TableViewModel(this);
+//			
+//		 
+//		  // Grid<IndicatorGridRowItem> editorGrid = 
+//		   Grid<IndicatorGridRowItem> _grid = interfaceManager.getTableViewEditorGrid();
+//		   _grid.getStore().removeAll();
+//		   _grid.getStore().add(tvm.parseToIndicatorGridRowList(true, false));
+//		 
+//		 //Button _refreshBtn =  (Button) ComponentManager.get().get("_refreshBtn").asWidget();
+//        // _refreshBtn.s
+//		 //if(_refreshBtn!=null)
+//        //_refreshBtn.fireEvent(Events.OnClick);
+//         
+//		 
+//	 }
 
 	 
 	 
 	
-	 public void refreshColumnChart(){
-	
-		 
-		 EntityViewModel model=new EntityViewModel(this);
-		 
-			ExtendedColumnChart _barChartPanel = interfaceManager.getColumnChart();
-    		
-    		if( _barChartPanel!=null){
-    			model.sliptActions(true);
-    			
-    			IndicatorEntity _defaltEntity=new IndicatorEntity();
-    			_defaltEntity.setEntityName(FilterAttributeName.CLASSIFICATION.toString());
-    			_defaltEntity.setType(FilterItemType.ACTION_TYPE);
-    			
-    			
-    			_barChartPanel.getBarChart().draw(model.getEntityDataTable(_defaltEntity),_barChartPanel.getBarChartOptions(model.getMaxValue()));
-    			
-    		
-    			_barChartPanel.layout();
-    			
-    			
-    			VerticalPanel _comboColumnChartpanel = interfaceManager.getColumnChartVerticalPanel();
-    			_comboColumnChartpanel.layout();
-    		
-    			
-    			ComboBox<EntitiesComboBoxModel> comboColumnChartType=interfaceManager.getColumnChartGroupingComboBox();
-
-    			comboColumnChartType.clearSelections();
-    			
-    			TabItem _columnChartTable =interfaceManager.getColumChartViewTabItem();
-    			_columnChartTable.layout();
-		 
-	 }
-    		}
+//	 public void refreshColumnChart(){
+//	
+//		 
+//		 GroupedByPropertyModel model=new GroupedByPropertyModel(this);
+//		 
+//			ExtendedColumnChart _barChartPanel = interfaceManager.getColumnChart();
+//    		
+//    		if( _barChartPanel!=null){
+//    			model.splitActions(true);
+//    			
+//    			IndicatorProperty _defaltEntity=new IndicatorProperty();
+//    			_defaltEntity.setEntityName(FilterAttributeName.CLASSIFICATION.toString());
+//    			_defaltEntity.setType(FilterItemType.ACTION_TYPE);
+//    			
+//    			
+//    			_barChartPanel.getBarChart().draw(model.getEntityDataTable(_defaltEntity),_barChartPanel.getBarChartOptions(model.getMaxValue()));
+//    			
+//    		
+//    			_barChartPanel.layout();
+//    			
+//    			
+//    			VerticalPanel _comboColumnChartpanel = interfaceManager.getColumnChartVerticalPanel();
+//    			_comboColumnChartpanel.layout();
+//    		
+//    			
+//    			ComboBox<EntitiesComboBoxModel> comboColumnChartType=interfaceManager.getColumnChartGroupingComboBox();
+//
+//    			comboColumnChartType.clearSelections();
+//    			
+//    			TabItem _columnChartTable =interfaceManager.getColumChartViewTabItem();
+//    			_columnChartTable.layout();
+//		 
+//	 }
+//    		}
 	 
 	 
 
 	 
-	 public void refreshPieChart(){
-		 
-		 
-		 
-		 
-		 EntityViewModel model=new EntityViewModel(this);
-		 
-			ExtendedPieChart _pieChartPanel = interfaceManager.getExtendedPieChart();
- 		
- 		if( _pieChartPanel!=null){
- 			model.sliptActions(true);
- 			
- 			IndicatorEntity _defaltEntity=new IndicatorEntity();
- 			_defaltEntity.setEntityName(FilterAttributeName.CLASSIFICATION.toString());
- 			_defaltEntity.setType(FilterItemType.ACTION_TYPE);
- 			
- 			
- 			_pieChartPanel.getPieChart().draw(model.getEntityDataTable(_defaltEntity),_pieChartPanel.getPieChartOptions());
- 			
- 		
- 			_pieChartPanel.layout();
- 			
- 			
- 			VerticalPanel _comboPieChartpanel = interfaceManager.getPieChartGroupingComboContainer();
- 			_comboPieChartpanel.layout();
- 		
- 		
- 			
-			ComboBox<EntitiesComboBoxModel> comboPieChartType=interfaceManager.getPieChartGroupingComboBox();
- 			
- 			comboPieChartType.clearSelections();
- 			
- 			TabItem _pieChartTable = interfaceManager.getPieChartViewTabItem();
- 			_pieChartTable.layout();
-		 
-	 }
-		 
-		 
-		 
-		 
-	 }
+//	 public void refreshPieChart(){
+//		 
+//		 
+//		 
+//		 
+//		 GroupedByPropertyModel model=new GroupedByPropertyModel(this);
+//		 
+//			PieChartPanel _pieChartPanel = interfaceManager.getExtendedPieChart();
+// 		
+// 		if( _pieChartPanel!=null){
+// 			model.splitActions(true);
+// 			
+// 			IndicatorProperty _defaltEntity=new IndicatorProperty();
+// 			_defaltEntity.setEntityName(FilterAttributeName.CLASSIFICATION.toString());
+// 			_defaltEntity.setType(FilterItemType.ACTION_TYPE);
+// 			
+// 			
+// 			_pieChartPanel.getPieChart().draw(model.getEntityDataTable(_defaltEntity),_pieChartPanel.getPieChartOptions());
+// 			
+// 		
+// 			_pieChartPanel.layout();
+// 			
+// 			
+// 			VerticalPanel _comboPieChartpanel = interfaceManager.getPieChartGroupingComboContainer();
+// 			_comboPieChartpanel.layout();
+// 		
+// 		
+// 			
+//			ComboBox<EntitiesComboBoxModel> comboPieChartType=interfaceManager.getPieChartGroupingComboBox();
+// 			
+// 			comboPieChartType.clearSelections();
+// 			
+// 			TabItem _pieChartTable = interfaceManager.getPieChartViewTabItem();
+// 			_pieChartTable.layout();
+//		 
+//	 }
+//		 
+//		 
+//		 
+//		 
+//	 }
 	
 	
 	

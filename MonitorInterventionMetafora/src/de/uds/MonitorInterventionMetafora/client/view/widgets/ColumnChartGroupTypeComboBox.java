@@ -15,22 +15,22 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedColumnChart;
-import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.client.view.charts.PieChartPanel;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 
 public class ColumnChartGroupTypeComboBox extends HorizontalPanel{
 	
 	//public int i=0;
-	private IndicatorEntity selectedEntity=null;
+	private IndicatorProperty selectedEntity=null;
 	private ComboBox<EntitiesComboBoxModel> comboType;
 	private ClientInterfaceManager interfaceManager;
 	
-	EntityViewModel model;
+	GroupedByPropertyModel model;
 	
-	public ColumnChartGroupTypeComboBox(EntityViewModel _model, ClientInterfaceManager controller){
+	public ColumnChartGroupTypeComboBox(GroupedByPropertyModel _model, ClientInterfaceManager controller){
 		
 	
 		model=_model;
@@ -70,7 +70,7 @@ public class ColumnChartGroupTypeComboBox extends HorizontalPanel{
 	        		ExtendedColumnChart columnChartPanel = interfaceManager.getColumnChart();
 	        		
 	        		if( columnChartPanel!=null){
-	        			model.sliptActions(true);
+	        			model.splitActions(true);
 	        			
 	        			
 	        			
@@ -142,7 +142,7 @@ public class ColumnChartGroupTypeComboBox extends HorizontalPanel{
 	        	
 	         //   Record record = GroupingOptions.getObjectProperties().getRecord(vg);  
 	            
-	        	selectedEntity=new IndicatorEntity();
+	        	selectedEntity=new IndicatorProperty();
 	        	selectedEntity.setEntityName(vg.getEntityName());
 	        	selectedEntity.setDisplayText(vg.getDisplayText());
 	        	selectedEntity.setType(vg.getItemType());

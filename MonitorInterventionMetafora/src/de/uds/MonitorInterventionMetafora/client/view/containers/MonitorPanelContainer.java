@@ -13,11 +13,11 @@ import com.google.gwt.user.client.ui.RootPanel;
 import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestHistoryCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
-import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
-import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
+import de.uds.MonitorInterventionMetafora.client.view.charts.PieChartPanel;
 import de.uds.MonitorInterventionMetafora.client.view.grids.ExtendedFilterGrid;
 import de.uds.MonitorInterventionMetafora.client.view.grids.ExtendedGroupedGrid;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.ColumnChartFilterPanel;
@@ -28,7 +28,7 @@ import de.uds.MonitorInterventionMetafora.client.view.widgets.PieChartGroupTypeC
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 

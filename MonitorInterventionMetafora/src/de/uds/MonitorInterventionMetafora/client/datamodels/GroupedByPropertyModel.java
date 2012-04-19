@@ -20,10 +20,10 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatString
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorEntity;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 import de.uds.MonitorInterventionMetafora.shared.utils.IndicatorFilterer;
 
-public class EntityViewModel {
+public class GroupedByPropertyModel {
 	
 	
 	 List<CfAction> allActions=null;
@@ -34,28 +34,28 @@ public class EntityViewModel {
 	Map<String, List<CfAction>>   groupedActions=null;
 	Map<String, List<CfUser>>  	  groupedUsers=null;
 	
-	Map<Integer, IndicatorEntity>indicatorEntities = null;
-	Map<Integer, IndicatorEntity>subsectionValue =null;
+	Map<Integer, IndicatorProperty>indicatorEntities = null;
+	Map<Integer, IndicatorProperty>subsectionValue =null;
 	Map<String, String> activeFilters =null;
 	ActionMaintenance maintenance=null;
 	
 	IndicatorFilterer filterer;
 	private int maxValue=0;
-	public EntityViewModel(ActionMaintenance _maintenance ){
+	public GroupedByPropertyModel(ActionMaintenance _maintenance ){
 	
 		maintenance=_maintenance;
 		activeFilters = new HashMap<String, String>();
-		subsectionValue= new HashMap<Integer, IndicatorEntity>();
-		indicatorEntities=new HashMap<Integer,IndicatorEntity>();
+		subsectionValue= new HashMap<Integer, IndicatorProperty>();
+		indicatorEntities=new HashMap<Integer,IndicatorProperty>();
 		filterer=new IndicatorFilterer(maintenance);
-		sliptActions(false);
+		splitActions(false);
 		
 	}
 	
 	
 	
 	
-	public void sliptActions(boolean _applyFilter){
+	public void splitActions(boolean _applyFilter){
 		
 		allActions= new ArrayList<CfAction>();
 		allObjects=new ArrayList<CfObject>();
@@ -91,25 +91,25 @@ public class EntityViewModel {
 	}
 	
 	
-	public List<IndicatorEntity>  getIndicatorEntities(){
+	public List<IndicatorProperty>  getIndicatorEntities(){
 		
-		List<IndicatorEntity> _entityList=new ArrayList<IndicatorEntity>();
+		List<IndicatorProperty> _entityList=new ArrayList<IndicatorProperty>();
 		
 		
 		System.out.println("getting indicator list1");
-			IndicatorEntity _entity=null;
+			IndicatorProperty _entity=null;
 			
 			//Action_Type Attributes
 			
 			
-			_entity =new IndicatorEntity();
+			_entity =new IndicatorProperty();
 			_entity.setEntityName(CommonFormatStrings.A_V_TIME);
 			_entity.setDisplayText(CommonFormatStrings.A_TIME);
 			_entity.setType(FilterItemType.ACTION);
 			_entityList.add(_entity);
 			
 			
-			_entity =new IndicatorEntity();
+			_entity =new IndicatorProperty();
 			_entity.setEntityName(CommonFormatStrings.A_V_Type);
 			_entity.setDisplayText(CommonFormatStrings.A_Type);
 			_entity.setType(FilterItemType.ACTION_TYPE);
@@ -118,7 +118,7 @@ public class EntityViewModel {
 			System.out.println("getting indicator list2");
 			
 			
-			_entity =new IndicatorEntity();
+			_entity =new IndicatorProperty();
 			_entity.setEntityName(CommonFormatStrings.A_V_Classification);
 			_entity.setDisplayText(CommonFormatStrings.A_Classification);
 			_entity.setType(FilterItemType.ACTION_TYPE);
@@ -126,7 +126,7 @@ public class EntityViewModel {
 			
 		
 			
-			_entity =new IndicatorEntity();
+			_entity =new IndicatorProperty();
 			_entity.setEntityName(CommonFormatStrings.A_V_SUCCED);
 			_entity.setDisplayText(CommonFormatStrings.A_SUCCED);
 			_entity.setType(FilterItemType.ACTION_TYPE);
@@ -136,14 +136,14 @@ public class EntityViewModel {
 			
 			System.out.println("getting indicator list3");
 			
-			_entity =new IndicatorEntity();
+			_entity =new IndicatorProperty();
 			_entity.setEntityName(CommonFormatStrings.A_V_User);
 			_entity.setDisplayText(CommonFormatStrings.A_User);
 			_entity.setType(FilterItemType.USER);
 			_entityList.add(_entity);
 			
 			
-			_entity =new IndicatorEntity();
+			_entity =new IndicatorProperty();
 			_entity.setEntityName(CommonFormatStrings.A_V_ROLE);
 			_entity.setDisplayText(CommonFormatStrings.A_ROLE);
 			_entity.setType(FilterItemType.USER);
@@ -162,16 +162,16 @@ public class EntityViewModel {
 		
 	}
 	
-	List<IndicatorEntity> getContentEntities(){
+	List<IndicatorProperty> getContentEntities(){
 		
-	   List<IndicatorEntity> _entityList=new ArrayList<IndicatorEntity>();
+	   List<IndicatorProperty> _entityList=new ArrayList<IndicatorProperty>();
 	 
 	   Map<String,String> _entityMap=new HashMap<String,String>();
 		
 		for(CfContent _content: allContents){
 			for(String _entityName:_content.getProperties().keySet()){
 				
-				IndicatorEntity _entity =new IndicatorEntity();
+				IndicatorProperty _entity =new IndicatorProperty();
 				
 				_entity.setEntityName(_entityName);
 				_entity.setType(FilterItemType.CONTENT);
@@ -191,20 +191,20 @@ public class EntityViewModel {
 	
 	
 	
-	List<IndicatorEntity> getObjectEntities(){
+	List<IndicatorProperty> getObjectEntities(){
 		
-		List<IndicatorEntity> _entityList=new ArrayList<IndicatorEntity>();
+		List<IndicatorProperty> _entityList=new ArrayList<IndicatorProperty>();
 		
-		IndicatorEntity _entity=null;
+		IndicatorProperty _entity=null;
 		
 		//Object Attributes
-		_entity =new IndicatorEntity();
+		_entity =new IndicatorProperty();
 		_entity.setEntityName(CommonFormatStrings.O_V_OBJECT_ID);
 		_entity.setDisplayText(CommonFormatStrings.O_OBJECT_ID);
 		_entity.setType(FilterItemType.OBJECT);
 		_entityList.add(_entity);
 		
-		_entity =new IndicatorEntity();
+		_entity =new IndicatorProperty();
 		_entity.setEntityName(CommonFormatStrings.O_V_OBJECT_TYPE);
 		_entity.setDisplayText(CommonFormatStrings.O_OBJECT_TYPE);
 		_entity.setType(FilterItemType.OBJECT);
@@ -215,7 +215,7 @@ public class EntityViewModel {
 			for(CfObject _obj: allObjects){
 			for(String _entityName:_obj.getProperties().keySet()){
 				
-			    _entity =new IndicatorEntity();
+			    _entity =new IndicatorProperty();
 				
 				_entity.setEntityName(_entityName);
 				_entity.setType(FilterItemType.OBJECT);
@@ -262,7 +262,7 @@ public 	int getMaxValue(){
 	}
 	
 
-	public DataTable getEntityDataTable(IndicatorEntity _entity){
+	public DataTable getEntityDataTable(IndicatorProperty _entity){
 		
 		
 		DataTable data = DataTable.create();
@@ -290,7 +290,7 @@ public 	int getMaxValue(){
 			    int index=0;
 			    for(String key:groupedActions.keySet()){
 				    data.setValue(index, 0, key);
-				    IndicatorEntity _newEntity=new IndicatorEntity();			    
+				    IndicatorProperty _newEntity=new IndicatorProperty();			    
 				    _newEntity.setEntityName(_entity.getEntityName());
 				    _newEntity.setValue(key);
 				    _newEntity.setType(_entity.getType());
@@ -318,7 +318,7 @@ public 	int getMaxValue(){
 			     index=0;
 			    for(String key:groupedUsers.keySet()){
 			    data.setValue(index, 0, key);
-			    IndicatorEntity _newEntity=new IndicatorEntity();			    
+			    IndicatorProperty _newEntity=new IndicatorProperty();			    
 			    _newEntity.setEntityName(_entity.getEntityName());
 			    _newEntity.setValue(key);
 			    _newEntity.setType(_entity.getType());
@@ -348,7 +348,7 @@ public 	int getMaxValue(){
 			    for(String key:groupedObjects.keySet()){
 			    data.setValue(index, 0, key);
 			    
-			    IndicatorEntity _newEntity=new IndicatorEntity();			    
+			    IndicatorProperty _newEntity=new IndicatorProperty();			    
 			    _newEntity.setEntityName(_entity.getEntityName());
 			    _newEntity.setValue(key);
 			    _newEntity.setType(_entity.getType());
@@ -380,7 +380,7 @@ public 	int getMaxValue(){
 			    for(String key:groupedContents.keySet()){
 			    data.setValue(index, 0, key);
 			    
-			    IndicatorEntity _newEntity=new IndicatorEntity();			    
+			    IndicatorProperty _newEntity=new IndicatorProperty();			    
 			    _newEntity.setEntityName(_entity.getEntityName());
 			    _newEntity.setValue(key);
 			    _newEntity.setType(_entity.getType());
@@ -425,7 +425,7 @@ public 	int getMaxValue(){
 		
 	}
 	
-	public IndicatorEntity getIndicatorEntity(int _key){
+	public IndicatorProperty getIndicatorEntity(int _key){
 		if(indicatorEntities.containsKey(_key)){
 			return indicatorEntities.get(_key);
 		}
@@ -692,13 +692,13 @@ return map;
 
 		 
 		public ListStore<EntitiesComboBoxModel> getComboBoxEntities(){
-			sliptActions(false);
+			splitActions(false);
 			 return toComboBoxEntities(getIndicatorEntities());
 		 }
 		 
-			ListStore<EntitiesComboBoxModel> toComboBoxEntities(List<IndicatorEntity>  _entityList) {
+			ListStore<EntitiesComboBoxModel> toComboBoxEntities(List<IndicatorProperty>  _entityList) {
 				ListStore<EntitiesComboBoxModel>  _comboBoxModelList = new ListStore<EntitiesComboBoxModel>();
-			    for(IndicatorEntity _ent: _entityList){
+			    for(IndicatorProperty _ent: _entityList){
 			    	EntitiesComboBoxModel _comboBoxItem=new EntitiesComboBoxModel(_ent);
 			    	_comboBoxModelList.add(_comboBoxItem);
 			    	
