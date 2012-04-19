@@ -16,12 +16,15 @@ import de.uds.MonitorInterventionMetafora.shared.utils.IndicatorFilterer;
 public class TableViewModel {
 	ActionMaintenance maintenance;
 	IndicatorFilterer filterer;
+	GroupedByPropertyModel groupedByPropertyModel;
 	
 	public TableViewModel(ActionMaintenance _maintenance){
 		
 		maintenance=_maintenance;
 		filterer=new IndicatorFilterer(maintenance);
 		
+		//TODO: should be using the already grouped, filtered list, not making it's own
+		//this.groupedByPropertyModel = groupedPropertyModel;
 		
 	}
 	

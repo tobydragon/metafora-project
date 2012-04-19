@@ -1,5 +1,7 @@
 package de.uds.MonitorInterventionMetafora.client.manager;
 
+import java.util.Vector;
+
 import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.MessageBox;
@@ -19,9 +21,8 @@ import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyMod
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
-import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedColumnChart;
-import de.uds.MonitorInterventionMetafora.client.view.charts.PieChartPanel;
 import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorGridRowItem;
+import de.uds.MonitorInterventionMetafora.client.view.widgets.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
@@ -31,11 +32,18 @@ public class ClientInterfaceManager {
 	private boolean reset=false;
 	private ActionMaintenance actionModel;
 	
+	private Vector<GroupedDataViewPanel> dataViewPanels;
+	
 	public ClientInterfaceManager(ActionMaintenance actionModel){
 		this.actionModel = actionModel;
+		dataViewPanels = new Vector<GroupedDataViewPanel>();
+	}
+	
+	public void addDataView(GroupedDataViewPanel panel){
+		dataViewPanels.add(panel);
 	}
 
-	public void addFilterItem(IndicatorProperty newFilterEntity){
+	public void addFilterItem(IndicatorProperty newFilterEntity){		
 		EditorGrid<IndicatorFilterItemGridRowModel> _grid = getFilterListEditorGrid();
 		SimpleComboBox<String> _filterCombo = getFilterListComboBox();
 		String _key= newFilterEntity.getKey();
@@ -87,90 +95,40 @@ public class ClientInterfaceManager {
 			verticalPanel.layout();
 		    verticalPanel.repaint();
 			
-		}
+	}
 
-		public void refreshViews() {
-			refreshTableView();
-			refreshColumnChart();
-			refreshPieChart();
-			
+	public void refreshViews() {
+		
+		//TODO: Table view should just be another data view, accepting a GroupedByPropoertyModel
+		refreshTableView();
+		
+		//TODO: Explain, why do we need a new model to be formed here? Can't we update?
+		//this will clearly not work for large data sets and many users...
+		GroupedByPropertyModel model=new GroupedByPropertyModel(actionModel);
+		for (GroupedDataViewPanel panel : dataViewPanels){
+			panel.refresh(model);
 		}
 		
-		public void refreshTableView(){
-			 TableViewModel tvm=new TableViewModel(actionModel);
-				
-			   Grid<IndicatorGridRowItem> _grid = getTableViewEditorGrid();
-			   _grid.getStore().removeAll();
-			   _grid.getStore().add(tvm.parseToIndicatorGridRowList(true, false));
-			 
-		 }
-		
-		public void refreshColumnChart(){
-			GroupedByPropertyModel model=new GroupedByPropertyModel(actionModel);
-			ExtendedColumnChart _barChartPanel = getColumnChart();
-	    		
-    		if( _barChartPanel!=null){
-    			model.splitActions(true);
-    			
-    			IndicatorProperty _defaltEntity=new IndicatorProperty();
-    			_defaltEntity.setEntityName(FilterAttributeName.CLASSIFICATION.toString());
-    			_defaltEntity.setType(FilterItemType.ACTION_TYPE);
-    			
-    			
-    			_barChartPanel.getBarChart().draw(model.getEntityDataTable(_defaltEntity),_barChartPanel.getBarChartOptions(model.getMaxValue()));
-    			_barChartPanel.layout();
-    			
-    			VerticalPanel _comboColumnChartpanel = getColumnChartVerticalPanel();
-    			_comboColumnChartpanel.layout();
-    		
-    			
-    			ComboBox<EntitiesComboBoxModel> comboColumnChartType= getColumnChartGroupingComboBox();
-    			comboColumnChartType.clearSelections();
-    			
-    			TabItem _columnChartTable = getColumChartViewTabItem();
-    			_columnChartTable.layout();
-    		}
-	    }
-		
-		public void refreshPieChart(){
-			refreshPieChart(getDefaultGroupingOption());
-		}
-		
-		public void refreshPieChart(IndicatorProperty propToGroupBy){
-			
-			GroupedByPropertyModel model=new GroupedByPropertyModel(actionModel);
-			PieChartPanel _pieChartPanel = getExtendedPieChart();
-	 		
-	 		if( _pieChartPanel!=null){
-	 			model.splitActions(true);
-	 			
-//	 			IndicatorProperty _defaltEntity=new IndicatorProperty();
-//	 			_defaltEntity.setEntityName(FilterAttributeName.CLASSIFICATION.toString());
-//	 			_defaltEntity.setType(FilterItemType.ACTION_TYPE);
-//	 			_pieChartPanel.getPieChart().draw(model.getEntityDataTable(_defaltEntity),_pieChartPanel.getPieChartOptions());
-//	 			_pieChartPanel.layout();
-	 			
-	 			//clear drop-down selection
-	 			VerticalPanel _comboPieChartpanel = getPieChartGroupingComboContainer();
-	 			_comboPieChartpanel.layout();
-	 			ComboBox<EntitiesComboBoxModel> comboPieChartType= getPieChartGroupingComboBox();
-	 			comboPieChartType.clearSelections();
-	 			
-	 			//refresh pie chart
-	 			_pieChartPanel.changeGroupingProperty(propToGroupBy);
-	 			TabItem _pieChartTable = getPieChartViewTabItem();
-	 			_pieChartTable.layout();
-	 		}
-	 	}
-		
-		public IndicatorProperty getDefaultGroupingOption(){
-			IndicatorProperty _defaltEntity=new IndicatorProperty();
- 			_defaltEntity.setEntityName(FilterAttributeName.CLASSIFICATION.toString());
- 			_defaltEntity.setType(FilterItemType.ACTION_TYPE);
- 			return _defaltEntity;
-		}
+	}
+	
+	public IndicatorProperty getDefaultGroupingOption(){
+		IndicatorProperty _defaltEntity=new IndicatorProperty();
+		_defaltEntity.setEntityName(FilterAttributeName.CLASSIFICATION.toString());
+		_defaltEntity.setType(FilterItemType.ACTION_TYPE);
+		return _defaltEntity;
+	}
 	 
-//	 ------------------------
+//	 ------------------------ Code that should be removed ---------------------------//
+	
+	public void refreshTableView(){
+		 TableViewModel tvm=new TableViewModel(actionModel);
+			
+		   Grid<IndicatorGridRowItem> _grid = getTableViewEditorGrid();
+		   _grid.getStore().removeAll();
+		   _grid.getStore().add(tvm.parseToIndicatorGridRowList(true, false));
+		 
+	 }
+	
 	
 	
 	public EditorGrid<IndicatorFilterItemGridRowModel>  getFilterListEditorGrid(){
@@ -202,51 +160,6 @@ public class ClientInterfaceManager {
 		
 		return (VerticalPanel) ComponentManager.get().get("_tabMainPanel");
 	}
-	
-	public ExtendedColumnChart getColumnChart(){
-		
-		return (ExtendedColumnChart) ComponentManager.get().get("barChartVerticalPanel");
-	}
-	
-	public VerticalPanel getColumnChartVerticalPanel(){
-		
-		
-		return (VerticalPanel) ComponentManager.get().get("barChartFilterPanel");
-	}
-	
-	public ComboBox<EntitiesComboBoxModel>  getColumnChartGroupingComboBox(){
-
-		return (ComboBox<EntitiesComboBoxModel>) ComponentManager.get().get("comboColumnChartType");
-	}
-	
-	
-public TabItem getColumChartViewTabItem(){
-		
-		return (TabItem) ComponentManager.get().get("barChartViewTab");
-	}
-
-public PieChartPanel getExtendedPieChart(){
-	
-	return (PieChartPanel) ComponentManager.get().get("pieChartVerticalPanel");
-}
-
-
-public VerticalPanel getPieChartGroupingComboContainer(){
-	
-	return (VerticalPanel) ComponentManager.get().get("pieChartFilterPanel");
-}
-
-public ComboBox<EntitiesComboBoxModel> getPieChartGroupingComboBox(){
-	
-	ComboBox<EntitiesComboBoxModel> comboBox = (ComboBox<EntitiesComboBoxModel>) ComponentManager.get().get("comboPieChartType");
-return comboBox;
-}
-
-
-public TabItem getPieChartViewTabItem(){
-	
-	return (TabItem) ComponentManager.get().get("pieChartViewTab");
-}
 
 public ComboBox<EntitiesComboBoxModel> getFilterEntitiesComboBox(){
 	

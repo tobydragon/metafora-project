@@ -1,6 +1,5 @@
 package de.uds.MonitorInterventionMetafora.client.view.charts;
 
-import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
 import com.google.gwt.visualization.client.DataTable;
@@ -9,16 +8,17 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart.Pie
 
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
+import de.uds.MonitorInterventionMetafora.client.view.widgets.DataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 
-public class PieChartPanel extends  VerticalPanel {
+public class PieChartPanel extends  DataViewPanel {
 	
 	private PieChart pieChartView;
 	private GroupedByPropertyModel model;
 	private IndicatorProperty  groupingProperty;
 	
 	
-	public PieChartPanel(IndicatorProperty  groupingProperty, GroupedByPropertyModel _model, ClientInterfaceManager controller){
+	public PieChartPanel(GroupedByPropertyModel _model, ClientInterfaceManager controller, IndicatorProperty  groupingProperty){
 		this.groupingProperty= groupingProperty;
 		
 		this.setId("pieChartVerticalPanel");
@@ -51,13 +51,13 @@ public class PieChartPanel extends  VerticalPanel {
 	 
 	public void changeGroupingProperty(IndicatorProperty propToGroupBy){
 		 groupingProperty = propToGroupBy;
-		 pieChartView.draw(model.getEntityDataTable(groupingProperty), getPieChartOptions());
-		 refresh();
+		 refresh(model);
 	}
 	 
-	public void refresh(){
-		 this.layout();
-		 
+	public void refresh(GroupedByPropertyModel modelUpdate){
+		this.model= modelUpdate;
+		pieChartView.draw(model.getEntityDataTable(groupingProperty), getPieChartOptions());
+		this.layout(); 
 	}
 	
 }

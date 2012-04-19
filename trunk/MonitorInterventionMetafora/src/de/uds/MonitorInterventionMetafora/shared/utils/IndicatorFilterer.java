@@ -374,19 +374,20 @@ public class IndicatorFilterer implements Serializable{
 	List<IndicatorProperty> getActiveFiltersFromFilterGrid(){
 		List<IndicatorProperty> _activeFilters=new ArrayList<IndicatorProperty>();
 		
-	    EditorGrid<IndicatorFilterItemGridRowModel> editorGrid = (EditorGrid<IndicatorFilterItemGridRowModel>) ComponentManager.get().get("_filterItemGrid");
-		EditorGrid<IndicatorFilterItemGridRowModel> _grid = editorGrid;
-		for(int i=0;i<_grid.getStore().getCount();i++){
-			
-			IndicatorFilterItemGridRowModel _row=_grid.getStore().getAt(i);
-			IndicatorProperty _filter=new IndicatorProperty();
-			_filter.setDisplayText(_row.getDisplayText());
-			_filter.setType(FilterItemType.getFromString(_row.getType().toUpperCase()));
-			_filter.setOperationType(OperationType.getFromString(_row.getOperation().toUpperCase()));
-			_filter.setEntityName(_row.getProperty());
-			_filter.setValue(_row.getValue());
-			_activeFilters.add(_filter);
-						
+	    EditorGrid<IndicatorFilterItemGridRowModel> _grid = (EditorGrid<IndicatorFilterItemGridRowModel>) ComponentManager.get().get("_filterItemGrid");
+		if (_grid != null && _grid.getStore() != null){
+			for(int i=0;i<_grid.getStore().getCount();i++){
+				
+				IndicatorFilterItemGridRowModel _row=_grid.getStore().getAt(i);
+				IndicatorProperty _filter=new IndicatorProperty();
+				_filter.setDisplayText(_row.getDisplayText());
+				_filter.setType(FilterItemType.getFromString(_row.getType().toUpperCase()));
+				_filter.setOperationType(OperationType.getFromString(_row.getOperation().toUpperCase()));
+				_filter.setEntityName(_row.getProperty());
+				_filter.setValue(_row.getValue());
+				_activeFilters.add(_filter);
+							
+			}
 		}
 
 		return _activeFilters;
@@ -400,31 +401,30 @@ public class IndicatorFilterer implements Serializable{
 		_allActions.addAll(maintenance.getAllActiveActionList());
 		
 		for(CfAction _action:_allActions){
-		if(isSatisfyFilters(_action,getActiveFiltersFromFilterGrid())){
-			
-			_filteredActions.add(_action);
-		}		
-		}		
-	
-		return _filteredActions;
-	}
-	
-	
-public List<CfAction> getFilteredIndicatorList(List<CfAction>  _allActions){
-		
-		
-		List<CfAction> _filteredActions =new ArrayList<CfAction>();
-		
-		for(CfAction _action:_allActions){
-		if(isSatisfyFilters(_action,getActiveFiltersFromFilterGrid())){
-			
-			_filteredActions.add(_action);
-		}		
+			if(isSatisfyFilters(_action, getActiveFiltersFromFilterGrid())){
+				_filteredActions.add(_action);
+			}		
 		}		
 	
 		return _filteredActions;
 	}
 	
+	
+//public List<CfAction> getFilteredIndicatorList(List<CfAction>  _allActions){
+//		
+//		
+//		List<CfAction> _filteredActions =new ArrayList<CfAction>();
+//		
+//		for(CfAction _action:_allActions){
+//		if(isSatisfyFilters(_action,getActiveFiltersFromFilterGrid())){
+//			
+//			_filteredActions.add(_action);
+//		}		
+//		}		
+//	
+//		return _filteredActions;
+//	}
+//	
 
 public List<CfAction> getFilteredIndicatorList(List<CfAction>  _allActions,List<IndicatorProperty> _filters){
 	

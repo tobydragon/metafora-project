@@ -215,7 +215,7 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 				if(OperationType.getFromString(selectedOperation.getOperationType())==OperationType.OCCUREDWITHIN&&!GWTUtils.isNumber(filterValue))
 				{
 					
-					 MessageBox.alert("Info", "Time should be an integer value  and in minute!",null);
+					 MessageBox.alert("Info", "Time should be an integer value and in minutes",null);
 					 return;
 				}
 				
