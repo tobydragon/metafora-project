@@ -30,14 +30,14 @@ public class ColumnChartGroupTypeComboBox extends HorizontalPanel{
 	
 	EntityViewModel model;
 	
-	public ColumnChartGroupTypeComboBox(EntityViewModel _model){
+	public ColumnChartGroupTypeComboBox(EntityViewModel _model, ClientInterfaceManager controller){
 		
 	
 		model=_model;
 		comboType = new ComboBox<EntitiesComboBoxModel>();
 		
 		comboType.setEmptyText("Select a type");
-		interfaceManager=new ClientInterfaceManager();
+		interfaceManager= controller;
 	  
 	  
 	    

@@ -15,6 +15,7 @@ import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunicati
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
 import de.uds.MonitorInterventionMetafora.client.view.grids.ExtendedFilterGrid;
@@ -37,9 +38,11 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
 	FilterListPanel flp;
 	
 	ActionMaintenance maintenance;
+	ClientInterfaceManager controller;
+	
 	public MonitorPanelContainer(){
 		maintenance=new ActionMaintenance();
-		
+		controller = new ClientInterfaceManager(maintenance);
 	   
 	   loadingImage = new Image();
  	   loadingImage.setResource(Resources.IMAGES.loaderImage2());
@@ -58,7 +61,7 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
  	 _action.setCfActionType(_cfActionType);
  	 System.out.println("Sending start from file action");
  	 
- 	   ServerCommunication.getInstance().processAction("Tool",_action,this);
+ 	 ServerCommunication.getInstance().processAction("Tool",_action,this);
  	   
  	  
  	
@@ -82,14 +85,14 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
 		if(_actionList!=null)
 			maintenance.setActiveActionList(_actionList);
 		this.remove(loadingImage);
-		flp=new FilterListPanel(maintenance);
+		flp=new FilterListPanel(maintenance, controller);
 		MultiModelTabPanel tabs=new MultiModelTabPanel();
 		tabs.setId("_tabMainPanel");
 
 		  maintenance.startMaintenance();
 		 
 		 
-		 ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(maintenance);
+		 ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(maintenance, controller);
 		  tabs.addTab("Table",indicatorTable,false);
 		  
 		  
@@ -98,8 +101,8 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
 		  VerticalPanel panel=new VerticalPanel();
 			panel.setId("allContainer");
 		  panel.add(flp);
-		  PieChartFilterPanel _filterPieChart=new PieChartFilterPanel(maintenance);
-		  ColumnChartFilterPanel _filterBarChart=new ColumnChartFilterPanel(maintenance);
+		  PieChartFilterPanel _filterPieChart=new PieChartFilterPanel(maintenance, controller);
+		  ColumnChartFilterPanel _filterBarChart=new ColumnChartFilterPanel(maintenance, controller);
 		  tabs.addTab("pieChartViewTab","Pie Chart View", _filterPieChart,false);
 		  tabs.addTab("barChartViewTab","Bar Chart View", _filterBarChart,false);
 		  panel.add(tabs);

@@ -4,6 +4,7 @@ import com.extjs.gxt.ui.client.widget.VerticalPanel;
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntityViewModel;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedColumnChart;
 import de.uds.MonitorInterventionMetafora.client.view.charts.ExtendedPieChart;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
@@ -16,19 +17,19 @@ public class ColumnChartFilterPanel extends VerticalPanel {
 	EntityViewModel model;
 	ColumnChartGroupTypeComboBox filterTypeComboBox;
 	
-	public ColumnChartFilterPanel(ActionMaintenance _maintenance){
+	public ColumnChartFilterPanel(ActionMaintenance _maintenance, ClientInterfaceManager controller){
 		this.setWidth(600);
 		maintenance=_maintenance;
 		this.setId("barChartFilterPanel");
 		model=new EntityViewModel(maintenance);
 		
 		
-		filterTypeComboBox =new ColumnChartGroupTypeComboBox(model);
+		filterTypeComboBox =new ColumnChartGroupTypeComboBox(model, controller);
 		IndicatorEntity _defaltEntity=new IndicatorEntity();
 		_defaltEntity.setEntityName(FilterAttributeName.CLASSIFICATION.toString());
 		_defaltEntity.setType(FilterItemType.ACTION_TYPE);
 		
-		ExtendedColumnChart _barChart=new ExtendedColumnChart(_defaltEntity,model);
+		ExtendedColumnChart _barChart=new ExtendedColumnChart(_defaltEntity,model, controller);
 		this.add(filterTypeComboBox);
 		this.add(_barChart);
 		

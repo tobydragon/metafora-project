@@ -48,10 +48,10 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 	private ClientInterfaceManager interfaceManager;
 	
 	
-	public ExtendedFilterManagementPanel(ActionMaintenance _maintenance){
+	public ExtendedFilterManagementPanel(ActionMaintenance _maintenance, ClientInterfaceManager controller){
 		maintenance=_maintenance;
 		model=new EntityViewModel(maintenance);
-		interfaceManager=new ClientInterfaceManager();
+		interfaceManager= controller;
 		 FormLayout layout = new FormLayout();
 		entityComboBox = new ComboBox<EntitiesComboBoxModel>();
 	//	entityComboBox.setFieldLabel("Entity");

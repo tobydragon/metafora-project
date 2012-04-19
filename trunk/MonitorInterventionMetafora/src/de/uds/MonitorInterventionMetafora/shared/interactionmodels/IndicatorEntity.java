@@ -15,18 +15,12 @@ import java.io.Serializable;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 
-
+//a class representing one aspect of an indicator (to filter by).
+//This could be a standard attribute of an indicator or a property...
 public class IndicatorEntity  implements Serializable{
 
-
-	
-  /**
-	 * 
-	 */
 	private static final long serialVersionUID = 3617519429426816927L;
-/**
-	 * 
-	 */
+
 	
 
 	private String entityName="";
@@ -35,8 +29,9 @@ public class IndicatorEntity  implements Serializable{
 	private OperationType operationtype;
 	private FilterItemType type;
 	private String value="";
-public IndicatorEntity() {
-  }
+
+	public IndicatorEntity() {
+	}
 
   
   public IndicatorEntity(String _entityName, String _value,FilterItemType _type,OperationType _operationtype) {
@@ -100,7 +95,9 @@ public IndicatorEntity() {
 	  return displayText;
   }
   
- 
-
+  //gets a unique key for this entity
+  public String getKey(){
+	   return getType().toString()+"-"+ getEntityName()+"-"+ getValue();
+  }
 
 }
