@@ -50,12 +50,12 @@ public class ExtendedColumnChart extends  VerticalPanel{
 	private IndicatorEntity  entity;
 	
 	
-	public ExtendedColumnChart(IndicatorEntity  _entity,EntityViewModel _model){
+	public ExtendedColumnChart(IndicatorEntity  _entity,EntityViewModel _model, ClientInterfaceManager controller){
 		entity=_entity;
 		 status = new Label();
 		 onMouseOverAndOutStatus = new Label();
 		this.setId("barChartVerticalPanel");
-		interfaceManager=new ClientInterfaceManager();
+		interfaceManager= controller;
 		model=_model;
 		
 		this.removeAll();
@@ -68,14 +68,14 @@ public class ExtendedColumnChart extends  VerticalPanel{
 		
 	}
 
-public ExtendedColumnChart(String title){
-	this.setId("_barChartVerticalPanel");
-	this.add(new Label(title));
-	this.layout(true);
-	this.doLayout();
-	interfaceManager=new ClientInterfaceManager();
-	
-}
+//public ExtendedColumnChart(String title){
+//	this.setId("_barChartVerticalPanel");
+//	this.add(new Label(title));
+//	this.layout(true);
+//	this.doLayout();
+//	interfaceManager=new ClientInterfaceManager();
+//	
+//}
 
 
 ColumnChart renderColumnChart(){

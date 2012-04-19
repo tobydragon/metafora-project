@@ -67,6 +67,7 @@ import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunicati
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
 import de.uds.MonitorInterventionMetafora.client.datamodels.FilterListGridModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.ExtendedFilterManagementPanel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
@@ -86,10 +87,12 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	 ListStore<IndicatorFilterItemGridRowModel> store;
 	 SimpleComboBox<String> filterGroupCombo;
 	 FilterListGridModel filterModel;
+	 ClientInterfaceManager controller;
 	
-	public ExtendedFilterGrid(FilterListGridModel _filterModel){
+	public ExtendedFilterGrid(FilterListGridModel _filterModel, ClientInterfaceManager controller){
 		
 		filterModel= _filterModel;
+		this.controller = controller;
 	}
 	
 
@@ -306,7 +309,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     ContentPanel panel = new ContentPanel();
     panel.setTopComponent(toolBar);
     
-    ExtendedFilterManagementPanel _filterManagement=new ExtendedFilterManagementPanel(filterModel.getActionMaintenance());
+    ExtendedFilterManagementPanel _filterManagement=new ExtendedFilterManagementPanel(filterModel.getActionMaintenance(), controller);
     panel.setBottomComponent(_filterManagement);
     panel.setHeaderVisible(false);
     panel.setIcon(Resources.ICONS.table());

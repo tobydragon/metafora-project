@@ -42,14 +42,13 @@ public class ActionMaintenance extends Timer implements RequestUpdateCallBack{
 	
 	
 	public ActionMaintenance(){
-		
 		activecfActions=new ArrayList<CfAction>();
-		interfaceManager=new ClientInterfaceManager();
-		
-		
-		
+		interfaceManager=new ClientInterfaceManager(this);
 	}
 	
+	public ClientInterfaceManager getClientInterfaceManager(){
+		return interfaceManager;
+	}
 	
 	public List<CfAction> getAllActiveActionList(){
 		

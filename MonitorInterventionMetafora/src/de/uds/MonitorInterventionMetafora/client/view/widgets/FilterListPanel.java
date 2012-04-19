@@ -26,10 +26,10 @@ public class FilterListPanel extends ContentPanel {
 	Map<String, String> _filterList;
 	private ClientInterfaceManager interfaceManager;
 	ActionMaintenance maintenance;
-	public FilterListPanel(ActionMaintenance _maintenance){
+	public FilterListPanel(ActionMaintenance _maintenance, ClientInterfaceManager controller){
 		
 		maintenance=_maintenance;
-		interfaceManager=new ClientInterfaceManager();
+		interfaceManager= controller;
 		this.setCollapsible(true);
 		this.setHeading("Filter Options");
 		this.setExpanded(false);
@@ -71,7 +71,7 @@ public class FilterListPanel extends ContentPanel {
 		
 		//maintenance.
 		FilterListGridModel flm=new FilterListGridModel(maintenance);
-		ExtendedFilterGrid ef=new ExtendedFilterGrid(flm);		
+		ExtendedFilterGrid ef=new ExtendedFilterGrid(flm, interfaceManager);		
 		this.add(ef);	
 		
 		

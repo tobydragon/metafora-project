@@ -91,11 +91,11 @@ public class ExtendedGroupedGrid extends  LayoutContainer {
 	private ClientInterfaceManager interfaceManager;
 	//private SimpleComboBox<ColumnConfig> groupingComboBox;
 	
-	public ExtendedGroupedGrid(ActionMaintenance _maintenance){
+	public ExtendedGroupedGrid(ActionMaintenance _maintenance, ClientInterfaceManager controller){
 		maintenance=_maintenance;
 		tvm=new TableViewModel(maintenance);
 		_indicatorCount=new Label();
-		interfaceManager=new ClientInterfaceManager();
+		interfaceManager= controller;
 		store = new GroupingStore<IndicatorGridRowItem>();
 		ignoreNotifications=false;
 	    indicators=tvm.parseToIndicatorGridRowList(false, false);

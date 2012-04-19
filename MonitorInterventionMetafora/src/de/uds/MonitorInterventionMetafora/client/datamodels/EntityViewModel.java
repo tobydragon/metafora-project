@@ -289,23 +289,23 @@ public 	int getMaxValue(){
 			    data.addRows(groupedActions.size());
 			    int index=0;
 			    for(String key:groupedActions.keySet()){
-			    data.setValue(index, 0, key);
-			    IndicatorEntity _newEntity=new IndicatorEntity();			    
-			    _newEntity.setEntityName(_entity.getEntityName());
-			    _newEntity.setValue(key);
-			    _newEntity.setType(_entity.getType());
-			    _newEntity.setOperationType(OperationType.EQUALS);
-			    indicatorEntities.put(index, _newEntity);
-			 
-			    int _size=groupedActions.get(key).size();
-			    data.setValue(index, 1,_size);
-			    if(_size>maxValue){
-			    	
-			    	maxValue=_size;		
+				    data.setValue(index, 0, key);
+				    IndicatorEntity _newEntity=new IndicatorEntity();			    
+				    _newEntity.setEntityName(_entity.getEntityName());
+				    _newEntity.setValue(key);
+				    _newEntity.setType(_entity.getType());
+				    _newEntity.setOperationType(OperationType.EQUALS);
+				    indicatorEntities.put(index, _newEntity);
+				 
+				    int _size=groupedActions.get(key).size();
+				    data.setValue(index, 1,_size);
+				    if(_size>maxValue){
+				    	
+				    	maxValue=_size;		
+				    }
+				    
+				    index++;
 			    }
-			    
-			    index++;
-		}
 			    
 			break;
 		case USER:
@@ -424,10 +424,11 @@ public 	int getMaxValue(){
 		return activeFilters.containsKey(_key);
 		
 	}
+	
 	public IndicatorEntity getIndicatorEntity(int _key){
-		
-		if(indicatorEntities.containsKey(_key))
-		return indicatorEntities.get(_key);
+		if(indicatorEntities.containsKey(_key)){
+			return indicatorEntities.get(_key);
+		}
 		return null;
 	}
 

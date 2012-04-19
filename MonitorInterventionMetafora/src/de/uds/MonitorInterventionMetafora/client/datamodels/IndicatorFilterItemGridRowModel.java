@@ -12,7 +12,7 @@ package de.uds.MonitorInterventionMetafora.client.datamodels;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 
-
+//TODO: remake this class, as IndicatorGridRowItem, where it holds the IndicatorEntity and also sets the necessary values for the table
 public class IndicatorFilterItemGridRowModel extends BaseModel {
 
 
@@ -26,7 +26,6 @@ public class IndicatorFilterItemGridRowModel extends BaseModel {
 public IndicatorFilterItemGridRowModel() {
   }
 
-  
   public IndicatorFilterItemGridRowModel(String _property, String _value,String _type,String _displayText,String _operation) {
 	  set("filtertype", _type);
 	  set("displaytext", _displayText);
@@ -95,6 +94,8 @@ public IndicatorFilterItemGridRowModel() {
     return getProperty();
   }
 
-
+  public String getKey(){
+	 return  getType()+"-"+ getProperty()+"-"+ getValue();
+  }
 
 }

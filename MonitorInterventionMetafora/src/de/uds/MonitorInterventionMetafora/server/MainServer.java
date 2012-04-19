@@ -52,9 +52,9 @@ public class MainServer extends RemoteServiceServlet implements
 		communicationManager = CfAgentCommunicationManager.getInstance(getCommunicationType(_configuration.getActionSource()), CommunicationChannelType.analysis);				
 		communicationManager.register(this);
 		
-		analysisManager=AnalysisManager.getAnalysisManagerInstance();
-		analysisManager.setActions(cfActions);
-		analysisManager.register(this);
+//		analysisManager=AnalysisManager.getAnalysisManagerInstance();
+//		analysisManager.setActions(cfActions);
+//		analysisManager.register(this);
 		
 		//analysisManager.sendToAllAgents("Uguran", null);
 		
@@ -129,7 +129,7 @@ public class MainServer extends RemoteServiceServlet implements
 		System.out.println("New Action recieved form User:"+user);
 		cfActions.add(action);
 		Collections.sort(cfActions,this);
-		analysisManager.setActions(cfActions);
+//		analysisManager.setActions(cfActions);
 	}
 	
 public CommunicationMethodType getCommunicationType(String _type){
