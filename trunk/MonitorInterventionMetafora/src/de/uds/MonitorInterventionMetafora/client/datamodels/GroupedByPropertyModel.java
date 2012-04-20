@@ -11,7 +11,7 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
 
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
+import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
@@ -37,11 +37,11 @@ public class GroupedByPropertyModel {
 	Map<Integer, IndicatorProperty>indicatorEntities = null;
 	Map<Integer, IndicatorProperty>subsectionValue =null;
 	Map<String, String> activeFilters =null;
-	ActionMaintenance maintenance=null;
+	UpdatingDataModel maintenance=null;
 	
 	IndicatorFilterer filterer;
 	private int maxValue=0;
-	public GroupedByPropertyModel(ActionMaintenance _maintenance ){
+	public GroupedByPropertyModel(UpdatingDataModel _maintenance ){
 	
 		maintenance=_maintenance;
 		activeFilters = new HashMap<String, String>();
@@ -685,7 +685,7 @@ return map;
 			}
 		
 		
-		 public ActionMaintenance getActionMaintenance(){
+		 public UpdatingDataModel getActionMaintenance(){
 				
 				return maintenance;
 			}

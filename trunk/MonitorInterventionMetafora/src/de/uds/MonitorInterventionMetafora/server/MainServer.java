@@ -32,8 +32,7 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
  * The server side implementation of the RPC service.
  */
 @SuppressWarnings("serial")
-public class MainServer extends RemoteServiceServlet implements
-		CommunicationService,CfCommunicationListener,Comparator<CfAction> {
+public class MainServer extends RemoteServiceServlet implements CommunicationService,CfCommunicationListener,Comparator<CfAction> {
 
 
 	String configFilepath = GeneralUtil.getAplicationResourceDirectory()+"conffiles/toolconf/configuration.xml";
@@ -56,27 +55,21 @@ public class MainServer extends RemoteServiceServlet implements
 //		analysisManager.setActions(cfActions);
 //		analysisManager.register(this);
 		
-		//analysisManager.sendToAllAgents("Uguran", null);
+//		analysisManager.sendToAllAgents("Uguran", null);
 		
 		
 		if(_configuration.getActionSource().equalsIgnoreCase("file")){
-		CfAction _action=new CfAction();
-	 	  _action.setTime(GWTUtils.getTimeStamp());
-	 	  
-	 	 CfActionType _cfActionType=new CfActionType();
-	 	 _cfActionType.setType("START_FILE_INPUT");
-	 	_cfActionType.setClassification("Test");
-	 	_cfActionType.setSucceed("true");
-	 	_cfActionType.setLogged("true");
-    	_action.setCfActionType(_cfActionType);
-		
-	
-	 	 //_pathProperty.setValue(_configuration.getActionSource())
-	 	 
-	 	//_configurationObject.a
-	 	//_action.
-    	
-		 communicationManager.sendMessage(_action);
+			CfAction _action=new CfAction();
+		 	  _action.setTime(GWTUtils.getTimeStamp());
+		 	  
+		 	 CfActionType _cfActionType=new CfActionType();
+		 	 _cfActionType.setType("START_FILE_INPUT");
+		 	_cfActionType.setClassification("Test");
+		 	_cfActionType.setSucceed("true");
+		 	_cfActionType.setLogged("true");
+	    	_action.setCfActionType(_cfActionType);
+	    	
+			 communicationManager.sendMessage(_action);
 		}
 					
 	}
@@ -110,23 +103,20 @@ public class MainServer extends RemoteServiceServlet implements
 	@Override
 	public List<CfAction> requestUpdate(CfAction cfAction) {
 		
-		
-		
 		if(cfAction!=null){
-		
-		return getActionUpdates(cfAction.getTime());
-		
-		
+			return getActionUpdates(cfAction.getTime());
 		}
-		
-		return null;
+		else {
+			System.out.println("INFO: [MainServer.requestUpdate] no last action present, sending entire history");
+			return cfActions;
+		}
 	}
-
 
 	@Override
 	public void processCfAction(String user, CfAction action) {
 		
-		System.out.println("New Action recieved form User:"+user);
+		System.out.println("DEBUG: [MainServer.processCfAction] new action: user=" + user);
+
 		cfActions.add(action);
 		Collections.sort(cfActions,this);
 //		analysisManager.setActions(cfActions);
@@ -156,23 +146,19 @@ public int compare(CfAction action1, CfAction action2) {
 
 
 
-List<CfAction>  getActionUpdates(long _lasActionTime){
-	
+List<CfAction>  getActionUpdates(long _lastActionTime){
+	System.out.println("DEBUG: [MainServer.getActionUpdates] "+ _lastActionTime);
 	List<CfAction> _newActionList=new ArrayList<CfAction>();
 	
+	//walk list backwards because very few end action will be new
+	//TODO: should stop when first old action is found
 	for(int i=cfActions.size()-1;i>=0;i--){
-		
-		if(isNewAction(_lasActionTime,cfActions.get(i).getTime())){
-			
+		if(isNewAction(_lastActionTime,cfActions.get(i).getTime())){
 			_newActionList.add(cfActions.get(i));
-			
 		}
-		
 	}
 	
 	return _newActionList;
-	
-	
 }
 
 

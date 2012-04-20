@@ -7,7 +7,7 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart.PieOptions;
 
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
-import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
+import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.DataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 
@@ -18,7 +18,7 @@ public class PieChartPanel extends  DataViewPanel {
 	private IndicatorProperty  groupingProperty;
 	
 	
-	public PieChartPanel(GroupedByPropertyModel _model, ClientInterfaceManager controller, IndicatorProperty  groupingProperty){
+	public PieChartPanel(GroupedByPropertyModel _model, FilteredDataViewManager controller, IndicatorProperty  groupingProperty){
 		this.groupingProperty= groupingProperty;
 		
 		this.setId("pieChartVerticalPanel");
@@ -41,7 +41,7 @@ public class PieChartPanel extends  DataViewPanel {
 	    return options;
 	}
 	
-	public PieChart createPieChart(DataTable data, ClientInterfaceManager controller) {  
+	public PieChart createPieChart(DataTable data, FilteredDataViewManager controller) {  
 	    pieChartView= new PieChart(data, getPieChartOptions());  
 	    pieChartView.addSelectHandler(new PieChartSelectionHandler(pieChartView, model, controller));
 		

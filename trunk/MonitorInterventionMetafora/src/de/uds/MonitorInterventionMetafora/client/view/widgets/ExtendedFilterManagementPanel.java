@@ -25,12 +25,12 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.DOM;
 
 
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
+import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
-import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
+import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
@@ -43,12 +43,12 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 	private ComboBox<OperationsComboBoxModel> operationComboBox;
 	private TextField<String> entityValueTextBox; 
 	private  Button addButton;
-	private ActionMaintenance maintenance;
+	private UpdatingDataModel maintenance;
 	private GroupedByPropertyModel model;
-	private ClientInterfaceManager interfaceManager;
+	private FilteredDataViewManager interfaceManager;
 	
 	
-	public ExtendedFilterManagementPanel(ActionMaintenance _maintenance, ClientInterfaceManager controller){
+	public ExtendedFilterManagementPanel(UpdatingDataModel _maintenance, FilteredDataViewManager controller){
 		maintenance=_maintenance;
 		model=new GroupedByPropertyModel(maintenance);
 		interfaceManager= controller;

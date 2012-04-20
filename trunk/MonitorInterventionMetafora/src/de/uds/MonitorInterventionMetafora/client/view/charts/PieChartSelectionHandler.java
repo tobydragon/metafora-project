@@ -15,18 +15,18 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
-import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
+import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 
 public class PieChartSelectionHandler extends SelectHandler{
 
 	private final PieChart chartView;
-	private ClientInterfaceManager controller;
+	private FilteredDataViewManager controller;
 	private GroupedByPropertyModel model;
 //	private GroupedDataViewPanel groupedDataController;
 		
-	public PieChartSelectionHandler(final PieChart chart, GroupedByPropertyModel model, ClientInterfaceManager controllerIn){
+	public PieChartSelectionHandler(final PieChart chart, GroupedByPropertyModel model, FilteredDataViewManager controllerIn){
 		this.chartView = chart;
 		this.model = model;
 		controller = controllerIn;
