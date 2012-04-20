@@ -64,10 +64,10 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 
 import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestConfigurationCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
+import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.FilterListGridModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
-import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
+import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.ExtendedFilterManagementPanel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
@@ -87,9 +87,9 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	 ListStore<IndicatorFilterItemGridRowModel> store;
 	 SimpleComboBox<String> filterGroupCombo;
 	 FilterListGridModel filterModel;
-	 ClientInterfaceManager controller;
+	 FilteredDataViewManager controller;
 	
-	public ExtendedFilterGrid(FilterListGridModel _filterModel, ClientInterfaceManager controller){
+	public ExtendedFilterGrid(FilterListGridModel _filterModel, FilteredDataViewManager controller){
 		
 		filterModel= _filterModel;
 		this.controller = controller;

@@ -7,7 +7,7 @@ import java.util.List;
 import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
+import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
@@ -28,10 +28,10 @@ public class IndicatorFilterer implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -4106338046246238903L;
-	ActionMaintenance maintenance;
+	UpdatingDataModel maintenance;
 	public IndicatorFilterer(){}
 	
-	public IndicatorFilterer(ActionMaintenance _maintenance){
+	public IndicatorFilterer(UpdatingDataModel _maintenance){
 		
 		//filters=_filters;
 		maintenance=_maintenance;

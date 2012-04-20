@@ -15,7 +15,7 @@ import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
+import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
@@ -27,14 +27,14 @@ import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAtt
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 
-public class ClientInterfaceManager {
+public class FilteredDataViewManager {
 	
 	private boolean reset=false;
-	private ActionMaintenance actionModel;
+	private UpdatingDataModel actionModel;
 	
 	private Vector<GroupedDataViewPanel> dataViewPanels;
 	
-	public ClientInterfaceManager(ActionMaintenance actionModel){
+	public FilteredDataViewManager(UpdatingDataModel actionModel){
 		this.actionModel = actionModel;
 		dataViewPanels = new Vector<GroupedDataViewPanel>();
 	}

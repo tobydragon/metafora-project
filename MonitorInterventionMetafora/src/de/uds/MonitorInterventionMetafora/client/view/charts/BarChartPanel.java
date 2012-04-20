@@ -8,7 +8,7 @@ import com.google.gwt.visualization.client.visualizations.corechart.ColumnChart;
 import com.google.gwt.visualization.client.visualizations.corechart.Options;
 
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
-import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
+import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.DataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
@@ -20,7 +20,7 @@ public class BarChartPanel extends DataViewPanel {
 	private IndicatorProperty  groupingProperty;
 	
 	
-	public BarChartPanel(GroupedByPropertyModel _model, ClientInterfaceManager controller, GroupedDataViewPanel groupedDataViewController, IndicatorProperty  groupingProperty){
+	public BarChartPanel(GroupedByPropertyModel _model, FilteredDataViewManager controller, GroupedDataViewPanel groupedDataViewController, IndicatorProperty  groupingProperty){
 		this.groupingProperty= groupingProperty;
 		
 		this.setId("barChartVerticalPanel");
@@ -50,7 +50,7 @@ public class BarChartPanel extends DataViewPanel {
 		
 		}
 	
-	public ColumnChart createBarChart(DataTable data, ClientInterfaceManager controller, GroupedDataViewPanel groupedDataViewController) {  
+	public ColumnChart createBarChart(DataTable data, FilteredDataViewManager controller, GroupedDataViewPanel groupedDataViewController) {  
 		
 		barChartView = new ColumnChart(data, getBarChartOptions(model.getMaxValue()));
 		barChartView.addSelectHandler(new BarChartSelectionHandler(barChartView, model, controller, groupedDataViewController));

@@ -1,12 +1,12 @@
 package de.uds.MonitorInterventionMetafora.client.datamodels;
 
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
+import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 
 public class FilterListGridModel {
 
 
-	ActionMaintenance maintenance;
-	public FilterListGridModel(ActionMaintenance _maintenance){
+	UpdatingDataModel maintenance;
+	public FilterListGridModel(UpdatingDataModel _maintenance){
 		
 		
 		maintenance=_maintenance;
@@ -14,7 +14,7 @@ public class FilterListGridModel {
 
 
 
-public ActionMaintenance getActionMaintenance(){
+public UpdatingDataModel getActionMaintenance(){
 	
 	return maintenance;
 }

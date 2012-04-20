@@ -14,9 +14,9 @@ import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.DOM;
 
 
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
+import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.FilterListGridModel;
-import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
+import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
 import de.uds.MonitorInterventionMetafora.client.view.grids.ExtendedFilterGrid;
 
 
@@ -24,9 +24,9 @@ public class FilterListPanel extends ContentPanel {
 	
 	
 	Map<String, String> _filterList;
-	private ClientInterfaceManager interfaceManager;
-	ActionMaintenance maintenance;
-	public FilterListPanel(ActionMaintenance _maintenance, ClientInterfaceManager controller){
+	private FilteredDataViewManager interfaceManager;
+	UpdatingDataModel maintenance;
+	public FilterListPanel(UpdatingDataModel _maintenance, FilteredDataViewManager controller){
 		
 		maintenance=_maintenance;
 		interfaceManager= controller;

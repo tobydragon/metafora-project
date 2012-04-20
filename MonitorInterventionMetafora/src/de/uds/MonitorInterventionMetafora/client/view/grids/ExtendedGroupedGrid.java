@@ -65,13 +65,13 @@ import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.ClickListener;
 
 
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
+import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.DefaultModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
-import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
+import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
@@ -83,15 +83,15 @@ public class ExtendedGroupedGrid extends  LayoutContainer {
 	private Timer tableViewTimer;
 	private List<IndicatorGridRowItem> indicators;
 	private TableViewModel tvm;
-	private ActionMaintenance maintenance;
+	private UpdatingDataModel maintenance;
 	private Label _indicatorCount;
 	private  Grid<IndicatorGridRowItem> grid;
 	private	GroupingStore<IndicatorGridRowItem> store;
 	public ColumnModel cm;
-	private ClientInterfaceManager interfaceManager;
+	private FilteredDataViewManager interfaceManager;
 	//private SimpleComboBox<ColumnConfig> groupingComboBox;
 	
-	public ExtendedGroupedGrid(ActionMaintenance _maintenance, ClientInterfaceManager controller){
+	public ExtendedGroupedGrid(UpdatingDataModel _maintenance, FilteredDataViewManager controller){
 		maintenance=_maintenance;
 		tvm=new TableViewModel(maintenance);
 		_indicatorCount=new Label();

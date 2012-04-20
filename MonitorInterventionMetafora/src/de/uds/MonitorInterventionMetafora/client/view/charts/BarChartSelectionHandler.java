@@ -20,19 +20,19 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
-import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
+import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 
 public class BarChartSelectionHandler extends SelectHandler{
 
 	private final ColumnChart chartView;
-	private ClientInterfaceManager filteringDataViewController;
+	private FilteredDataViewManager filteringDataViewController;
 	private GroupedByPropertyModel model;
 	private int selection = -1;
 	private GroupedDataViewPanel groupedDataController;
 	
-	public BarChartSelectionHandler(final ColumnChart chart, GroupedByPropertyModel model, ClientInterfaceManager controllerIn, GroupedDataViewPanel groupedDataController){
+	public BarChartSelectionHandler(final ColumnChart chart, GroupedByPropertyModel model, FilteredDataViewManager controllerIn, GroupedDataViewPanel groupedDataController){
 		this.chartView = chart;
 		this.model = model;
 		filteringDataViewController = controllerIn;

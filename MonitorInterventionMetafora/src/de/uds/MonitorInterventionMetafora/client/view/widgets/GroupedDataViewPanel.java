@@ -2,9 +2,9 @@ package de.uds.MonitorInterventionMetafora.client.view.widgets;
 
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ActionMaintenance;
+import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
-import de.uds.MonitorInterventionMetafora.client.manager.ClientInterfaceManager;
+import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
 import de.uds.MonitorInterventionMetafora.client.view.charts.BarChartPanel;
 import de.uds.MonitorInterventionMetafora.client.view.charts.PieChartPanel;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
@@ -17,7 +17,7 @@ public class GroupedDataViewPanel extends VerticalPanel {
 	DataViewPanel dataViewPanel;
 	
 	public GroupedDataViewPanel(DataViewPanelType dataViewPanelType, GroupedByPropertyModel groupedModel, 
-			ClientInterfaceManager controller, IndicatorProperty  groupingProperty, String panelId, String groupingChooserId){
+			FilteredDataViewManager controller, IndicatorProperty  groupingProperty, String panelId, String groupingChooserId){
 		this.dataViewPanel = createDataViewPanel(dataViewPanelType, groupedModel, controller, this, groupingProperty);
 		
 		//TODO: This should be set with initial groupingProperty, and if null, set to nothing
@@ -45,7 +45,7 @@ public class GroupedDataViewPanel extends VerticalPanel {
 	}
 	
 	public DataViewPanel createDataViewPanel(DataViewPanelType dataViewPanelType, GroupedByPropertyModel groupedModel, 
-			ClientInterfaceManager controller, GroupedDataViewPanel groupedDataViewController, IndicatorProperty  groupingProperty){
+			FilteredDataViewManager controller, GroupedDataViewPanel groupedDataViewController, IndicatorProperty  groupingProperty){
 		DataViewPanel dataViewPanel = null;
 		if (dataViewPanelType == DataViewPanelType.PIE_CHART){  
 //			  PieChartPanel barChartPanel = new PieChartPanel(groupedModel, controller, groupedDataViewController, groupingProperty);
