@@ -19,6 +19,7 @@ import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunic
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationMethodType;
+import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
@@ -78,7 +79,8 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 
 	@Override
 	public CfAction sendAction(String _user,CfAction cfAction) {
-		// TODO Auto-generated method stub
+		System.out.println("INFO: [MainServer.sendAction] action = \n" + CfActionParser.toXml(cfAction));
+		communicationManager.sendMessage(cfAction);
 		return null;
 	}
 
