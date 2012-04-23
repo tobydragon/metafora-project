@@ -26,7 +26,7 @@ public class XmlConfigParser {
 	}
 	
 	public XmlConfigParser(String filename){
-		configFragment = XmlFragment.getFragmentFromFile(filename);
+		configFragment = XmlFragment.getFragmentFromLocalFile(filename);
 	}
 	
 	public XmlConfigParser getfragmentById(String fragmentType, String idAttrName,  String id){

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action time="1335207466">
+<actiontype type="REQUEST_ANALYSIS_HISTORY" classification="other" succeed="UNKOWN" />
+<user id="visualizer" role="originator" />
+<user id="metafora-platform" role="receiver" />
+<object id="0" type="element">
+<properties>
+<property name="REQUEST_ID" value="1"/>
+<property name="START_TIME" value="1334919466000" />
+</properties>
+</object>
+<content/>
+</action>

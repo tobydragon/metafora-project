@@ -14,11 +14,6 @@ import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
-//import de.dfki.lasad.agents.instances.xmpp.CfAgentInterface;
-//import de.dfki.lasad.agents.instances.xmpp.CfManagementActionAgent;
-//import de.uds.util.GeneralUtil;
-
-//used when all agents should be notified of all messages.
 public class CfAgentCommunicationManager implements CfCommunicationListener{
 	Log logger = LogFactory.getLog(CfAgentCommunicationManager.class);
 	
@@ -84,12 +79,14 @@ public class CfAgentCommunicationManager implements CfCommunicationListener{
 		allListeners.remove(agent);
 	}
 	
+	//might have many connections, calls shoudl be synced
 	@Override
-	public void processCfAction(String user, CfAction action) {
+	public synchronized void processCfAction(String user, CfAction action) {
 		processNewMessage(user, action);
 	}
 	
-	public void sendMessage(CfAction actionToSend){
+	//might have many connections, calls shoudl be synced
+	public synchronized void sendMessage(CfAction actionToSend){
 			cfCommnicationBridge.sendAction(actionToSend);
 	}
 	
@@ -118,15 +115,6 @@ public class CfAgentCommunicationManager implements CfCommunicationListener{
 				logger.info("[shouldTakeActionOnMessage] Old action being ignored");
 			}
 			return false;
-	}
-	
-	protected boolean shouldTakeActionsFromUser(String userId){
-		for (String controllingUser : controllingUsers){
-			if (controllingUser.equalsIgnoreCase(userId)){
-				return true;
-			}
-		}
-		return false;
 	}
 
 }

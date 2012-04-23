@@ -1,15 +1,10 @@
 package de.uds.MonitorInterventionMetafora.server.cfcommunication;
 
-import java.util.Vector;
-
 import org.apache.log4j.Logger;
 
-import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
-import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
-public class MetaforaCfFileCommunicationBridge implements CfCommunicationBridge{
+public class MetaforaCfFileCommunicationBridge extends SimpleCfFileCommunicationBridge{
 	Logger logger = Logger.getLogger(CfCommunicationBridge.class);
 	
 	private static String commandConnectionNameIn = null;
@@ -27,85 +22,18 @@ public class MetaforaCfFileCommunicationBridge implements CfCommunicationBridge{
 	}
 	
 	
-	private String channelNameIn;
-	private String channelNameOut;
-	private XmlFragment xmlIn;
-	private XmlFragment xmlOut;
-	
-	private Vector<CfCommunicationListener> listeners;
-	
-	public MetaforaCfFileCommunicationBridge(CommunicationChannelType type){
-		listeners = new Vector<CfCommunicationListener>();
+	public MetaforaCfFileCommunicationBridge(CommunicationChannelType type) {
 
 		if (type == CommunicationChannelType.command){
-			channelNameIn = commandConnectionNameIn;
-			channelNameOut = commandConnectionNameOut;
+			setup(commandConnectionNameIn, commandConnectionNameOut);
 		}
 		else if (type == CommunicationChannelType.analysis){
-			channelNameIn = analysisConnectionNameIn;
-			channelNameOut = analysisConnectionNameOut;
+			setup(analysisConnectionNameIn, analysisConnectionNameOut);
 		} 
 		else {
 			logger.error("[constructor] Uknown connectionType");
 			return;
 		}
-		
-		xmlIn = getOrCreateFragment(channelNameIn);
-		xmlOut = getOrCreateFragment(channelNameOut);
-		
 	}
-	
-	private XmlFragment getOrCreateFragment(String filename){
-		
-		System.out.println("trying to get interaction data!!");
-		XmlFragment fragment = XmlFragment.getFragmentFromFile(filename);
-		if (fragment == null){
-			
-			System.out.println(" interaction data fragment is not null!!");
-			fragment = new XmlFragment("interactiondata");
-			XmlFragment childfragment = new XmlFragment("actions");
-			fragment.addContent(childfragment);
-		}
-		System.out.println(" interaction data fragment!!"+fragment);
-		return fragment;
-	}
-	
-	@Override
-	public void registerListener(CfCommunicationListener listener) {
-		listeners.add(listener);
-	}
-
-	@Override
-	public void sendAction(CfAction actionToSend) {
-		//to trigger input
-		if (actionToSend.getCfActionType().getType().equalsIgnoreCase("START_FILE_INPUT")){
-			sendMessages();
-		}
-		else {
-			XmlFragment actionsFrag = xmlOut.accessChild("actions");
-			actionsFrag.addContent(CfActionParser.toXml(actionToSend));
-			xmlOut.overwriteFile(channelNameOut);
-		}
-		
-	}
-	
-	private void sendMessages() {
-		
-		System.out.println("Sending individual actions!!");
-		XmlFragment actionsFrag = xmlIn.accessChild("actions");
-		for (XmlFragment actionFrag : actionsFrag.getChildren("action")){
-			CfAction action = CfActionParser.fromXml(actionFrag);
-			if (action != null){
-				for (CfCommunicationListener listener : listeners){
-					listener.processCfAction("file", action);
-					System.out.println("Sent action:"+action.getTime());
-				}
-			}
-		}
-		
-		System.out.println("All actions are sent successfully!!");
-		
-	}
-
 
 }
