@@ -65,13 +65,8 @@ public class CfMultiSessionCommunicationManager implements CfCommunicationListen
 		//*managementAgent = null;
 		
 		if (methodType == CommunicationMethodType.xmpp){
-			
-			System.out.print(" tryig to creatcommunication Bride successfull");
 			cfCommnicationBridge = new CfXmppCommunicationBridge(type);
-			cfCommnicationBridge.registerListener(this);
-			
-System.out.print("Creating communication Bride successfull");
-			
+			cfCommnicationBridge.registerListener(this);			
 		}
 		else if (methodType == CommunicationMethodType.file){
 			cfCommnicationBridge = new MetaforaCfFileCommunicationBridge(type);

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CfAction implements Serializable{
+public class CfAction implements Serializable, Comparable<CfAction>{
 	
 	/**
 	 * 
@@ -107,6 +107,12 @@ public CfContent getCfContent() {
 		str += "\n" + cfObjects.toString();
 		
 		return str;
+	}
+
+	@Override
+	public int compareTo(CfAction o) {
+		int dif=(int) (this.getTime()-o.getTime());
+		return dif;
 	}
 
 	//	public XmlFragment toXml(){

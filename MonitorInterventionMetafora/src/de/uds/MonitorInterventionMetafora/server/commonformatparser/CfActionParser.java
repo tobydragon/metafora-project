@@ -69,7 +69,7 @@ public class CfActionParser {
 	}
 	
 	public static CfAction getTestableInstance(){
-		return CfActionParser.fromXml(XmlFragment.getFragmentFromFile("resources/xml/CfCreateUser.xml"));
+		return CfActionParser.fromXml(XmlFragment.getFragmentFromLocalFile("resources/xml/CfCreateUser.xml"));
 	}
 	
 }

@@ -2,7 +2,9 @@ package de.uds.MonitorInterventionMetafora.server.xml;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.InputStream;
 import java.io.StringReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,31 +34,51 @@ public class  XmlFragment {
 	Document doc;
 	Element element;
 	
-	public static synchronized XmlFragment getFragmentFromFile(String filename){
+	public static XmlFragment getFragmentFromLocalFile(String filename) {
+		logger.debug("[getFragmentFromLocalFile] Working Directory - " + System.getProperty("user.dir"));
 		try {
-			logger.debug("[getFragmentFromFile] Working Directory - " + System.getProperty("user.dir"));
 			Document doc = builder.build(new File(filename));
-			XmlFragment xmlFragment =  new XmlFragment(doc);
-			logger.debug("[getFragmentFromFile] xml created - \n" + xmlFragment);
-			return xmlFragment;
+			return getFragment(doc);
 		}
 		catch (Exception e){
-   		 logger.info("[getFragmentFromFile] returning null (file proabably does not exist) " + e);
-   		 logger.debug("[getFragmentFromFile] " + ErrorUtil.getStackTrace(e));
-   	 	}
-		return null;
+   		 	logger.info("[getFragmentFromLocalFile] returning null (file proabably does not exist) " + e);
+   		 	logger.debug("[getFragmentFromLocalFile] " + ErrorUtil.getStackTrace(e));
+   		 	return null;
+		}
+		
+	}
+	
+	public static XmlFragment getFragmentFromRemoteFile(String urlString) {
+		try {
+			URL url = new URL(urlString);
+			InputStream is = url.openStream();
+			Document doc = builder.build(is);
+			return getFragment(doc);
+		}
+		catch (Exception e){
+	   		logger.info("[getFragmentFromRemoteFile] returning null (file proabably does not exist) " + e);
+	   		logger.debug("[getFragmentFromRemoteFile] " + ErrorUtil.getStackTrace(e));
+	   		return null;
+		}
+		
 	}
 	
 	public static synchronized XmlFragment getFragmentFromString(String xmlString){
 		try {
     		Document doc = builder.build( new StringReader(xmlString ) );
-    		return new XmlFragment(doc);
-    	 }
-    	 catch (Exception e){
-    		 logger.info("[XmlFragment constructor] XmlFragment not created - " + e.getMessage());
-    		 //logger.debug("[XmlFragment constuctor] " + ErrorUtil.getStackTrace(e));
-    		 return null;
-    	 }	
+    		return getFragment(doc);
+		}
+		 catch (Exception e){
+			logger.info("[getFragmentFromString] returning null (file proabably does not exist) " + e);
+	   		logger.debug("[getFragmentFromString] " + ErrorUtil.getStackTrace(e));
+	   		return null;
+		 }	
+	}
+	
+	public static synchronized XmlFragment getFragment(Document doc){
+			XmlFragment xmlFragment =  new XmlFragment(doc);
+			logger.debug("[getFragmentFromFile] xml created - \n" + xmlFragment);
+			return xmlFragment;
 	}
 	
 	public XmlFragment(Document doc){
