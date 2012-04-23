@@ -66,7 +66,7 @@ public class CfAgentCommunicationManager implements CfCommunicationListener{
 			cfCommnicationBridge.registerListener(this);
 		}
 		else if (methodType == CommunicationMethodType.file){
-			cfCommnicationBridge = new CfFileCommunicationBridge(type);
+			cfCommnicationBridge = new MetaforaCfFileCommunicationBridge(type);
 			cfCommnicationBridge.registerListener(this);
 			ignoreOldMessages = false;
 		}

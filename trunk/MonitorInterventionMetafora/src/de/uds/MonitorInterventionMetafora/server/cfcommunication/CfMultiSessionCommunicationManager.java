@@ -74,7 +74,7 @@ System.out.print("Creating communication Bride successfull");
 			
 		}
 		else if (methodType == CommunicationMethodType.file){
-			cfCommnicationBridge = new CfFileCommunicationBridge(type);
+			cfCommnicationBridge = new MetaforaCfFileCommunicationBridge(type);
 			cfCommnicationBridge.registerListener(this);
 		}
 		

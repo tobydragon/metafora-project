@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+//import org.apache.log4j.Logger;
 import org.jdom.CDATA;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -17,14 +16,16 @@ import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
 import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
-
-
+import de.uds.MonitorInterventionMetafora.server.utils.LogLevel;
+import de.uds.MonitorInterventionMetafora.server.utils.Logger;
 
 //wrapper class for an Element in JDOM
 //catches and prints errors, no attributes may be null
 
 public class XmlFragment implements XmlFragmentInterface {
-	static Log logger = LogFactory.getLog(XmlFragment.class);
+//	static Logger logger = Logger.getLogger(XmlFragment.class);
+	static Logger logger = Logger.getLogger(XmlFragment.class, LogLevel.INFO);
+
 	
 	static SAXBuilder builder = new SAXBuilder();
 	
@@ -33,18 +34,17 @@ public class XmlFragment implements XmlFragmentInterface {
 	
 	public static synchronized XmlFragmentInterface getFragmentFromFile(String filename){
 		try {
-			System.out.println("Working Directory = " +
-			           System.getProperty("user.dir"));
-			System.out.println("File1:"+filename);
+//			System.out.println("Working Directory = " +
+//			           System.getProperty("user.dir"));
+//			System.out.println("File1:"+filename);
 			Document doc = builder.build(new File(filename));
 			XmlFragmentInterface xmlFragment =  new XmlFragment(doc);
 			logger.debug("[getFragmentFromFile] xml created - \n" + xmlFragment);
-			System.out.println("File2:"+filename);
+//			System.out.println("File2:"+filename);
 			return xmlFragment;
 		}
 		catch (Exception e){
-			System.out.println("Error:"+filename+"Error::"+e.toString());
-   		 logger.error("[getFragmentFromFile] " + e.getMessage());
+   		 logger.info("[getFragmentFromFile] returning null (file proabably does not exist) " + e);
    		 logger.debug("[getFragmentFromFile] " + ErrorUtil.getStackTrace(e));
    	 	}
 		return null;
