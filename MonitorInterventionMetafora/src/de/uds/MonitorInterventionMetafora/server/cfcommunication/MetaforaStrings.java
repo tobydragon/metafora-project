@@ -35,7 +35,7 @@ public class MetaforaStrings {
 	
 	public static final String REFERABLE_OBJECT_STRING = "REFERABLE_OBJECT";
 	public static final String ACTION_TYPE_SUCCEEDED_UNKNOWN_STRING = "UNKOWN";
-	public static final String USER_ROLE_ORIGINATOR_STRING = "controller";
+	public static final String USER_ROLE_ORIGINATOR_STRING = "originator";
 	public static final String CLASSIFICATION_OTHER_STRING = "other";
 
 }
