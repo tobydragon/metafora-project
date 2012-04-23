@@ -18,10 +18,10 @@ import de.uds.MonitorInterventionMetafora.shared.utils.IndicatorFilterer;
 
 public class XmlConfigParser {
 	
-	XmlFragmentInterface configFragment;
+	XmlFragment configFragment;
 	
  
-	public XmlConfigParser(XmlFragmentInterface newStart){
+	public XmlConfigParser(XmlFragment newStart){
 		configFragment = newStart;
 	}
 	
@@ -30,8 +30,8 @@ public class XmlConfigParser {
 	}
 	
 	public XmlConfigParser getfragmentById(String fragmentType, String idAttrName,  String id){
-		List<XmlFragmentInterface> frags = configFragment.getChildren(fragmentType);
-		for (XmlFragmentInterface frag : frags){
+		List<XmlFragment> frags = configFragment.getChildren(fragmentType);
+		for (XmlFragment frag : frags){
 			if( frag.getAttributeValue(idAttrName).equalsIgnoreCase(id)){
 				return new XmlConfigParser(frag);
 			}
@@ -52,14 +52,14 @@ public class XmlConfigParser {
 	public Configuration toActiveConfiguration(){	
 		Configuration _conf=null;
 		
-		for(XmlFragmentInterface confFragment: configFragment.getChildren(ServerFormatStrings.CONFIGURATION)){
+		for(XmlFragment confFragment: configFragment.getChildren(ServerFormatStrings.CONFIGURATION)){
 		
 		if(confFragment.getAttributeValue("active").equalsIgnoreCase("1") || confFragment.getAttributeValue("active").equalsIgnoreCase("true")){	
 			
 	    _conf=new Configuration();
 		_conf.setName(confFragment.getAttributeValue(ServerFormatStrings.NAME));
 		_conf.setDataSource(confFragment.getChildValue(ServerFormatStrings.DATA_SOURCE_TYPE));
-		 XmlFragmentInterface  filtersFragment=XmlFragment.getFragmentFromString(confFragment.toString()).accessChild("filters");
+		 XmlFragment  filtersFragment=XmlFragment.getFragmentFromString(confFragment.toString()).accessChild("filters");
 		 _conf.addFilters(getFilterList(filtersFragment));
 		// XmlFragmentInterface  notificationFragment=XmlFragment.getFragmentFromString(confFragment.toString());
 		 //_conf.addNotifications(getNotificationList(notificationFragment));
@@ -82,14 +82,14 @@ public class XmlConfigParser {
 		
 		//for(XmlFragmentInterface _filterFragment: configFragment.getChildren(ServerFormatStrings.NOTIFICATIONS)){
 		//_filterFragment
-			for(XmlFragmentInterface filterFragment: configFragment.getChildren(ServerFormatStrings.NOTIFICATION)){
+			for(XmlFragment filterFragment: configFragment.getChildren(ServerFormatStrings.NOTIFICATION)){
 			IndicatorFilter indicatorFilter=new IndicatorFilter();
 				indicatorFilter.setName(ServerFormatStrings.NOTIFICATION);
 				indicatorFilter.setEditable("false");	
 				NotificationType type=NotificationType.getFromString(filterFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase());
 				String color=filterFragment.getAttributeValue(ServerFormatStrings.COLOR);
 				
-				for(XmlFragmentInterface propertyFragment : filterFragment.getChildren(ServerFormatStrings.FILTERITEM))
+				for(XmlFragment propertyFragment : filterFragment.getChildren(ServerFormatStrings.FILTERITEM))
 				{			
 					IndicatorProperty _filterItem=new IndicatorProperty();
 					_filterItem.setType(FilterItemType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
@@ -111,15 +111,15 @@ public class XmlConfigParser {
 		
 	}
 	
-	List<IndicatorFilter> getFilterList(XmlFragmentInterface _filtersFragment){
+	List<IndicatorFilter> getFilterList(XmlFragment _filtersFragment){
 		
 	List<IndicatorFilter> _entityfilters=new ArrayList<IndicatorFilter>();
-	for(XmlFragmentInterface filterFragment: _filtersFragment.getChildren(ServerFormatStrings.FILTER)){
+	for(XmlFragment filterFragment: _filtersFragment.getChildren(ServerFormatStrings.FILTER)){
 			IndicatorFilter indicatorFilter=new IndicatorFilter();
 			String _filterName=filterFragment.getAttributeValue(ServerFormatStrings.NAME);
 			indicatorFilter.setName(_filterName);
 			indicatorFilter.setEditable(filterFragment.getAttributeValue(ServerFormatStrings.EDITABLE));
-			for(XmlFragmentInterface propertyFragment : filterFragment.getChildren(ServerFormatStrings.FILTERITEM))
+			for(XmlFragment propertyFragment : filterFragment.getChildren(ServerFormatStrings.FILTERITEM))
 			{			
 				IndicatorProperty _filterItem=new IndicatorProperty();
 				_filterItem.setType(FilterItemType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));

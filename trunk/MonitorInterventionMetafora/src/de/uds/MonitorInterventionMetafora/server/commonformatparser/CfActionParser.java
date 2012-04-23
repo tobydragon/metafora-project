@@ -14,7 +14,6 @@ import de.uds.xml.XmlFragment;
 import de.uds.xml.XmlFragmentInterface;*/
 
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
-import de.uds.MonitorInterventionMetafora.server.xml.XmlFragmentInterface;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -44,23 +43,23 @@ public class CfActionParser {
 		return xmlFragment;	
 	}
 	
-	public static CfAction fromXml(XmlFragmentInterface xmlFragment){
+	public static CfAction fromXml(XmlFragment xmlFragment){
 		String timeStr = xmlFragment.getAttributeValue(CommonFormatStrings.TIME_STRING);
 		long time = CommonFormatUtil.getTime(timeStr);
 		
 		CfActionType cfActionType = CfActionTypeParser.fromXml(xmlFragment.cloneChild(CommonFormatStrings.ACTION_TYPE_STRING));
 		
 		List<CfUser> cfUsers = new ArrayList<CfUser>();
-		for (XmlFragmentInterface cfUserElement : xmlFragment.getChildren(CommonFormatStrings.USER_STRING)){
+		for (XmlFragment cfUserElement : xmlFragment.getChildren(CommonFormatStrings.USER_STRING)){
 			cfUsers.add(CfUserParser.fromXml(cfUserElement));
 		}
 		
 		List<CfObject> cfObjects = new ArrayList<CfObject>();
-		for (XmlFragmentInterface cfObjectElement : xmlFragment.getChildren(CommonFormatStrings.OBJECT_STRING)){
+		for (XmlFragment cfObjectElement : xmlFragment.getChildren(CommonFormatStrings.OBJECT_STRING)){
 			cfObjects.add(CfObjectParser.fromXml(cfObjectElement));
 		}
 		
-		XmlFragmentInterface cfContentElement = xmlFragment.cloneChild(CommonFormatStrings.CONTENT_STRING);
+		XmlFragment cfContentElement = xmlFragment.cloneChild(CommonFormatStrings.CONTENT_STRING);
 		if (cfContentElement != null){
 			CfContent cfContent = CfContentParser.fromXml(cfContentElement);
 			return new CfAction (time, cfActionType, cfUsers, cfObjects, cfContent);

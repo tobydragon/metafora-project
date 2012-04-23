@@ -22,7 +22,7 @@ import de.uds.MonitorInterventionMetafora.server.utils.Logger;
 //wrapper class for an Element in JDOM
 //catches and prints errors, no attributes may be null
 
-public class XmlFragment implements XmlFragmentInterface {
+public class  XmlFragment {
 //	static Logger logger = Logger.getLogger(XmlFragment.class);
 	static Logger logger = Logger.getLogger(XmlFragment.class, LogLevel.INFO);
 
@@ -32,15 +32,12 @@ public class XmlFragment implements XmlFragmentInterface {
 	Document doc;
 	Element element;
 	
-	public static synchronized XmlFragmentInterface getFragmentFromFile(String filename){
+	public static synchronized XmlFragment getFragmentFromFile(String filename){
 		try {
-//			System.out.println("Working Directory = " +
-//			           System.getProperty("user.dir"));
-//			System.out.println("File1:"+filename);
+			logger.debug("[getFragmentFromFile] Working Directory - " + System.getProperty("user.dir"));
 			Document doc = builder.build(new File(filename));
-			XmlFragmentInterface xmlFragment =  new XmlFragment(doc);
+			XmlFragment xmlFragment =  new XmlFragment(doc);
 			logger.debug("[getFragmentFromFile] xml created - \n" + xmlFragment);
-//			System.out.println("File2:"+filename);
 			return xmlFragment;
 		}
 		catch (Exception e){
@@ -50,7 +47,7 @@ public class XmlFragment implements XmlFragmentInterface {
 		return null;
 	}
 	
-	public static synchronized XmlFragmentInterface getFragmentFromString(String xmlString){
+	public static synchronized XmlFragment getFragmentFromString(String xmlString){
 		try {
     		Document doc = builder.build( new StringReader(xmlString ) );
     		return new XmlFragment(doc);
@@ -81,34 +78,18 @@ public class XmlFragment implements XmlFragmentInterface {
 		this( new Element(elementName));
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.uds.xml.XmlFragmentInterface#setAttribute(java.lang.String, java.lang.String)
-	 */
-	@Override
 	public void setAttribute(String attributeName, String attributeValue){
 		element.setAttribute(attributeName, attributeValue);
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.uds.xml.XmlFragmentInterface#addContent(de.uds.xml.XmlFragment)
-	 */
-	@Override
-	public void addContent(XmlFragmentInterface contentFragment){
+	public void addContent(XmlFragment contentFragment){
 		element.addContent(contentFragment.getClone());
 	}
-	
-	/* (non-Javadoc)
-	 * @see de.uds.xml.XmlFragmentInterface#addContent(java.lang.String)
-	 */
-	@Override
+
 	public void addContent(String contentString){
 		element.addContent(contentString);
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.uds.xml.XmlFragmentInterface#addCdataContent(java.lang.String)
-	 */
-	@Override
 	public void addCdataContent(String contentString){
 		element.addContent(new CDATA(contentString));
 	}
@@ -117,10 +98,6 @@ public class XmlFragment implements XmlFragmentInterface {
 		return (Element)element.clone();
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.uds.xml.XmlFragmentInterface#getAttributeValue(java.lang.String)
-	 */
-	@Override
 	public String getAttributeValue(String attributeName){
 		return element.getAttributeValue(attributeName);
 	}
@@ -130,37 +107,21 @@ public class XmlFragment implements XmlFragmentInterface {
 	    return outputter.outputString(element);
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.uds.xml.XmlFragmentInterface#toStringRaw()
-	 */
-	@Override
 	public String toStringRaw(){
 		XMLOutputter outputter = new XMLOutputter(Format.getRawFormat());
 	    return outputter.outputString(element);
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.uds.xml.XmlFragmentInterface#toStringDoc()
-	 */
-	@Override
 	public String toStringDoc(){
 		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 	    return outputter.outputString(doc);
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.uds.xml.XmlFragmentInterface#getRootElement()
-	 */
-	@Override
 	public Element getRootElement(){
 		return element;
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.uds.xml.XmlFragmentInterface#accessChild(java.lang.String)
-	 */
-	@Override
-	public XmlFragmentInterface accessChild(String childName){
+	public XmlFragment accessChild(String childName){
 		Object childObj = element.getChild(childName);
 		if (childObj instanceof Element){
 			return new XmlFragment(doc, (Element)childObj);
@@ -168,11 +129,7 @@ public class XmlFragment implements XmlFragmentInterface {
 		return null;
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.uds.xml.XmlFragmentInterface#cloneChild(java.lang.String)
-	 */
-	@Override
-	public XmlFragmentInterface cloneChild(String childName){
+	public XmlFragment cloneChild(String childName){
 		Object childObj = element.getChild(childName);
 		if (childObj instanceof Element){
 			return new XmlFragment((Element)childObj);
@@ -180,12 +137,8 @@ public class XmlFragment implements XmlFragmentInterface {
 		return null;
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.uds.xml.XmlFragmentInterface#getChildren(java.lang.String)
-	 */
-	@Override
-	public List<XmlFragmentInterface> getChildren(String childName){
-		List<XmlFragmentInterface> children = new ArrayList<XmlFragmentInterface>();
+	public List<XmlFragment> getChildren(String childName){
+		List<XmlFragment> children = new ArrayList<XmlFragment>();
 		for (Object childObj : element.getChildren(childName)){
 			if (childObj instanceof Element){
 				children.add(new XmlFragment((Element)childObj));
@@ -195,11 +148,6 @@ public class XmlFragment implements XmlFragmentInterface {
 		return children;
 	}
 	
-	
-	/* (non-Javadoc)
-	 * @see de.uds.xml.XmlFragmentInterface#getChildValue(java.lang.String)
-	 */
-	@Override
 	public String getChildValue(String childName){
 		Object childObj = element.getChild(childName);
 		if (childObj instanceof Element){
@@ -208,12 +156,6 @@ public class XmlFragment implements XmlFragmentInterface {
 		return "";
 	}
 	
-	
-	
-	/* (non-Javadoc)
-	 * @see de.uds.xml.XmlFragmentInterface#overwriteFile(java.lang.String)
-	 */
-	@Override
 	public boolean overwriteFile(String filename){
 		try {
 			File f1 = new File(filename);

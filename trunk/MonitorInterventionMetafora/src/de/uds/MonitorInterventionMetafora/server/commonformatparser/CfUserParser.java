@@ -1,7 +1,6 @@
 package de.uds.MonitorInterventionMetafora.server.commonformatparser;
 
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
-import de.uds.MonitorInterventionMetafora.server.xml.XmlFragmentInterface;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 
@@ -21,7 +20,7 @@ public class CfUserParser {
 		return xmlFragment;
 	}
 	
-	public static CfUser fromXml(XmlFragmentInterface xmlFragment){
+	public static CfUser fromXml(XmlFragment xmlFragment){
 		String id = xmlFragment.getAttributeValue(CommonFormatStrings.ID_STRING);
 		String role = xmlFragment.getAttributeValue(CommonFormatStrings.ROLE_STRING);
 		return new CfUser(id, role);

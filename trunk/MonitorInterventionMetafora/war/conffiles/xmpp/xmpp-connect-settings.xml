@@ -139,4 +139,23 @@
 		<device>VisualizerCommandTestToby</device>
 		<controller-name>Metafora-test-toby</controller-name>
 	</xmpp-channel-setting>
+	
+	<xmpp-channel-setting channelid="visualizer-analysis-test">
+		<connection-name>VisualizerAnalysis</connection-name>
+		<username>VisualizerAnalysis</username>
+		<password>VisualizerAnalysis</password>
+		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>VisualizerAnalysis</alias>
+		<device>VisualizerAnalysis</device>
+	</xmpp-channel-setting>
+	
+	<xmpp-channel-setting channelid="visualizer-command-test">
+		<connection-name>VisualizerCommand</connection-name>
+		<username>VisualizerCommand</username>
+		<password>VisualizerCommand</password>
+		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>VisualizerCommand</alias>
+		<device>VisualizerCommand</device>
+	</xmpp-channel-setting>
+	
 </xmpp-connect-settings>
