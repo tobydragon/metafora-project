@@ -23,7 +23,10 @@ public class CfAction implements Serializable{
 	List<CfObject> cfObjects;
 	CfContent cfContent;
 	
-	public CfAction(){}
+	public CfAction(){
+		this.cfUsers = new ArrayList<CfUser>();
+		this.cfObjects = new ArrayList<CfObject>();
+	}
 	
 	public CfAction(long time, CfActionType cfActionType) {
 		super();
@@ -49,6 +52,7 @@ public class CfAction implements Serializable{
 	}
 	
 	public void addUser(CfUser cfUser){
+		System.out.println("Users:" + cfUsers);
 		cfUsers.add(cfUser);
 	}
 
