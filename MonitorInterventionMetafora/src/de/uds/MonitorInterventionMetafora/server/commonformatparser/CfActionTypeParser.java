@@ -1,7 +1,6 @@
 package de.uds.MonitorInterventionMetafora.server.commonformatparser;
 
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
-import de.uds.MonitorInterventionMetafora.server.xml.XmlFragmentInterface;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 
@@ -26,7 +25,7 @@ public class CfActionTypeParser {
 		return xmlFragment;
 	}
 	
-	public static CfActionType fromXml(XmlFragmentInterface xmlFragment){
+	public static CfActionType fromXml(XmlFragment xmlFragment){
 		String type = xmlFragment.getAttributeValue(CommonFormatStrings.TYPE_STRING);
 		String classification = xmlFragment.getAttributeValue(CommonFormatStrings.CLASSIFICATION_STRING);
 		String succeeded = xmlFragment.getAttributeValue(CommonFormatStrings.SUCCEED_STRING);

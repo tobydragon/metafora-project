@@ -6,7 +6,6 @@ import java.util.Vector;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
 import de.uds.MonitorInterventionMetafora.server.utils.Logger;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
-import de.uds.MonitorInterventionMetafora.server.xml.XmlFragmentInterface;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
 
@@ -18,8 +17,8 @@ public class SimpleCfFileCommunicationBridge implements CfCommunicationBridge{
 	
 	private String channelNameIn;
 	private String channelNameOut;
-	private XmlFragmentInterface xmlIn;
-	private XmlFragmentInterface xmlOut;
+	private XmlFragment xmlIn;
+	private XmlFragment xmlOut;
 	
 	private Vector<CfCommunicationListener> listeners;
 	
@@ -34,10 +33,10 @@ public class SimpleCfFileCommunicationBridge implements CfCommunicationBridge{
 		
 	}
 	
-	private XmlFragmentInterface getOrCreateFragment(String filename){
+	private XmlFragment getOrCreateFragment(String filename){
 		
 		logger.info("[getOrCreateFragement] get from file:" + filename);
-		XmlFragmentInterface fragment = XmlFragment.getFragmentFromFile(filename);
+		XmlFragment fragment = XmlFragment.getFragmentFromFile(filename);
 		if (fragment == null){
 			
 			logger.info("[getOrCreateFragement] no file read from fragment, creating new fragment");
@@ -61,7 +60,7 @@ public class SimpleCfFileCommunicationBridge implements CfCommunicationBridge{
 			sendMessages();
 		}
 		else {
-			XmlFragmentInterface actionsFrag = xmlOut.accessChild("actions");
+			XmlFragment actionsFrag = xmlOut.accessChild("actions");
 			actionsFrag.addContent(CfActionParser.toXml(actionToSend));
 			xmlOut.overwriteFile(channelNameOut);
 		}
@@ -71,8 +70,8 @@ public class SimpleCfFileCommunicationBridge implements CfCommunicationBridge{
 	private void sendMessages() {
 		
 		logger.info("[sendMessages] Sending all actions from file: " + channelNameIn);
-		XmlFragmentInterface actionsFrag = xmlIn.accessChild("actions");
-		for (XmlFragmentInterface actionFrag : actionsFrag.getChildren("action")){
+		XmlFragment actionsFrag = xmlIn.accessChild("actions");
+		for (XmlFragment actionFrag : actionsFrag.getChildren("action")){
 			CfAction action = CfActionParser.fromXml(actionFrag);
 			if (action != null){
 				for (CfCommunicationListener listener : listeners){

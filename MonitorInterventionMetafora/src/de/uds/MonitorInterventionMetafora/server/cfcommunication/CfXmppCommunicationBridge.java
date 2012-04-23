@@ -14,7 +14,6 @@ import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
-import de.uds.MonitorInterventionMetafora.server.xml.XmlFragmentInterface;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlUtil;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
@@ -120,7 +119,7 @@ static String createConnection(CommunicationChannelType configType, XmlConfigPar
 		logger.info("[newMessage] from user(" + user + ")\n" +  message);
 		
 		message = XmlUtil.convertSpecialCharactersToDescripitons(message);
-		XmlFragmentInterface actionXml = XmlFragment.getFragmentFromString(message);
+		XmlFragment actionXml = XmlFragment.getFragmentFromString(message);
 		if (actionXml != null){
 			CfAction action = CfActionParser.fromXml(actionXml);
 			for (CfCommunicationListener listener : listeners){

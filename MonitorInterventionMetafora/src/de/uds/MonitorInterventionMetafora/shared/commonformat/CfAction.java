@@ -4,11 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
-import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
-import de.uds.MonitorInterventionMetafora.server.xml.XmlFragmentInterface;
-
-
 public class CfAction implements Serializable{
 	
 	/**

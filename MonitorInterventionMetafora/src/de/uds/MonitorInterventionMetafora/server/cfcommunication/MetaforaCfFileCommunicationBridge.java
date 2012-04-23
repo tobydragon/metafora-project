@@ -1,20 +1,13 @@
 package de.uds.MonitorInterventionMetafora.server.cfcommunication;
 
-import java.util.Date;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
-import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
-import de.uds.MonitorInterventionMetafora.server.xml.XmlFragmentInterface;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-
-//import de.dfki.lasad.util.ErrorUtil;
-//import de.kuei.metafora.xmpp.XMPPBridge;
-//import de.kuei.metafora.xmpp.XMPPMessageListener;
 
 public class MetaforaCfFileCommunicationBridge implements CfCommunicationBridge{
 	Logger logger = Logger.getLogger(CfCommunicationBridge.class);
@@ -36,8 +29,8 @@ public class MetaforaCfFileCommunicationBridge implements CfCommunicationBridge{
 	
 	private String channelNameIn;
 	private String channelNameOut;
-	private XmlFragmentInterface xmlIn;
-	private XmlFragmentInterface xmlOut;
+	private XmlFragment xmlIn;
+	private XmlFragment xmlOut;
 	
 	private Vector<CfCommunicationListener> listeners;
 	
@@ -62,10 +55,10 @@ public class MetaforaCfFileCommunicationBridge implements CfCommunicationBridge{
 		
 	}
 	
-	private XmlFragmentInterface getOrCreateFragment(String filename){
+	private XmlFragment getOrCreateFragment(String filename){
 		
 		System.out.println("trying to get interaction data!!");
-		XmlFragmentInterface fragment = XmlFragment.getFragmentFromFile(filename);
+		XmlFragment fragment = XmlFragment.getFragmentFromFile(filename);
 		if (fragment == null){
 			
 			System.out.println(" interaction data fragment is not null!!");
@@ -89,7 +82,7 @@ public class MetaforaCfFileCommunicationBridge implements CfCommunicationBridge{
 			sendMessages();
 		}
 		else {
-			XmlFragmentInterface actionsFrag = xmlOut.accessChild("actions");
+			XmlFragment actionsFrag = xmlOut.accessChild("actions");
 			actionsFrag.addContent(CfActionParser.toXml(actionToSend));
 			xmlOut.overwriteFile(channelNameOut);
 		}
@@ -99,8 +92,8 @@ public class MetaforaCfFileCommunicationBridge implements CfCommunicationBridge{
 	private void sendMessages() {
 		
 		System.out.println("Sending individual actions!!");
-		XmlFragmentInterface actionsFrag = xmlIn.accessChild("actions");
-		for (XmlFragmentInterface actionFrag : actionsFrag.getChildren("action")){
+		XmlFragment actionsFrag = xmlIn.accessChild("actions");
+		for (XmlFragment actionFrag : actionsFrag.getChildren("action")){
 			CfAction action = CfActionParser.fromXml(actionFrag);
 			if (action != null){
 				for (CfCommunicationListener listener : listeners){
