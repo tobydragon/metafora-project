@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interactiondata>
+	<actions>
+		<action time="1335183533280">
+			<actiontype classification="create" logged="true" succeed="true" type="indicator"/>
+			<user id="PlaTO" role="originator"/>
+			<object id="Neu" type="openmap">
+				<properties>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="USERNAME" value="system"/>
+					<property name="MAP-ID" value="KerstinsMap2001"/>
+				</properties>
+			</object>
+			<content>
+				<description>User system opened map KerstinsMap2001.</description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PlanningTool"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1335183573083">
+			<actiontype classification="create" logged="true" succeed="true" type="indicator"/>
+			<user id="PlaTO" role="originator"/>
+			<object id="Neu" type="newmap">
+				<properties>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="USERNAME" value="system"/>
+					<property name="MAP-ID" value="KerstinTest"/>
+				</properties>
+			</object>
+			<content>
+				<description>User system created map KerstinTest.</description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PlanningTool"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1335183573100">
+			<actiontype classification="create" logged="true" succeed="true" type="indicator"/>
+			<user id="PlaTO" role="originator"/>
+			<object id="Neu" type="changemap">
+				<properties>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="USERNAME" value="system"/>
+					<property name="MAP-ID" value="KerstinTest"/>
+				</properties>
+			</object>
+			<content>
+				<description>User system changed Planning Tool map to map KerstinTest.</description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PlanningTool"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1335183573100">
+			<actiontype classification="create" logged="true" succeed="true" type="indicator"/>
+			<user id="PlaTO" role="originator"/>
+			<object id="Neu" type="openmap">
+				<properties>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="USERNAME" value="system"/>
+					<property name="MAP-ID" value="KerstinTest"/>
+				</properties>
+			</object>
+			<content>
+				<description>User system opened map KerstinTest.</description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PlanningTool"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1335180900547">
+			<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+			<user id="PlaTO" role="originator"/>
+			<object id="4" type="pathOfActivityStages">
+				<properties>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="MAP-ID" value="KerstinTest"/>
+				</properties>
+			</object>
+			<content>
+				<description>Recurrent theme in map KerstinTest.</description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PlanningTool"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1335180910219">
+			<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+			<user id="PlaTO" role="originator"/>
+			<object id="2" type="join">
+				<properties>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="USERNAME" value="1335183498409"/>
+					<property name="MAP-ID" value="KerstinTest"/>
+					<property name="NODE" value="node_2"/>
+				</properties>
+			</object>
+			<content>
+				<description>Join in map KerstinTest at node node_2 caused by 1335183498409 at time 1335180910219.</description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PlanningTool"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1335180914443">
+			<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+			<user id="PlaTO" role="originator"/>
+			<object id="2" type="split">
+				<properties>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="USERNAME" value="1335183498409"/>
+					<property name="MAP-ID" value="KerstinTest"/>
+					<property name="NODE" value="node_0"/>
+				</properties>
+			</object>
+			<content>
+				<description>Split in map KerstinTest at node node_0 caused by 1335183498409 at time 1335180914443.</description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PlanningTool"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1335180900547">
+			<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+			<user id="PlaTO" role="originator"/>
+			<object id="2" type="join">
+				<properties>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="USERNAME" value="1335183498409"/>
+					<property name="MAP-ID" value="KerstinTest"/>
+					<property name="NODE" value="node_0"/>
+				</properties>
+			</object>
+			<content>
+				<description>Join in map KerstinTest at node node_0 caused by 1335183498409 at time 1335180900547.</description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PlanningTool"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1335183692262">
+			<actiontype classification="create" logged="true" succeed="true" type="indicator"/>
+			<user id="PlaTO" role="originator"/>
+			<object id="Neu" type="deletemap">
+				<properties>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="USERNAME" value="system"/>
+					<property name="MAP-ID" value="KerstinTest"/>
+				</properties>
+			</object>
+			<content>
+				<description>Map KerstinTest was deleted by system.</description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PlanningTool"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1335183692264">
+			<actiontype classification="create" logged="true" succeed="true" type="indicator"/>
+			<user id="PlaTO" role="originator"/>
+			<object id="Neu" type="changemap">
+				<properties>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="USERNAME" value="system"/>
+					<property name="MAP-ID" value="default"/>
+				</properties>
+			</object>
+			<content>
+				<description>User system changed Planning Tool map to map default.</description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PlanningTool"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1335183692264">
+			<actiontype classification="create" logged="true" succeed="true" type="indicator"/>
+			<user id="PlaTO" role="originator"/>
+			<object id="Neu" type="openmap">
+				<properties>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="USERNAME" value="system"/>
+					<property name="MAP-ID" value="default"/>
+				</properties>
+			</object>
+			<content>
+				<description>User system opened map default.</description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PlanningTool"/>
+				</properties>
+			</content>
+		</action>
+	</actions>
+</interactiondata>

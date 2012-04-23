@@ -16,7 +16,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 //import de.kuei.metafora.xmpp.XMPPBridge;
 //import de.kuei.metafora.xmpp.XMPPMessageListener;
 
-public class CfFileCommunicationBridge implements CfCommunicationBridge{
+public class MetaforaCfFileCommunicationBridge implements CfCommunicationBridge{
 	Logger logger = Logger.getLogger(CfCommunicationBridge.class);
 	
 	private static String commandConnectionNameIn = null;
@@ -41,7 +41,7 @@ public class CfFileCommunicationBridge implements CfCommunicationBridge{
 	
 	private Vector<CfCommunicationListener> listeners;
 	
-	public CfFileCommunicationBridge(CommunicationChannelType type){
+	public MetaforaCfFileCommunicationBridge(CommunicationChannelType type){
 		listeners = new Vector<CfCommunicationListener>();
 
 		if (type == CommunicationChannelType.command){
