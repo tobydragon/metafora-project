@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interactiondata>
+	<actions>
+		<!-- 
+		<action time="1335264086703">
+			<user id="Ken" role="student" />
+			<actiontype classification="CREATE" logged="true" succeed="true"
+				type="create_shape" />
+			<description><![CDATA[Created shape with id NZKKke4e-FoESvAGyeUK7h. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@e88e24 {iterations: 1 x: 5 y: 2 width: 1 height: 1 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.BasicShape@1cc0a0f {x: 5 y: 2 width: 1 height: 1 #0000FF: -1073741824 #0000FF correct expression: null colour: [#0000FF] name: } }]]></description>
+			<object id="Shape46" type="Shape" />
+		</action>
+		
+		- The action type for all of these is "indicator", then the indicator type for pure building things is "activity"
+		- The description is supposed to be human readable and usable, so IDs and classnames like this are not useful in description
+		- these extra properties included in the description can be included as properties of the object, as much as necessary (nothing will look at these properties currently)
+		- each action and object should include TOOL=
+		- need also Challenge_ID, CHALLENGE_NAME, and GROUP_ID for indicators  
+		 -->
+		<action time="1335264086703">
+			<actiontype classification="CREATE" logged="true" succeed="true" type="Indicator" />
+			<user id="Ken" role="student" />
+			<object id='NZKKke4e-FoESvAGyeUK7h' type='shape'>
+				<properties>
+					<property name='TOOL' value="eXpresser"/>
+					<property name="name" value="Shape 46"/>
+					<property name='SHAPE_CLASS' value='uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@e88e24' />
+					<property name='iterations' value='1'/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Ken created a pattern shape.]]></description>
+				<properties>
+					<property name='TOOL' value="eXpresser"/>
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="GROUP_ID" value="group1" />
+				</properties>
+			</content>
+		</action>
+		
+		<!-- <action time="1335264086919">
+			<user id="Ken" role="student" />
+			<actiontype classification="Indicator" logged="false" succeed="true" type="OTHER" />
+			<object id='0' type='expresser-model-and-rules'>
+				<properties>
+					<property name='VIEW_URL'
+						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
+					<property name='REFERENCE_URL'
+						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml' />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[blue allocation is now incorrect master (Shape2)]]></description>
+				<properties>
+					<property name="shapeId" value="Shape2" />
+					<property name="color" value="#0000FF" />
+					<property name="correct" value="false" />
+					<property name="generallyCorrect" value="true" />
+					<property name="constant" value="false" />
+					<property name="global" value="false" />
+					<property name="projectName" value="Makingtraintrack" />
+					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</content>
+		</action>
+		
+		This one looks mostly correct
+		- classification and type were switched
+		- Why does the content have a shape id of 'shape2', but the referable object is id=0?
+		- What does this description mean?  Is there any way to phrase it in an intuitively understandable way, or do we need to train wizards on these cryptic statements?
+		 -->
+		
+		<action time="1335264086919">
+			<user id="Ken" role="student" />
+			<actiontype classification="OTHER" logged="false" succeed="true" type="Indicator" />
+			<object id='0' type='expresser-model-and-rules'>
+				<properties>
+					<property name='TOOL' value="eXpresser"/>					
+					<property name='VIEW_URL'
+						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
+					<property name='REFERENCE_URL'
+						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml' />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[blue allocation is now incorrect master (Shape2)]]></description>
+				<properties>
+					<property name='TOOL' value="eXpresser"/>					
+					<property name="shapeId" value="Shape2" />
+					<property name="color" value="#0000FF" />
+					<property name="correct" value="false" />
+					<property name="generallyCorrect" value="true" />
+					<property name="constant" value="false" />
+					<property name="global" value="false" />
+					<property name="projectName" value="Makingtraintrack" />
+					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</content>
+		</action>		
+
+	</actions>
+</interactiondata>
