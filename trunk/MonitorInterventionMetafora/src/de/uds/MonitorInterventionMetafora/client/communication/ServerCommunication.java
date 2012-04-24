@@ -48,6 +48,7 @@ public class ServerCommunication implements Serializable {
 	
 public void processAction(String _user,CfAction cfAction,CfActionCallBack actionCallBack)
 {
+	System.out.println("ServerCommunication processaction is called");
 	serviceServlet.sendAction(_user,cfAction,actionCallBack);
 	
 }

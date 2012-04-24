@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.view.intervention;
+package de.uds.MonitorInterventionMetafora.client.view.feedback;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TabBar;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import de.uds.MonitorInterventionMetafora.client.view.containers.InterventionPanelContainer;
+import de.uds.MonitorInterventionMetafora.client.view.containers.FeedbackPanelContainer;
 
 
 public class TemplatePool {
@@ -51,7 +51,7 @@ public class TemplatePool {
 						{
 							@Override
 							public void onClick(ClickEvent event) {
-								InterventionPanelContainer.getMessageTextBox().setText(mt);
+								FeedbackPanelContainer.getMessageTextBox().setText(mt);
 							}		
 						});
 						buttonsVPanel.add(b);

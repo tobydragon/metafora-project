@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.view.intervention;
+package de.uds.MonitorInterventionMetafora.client.view.feedback;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -11,7 +11,7 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import de.uds.MonitorInterventionMetafora.client.view.containers.InterventionPanelContainer;
+import de.uds.MonitorInterventionMetafora.client.view.containers.FeedbackPanelContainer;
 
 
 public class RequestStack {
@@ -44,14 +44,14 @@ public class RequestStack {
 			public void onClick(ClickEvent event) {
 				String userName = listbox.getItemText(listbox.getSelectedIndex());
 				detailsTextArea.setText("Name: "+userName+"\nno other info implemented");
-				VerticalPanel vp = InterventionPanelContainer.getOutbox().recipientNamesColumn;
+				VerticalPanel vp = FeedbackPanelContainer.getOutbox().recipientNamesColumn;
 				for(Widget w : vp)
 				{
 					CheckBox cb = (CheckBox) w;
 					cb.setValue(cb.getText().equals(userName));
 				}
-				InterventionPanelContainer.getOutbox().sendModeRadioButtonResponse.setValue(true);
-				InterventionPanelContainer.getRequestResponse().requestSelected(userName);
+				FeedbackPanelContainer.getOutbox().sendModeRadioButtonResponse.setValue(true);
+				FeedbackPanelContainer.getRequestResponse().requestSelected(userName);
 			}
 		});
 		row.add(listbox);
@@ -69,7 +69,7 @@ public class RequestStack {
 		int selectedIndex = listbox.getSelectedIndex();
 		listbox.removeItem(selectedIndex);
 		clearDetails();
-		InterventionPanelContainer.getOutbox().sendModeRadioButtonPopup.setValue(true);
+		FeedbackPanelContainer.getOutbox().sendModeRadioButtonPopup.setValue(true);
 	}
 	public void clearDetails()
 	{

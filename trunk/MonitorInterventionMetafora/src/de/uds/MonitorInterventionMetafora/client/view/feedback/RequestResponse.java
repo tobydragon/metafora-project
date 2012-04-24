@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.view.intervention;
+package de.uds.MonitorInterventionMetafora.client.view.feedback;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
