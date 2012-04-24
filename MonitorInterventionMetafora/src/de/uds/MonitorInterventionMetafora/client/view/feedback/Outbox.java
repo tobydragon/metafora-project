@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.view.intervention;
+package de.uds.MonitorInterventionMetafora.client.view.feedback;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -12,9 +12,18 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
-import de.uds.MonitorInterventionMetafora.client.view.containers.InterventionPanelContainer;
+import de.uds.MonitorInterventionMetafora.client.actionresponse.CfActionCallBack;
+import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
+import de.uds.MonitorInterventionMetafora.client.view.containers.FeedbackPanelContainer;
+import de.uds.MonitorInterventionMetafora.server.cfcommunication.MetaforaStrings;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
+import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
-public class Outbox {
+public class Outbox implements CfActionCallBack {
 	private TextBox messageTextBox;
 	private VerticalPanel vpanel;
 	private HorizontalPanel sendOptionsRow;
@@ -54,8 +63,8 @@ public class Outbox {
 		ClickHandler noRequestClickHandler = new ClickHandler(){
 			@Override
 			public void onClick(ClickEvent event) {
-				InterventionPanelContainer.getRequestStack().clearDetails();
-				InterventionPanelContainer.getRequestResponse().setEnabled(false);
+				FeedbackPanelContainer.getRequestStack().clearDetails();
+				FeedbackPanelContainer.getRequestResponse().setEnabled(false);
 			}
 		};
 		sendModeRadioButtonPopup.setValue(true, true);
@@ -78,7 +87,7 @@ public class Outbox {
 		final VerticalPanel userGroupColumn = new VerticalPanel();
 		recipientNamesColumn = new VerticalPanel();
 		userGroupColumn.add(recipientNamesColumn);
-		String[] userNames = InterventionPanelContainer.userNames;
+		String[] userNames = FeedbackPanelContainer.userNames;
 		for(int i=0; i<userNames.length; i++)
 		{
 			final String userName = userNames[i];
@@ -116,15 +125,7 @@ public class Outbox {
 				sendNameToServer();
 			}
 
-			private void sendNameToServer() {
-				//String textToServer = messageTextBox.getText();
-				//Window.alert("Sending messages not yet implemented");
-				messageTextBox.setText("");
-				if(sendModeRadioButtonResponse.getValue())
-				{
-					InterventionPanelContainer.getInstance().declareRequestHandled();
-				}
-			}
+
 		});
 		sendOptionsRow.add(sendButton);
 		sendOptionsRow.setWidth(""+sectionWidth+"px");
@@ -142,6 +143,47 @@ public class Outbox {
 		{
 			CheckBox cb = (CheckBox) recipientNamesColumn.getWidget(i);
 			cb.setValue(cb.getText().equals(r.name));
+		}
+	}
+	@Override
+	public void onFailure(Throwable caught) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onSuccess(CfAction result) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private void sendNameToServer() {
+		//String textToServer = messageTextBox.getText();
+		System.out.println("Sending messages being tested (again)");
+		CfAction feedbackMessage=new CfAction();
+	 	feedbackMessage.setTime(GWTUtils.getTimeStamp());
+	 	  
+		 CfActionType _cfActionType=new CfActionType();
+	 	 _cfActionType.setType("feedback");
+	 	_cfActionType.setClassification("create");
+	 	_cfActionType.setSucceed("UNKOWN");
+	 	_cfActionType.setLogged("true");
+	 	
+ 	 	feedbackMessage.setCfActionType(_cfActionType);
+ 	 	feedbackMessage.addUser(new CfUser("FeedbackClient", MetaforaStrings.USER_ROLE_ORIGINATOR_STRING));
+ 	 	feedbackMessage.addUser(new CfUser("Metafora", MetaforaStrings.USER_ROLE_RECEIVER_STRING));
+ 	 	feedbackMessage.addUser(new CfUser("Bob", "student"));
+ 	 	feedbackMessage.addUser(new CfUser("Alice", "student"));
+ 	 	
+ 	 	CfContent cfContent = new CfContent("Please mind the gap!");
+ 	 	cfContent.addProperty(new CfProperty("FEEDBACK_TYPE","NO_INTERRUPTION"));
+ 	 	feedbackMessage.setCfContent(cfContent);
+ 	 	
+	 	ServerCommunication.getInstance().processAction("FeedbackClient",feedbackMessage,this);	
+
+		messageTextBox.setText("");
+		if(sendModeRadioButtonResponse.getValue())
+		{
+			FeedbackPanelContainer.getInstance().declareRequestHandled();
 		}
 	}
 }

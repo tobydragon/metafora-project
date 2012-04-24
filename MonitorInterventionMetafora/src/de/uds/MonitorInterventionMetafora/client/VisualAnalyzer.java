@@ -27,7 +27,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.visualization.client.VisualizationUtils;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
-import de.uds.MonitorInterventionMetafora.client.view.containers.InterventionPanelContainer;
+import de.uds.MonitorInterventionMetafora.client.view.containers.FeedbackPanelContainer;
 import de.uds.MonitorInterventionMetafora.client.view.containers.MainContainerTabPanel;
 import de.uds.MonitorInterventionMetafora.client.view.containers.MonitorPanelContainer;
 
@@ -40,11 +40,11 @@ class VisualAnalyzer implements EntryPoint {
       public void run() {
           
     	  
-    	  InterventionPanelContainer _interventionPanelContainer=new  InterventionPanelContainer();
+    	  FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer();
     	  MonitorPanelContainer _monitoringContainer=new MonitorPanelContainer();
     	  MainContainerTabPanel _mainPanel=new MainContainerTabPanel();
     	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
-    	  _mainPanel.addTab("Feedback", _interventionPanelContainer,false);
+    	  _mainPanel.addTab("Feedback", _feedbackPanelContainer,false);
     	  
     	  // for testing purposes put  the single container (_interventionPanelContainer or _monitoringContainer)
     	  RootPanel.get().add(_mainPanel);

@@ -93,8 +93,12 @@ public class CfAction implements Serializable, Comparable<CfAction>{
 	}
 
 	
+	public void setCfContent(CfContent cfContent) {
+		this.cfContent = cfContent;
+	}
 
-public CfContent getCfContent() {
+	
+    public CfContent getCfContent() {
 		return cfContent;
 	}
 

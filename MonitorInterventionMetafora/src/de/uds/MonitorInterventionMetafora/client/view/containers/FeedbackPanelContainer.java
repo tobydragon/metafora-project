@@ -1,10 +1,10 @@
 package de.uds.MonitorInterventionMetafora.client.view.containers;
 
-import de.uds.MonitorInterventionMetafora.client.view.intervention.UserRequest;
-import de.uds.MonitorInterventionMetafora.client.view.intervention.Outbox;
-import de.uds.MonitorInterventionMetafora.client.view.intervention.RequestResponse;
-import de.uds.MonitorInterventionMetafora.client.view.intervention.RequestStack;
-import de.uds.MonitorInterventionMetafora.client.view.intervention.TemplatePool;
+import de.uds.MonitorInterventionMetafora.client.view.feedback.Outbox;
+import de.uds.MonitorInterventionMetafora.client.view.feedback.RequestResponse;
+import de.uds.MonitorInterventionMetafora.client.view.feedback.RequestStack;
+import de.uds.MonitorInterventionMetafora.client.view.feedback.TemplatePool;
+import de.uds.MonitorInterventionMetafora.client.view.feedback.UserRequest;
 
 import com.extjs.gxt.ui.client.widget.Label;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -15,16 +15,16 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class InterventionPanelContainer extends VerticalPanel {
-	private de.uds.MonitorInterventionMetafora.client.view.intervention.Outbox outbox;
+public class FeedbackPanelContainer extends VerticalPanel {
+	private de.uds.MonitorInterventionMetafora.client.view.feedback.Outbox outbox;
 	private RequestResponse requestResponse;
 	private TemplatePool templatePool;
 	private RequestStack requestStack;
-	static private InterventionPanelContainer INSTANCE;
+	static private FeedbackPanelContainer INSTANCE;
 
 	public static String[] userNames = {"Agnes", "Bobby", "Cath"};
 	
-	public InterventionPanelContainer(){
+	public FeedbackPanelContainer(){
 		INSTANCE = this;
 		
 		final VerticalPanel top1VPanel = new VerticalPanel();
@@ -58,7 +58,7 @@ public class InterventionPanelContainer extends VerticalPanel {
 
 
 
-	public static InterventionPanelContainer getInstance() {
+	public static FeedbackPanelContainer getInstance() {
 		return INSTANCE;
 	}
 
