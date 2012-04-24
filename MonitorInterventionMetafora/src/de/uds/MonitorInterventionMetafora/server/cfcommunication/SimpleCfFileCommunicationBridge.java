@@ -84,6 +84,9 @@ public class SimpleCfFileCommunicationBridge implements CfCommunicationBridge{
 					logger.debug("[sendMessages] sent action : time="+action.getTime());
 				}
 			}
+			else {
+				logger.info("[sendMessages] actionFragment couldn't be parsed: " + actionFrag);
+			}
 		}
 		logger.info("[sendMessages] All actions sent succesfully");
 	}
