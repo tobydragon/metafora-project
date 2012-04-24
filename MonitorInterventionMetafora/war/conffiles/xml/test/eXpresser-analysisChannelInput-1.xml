@@ -16,9 +16,9 @@
 			<object id='0' type='expresser-model-and-rules'>
 				<properties>
 					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&user=Ken&context=some-context&challengeId=42&challengeName=Train%20Track&metafora=1&testing=1&contextKey=7GzVT01UNQiajrlANJUg56&model=Making-train-track&time=0&RulesThumbnail=1&thumbnail=150x90' />
+						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
 					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&metafora=1&VersionQuery=1&copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml' />
+						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml' />
 				</properties>
 			</object>
 			<content>
@@ -53,9 +53,9 @@
 			<object id='0' type='expresser-model-and-rules'>
 				<properties>
 					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&user=Ken&context=some-context&challengeId=42&challengeName=Train%20Track&metafora=1&testing=1&contextKey=7GzVT01UNQiajrlANJUg56&model=Making-train-track&time=1335264086442039663&RulesThumbnail=1&thumbnail=150x90' />
+						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264086442039663&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
 					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&metafora=1&VersionQuery=1&copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264086442039663' />
+						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264086442039663' />
 				</properties>
 			</object>
 			<content>
@@ -90,9 +90,9 @@
 			<object id='0' type='expresser-model-and-rules'>
 				<properties>
 					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&user=Ken&context=some-context&challengeId=42&challengeName=Train%20Track&metafora=1&testing=1&contextKey=7GzVT01UNQiajrlANJUg56&model=Making-train-track&time=1335264089164299793&RulesThumbnail=1&thumbnail=150x90' />
+						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264089164299793&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
 					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&metafora=1&VersionQuery=1&copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264089164299793' />
+						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264089164299793' />
 				</properties>
 			</object>
 			<content>
@@ -127,9 +127,9 @@
 			<object id='0' type='expresser-model-and-rules'>
 				<properties>
 					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&user=Ken&context=some-context&challengeId=42&challengeName=Train%20Track&metafora=1&testing=1&contextKey=7GzVT01UNQiajrlANJUg56&model=Making-train-track&time=1335264091687700450&RulesThumbnail=1&thumbnail=150x90' />
+						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264091687700450&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
 					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&metafora=1&VersionQuery=1&copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264091687700450' />
+						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264091687700450' />
 				</properties>
 			</object>
 			<content>
@@ -156,9 +156,9 @@
 			<object id='0' type='expresser-model-and-rules'>
 				<properties>
 					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&user=Ken&context=some-context&challengeId=42&challengeName=Train%20Track&metafora=1&testing=1&contextKey=7GzVT01UNQiajrlANJUg56&model=Making-train-track&time=1335264093289919640&RulesThumbnail=1&thumbnail=150x90' />
+						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264093289919640&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
 					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&metafora=1&VersionQuery=1&copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264093289919640' />
+						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264093289919640' />
 				</properties>
 			</object>
 			<content>
@@ -201,9 +201,9 @@
 			<object id='0' type='expresser-model-and-rules'>
 				<properties>
 					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&user=Ken&context=some-context&challengeId=42&challengeName=Train%20Track&metafora=1&testing=1&contextKey=7GzVT01UNQiajrlANJUg56&model=Making-train-track&time=1335264095114133192&RulesThumbnail=1&thumbnail=150x90' />
+						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264095114133192&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
 					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&metafora=1&VersionQuery=1&copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264095114133192' />
+						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264095114133192' />
 				</properties>
 			</object>
 			<content>
@@ -238,9 +238,9 @@
 			<object id='0' type='expresser-model-and-rules'>
 				<properties>
 					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&user=Ken&context=some-context&challengeId=42&challengeName=Train%20Track&metafora=1&testing=1&contextKey=7GzVT01UNQiajrlANJUg56&model=Making-train-track&time=1335264097862100970&RulesThumbnail=1&thumbnail=150x90' />
+						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264097862100970&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
 					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&metafora=1&VersionQuery=1&copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264097862100970' />
+						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264097862100970' />
 				</properties>
 			</object>
 			<content>
@@ -267,9 +267,9 @@
 			<object id='0' type='expresser-model-and-rules'>
 				<properties>
 					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&user=Ken&context=some-context&challengeId=42&challengeName=Train%20Track&metafora=1&testing=1&contextKey=7GzVT01UNQiajrlANJUg56&model=Making-train-track&time=1335264100276190504&RulesThumbnail=1&thumbnail=150x90' />
+						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264100276190504&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
 					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&metafora=1&VersionQuery=1&copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264100276190504' />
+						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264100276190504' />
 				</properties>
 			</object>
 			<content>
@@ -304,9 +304,9 @@
 			<object id='0' type='expresser-model-and-rules'>
 				<properties>
 					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&user=Ken&context=some-context&challengeId=42&challengeName=Train%20Track&metafora=1&testing=1&contextKey=7GzVT01UNQiajrlANJUg56&model=Making-train-track&time=1335264106017504185&RulesThumbnail=1&thumbnail=150x90' />
+						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264106017504185&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
 					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&metafora=1&VersionQuery=1&copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264106017504185' />
+						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264106017504185' />
 				</properties>
 			</object>
 			<content>
@@ -405,9 +405,9 @@
 			<object id='0' type='expresser-model-and-rules'>
 				<properties>
 					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&user=Ken&context=some-context&challengeId=42&challengeName=Train%20Track&metafora=1&testing=1&contextKey=7GzVT01UNQiajrlANJUg56&model=Making-train-track&time=1335264131496838719&RulesThumbnail=1&thumbnail=150x90' />
+						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264131496838719&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
 					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&metafora=1&VersionQuery=1&copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264131496838719' />
+						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264131496838719' />
 				</properties>
 			</object>
 			<content>
@@ -466,9 +466,9 @@
 			<object id='0' type='expresser-model-and-rules'>
 				<properties>
 					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&user=Ken&context=some-context&challengeId=42&challengeName=Train%20Track&metafora=1&testing=1&contextKey=7GzVT01UNQiajrlANJUg56&model=Making-train-track&time=1335264133386459496&RulesThumbnail=1&thumbnail=150x90' />
+						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264133386459496&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
 					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&metafora=1&VersionQuery=1&copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264133386459496' />
+						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264133386459496' />
 				</properties>
 			</object>
 			<content>
@@ -503,9 +503,9 @@
 			<object id='0' type='expresser-model-and-rules'>
 				<properties>
 					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&user=Ken&context=some-context&challengeId=42&challengeName=Train%20Track&metafora=1&testing=1&contextKey=7GzVT01UNQiajrlANJUg56&model=Making-train-track&time=1335264137855509554&RulesThumbnail=1&thumbnail=150x90' />
+						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264137855509554&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
 					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&metafora=1&VersionQuery=1&copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264137855509554' />
+						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264137855509554' />
 				</properties>
 			</object>
 			<content>
