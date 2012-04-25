@@ -35,10 +35,6 @@ public class CfObjectParser {
 		
 		XmlFragment propertyFragment = xmlFragment.cloneChild(CommonFormatStrings.PROPERTIES_STRING);
 		Map<String, CfProperty> cfProperties = new HashMap<String, CfProperty>();
-		if (propertyFragment == null || 
-			propertyFragment.getChildren(CommonFormatStrings.PROPERTY_STRING) == null) {
-		    System.out.println("debug this");
-		}
 		for (XmlFragment cfPropertyElement : propertyFragment.getChildren(CommonFormatStrings.PROPERTY_STRING)){
 			CfProperty cfProperty = CfPropertyParser.fromXml(cfPropertyElement);
 			cfProperties.put(cfProperty.getName(), cfProperty);
