@@ -1,534 +1,1080 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interactiondata>
 	<actions>
-		<action time="1335264086703">
+		<action time="1335369246340">
 			<user id="Ken" role="student" />
 			<actiontype classification="CREATE" logged="true" succeed="true"
-				type="create_shape" />
-			<description><![CDATA[Created shape with id NZKKke4e-FoESvAGyeUK7h. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@e88e24 {iterations: 1 x: 5 y: 2 width: 1 height: 1 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.BasicShape@1cc0a0f {x: 5 y: 2 width: 1 height: 1 #0000FF: -1073741824 #0000FF correct expression: null colour: [#0000FF] name: } }]]></description>
-			<object id="Shape46" type="Shape" />
-		</action>
-
-		<action time="1335264086919">
-			<user id="Ken" role="student" />
-			<actiontype classification="Indicator" logged="false"
-				succeed="true" type="OTHER" />
-			<object id='0' type='expresser-model-and-rules'>
+				type="indicator" />
+			<object id="Shape2" type="Shape">
 				<properties>
-					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
-					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml' />
+					<property name="TOOL" value="eXpresser" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
 				</properties>
 			</object>
 			<content>
-				<description><![CDATA[blue allocation is now incorrect master (Shape2)]]></description>
+				<description><![CDATA[Ken created a blue tile located at 3, 3.]]></description>
 				<properties>
-					<property name="shapeId" value="Shape2" />
-					<property name="color" value="#0000FF" />
-					<property name="correct" value="false" />
-					<property name="generallyCorrect" value="true" />
-					<property name="constant" value="false" />
-					<property name="global" value="false" />
-					<property name="projectName" value="Makingtraintrack" />
-					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
 					<property name="CHALLENGE_ID" value="42" />
 					<property name="CHALLENGE_NAME" value="Train Track" />
 				</properties>
 			</content>
 		</action>
 
-		<action time="1335264089188">
+		<action time="1335369246832">
 			<user id="Ken" role="student" />
-			<actiontype classification="CREATE" logged="true" succeed="true"
-				type="create_shape" />
-			<description><![CDATA[Created shape with id O6bYJeTWpV2Zgw9KUvBs5h. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@12b6037 {iterations: 1 x: 4 y: 2 width: 1 height: 1 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.BasicShape@b9e9a3 {x: 4 y: 2 width: 1 height: 1 #0000FF: -1073741824 #0000FF correct expression: null colour: [#0000FF] name: } }]]></description>
-			<object id="Shape48" type="Shape" />
-		</action>
-
-		<action time="1335264089289">
-			<user id="Ken" role="student" />
-			<actiontype classification="Indicator" logged="false"
-				succeed="true" type="OTHER" />
-			<object id='0' type='expresser-model-and-rules'>
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
 				<properties>
-					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264086442039663&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
-					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264086442039663' />
-				</properties>
-			</object>
-			<content>
-				<description><![CDATA[blue allocation is now incorrect master (Shape4)]]></description>
-				<properties>
-					<property name="shapeId" value="Shape4" />
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeId" value="Shape686" />
 					<property name="color" value="#0000FF" />
 					<property name="correct" value="false" />
 					<property name="generallyCorrect" value="true" />
 					<property name="constant" value="false" />
 					<property name="global" value="false" />
-					<property name="projectName" value="Makingtraintrack" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[blue allocation is now incorrect master (Shape686)]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeId" value="Shape686" />
+					<property name="color" value="#0000FF" />
+					<property name="correct" value="false" />
+					<property name="generallyCorrect" value="true" />
+					<property name="constant" value="false" />
+					<property name="global" value="false" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
 					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369247640">
+			<user id="Ken" role="student" />
+			<actiontype classification="CREATE" logged="true" succeed="true"
+				type="indicator" />
+			<object id="Shape4" type="Shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Ken created a blue tile located at 3, 4.]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
 					<property name="CHALLENGE_ID" value="42" />
 					<property name="CHALLENGE_NAME" value="Train Track" />
 				</properties>
 			</content>
 		</action>
 
-		<action time="1335264091710">
+		<action time="1335369248399">
 			<user id="Ken" role="student" />
-			<actiontype classification="CREATE" logged="true" succeed="true"
-				type="create_shape" />
-			<description><![CDATA[Created shape with id MT0dQuDWpFtnoLSumMiJ5a. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@98f805 {iterations: 1 x: 4 y: 3 width: 1 height: 1 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.BasicShape@c33893 {x: 4 y: 3 width: 1 height: 1 #0000FF: -1073741824 #0000FF correct expression: null colour: [#0000FF] name: } }]]></description>
-			<object id="Shape50" type="Shape" />
-		</action>
-
-		<action time="1335264091810">
-			<user id="Ken" role="student" />
-			<actiontype classification="Indicator" logged="false"
-				succeed="true" type="OTHER" />
-			<object id='0' type='expresser-model-and-rules'>
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
 				<properties>
-					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264089164299793&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
-					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264089164299793' />
-				</properties>
-			</object>
-			<content>
-				<description><![CDATA[blue allocation is now incorrect master (Shape6)]]></description>
-				<properties>
-					<property name="shapeId" value="Shape6" />
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeId" value="Shape688" />
 					<property name="color" value="#0000FF" />
 					<property name="correct" value="false" />
 					<property name="generallyCorrect" value="true" />
 					<property name="constant" value="false" />
 					<property name="global" value="false" />
-					<property name="projectName" value="Makingtraintrack" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[blue allocation is now incorrect master (Shape688)]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeId" value="Shape688" />
+					<property name="color" value="#0000FF" />
+					<property name="correct" value="false" />
+					<property name="generallyCorrect" value="true" />
+					<property name="constant" value="false" />
+					<property name="global" value="false" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
 					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369248950">
+			<user id="Ken" role="student" />
+			<actiontype classification="CREATE" logged="true" succeed="true"
+				type="indicator" />
+			<object id="Shape6" type="Shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Ken created a blue tile located at 3, 5.]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
 					<property name="CHALLENGE_ID" value="42" />
 					<property name="CHALLENGE_NAME" value="Train Track" />
 				</properties>
 			</content>
 		</action>
 
-		<action time="1335264093311">
+		<action time="1335369249555">
 			<user id="Ken" role="student" />
-			<actiontype classification="CREATE" logged="true" succeed="true"
-				type="create_shape" />
-			<description><![CDATA[Created shape with id __pHxuxD6MPq8HXKH0EB74. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@16e3f87 {iterations: 1 x: 4 y: 4 width: 1 height: 1 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.BasicShape@10cdec1 {x: 4 y: 4 width: 1 height: 1 #0000FF: -1073741824 #0000FF correct expression: null colour: [#0000FF] name: } }]]></description>
-			<object id="Shape52" type="Shape" />
-		</action>
-
-		<action time="1335264093527">
-			<user id="Ken" role="student" />
-			<actiontype classification="Indicator" logged="false"
-				succeed="true" type="OTHER" />
-			<object id='0' type='expresser-model-and-rules'>
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
 				<properties>
-					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264091687700450&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
-					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264091687700450' />
-				</properties>
-			</object>
-			<content>
-				<description><![CDATA[blue allocation is now incorrect master (Shape8)]]></description>
-				<properties>
-					<property name="shapeId" value="Shape8" />
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeId" value="Shape690" />
 					<property name="color" value="#0000FF" />
 					<property name="correct" value="false" />
 					<property name="generallyCorrect" value="true" />
 					<property name="constant" value="false" />
 					<property name="global" value="false" />
-					<property name="projectName" value="Makingtraintrack" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[blue allocation is now incorrect master (Shape690)]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeId" value="Shape690" />
+					<property name="color" value="#0000FF" />
+					<property name="correct" value="false" />
+					<property name="generallyCorrect" value="true" />
+					<property name="constant" value="false" />
+					<property name="global" value="false" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
 					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369250782">
+			<user id="Ken" role="student" />
+			<actiontype classification="CREATE" logged="true" succeed="true"
+				type="indicator" />
+			<object id="Shape8" type="Shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Ken created a blue tile located at 3, 6.]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
 					<property name="CHALLENGE_ID" value="42" />
 					<property name="CHALLENGE_NAME" value="Train Track" />
 				</properties>
 			</content>
 		</action>
 
-		<action time="1335264095150">
+		<action time="1335369251163">
 			<user id="Ken" role="student" />
-			<actiontype classification="Indicator" logged="false"
-				succeed="true" type="OTHER" />
-			<object id='0' type='expresser-model-and-rules'>
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
 				<properties>
-					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264093289919640&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
-					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264093289919640' />
-				</properties>
-			</object>
-			<content>
-				<description><![CDATA[blue allocation is now incorrect master (Shape10)]]></description>
-				<properties>
-					<property name="shapeId" value="Shape10" />
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeId" value="Shape692" />
 					<property name="color" value="#0000FF" />
 					<property name="correct" value="false" />
 					<property name="generallyCorrect" value="true" />
 					<property name="constant" value="false" />
 					<property name="global" value="false" />
-					<property name="projectName" value="Makingtraintrack" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[blue allocation is now incorrect master (Shape692)]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeId" value="Shape692" />
+					<property name="color" value="#0000FF" />
+					<property name="correct" value="false" />
+					<property name="generallyCorrect" value="true" />
+					<property name="constant" value="false" />
+					<property name="global" value="false" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
 					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369251903">
+			<user id="Ken" role="student" />
+			<actiontype classification="CREATE" logged="true" succeed="true"
+				type="indicator" />
+			<object id="Shape10" type="Shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Ken created a blue tile located at 4, 6.]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
 					<property name="CHALLENGE_ID" value="42" />
 					<property name="CHALLENGE_NAME" value="Train Track" />
 				</properties>
 			</content>
 		</action>
 
-		<action time="1335264095358">
+		<action time="1335369252298">
 			<user id="Ken" role="student" />
-			<actiontype classification="CREATE" logged="true" succeed="true"
-				type="create_shape" />
-			<description><![CDATA[Created shape with id 9qR1Tuajd2rFuiac21E845. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@127a49c {iterations: 1 x: 4 y: 5 width: 1 height: 1 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.BasicShape@1a82e92 {x: 4 y: 5 width: 1 height: 1 #0000FF: -1073741824 #0000FF correct expression: null colour: [#0000FF] name: } }]]></description>
-			<object id="Shape2" type="Shape" />
-		</action>
-
-		<action time="1335264097888">
-			<user id="Ken" role="student" />
-			<actiontype classification="CREATE" logged="true" succeed="true"
-				type="create_shape" />
-			<description><![CDATA[Created shape with id yU9jau_OfoBAGlLsuF275c. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@18eef25 {iterations: 1 x: 4 y: 6 width: 1 height: 1 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.BasicShape@f67d81 {x: 4 y: 6 width: 1 height: 1 #0000FF: -1073741824 #0000FF correct expression: null colour: [#0000FF] name: } }]]></description>
-			<object id="Shape54" type="Shape" />
-		</action>
-
-		<action time="1335264098007">
-			<user id="Ken" role="student" />
-			<actiontype classification="Indicator" logged="false"
-				succeed="true" type="OTHER" />
-			<object id='0' type='expresser-model-and-rules'>
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
 				<properties>
-					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264095114133192&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
-					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264095114133192' />
-				</properties>
-			</object>
-			<content>
-				<description><![CDATA[blue allocation is now incorrect master (Shape12)]]></description>
-				<properties>
-					<property name="shapeId" value="Shape12" />
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeId" value="Shape694" />
 					<property name="color" value="#0000FF" />
 					<property name="correct" value="false" />
 					<property name="generallyCorrect" value="true" />
 					<property name="constant" value="false" />
 					<property name="global" value="false" />
-					<property name="projectName" value="Makingtraintrack" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[blue allocation is now incorrect master (Shape694)]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeId" value="Shape694" />
+					<property name="color" value="#0000FF" />
+					<property name="correct" value="false" />
+					<property name="generallyCorrect" value="true" />
+					<property name="constant" value="false" />
+					<property name="global" value="false" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
 					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369254433">
+			<user id="Ken" role="student" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="-5PqK0tLge6N6QqOv65p7e" type="expresser-shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeID" value="-5PqK0tLge6N6QqOv65p7e" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;focus=-5PqK0tLge6N6QqOv65p7e&amp;time=0" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;focus=-5PqK0tLge6N6QqOv65p7e&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Last shape modified]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeID" value="-5PqK0tLge6N6QqOv65p7e" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="LastShapeModifiedDetector" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369257956">
+			<user id="Ken" role="student" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="value" value="true" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Model consists only of Single Tiles]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="value" value="true" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="AllSingleTilesVerifier" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369261510">
+			<user id="Ken" role="student" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="value" value="false" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Correct number of Tiles on 'How many tiles?' detected]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="value" value="false" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="CorrectGeneralModelAllocationVerifier" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369265499">
+			<user id="Ken" role="student" />
+			<actiontype classification="CREATE" logged="true" succeed="true"
+				type="indicator" />
+			<object id="Shape12" type="Shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Ken created a building block located at 3, 3 made from a blue tile, a blue tile, a blue tile, a blue tile, and a blue tile.]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
 					<property name="CHALLENGE_ID" value="42" />
 					<property name="CHALLENGE_NAME" value="Train Track" />
 				</properties>
 			</content>
 		</action>
 
-		<action time="1335264100326">
+		<action time="1335369266193">
 			<user id="Ken" role="student" />
-			<actiontype classification="CREATE" logged="true" succeed="true"
-				type="create_shape" />
-			<description><![CDATA[Created shape with id 8b8hlKVo5jmipkMTn-fi77. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@e9493a {iterations: 1 x: 5 y: 6 width: 1 height: 1 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.BasicShape@1c6bbd3 {x: 5 y: 6 width: 1 height: 1 #0000FF: -1073741824 #0000FF correct expression: null colour: [#0000FF] name: } }]]></description>
-			<object id="Shape4" type="Shape" />
-		</action>
-
-		<action time="1335264100371">
-			<user id="Ken" role="student" />
-			<actiontype classification="Indicator" logged="false"
-				succeed="true" type="OTHER" />
-			<object id='0' type='expresser-model-and-rules'>
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
 				<properties>
-					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264097862100970&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
-					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264097862100970' />
-				</properties>
-			</object>
-			<content>
-				<description><![CDATA[blue allocation is now incorrect master (Shape14)]]></description>
-				<properties>
-					<property name="shapeId" value="Shape14" />
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeId" value="Shape976" />
 					<property name="color" value="#0000FF" />
 					<property name="correct" value="false" />
 					<property name="generallyCorrect" value="true" />
 					<property name="constant" value="false" />
 					<property name="global" value="false" />
-					<property name="projectName" value="Makingtraintrack" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[blue allocation is now incorrect master (Shape976)]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeId" value="Shape976" />
+					<property name="color" value="#0000FF" />
+					<property name="correct" value="false" />
+					<property name="generallyCorrect" value="true" />
+					<property name="constant" value="false" />
+					<property name="global" value="false" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
 					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369266496">
+			<user id="Ken" role="student" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="BrvzjeQFfpWg6gB8SwtA5a" type="expresser-shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeID" value="BrvzjeQFfpWg6gB8SwtA5a" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;focus=BrvzjeQFfpWg6gB8SwtA5a&amp;time=0" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;focus=BrvzjeQFfpWg6gB8SwtA5a&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Spurious Tile detected]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeID" value="BrvzjeQFfpWg6gB8SwtA5a" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="SpuriousTileDetector" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369266775">
+			<user id="Ken" role="student" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="BrvzjeQFfpWg6gB8SwtA5a" type="expresser-shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeID" value="BrvzjeQFfpWg6gB8SwtA5a" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;focus=BrvzjeQFfpWg6gB8SwtA5a&amp;time=0" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;focus=BrvzjeQFfpWg6gB8SwtA5a&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Last shape modified]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeID" value="BrvzjeQFfpWg6gB8SwtA5a" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="LastShapeModifiedDetector" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369267091">
+			<user id="Ken" role="student" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="value" value="false" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Model consists only of Single Tiles]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="value" value="false" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="AllSingleTilesVerifier" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369267761">
+			<user id="Ken" role="student" />
+			<actiontype classification="CREATE" logged="true" succeed="true"
+				type="indicator" />
+			<object id="Shape12" type="Shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Ken created a pattern located at 0, 0 that repeats a building block made from a blue tile, a blue tile, a blue tile, a blue tile, and a blue tile 0 times.]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
 					<property name="CHALLENGE_ID" value="42" />
 					<property name="CHALLENGE_NAME" value="Train Track" />
 				</properties>
 			</content>
 		</action>
 
-		<action time="1335264103166">
+		<action time="1335369268537">
 			<user id="Ken" role="student" />
-			<actiontype classification="Indicator" logged="false"
-				succeed="true" type="OTHER" />
-			<object id='0' type='expresser-model-and-rules'>
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
 				<properties>
-					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264100276190504&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
-					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264100276190504' />
-				</properties>
-			</object>
-			<content>
-				<description><![CDATA[blue allocation is now incorrect master (Shape16)]]></description>
-				<properties>
-					<property name="shapeId" value="Shape16" />
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeId" value="Shape1246" />
 					<property name="color" value="#0000FF" />
 					<property name="correct" value="false" />
 					<property name="generallyCorrect" value="true" />
 					<property name="constant" value="false" />
 					<property name="global" value="false" />
-					<property name="projectName" value="Makingtraintrack" />
-					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
+					<property name="projectName" value="anothertraintracktest" />
 					<property name="CHALLENGE_ID" value="42" />
 					<property name="CHALLENGE_NAME" value="Train Track" />
-				</properties>
-			</content>
-		</action>
-
-		<action time="1335264104102">
-			<user id="Ken" role="student" />
-			<actiontype classification="CREATE" logged="true" succeed="true"
-				type="create_shape" />
-			<description><![CDATA[Created shape with id X-NyduwXEZOM-TMWdRWN65. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@862041 {iterations: 1 x: 4 y: 2 width: 2 height: 5 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.GroupShape@1af9d1c {x: 4 y: 2 width: 2 height: 5 #0000FF: 0 #0000FF correct expression: null name: } }]]></description>
-			<object id="Shape20" type="Shape" />
-		</action>
-
-		<action time="1335264111217">
-			<user id="Ken" role="student" />
-			<actiontype classification="Indicator" logged="false"
-				succeed="true" type="OTHER" />
-			<object id='0' type='expresser-model-and-rules'>
-				<properties>
-					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264106017504185&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
-					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264106017504185' />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
 				</properties>
 			</object>
 			<content>
-				<description><![CDATA[blue allocation is now incorrect master (Shape18)]]></description>
+				<description><![CDATA[blue allocation is now incorrect master (Shape1246)]]></description>
 				<properties>
-					<property name="shapeId" value="Shape18" />
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeId" value="Shape1246" />
 					<property name="color" value="#0000FF" />
 					<property name="correct" value="false" />
 					<property name="generallyCorrect" value="true" />
 					<property name="constant" value="false" />
 					<property name="global" value="false" />
-					<property name="projectName" value="Makingtraintrack" />
-					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
+					<property name="projectName" value="anothertraintracktest" />
 					<property name="CHALLENGE_ID" value="42" />
 					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
 				</properties>
 			</content>
 		</action>
 
-		<action time="1335264113143">
+		<action time="1335369268829">
 			<user id="Ken" role="student" />
-			<actiontype classification="CREATE" logged="true" succeed="true"
-				type="create_shape" />
-			<description><![CDATA[Created shape with id a3lt6eRHS66PuiOl4hYO6g. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@18590c5 {iterations: 0 x: 0 y: 0 width: 0 height: 0 inc x: 0 inc y: 0 #0000FF: 0 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@1e3940a {iterations: 1 x: 8 y: 4 width: 2 height: 5 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.GroupShape@c3c44 {x: 8 y: 4 width: 2 height: 5 #0000FF: 0 #0000FF correct expression: null name: } } }]]></description>
-			<object id="Shape2" type="Shape" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="OUm51uZTqc6iZkrhR0Vq49" type="expresser-shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeID" value="OUm51uZTqc6iZkrhR0Vq49" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;focus=OUm51uZTqc6iZkrhR0Vq49&amp;time=0" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;focus=OUm51uZTqc6iZkrhR0Vq49&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Pattern coloured generally]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeID" value="OUm51uZTqc6iZkrhR0Vq49" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="NonGeneralColouringDetector" />
+				</properties>
+			</content>
 		</action>
 
-		<action time="1335264115117">
-			<user id="7GzVT01UNQiajrlANJUg56" role="student" />
-			<actiontype classification="create" logged="true" succeed="true"
-				type="create_expression" />
-			<description><![CDATA[Created expression with id VPx45KrrftZcIX6NJjH64f. Expression is 0]]></description>
-			<object id="VPx45KrrftZcIX6NJjH64f" type="expression" />
+		<action time="1335369269112">
+			<user id="Ken" role="student" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="OUm51uZTqc6iZkrhR0Vq49" type="expresser-shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeID" value="OUm51uZTqc6iZkrhR0Vq49" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;focus=OUm51uZTqc6iZkrhR0Vq49&amp;time=0" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;focus=OUm51uZTqc6iZkrhR0Vq49&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Incorrect number of Tiles on 'How many tiles?' detected]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeID" value="OUm51uZTqc6iZkrhR0Vq49" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="IncorrectAllocationDetector" />
+				</properties>
+			</content>
 		</action>
 
-		<action time="1335264115332">
+		<action time="1335369269469">
+			<user id="Ken" role="student" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="value" value="true" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Model has at least one Pattern]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="value" value="true" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="OneOrMorePatternsVerifier" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369271031">
 			<user id="Ken" role="student" />
 			<actiontype classification="MODIFY" logged="true" succeed="true"
-				type="update_shape" />
-			<description><![CDATA[Updated shape with id a3lt6eRHS66PuiOl4hYO6g. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@1c57a92 {iterations: 0 x: 0 y: 0 width: 0 height: 0 inc x: 0 inc y: 0 #0000FF: 0 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@1f23f8b {iterations: 1 x: 8 y: 4 width: 2 height: 5 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.GroupShape@129df79 {x: 8 y: 4 width: 2 height: 5 #0000FF: 0 #0000FF correct expression: null name: } } }]]></description>
-			<object id="Shape56" type="Shape" />
-		</action>
-
-		<action time="1335264119433">
-			<user id="7GzVT01UNQiajrlANJUg56" role="student" />
-			<actiontype classification="create" logged="true" succeed="true"
-				type="create_expression" />
-			<description><![CDATA[Created expression with id W1cDQuBVLD_OjmzsN85-56. Expression is 2]]></description>
-			<object id="W1cDQuBVLD_OjmzsN85-56" type="expression" />
-		</action>
-		11:42
-		<action time="1335264120611">
-			<user id="Ken" role="student" />
-			<actiontype classification="MODIFY" logged="true" succeed="true"
-				type="update_shape" />
-			<description><![CDATA[Updated shape with id a3lt6eRHS66PuiOl4hYO6g. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@18f1327 {iterations: 0 x: 0 y: 0 width: 0 height: 0 inc x: 2 inc y: 0 #0000FF: 0 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@32728d {iterations: 1 x: 8 y: 4 width: 2 height: 5 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.GroupShape@1fe8714 {x: 8 y: 4 width: 2 height: 5 #0000FF: 0 #0000FF correct expression: null name: } } }]]></description>
-			<object id="Shape74" type="Shape" />
-		</action>
-
-		<action time="1335264125920">
-			<user id="7GzVT01UNQiajrlANJUg56" role="student" />
-			<actiontype classification="create" logged="true" succeed="true"
-				type="create_expression" />
-			<description><![CDATA[Created expression with id cMukw0-wlV6mOO6Uv8A254. Expression is 5]]></description>
-			<object id="cMukw0-wlV6mOO6Uv8A254" type="expression" />
-		</action>
-
-		<action time="1335264126210">
-			<user id="Ken" role="student" />
-			<actiontype classification="MODIFY" logged="true" succeed="true"
-				type="update_shape" />
-			<description><![CDATA[Updated shape with id a3lt6eRHS66PuiOl4hYO6g. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@d2ee5d {iterations: 5 x: 4 y: 2 width: 10 height: 5 inc x: 2 inc y: 0 #0000FF: 0 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@1f568f {iterations: 1 x: 4 y: 2 width: 2 height: 5 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.GroupShape@16c02df {x: 4 y: 2 width: 2 height: 5 #0000FF: 0 #0000FF correct expression: null name: } } }]]></description>
-			<object id="Shape92" type="Shape" />
-		</action>
-
-		<action time="1335264131422">
-			<user id="7GzVT01UNQiajrlANJUg56" role="student" />
-			<actiontype classification="create" logged="true" succeed="true"
-				type="create_expression" />
-			<description><![CDATA[Created expression with id f6nzDe1vV5iy0N7prwNB6a. Expression is 7]]></description>
-			<object id="f6nzDe1vV5iy0N7prwNB6a" type="expression" />
-		</action>
-
-		<action time="1335264131610">
-			<user id="Ken" role="student" />
-			<actiontype classification="MODIFY" logged="true" succeed="true"
-				type="update_shape" />
-			<description><![CDATA[Updated shape with id a3lt6eRHS66PuiOl4hYO6g. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@1a88001 {iterations: 5 x: 4 y: 2 width: 10 height: 5 inc x: 2 inc y: 0 #0000FF: 7 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@16bf0aa {iterations: 1 x: 4 y: 2 width: 2 height: 5 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.GroupShape@18532dc {x: 4 y: 2 width: 2 height: 5 #0000FF: 0 #0000FF correct expression: null name: } } }]]></description>
-			<object id="Shape110" type="Shape" />
-		</action>
-
-		<action time="1335264133410">
-			<user id="Ken" role="student" />
-			<actiontype classification="Indicator" logged="false"
-				succeed="true" type="OTHER" />
-			<object id='0' type='expresser-model-and-rules'>
+				type="indicator" />
+			<object id="Shape26" type="Shape">
 				<properties>
-					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264131496838719&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
-					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264131496838719' />
+					<property name="TOOL" value="eXpresser" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
 				</properties>
 			</object>
 			<content>
-				<description><![CDATA[blue allocation is now incorrect master (Shape18)]]></description>
+				<description><![CDATA[Ken updated a pattern located at 0, 0 that repeats a building block made from a blue tile, a blue tile, a blue tile, a blue tile, and a blue tile 0 times.]]></description>
 				<properties>
-					<property name="shapeId" value="Shape18" />
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369272588">
+			<user id="Ken" role="student" />
+			<actiontype classification="MODIFY" logged="true" succeed="true"
+				type="indicator" />
+			<object id="Shape40" type="Shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Ken updated a pattern located at 0, 0 that repeats a building block made from a blue tile, a blue tile, a blue tile, a blue tile, and a blue tile 0 times.]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369274506">
+			<user id="Ken" role="student" />
+			<actiontype classification="MODIFY" logged="true" succeed="true"
+				type="indicator" />
+			<object id="Shape14" type="Shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Ken updated a pattern located at 3, 2 that repeats a building block made from a blue tile, a blue tile, a blue tile, a blue tile, and a blue tile 4 times.]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369281263">
+			<user id="Ken" role="student" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeId" value="Shape1246" />
 					<property name="color" value="#0000FF" />
 					<property name="correct" value="false" />
 					<property name="generallyCorrect" value="false" />
 					<property name="constant" value="false" />
 					<property name="global" value="false" />
-					<property name="projectName" value="Makingtraintrack" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[blue allocation is now incorrect master (Shape1246)]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeId" value="Shape1246" />
+					<property name="color" value="#0000FF" />
+					<property name="correct" value="false" />
+					<property name="generallyCorrect" value="false" />
+					<property name="constant" value="false" />
+					<property name="global" value="false" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
 					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369282882">
+			<user id="Ken" role="student" />
+			<actiontype classification="MODIFY" logged="true" succeed="true"
+				type="indicator" />
+			<object id="Shape54" type="Shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Ken updated a pattern located at 3, 2 that repeats a building block made from a blue tile, a blue tile, a blue tile, a blue tile, and a blue tile 4 times.]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
 					<property name="CHALLENGE_ID" value="42" />
 					<property name="CHALLENGE_NAME" value="Train Track" />
 				</properties>
 			</content>
 		</action>
 
-		<action time="1335264134001">
-			<user id="7GzVT01UNQiajrlANJUg56" role="student" />
-			<actiontype classification="modify" logged="true" succeed="true"
-				type="update_expression" />
-			<description><![CDATA[Updated expression with id cMukw0-wlV6mOO6Uv8A254. Expression is <font style='background-color: #9bd979;'>5</font>]]></description>
-			<object id="cMukw0-wlV6mOO6Uv8A254" type="expression" />
-		</action>
-
-		<action time="1335264135366">
-			<user id="7GzVT01UNQiajrlANJUg56" role="student" />
-			<actiontype classification="modify" logged="true" succeed="true"
-				type="update_expression" />
-			<description><![CDATA[Updated expression with id cMukw0-wlV6mOO6Uv8A254. Expression is <font style='background-color: #9bd979;'>5</font>]]></description>
-			<object id="cMukw0-wlV6mOO6Uv8A254" type="expression" />
-		</action>
-
-		<action time="1335264135448">
+		<action time="1335369283529">
 			<user id="Ken" role="student" />
-			<actiontype classification="create" logged="true" succeed="true"
-				type="create_expression" />
-			<description><![CDATA[Created expression with id 19rvHe5zPOcNBrP8K97U5_. Expression is 5]]></description>
-			<object id="19rvHe5zPOcNBrP8K97U5_" type="expression" />
-		</action>
-
-		<action time="1335264137817">
-			<user id="7GzVT01UNQiajrlANJUg56" role="student" />
-			<actiontype classification="modify" logged="true" succeed="true"
-				type="update_expression" />
-			<description><![CDATA[Updated expression with id cMukw0-wlV6mOO6Uv8A254. Expression is <font style='background-color: #9bd979;'>5</font>]]></description>
-			<object id="cMukw0-wlV6mOO6Uv8A254" type="expression" />
-		</action>
-
-		<action time="1335264137903">
-			<user id="Ken" role="student" />
-			<actiontype classification="Indicator" logged="false"
-				succeed="true" type="OTHER" />
-			<object id='0' type='expresser-model-and-rules'>
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="OUm51uZTqc6iZkrhR0Vq49" type="expresser-shape">
 				<properties>
-					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264133386459496&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
-					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264133386459496' />
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeID" value="OUm51uZTqc6iZkrhR0Vq49" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;focus=OUm51uZTqc6iZkrhR0Vq49&amp;time=0" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;focus=OUm51uZTqc6iZkrhR0Vq49&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
 				</properties>
 			</object>
 			<content>
-				<description><![CDATA[blue allocation is now correct master (Shape18)]]></description>
+				<description><![CDATA[Model structure is general and cannot be messed-up]]></description>
 				<properties>
-					<property name="shapeId" value="Shape18" />
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeID" value="OUm51uZTqc6iZkrhR0Vq49" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="StructuralMessupDetector" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369285310">
+			<user id="Ken" role="student" />
+			<actiontype classification="MODIFY" logged="true" succeed="true"
+				type="indicator" />
+			<object id="Shape68" type="Shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Ken updated a pattern located at 3, 2 that repeats a building block made from a blue tile, a blue tile, a blue tile, a blue tile, and a blue tile 4 times.]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369285993">
+			<user id="Ken" role="student" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeId" value="Shape1246" />
 					<property name="color" value="#0000FF" />
 					<property name="correct" value="true" />
 					<property name="generallyCorrect" value="false" />
 					<property name="constant" value="true" />
 					<property name="global" value="false" />
-					<property name="projectName" value="Makingtraintrack" />
-					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
+					<property name="projectName" value="anothertraintracktest" />
 					<property name="CHALLENGE_ID" value="42" />
 					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[blue allocation is now correct master (Shape1246)]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeId" value="Shape1246" />
+					<property name="color" value="#0000FF" />
+					<property name="correct" value="true" />
+					<property name="generallyCorrect" value="false" />
+					<property name="constant" value="true" />
+					<property name="global" value="false" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="ChangeInColorAllocationCorrectness" />
 				</properties>
 			</content>
 		</action>
 
-		<action time="1335264138320">
+		<action time="1335369286274">
 			<user id="Ken" role="student" />
-			<actiontype classification="MODIFY" logged="true" succeed="true"
-				type="update_shape" />
-			<description><![CDATA[Updated shape with id a3lt6eRHS66PuiOl4hYO6g. uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@11201a1 {iterations: 5 x: 4 y: 2 width: 10 height: 5 inc x: 2 inc y: 0 #0000FF: 35 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.PatternShape@1292d12 {iterations: 1 x: 4 y: 2 width: 2 height: 5 inc x: 0 inc y: 0 #0000FF: -1073741824 #0000FF correct expression: null name: shape: uk.ac.lkl.migen.system.expresser.model.shape.block.GroupShape@4e32c8 {x: 4 y: 2 width: 2 height: 5 #0000FF: 0 #0000FF correct expression: null name: } } }]]></description>
-			<object id="Shape20" type="Shape" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="BrvzjeQFfpWg6gB8SwtA5a" type="expresser-shape">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeID" value="BrvzjeQFfpWg6gB8SwtA5a" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;focus=BrvzjeQFfpWg6gB8SwtA5a&amp;time=0" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;focus=BrvzjeQFfpWg6gB8SwtA5a&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Pattern coloured generally]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeID" value="BrvzjeQFfpWg6gB8SwtA5a" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="NonGeneralColouringDetector" />
+				</properties>
+			</content>
 		</action>
 
-		<action time="1335264146613">
+		<action time="1335369286618">
 			<user id="Ken" role="student" />
-			<actiontype classification="Indicator" logged="false"
-				succeed="true" type="OTHER" />
-			<object id='0' type='expresser-model-and-rules'>
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="BrvzjeQFfpWg6gB8SwtA5a" type="expresser-shape">
 				<properties>
-					<property name='VIEW_URL'
-						value='http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=Making-train-track&amp;time=1335264137855509554&amp;RulesThumbnail=1&amp;thumbnail=150x90' />
-					<property name='REFERENCE_URL'
-						value='http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2FMakingtraintrack.xml%3Ftime%3D1335264137855509554' />
+					<property name="TOOL" value="eXpresser" />
+					<property name="shapeID" value="BrvzjeQFfpWg6gB8SwtA5a" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;focus=BrvzjeQFfpWg6gB8SwtA5a&amp;time=0" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;focus=BrvzjeQFfpWg6gB8SwtA5a&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Incorrect number of Tiles on 'How many tiles?' detected]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="shapeID" value="BrvzjeQFfpWg6gB8SwtA5a" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="IncorrectAllocationDetector" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369294300">
+			<user id="Ken" role="student" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="value" value="true" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Correct number of Tiles on 'How many tiles?' detected]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="value" value="true" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="CorrectGeneralModelAllocationVerifier" />
+				</properties>
+			</content>
+		</action>
+
+		<action time="1335369298055">
+			<user id="Ken" role="student" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="correct" value="true" />
+					<property name="generallyCorrect" value="true" />
+					<property name="constant" value="false" />
+					<property name="global" value="true" />
+					<property name="projectName" value="anothertraintracktest" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=0&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml" />
 				</properties>
 			</object>
 			<content>
 				<description><![CDATA[Total tile allocation is now correct master (Model1)]]></description>
 				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
 					<property name="correct" value="true" />
 					<property name="generallyCorrect" value="true" />
 					<property name="constant" value="false" />
 					<property name="global" value="true" />
-					<property name="projectName" value="Makingtraintrack" />
-					<property name="INDICATOR_TYPE" value="ChangeInTotalTileCorrectness" />
+					<property name="projectName" value="anothertraintracktest" />
 					<property name="CHALLENGE_ID" value="42" />
 					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="ChangeInTotalTileCorrectness" />
 				</properties>
 			</content>
 		</action>
 
-		<action time="1335264152453">
-			<user id="7GzVT01UNQiajrlANJUg56" role="student" />
-			<actiontype classification="modify" logged="true" succeed="true"
-				type="update_expression" />
-			<description><![CDATA[Updated expression with id cMukw0-wlV6mOO6Uv8A254. Expression is <font style='background-color: #9bd979;'>6</font>]]></description>
-			<object id="cMukw0-wlV6mOO6Uv8A254" type="expression" />
+		<action time="1335369361043">
+			<user id="Ken" role="student" />
+			<actiontype classification="OTHER" logged="false" succeed="true"
+				type="indicator" />
+			<object id="0" type="expresser-model-and-rules">
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="value" value="true" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="VIEW_URL"
+						value="http://web-expresser.appspot.com/?debug-XMPP-recipient=toontalk@gmail.com&amp;user=Ken&amp;activity=http%3A%2F%2Fmigen.googlecode.com%2Fsvn%2Ftrunk%2Fjava%2Fsrc%2Fuk%2Fac%2Flkl%2Fmigen%2Fsystem%2Futil%2Furlfilecache%2Ftask-TrainTrack.xml&amp;IS=1&amp;context=some-context&amp;challengeId=42&amp;challengeName=Train%20Track&amp;metafora=1&amp;testing=1&amp;contextKey=7GzVT01UNQiajrlANJUg56&amp;model=another-train-track-test&amp;time=1335369287149501151&amp;RulesThumbnail=1&amp;thumbnail=150x90" />
+					<property name="REFERENCE_URL"
+						value="http://web-expresser.appspot.com/?userKey=new&amp;metafora=1&amp;VersionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F7GzVT01UNQiajrlANJUg56%2Fanothertraintracktest.xml%3Ftime%3D1335369287149501151" />
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Inactive]]></description>
+				<properties>
+					<property name="TOOL" value="eXpresser" />
+					<property name="INDICATOR_TYPE" value="activity" />
+					<property name="value" value="true" />
+					<property name="CHALLENGE_ID" value="42" />
+					<property name="CHALLENGE_NAME" value="Train Track" />
+					<property name="INDICATOR_TYPE" value="InactivityVerifier" />
+				</properties>
+			</content>
 		</action>
 	</actions>
 </interactiondata>
