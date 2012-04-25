@@ -1,7 +1,5 @@
 package de.uds.MonitorInterventionMetafora.server.monitor;
 
-import de.uds.MonitorInterventionMetafora.server.ExternalCommunication.HistoryRequester;
-import de.uds.MonitorInterventionMetafora.server.ExternalCommunication.MonitorListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationMethodType;
