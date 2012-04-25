@@ -1,6 +1,6 @@
 package de.uds.MonitorInterventionMetafora.server.xml;
 
-import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
+import de.uds.MonitorInterventionMetafora.shared.utils.GeneralUtil;
 import junit.framework.TestCase;
 
 public class XmlTest extends TestCase {

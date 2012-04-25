@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.server.utils;
+package de.uds.MonitorInterventionMetafora.shared.utils;
 
 public enum LogLevel {
 	

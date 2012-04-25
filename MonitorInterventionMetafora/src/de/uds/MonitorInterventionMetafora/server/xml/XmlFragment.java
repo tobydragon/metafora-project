@@ -18,8 +18,9 @@ import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
 import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
-import de.uds.MonitorInterventionMetafora.server.utils.LogLevel;
-import de.uds.MonitorInterventionMetafora.server.utils.Logger;
+import de.uds.MonitorInterventionMetafora.shared.utils.GeneralUtil;
+import de.uds.MonitorInterventionMetafora.shared.utils.LogLevel;
+import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 
 //wrapper class for an Element in JDOM
 //catches and prints errors, no attributes may be null
@@ -69,8 +70,9 @@ public class  XmlFragment {
     		return getFragment(doc);
 		}
 		 catch (Exception e){
-			logger.info("[getFragmentFromString] returning null (file proabably does not exist) " + e);
-	   		logger.debug("[getFragmentFromString] " + ErrorUtil.getStackTrace(e));
+			
+			logger.info("[getFragmentFromString] returning null (string most likely not proper xml) starts with: [" + GeneralUtil.getStartOfString(xmlString) + "] : error : " + e);
+	   		logger.debug("[getFragmentFromString] string=\n" + xmlString + "\n\nError:" + ErrorUtil.getStackTrace(e));
 	   		return null;
 		 }	
 	}

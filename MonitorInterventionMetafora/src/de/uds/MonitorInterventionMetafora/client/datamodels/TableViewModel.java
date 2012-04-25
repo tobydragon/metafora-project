@@ -10,8 +10,8 @@ import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorGridRowItem
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilterer;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
-import de.uds.MonitorInterventionMetafora.shared.utils.IndicatorFilterer;
 
 public class TableViewModel {
 	UpdatingDataModel maintenance;

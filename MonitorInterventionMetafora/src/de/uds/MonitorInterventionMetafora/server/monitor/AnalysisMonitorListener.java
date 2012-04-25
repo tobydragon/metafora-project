@@ -3,11 +3,11 @@ package de.uds.MonitorInterventionMetafora.server.monitor;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
-public class MonitorListener implements CfCommunicationListener{
+public class AnalysisMonitorListener implements CfCommunicationListener{
 
 	private MonitorModel model;
 	
-	public MonitorListener(MonitorModel monitorModel){
+	public AnalysisMonitorListener(MonitorModel monitorModel){
 		this.model = monitorModel;
 	}
 	

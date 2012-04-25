@@ -35,17 +35,7 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
 		controller = dataModel.getInterfaceManager();
 		setLoadingImage();
 		
-		sendStartupMessage();
- 
-// 	  CfAction _action=new CfAction();
-// 	  _action.setTime(GWTUtils.getTimeStamp());
-// 	  
-// 	 CfActionType _cfActionType=new CfActionType();
-// 	 _cfActionType.setType("START_FILE_INPUT");
-// 	 _action.setCfActionType(_cfActionType);
-// 	 System.out.println("Sending start from file action");
-// 	 
-// 	 ServerCommunication.getInstance().processAction("Tool",_action,this);	
+		sendStartupMessage();	
 	}
 	
 	private void sendStartupMessage() {
@@ -55,7 +45,7 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
 	 	 CfActionType _cfActionType=new CfActionType();
 	 	 _cfActionType.setType("START_FILE_INPUT");
 	 	 startupMessage.setCfActionType(_cfActionType);
-	 	 System.out.println("Sending start from file action");
+	 	 System.out.println("INFO\t\t[MonitorPanelContainer.sendStartupMessage] Sending monitoring start from Client");
 	 	 ServerCommunication.getInstance().processAction("MonitoringClient",startupMessage,this);	
 	}
 

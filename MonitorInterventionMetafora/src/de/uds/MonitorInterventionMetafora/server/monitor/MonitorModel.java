@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 
-import de.uds.MonitorInterventionMetafora.server.utils.Logger;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 
 public class MonitorModel {
 	Logger logger = Logger.getLogger(this.getClass());

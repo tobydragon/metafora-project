@@ -1,9 +1,10 @@
-package de.uds.MonitorInterventionMetafora.server.cfcommunication;
+package de.uds.MonitorInterventionMetafora.shared.commonformat;
 
 public class MetaforaStrings {
 	
-	public static final String METAFORA_USER_ID_STRING = "METAFORA";
+	public static final String METAFORA_USER_ID_STRING = "metafora-platform";
 	public static final String LASAD_AGENT_USER_ID_STRING = "LASAD_AGENT";
+	public static final String MONITOR_USER_ID_STRING = "monitor";
 
 	
 	
@@ -25,6 +26,9 @@ public class MetaforaStrings {
 	public static final String PROPERTY_TYPE_VIEW_URL_STRING = "VIEW_URL";
 	public static final String PROPERTY_TYPE_MAPNAME_STRING = "MAPNAME";
 	public static final String PROPERTY_TYPE_TEMPLATE_STRING = "TEMPLATE";
+	public static final String PROPERTY_TYPE_REQUEST_ID_STRING = "REQUEST_ID";
+	public static final String PROPERTY_TYPE_FILE_URL_STRING = "URL";
+
 
 	public static final String PROPERTY_TYPE_ELEMENT_TYPE_STRING = "ELEMENT_TYPE";
 	

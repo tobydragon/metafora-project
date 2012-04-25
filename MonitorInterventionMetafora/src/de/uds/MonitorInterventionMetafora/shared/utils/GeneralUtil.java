@@ -1,6 +1,5 @@
-package de.uds.MonitorInterventionMetafora.server.utils;
+package de.uds.MonitorInterventionMetafora.shared.utils;
 
-import java.io.File;
 
 public class GeneralUtil {
 	
@@ -16,6 +15,14 @@ public class GeneralUtil {
 			return false;
 		}
 		return true;
+	}
+	
+	public static String getStartOfString(String wholeString){
+		String start = wholeString.replaceAll("\n", "");
+		 if (start.length() > 30){
+			 start = start.substring(0,29);
+		 }
+		 return start;
 	}
 	
 	public static String getAplicationResourceDirectory(){

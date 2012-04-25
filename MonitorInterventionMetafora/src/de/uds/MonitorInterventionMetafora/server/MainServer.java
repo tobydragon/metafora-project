@@ -12,11 +12,11 @@ import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationMe
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorModel;
-import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
-import de.uds.MonitorInterventionMetafora.server.utils.Logger;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
+import de.uds.MonitorInterventionMetafora.shared.utils.GeneralUtil;
+import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 
 /**
  * The server side implementation of the RPC service.

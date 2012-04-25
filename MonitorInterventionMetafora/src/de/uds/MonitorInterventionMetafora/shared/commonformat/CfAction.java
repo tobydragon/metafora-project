@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.shared.commonformat;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class CfAction implements Serializable, Comparable<CfAction>{
 	
@@ -47,7 +48,6 @@ public class CfAction implements Serializable, Comparable<CfAction>{
 	}
 	
 	public void addUser(CfUser cfUser){
-		System.out.println("Users:" + cfUsers);
 		cfUsers.add(cfUser);
 	}
 
@@ -106,7 +106,9 @@ public class CfAction implements Serializable, Comparable<CfAction>{
 	public String toString(){
 		String str = Long.toString(time);
 		str += "\n" + cfActionType.toString();
-		str += "\n" + cfContent.toString();
+		if (cfContent != null){
+			str += "\n" + cfContent.toString();
+		}
 		str += "\n" + cfUsers.toString();
 		str += "\n" + cfObjects.toString();
 		
@@ -117,6 +119,25 @@ public class CfAction implements Serializable, Comparable<CfAction>{
 	public int compareTo(CfAction o) {
 		int dif=(int) (this.getTime()-o.getTime());
 		return dif;
+	}
+	
+	public boolean containsUser(CfUser potentialUser){
+		for (CfUser user : cfUsers){
+			if (user.equals(potentialUser)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public List<CfUser> getUsersWithRole(String role){
+		List<CfUser> users = new Vector<CfUser>();
+		for (CfUser user : cfUsers){
+			if (user.getrole().equals(role)){
+				users.add(user);
+			}
+		}
+		return users;
 	}
 
 	//	public XmlFragment toXml(){
