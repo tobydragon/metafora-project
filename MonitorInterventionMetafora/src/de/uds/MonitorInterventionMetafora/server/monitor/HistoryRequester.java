@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.server.ExternalCommunication;
+package de.uds.MonitorInterventionMetafora.server.monitor;
 
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
