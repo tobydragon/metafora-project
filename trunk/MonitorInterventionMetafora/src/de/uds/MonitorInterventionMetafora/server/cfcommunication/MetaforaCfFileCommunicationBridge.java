@@ -2,7 +2,7 @@ package de.uds.MonitorInterventionMetafora.server.cfcommunication;
 
 import org.apache.log4j.Logger;
 
-import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
+import de.uds.MonitorInterventionMetafora.shared.utils.GeneralUtil;
 
 public class MetaforaCfFileCommunicationBridge extends SimpleCfFileCommunicationBridge{
 	Logger logger = Logger.getLogger(CfCommunicationBridge.class);
@@ -25,10 +25,10 @@ public class MetaforaCfFileCommunicationBridge extends SimpleCfFileCommunication
 	public MetaforaCfFileCommunicationBridge(CommunicationChannelType type) {
 
 		if (type == CommunicationChannelType.command){
-			setup(commandConnectionNameIn, commandConnectionNameOut);
+			setup(commandConnectionNameIn, commandConnectionNameOut, CfFileLocation.LOCAL);
 		}
 		else if (type == CommunicationChannelType.analysis){
-			setup(analysisConnectionNameIn, analysisConnectionNameOut);
+			setup(analysisConnectionNameIn, analysisConnectionNameOut, CfFileLocation.LOCAL);
 		} 
 		else {
 			logger.error("[constructor] Uknown connectionType");

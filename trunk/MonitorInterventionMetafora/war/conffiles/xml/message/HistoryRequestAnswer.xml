@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+		<action time="1335363591998">
+		<actiontype classification="other" succeed="UNKNOWN" type="REQUEST_ANALYSIS_ANSWER"/>
+		<user id="metafora-platform" role="originator"/>
+		<user id="visualizer" role="receiver"/>
+		<object id="0" type="element">
+		<properties>
+		<property name="REQUEST_ID" value="1335361351733"/>
+		<property name="URL" value="http://metafora.ku-eichstaett.de/logs/analysisRequest1335361351733.xml"/>
+		</properties>
+		</object>
+		</action>

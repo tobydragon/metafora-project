@@ -7,7 +7,7 @@ import java.util.List;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.NotificationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
-import de.uds.MonitorInterventionMetafora.shared.utils.IndicatorFilterer;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilterer;
 
 
 

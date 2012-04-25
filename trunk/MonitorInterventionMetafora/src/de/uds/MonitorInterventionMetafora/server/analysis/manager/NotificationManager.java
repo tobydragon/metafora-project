@@ -12,7 +12,7 @@ import java.util.TimerTask;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.utils.IndicatorFilterer;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilterer;
 
 public class NotificationManager extends TimerTask{
 

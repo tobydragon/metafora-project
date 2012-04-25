@@ -20,8 +20,8 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatString
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilterer;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
-import de.uds.MonitorInterventionMetafora.shared.utils.IndicatorFilterer;
 
 public class GroupedByPropertyModel {
 	

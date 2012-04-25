@@ -3,7 +3,7 @@ package de.uds.MonitorInterventionMetafora.server.cfcommunication;
 import java.util.Date;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 
 
@@ -11,14 +11,16 @@ import de.kuei.metafora.xmpp.XMPPBridge;
 import de.kuei.metafora.xmpp.XMPPMessageListener;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
 import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
-import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlUtil;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.utils.GeneralUtil;
+import de.uds.MonitorInterventionMetafora.shared.utils.LogLevel;
+import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 
 public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMessageListener{
-	Logger logger = Logger.getLogger(CfXmppCommunicationBridge.class);
+	static Logger logger = Logger.getLogger(CfXmppCommunicationBridge.class, LogLevel.WARN);
 	
 	private static String commandConnectionName = null;
 	private static String analysisConnectionName = null;
@@ -28,13 +30,13 @@ public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMes
 		String instanceConfigFilepath = GeneralUtil.getAplicationResourceDirectory()+"conffiles/xmpp/xmpp-settings.xml";
 		XmlConfigParser instanceParser = new XmlConfigParser(instanceConfigFilepath);
 
-		System.out.println("Create connection");
+		logger.info("Creating static connections for channels");
 		
 		commandConnectionName = createConnection(CommunicationChannelType.command, instanceParser);
 		analysisConnectionName = createConnection(CommunicationChannelType.analysis, instanceParser);	
-}
+	}
 
-static String createConnection(CommunicationChannelType configType, XmlConfigParser instanceParser){
+	static String createConnection(CommunicationChannelType configType, XmlConfigParser instanceParser){
 	
 	try {
 		String connectionConfigFilepath = GeneralUtil.getAplicationResourceDirectory()+"conffiles/xmpp/xmpp-connect-settings.xml";
@@ -52,7 +54,6 @@ static String createConnection(CommunicationChannelType configType, XmlConfigPar
 		String alias = connectionParser.getConfigValue("alias");
 		String device = connectionParser.getConfigValue("device");
 		XMPPBridge.createConnection(connectionName, userName, password, chatroom, alias, device);
-		System.out.println("Channel created successfully!");
 		return connectionName;
 	}
 	catch(Exception e){
@@ -82,14 +83,11 @@ static String createConnection(CommunicationChannelType configType, XmlConfigPar
 		}
 
 		try{
-			System.out.println("Trying to6 send xmpp mesage");
 			xmppBridge = XMPPBridge.getConnection(connectionName);
 			xmppBridge.connect(true);
 			xmppBridge.registerListener(this);
 			xmppBridge.sendMessage(connectionName + " connected at " + System.currentTimeMillis());
-			logger.info(connectionName + " connected to xmppBridge at " + new Date());
-			System.out.println("message send6 successfully");
-			
+			logger.info(connectionName + " connected to xmppBridge at " + new Date());			
 		}
 		catch(Exception e){
 			logger.error("[constructor] " + ErrorUtil.getStackTrace(e) );
@@ -116,7 +114,8 @@ static String createConnection(CommunicationChannelType configType, XmlConfigPar
 	}
 	@Override
 	public void newMessage(String user, String message, String arg2) {
-		logger.info("[newMessage] from user(" + user + ")\n" +  message);
+		logger.info("[newMessage] from user(" + user + "), starts with: "  + GeneralUtil.getStartOfString(message) );
+		logger.debug("[newMessage] from user(" + user + ") \n" + message);
 		
 		message = XmlUtil.convertSpecialCharactersToDescripitons(message);
 		XmlFragment actionXml = XmlFragment.getFragmentFromString(message);

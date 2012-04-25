@@ -7,18 +7,19 @@ import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationMe
 public class MonitorController {
 	
 	MonitorModel monitorModel;
+	HistoryRequester historyRequestor;
 	
 	public MonitorController(CommunicationMethodType communicationMethodType) {
+		
 		monitorModel = new MonitorModel();
-		MonitorListener monitorListener = new MonitorListener(monitorModel);
+		AnalysisMonitorListener monitorListener = new AnalysisMonitorListener(monitorModel);
+		
+		HistoryRequester historyRequester = new HistoryRequester(monitorModel);
 		
 		CfAgentCommunicationManager analysisManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.analysis);				
 		analysisManager.register(monitorListener);
 		
-		CfAgentCommunicationManager commandManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.command);				
-		commandManager.register(monitorListener);
-		
-		HistoryRequester.sendHistoryRequest(communicationMethodType);
+		historyRequester.sendHistoryRequest(communicationMethodType);
 	}
 
 	public MonitorModel getModel() {

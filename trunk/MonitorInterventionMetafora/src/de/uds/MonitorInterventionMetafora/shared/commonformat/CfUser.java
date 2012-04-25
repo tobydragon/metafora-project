@@ -40,6 +40,15 @@ public class CfUser implements Serializable{
 		return id + " - " + role;
 	}
 	
+	public boolean equals(CfUser other){
+		if (id.equals(other.id)){
+			if (role.equals(other.role)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 //	public XmlFragment toXml(){
 //		XmlFragment xmlFragment = new XmlFragment(CommonFormatStrings.USER_STRING);
 //		xmlFragment.setAttribute(CommonFormatStrings.ID_STRING, getid());

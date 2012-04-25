@@ -7,14 +7,14 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.notification.NoWorkNotification;
 import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
-import de.uds.MonitorInterventionMetafora.server.utils.ServerFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.NotificationType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilterer;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
-import de.uds.MonitorInterventionMetafora.shared.utils.IndicatorFilterer;
+import de.uds.MonitorInterventionMetafora.shared.utils.ServerFormatStrings;
 
 public class XmlConfigParser {
 	

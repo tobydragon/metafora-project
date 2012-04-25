@@ -4,9 +4,9 @@ import java.util.Vector;
 
 
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
-import de.uds.MonitorInterventionMetafora.server.utils.Logger;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 
 
 
@@ -24,26 +24,39 @@ public class SimpleCfFileCommunicationBridge implements CfCommunicationBridge{
 	
 	public SimpleCfFileCommunicationBridge(){ }
 	
-	public SimpleCfFileCommunicationBridge(String inputFilename, String outputFilename){
-		setup(inputFilename, outputFilename);	
+	public SimpleCfFileCommunicationBridge(String inputFilename, String outputFilename, CfFileLocation fileLocation){
+		setup(inputFilename, outputFilename, fileLocation);	
 	}
 	
-	protected void setup(String inputFilename, String outputFilename){
+	protected void setup(String inputFilename, String outputFilename, CfFileLocation fileLocation){
 		listeners = new Vector<CfCommunicationListener>();
 
 		channelNameIn = inputFilename;
 		channelNameOut = outputFilename;
 		
-		xmlIn = getOrCreateFragment(channelNameIn);
-		xmlOut = getOrCreateFragment(channelNameOut);
+		xmlIn = getOrCreateFragment(channelNameIn, fileLocation);
+		if (fileLocation != CfFileLocation.REMOTE){
+			xmlOut = getOrCreateFragment(channelNameOut, fileLocation);
+		}
 	}
 	
-	private XmlFragment getOrCreateFragment(String filename){
+	private XmlFragment getOrCreateFragment(String filename, CfFileLocation fileLocation){
 		
 		logger.info("[getOrCreateFragement] get from file:" + filename);
-		XmlFragment fragment = XmlFragment.getFragmentFromLocalFile(filename);
+		
+		XmlFragment fragment;
+		if (fileLocation == CfFileLocation.LOCAL){
+			fragment = XmlFragment.getFragmentFromLocalFile(filename);
+		}
+		else if (fileLocation == CfFileLocation.REMOTE){
+			fragment = XmlFragment.getFragmentFromRemoteFile(filename);
+		}
+		else {
+			logger.error("[getOrCreateFragment] Unrecognized CfFIleLocation - " + fileLocation);
+			fragment = null;
+		}
+		
 		if (fragment == null){
-			
 			logger.info("[getOrCreateFragement] no file read from fragment, creating new fragment");
 			fragment = new XmlFragment("interactiondata");
 			XmlFragment childfragment = new XmlFragment("actions");
@@ -72,7 +85,7 @@ public class SimpleCfFileCommunicationBridge implements CfCommunicationBridge{
 		
 	}
 	
-	private void sendMessages() {
+	public void sendMessages() {
 		
 		logger.info("[sendMessages] Sending all actions from file: " + channelNameIn);
 		XmlFragment actionsFrag = xmlIn.accessChild("actions");

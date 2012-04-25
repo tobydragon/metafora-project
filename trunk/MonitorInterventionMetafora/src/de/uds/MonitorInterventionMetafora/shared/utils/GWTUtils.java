@@ -5,7 +5,8 @@ import java.util.Date;
 import com.google.gwt.i18n.client.DateTimeFormat;
 
 public class GWTUtils {
-
+	//TODO: remove everything not specific to GWT and put in GeneralUtil
+	
 	public static String getDate(long input){
 		Date date = new Date(input);
 		
