@@ -44,7 +44,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		monitorController = new MonitorController(communicationMethodType);
 		monitorModel = monitorController.getModel();
 		
-		feedbackCommunicationManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.analysis);							
+		feedbackCommunicationManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.command);							
 	}
 
 	@Override
