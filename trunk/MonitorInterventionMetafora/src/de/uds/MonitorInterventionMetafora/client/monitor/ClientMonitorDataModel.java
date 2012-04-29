@@ -13,8 +13,8 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
 
-import de.uds.MonitorInterventionMetafora.client.datamodels.ActionPropertyValueGroupingTable;
-import de.uds.MonitorInterventionMetafora.client.datamodels.PropertyComboBoxItemModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ActionPropertyValueGroupingTable;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyComboBoxItemModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;

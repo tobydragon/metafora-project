@@ -15,11 +15,11 @@ import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 
-import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.PropertyComboBoxItemModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.OperationsComboBoxModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyComboBoxItemModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.grouping.ActionPropertyComboBox;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
-import de.uds.MonitorInterventionMetafora.client.view.widgets.ActionPropertyComboBox;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;

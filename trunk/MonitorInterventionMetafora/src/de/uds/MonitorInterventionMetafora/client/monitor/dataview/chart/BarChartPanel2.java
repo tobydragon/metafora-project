@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.view.charts;
+package de.uds.MonitorInterventionMetafora.client.monitor.dataview.chart;
 
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
@@ -9,8 +9,8 @@ import com.google.gwt.visualization.client.visualizations.corechart.ColumnChart;
 import com.google.gwt.visualization.client.visualizations.corechart.Options;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.view.widgets.DataViewPanel2;
-import de.uds.MonitorInterventionMetafora.client.view.widgets.GroupedDataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel2;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 
 public class BarChartPanel2 extends DataViewPanel2 {

@@ -5,7 +5,7 @@
  * 
  * http://extjs.com/license
  */
-package de.uds.MonitorInterventionMetafora.client.view.grids;
+package de.uds.MonitorInterventionMetafora.client.monitor.dataview.table;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,10 +44,10 @@ import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Timer;
 //import com.google.gwt.user.client.ui.CheckBox;
 
-import de.uds.MonitorInterventionMetafora.client.datamodels.DefaultModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.DefaultModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.TableViewModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 
 

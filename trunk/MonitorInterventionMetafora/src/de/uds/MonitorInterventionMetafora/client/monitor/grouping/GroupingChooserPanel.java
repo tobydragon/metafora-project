@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.view.widgets;
+package de.uds.MonitorInterventionMetafora.client.monitor.grouping;
 
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedListener;
@@ -9,7 +9,9 @@ import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
-import de.uds.MonitorInterventionMetafora.client.datamodels.PropertyComboBoxItemModel;
+
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyComboBoxItemModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 
 public class GroupingChooserPanel extends HorizontalPanel{

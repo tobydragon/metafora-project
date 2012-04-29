@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.view.charts;
+package de.uds.MonitorInterventionMetafora.client.monitor.dataview.chart;
 
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
@@ -9,7 +9,7 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart.Pie
 
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.view.widgets.DataViewPanel2;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel2;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 
 public class PieChartPanel2 extends  DataViewPanel2 {

@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.view.widgets;
+package de.uds.MonitorInterventionMetafora.client.monitor.dataview;
 
 import java.util.List;
 import java.util.Map;

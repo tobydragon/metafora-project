@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.view.widgets;
+package de.uds.MonitorInterventionMetafora.client.monitor.dataview;
 
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 

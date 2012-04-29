@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.datamodels;
+package de.uds.MonitorInterventionMetafora.client.monitor.datamodel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 
 
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorGridRowItem;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.IndicatorGridRowItem;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilterer;
