@@ -9,7 +9,6 @@ package de.uds.MonitorInterventionMetafora.client.datamodels;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
 
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 
 public class PropertyComboBoxItemModel extends BaseModelData {
@@ -22,10 +21,6 @@ public class PropertyComboBoxItemModel extends BaseModelData {
 	    set("displayText", propertyRule.getDisplayText());
 
 	}
-    
-//	public String getDisplayText() {
-//	    return get("displayText");
-//	}
 	
 	public ActionPropertyRule getActionPropertyRule(){
 		return propertyRule;

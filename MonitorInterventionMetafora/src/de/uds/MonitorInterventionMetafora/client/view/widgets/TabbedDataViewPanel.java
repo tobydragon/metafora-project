@@ -19,13 +19,13 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.event.TabPanelEvent;
 
 
-public class MultiModelTabPanel extends VerticalPanel {
+public class TabbedDataViewPanel extends VerticalPanel {
 
 	
 	
 	private  TabPanel tabPanel;
 	
-	public MultiModelTabPanel(){
+	public TabbedDataViewPanel(){
 		
 	
 		tabPanel = new TabPanel();
@@ -53,7 +53,7 @@ public class MultiModelTabPanel extends VerticalPanel {
 	}
 
 	
-	public MultiModelTabPanel(String _lbl){
+	public TabbedDataViewPanel(String _lbl){
 		
 	if(_lbl!=null){
 		this.add(new Label(_lbl));

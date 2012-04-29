@@ -27,7 +27,7 @@ public class GroupedDataViewPanel extends VerticalPanel {
 	}
 	
 	public void changeGroupingProperty(ActionPropertyRule newPropToGroupBy){
-		dataViewPanel.changeGroupingProperty(newPropToGroupBy);
+		dataViewPanel.setGroupingProperty(newPropToGroupBy);
 	}
 
 	public void refresh() {
