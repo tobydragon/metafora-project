@@ -5,7 +5,7 @@
  * 
  * http://extjs.com/license
  */
-package de.uds.MonitorInterventionMetafora.client.datamodels;
+package de.uds.MonitorInterventionMetafora.client.monitor.datamodel;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
 

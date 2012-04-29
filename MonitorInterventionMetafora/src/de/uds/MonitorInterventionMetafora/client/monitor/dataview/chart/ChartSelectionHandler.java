@@ -1,10 +1,10 @@
-package de.uds.MonitorInterventionMetafora.client.view.charts;
+package de.uds.MonitorInterventionMetafora.client.monitor.dataview.chart;
 
 import com.google.gwt.visualization.client.events.SelectHandler;
 
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.view.widgets.DataViewPanel2;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel2;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 

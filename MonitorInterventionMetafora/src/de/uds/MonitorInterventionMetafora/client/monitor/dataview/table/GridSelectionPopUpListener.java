@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.view.grids;
+package de.uds.MonitorInterventionMetafora.client.monitor.dataview.table;
 
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.GridEvent;

@@ -15,11 +15,11 @@ import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
-import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.OperationsComboBoxModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.TableViewModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.IndicatorGridRowItem;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.IndicatorFilterItemGridRowModel;
-import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorGridRowItem;
-import de.uds.MonitorInterventionMetafora.client.view.widgets.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;

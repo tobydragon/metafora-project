@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.datamodels;
+package de.uds.MonitorInterventionMetafora.client.monitor.datamodel;
 
 import java.util.HashMap;
 import java.util.Map;

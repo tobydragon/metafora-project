@@ -1,8 +1,9 @@
-package de.uds.MonitorInterventionMetafora.client.view.widgets;
+package de.uds.MonitorInterventionMetafora.client.monitor.grouping;
 
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
-import de.uds.MonitorInterventionMetafora.client.datamodels.PropertyComboBoxItemModel;
+
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyComboBoxItemModel;
 
 public class ActionPropertyComboBox extends ComboBox<PropertyComboBoxItemModel>{
 	
