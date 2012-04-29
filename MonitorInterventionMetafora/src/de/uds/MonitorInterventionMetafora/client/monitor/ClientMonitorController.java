@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.manager;
+package de.uds.MonitorInterventionMetafora.client.monitor;
 
 import java.util.Vector;
 
@@ -15,10 +15,9 @@ import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
-import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.filter.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorGridRowItem;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;

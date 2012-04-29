@@ -5,7 +5,7 @@
  * 
  * http://extjs.com/license
  */
-package de.uds.MonitorInterventionMetafora.client.datamodels;
+package de.uds.MonitorInterventionMetafora.client.monitor.filter;
 
 
 

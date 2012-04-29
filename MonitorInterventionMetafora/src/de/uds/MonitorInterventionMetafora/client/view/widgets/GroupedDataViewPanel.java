@@ -2,8 +2,8 @@ package de.uds.MonitorInterventionMetafora.client.view.widgets;
 
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 
-import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
+import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
+import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.view.charts.BarChartPanel2;
 import de.uds.MonitorInterventionMetafora.client.view.charts.PieChartPanel2;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;

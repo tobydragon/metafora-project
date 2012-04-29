@@ -5,6 +5,7 @@ import java.util.List;
 
 
 
+import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorGridRowItem;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
