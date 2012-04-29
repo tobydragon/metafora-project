@@ -65,6 +65,7 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestConfigurationCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.FilterListGridModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
@@ -86,12 +87,12 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	 EditorGrid<IndicatorFilterItemGridRowModel> grid;
 	 ListStore<IndicatorFilterItemGridRowModel> store;
 	 SimpleComboBox<String> filterGroupCombo;
-	 FilterListGridModel filterModel;
+
 	 ClientMonitorController controller;
+	 ClientMonitorDataModel model;
 	
-	public ExtendedFilterGrid(FilterListGridModel _filterModel, ClientMonitorController controller){
-		
-		filterModel= _filterModel;
+	public ExtendedFilterGrid(ClientMonitorDataModel model, ClientMonitorController controller){
+		this.model = model;
 		this.controller = controller;
 	}
 	
@@ -312,7 +313,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     ContentPanel panel = new ContentPanel();
     panel.setTopComponent(toolBar);
     
-    ExtendedFilterManagementPanel _filterManagement=new ExtendedFilterManagementPanel(filterModel.getActionMaintenance(), controller);
+    ExtendedFilterManagementPanel _filterManagement=new ExtendedFilterManagementPanel(model, controller);
     panel.setBottomComponent(_filterManagement);
     panel.setHeaderVisible(false);
     panel.setIcon(Resources.ICONS.table());
@@ -415,7 +416,7 @@ public void onSuccess(Configuration result) {
 	        		
 	        		_filterItem.setDisplayText(_filterEntity.getDisplayText());
 	        		_filterItem.setType(_filterEntity.getType().toString());
-	        		_filterItem.setProperty(_filterEntity.getEntityName());
+	        		_filterItem.setProperty(_filterEntity.getPropertyName());
 	        		_filterItem.setValue(_filterEntity.getValue());
 	        		_filterItem.setOperation(_filterEntity.getOperationType().toString());
 	        		

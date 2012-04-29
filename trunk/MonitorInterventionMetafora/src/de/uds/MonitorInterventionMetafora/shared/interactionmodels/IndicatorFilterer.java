@@ -103,7 +103,7 @@ public class IndicatorFilterer implements Serializable{
 	
 	boolean isSatisfyFilter(CfActionType _actionType,ActionPropertyRule _entity){
 		
-		FilterAttributeName _attribute=FilterAttributeName.getFromString(_entity.getEntityName().toUpperCase());
+		FilterAttributeName _attribute=FilterAttributeName.getFromString(_entity.getPropertyName().toUpperCase());
 		boolean result=false;
 		if(_attribute==null){
 			
@@ -181,7 +181,7 @@ public class IndicatorFilterer implements Serializable{
 	//id="Maria" role="UserID" 
 	boolean isSatisfyFilter(CfUser _user,ActionPropertyRule _entity){
 		
-		FilterAttributeName _attribute=FilterAttributeName.getFromString(_entity.getEntityName().toUpperCase());
+		FilterAttributeName _attribute=FilterAttributeName.getFromString(_entity.getPropertyName().toUpperCase());
 		boolean result=false;
 		if(_attribute==null){
 			
@@ -238,10 +238,10 @@ public class IndicatorFilterer implements Serializable{
 	boolean isSatisfyFilter(CfObject _obj,ActionPropertyRule _entity){
 		
 		boolean result=false;
-		FilterAttributeName _attribute=FilterAttributeName.getFromString(_entity.getEntityName().toUpperCase());
+		FilterAttributeName _attribute=FilterAttributeName.getFromString(_entity.getPropertyName().toUpperCase());
 		if(_attribute==null){
 			//it is object properties
-			String _objValue=_obj.getPropertyValue(_entity.getEntityName());
+			String _objValue=_obj.getPropertyValue(_entity.getPropertyName());
 			if(_objValue!=null){
 				
 			
@@ -316,7 +316,7 @@ public class IndicatorFilterer implements Serializable{
 	
 	boolean isSatisfyFilter(CfContent _content,ActionPropertyRule _entity){
 		boolean result=false;
-		String _contentValue=_content.getPropertyValue(_entity.getEntityName());
+		String _contentValue=_content.getPropertyValue(_entity.getPropertyName());
 		if(_contentValue!=null){
 			
 			if(_entity.getOperationType()==OperationType.EQUALS){

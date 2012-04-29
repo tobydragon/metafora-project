@@ -18,6 +18,7 @@ import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyMod
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.GroupedDataViewPanel;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 
 public class PieChartSelectionHandler extends SelectHandler{
@@ -50,9 +51,11 @@ public class PieChartSelectionHandler extends SelectHandler{
 	    ActionPropertyRule currentGroupingProp = piePanel.getGroupingProperty();
 	    
 	    //Make copy, and fill in extra info
-	    ActionPropertyRule newFilterRule = new ActionPropertyRule(currentGroupingProp.getType(), currentGroupingProp.getEntityName());
+	    ActionPropertyRule newFilterRule = new ActionPropertyRule(currentGroupingProp.getType(), currentGroupingProp.getPropertyName());
+	   
 	    //get the value from the data table used to populate the char that was clicked
 	    newFilterRule.setValue(model.getDataTable(currentGroupingProp).getValueString(selection, 0));
+	    newFilterRule.setOperationType(OperationType.EQUALS);
 	    
   	  	//TODO: explain: why entity is null if filter is already in the list?
 //	    if(entity==null){

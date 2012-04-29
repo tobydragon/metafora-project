@@ -48,26 +48,20 @@ public class ActionPropertyRule  implements Serializable{
 	 operationtype=_operationtype;
 	  
   }
-
-
   
-  public String getEntityName(){
-	  
+  public String getPropertyName(){ 
 	  return propertyName; 
   }
   
   public void setEntityName(String _entityName){
 	  propertyName=_entityName; 
   }
-  
-
 
   public String getValue() {
     return valueToFilterBy;
   }
   
   public void setValue(String _value){
-	  
 	  valueToFilterBy= _value;
   }
 
@@ -102,7 +96,7 @@ public class ActionPropertyRule  implements Serializable{
   }
   
   public String getKey(){
-	   String key= getType().toString()+"-"+ getEntityName()+"-"+ getValue();
+	   String key= getType().toString()+"-"+ getPropertyName()+"-"+ getValue();
 	   key = key.toLowerCase();
 	   return key;
   }

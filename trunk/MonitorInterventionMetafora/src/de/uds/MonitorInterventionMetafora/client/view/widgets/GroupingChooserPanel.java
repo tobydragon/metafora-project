@@ -25,26 +25,9 @@ public class GroupingChooserPanel extends HorizontalPanel{
 		
 		this.selectedProperty = groupingProperty;
 		this.parentViewPanel = parentViewPanel;
-		comboType = new ComboBox<PropertyComboBoxItemModel>();
 		
-		comboType.setId(panelId);
-		
-		comboType.setEmptyText("Select property:");
-	    comboType.setDisplayField("displayText");
-//	    comboType.setValueField("entityname");
-	    comboType.setWidth(150);
-	    comboType.setEditable(false);
-	    comboType.setAutoHeight(true);
-	    comboType.setStore(items);
-	  //  comboType.setTypeAhead(true);
-	    comboType.setTriggerAction(TriggerAction.ALL);
-	    
-	    PropertyComboBoxItemModel firstSelected = items.findModel("displayText", groupingProperty.getDisplayText());
-	    if (firstSelected != null){
-	    	comboType.select(firstSelected);
-	    }
-	    comboType.addSelectionChangedListener(comboListener);
-	    
+		comboType = new ActionPropertyComboBox(items, panelId);
+		comboType.addSelectionChangedListener(comboListener);
 	    
 	    Button retriveBtn=new Button("Re-Group");
 	    retriveBtn.setWidth("65px");

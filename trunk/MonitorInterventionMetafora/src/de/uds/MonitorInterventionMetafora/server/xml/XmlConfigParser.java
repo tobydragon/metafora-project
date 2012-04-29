@@ -97,7 +97,7 @@ public class XmlConfigParser {
 					_filterItem.setEntityName(propertyFragment.getAttributeValue(ServerFormatStrings.ENTITYNAME));
 					_filterItem.setOperationType(OperationType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.OPERATION).toUpperCase()));
 					_filterItem.setValue(propertyFragment.getAttributeValue(ServerFormatStrings.VALUE));				
-					 indicatorFilter.addIndicatorEntity(_filterItem.getEntityName(), _filterItem);
+					 indicatorFilter.addIndicatorEntity(_filterItem.getPropertyName(), _filterItem);
 				}
 				
 				notifications.add(renderNotification(type,indicatorFilter,color));	
@@ -127,7 +127,7 @@ public class XmlConfigParser {
 				_filterItem.setEntityName(propertyFragment.getAttributeValue(ServerFormatStrings.ENTITYNAME));
 				_filterItem.setOperationType(OperationType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.OPERATION).toUpperCase()));
 				_filterItem.setValue(propertyFragment.getAttributeValue(ServerFormatStrings.VALUE));				
-				 indicatorFilter.addIndicatorEntity(_filterItem.getEntityName(), _filterItem);
+				 indicatorFilter.addIndicatorEntity(_filterItem.getPropertyName(), _filterItem);
 			}
 			_entityfilters.add(indicatorFilter);	
 		}

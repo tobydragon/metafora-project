@@ -176,7 +176,7 @@ public class GroupedByPropertyModel {
 				_entity.setEntityName(_entityName);
 				_entity.setType(ActionElementType.CONTENT);
 				_entity.setDisplayText(_entityName);
-				if(!_entityMap.containsKey(_entity.getEntityName())){
+				if(!_entityMap.containsKey(_entity.getPropertyName())){
 				_entityList.add(_entity);
 				_entityMap.put(_entityName, _entityName);
 				
@@ -221,7 +221,7 @@ public class GroupedByPropertyModel {
 				_entity.setType(ActionElementType.OBJECT);
 				_entity.setDisplayText(_entityName);
 				
-				if(!_entityMap.containsKey(_entity.getEntityName())){
+				if(!_entityMap.containsKey(_entity.getPropertyName())){
 					_entityList.add(_entity);
 					_entityMap.put(_entityName,_entityName);
 					
@@ -267,7 +267,7 @@ public 	int getMaxValue(){
 		
 		DataTable data = DataTable.create();
 		
-		if(_entity==null || _entity.getEntityName().equalsIgnoreCase("")){
+		if(_entity==null || _entity.getPropertyName().equalsIgnoreCase("")){
 			return null;
 		}
 		else if(_entity.getType()==null){
@@ -282,7 +282,7 @@ public 	int getMaxValue(){
 		case ACTION_TYPE:
 			
 			groupedActions=new HashMap<String, List<CfAction>>(); 
-			groupedActions=groupActionTypesByEntityName(_entity.getEntityName());
+			groupedActions=groupActionTypesByEntityName(_entity.getPropertyName());
 			
 			    data.addColumn(ColumnType.STRING, "Task");
 			    data.addColumn(ColumnType.NUMBER, "Indicator Count");
@@ -291,7 +291,7 @@ public 	int getMaxValue(){
 			    for(String key:groupedActions.keySet()){
 				    data.setValue(index, 0, key);
 				    ActionPropertyRule _newEntity=new ActionPropertyRule();			    
-				    _newEntity.setEntityName(_entity.getEntityName());
+				    _newEntity.setEntityName(_entity.getPropertyName());
 				    _newEntity.setValue(key);
 				    _newEntity.setType(_entity.getType());
 				    _newEntity.setOperationType(OperationType.EQUALS);
@@ -310,7 +310,7 @@ public 	int getMaxValue(){
 			break;
 		case USER:
 			groupedUsers=new HashMap<String, List<CfUser>>(); 
-			groupedUsers=groupUsersByEntityName(_entity.getEntityName());
+			groupedUsers=groupUsersByEntityName(_entity.getPropertyName());
 			
 		    data.addColumn(ColumnType.STRING, "Task");
 		    data.addColumn(ColumnType.NUMBER, "Indicator Count");
@@ -319,7 +319,7 @@ public 	int getMaxValue(){
 		    for(String key:groupedUsers.keySet()){
 			    data.setValue(index, 0, key);
 			    ActionPropertyRule _newEntity=new ActionPropertyRule();			    
-			    _newEntity.setEntityName(_entity.getEntityName());
+			    _newEntity.setEntityName(_entity.getPropertyName());
 			    _newEntity.setValue(key);
 			    _newEntity.setType(_entity.getType());
 			    _newEntity.setOperationType(OperationType.EQUALS);
@@ -339,7 +339,7 @@ public 	int getMaxValue(){
 			
 		groupedObjects=new HashMap<String, List<CfObject>>();
 			
-			groupedObjects=groupObjectsByEntityName(_entity.getEntityName());
+			groupedObjects=groupObjectsByEntityName(_entity.getPropertyName());
 			
 			   data.addColumn(ColumnType.STRING, "Task");
 			    data.addColumn(ColumnType.NUMBER, "Indicator Count");
@@ -349,7 +349,7 @@ public 	int getMaxValue(){
 			    data.setValue(index, 0, key);
 			    
 			    ActionPropertyRule _newEntity=new ActionPropertyRule();			    
-			    _newEntity.setEntityName(_entity.getEntityName());
+			    _newEntity.setEntityName(_entity.getPropertyName());
 			    _newEntity.setValue(key);
 			    _newEntity.setType(_entity.getType());
 			    _newEntity.setOperationType(OperationType.EQUALS);
@@ -372,7 +372,7 @@ public 	int getMaxValue(){
 			
 		case CONTENT:
 			groupedContents=new HashMap<String, List<CfContent>>(); 
-			groupedContents=groupContentsByEntityName(_entity.getEntityName());	
+			groupedContents=groupContentsByEntityName(_entity.getPropertyName());	
 			    data.addColumn(ColumnType.STRING, "Task");
 			    data.addColumn(ColumnType.NUMBER, "Indicators");
 			    data.addRows(groupedContents.size());
@@ -381,7 +381,7 @@ public 	int getMaxValue(){
 			    data.setValue(index, 0, key);
 			    
 			    ActionPropertyRule _newEntity=new ActionPropertyRule();			    
-			    _newEntity.setEntityName(_entity.getEntityName());
+			    _newEntity.setEntityName(_entity.getPropertyName());
 			    _newEntity.setValue(key);
 			    _newEntity.setType(_entity.getType());
 			    _newEntity.setOperationType(OperationType.EQUALS);
