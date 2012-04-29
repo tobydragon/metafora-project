@@ -12,8 +12,8 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
-import de.uds.MonitorInterventionMetafora.client.actionresponse.CfActionCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
+import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.CfActionCallBack;
 import de.uds.MonitorInterventionMetafora.client.view.containers.FeedbackPanelContainer;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;

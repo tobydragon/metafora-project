@@ -3,15 +3,13 @@ package de.uds.MonitorInterventionMetafora.client.datamodels;
 import java.util.List;
 import java.util.Vector;
 
-import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestHistoryCallBack;
-import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
+import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestHistoryCallBack;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
-import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class TestDataRetreiver implements RequestHistoryCallBack{
 
