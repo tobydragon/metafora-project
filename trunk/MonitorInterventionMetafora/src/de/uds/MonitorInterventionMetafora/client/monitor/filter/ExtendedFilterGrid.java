@@ -5,7 +5,7 @@
  * 
  * http://extjs.com/license
  */
-package de.uds.MonitorInterventionMetafora.client.view.grids;
+package de.uds.MonitorInterventionMetafora.client.monitor.filter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +51,9 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 
 import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestConfigurationCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
-import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
-import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
+import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
+import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
-import de.uds.MonitorInterventionMetafora.client.view.widgets.ExtendedFilterManagementPanel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;

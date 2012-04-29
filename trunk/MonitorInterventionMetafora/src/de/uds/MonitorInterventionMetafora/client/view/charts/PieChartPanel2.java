@@ -7,8 +7,8 @@ import com.google.gwt.visualization.client.Selection;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart.PieOptions;
 
-import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
+import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
+import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.DataViewPanel2;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 

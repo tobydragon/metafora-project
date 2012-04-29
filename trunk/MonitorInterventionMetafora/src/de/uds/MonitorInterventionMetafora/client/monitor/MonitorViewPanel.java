@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.view.containers;
+package de.uds.MonitorInterventionMetafora.client.monitor;
 
 import java.util.List;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
@@ -6,12 +6,10 @@ import com.google.gwt.user.client.ui.Image;
 import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestHistoryCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ClientMonitorDataModelUpdater;
-import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
+import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.client.view.grids.ExtendedGroupedGrid;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.DataViewPanelType;
-import de.uds.MonitorInterventionMetafora.client.view.widgets.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.TabbedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
