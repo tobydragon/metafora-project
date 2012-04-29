@@ -88,7 +88,7 @@ public class CfObject implements Serializable {
 	
 	public String toString(){
 
-		String str= CommonFormatStrings.OBJECT_STRING + "\n" ;
+		String str= CommonFormatStrings.OBJECT_STRING + "\t" ;
 		str += "\t" + CommonFormatStrings.ID_STRING + " - " + id +"\t : " +  CommonFormatStrings.TYPE_STRING + " - " + type;
 		str += "\t : " + CommonFormatStrings.PROPERTIES_STRING + " - " + properties.toString();
 		return str;	

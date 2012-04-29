@@ -42,5 +42,7 @@ public class MetaforaStrings {
 	public static final String USER_ROLE_ORIGINATOR_STRING = "originator";
 	public static final String USER_ROLE_RECEIVER_STRING = "receiver";
 	public static final String CLASSIFICATION_OTHER_STRING = "other";
+	
+	public static final String CURRENT_TIME = "CURRENT_TIME"; 
 
 }

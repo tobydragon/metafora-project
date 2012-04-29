@@ -17,11 +17,11 @@ public class IndicatorFilter implements Serializable{
 	String name="";
 	String editable="true";
 	
-	HashMap<String, IndicatorProperty> filterIndicatorEntities;
+	HashMap<String, ActionPropertyRule> filterIndicatorEntities;
 	
 	public IndicatorFilter(){
 		
-		filterIndicatorEntities=new HashMap<String, IndicatorProperty>();
+		filterIndicatorEntities=new HashMap<String, ActionPropertyRule>();
 	}
 	
 	public void setName(String _name){
@@ -46,25 +46,25 @@ public class IndicatorFilter implements Serializable{
 	public String getEditable(){		
 		return editable;
 	}
-	public  void addIndicatorEntity(String _key,IndicatorProperty  _value){
+	public  void addIndicatorEntity(String _key,ActionPropertyRule  _value){
 		
 		filterIndicatorEntities.put(_key, _value);	
 		
 	}
 	
 	
-	public IndicatorProperty getIndicatorEntity(String _key){
+	public ActionPropertyRule getIndicatorEntity(String _key){
 		
 		if(filterIndicatorEntities.containsKey(_key))
 			return filterIndicatorEntities.get(_key);
-		return new IndicatorProperty();
+		return new ActionPropertyRule();
 		
 	}
 
 	
-	public List<IndicatorProperty> toIndicatorEntityList(){
+	public List<ActionPropertyRule> toIndicatorEntityList(){
 		
-		List<IndicatorProperty> indicatorEntityList=new ArrayList<IndicatorProperty>();
+		List<ActionPropertyRule> indicatorEntityList=new ArrayList<ActionPropertyRule>();
 		for(String _key:filterIndicatorEntities.keySet())
 		{
 			
@@ -76,7 +76,7 @@ public class IndicatorFilter implements Serializable{
 	}
 	
 	
-	public Map<String, IndicatorProperty> getIndicatorEntities(){
+	public Map<String, ActionPropertyRule> getIndicatorEntities(){
 		
 		return filterIndicatorEntities;
 	}

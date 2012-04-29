@@ -29,7 +29,7 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
 import de.uds.MonitorInterventionMetafora.client.view.containers.FeedbackPanelContainer;
 import de.uds.MonitorInterventionMetafora.client.view.containers.MainContainerTabPanel;
-import de.uds.MonitorInterventionMetafora.client.view.containers.MonitorPanelContainer;
+import de.uds.MonitorInterventionMetafora.client.view.containers.MonitorViewPanel;
 
 
 class VisualAnalyzer implements EntryPoint {
@@ -41,7 +41,7 @@ class VisualAnalyzer implements EntryPoint {
           
     	  
     	  FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer();
-    	  MonitorPanelContainer _monitoringContainer=new MonitorPanelContainer();
+    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel();
     	  MainContainerTabPanel _mainPanel=new MainContainerTabPanel();
     	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
     	  _mainPanel.addTab("Feedback", _feedbackPanelContainer,false);

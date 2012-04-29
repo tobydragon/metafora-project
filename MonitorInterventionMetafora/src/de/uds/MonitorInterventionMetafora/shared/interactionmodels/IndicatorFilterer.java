@@ -8,6 +8,7 @@ import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
@@ -15,7 +16,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
@@ -28,10 +29,10 @@ public class IndicatorFilterer implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -4106338046246238903L;
-	UpdatingDataModel maintenance;
+	ClientMonitorDataModel maintenance;
 	public IndicatorFilterer(){}
 	
-	public IndicatorFilterer(UpdatingDataModel _maintenance){
+	public IndicatorFilterer(ClientMonitorDataModel _maintenance){
 		
 		//filters=_filters;
 		maintenance=_maintenance;
@@ -40,7 +41,7 @@ public class IndicatorFilterer implements Serializable{
 	
 	
 	
-	boolean isSatisfyFilter(CfAction _action,IndicatorProperty _entity){
+	boolean isSatisfyFilter(CfAction _action,ActionPropertyRule _entity){
 		boolean result=false;
 		
 		switch(_entity.getType()){
@@ -84,7 +85,7 @@ public class IndicatorFilterer implements Serializable{
 	//type="indicator" classification="shouldbeinthemiddleCREATE" succeed="true" 
 	
 	
-	boolean isSatisfyFilter(long time,IndicatorProperty _entity){
+	boolean isSatisfyFilter(long time,ActionPropertyRule _entity){
 		
 		boolean result=false;
 		if(_entity.getOperationType()==OperationType.OCCUREDWITHIN){
@@ -100,7 +101,7 @@ public class IndicatorFilterer implements Serializable{
 	}
 	
 	
-	boolean isSatisfyFilter(CfActionType _actionType,IndicatorProperty _entity){
+	boolean isSatisfyFilter(CfActionType _actionType,ActionPropertyRule _entity){
 		
 		FilterAttributeName _attribute=FilterAttributeName.getFromString(_entity.getEntityName().toUpperCase());
 		boolean result=false;
@@ -178,7 +179,7 @@ public class IndicatorFilterer implements Serializable{
 	
 	
 	//id="Maria" role="UserID" 
-	boolean isSatisfyFilter(CfUser _user,IndicatorProperty _entity){
+	boolean isSatisfyFilter(CfUser _user,ActionPropertyRule _entity){
 		
 		FilterAttributeName _attribute=FilterAttributeName.getFromString(_entity.getEntityName().toUpperCase());
 		boolean result=false;
@@ -234,7 +235,7 @@ public class IndicatorFilterer implements Serializable{
 	
 	
 	//id="11" type="Help Request"
-	boolean isSatisfyFilter(CfObject _obj,IndicatorProperty _entity){
+	boolean isSatisfyFilter(CfObject _obj,ActionPropertyRule _entity){
 		
 		boolean result=false;
 		FilterAttributeName _attribute=FilterAttributeName.getFromString(_entity.getEntityName().toUpperCase());
@@ -313,7 +314,7 @@ public class IndicatorFilterer implements Serializable{
 	}
 	
 	
-	boolean isSatisfyFilter(CfContent _content,IndicatorProperty _entity){
+	boolean isSatisfyFilter(CfContent _content,ActionPropertyRule _entity){
 		boolean result=false;
 		String _contentValue=_content.getPropertyValue(_entity.getEntityName());
 		if(_contentValue!=null){
@@ -341,7 +342,7 @@ public class IndicatorFilterer implements Serializable{
 	}
 	
 	
-	boolean  isSatisfyFilters(CfAction _action,List<IndicatorProperty> _filters){
+	boolean  isSatisfyFilters(CfAction _action,List<ActionPropertyRule> _filters){
 		boolean result=false;
 		if(_filters.size()<=0)
 			return true;
@@ -371,17 +372,17 @@ public class IndicatorFilterer implements Serializable{
 	
 	
 	
-	List<IndicatorProperty> getActiveFiltersFromFilterGrid(){
-		List<IndicatorProperty> _activeFilters=new ArrayList<IndicatorProperty>();
+	List<ActionPropertyRule> getActiveFiltersFromFilterGrid(){
+		List<ActionPropertyRule> _activeFilters=new ArrayList<ActionPropertyRule>();
 		
 	    EditorGrid<IndicatorFilterItemGridRowModel> _grid = (EditorGrid<IndicatorFilterItemGridRowModel>) ComponentManager.get().get("_filterItemGrid");
 		if (_grid != null && _grid.getStore() != null){
 			for(int i=0;i<_grid.getStore().getCount();i++){
 				
 				IndicatorFilterItemGridRowModel _row=_grid.getStore().getAt(i);
-				IndicatorProperty _filter=new IndicatorProperty();
+				ActionPropertyRule _filter=new ActionPropertyRule();
 				_filter.setDisplayText(_row.getDisplayText());
-				_filter.setType(FilterItemType.getFromString(_row.getType().toUpperCase()));
+				_filter.setType(ActionElementType.getFromString(_row.getType().toUpperCase()));
 				_filter.setOperationType(OperationType.getFromString(_row.getOperation().toUpperCase()));
 				_filter.setEntityName(_row.getProperty());
 				_filter.setValue(_row.getValue());
@@ -398,7 +399,7 @@ public class IndicatorFilterer implements Serializable{
 		
 		List<CfAction> _allActions =new ArrayList<CfAction>();
 		List<CfAction> _filteredActions =new ArrayList<CfAction>();
-		_allActions.addAll(maintenance.getAllActiveActionList());
+		_allActions.addAll(maintenance.getAllActions());
 		
 		for(CfAction _action:_allActions){
 			if(isSatisfyFilters(_action, getActiveFiltersFromFilterGrid())){
@@ -426,7 +427,7 @@ public class IndicatorFilterer implements Serializable{
 //	}
 //	
 
-public List<CfAction> getFilteredIndicatorList(List<CfAction>  _allActions,List<IndicatorProperty> _filters){
+public List<CfAction> getFilteredIndicatorList(List<CfAction>  _allActions,List<ActionPropertyRule> _filters){
 	
 	
 	List<CfAction> _filteredActions =new ArrayList<CfAction>();
