@@ -5,18 +5,14 @@ import java.util.List;
 
 
 
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 import de.uds.MonitorInterventionMetafora.client.view.grids.IndicatorGridRowItem;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilterer;
-import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class TableViewModel {
 	ClientMonitorDataModel maintenance;
 	IndicatorFilterer filterer;
-	GroupedByPropertyModel groupedByPropertyModel;
 	
 	public TableViewModel(ClientMonitorDataModel _maintenance){
 		
@@ -33,7 +29,7 @@ public class TableViewModel {
 	}
 	
 	public List<IndicatorGridRowItem>  parseToIndicatorGridRowList(boolean _applyFilter, boolean ignoreNotification){
-		
+		//TODO: this should not make a new list, but shoudl keep updated with current model
 		List<CfAction> cfActions=new ArrayList<CfAction>();
 		if(maintenance.getAllActions()!=null){	
 			if(!_applyFilter){

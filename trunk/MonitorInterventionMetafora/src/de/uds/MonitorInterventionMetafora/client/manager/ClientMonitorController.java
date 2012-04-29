@@ -15,10 +15,7 @@ import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
@@ -159,12 +156,6 @@ public class ClientMonitorController {
 		
 		return (VerticalPanel) ComponentManager.get().get("_tabMainPanel");
 	}
-
-public ComboBox<EntitiesComboBoxModel> getFilterEntitiesComboBox(){
-	
-	return (ComboBox<EntitiesComboBoxModel>) ComponentManager.get().get("_entityComboBox");
-}
-
 
 public ComboBox<OperationsComboBoxModel> getOperationsComboBox(){
 	

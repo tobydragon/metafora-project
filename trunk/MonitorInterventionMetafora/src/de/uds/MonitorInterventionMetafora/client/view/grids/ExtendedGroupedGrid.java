@@ -9,19 +9,10 @@ package de.uds.MonitorInterventionMetafora.client.view.grids;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-
-
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
-import com.extjs.gxt.ui.client.data.BaseModel;
-import com.extjs.gxt.ui.client.data.ChangeEvent;
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
-import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.event.Events;
-import com.extjs.gxt.ui.client.event.FieldEvent;
-import com.extjs.gxt.ui.client.event.GridEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedListener;
@@ -30,52 +21,34 @@ import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Store;
 import com.extjs.gxt.ui.client.store.StoreEvent;
-import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
-import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
-import com.extjs.gxt.ui.client.widget.form.SimpleComboValue;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
 import com.extjs.gxt.ui.client.widget.grid.GridGroupRenderer;
-import com.extjs.gxt.ui.client.widget.grid.GridSelectionModel;
 import com.extjs.gxt.ui.client.widget.grid.GroupColumnData;
 import com.extjs.gxt.ui.client.widget.grid.GroupingView;
-import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.google.gwt.event.dom.client.ChangeHandler;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Timer;
 //import com.google.gwt.user.client.ui.CheckBox;
 
-import com.google.gwt.user.client.ui.ClickListener;
-
-
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.DefaultModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
 
 
 public class ExtendedGroupedGrid extends  LayoutContainer {
@@ -110,6 +83,7 @@ public class ExtendedGroupedGrid extends  LayoutContainer {
 
 
 	ComboBox<DefaultModel> renderGroupingComboBox(){
+		//TODO: make this a GroupingChooserPanel
 		ComboBox<DefaultModel> groupingComboBox=new ComboBox<DefaultModel>();;
 		groupingComboBox.setTriggerAction(TriggerAction.ALL);  
 		groupingComboBox.setEditable(false);  

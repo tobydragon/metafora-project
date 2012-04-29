@@ -6,18 +6,14 @@ import com.google.gwt.user.client.ui.Image;
 import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestHistoryCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ClientMonitorDataModelUpdater;
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
-import de.uds.MonitorInterventionMetafora.client.view.charts.BarChartPanel;
 import de.uds.MonitorInterventionMetafora.client.view.grids.ExtendedGroupedGrid;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.GroupedDataViewPanel;
-import de.uds.MonitorInterventionMetafora.client.view.widgets.MultiModelTabPanel;
-import de.uds.MonitorInterventionMetafora.server.monitor.MonitorModel;
+import de.uds.MonitorInterventionMetafora.client.view.widgets.TabbedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
@@ -29,7 +25,7 @@ public class MonitorViewPanel extends VerticalPanel implements RequestHistoryCal
 	FilterListPanel flp;
 	
 	ClientMonitorController controller;
-	MultiModelTabPanel tabs;
+	TabbedDataViewPanel tabs;
 	ClientMonitorDataModelUpdater updater;
 	ClientMonitorDataModel monitorModel;
 	
@@ -87,7 +83,7 @@ public class MonitorViewPanel extends VerticalPanel implements RequestHistoryCal
 	}
 	
 	private void createTabbedDataViewsPanel(){
-		tabs=new MultiModelTabPanel();
+		tabs=new TabbedDataViewPanel();
 		tabs.setId("_tabMainPanel");
 		
 		//TODO: this indicatorTable should be a GroupedDataViewPanel and added like others

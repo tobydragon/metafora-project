@@ -2,13 +2,32 @@ package de.uds.MonitorInterventionMetafora.client.view.widgets;
 
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 
-import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 
 public abstract class DataViewPanel2 extends VerticalPanel{
 
-	public abstract void changeGroupingProperty(ActionPropertyRule newPropToGroupBy);
+	protected ActionPropertyRule groupingProperty;
+	protected ClientMonitorDataModel model;
+	
+	public DataViewPanel2(ActionPropertyRule groupingProperty, ClientMonitorDataModel model){
+		this.groupingProperty = groupingProperty;
+		this.model = model;
+	}
+		
+	public ActionPropertyRule getGroupingProperty() {
+		return groupingProperty;
+	}
+	
+	public void setGroupingProperty(ActionPropertyRule groupingProperty) {
+		this.groupingProperty = groupingProperty;
+		refresh();
+	}
 
-	public abstract void refresh();
+	public void refresh(){
+		this.layout();
+	}
+	
+	public abstract int getSelectedRow();
 
 }

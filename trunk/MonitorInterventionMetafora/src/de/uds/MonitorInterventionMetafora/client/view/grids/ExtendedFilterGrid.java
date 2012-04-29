@@ -8,16 +8,8 @@
 package de.uds.MonitorInterventionMetafora.client.view.grids;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-
-
-
-
-
-
 
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 
@@ -25,18 +17,13 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Store;
 import com.extjs.gxt.ui.client.store.StoreEvent;
 import com.extjs.gxt.ui.client.widget.BoxComponent;
-import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 
-import com.extjs.gxt.ui.client.widget.grid.CellEditor;
-import com.extjs.gxt.ui.client.widget.grid.CheckColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
@@ -64,17 +51,13 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 
 import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestConfigurationCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.FilterListGridModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.ExtendedFilterManagementPanel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
@@ -82,8 +65,6 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfigurationCallBack {
 
-	
-	
 	 EditorGrid<IndicatorFilterItemGridRowModel> grid;
 	 ListStore<IndicatorFilterItemGridRowModel> store;
 	 SimpleComboBox<String> filterGroupCombo;
@@ -189,14 +170,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	    
 	   
 	    List<IndicatorFilterItemGridRowModel> filters=new ArrayList<IndicatorFilterItemGridRowModel>();
-	    IndicatorFilterItemGridRowModel ft=new IndicatorFilterItemGridRowModel();
-	  /*  ft.setProperty("MAP-ID");
-	    ft.setValue("1");
-	    ft.setType("OBJECT");
-	    
-	    
-	    filters.add(ft);
-	    */
+
 	    store.add(filters);
 	
     
@@ -208,54 +182,23 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     config.add(_value);
     config.add( buttoncolumn);
     
-   // config.add(groupingItem);
-
      ColumnModel cm = new ColumnModel(config);
 
      
-     grid = new EditorGrid<IndicatorFilterItemGridRowModel>(store, cm);
+    grid = new EditorGrid<IndicatorFilterItemGridRowModel>(store, cm);
 
     grid.setBorders(true);
     grid.setId("_filterItemGrid");
-    /*
-    grid.addListener(Events.Add, new Listener<BaseEvent>() {
-        @Override
-        public void handleEvent(BaseEvent be) {
-        	Info.display("Info","addedd");
-        }
-    });
-    
-    grid.addListener(Events.Remove, new Listener<BaseEvent>() {
-        @Override
-        public void handleEvent(BaseEvent be) {
-        	Info.display("Info","remove");
-        }
-    });*/
    
     grid.getStore().addListener(Store.Add, new Listener<StoreEvent<IndicatorFilterItemGridRowModel>>() {
           public void handleEvent(StoreEvent<IndicatorFilterItemGridRowModel> be) {
-        	 
-        	  controller.refreshViews();
-//        	  filterModel.getActionMaintenance().refreshTableView();
-//        	  
-//        	  filterModel.getActionMaintenance().refreshColumnChart();
-//        	  filterModel.getActionMaintenance().refreshPieChart();
-        	  
+        	  controller.refreshViews();  
           }
         });
     
     grid.getStore().addListener(Store.Remove, new Listener<StoreEvent<IndicatorFilterItemGridRowModel>>() {
         public void handleEvent(StoreEvent<IndicatorFilterItemGridRowModel> be) {
-        	controller.refreshViews();
-        	
-        	//ActionMaintenance _maint=new ActionMaintenance();
-        	//_maint.refreshTableView(filterModel.getActionMaintenance());
-//        	filterModel.getActionMaintenance().refreshTableView();
-//
-//       	  filterModel.getActionMaintenance().refreshColumnChart();
-//       	filterModel.getActionMaintenance().refreshPieChart();	
-       	
-        	
+        	controller.refreshViews();        	
         }
       });
     
@@ -298,7 +241,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 		    grid.getStore().removeAll();
 		    filterGroupCombo.clearSelections();
 			
-		    controller.refreshTableView();
+		    controller.refreshViews();
 		    
         	//_maint.refreshTableView(filterModel.getActionMaintenance());
 		   
@@ -313,7 +256,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     ContentPanel panel = new ContentPanel();
     panel.setTopComponent(toolBar);
     
-    ExtendedFilterManagementPanel _filterManagement=new ExtendedFilterManagementPanel(model, controller);
+    ExtendedFilterManagementPanel _filterManagement=new ExtendedFilterManagementPanel(model.getPropertiesComboBoxModel(), controller, grid);
     panel.setBottomComponent(_filterManagement);
     panel.setHeaderVisible(false);
     panel.setIcon(Resources.ICONS.table());

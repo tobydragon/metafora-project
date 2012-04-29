@@ -20,7 +20,7 @@ import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropert
 public class ClientMonitorDataModel {
 	
 	//all actions received from client
-	private  List<CfAction> activecfActions;
+	private  List<CfAction> allCfActions;
 	
 	//a mapping of strings to ActionPropertyRules for grouping/filtering lists
 	private Map<String, ActionPropertyRule> propertyDisplayName2ActionPropertyRuleMap;
@@ -32,7 +32,7 @@ public class ClientMonitorDataModel {
 	private ListStore<PropertyComboBoxItemModel> propertyComboBoxItems;
 	
 	public ClientMonitorDataModel(){
-		activecfActions=new ArrayList<CfAction>();
+		allCfActions=new ArrayList<CfAction>();
 		propertyDisplayName2ActionPropertyRuleMap = createActionProperties();
 		propertyComboBoxItems = new ListStore<PropertyComboBoxItemModel>();
 		rule2ValueGroupingTableMap = createIndicatorPropertyTableMap(propertyDisplayName2ActionPropertyRuleMap.values());
@@ -65,15 +65,15 @@ public class ClientMonitorDataModel {
 				indicatorPropertyTable.addAction(action);
 			}
 		}
-		activecfActions.addAll(actions);
+		allCfActions.addAll(actions);
 	}
 	
 	public CfAction getLastAction(){
-		if(activecfActions.size()<=0){
+		if(allCfActions.size()<=0){
 			return null;
 		}
-		int index=activecfActions.size()-1;
-		return activecfActions.get(index);
+		int index=allCfActions.size()-1;
+		return allCfActions.get(index);
 	}
 	
 	public DataTable getDataTable(ActionPropertyRule propertyToGroupBy){
@@ -97,7 +97,7 @@ public class ClientMonitorDataModel {
 	}
 	
 	public List<CfAction> getAllActions(){
-		return activecfActions;
+		return allCfActions;
 	}
 	
 	public Collection<String> getPropertyDisplayNames(){
