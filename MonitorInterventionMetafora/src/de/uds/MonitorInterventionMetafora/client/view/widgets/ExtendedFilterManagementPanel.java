@@ -30,7 +30,7 @@ import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxMode
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
-import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
@@ -45,10 +45,10 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 	private  Button addButton;
 	private UpdatingDataModel maintenance;
 	private GroupedByPropertyModel model;
-	private FilteredDataViewManager interfaceManager;
+	private ClientMonitorController interfaceManager;
 	
 	
-	public ExtendedFilterManagementPanel(UpdatingDataModel _maintenance, FilteredDataViewManager controller){
+	public ExtendedFilterManagementPanel(UpdatingDataModel _maintenance, ClientMonitorController controller){
 		maintenance=_maintenance;
 		model=new GroupedByPropertyModel(maintenance);
 		interfaceManager= controller;

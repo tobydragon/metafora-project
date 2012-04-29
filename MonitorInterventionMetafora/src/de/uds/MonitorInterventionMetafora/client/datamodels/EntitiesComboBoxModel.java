@@ -9,8 +9,8 @@ package de.uds.MonitorInterventionMetafora.client.datamodels;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
 
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 
 public class EntitiesComboBoxModel extends BaseModelData {
 
@@ -22,7 +22,7 @@ public EntitiesComboBoxModel() {
   }
 
 
-public EntitiesComboBoxModel(IndicatorProperty _entity) {
+public EntitiesComboBoxModel(ActionPropertyRule _entity) {
     setEntityName(_entity.getEntityName());
     setDisplayText(_entity.getDisplayText());
     setItemType(_entity.getType());
@@ -30,7 +30,7 @@ public EntitiesComboBoxModel(IndicatorProperty _entity) {
 }
     
 
-  public EntitiesComboBoxModel(String _entityName, String _displayText,FilterItemType _itemType, String _value) {
+  public EntitiesComboBoxModel(String _entityName, String _displayText,ActionElementType _itemType, String _value) {
     setEntityName(_entityName);
     setDisplayText(_displayText);
     setItemType(_itemType);
@@ -49,14 +49,14 @@ public String getValue(){
 	return get("value");
 	
 }
-public void setItemType(FilterItemType _itemType){
+public void setItemType(ActionElementType _itemType){
 	
 	set("itemtype",_itemType.toString());
 }
 
-public FilterItemType getItemType(){
+public ActionElementType getItemType(){
 	
-	return FilterItemType.valueOf(get("itemtype").toString());
+	return ActionElementType.valueOf(get("itemtype").toString());
 } 
   public String getEntityName() {
     return get("entityname");

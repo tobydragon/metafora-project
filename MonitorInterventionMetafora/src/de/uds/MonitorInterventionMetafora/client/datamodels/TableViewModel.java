@@ -14,11 +14,11 @@ import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilt
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class TableViewModel {
-	UpdatingDataModel maintenance;
+	ClientMonitorDataModel maintenance;
 	IndicatorFilterer filterer;
 	GroupedByPropertyModel groupedByPropertyModel;
 	
-	public TableViewModel(UpdatingDataModel _maintenance){
+	public TableViewModel(ClientMonitorDataModel _maintenance){
 		
 		maintenance=_maintenance;
 		filterer=new IndicatorFilterer(maintenance);
@@ -35,9 +35,9 @@ public class TableViewModel {
 	public List<IndicatorGridRowItem>  parseToIndicatorGridRowList(boolean _applyFilter, boolean ignoreNotification){
 		
 		List<CfAction> cfActions=new ArrayList<CfAction>();
-		if(maintenance.getAllActiveActionList()!=null){	
+		if(maintenance.getAllActions()!=null){	
 			if(!_applyFilter){
-				cfActions.addAll(maintenance.getAllActiveActionList());
+				cfActions.addAll(maintenance.getAllActions());
 			}
 			else{
 				cfActions.addAll(filterer.getFilteredIndicatorList());					

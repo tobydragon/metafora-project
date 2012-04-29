@@ -20,19 +20,19 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
-import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.GroupedDataViewPanel;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 
 public class BarChartSelectionHandler extends SelectHandler{
 
 	private final ColumnChart chartView;
-	private FilteredDataViewManager filteringDataViewController;
+	private ClientMonitorController filteringDataViewController;
 	private GroupedByPropertyModel model;
 	private int selection = -1;
 	private GroupedDataViewPanel groupedDataController;
 	
-	public BarChartSelectionHandler(final ColumnChart chart, GroupedByPropertyModel model, FilteredDataViewManager controllerIn, GroupedDataViewPanel groupedDataController){
+	public BarChartSelectionHandler(final ColumnChart chart, GroupedByPropertyModel model, ClientMonitorController controllerIn, GroupedDataViewPanel groupedDataController){
 		this.chartView = chart;
 		this.model = model;
 		filteringDataViewController = controllerIn;
@@ -48,7 +48,7 @@ public class BarChartSelectionHandler extends SelectHandler{
 		//IndicatorProperty entity = groupedDataController.getSelectedGroupingProperty();
 	    
 		//this operates on the first grouped item, need the current one		
-		IndicatorProperty entity = model.getIndicatorEntity(selection);
+		ActionPropertyRule entity = model.getIndicatorEntity(selection);
 		
 	    filteringDataViewController.addFilterItem(entity);
 	    filteringDataViewController.refreshTabPanel(); 

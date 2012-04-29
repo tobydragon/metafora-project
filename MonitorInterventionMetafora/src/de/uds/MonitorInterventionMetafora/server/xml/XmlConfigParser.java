@@ -7,12 +7,12 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.notification.NoWorkNotification;
 import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.NotificationType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilterer;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
 import de.uds.MonitorInterventionMetafora.shared.utils.ServerFormatStrings;
 
@@ -58,7 +58,8 @@ public class XmlConfigParser {
 			
 	    _conf=new Configuration();
 		_conf.setName(confFragment.getAttributeValue(ServerFormatStrings.NAME));
-		_conf.setDataSource(confFragment.getChildValue(ServerFormatStrings.DATA_SOURCE_TYPE));
+		_conf.setDataSourceType(confFragment.getChildValue(ServerFormatStrings.DATA_SOURCE_TYPE));
+		_conf.setHistoryStartTime(confFragment.getChildValue(ServerFormatStrings.HISTORY_START_TIME));
 		 XmlFragment  filtersFragment=XmlFragment.getFragmentFromString(confFragment.toString()).accessChild("filters");
 		 _conf.addFilters(getFilterList(filtersFragment));
 		// XmlFragmentInterface  notificationFragment=XmlFragment.getFragmentFromString(confFragment.toString());
@@ -91,8 +92,8 @@ public class XmlConfigParser {
 				
 				for(XmlFragment propertyFragment : filterFragment.getChildren(ServerFormatStrings.FILTERITEM))
 				{			
-					IndicatorProperty _filterItem=new IndicatorProperty();
-					_filterItem.setType(FilterItemType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
+					ActionPropertyRule _filterItem=new ActionPropertyRule();
+					_filterItem.setType(ActionElementType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
 					_filterItem.setEntityName(propertyFragment.getAttributeValue(ServerFormatStrings.ENTITYNAME));
 					_filterItem.setOperationType(OperationType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.OPERATION).toUpperCase()));
 					_filterItem.setValue(propertyFragment.getAttributeValue(ServerFormatStrings.VALUE));				
@@ -121,8 +122,8 @@ public class XmlConfigParser {
 			indicatorFilter.setEditable(filterFragment.getAttributeValue(ServerFormatStrings.EDITABLE));
 			for(XmlFragment propertyFragment : filterFragment.getChildren(ServerFormatStrings.FILTERITEM))
 			{			
-				IndicatorProperty _filterItem=new IndicatorProperty();
-				_filterItem.setType(FilterItemType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
+				ActionPropertyRule _filterItem=new ActionPropertyRule();
+				_filterItem.setType(ActionElementType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
 				_filterItem.setEntityName(propertyFragment.getAttributeValue(ServerFormatStrings.ENTITYNAME));
 				_filterItem.setOperationType(OperationType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.OPERATION).toUpperCase()));
 				_filterItem.setValue(propertyFragment.getAttributeValue(ServerFormatStrings.VALUE));				

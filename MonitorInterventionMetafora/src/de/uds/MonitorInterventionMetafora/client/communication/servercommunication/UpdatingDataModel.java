@@ -6,22 +6,22 @@ import java.util.List;
 import com.google.gwt.user.client.Timer;
 import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestUpdateCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
-import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
 public class UpdatingDataModel extends Timer implements RequestUpdateCallBack{
 
 	public  List<CfAction> activecfActions;
-	private FilteredDataViewManager interfaceManager;
+	private ClientMonitorController interfaceManager;
 	
 	
 	public UpdatingDataModel(){
 		activecfActions=new ArrayList<CfAction>();
-		interfaceManager=new FilteredDataViewManager(this);
+//		interfaceManager=new FilteredDataViewManager(this);
 	}
 	
 	
-	public FilteredDataViewManager getInterfaceManager() {
+	public ClientMonitorController getInterfaceManager() {
 		return interfaceManager;
 	}
 

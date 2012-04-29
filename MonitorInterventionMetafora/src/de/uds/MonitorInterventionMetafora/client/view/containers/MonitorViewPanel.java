@@ -5,34 +5,39 @@ import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.google.gwt.user.client.ui.Image;
 import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestHistoryCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
+import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.ClientMonitorDataModelUpdater;
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
-import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.client.view.charts.BarChartPanel;
-import de.uds.MonitorInterventionMetafora.client.view.charts.PieChartPanel;
 import de.uds.MonitorInterventionMetafora.client.view.grids.ExtendedGroupedGrid;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.MultiModelTabPanel;
+import de.uds.MonitorInterventionMetafora.server.monitor.MonitorModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 
-public class MonitorPanelContainer extends VerticalPanel implements RequestHistoryCallBack{
+public class MonitorViewPanel extends VerticalPanel implements RequestHistoryCallBack{
 
 	Image loadingImage;
 	FilterListPanel flp;
 	
-	UpdatingDataModel dataModel;
-	FilteredDataViewManager controller;
+	ClientMonitorController controller;
 	MultiModelTabPanel tabs;
+	ClientMonitorDataModelUpdater updater;
+	ClientMonitorDataModel monitorModel;
 	
-	public MonitorPanelContainer(){
-		dataModel=new UpdatingDataModel();
-		controller = dataModel.getInterfaceManager();
+	public MonitorViewPanel(){
+
+		monitorModel = new ClientMonitorDataModel();
+		controller = new ClientMonitorController(monitorModel);
+
 		setLoadingImage();
 		
 		sendStartupMessage();	
@@ -58,14 +63,16 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
 	public void onSuccess(List<CfAction> _actionList) {
 	
 		if(_actionList!=null){
-			dataModel.setActiveActionList(_actionList);
+		 	 System.out.println("INFO\t\t[MonitorPanelContainer.onSuccess] Adding actions count=" + _actionList.size());
+			monitorModel.addData(_actionList);
 		}
-		dataModel.startMaintenance();
+		updater = new ClientMonitorDataModelUpdater(monitorModel, controller);
+		updater.startMaintenance();
 	
 		VerticalPanel panel=new VerticalPanel();
 		panel.setId("allContainer");
 		
-		flp=new FilterListPanel(dataModel, controller);
+		flp=new FilterListPanel(monitorModel, controller);
 		panel.add(flp);
 		createTabbedDataViewsPanel();
 		panel.add(tabs);
@@ -76,21 +83,7 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
 		this.add(panel);
 		this.layout();
 		this.setHeight(600);
-		
-//		tabs=new MultiModelTabPanel();
-//		tabs.setId("_tabMainPanel");
 
-//		 ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(dataModel, controller);
-//		  tabs.addTab("Table",indicatorTable,false);
-//		 GroupedByPropertyModel groupedModel = new GroupedByPropertyModel(dataModel);
-//		  
-//		  GroupedDataViewPanel pieChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.PIE_CHART, groupedModel, controller, controller.getDefaultGroupingOption(), "pieChartFilterPanel", "comboPieChartType");
-//		  addDataView("pieChartViewTab", "Pie Chart View", pieChartWithChooser);
-//
-//		  GroupedDataViewPanel barChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.BAR_CHART, groupedModel, controller, controller.getDefaultGroupingOption(), "barChartFilterPanel", "comboColumnChartType");
-//		  addDataView("barChartViewTab", "Bar Chart View", barChartWithChooser);
-		  
-//		  panel.add(tabs);
 	}
 	
 	private void createTabbedDataViewsPanel(){
@@ -98,15 +91,13 @@ public class MonitorPanelContainer extends VerticalPanel implements RequestHisto
 		tabs.setId("_tabMainPanel");
 		
 		//TODO: this indicatorTable should be a GroupedDataViewPanel and added like others
-		ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(dataModel, controller);
+		ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(monitorModel, controller);
 		tabs.addTab("Table",indicatorTable,false);
-		  
-		GroupedByPropertyModel groupedModel = new GroupedByPropertyModel(dataModel);
-		  
-		GroupedDataViewPanel pieChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.PIE_CHART, groupedModel, controller, controller.getDefaultGroupingOption(), "pieChartFilterPanel", "comboPieChartType");
+		  		  
+		GroupedDataViewPanel pieChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.PIE_CHART, monitorModel, controller, controller.getDefaultGroupingOption(), "pieChartFilterPanel", "comboPieChartType");
 		addDataView("pieChartViewTab", "Pie Chart View", pieChartWithChooser);
 
-		GroupedDataViewPanel barChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.BAR_CHART, groupedModel, controller, controller.getDefaultGroupingOption(), "barChartFilterPanel", "comboColumnChartType");
+		GroupedDataViewPanel barChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.BAR_CHART, monitorModel, controller, controller.getDefaultGroupingOption(), "barChartFilterPanel", "comboColumnChartType");
 		addDataView("barChartViewTab", "Bar Chart View", barChartWithChooser);
 	}
 	
