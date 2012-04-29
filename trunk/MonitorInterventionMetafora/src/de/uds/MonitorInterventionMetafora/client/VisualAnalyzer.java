@@ -15,14 +15,7 @@
  */
 package de.uds.MonitorInterventionMetafora.client;
 
-
-
-
-
-
 import com.google.gwt.core.client.EntryPoint;
-
-
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.visualization.client.VisualizationUtils;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
@@ -33,75 +26,20 @@ import de.uds.MonitorInterventionMetafora.client.view.containers.MonitorViewPane
 
 
 class VisualAnalyzer implements EntryPoint {
-  //private final TabPanel tabPanel = new TabPanel();
 
-  public void onModuleLoad() {
-    VisualizationUtils.loadVisualizationApi(new Runnable() {
-      public void run() {
-          
-    	  
-    	  FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer();
-    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel();
-    	  MainContainerTabPanel _mainPanel=new MainContainerTabPanel();
-    	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
-    	  _mainPanel.addTab("Feedback", _feedbackPanelContainer,false);
-    	  
-    	  // for testing purposes put  the single container (_interventionPanelContainer or _monitoringContainer)
-    	  RootPanel.get().add(_mainPanel);
-
-    	
-      }}, PieChart.PACKAGE);
-  }
-
- 
-
-  //, PieChart.PACKAGE, Table.PACKAGE, MotionChart.PACKAGE, OrgChart.PACKAGE,Gauge.PACKAGE
+	  public void onModuleLoad() {
+		  //TODO: Check this, it seems like it only waits for pieChart, what about BarChart, etc.?
+		  VisualizationUtils.loadVisualizationApi(new Runnable() {
+	      public void run() {
+	    	  FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer();
+	    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel();
+	    	  MainContainerTabPanel _mainPanel=new MainContainerTabPanel();
+	    	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
+	    	  _mainPanel.addTab("Feedback", _feedbackPanelContainer,false);
+	    	  
+	    	  RootPanel.get().add(_mainPanel);
 	
-  
-  
-  void sendMultipleRequest(){
-	  
-	  /*
-	  Server.getInstance().sendRequest("RequestsHistory1",new AsyncCallback<String>() {
-			public void onFailure(Throwable caught) {
-				
-				
-				
-			}
-
-			public void onSuccess(String result) {
-				
-				System.out.println("MyResult:"+result);
-			}});
-	   
-	   
-	   Server.getInstance().sendRequest("RequestsHistory2",new AsyncCallback<String>() {
-			public void onFailure(Throwable caught) {
-				
-				
-				
-			}
-
-			public void onSuccess(String result) {
-				
-				System.out.println("MyResult:"+result);
-			}});
-	   
-	  Server.getInstance().sendRequest("RequestsHistory3",new AsyncCallback<String>() {
-			public void onFailure(Throwable caught) {
-				
-				
-				
-			}
-
-			public void onSuccess(String result) {
-				
-				System.out.println("MyResult:"+result);
-			}});
-	  */
-  }
-
-
-  
- 
+	    	
+	      }}, PieChart.PACKAGE);
+	  }
 }
