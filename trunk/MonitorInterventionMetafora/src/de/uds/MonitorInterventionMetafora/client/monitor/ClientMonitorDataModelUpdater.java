@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.communication.servercommunication;
+package de.uds.MonitorInterventionMetafora.client.monitor;
 
 import java.util.List;
 
@@ -6,8 +6,6 @@ import com.google.gwt.user.client.Timer;
 
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
-import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
-import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
 public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdateCallBack{

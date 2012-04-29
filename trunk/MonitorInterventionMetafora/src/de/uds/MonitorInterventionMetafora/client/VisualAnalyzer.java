@@ -22,7 +22,6 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
 import de.uds.MonitorInterventionMetafora.client.monitor.MonitorViewPanel;
 import de.uds.MonitorInterventionMetafora.client.view.containers.FeedbackPanelContainer;
-import de.uds.MonitorInterventionMetafora.client.view.containers.MainContainerTabPanel;
 
 
 class VisualAnalyzer implements EntryPoint {
