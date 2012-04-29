@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.view.containers;
+package de.uds.MonitorInterventionMetafora.client;
 
 import com.extjs.gxt.ui.client.widget.TabItem;
 

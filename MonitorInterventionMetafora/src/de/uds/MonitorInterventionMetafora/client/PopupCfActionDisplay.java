@@ -1,13 +1,13 @@
-package de.uds.MonitorInterventionMetafora.client.view.widgets;
+package de.uds.MonitorInterventionMetafora.client;
 
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextArea;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
-public class PopupIndicatorDisplay  extends PopupPanel {
+public class PopupCfActionDisplay  extends PopupPanel {
 
-    public PopupIndicatorDisplay(CfAction actionToDisplay) {
+    public PopupCfActionDisplay(CfAction actionToDisplay) {
       // PopupPanel's constructor takes 'auto-hide' as its boolean parameter.
       // If this is set, the panel closes itself automatically when the user
       // clicks outside of it.
