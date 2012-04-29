@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.view.feedback;
+package de.uds.MonitorInterventionMetafora.client.feedback;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -14,7 +14,6 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.CfActionCallBack;
-import de.uds.MonitorInterventionMetafora.client.view.containers.FeedbackPanelContainer;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;

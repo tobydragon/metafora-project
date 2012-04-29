@@ -20,8 +20,8 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.visualization.client.VisualizationUtils;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
+import de.uds.MonitorInterventionMetafora.client.feedback.FeedbackPanelContainer;
 import de.uds.MonitorInterventionMetafora.client.monitor.MonitorViewPanel;
-import de.uds.MonitorInterventionMetafora.client.view.containers.FeedbackPanelContainer;
 
 
 class VisualAnalyzer implements EntryPoint {

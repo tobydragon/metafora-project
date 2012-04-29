@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.view.feedback;
+package de.uds.MonitorInterventionMetafora.client.feedback;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -11,7 +11,6 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import de.uds.MonitorInterventionMetafora.client.view.containers.FeedbackPanelContainer;
 
 
 public class RequestStack {
