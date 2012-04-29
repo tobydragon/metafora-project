@@ -26,49 +26,54 @@ import com.google.gwt.user.client.DOM;
 
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.PropertyComboBoxItemModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 
 
 public class ExtendedFilterManagementPanel extends HorizontalPanel{
 
-	private  ComboBox<EntitiesComboBoxModel> entityComboBox;
+	private  ComboBox<PropertyComboBoxItemModel> entityComboBox;
 	private ComboBox<OperationsComboBoxModel> operationComboBox;
 	private TextField<String> entityValueTextBox; 
 	private  Button addButton;
-	private UpdatingDataModel maintenance;
-	private GroupedByPropertyModel model;
+	
+	private ClientMonitorDataModel model;
 	private ClientMonitorController interfaceManager;
 	
 	
-	public ExtendedFilterManagementPanel(UpdatingDataModel _maintenance, ClientMonitorController controller){
-		maintenance=_maintenance;
-		model=new GroupedByPropertyModel(maintenance);
+	public ExtendedFilterManagementPanel(ClientMonitorDataModel model, ClientMonitorController controller){
+//		maintenance=_maintenance;
+//		model=new GroupedByPropertyModel(maintenance);
 		interfaceManager= controller;
 		 FormLayout layout = new FormLayout();
-		entityComboBox = new ComboBox<EntitiesComboBoxModel>();
-	//	entityComboBox.setFieldLabel("Entity");
-		entityComboBox.setWidth(130);
-		entityComboBox.setDisplayField("displaytext");
-		entityComboBox.setValueField("entityname");
-		entityComboBox.setEditable(false);
-		entityComboBox.setId("_entityComboBox");
+		 
+		 entityComboBox = new ActionPropertyComboBox(model.getPropertiesComboBoxModel(), "_entityComboBox");
+		 
+//		entityComboBox = new ComboBox<PropertyComboBoxItemModel>();
+//	//	entityComboBox.setFieldLabel("Entity");
+//		entityComboBox.setWidth(130);
+//		entityComboBox.setDisplayField("displaytext");
+//		entityComboBox.setValueField("entityname");
+//		entityComboBox.setEditable(false);
+//		entityComboBox.setId("_entityComboBox");
 		
 		
 		
-		entityComboBox.setStore(model.getComboBoxEntities());
+//		entityComboBox.setStore(model.getPropertiesComboBoxModel());
 		entityComboBox.setForceSelection(true);
 
 		entityComboBox.setPosition(0, -2);
-		
-		entityComboBox.setTriggerAction(TriggerAction.ALL);
+//		entityComboBox.setTriggerAction(TriggerAction.ALL);
 		
 		 
 		operationComboBox=new ComboBox<OperationsComboBoxModel>();
@@ -99,11 +104,11 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		
 		
 		
-		final SelectionChangedListener<EntitiesComboBoxModel> comboListenerItem =new SelectionChangedListener<EntitiesComboBoxModel>(){
+		final SelectionChangedListener<PropertyComboBoxItemModel> comboListenerItem =new SelectionChangedListener<PropertyComboBoxItemModel>(){
 	        @Override
-	        public void selectionChanged(SelectionChangedEvent<EntitiesComboBoxModel> se) { 
+	        public void selectionChanged(SelectionChangedEvent<PropertyComboBoxItemModel> se) { 
 
-	        	if(se.getSelectedItem().getEntityName().equalsIgnoreCase("TIME")){
+	        	if(se.getSelectedItem().getActionPropertyRule().getPropertyName().equalsIgnoreCase("TIME")){
 	        	operationComboBox.getStore().removeAll();
 	        	operationComboBox.setStore(getOperations(true));
 	        	
@@ -124,8 +129,10 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 	        }
 
 	    };
+		entityComboBox.addSelectionChangedListener(comboListenerItem);
+
 	  
-	entityComboBox.addSelectionChangedListener(comboListenerItem);
+	
 	
 	
 		
@@ -196,7 +203,7 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 				
 				if(entityComboBox.validate() && operationComboBox.validate()&&entityValueTextBox.validate()){
 				
-				ComboBox<EntitiesComboBoxModel> entitiesCombo=interfaceManager.getFilterEntitiesComboBox();
+//				ComboBox<EntitiesComboBoxModel> entitiesCombo=interfaceManager.getFilterEntitiesComboBox();
 				ComboBox<OperationsComboBoxModel> operationCombo= interfaceManager.getOperationsComboBox();
 				TextField<String> entityValue=interfaceManager.getFilterEntityValueTextField();
 				
@@ -206,7 +213,9 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		    	 
 				
 				
-				EntitiesComboBoxModel selectedEntity=entitiesCombo.getValue();
+//				EntitiesComboBoxModel selectedEntity=entitiesCombo.getValue();
+				
+				ActionPropertyRule selectedEntity = entityComboBox.getValue().getActionPropertyRule();
 				OperationsComboBoxModel selectedOperation=operationCombo.getValue();
 				String filterValue=entityValue.getValue();
 				if(selectedEntity==null)
@@ -222,7 +231,7 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 				
 				
 				
-				IndicatorFilterItemGridRowModel  _newRow=new IndicatorFilterItemGridRowModel(selectedEntity.getEntityName().toUpperCase(),filterValue.toUpperCase(),selectedEntity.getItemType().toString(),filterValue.toUpperCase(), selectedOperation.getOperationType().toUpperCase()); 
+				IndicatorFilterItemGridRowModel  _newRow=new IndicatorFilterItemGridRowModel(selectedEntity.getPropertyName().toUpperCase(),filterValue.toUpperCase(),selectedEntity.getType().toString(),filterValue.toUpperCase(), selectedOperation.getOperationType().toUpperCase()); 
 		    	
 		        
 		        _grid.stopEditing();  
@@ -230,7 +239,7 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		        _grid.startEditing(_grid.getStore().indexOf(_newRow), 0); 
 		     
 				
-		        entitiesCombo.clearSelections();
+		        entityComboBox.clearSelections();
 		        operationCombo.clearSelections();
 		        entityValue.clear();
 

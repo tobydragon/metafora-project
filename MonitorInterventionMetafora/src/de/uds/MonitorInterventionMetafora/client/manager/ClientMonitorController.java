@@ -56,7 +56,7 @@ public class ClientMonitorController {
 //	        	_filterCombo.clearSelections();
 //	        }        
 	
-	        IndicatorFilterItemGridRowModel  _newRow = new IndicatorFilterItemGridRowModel(newFilterEntity.getEntityName(),newFilterEntity.getValue(),newFilterEntity.getType().toString(),newFilterEntity.getDisplayText(),newFilterEntity.getOperationType().toString().toUpperCase()); 
+	        IndicatorFilterItemGridRowModel  _newRow = new IndicatorFilterItemGridRowModel(newFilterEntity.getPropertyName(),newFilterEntity.getValue(),newFilterEntity.getType().toString(),newFilterEntity.getDisplayText(),newFilterEntity.getOperationType().toString().toUpperCase()); 
 	
 	        _grid.stopEditing();  
 	        _grid.getStore().insert(_newRow, 0);  

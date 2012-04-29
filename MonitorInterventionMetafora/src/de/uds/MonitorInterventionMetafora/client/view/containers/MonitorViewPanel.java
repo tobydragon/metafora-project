@@ -67,7 +67,7 @@ public class MonitorViewPanel extends VerticalPanel implements RequestHistoryCal
 			monitorModel.addData(_actionList);
 		}
 		updater = new ClientMonitorDataModelUpdater(monitorModel, controller);
-		updater.startMaintenance();
+		updater.startUpdates();
 	
 		VerticalPanel panel=new VerticalPanel();
 		panel.setId("allContainer");

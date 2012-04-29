@@ -100,7 +100,7 @@ public class NoWorkNotification  implements  Notification {
 		//String _description="";
 		for(final String _key:filter.getIndicatorEntities().keySet()){
 		
-		_description=_description+filter.getIndicatorEntities().get(_key).getEntityName()+"="+filter.getIndicatorEntities().get(_key).getValue()+", ";
+		_description=_description+filter.getIndicatorEntities().get(_key).getPropertyName()+"="+filter.getIndicatorEntities().get(_key).getValue()+", ";
 		}
 		
 		return _description;

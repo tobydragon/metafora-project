@@ -23,7 +23,7 @@ public EntitiesComboBoxModel() {
 
 
 public EntitiesComboBoxModel(ActionPropertyRule _entity) {
-    setEntityName(_entity.getEntityName());
+    setEntityName(_entity.getPropertyName());
     setDisplayText(_entity.getDisplayText());
     setItemType(_entity.getType());
     setValue(_entity.getValue());

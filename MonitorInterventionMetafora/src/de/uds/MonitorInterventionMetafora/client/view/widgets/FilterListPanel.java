@@ -26,7 +26,6 @@ public class FilterListPanel extends ContentPanel {
 	
 	Map<String, String> _filterList;
 	private ClientMonitorController interfaceManager;
-//	UpdatingDataModel maintenance;
 	ClientMonitorDataModel maintenance;
 	public FilterListPanel(ClientMonitorDataModel _maintenance, ClientMonitorController controller){
 		
@@ -38,54 +37,36 @@ public class FilterListPanel extends ContentPanel {
 	    this.setHeight("241px");	
 		_filterList=new HashMap<String,String>();
 		
-		
-		
-		
-		 this.addListener(Events.Collapse, new Listener<BaseEvent>()
-		            {
-
-		                public void handleEvent(BaseEvent be)
-		                {
-		               //interfaceManager.getGroupedGridContentPanel().setWidth(600);
-		                	if(interfaceManager.getTableViewEditorGrid()!=null)
-		               interfaceManager.getTableViewEditorGrid().setHeight(540);	
-		                	// Info.display("Collapse", "Collapse");
-		                };
-		            });
-		this.addListener(Events.Expand, new Listener<BaseEvent>()
-		            {
-
-		                public void handleEvent(BaseEvent be)
-		                {
-		                  
-		                //interfaceManager.getGroupedGridContentPanel().setWidth(600);
-		                	interfaceManager.getTableViewEditorGrid().setHeight(326);     	
-		                	
-		                	//  Info.display("Expand", "Expand");
-		                };
-		            });
-
-		
-		
-		
-		
-		
-		
 		//maintenance.
 //		FilterListGridModel flm=new FilterListGridModel(maintenance);
-//		ExtendedFilterGrid ef=new ExtendedFilterGrid(flm, interfaceManager);		
-//		this.add(ef);	
+		ExtendedFilterGrid ef=new ExtendedFilterGrid(_maintenance, interfaceManager);		
+		this.add(ef);	
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		 this.addListener(Events.Collapse, new Listener<BaseEvent>()
+        {
+
+            public void handleEvent(BaseEvent be)
+            {
+           //interfaceManager.getGroupedGridContentPanel().setWidth(600);
+            	if(interfaceManager.getTableViewEditorGrid()!=null)
+           interfaceManager.getTableViewEditorGrid().setHeight(540);	
+            	// Info.display("Collapse", "Collapse");
+            };
+        });
+		 
+		this.addListener(Events.Expand, new Listener<BaseEvent>()
+        {
+
+            public void handleEvent(BaseEvent be)
+            {
+              
+            //interfaceManager.getGroupedGridContentPanel().setWidth(600);
+            	interfaceManager.getTableViewEditorGrid().setHeight(326);     	
+            	
+            	//  Info.display("Expand", "Expand");
+            };
+        });
+
 	}
 	
 	
