@@ -7,15 +7,10 @@ import java.io.Serializable;
 
 import com.google.gwt.core.client.GWT;
 
-
-
-
-
-import de.uds.MonitorInterventionMetafora.client.actionresponse.CfActionCallBack;
-import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestConfigurationCallBack;
-import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestHistoryCallBack;
-import de.uds.MonitorInterventionMetafora.client.actionresponse.RequestUpdateCallBack;
-
+import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.CfActionCallBack;
+import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
+import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestHistoryCallBack;
+import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
 public class ServerCommunication implements Serializable {
