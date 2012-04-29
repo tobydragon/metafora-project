@@ -1,10 +1,5 @@
-package de.uds.MonitorInterventionMetafora.client.view.containers;
+package de.uds.MonitorInterventionMetafora.client.feedback;
 
-import de.uds.MonitorInterventionMetafora.client.view.feedback.Outbox;
-import de.uds.MonitorInterventionMetafora.client.view.feedback.RequestResponse;
-import de.uds.MonitorInterventionMetafora.client.view.feedback.RequestStack;
-import de.uds.MonitorInterventionMetafora.client.view.feedback.TemplatePool;
-import de.uds.MonitorInterventionMetafora.client.view.feedback.UserRequest;
 
 import com.extjs.gxt.ui.client.widget.Label;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -16,7 +11,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class FeedbackPanelContainer extends VerticalPanel {
-	private de.uds.MonitorInterventionMetafora.client.view.feedback.Outbox outbox;
+	private de.uds.MonitorInterventionMetafora.client.feedback.Outbox outbox;
 	private RequestResponse requestResponse;
 	private TemplatePool templatePool;
 	private RequestStack requestStack;
