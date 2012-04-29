@@ -3,8 +3,9 @@ package de.uds.MonitorInterventionMetafora.shared.utils;
 public class Logger {
 	private static LogLevel defaultLogLevel = LogLevel.DEBUG;
 	
-	private String className;
-	private LogLevel logLevel;
+	private String className="Unknown Class";
+	private LogLevel logLevel = LogLevel.DEBUG;
+	
 	
 	public static Logger getLogger(Class classToLog){
 		return new Logger(classToLog.getName());
@@ -13,6 +14,8 @@ public class Logger {
 	public static Logger getLogger(Class classToLog, LogLevel classLogLevel){
 		return new Logger(classToLog.getName(), classLogLevel);
 	}
+	
+	public Logger(){}
 	
 	public Logger (String className){
 		this.className = className;
