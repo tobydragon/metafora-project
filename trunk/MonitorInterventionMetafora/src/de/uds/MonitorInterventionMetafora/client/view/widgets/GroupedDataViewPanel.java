@@ -2,26 +2,22 @@ package de.uds.MonitorInterventionMetafora.client.view.widgets;
 
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 
-import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
-import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
-import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
-import de.uds.MonitorInterventionMetafora.client.view.charts.BarChartPanel;
-import de.uds.MonitorInterventionMetafora.client.view.charts.PieChartPanel;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
+import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
+import de.uds.MonitorInterventionMetafora.client.view.charts.BarChartPanel2;
+import de.uds.MonitorInterventionMetafora.client.view.charts.PieChartPanel2;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 
 public class GroupedDataViewPanel extends VerticalPanel {
 
 	GroupingChooserPanel groupingChooserPanel;
-	DataViewPanel dataViewPanel;
+	DataViewPanel2 dataViewPanel;
 	
-	public GroupedDataViewPanel(DataViewPanelType dataViewPanelType, GroupedByPropertyModel groupedModel, 
-			FilteredDataViewManager controller, IndicatorProperty  groupingProperty, String panelId, String groupingChooserId){
-		this.dataViewPanel = createDataViewPanel(dataViewPanelType, groupedModel, controller, this, groupingProperty);
+	public GroupedDataViewPanel(DataViewPanelType dataViewPanelType, ClientMonitorDataModel model, 
+			ClientMonitorController controller, ActionPropertyRule  groupingProperty, String panelId, String groupingChooserId){
+		this.dataViewPanel = createDataViewPanel(dataViewPanelType, model, controller, this, groupingProperty);
 		
-		//TODO: This should be set with initial groupingProperty, and if null, set to nothing
-		groupingChooserPanel = new GroupingChooserPanel(this, groupedModel, groupingChooserId);
+		groupingChooserPanel = new GroupingChooserPanel(this, model.getPropertiesComboBoxModel(), groupingProperty, groupingChooserId);
 
 		this.setWidth(600);
 		this.setId(panelId);
@@ -30,30 +26,30 @@ public class GroupedDataViewPanel extends VerticalPanel {
 		this.add(dataViewPanel);
 	}
 	
-	public void changeGroupingProperty(IndicatorProperty newPropToGroupBy){
+	public void changeGroupingProperty(ActionPropertyRule newPropToGroupBy){
 		dataViewPanel.changeGroupingProperty(newPropToGroupBy);
 	}
 
-	public void refresh(GroupedByPropertyModel groupedModelUpdate) {
-		groupingChooserPanel.refresh();
-		dataViewPanel.refresh(groupedModelUpdate);
+	public void refresh() {
+//		groupingChooserPanel.refresh();
+		dataViewPanel.refresh();
 		layout();
 	}
 
-	public IndicatorProperty getSelectedGroupingProperty() {
+	public ActionPropertyRule getSelectedGroupingProperty() {
 		return groupingChooserPanel.getSelectedProperty();
 	}
 	
-	public DataViewPanel createDataViewPanel(DataViewPanelType dataViewPanelType, GroupedByPropertyModel groupedModel, 
-			FilteredDataViewManager controller, GroupedDataViewPanel groupedDataViewController, IndicatorProperty  groupingProperty){
-		DataViewPanel dataViewPanel = null;
+	public DataViewPanel2 createDataViewPanel(DataViewPanelType dataViewPanelType, ClientMonitorDataModel model, 
+			ClientMonitorController controller, GroupedDataViewPanel groupedDataViewController, ActionPropertyRule  groupingProperty){
+		DataViewPanel2 dataViewPanel = null;
 		if (dataViewPanelType == DataViewPanelType.PIE_CHART){  
 //			  PieChartPanel barChartPanel = new PieChartPanel(groupedModel, controller, groupedDataViewController, groupingProperty);
-			dataViewPanel = new PieChartPanel(groupedModel, controller, groupingProperty); 
+			dataViewPanel = new PieChartPanel2(model, controller, groupingProperty); 
 
 		}
 		else if (dataViewPanelType == DataViewPanelType.BAR_CHART){
-			  dataViewPanel = new BarChartPanel(groupedModel, controller, groupedDataViewController, groupingProperty); 
+			  dataViewPanel = new BarChartPanel2(model, controller, groupedDataViewController, groupingProperty); 
 		}
 		return dataViewPanel;
 	}

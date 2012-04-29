@@ -66,14 +66,15 @@ import com.google.gwt.user.client.ui.ClickListener;
 
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.DefaultModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.TableViewModel;
-import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
 
 
@@ -83,15 +84,15 @@ public class ExtendedGroupedGrid extends  LayoutContainer {
 	private Timer tableViewTimer;
 	private List<IndicatorGridRowItem> indicators;
 	private TableViewModel tvm;
-	private UpdatingDataModel maintenance;
+	private ClientMonitorDataModel maintenance;
 	private Label _indicatorCount;
 	private  Grid<IndicatorGridRowItem> grid;
 	private	GroupingStore<IndicatorGridRowItem> store;
 	public ColumnModel cm;
-	private FilteredDataViewManager interfaceManager;
+	private ClientMonitorController interfaceManager;
 	//private SimpleComboBox<ColumnConfig> groupingComboBox;
 	
-	public ExtendedGroupedGrid(UpdatingDataModel _maintenance, FilteredDataViewManager controller){
+	public ExtendedGroupedGrid(ClientMonitorDataModel _maintenance, ClientMonitorController controller){
 		maintenance=_maintenance;
 		tvm=new TableViewModel(maintenance);
 		_indicatorCount=new Label();
@@ -289,7 +290,7 @@ GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
         }
       });
     
-    System.out.println("Adding grid listener");
+//    System.out.println("Adding grid listener");
     grid.addListener(Events.RowClick, new GridSelectionPopUpListener());
     
 

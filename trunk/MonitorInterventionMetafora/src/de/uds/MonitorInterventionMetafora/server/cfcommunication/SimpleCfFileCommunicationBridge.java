@@ -80,7 +80,12 @@ public class SimpleCfFileCommunicationBridge implements CfCommunicationBridge{
 		else {
 			XmlFragment actionsFrag = xmlOut.accessChild("actions");
 			actionsFrag.addContent(CfActionParser.toXml(actionToSend));
-			xmlOut.overwriteFile(channelNameOut);
+			if (xmlOut != null){
+				xmlOut.overwriteFile(channelNameOut);
+			}
+			else {
+				logger.error("Attempted to print to a null file, probably printing to REMOTE");
+			}
 		}
 		
 	}

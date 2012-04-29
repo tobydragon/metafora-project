@@ -6,31 +6,29 @@ import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.visualizations.corechart.AxisOptions;
 import com.google.gwt.visualization.client.visualizations.corechart.ColumnChart;
 import com.google.gwt.visualization.client.visualizations.corechart.Options;
+import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
+import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.DataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.view.widgets.DataViewPanel2;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 
-public class BarChartPanel extends DataViewPanel {
+public class BarChartPanel2 extends DataViewPanel2 {
 	
 	private ColumnChart barChartView;
-	private GroupedByPropertyModel model;
+	private ClientMonitorDataModel model;
 	private ActionPropertyRule  groupingProperty;
 	
 	
-	public BarChartPanel(GroupedByPropertyModel _model, ClientMonitorController controller, GroupedDataViewPanel groupedDataViewController, ActionPropertyRule  groupingProperty){
+	public BarChartPanel2(ClientMonitorDataModel _model, ClientMonitorController controller, GroupedDataViewPanel groupedDataViewController, ActionPropertyRule  groupingProperty){
 		this.groupingProperty= groupingProperty;
 		
 		this.setId("barChartVerticalPanel");
 		model=_model;
-		this.removeAll();
-		this.add(createBarChart(model.getEntityDataTable(groupingProperty), controller, groupedDataViewController));
-		
-		barChartView.setLayoutData(new FitLayout());	
-		this.layout(true);
-		this.doLayout();
+		createBarChart();
 	}
 
 	public Options  getBarChartOptions(int _maxValue){
@@ -50,23 +48,22 @@ public class BarChartPanel extends DataViewPanel {
 		
 		}
 	
-	public ColumnChart createBarChart(DataTable data, ClientMonitorController controller, GroupedDataViewPanel groupedDataViewController) {  
-		
-		barChartView = new ColumnChart(data, getBarChartOptions(model.getMaxValue()));
-		barChartView.addSelectHandler(new BarChartSelectionHandler(barChartView, model, controller, groupedDataViewController));
-		
-		barChartView.setLayoutData(new FitLayout());
-		return barChartView;
+	public void createBarChart() {  
+		if (groupingProperty != null){
+			this.add(barChartView = new ColumnChart(model.getDataTable(groupingProperty), getBarChartOptions(model.getMaxValue(groupingProperty))));  
+//		    pieChartView.addSelectHandler(new PieChartSelectionHandler(pieChartView, model, controller));
+		    barChartView.draw(model.getDataTable(groupingProperty), getBarChartOptions(model.getMaxValue(groupingProperty)));
+		    barChartView.setLayoutData(new FitLayout());
+		}
 	}
 	 
 	public void changeGroupingProperty(ActionPropertyRule propToGroupBy){
 		 groupingProperty = propToGroupBy;
-		 refresh(model);
+		 refresh();
 	}
-	 
-	public void refresh(GroupedByPropertyModel modelUpdate){
-		this.model= modelUpdate;
-		barChartView.draw(model.getEntityDataTable(groupingProperty), getBarChartOptions(model.getMaxValue()));
+	
+	public void refresh(){
+	    barChartView.draw(model.getDataTable(groupingProperty), getBarChartOptions(model.getMaxValue(groupingProperty)));
 		this.layout();
 	}
 	

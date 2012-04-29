@@ -12,16 +12,17 @@ import org.apache.commons.logging.LogFactory;
 
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GeneralUtil;
 
 public class CfAgentCommunicationManager implements CfCommunicationListener{
 	Log logger = LogFactory.getLog(CfAgentCommunicationManager.class);
 	
-	private static Map<CommunicationMethodType, Map<CommunicationChannelType, CfAgentCommunicationManager>> instanceMatrix = new Hashtable <CommunicationMethodType, Map<CommunicationChannelType, CfAgentCommunicationManager>>();	
+	private static Map<CfCommunicationMethodType, Map<CommunicationChannelType, CfAgentCommunicationManager>> instanceMatrix = new Hashtable <CfCommunicationMethodType, Map<CommunicationChannelType, CfAgentCommunicationManager>>();	
 	
 	// We only maintain one instance of the communication manager, for each method and each channel.
 	// All connections for a specific method and channel speak through this one instance.
-	public static CfAgentCommunicationManager getInstance(CommunicationMethodType methodType, CommunicationChannelType channelType){
+	public static CfAgentCommunicationManager getInstance(CfCommunicationMethodType methodType, CommunicationChannelType channelType){
 		
 		Map<CommunicationChannelType, CfAgentCommunicationManager> channelMap = instanceMatrix.get(methodType);
 		if (channelMap == null){
@@ -38,7 +39,7 @@ public class CfAgentCommunicationManager implements CfCommunicationListener{
 	
 	//default to xmpp
 	public static CfAgentCommunicationManager getInstance(CommunicationChannelType channelType){
-		return getInstance(CommunicationMethodType.xmpp, channelType);
+		return getInstance(CfCommunicationMethodType.xmpp, channelType);
 	}
 
 	
@@ -53,14 +54,14 @@ public class CfAgentCommunicationManager implements CfCommunicationListener{
 	List<String> controllingUsers = new ArrayList<String>();
 	boolean ignoreOldMessages = true;
 	
-	public CfAgentCommunicationManager(CommunicationMethodType methodType, CommunicationChannelType type){
+	public CfAgentCommunicationManager(CfCommunicationMethodType methodType, CommunicationChannelType type){
 		allListeners = new Vector<CfCommunicationListener>();
 		
-		if (methodType == CommunicationMethodType.xmpp){
+		if (methodType == CfCommunicationMethodType.xmpp){
 			cfCommnicationBridge = new CfXmppCommunicationBridge(type);
 			cfCommnicationBridge.registerListener(this);
 		}
-		else if (methodType == CommunicationMethodType.file){
+		else if (methodType == CfCommunicationMethodType.file){
 			cfCommnicationBridge = new MetaforaCfFileCommunicationBridge(type);
 			cfCommnicationBridge.registerListener(this);
 			ignoreOldMessages = false;

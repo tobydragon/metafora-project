@@ -18,10 +18,10 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilterer;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 
 public class GroupedByPropertyModel {
 	
@@ -34,8 +34,8 @@ public class GroupedByPropertyModel {
 	Map<String, List<CfAction>>   groupedActions=null;
 	Map<String, List<CfUser>>  	  groupedUsers=null;
 	
-	Map<Integer, IndicatorProperty>indicatorEntities = null;
-	Map<Integer, IndicatorProperty>subsectionValue =null;
+	Map<Integer, ActionPropertyRule>indicatorEntities = null;
+	Map<Integer, ActionPropertyRule>subsectionValue =null;
 	Map<String, String> activeFilters =null;
 	UpdatingDataModel maintenance=null;
 	
@@ -45,9 +45,9 @@ public class GroupedByPropertyModel {
 	
 		maintenance=_maintenance;
 		activeFilters = new HashMap<String, String>();
-		subsectionValue= new HashMap<Integer, IndicatorProperty>();
-		indicatorEntities=new HashMap<Integer,IndicatorProperty>();
-		filterer=new IndicatorFilterer(maintenance);
+		subsectionValue= new HashMap<Integer, ActionPropertyRule>();
+		indicatorEntities=new HashMap<Integer,ActionPropertyRule>();
+//		filterer=new IndicatorFilterer(maintenance);
 //		splitActions(false);
 		splitActions(true);
 	}
@@ -91,62 +91,62 @@ public class GroupedByPropertyModel {
 	}
 	
 	
-	public List<IndicatorProperty>  getIndicatorEntities(){
+	public List<ActionPropertyRule>  getIndicatorEntities(){
 		
-		List<IndicatorProperty> _entityList=new ArrayList<IndicatorProperty>();
+		List<ActionPropertyRule> _entityList=new ArrayList<ActionPropertyRule>();
 		
 		
 		System.out.println("getting indicator list1");
-			IndicatorProperty _entity=null;
+			ActionPropertyRule _entity=null;
 			
 			//Action_Type Attributes
 			
 			
-			_entity =new IndicatorProperty();
+			_entity =new ActionPropertyRule();
 			_entity.setEntityName(CommonFormatStrings.A_V_TIME);
 			_entity.setDisplayText(CommonFormatStrings.A_TIME);
-			_entity.setType(FilterItemType.ACTION);
+			_entity.setType(ActionElementType.ACTION);
 			_entityList.add(_entity);
 			
 			
-			_entity =new IndicatorProperty();
+			_entity =new ActionPropertyRule();
 			_entity.setEntityName(CommonFormatStrings.A_V_Type);
 			_entity.setDisplayText(CommonFormatStrings.A_Type);
-			_entity.setType(FilterItemType.ACTION_TYPE);
+			_entity.setType(ActionElementType.ACTION_TYPE);
 			_entityList.add(_entity);
 			
 			System.out.println("getting indicator list2");
 			
 			
-			_entity =new IndicatorProperty();
+			_entity =new ActionPropertyRule();
 			_entity.setEntityName(CommonFormatStrings.A_V_Classification);
 			_entity.setDisplayText(CommonFormatStrings.A_Classification);
-			_entity.setType(FilterItemType.ACTION_TYPE);
+			_entity.setType(ActionElementType.ACTION_TYPE);
 			_entityList.add(_entity);
 			
 		
 			
-			_entity =new IndicatorProperty();
+			_entity =new ActionPropertyRule();
 			_entity.setEntityName(CommonFormatStrings.A_V_SUCCED);
 			_entity.setDisplayText(CommonFormatStrings.A_SUCCED);
-			_entity.setType(FilterItemType.ACTION_TYPE);
+			_entity.setType(ActionElementType.ACTION_TYPE);
 			_entityList.add(_entity);
 			
 			//User Attributes
 			
 			System.out.println("getting indicator list3");
 			
-			_entity =new IndicatorProperty();
+			_entity =new ActionPropertyRule();
 			_entity.setEntityName(CommonFormatStrings.A_V_User);
 			_entity.setDisplayText(CommonFormatStrings.A_User);
-			_entity.setType(FilterItemType.USER);
+			_entity.setType(ActionElementType.USER);
 			_entityList.add(_entity);
 			
 			
-			_entity =new IndicatorProperty();
+			_entity =new ActionPropertyRule();
 			_entity.setEntityName(CommonFormatStrings.A_V_ROLE);
 			_entity.setDisplayText(CommonFormatStrings.A_ROLE);
-			_entity.setType(FilterItemType.USER);
+			_entity.setType(ActionElementType.USER);
 			_entityList.add(_entity);
 			System.out.println("getting indicator list4");
 				
@@ -162,19 +162,19 @@ public class GroupedByPropertyModel {
 		
 	}
 	
-	List<IndicatorProperty> getContentEntities(){
+	List<ActionPropertyRule> getContentEntities(){
 		
-	   List<IndicatorProperty> _entityList=new ArrayList<IndicatorProperty>();
+	   List<ActionPropertyRule> _entityList=new ArrayList<ActionPropertyRule>();
 	 
 	   Map<String,String> _entityMap=new HashMap<String,String>();
 		
 		for(CfContent _content: allContents){
 			for(String _entityName:_content.getProperties().keySet()){
 				
-				IndicatorProperty _entity =new IndicatorProperty();
+				ActionPropertyRule _entity =new ActionPropertyRule();
 				
 				_entity.setEntityName(_entityName);
-				_entity.setType(FilterItemType.CONTENT);
+				_entity.setType(ActionElementType.CONTENT);
 				_entity.setDisplayText(_entityName);
 				if(!_entityMap.containsKey(_entity.getEntityName())){
 				_entityList.add(_entity);
@@ -191,23 +191,23 @@ public class GroupedByPropertyModel {
 	
 	
 	
-	List<IndicatorProperty> getObjectEntities(){
+	List<ActionPropertyRule> getObjectEntities(){
 		
-		List<IndicatorProperty> _entityList=new ArrayList<IndicatorProperty>();
+		List<ActionPropertyRule> _entityList=new ArrayList<ActionPropertyRule>();
 		
-		IndicatorProperty _entity=null;
+		ActionPropertyRule _entity=null;
 		
 		//Object Attributes
-		_entity =new IndicatorProperty();
+		_entity =new ActionPropertyRule();
 		_entity.setEntityName(CommonFormatStrings.O_V_OBJECT_ID);
 		_entity.setDisplayText(CommonFormatStrings.O_OBJECT_ID);
-		_entity.setType(FilterItemType.OBJECT);
+		_entity.setType(ActionElementType.OBJECT);
 		_entityList.add(_entity);
 		
-		_entity =new IndicatorProperty();
+		_entity =new ActionPropertyRule();
 		_entity.setEntityName(CommonFormatStrings.O_V_OBJECT_TYPE);
 		_entity.setDisplayText(CommonFormatStrings.O_OBJECT_TYPE);
-		_entity.setType(FilterItemType.OBJECT);
+		_entity.setType(ActionElementType.OBJECT);
 		_entityList.add(_entity);
 		 Map<String,String> _entityMap=new HashMap<String,String>();
 		
@@ -215,10 +215,10 @@ public class GroupedByPropertyModel {
 			for(CfObject _obj: allObjects){
 			for(String _entityName:_obj.getProperties().keySet()){
 				
-			    _entity =new IndicatorProperty();
+			    _entity =new ActionPropertyRule();
 				
 				_entity.setEntityName(_entityName);
-				_entity.setType(FilterItemType.OBJECT);
+				_entity.setType(ActionElementType.OBJECT);
 				_entity.setDisplayText(_entityName);
 				
 				if(!_entityMap.containsKey(_entity.getEntityName())){
@@ -262,7 +262,7 @@ public 	int getMaxValue(){
 	}
 	
 
-	public DataTable getEntityDataTable(IndicatorProperty _entity){
+	public DataTable getEntityDataTable(ActionPropertyRule _entity){
 		
 		
 		DataTable data = DataTable.create();
@@ -290,7 +290,7 @@ public 	int getMaxValue(){
 			    int index=0;
 			    for(String key:groupedActions.keySet()){
 				    data.setValue(index, 0, key);
-				    IndicatorProperty _newEntity=new IndicatorProperty();			    
+				    ActionPropertyRule _newEntity=new ActionPropertyRule();			    
 				    _newEntity.setEntityName(_entity.getEntityName());
 				    _newEntity.setValue(key);
 				    _newEntity.setType(_entity.getType());
@@ -318,7 +318,7 @@ public 	int getMaxValue(){
 		     index=0;
 		    for(String key:groupedUsers.keySet()){
 			    data.setValue(index, 0, key);
-			    IndicatorProperty _newEntity=new IndicatorProperty();			    
+			    ActionPropertyRule _newEntity=new ActionPropertyRule();			    
 			    _newEntity.setEntityName(_entity.getEntityName());
 			    _newEntity.setValue(key);
 			    _newEntity.setType(_entity.getType());
@@ -348,7 +348,7 @@ public 	int getMaxValue(){
 			    for(String key:groupedObjects.keySet()){
 			    data.setValue(index, 0, key);
 			    
-			    IndicatorProperty _newEntity=new IndicatorProperty();			    
+			    ActionPropertyRule _newEntity=new ActionPropertyRule();			    
 			    _newEntity.setEntityName(_entity.getEntityName());
 			    _newEntity.setValue(key);
 			    _newEntity.setType(_entity.getType());
@@ -380,7 +380,7 @@ public 	int getMaxValue(){
 			    for(String key:groupedContents.keySet()){
 			    data.setValue(index, 0, key);
 			    
-			    IndicatorProperty _newEntity=new IndicatorProperty();			    
+			    ActionPropertyRule _newEntity=new ActionPropertyRule();			    
 			    _newEntity.setEntityName(_entity.getEntityName());
 			    _newEntity.setValue(key);
 			    _newEntity.setType(_entity.getType());
@@ -425,7 +425,7 @@ public 	int getMaxValue(){
 		
 	}
 	
-	public IndicatorProperty getIndicatorEntity(int _key){
+	public ActionPropertyRule getIndicatorEntity(int _key){
 		if(indicatorEntities.containsKey(_key)){
 			return indicatorEntities.get(_key);
 		}
@@ -696,9 +696,9 @@ return map;
 			 return toComboBoxEntities(getIndicatorEntities());
 		 }
 		 
-			ListStore<EntitiesComboBoxModel> toComboBoxEntities(List<IndicatorProperty>  _entityList) {
+			ListStore<EntitiesComboBoxModel> toComboBoxEntities(List<ActionPropertyRule>  _entityList) {
 				ListStore<EntitiesComboBoxModel>  _comboBoxModelList = new ListStore<EntitiesComboBoxModel>();
-			    for(IndicatorProperty _ent: _entityList){
+			    for(ActionPropertyRule _ent: _entityList){
 			    	EntitiesComboBoxModel _comboBoxItem=new EntitiesComboBoxModel(_ent);
 			    	_comboBoxModelList.add(_comboBoxItem);
 			    	

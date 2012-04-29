@@ -7,13 +7,13 @@ import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunic
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfFileLocation;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
-import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.SimpleCfFileCommunicationBridge;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
 import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
@@ -34,13 +34,13 @@ public class HistoryRequester implements CfCommunicationListener{
 		this.model = model;
 	}
 	
-	public void sendHistoryRequest(CommunicationMethodType communicationMethodType){
-		if (communicationMethodType == CommunicationMethodType.xmpp){
+	public void sendHistoryRequest(CfCommunicationMethodType communicationMethodType, String currentTimeMillis){
+		if (communicationMethodType == CfCommunicationMethodType.xmpp){
 			CfAgentCommunicationManager command = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.command);
 			command.register(this);
-			sendXmppHistoryRequest(command);
+			sendXmppHistoryRequest(command, currentTimeMillis);
 		}
-		else if (communicationMethodType == CommunicationMethodType.file){
+		else if (communicationMethodType == CfCommunicationMethodType.file){
 			sendFileHistoryRequest(CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.analysis));
 		}
 	}
@@ -60,27 +60,26 @@ public class HistoryRequester implements CfCommunicationListener{
 		
 	}
 
-	private void sendXmppHistoryRequest(CfAgentCommunicationManager communicationManager) {
+	private void sendXmppHistoryRequest(CfAgentCommunicationManager communicationManager, String currentStartTimeMillis) {
 		// TODO: Need to be able to "shut off" command channel listening, only listen when request is sent
 		
-		
-		
-		CfAction cfAction = createHistoryRequest();
-		pendingRequests.add(cfAction);
-	 	communicationManager.sendMessage(cfAction);
+		if ( ! MetaforaStrings.CURRENT_TIME.equalsIgnoreCase(currentStartTimeMillis)){
+			try {
+				long time = Long.valueOf(currentStartTimeMillis);
+				CfAction cfAction = createHistoryRequest(time);
+				pendingRequests.add(cfAction);
+			 	communicationManager.sendMessage(cfAction);
+			}
+			catch (Exception e){
+				logger.error("[sendXmppHistoryRequest] No history request made. Probably bad value in time=" + currentStartTimeMillis + ErrorUtil.getStackTrace(e));
+			}
+		}
+		else {
+			logger.info("[sendXmppHistoryRequest] No history request made. CURRENT_TIME submitted");
+		}
 	}
 	
-	public CfAction createHistoryRequest(){
-//		XmlFragment requestFragment = XmlFragment.getFragmentFromLocalFile("conffiles/xml/message/RequestHistory.xml");
-//		XmlFragment requestFragment = createHistoryRequest();
-//		logger.debug("[sendXmppHistoryRequest] fragment  = \n" + requestFragment);
-//		if (requestFragment != null){
-//			return CfActionParser.fromXml(requestFragment);
-//		}
-//		else {
-//			logger.error("[sendXmppHistoryRequest] failed to create request xml");
-//			return null;
-//		}
+	public CfAction createHistoryRequest(long startTimeMillis){
 		
 		CfActionType cfActionType = new CfActionType("REQUEST_ANALYSIS_HISTORY", "OTHER", "UNKNOWN");
 		CfAction historyRequest = new CfAction(System.currentTimeMillis(), cfActionType);
@@ -89,8 +88,7 @@ public class HistoryRequester implements CfCommunicationListener{
 		
 		CfObject cfObject = new CfObject("0", "element");
 		cfObject.addProperty(new CfProperty("REQUEST_ID", Long.toString(historyRequest.getTime())));
-		//TODO make a timing schema that reads from somewhere and passes it to here.
-		cfObject.addProperty(new CfProperty("START_TIME", "1335363632000"));
+		cfObject.addProperty(new CfProperty("START_TIME", Long.toString(startTimeMillis)));
 		
 		historyRequest.addObject(cfObject);
 
@@ -145,6 +143,19 @@ public class HistoryRequester implements CfCommunicationListener{
 	}
 	
 	private void loadHistoryFromRemoteFile(String historyUrl) {
+		logger.info("[loadHistoryFromRemoteFile] URL="+historyUrl);
+		if (historyUrl != null && model != null){
+			AnalysisMonitorListener myListener = new AnalysisMonitorListener(model);
+			SimpleCfFileCommunicationBridge historyBridge = new SimpleCfFileCommunicationBridge(historyUrl, "", CfFileLocation.REMOTE);
+			historyBridge.registerListener(myListener);
+			historyBridge.sendMessages();
+		}
+		else {
+			logger.error("[loadHistoryFromRemoteFile] called with null url or model");
+		}
+	}
+	
+	private void loadHistoryFromLocalFile(String historyUrl) {
 		logger.info("[loadHistoryFromRemoteFile] URL="+historyUrl);
 		if (historyUrl != null && model != null){
 			AnalysisMonitorListener myListener = new AnalysisMonitorListener(model);

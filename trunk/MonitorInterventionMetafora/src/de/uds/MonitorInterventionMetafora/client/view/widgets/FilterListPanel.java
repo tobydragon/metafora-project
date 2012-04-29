@@ -15,8 +15,9 @@ import com.google.gwt.user.client.DOM;
 
 
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
+import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.FilterListGridModel;
-import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.view.grids.ExtendedFilterGrid;
 
 
@@ -24,9 +25,10 @@ public class FilterListPanel extends ContentPanel {
 	
 	
 	Map<String, String> _filterList;
-	private FilteredDataViewManager interfaceManager;
-	UpdatingDataModel maintenance;
-	public FilterListPanel(UpdatingDataModel _maintenance, FilteredDataViewManager controller){
+	private ClientMonitorController interfaceManager;
+//	UpdatingDataModel maintenance;
+	ClientMonitorDataModel maintenance;
+	public FilterListPanel(ClientMonitorDataModel _maintenance, ClientMonitorController controller){
 		
 		maintenance=_maintenance;
 		interfaceManager= controller;
@@ -70,9 +72,9 @@ public class FilterListPanel extends ContentPanel {
 		
 		
 		//maintenance.
-		FilterListGridModel flm=new FilterListGridModel(maintenance);
-		ExtendedFilterGrid ef=new ExtendedFilterGrid(flm, interfaceManager);		
-		this.add(ef);	
+//		FilterListGridModel flm=new FilterListGridModel(maintenance);
+//		ExtendedFilterGrid ef=new ExtendedFilterGrid(flm, interfaceManager);		
+//		this.add(ef);	
 		
 		
 		

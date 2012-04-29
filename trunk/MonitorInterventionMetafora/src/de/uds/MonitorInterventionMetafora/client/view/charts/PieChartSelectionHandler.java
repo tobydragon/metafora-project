@@ -13,20 +13,22 @@ import com.google.gwt.visualization.client.events.SelectHandler;
 import com.google.gwt.visualization.client.events.SelectHandler.SelectEvent;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
+import de.uds.MonitorInterventionMetafora.client.datamodels.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
-import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.GroupedDataViewPanel;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 
 public class PieChartSelectionHandler extends SelectHandler{
 
+	private PieChartPanel2 piePanel;
 	private final PieChart chartView;
-	private FilteredDataViewManager controller;
-	private GroupedByPropertyModel model;
-//	private GroupedDataViewPanel groupedDataController;
+	private ClientMonitorController controller;
+	private ClientMonitorDataModel model;
 		
-	public PieChartSelectionHandler(final PieChart chart, GroupedByPropertyModel model, FilteredDataViewManager controllerIn){
+	public PieChartSelectionHandler(PieChartPanel2 piePanel, final PieChart chart, ClientMonitorDataModel model, ClientMonitorController controllerIn){
+		this.piePanel = piePanel;
 		this.chartView = chart;
 		this.model = model;
 		controller = controllerIn;
@@ -45,14 +47,20 @@ public class PieChartSelectionHandler extends SelectHandler{
 		    }
 	    }
     	
-	    IndicatorProperty entity = model.getIndicatorEntity(selection);
-  	  	//TODO: explain: why entity is null if filter is already in the list?
-	    if(entity==null){
-  	  		MessageBox.info("Message","Selected Filter is<ul><li> already in  the filter list</li></ul>", null);
-  	  		return; 
-  	  	}
+	    ActionPropertyRule currentGroupingProp = piePanel.getGroupingProperty();
 	    
-	    controller.addFilterItem(entity);
+	    //Make copy, and fill in extra info
+	    ActionPropertyRule newFilterRule = new ActionPropertyRule(currentGroupingProp.getType(), currentGroupingProp.getEntityName());
+	    //get the value from the data table used to populate the char that was clicked
+	    newFilterRule.setValue(model.getDataTable(currentGroupingProp).getValueString(selection, 0));
+	    
+  	  	//TODO: explain: why entity is null if filter is already in the list?
+//	    if(entity==null){
+//  	  		MessageBox.info("Message","Selected Filter is<ul><li> already in  the filter list</li></ul>", null);
+//  	  		return; 
+//  	  	}
+	    
+	    controller.addFilterItem(newFilterRule);
 	    controller.refreshTabPanel(); 
     }
 

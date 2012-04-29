@@ -67,15 +67,15 @@ import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunicati
 import de.uds.MonitorInterventionMetafora.client.communication.servercommunication.UpdatingDataModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.FilterListGridModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.IndicatorFilterItemGridRowModel;
-import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
+import de.uds.MonitorInterventionMetafora.client.manager.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.client.view.widgets.ExtendedFilterManagementPanel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterItemType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
@@ -87,9 +87,9 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	 ListStore<IndicatorFilterItemGridRowModel> store;
 	 SimpleComboBox<String> filterGroupCombo;
 	 FilterListGridModel filterModel;
-	 FilteredDataViewManager controller;
+	 ClientMonitorController controller;
 	
-	public ExtendedFilterGrid(FilterListGridModel _filterModel, FilteredDataViewManager controller){
+	public ExtendedFilterGrid(FilterListGridModel _filterModel, ClientMonitorController controller){
 		
 		filterModel= _filterModel;
 		this.controller = controller;
@@ -404,14 +404,14 @@ public void onSuccess(Configuration result) {
 	        if(confFilters.containsKey(filterSetKey)){
 	        	
 	        	IndicatorFilter filter=confFilters.get(filterSetKey);
-	        	Map<String, IndicatorProperty> _filteritemProperies=filter.getIndicatorEntities();
+	        	Map<String, ActionPropertyRule> _filteritemProperies=filter.getIndicatorEntities();
 	        	store.removeAll();
 	        	
 	        	for(String _key: _filteritemProperies.keySet()){
 	        		IndicatorFilterItemGridRowModel _filterItem=new IndicatorFilterItemGridRowModel();
 	        		
 	        		
-	        		IndicatorProperty _filterEntity=filter.getIndicatorEntity(_key);
+	        		ActionPropertyRule _filterEntity=filter.getIndicatorEntity(_key);
 	        		
 	        		_filterItem.setDisplayText(_filterEntity.getDisplayText());
 	        		_filterItem.setType(_filterEntity.getType().toString());

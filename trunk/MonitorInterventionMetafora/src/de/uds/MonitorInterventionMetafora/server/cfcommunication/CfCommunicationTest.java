@@ -2,6 +2,7 @@ package de.uds.MonitorInterventionMetafora.server.cfcommunication;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 
 import junit.framework.TestCase;
 
@@ -20,7 +21,7 @@ public class CfCommunicationTest extends TestCase {
 	
 	public void testFileInput(){
 		CfCommunicationListenerTest mytest = new CfCommunicationListenerTest();
-		CfAgentCommunicationManager manager = CfAgentCommunicationManager.getInstance(CommunicationMethodType.file, CommunicationChannelType.analysis);
+		CfAgentCommunicationManager manager = CfAgentCommunicationManager.getInstance(CfCommunicationMethodType.file, CommunicationChannelType.analysis);
 		manager.register(mytest);
 		manager.sendMessage(new CfAction(0, new CfActionType("START_FILE_INPUT", null, null)));
 	}

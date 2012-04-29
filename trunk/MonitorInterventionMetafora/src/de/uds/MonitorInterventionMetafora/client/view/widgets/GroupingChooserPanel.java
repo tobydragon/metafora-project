@@ -2,6 +2,7 @@ package de.uds.MonitorInterventionMetafora.client.view.widgets;
 
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedListener;
+import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
@@ -9,37 +10,39 @@ import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
-import de.uds.MonitorInterventionMetafora.client.datamodels.EntitiesComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.datamodels.GroupedByPropertyModel;
-import de.uds.MonitorInterventionMetafora.client.manager.FilteredDataViewManager;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorProperty;
+import de.uds.MonitorInterventionMetafora.client.datamodels.PropertyComboBoxItemModel;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 
 public class GroupingChooserPanel extends HorizontalPanel{
+	 
+	private ActionPropertyRule selectedProperty=null;
+	private ComboBox<PropertyComboBoxItemModel> comboType;
 	
-	private IndicatorProperty selectedEntity=null;
-	private ComboBox<EntitiesComboBoxModel> comboType;
-	
-	GroupedByPropertyModel model;
-//	private final ClientInterfaceManager controller;
 	GroupedDataViewPanel parentViewPanel;
 
-	public GroupingChooserPanel(final GroupedDataViewPanel parentViewPanel, GroupedByPropertyModel modelIn, String panelId){
+	public GroupingChooserPanel(final GroupedDataViewPanel parentViewPanel, ListStore<PropertyComboBoxItemModel> items, ActionPropertyRule groupingProperty, String panelId){
 		
+		this.selectedProperty = groupingProperty;
 		this.parentViewPanel = parentViewPanel;
-		model= modelIn;
-		comboType = new ComboBox<EntitiesComboBoxModel>();
+		comboType = new ComboBox<PropertyComboBoxItemModel>();
 		
 		comboType.setId(panelId);
 		
-		comboType.setEmptyText("Select a proptery to group by:");
-	    comboType.setDisplayField("displaytext");
-	    comboType.setValueField("entityname");
+		comboType.setEmptyText("Select property:");
+	    comboType.setDisplayField("displayText");
+//	    comboType.setValueField("entityname");
 	    comboType.setWidth(150);
 	    comboType.setEditable(false);
 	    comboType.setAutoHeight(true);
-	    comboType.setStore(model.getComboBoxEntities());
+	    comboType.setStore(items);
 	  //  comboType.setTypeAhead(true);
 	    comboType.setTriggerAction(TriggerAction.ALL);
+	    
+	    PropertyComboBoxItemModel firstSelected = items.findModel("displayText", groupingProperty.getDisplayText());
+	    if (firstSelected != null){
+	    	comboType.select(firstSelected);
+	    }
 	    comboType.addSelectionChangedListener(comboListener);
 	    
 	    
@@ -50,9 +53,8 @@ public class GroupingChooserPanel extends HorizontalPanel{
 	    retriveBtn.addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
 	   
-	        	if(selectedEntity!=null){
-        			model.splitActions(true);
-        			parentViewPanel.changeGroupingProperty(selectedEntity);
+	        	if(selectedProperty!=null){
+        			parentViewPanel.changeGroupingProperty(selectedProperty);
 	        	}
 	         }
 	     });
@@ -64,17 +66,10 @@ public class GroupingChooserPanel extends HorizontalPanel{
 	    
 	}
 
-	SelectionChangedListener<EntitiesComboBoxModel> comboListener =new SelectionChangedListener<EntitiesComboBoxModel>(){
+	SelectionChangedListener<PropertyComboBoxItemModel> comboListener =new SelectionChangedListener<PropertyComboBoxItemModel>(){
         @Override
-        public void selectionChanged(SelectionChangedEvent<EntitiesComboBoxModel> se) { 
-
-        	EntitiesComboBoxModel vg = se.getSelectedItem();   
-  
-        	selectedEntity=new IndicatorProperty();
-        	selectedEntity.setEntityName(vg.getEntityName());
-        	selectedEntity.setDisplayText(vg.getDisplayText());
-        	selectedEntity.setType(vg.getItemType());
-
+        public void selectionChanged(SelectionChangedEvent<PropertyComboBoxItemModel> se) { 
+        	selectedProperty = se.getSelectedItem().getActionPropertyRule();   
     	}
      };
 
@@ -83,8 +78,8 @@ public class GroupingChooserPanel extends HorizontalPanel{
 		layout();
 	}
 	
-	public IndicatorProperty getSelectedProperty(){
-		return selectedEntity;
+	public ActionPropertyRule getSelectedProperty(){
+		return selectedProperty;
 	}
 	
 
