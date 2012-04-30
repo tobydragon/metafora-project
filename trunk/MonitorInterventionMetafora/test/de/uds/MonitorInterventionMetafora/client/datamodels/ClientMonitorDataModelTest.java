@@ -6,7 +6,7 @@ import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ActionPropert
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ActionPropertyValueModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 public class ClientMonitorDataModelTest extends GWTTestCase{
 

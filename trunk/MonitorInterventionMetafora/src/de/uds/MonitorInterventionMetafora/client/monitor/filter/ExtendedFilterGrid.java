@@ -52,13 +52,13 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
-import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfigurationCallBack {
@@ -190,13 +190,13 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
    
     grid.getStore().addListener(Store.Add, new Listener<StoreEvent<IndicatorFilterItemGridRowModel>>() {
           public void handleEvent(StoreEvent<IndicatorFilterItemGridRowModel> be) {
-        	  controller.refreshViews();  
+        	  controller.filtersUpdated();  
           }
         });
     
     grid.getStore().addListener(Store.Remove, new Listener<StoreEvent<IndicatorFilterItemGridRowModel>>() {
         public void handleEvent(StoreEvent<IndicatorFilterItemGridRowModel> be) {
-        	controller.refreshViews();        	
+        	controller.filtersUpdated();        	
         }
       });
     
@@ -212,7 +212,8 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
      
   
         grid.stopEditing();  
-        store.insert(filter, 0);  
+        store.insert(filter, 0);
+//        controller.filtersUpdated();
         grid.startEditing(store.indexOf(filter), 0);  
       }  
   
@@ -239,10 +240,8 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 		    grid.getStore().removeAll();
 		    filterGroupCombo.clearSelections();
 			
-		    controller.refreshViews();
-		    
-        	//_maint.refreshTableView(filterModel.getActionMaintenance());
-		   
+//		    controller.filtersUpdated();
+		    		   
 			
 		}  
    
@@ -368,7 +367,7 @@ public void onSuccess(Configuration result) {
 
 	        	}
 	        	
-	        	controller.refreshTableView();
+//	        	controller.filtersUpdated();
 	        	
 	        	
 	        }

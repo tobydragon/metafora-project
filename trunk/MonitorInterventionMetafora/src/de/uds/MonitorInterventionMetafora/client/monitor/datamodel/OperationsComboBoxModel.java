@@ -11,7 +11,7 @@ import com.extjs.gxt.ui.client.data.BaseModelData;
 
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 public class OperationsComboBoxModel extends BaseModelData {
 

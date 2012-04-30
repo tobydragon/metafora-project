@@ -8,10 +8,10 @@ import com.google.gwt.visualization.client.visualizations.corechart.AxisOptions;
 import com.google.gwt.visualization.client.visualizations.corechart.ColumnChart;
 import com.google.gwt.visualization.client.visualizations.corechart.Options;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
-import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel2;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 public class BarChartPanel2 extends DataViewPanel2 {
 	
@@ -29,7 +29,8 @@ public class BarChartPanel2 extends DataViewPanel2 {
 
 	public void createBarChart(ClientMonitorController controller) {  
 		if (groupingProperty != null){
-			this.add(barChartView = new ColumnChart(model.getDataTable(groupingProperty), getBarChartOptions(model.getMaxValue(groupingProperty))));  
+			barChartView = new ColumnChart(model.getDataTable(groupingProperty), getBarChartOptions(model.getMaxValue(groupingProperty)));
+			this.add(barChartView);  
 		    barChartView.addSelectHandler(new ChartSelectionHandler(this, model, controller));
 		    barChartView.setLayoutData(new FitLayout());
 		    refresh();

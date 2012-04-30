@@ -5,6 +5,7 @@ import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.google.gwt.user.client.ui.Image;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestHistoryCallBack;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.TabbedDataViewPanel;

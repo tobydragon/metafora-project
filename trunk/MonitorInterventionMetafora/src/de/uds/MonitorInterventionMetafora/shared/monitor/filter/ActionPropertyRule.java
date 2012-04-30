@@ -5,7 +5,7 @@
  * 
  * http://extjs.com/license
  */
-package de.uds.MonitorInterventionMetafora.shared.interactionmodels;
+package de.uds.MonitorInterventionMetafora.shared.monitor.filter;
 
 
 
@@ -106,7 +106,7 @@ public class ActionPropertyRule  implements Serializable{
   }
 
 	public String getActionValue(CfAction action) {
-		String actionValue = "unknown";
+		String actionValue = null;
 		switch (getType()){
 			case ACTION_TYPE:
 				if (propertyName.equalsIgnoreCase("classification")){
@@ -129,6 +129,30 @@ public class ActionPropertyRule  implements Serializable{
 			
 		}
 		return actionValue;
+	}
+	
+	public boolean ruleIncludesAction(CfAction action){
+		if(valueToFilterBy != null){
+			String actionValue = getActionValue(action);
+			if (actionValue != null){
+				if (operationtype == OperationType.EQUALS){
+					return valueToFilterBy.equalsIgnoreCase(actionValue);
+				}
+				else if (operationtype == OperationType.CONTAINS){
+					return actionValue.toLowerCase().contains(valueToFilterBy.toLowerCase());
+				}
+				else {
+					System.err.println("ERROR:\t\t[ActionProperty.ruleIncludesAction] Unrecognized OperationType=" + operationtype);
+				}
+			}
+			else {
+//				System.out.println("DEBUG:\t\t[ActionProperty.ruleIncludesAction] no value for action=\n" + action + "\nRule=" + this);
+			}
+		}
+		else {
+			System.err.println("ERROR:\t\t[ActionProperty.ruleIncludesAction] valueToFilterBy is null for Rule=" + this);
+		}
+		return false;
 	}
 	
 }

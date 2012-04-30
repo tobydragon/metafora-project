@@ -21,7 +21,7 @@ import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyCombo
 import de.uds.MonitorInterventionMetafora.client.monitor.grouping.ActionPropertyComboBox;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 
@@ -165,7 +165,9 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		    	
 		        
 		        grid.stopEditing();  
-		        grid.getStore().insert(_newRow, 0);  
+		        grid.getStore().insert(_newRow, 0);
+		        
+//		        interfaceManager.filtersUpdated();
 		        grid.startEditing(grid.getStore().indexOf(_newRow), 0); 
 		     
 				

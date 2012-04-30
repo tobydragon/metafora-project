@@ -7,7 +7,7 @@ import java.util.List;
 import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 
-import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
@@ -17,6 +17,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class IndicatorFilterer implements Serializable{
@@ -398,7 +399,7 @@ public class IndicatorFilterer implements Serializable{
 		
 		List<CfAction> _allActions =new ArrayList<CfAction>();
 		List<CfAction> _filteredActions =new ArrayList<CfAction>();
-		_allActions.addAll(maintenance.getAllActions());
+		_allActions.addAll(maintenance.getFilteredActions());
 		
 		for(CfAction _action:_allActions){
 			if(isSatisfyFilters(_action, getActiveFiltersFromFilterGrid())){
