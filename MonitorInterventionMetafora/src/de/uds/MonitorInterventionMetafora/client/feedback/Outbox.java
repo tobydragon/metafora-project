@@ -1,14 +1,17 @@
 package de.uds.MonitorInterventionMetafora.client.feedback;
 
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ComplexPanel;
+import com.google.gwt.user.client.ui.DecoratedPopupPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
@@ -17,6 +20,7 @@ import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.C
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
@@ -86,13 +90,7 @@ public class Outbox implements CfActionCallBack {
 		final VerticalPanel userGroupColumn = new VerticalPanel();
 		recipientNamesColumn = new VerticalPanel();
 		userGroupColumn.add(recipientNamesColumn);
-		String[] userNames = FeedbackPanelContainer.userNames;
-		for(int i=0; i<userNames.length; i++)
-		{
-			final String userName = userNames[i];
-			recipientNamesColumn.add(new CheckBox(userName));
-			
-		}
+		
 		class SelectAllRecipientsButton extends Button{
 			SelectAllRecipientsButton(String name, final boolean positive)
 			{
@@ -102,7 +100,7 @@ public class Outbox implements CfActionCallBack {
 
 				@Override
 				public void onClick(ClickEvent event) {
-					for(int i=0; i<recipientNamesColumn.getWidgetCount(); i++)
+					for(int i=0; i<=recipientNamesColumn.getWidgetCount(); i++)
 					{
 						CheckBox cb = (CheckBox) recipientNamesColumn.getWidget(i);
 						cb.setValue(positive, false);
@@ -115,21 +113,50 @@ public class Outbox implements CfActionCallBack {
 		allNone.add(new SelectAllRecipientsButton("all",true));
 		allNone.add(new SelectAllRecipientsButton("none",false));
 		userGroupColumn.add(allNone);
+		
+		createCheckBoxes(FeedbackPanelContainer.userNames);
+
+		//edit students button
+		final Button editStudentsButton = new Button("edit");
+		editStudentsButton.setStyleName("selectAllRecipientsButton");
+		editStudentsButton.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event) {
+				String recepientNames = "";
+				for(int i=0; i<recipientNamesColumn.getWidgetCount(); i++){
+					CheckBox checkbox = (CheckBox) recipientNamesColumn.getWidget(i);
+					recepientNames = recepientNames + checkbox.getText() + "\n" ;
+			    }
+				editRecipientNames(recepientNames);
+			}
+		});
+		allNone.add(editStudentsButton);
 		sendOptionsRow.add(userGroupColumn);
+
+		
 		//send button
 		final Button sendButton = new Button("Send");
 		sendButton.addStyleName("sendButton");
 		sendButton.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
-				sendNameToServer();
+				sendMessageToServer();
 			}
-
-
 		});
+
 		sendOptionsRow.add(sendButton);
 		sendOptionsRow.setWidth(""+sectionWidth+"px");
 		sendOptionsRow.setCellWidth(sendButton, "70");
 		sendOptionsRow.setCellHorizontalAlignment(sendButton, HasHorizontalAlignment.ALIGN_RIGHT);
+	}
+	
+
+	public void createCheckBoxes(String userNames[]) {
+		recipientNamesColumn.clear();
+		for(int i=0; i<userNames.length; i++)
+		{
+			final String userName = userNames[i];
+			recipientNamesColumn.add(new CheckBox(userName));
+			
+		}
 	}
 	public TextBox getMessageTextBox()
 	{
@@ -155,9 +182,49 @@ public class Outbox implements CfActionCallBack {
 		
 	}
 	
-	private void sendNameToServer() {
-		//String textToServer = messageTextBox.getText();
-		System.out.println("Sending messages being tested (again)");
+	private void editRecipientNames(String recepientNames) {
+
+		final DecoratedPopupPanel popup = new DecoratedPopupPanel(true);
+		final TextArea textArea = new TextArea();
+		textArea.setText(recepientNames);
+		final Button createButton = new Button("Create");
+		ClickHandler createClickHandler = new ClickHandler() {
+
+		    @Override
+		    public void onClick(ClickEvent event) {
+		    	String s = textArea.getText();
+		    	//spit the text on carriage return
+		    	String[] newUserNames = s.split("\n");
+		    	createCheckBoxes(newUserNames);    			
+		    	popup.hide();
+		    }
+		    
+		};
+		createButton.addClickHandler(createClickHandler);
+		Button cancelButton = new Button("Cancel");
+		ClickHandler cancelHandler = new ClickHandler() {
+
+		    @Override
+		    public void onClick(ClickEvent event) {
+			popup.hide();	
+		    }
+		    
+		};
+		cancelButton.addClickHandler(cancelHandler);
+		VerticalPanel textBoxWithOKAndCancel = new VerticalPanel();
+		HorizontalPanel okAndCancelPanel = new HorizontalPanel();
+		okAndCancelPanel.setSpacing(6);
+		okAndCancelPanel.add(createButton);
+		okAndCancelPanel.add(cancelButton);
+		textBoxWithOKAndCancel.setSpacing(6);
+		textBoxWithOKAndCancel.add(textArea);
+		textBoxWithOKAndCancel.add(okAndCancelPanel);
+	        popup.setWidget(textBoxWithOKAndCancel);
+	        popup.show();
+	        popup.center();	
+	}
+	
+	private void sendMessageToServer() {
 		CfAction feedbackMessage=new CfAction();
 	 	feedbackMessage.setTime(GWTUtils.getTimeStamp());
 	 	  
@@ -170,12 +237,22 @@ public class Outbox implements CfActionCallBack {
  	 	feedbackMessage.setCfActionType(_cfActionType);
  	 	feedbackMessage.addUser(new CfUser("FeedbackClient", MetaforaStrings.USER_ROLE_ORIGINATOR_STRING));
  	 	feedbackMessage.addUser(new CfUser("Metafora", MetaforaStrings.USER_ROLE_RECEIVER_STRING));
- 	 	feedbackMessage.addUser(new CfUser("Bob", "student"));
- 	 	feedbackMessage.addUser(new CfUser("Alice", "student"));
  	 	
- 	 	CfContent cfContent = new CfContent("Please mind the gap!");
- 	 	cfContent.addProperty(new CfProperty("FEEDBACK_TYPE","NO_INTERRUPTION"));
- 	 	feedbackMessage.setCfContent(cfContent);
+ 	 	//TODO: what happens with IDs? And do they matter? 
+ 	 	//Can we uniquely auto-increment them? Perhaps use that java UUID library? 
+ 	 	CfObject cfObject = new CfObject("0","message");
+		for(int i=0; i<recipientNamesColumn.getWidgetCount(); i++)
+		{
+			CheckBox cb = (CheckBox) recipientNamesColumn.getWidget(i);
+			if (cb.getValue()) {
+				//TODO: deal with multiple usernames (properties can't have same name value)
+				cfObject.addProperty(new CfProperty("username",cb.getText()));				
+			}
+		}					
+ 	 	cfObject.addProperty(new CfProperty("text",messageTextBox.getText()));	
+ 	 	String interruptionType = getInterruptionTypeString(sendModeRadioButtonSuggestion.getText());
+ 	 	cfObject.addProperty(new CfProperty("interruption_type",interruptionType));
+ 	 	feedbackMessage.addObject(cfObject);
  	 	
 	 	ServerCommunication.getInstance().processAction("FeedbackClient",feedbackMessage,this);	
 
@@ -184,5 +261,16 @@ public class Outbox implements CfActionCallBack {
 		{
 			FeedbackPanelContainer.getInstance().declareRequestHandled();
 		}
+		
+		
+	}
+	
+	/*
+	 * Returns a space separated string in lowercase and hyphenated 
+	 */
+	public String getInterruptionTypeString(String s) {
+		String result = s.toLowerCase(); 
+		result = result.replace(' ', '_');
+		return result;
 	}
 }
