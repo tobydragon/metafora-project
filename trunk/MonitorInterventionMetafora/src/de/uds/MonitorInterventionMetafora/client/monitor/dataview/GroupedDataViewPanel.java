@@ -18,7 +18,7 @@ public class GroupedDataViewPanel extends VerticalPanel {
 			ClientMonitorController controller, ActionPropertyRule  groupingProperty, String panelId, String groupingChooserId){
 		this.dataViewPanel = createDataViewPanel(dataViewPanelType, model, controller, this, groupingProperty);
 		
-		groupingChooserPanel = new GroupingChooserPanel(this, model.getPropertiesComboBoxModel(), groupingProperty, groupingChooserId);
+		groupingChooserPanel = new GroupingChooserPanel(this, model.getGroupingRulesComboBoxModel(), groupingProperty, groupingChooserId);
 
 		this.setWidth(600);
 		this.setId(panelId);

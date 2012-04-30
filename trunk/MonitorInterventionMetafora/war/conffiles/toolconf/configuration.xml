@@ -2,10 +2,10 @@
 <configurations>
 <configuration name ="Test" active="1">
 
-<data-source-type>file</data-source-type>
+<data-source-type>xmpp</data-source-type>
 
-<!-- Either the "CURRENT_TIME", or the millisecond time of start of history (e.g. "1335363632000") -->
-<HISTORY_START_TIME>CURRENT_TIME</HISTORY_START_TIME>
+<!-- Either the "CURRENT_TIME", or the millisecond time of start of history (e.g. "1335798839000") -->
+<HISTORY_START_TIME>1335798839000</HISTORY_START_TIME>
 
 
 

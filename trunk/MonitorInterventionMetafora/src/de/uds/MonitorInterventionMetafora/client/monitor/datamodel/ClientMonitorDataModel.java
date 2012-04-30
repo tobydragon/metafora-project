@@ -18,7 +18,11 @@ public class ClientMonitorDataModel {
 	private ActionFilter actionFilter;
 	
 	private List<ActionPropertyRule> rulesToGroupBy;
-	private ListStore<PropertyComboBoxItemModel> propertyComboBoxItems;
+	private ListStore<PropertyComboBoxItemModel> groupingRuleComboBoxItems;
+	
+	private List<ActionPropertyRule> rulesToFilterBy;
+	private ListStore<PropertyComboBoxItemModel> filterRuleComboBoxItems;
+
 	
 	private  List<CfAction> filteredActions;
 	//a mapping of IndicatorPropertyTables, which each tracking the different values 
@@ -28,8 +32,12 @@ public class ClientMonitorDataModel {
 	public ClientMonitorDataModel(){
 		actionFilter = new ActionFilter();
 		allActions = new Vector<CfAction>();
-		rulesToGroupBy = createActionProperties();
-		propertyComboBoxItems = createPropertyBoxcomboItems(rulesToGroupBy);
+		
+		rulesToGroupBy = createGroupingRules();
+		rulesToFilterBy = createFilteringRules();
+		groupingRuleComboBoxItems = createRuleComboBoxItems(rulesToGroupBy);
+		filterRuleComboBoxItems = createRuleComboBoxItems(rulesToFilterBy);
+		
 		clearFilteredData();
 	}
 	
@@ -77,16 +85,36 @@ public class ClientMonitorDataModel {
 		return inMap;
 	}
 
-	private List<ActionPropertyRule> createActionProperties() {
+	private List<ActionPropertyRule> createGroupingRules() {
 		List<ActionPropertyRule> newGroupings = new Vector<ActionPropertyRule>();
+	
+		//ACTION_TYPE
+		newGroupings.add( new ActionPropertyRule(ActionElementType.ACTION_TYPE, "Classification", "Action Classification"));
+		newGroupings.add(new ActionPropertyRule(ActionElementType.ACTION_TYPE, "type", "Action type"));
+
+		//USER
+		newGroupings.add( new ActionPropertyRule(ActionElementType.USER, "id", "User ID"));
 		
-		newGroupings.add(new ActionPropertyRule(ActionElementType.CONTENT, "Tool"));
-		newGroupings.add( new ActionPropertyRule(ActionElementType.ACTION_TYPE, "Classification"));
-		newGroupings.add( new ActionPropertyRule(ActionElementType.USER, "id"));
+		//CONTENT
+		newGroupings.add(new ActionPropertyRule(ActionElementType.CONTENT, "Tool", "Tool"));
+		newGroupings.add(new ActionPropertyRule(ActionElementType.CONTENT, "INDICATOR_TYPE", "Indicator Type"));
+		newGroupings.add(new ActionPropertyRule(ActionElementType.CONTENT, "CHALLENGE_NAME", "Challenge Name"));
+		newGroupings.add(new ActionPropertyRule(ActionElementType.CONTENT, "GROUP_ID", "Group ID"));
+		
 		return newGroupings;
 	}
 	
-	private ListStore<PropertyComboBoxItemModel> createPropertyBoxcomboItems(List<ActionPropertyRule> rules){
+	private List<ActionPropertyRule> createFilteringRules(){
+		//groupings are a subset of filters
+		List<ActionPropertyRule> newFilters = createGroupingRules();
+
+		newFilters.add(new ActionPropertyRule(ActionElementType.ACTION, "time", "Action Time"));
+		newFilters.add(new ActionPropertyRule(ActionElementType.CONTENT, "description", "Description"));
+
+		return newFilters;
+	}
+	
+	private ListStore<PropertyComboBoxItemModel> createRuleComboBoxItems(List<ActionPropertyRule> rules){
 		ListStore<PropertyComboBoxItemModel> propertyComboBoxItems = new ListStore<PropertyComboBoxItemModel>();
 		for (ActionPropertyRule rule : rules){
 			propertyComboBoxItems.add(new PropertyComboBoxItemModel(rule));
@@ -120,8 +148,12 @@ public class ClientMonitorDataModel {
 	
 	
 	
-	public ListStore<PropertyComboBoxItemModel> getPropertiesComboBoxModel(){
-		return propertyComboBoxItems;
+	public ListStore<PropertyComboBoxItemModel> getGroupingRulesComboBoxModel(){
+		return groupingRuleComboBoxItems;
+	}
+	
+	public ListStore<PropertyComboBoxItemModel> getFilterRulesComboBoxModel(){
+		return filterRuleComboBoxItems;
 	}
 	
 }
