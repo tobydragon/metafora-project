@@ -27,8 +27,9 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class Outbox implements CfActionCallBack {
+	
 	private TextBox messageTextBox;
-	private VerticalPanel vpanel;
+	private VerticalPanel vpanel,sendModeRadioColumn;
 	private HorizontalPanel sendOptionsRow;
 	public RadioButton sendModeRadioButtonPopup;
 	public RadioButton sendModeRadioButtonSuggestion;
@@ -61,7 +62,7 @@ public class Outbox implements CfActionCallBack {
 		sendOptionsRow.setSpacing(3);
 		sendOptionsRow.add(new Label("send as"));
 		//send mode
-		VerticalPanel sendModeRadioColumn = new VerticalPanel();
+		sendModeRadioColumn = new VerticalPanel();
 		sendModeRadioButtonPopup = new RadioButton("sendMode", "No Interruption");
 		ClickHandler noRequestClickHandler = new ClickHandler(){
 			@Override
@@ -74,6 +75,7 @@ public class Outbox implements CfActionCallBack {
 		sendModeRadioButtonPopup.addClickHandler(noRequestClickHandler);
 		sendModeRadioColumn.add(sendModeRadioButtonPopup);
 		sendModeRadioButtonSuggestion = new RadioButton("sendMode", "Low Interruption");
+		sendModeRadioButtonSuggestion.setEnabled(true);
 		sendModeRadioButtonSuggestion.addClickHandler(noRequestClickHandler);
 		sendModeRadioColumn.add(sendModeRadioButtonSuggestion);
 		sendModeRadioButtonSuggestion = new RadioButton("sendMode", "High Interruption");
@@ -250,8 +252,7 @@ public class Outbox implements CfActionCallBack {
 			}
 		}					
  	 	cfObject.addProperty(new CfProperty("text",messageTextBox.getText()));	
- 	 	String interruptionType = getInterruptionTypeString(sendModeRadioButtonSuggestion.getText());
- 	 	cfObject.addProperty(new CfProperty("interruption_type",interruptionType));
+ 	 	cfObject.addProperty(new CfProperty("interruption_type",getSelectedIntteruptionType()));
  	 	feedbackMessage.addObject(cfObject);
  	 	
 	 	ServerCommunication.getInstance().processAction("FeedbackClient",feedbackMessage,this);	
@@ -263,6 +264,20 @@ public class Outbox implements CfActionCallBack {
 		}
 		
 		
+	}
+	
+	/*
+	 * Returns the selected interruption type
+	 */
+	public String getSelectedIntteruptionType() {
+
+		for(int i=0; i<sendModeRadioColumn.getWidgetCount(); i++) {
+			RadioButton rb = (RadioButton) sendModeRadioColumn.getWidget(i);
+			if (rb.getValue()) {
+				return getInterruptionTypeString(rb.getText());
+			}
+		}
+		return null;
 	}
 	
 	/*
