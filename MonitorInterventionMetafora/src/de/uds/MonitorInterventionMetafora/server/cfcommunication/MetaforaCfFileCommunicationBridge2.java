@@ -5,9 +5,9 @@ import java.util.Vector;
 import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
+import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.utils.GeneralUtil;
 
 public class MetaforaCfFileCommunicationBridge2 implements CfCommunicationBridge{
 	Logger logger = Logger.getLogger(CfCommunicationBridge.class);

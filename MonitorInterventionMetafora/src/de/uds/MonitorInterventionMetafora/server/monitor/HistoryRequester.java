@@ -10,6 +10,7 @@ import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationCh
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.SimpleCfFileCommunicationBridge;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
 import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
+import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
@@ -20,11 +21,11 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaCommObjects;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
-import de.uds.MonitorInterventionMetafora.shared.utils.GeneralUtil;
+import de.uds.MonitorInterventionMetafora.shared.utils.LogLevel;
 import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 
 public class HistoryRequester implements CfCommunicationListener{
-	Logger logger = Logger.getLogger(HistoryRequester.class);
+	Logger logger = Logger.getLogger(HistoryRequester.class, LogLevel.INFO);
 	
 	private List<CfAction> pendingRequests;
 	private MonitorModel model;
@@ -62,7 +63,7 @@ public class HistoryRequester implements CfCommunicationListener{
 
 	private void sendXmppHistoryRequest(CfAgentCommunicationManager communicationManager, String currentStartTimeMillis) {
 		// TODO: Need to be able to "shut off" command channel listening, only listen when request is sent
-		
+		logger.info("[sendXmppHistoryRequest] start time=" + currentStartTimeMillis);
 		if ( ! MetaforaStrings.CURRENT_TIME.equalsIgnoreCase(currentStartTimeMillis)){
 			try {
 				long time = Long.valueOf(currentStartTimeMillis);
@@ -155,8 +156,9 @@ public class HistoryRequester implements CfCommunicationListener{
 		}
 	}
 	
+	//TODO: make this work like the other fileRequest...
 	private void loadHistoryFromLocalFile(String historyUrl) {
-		logger.info("[loadHistoryFromRemoteFile] URL="+historyUrl);
+		logger.info("[loadHistoryFromLocalFile] URL="+historyUrl);
 		if (historyUrl != null && model != null){
 			AnalysisMonitorListener myListener = new AnalysisMonitorListener(model);
 			SimpleCfFileCommunicationBridge historyBridge = new SimpleCfFileCommunicationBridge(historyUrl, "", CfFileLocation.REMOTE);
@@ -164,7 +166,7 @@ public class HistoryRequester implements CfCommunicationListener{
 			historyBridge.sendMessages();
 		}
 		else {
-			logger.error("[loadHistoryFromRemoteFile] called with null url or model");
+			logger.error("[loadHistoryFromLocalFile] called with null url or model");
 		}
 	}
 }

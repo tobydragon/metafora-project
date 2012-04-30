@@ -2,7 +2,7 @@ package de.uds.MonitorInterventionMetafora.server.cfcommunication;
 
 import org.apache.log4j.Logger;
 
-import de.uds.MonitorInterventionMetafora.shared.utils.GeneralUtil;
+import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 
 public class MetaforaCfFileCommunicationBridge extends SimpleCfFileCommunicationBridge{
 	Logger logger = Logger.getLogger(CfCommunicationBridge.class);

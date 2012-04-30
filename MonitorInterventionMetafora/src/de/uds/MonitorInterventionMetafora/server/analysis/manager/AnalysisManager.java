@@ -7,9 +7,9 @@ import java.util.Vector;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
+import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.utils.GeneralUtil;
 
 
 
