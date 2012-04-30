@@ -7,7 +7,7 @@ import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 
 // A mapping and associated DataTable, containing the various values for a given 
@@ -28,7 +28,13 @@ public class ActionPropertyValueGroupingTable {
 	
 	public void addAction(CfAction action){
 		String actionValue = actionPropertyRule.getActionValue(action);
-		addActionValue(actionValue);
+		if (action != null){
+			addActionValue(actionValue);
+		}
+		else {
+			System.err.println("ERROR\t\t[ActionPropertyRule.addAction] can't get actionValue from action:\n" + action + "\n from rule: " + actionPropertyRule);
+			addActionValue("unknown");
+		}
 	}
 
 	private void addActionValue(String actionValue) {

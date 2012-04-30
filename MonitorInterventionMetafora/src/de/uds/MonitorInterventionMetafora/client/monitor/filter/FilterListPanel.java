@@ -10,7 +10,7 @@ import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
-import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 
 
 public class FilterListPanel extends ContentPanel {

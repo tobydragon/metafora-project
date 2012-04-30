@@ -12,8 +12,8 @@ import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.Notificat
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilterer;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.utils.ServerFormatStrings;
 
 public class XmlConfigParser {

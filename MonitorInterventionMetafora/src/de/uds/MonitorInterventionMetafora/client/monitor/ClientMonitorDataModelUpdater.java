@@ -6,6 +6,7 @@ import com.google.gwt.user.client.Timer;
 
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
 public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdateCallBack{
@@ -23,10 +24,6 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 		controller.refreshViews();
 	}
 
-	public void setActiveActionList(List<CfAction> actions){
-		update(actions);
-	}
-	
 	public void startUpdates(){
 		this.scheduleRepeating(5000);
 	}
@@ -44,7 +41,7 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 
 	@Override
 	public void onSuccess(List<CfAction> actions) {
-		if(actions!=null){	
+		if(actions!=null && actions.size() > 0){	
 			update(actions);
 			System.out.println("DEBUG [UpdatingDataModel.onSuccess] Action recieved and list updated");
 		}

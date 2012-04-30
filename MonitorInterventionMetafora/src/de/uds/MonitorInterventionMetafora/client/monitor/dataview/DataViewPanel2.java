@@ -2,8 +2,8 @@ package de.uds.MonitorInterventionMetafora.client.monitor.dataview;
 
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 
-import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 public abstract class DataViewPanel2 extends VerticalPanel{
 

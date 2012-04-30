@@ -8,9 +8,9 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart.PieOptions;
 
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
-import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorDataModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel2;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 public class PieChartPanel2 extends  DataViewPanel2 {
 	
@@ -30,7 +30,8 @@ public class PieChartPanel2 extends  DataViewPanel2 {
 	
 	private void createPieChart(ClientMonitorController controller) {
 		if (groupingProperty != null){
-			this.add(pieChartView= new PieChart(model.getDataTable(groupingProperty), getPieChartOptions()));  
+			pieChartView = new PieChart(model.getDataTable(groupingProperty), getPieChartOptions());
+			this.add(pieChartView);  
 		    pieChartView.addSelectHandler(new ChartSelectionHandler(this, model, controller));
 		    pieChartView.setLayoutData(new FitLayout());
 		    refresh();

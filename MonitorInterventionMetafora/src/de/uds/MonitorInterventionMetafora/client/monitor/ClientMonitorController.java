@@ -15,6 +15,7 @@ import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.TableViewModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
@@ -22,11 +23,10 @@ import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.Indicato
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.IndicatorFilterItemGridRowModel;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 public class ClientMonitorController {
 	
-//	private boolean reset=false;
 	private ClientMonitorDataModel dataModel;
 	
 	private Vector<GroupedDataViewPanel> dataViewPanels;
@@ -59,18 +59,27 @@ public class ClientMonitorController {
 	        _grid.startEditing(_grid.getStore().indexOf(_newRow), 0); 
 	        _filterCombo.clearSelections();
 	       
+	        
 	        TabPanel tabPanel = getMultiModelTabPanel();
 	        TabItem tabItem= getTableViewTabItem();	
 	        tabPanel.setTabIndex(0);
 	        tabPanel.repaint();
 	        tabPanel.setLayoutData(new FitLayout());
 	        tabPanel.setSelection(tabItem);
+	        
+//	        filtersUpdated();
 //		    MessageBox.info("Message","Filter is added to the list!", null);
-    	
+	        
+	        
    	    }
         else {	
         	MessageBox.info("Message","Selected Filter is<ul><li> already in  the filter list</li></ul>", null);
         }
+	}
+	
+	public void filtersUpdated(){
+		dataModel.updateFilteredList();
+        refreshViews();
 	}
 	
 	boolean isInFilterList(String _key,EditorGrid<IndicatorFilterItemGridRowModel> _grid){
@@ -99,7 +108,6 @@ public class ClientMonitorController {
 		//TODO: Table view should just be another data view, accepting a GroupedByPropoertyModel
 		refreshTableView();
 
-//		GroupedByPropertyModel model=new GroupedByPropertyModel(actionModel);
 		for (GroupedDataViewPanel panel : dataViewPanels){
 			panel.refresh();
 		}
