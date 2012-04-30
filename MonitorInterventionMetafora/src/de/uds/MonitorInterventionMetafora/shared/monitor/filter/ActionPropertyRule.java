@@ -15,6 +15,7 @@ import java.io.Serializable;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
+import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 
 //a class representing a rule about an aspect of an action (to filter or group by).
 //This could be a standard attribute or a property of a CfAction...
@@ -146,6 +147,7 @@ public class ActionPropertyRule  implements Serializable{
 				}
 			}
 			else {
+				return MonitorConstants.BLANK_PROPERTY.equalsIgnoreCase(valueToFilterBy);
 //				System.out.println("DEBUG:\t\t[ActionProperty.ruleIncludesAction] no value for action=\n" + action + "\nRule=" + this);
 			}
 		}
