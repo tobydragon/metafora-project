@@ -12,8 +12,8 @@ import com.extjs.gxt.ui.client.data.BaseModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
+import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
-import de.uds.MonitorInterventionMetafora.shared.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 
 public class IndicatorGridRowItem extends BaseModel {
@@ -39,18 +39,27 @@ public class IndicatorGridRowItem extends BaseModel {
 			set("name", usersString);
 		    set("actiontype", indicator.getCfActionType().getType());
 		    set("classification", indicator.getCfActionType().getClassification());
-		    set("description", indicator.getCfContent().getDescription());
+		    if (indicator.getCfContent() != null){
+			    set("description", indicator.getCfContent().getDescription());
+			    set("tool", indicator.getCfContent().getPropertyValue("TOOL"));
+		    }
+		    else {
+		    	set("desription", MonitorConstants.BLANK_PROPERTY);
+		    	set("tool", MonitorConstants.BLANK_PROPERTY);
+		    }
 		    set("time", GWTUtils.getTime(indicator.getTime()));
 		    set("date", GWTUtils.getDate(indicator.getTime()));
-		    set("tool", indicator.getCfContent().getPropertyValue("TOOL"));
 		}
 		catch (Exception e){
-			logger.error("[setGridItemProperties] missing attributes, row not added for indicator: " + GeneralUtil.getStartOfString(indicator.toString()));
+			logger.error("[setGridItemProperties] missing attributes, row not added for indicator: " +indicator.toString());
 		}
 	}
 	
 	public String getColor(){
-		  return indicator.getCfContent().getPropertyValue(CommonFormatStrings.COLOR);  
+		if (indicator.getCfContent() != null){
+		  return indicator.getCfContent().getPropertyValue(CommonFormatStrings.COLOR);
+		}
+		return null;
 	}
 
 	public CfAction getIndicator() {

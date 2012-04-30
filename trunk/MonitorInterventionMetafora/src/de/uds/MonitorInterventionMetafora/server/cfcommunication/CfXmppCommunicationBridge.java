@@ -11,11 +11,11 @@ import de.kuei.metafora.xmpp.XMPPBridge;
 import de.kuei.metafora.xmpp.XMPPMessageListener;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
 import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
+import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlUtil;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.shared.utils.LogLevel;
 import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 

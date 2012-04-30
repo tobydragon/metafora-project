@@ -18,7 +18,7 @@ import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
 import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
-import de.uds.MonitorInterventionMetafora.shared.utils.GeneralUtil;
+import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.shared.utils.LogLevel;
 import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 

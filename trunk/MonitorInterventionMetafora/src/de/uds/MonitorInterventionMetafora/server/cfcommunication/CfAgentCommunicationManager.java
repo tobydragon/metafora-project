@@ -11,9 +11,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 
+import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
-import de.uds.MonitorInterventionMetafora.shared.utils.GeneralUtil;
 
 public class CfAgentCommunicationManager implements CfCommunicationListener{
 	Log logger = LogFactory.getLog(CfAgentCommunicationManager.class);
