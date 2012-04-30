@@ -7,6 +7,7 @@ import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 
@@ -28,17 +29,17 @@ public class ActionPropertyValueGroupingTable {
 	
 	public void addAction(CfAction action){
 		String actionValue = actionPropertyRule.getActionValue(action);
-		if (action != null){
+		if (actionValue != null){
 			addActionValue(actionValue);
 		}
 		else {
-			System.err.println("ERROR\t\t[ActionPropertyRule.addAction] can't get actionValue from action:\n" + action + "\n from rule: " + actionPropertyRule);
-			addActionValue("unknown");
+//			System.out.println("INFO\t\t[ActionPropertyRule.addAction] can't get actionValue from action:\n" + action + "\n from rule: " + actionPropertyRule);
+			addActionValue(MonitorConstants.BLANK_PROPERTY);
 		}
 	}
 
 	private void addActionValue(String actionValue) {
-		ActionPropertyValueModel valueModel = rowModels.get(actionValue);
+		ActionPropertyValueModel valueModel = rowModels.get(actionValue.toLowerCase());
 		if (valueModel != null){
 			valueModel.increment();
 			setRow(valueModel);
@@ -46,7 +47,7 @@ public class ActionPropertyValueGroupingTable {
 		else {
 			int lastRowIndex = dataTable.addRow();
 			valueModel = new ActionPropertyValueModel(actionValue, lastRowIndex);
-			rowModels.put(valueModel.getPropertyValue(), valueModel);
+			rowModels.put(valueModel.getPropertyValue().toLowerCase(), valueModel);
 			setRow(valueModel);
 		}
 	}
