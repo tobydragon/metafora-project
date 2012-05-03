@@ -115,13 +115,13 @@ public class ClientMonitorController {
 		
 	}
 	
-	public ActionPropertyRule getDefaultGroupingOption(){
-		ActionPropertyRule _defaltEntity=new ActionPropertyRule();
-		_defaltEntity.setEntityName(FilterAttributeName.CLASSIFICATION.toString());
-		_defaltEntity.setType(ActionElementType.ACTION_TYPE);
-		return _defaltEntity;
-	}
-	 
+//	public ActionPropertyRule getDefaultGroupingOption(){
+//		ActionPropertyRule _defaltEntity=new ActionPropertyRule();
+//		_defaltEntity.setEntityName(FilterAttributeName.CLASSIFICATION.toString());
+//		_defaltEntity.setType(ActionElementType.ACTION_TYPE);
+//		return _defaltEntity;
+//	}
+//	 
 //	 ------------------------ Code that should be removed ---------------------------//
 	
 //	public void refreshTableView(){
