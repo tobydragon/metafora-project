@@ -39,9 +39,10 @@ public class FilterListPanel extends ContentPanel {
 
             public void handleEvent(BaseEvent be)
             {
+            	//TODO: Make this work for the whole tab pane, not just the table view
            //interfaceManager.getGroupedGridContentPanel().setWidth(600);
-            	if(interfaceManager.getTableViewEditorGrid()!=null)
-           interfaceManager.getTableViewEditorGrid().setHeight(540);	
+//            	if(interfaceManager.getTableViewEditorGrid()!=null)
+//           interfaceManager.getTableViewEditorGrid().setHeight(540);	
             	// Info.display("Collapse", "Collapse");
             };
         });
@@ -51,9 +52,9 @@ public class FilterListPanel extends ContentPanel {
 
             public void handleEvent(BaseEvent be)
             {
-              
+            	//TODO: Make this work for the whole tab pane, not just the table view
             //interfaceManager.getGroupedGridContentPanel().setWidth(600);
-            	interfaceManager.getTableViewEditorGrid().setHeight(326);     	
+//            	interfaceManager.getTableViewEditorGrid().setHeight(326);     	
             	
             	//  Info.display("Expand", "Expand");
             };

@@ -265,7 +265,7 @@ GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
       });
     
 //    System.out.println("Adding grid listener");
-    grid.addListener(Events.RowClick, new GridSelectionPopUpListener());
+    grid.addListener(Events.RowClick, new TableRowDisplaySelectionListener());
     
 
     ToolBar toolBar = new ToolBar();  

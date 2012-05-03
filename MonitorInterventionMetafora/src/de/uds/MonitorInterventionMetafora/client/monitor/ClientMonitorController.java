@@ -59,13 +59,14 @@ public class ClientMonitorController {
 	        _grid.startEditing(_grid.getStore().indexOf(_newRow), 0); 
 	        _filterCombo.clearSelections();
 	       
-	        
-	        TabPanel tabPanel = getMultiModelTabPanel();
-	        TabItem tabItem= getTableViewTabItem();	
-	        tabPanel.setTabIndex(0);
-	        tabPanel.repaint();
-	        tabPanel.setLayoutData(new FitLayout());
-	        tabPanel.setSelection(tabItem);
+	       
+	        //TODO: make a new way to set the tabs back to table tab
+//	        TabPanel tabPanel = getMultiModelTabPanel();
+//	        TabItem tabItem= getTableViewTabItem();	
+//	        tabPanel.setTabIndex(0);
+//	        tabPanel.repaint();
+//	        tabPanel.setLayoutData(new FitLayout());
+//	        tabPanel.setSelection(tabItem);
 	        
 //	        filtersUpdated();
 //		    MessageBox.info("Message","Filter is added to the list!", null);
@@ -106,7 +107,7 @@ public class ClientMonitorController {
 	public void refreshViews() {
 		
 		//TODO: Table view should just be another data view, accepting a GroupedByPropoertyModel
-		refreshTableView();
+//		refreshTableView();
 
 		for (GroupedDataViewPanel panel : dataViewPanels){
 			panel.refresh();
@@ -123,14 +124,14 @@ public class ClientMonitorController {
 	 
 //	 ------------------------ Code that should be removed ---------------------------//
 	
-	public void refreshTableView(){
-		 TableViewModel tvm=new TableViewModel(dataModel);
-			
-		   Grid<IndicatorGridRowItem> _grid = getTableViewEditorGrid();
-		   _grid.getStore().removeAll();
-		   _grid.getStore().add(tvm.parseToIndicatorGridRowList(true, false));
-		 
-	 }
+//	public void refreshTableView(){
+//		 TableViewModel tvm=new TableViewModel(dataModel);
+//			
+//		   Grid<IndicatorGridRowItem> _grid = getTableViewEditorGrid();
+//		   _grid.getStore().removeAll();
+//		   _grid.getStore().add(tvm.parseToIndicatorGridRowList(true, false));
+//		 
+//	 }
 	
 	
 	
@@ -140,10 +141,10 @@ public class ClientMonitorController {
 		return editorGrid;
 	}
 	
-	public Grid<IndicatorGridRowItem>  getTableViewEditorGrid(){
-		
-		return (Grid<IndicatorGridRowItem>) ComponentManager.get().get("_tableViewGrid");
-	}
+//	public Grid<IndicatorGridRowItem>  getTableViewEditorGrid(){
+//		
+//		return (Grid<IndicatorGridRowItem>) ComponentManager.get().get("_tableViewGrid");
+//	}
 	
 	public SimpleComboBox<String> getFilterListComboBox(){
 		
@@ -155,10 +156,10 @@ public class ClientMonitorController {
 		return (TabPanel) ComponentManager.get().get("_multiModelTabPanel");
 	}
 	
-	public TabItem getTableViewTabItem(){
-		
-		return (TabItem) ComponentManager.get().get("Table");
-	}
+//	public TabItem getTableViewTabItem(){
+//		
+//		return (TabItem) ComponentManager.get().get("Table");
+//	}
 	public VerticalPanel getTabPanelContainer(){
 		
 		return (VerticalPanel) ComponentManager.get().get("_tabMainPanel");

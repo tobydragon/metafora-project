@@ -9,14 +9,14 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart.Pie
 
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel2;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
-public class PieChartPanel2 extends  DataViewPanel2 {
+public class PieChartPanel extends  DataViewPanel {
 	
 	private PieChart pieChartView;
 	
-	public PieChartPanel2(ClientMonitorDataModel _model, ClientMonitorController controller, ActionPropertyRule  groupingProperty){
+	public PieChartPanel(ClientMonitorDataModel _model, ClientMonitorController controller, ActionPropertyRule  groupingProperty){
 		super(groupingProperty, _model);
 		
 		this.setId("pieChartVerticalPanel");

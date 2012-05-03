@@ -8,7 +8,7 @@ import com.google.gwt.user.client.ui.PopupPanel;
 import de.uds.MonitorInterventionMetafora.client.PopupCfActionDisplay;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
-public class GridSelectionPopUpListener extends GridSelectionModel<IndicatorGridRowItem>{
+public class TableRowDisplaySelectionListener extends GridSelectionModel<IndicatorGridRowItem>{
 	
 	public void handleEvent(BaseEvent e){
 		System.out.println("Event: ");
@@ -18,7 +18,7 @@ public class GridSelectionPopUpListener extends GridSelectionModel<IndicatorGrid
 			CfAction indicator = ge.getModel().getIndicator();
 			
 
-			final PopupCfActionDisplay popup = new PopupCfActionDisplay(indicator);
+			new PopupCfActionDisplay(indicator);
 		}
     	
 

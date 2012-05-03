@@ -4,17 +4,17 @@ import com.google.gwt.visualization.client.events.SelectHandler;
 
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel2;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 public class ChartSelectionHandler  extends SelectHandler{
 
-	DataViewPanel2 view;
+	DataViewPanel view;
 	ClientMonitorDataModel model;
 	ClientMonitorController controller;
 	
-	public ChartSelectionHandler (DataViewPanel2 view, ClientMonitorDataModel model, ClientMonitorController controller){
+	public ChartSelectionHandler (DataViewPanel view, ClientMonitorDataModel model, ClientMonitorController controller){
 		this.view = view;
 		this.model = model;
 		this.controller = controller;

@@ -253,7 +253,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
     ContentPanel panel = new ContentPanel();
     panel.setTopComponent(toolBar);
     
-    ExtendedFilterManagementPanel _filterManagement=new ExtendedFilterManagementPanel(model.getFilterRulesComboBoxModel(), controller, grid);
+    ExtendedFilterManagementPanel _filterManagement=new ExtendedFilterManagementPanel( controller, grid);
     panel.setBottomComponent(_filterManagement);
     panel.setHeaderVisible(false);
     panel.setIcon(Resources.ICONS.table());

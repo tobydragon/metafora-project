@@ -1,0 +1,177 @@
+package de.uds.MonitorInterventionMetafora.client.monitor.dataview.table;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.store.GroupingStore;
+import com.extjs.gxt.ui.client.store.ListStore;
+import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
+import com.extjs.gxt.ui.client.widget.grid.ColumnData;
+import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
+import com.extjs.gxt.ui.client.widget.grid.Grid;
+import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
+import com.extjs.gxt.ui.client.widget.grid.GridGroupRenderer;
+import com.extjs.gxt.ui.client.widget.grid.GroupColumnData;
+import com.extjs.gxt.ui.client.widget.grid.GroupingView;
+import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.user.client.Element;
+
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.resources.Resources;
+import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
+
+public class TablePanel extends DataViewPanel {
+
+	//TODO: Total and filtered indicator count, maybe for all dataViewPanels, not just table?
+	private  Grid<IndicatorGridRowItem> tableView;
+	
+	public TablePanel( ClientMonitorDataModel model, ActionPropertyRule groupingProperty) {
+		super(groupingProperty, model);
+		
+		
+		
+		
+//	    panel.setHeading("Indicator List");
+//	    panel.setIcon(Resources.ICONS.table());
+//	    panel.setCollapsible(false);
+//	    panel.setFrame(true);
+//	    panel.setId("_groupedGridPanel");
+//	    panel.setWidth(960);
+		 
+		
+//		refresh();
+	}
+
+	@Override
+	public int getSelectedRow() {
+		
+		return 0;
+	}
+	
+	public void refresh() {
+//		model.getTableViewModel().groupBy(groupingProperty.getDisplayText());
+	}
+	
+	@Override
+	  protected void onRender(Element parent, int index) {
+	    super.onRender(parent, index);
+	    ColumnModel columnModel = getColumnModel();
+	    
+	    tableView = new Grid<IndicatorGridRowItem>(model.getTableViewModel(), columnModel);
+		tableView.setView(getGridView(columnModel));
+		tableView.setWidth(950);
+		tableView.setHeight(540);
+		
+		tableView.addListener(Events.RowClick, new TableRowDisplaySelectionListener());
+		this.add(tableView);
+
+	}
+	
+//---------------------------------------------
+	GroupingView getGridView(final ColumnModel cm){
+		GroupingView view = new GroupingView();
+		    view.setShowGroupedColumn(true);
+		    view.setForceFit(true);
+		    
+		    //straight from - http://dev.sencha.com/deploy/gxt-2.2.5/docs/api/index.html	
+		    view.setGroupRenderer(new GridGroupRenderer() {
+		      public String render(GroupColumnData data) {
+		        String f = cm.getColumnById(data.field).getHeader();
+		        String l = data.models.size() == 1 ? "Indicator" : "Indicators";
+		        return f + ": " + data.group + " (" + data.models.size() + " " + l + ")";
+		      }
+		    });
+		    
+		    
+		    view.setShowGroupedColumn(true);
+		
+		return view;
+	}
+	
+	
+	private ColumnModel getColumnModel(){
+		 ColumnConfig username = new ColumnConfig(MonitorConstants.USER_ID_LABEL, MonitorConstants.USER_ID_LABEL, 50);
+		    username.setWidth(70);
+		    username.setRenderer(getbackgroundColorRenderer());
+		    
+		    ColumnConfig actionType = new ColumnConfig(MonitorConstants.ACTION_TYPE_LABEL, MonitorConstants.ACTION_TYPE_LABEL, 50);
+		    actionType.setWidth(70);
+		    actionType.setAlignment(HorizontalAlignment.RIGHT);
+		    actionType.setRenderer(getbackgroundColorRenderer());
+		    
+		    ColumnConfig classification = new ColumnConfig(MonitorConstants.ACTION_CLASSIFICATION_LABEL, MonitorConstants.ACTION_CLASSIFICATION_LABEL, 60);
+		    classification.setWidth(70);
+		    classification.setRenderer(getbackgroundColorRenderer());
+		    
+		    ColumnConfig description = new ColumnConfig(MonitorConstants.DESCRIPTION_LABEL, MonitorConstants.DESCRIPTION_LABEL, 50);
+		    description.setWidth(500);    
+		    description.setRenderer(getbackgroundColorRenderer());
+		    
+		    ColumnConfig tool = new ColumnConfig(MonitorConstants.TOOL_LABEL, MonitorConstants.TOOL_LABEL, 50);
+		    tool.setWidth(75);
+		    tool.setRenderer(getbackgroundColorRenderer());
+		    
+		    ColumnConfig time = new ColumnConfig(MonitorConstants.ACTION_TIME_LABEL, MonitorConstants.ACTION_TIME_LABEL, 50);
+		    time.setWidth(75);
+		    time.setRenderer(getbackgroundColorRenderer());
+		    
+//		    ColumnConfig date = new ColumnConfig(MonitorConstants.ACTION_TIME_LABEL, "Date", 20);
+//		    date.setWidth(75);
+//		    
+//		    date.setDateTimeFormat(DateTimeFormat.getFormat("MM/dd/y"));
+//		    date.setRenderer(getbackgroundColorRenderer());
+
+		    List<ColumnConfig> config = new ArrayList<ColumnConfig>();
+		    config.add(username);
+		    config.add(actionType);
+		    config.add(classification);
+		    config.add(description);
+		    config.add(tool);
+		    config.add(time);
+//		    config.add(date);
+		  
+
+		    return new ColumnModel(config);
+	}
+	
+	GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
+		
+		
+		GridCellRenderer<IndicatorGridRowItem> ColoredGrid = new GridCellRenderer<IndicatorGridRowItem>() {
+
+	        @Override
+	        public String render(IndicatorGridRowItem model,
+	                String property, ColumnData _config,
+	                int rowIndex, int colIndex,
+	                ListStore<IndicatorGridRowItem> store,
+	                Grid<IndicatorGridRowItem> grid) {
+
+	        	String  valueOfCell =  model.get(property); 
+	            
+	            if(model.getColor()!=null && model.getColor()!=""){
+	            	
+	            	//System.out.println("Setting background:"+model.getColor());
+	            	
+	            return "<span style='background-color:" +model.getColor()+ "'>" + valueOfCell+ "</span>";
+	            		
+	            }
+	            
+	           return valueOfCell; 
+
+
+
+	        }    
+
+	        };
+	        
+	        return ColoredGrid;
+		
+	}
+
+}

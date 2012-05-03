@@ -14,6 +14,8 @@ import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModelType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 
@@ -24,12 +26,16 @@ public class MonitorViewPanel extends VerticalPanel implements RequestHistoryCal
 	
 	ClientMonitorController controller;
 	TabbedDataViewPanel tabs;
+	
+	ActionPropertyRuleSelectorModel actionPropertyRuleCreator;
+	
 	ClientMonitorDataModelUpdater updater;
 	ClientMonitorDataModel monitorModel;
 	
 	public MonitorViewPanel(){
 
-		monitorModel = new ClientMonitorDataModel();
+		actionPropertyRuleCreator = ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.GROUPING);
+		monitorModel = new ClientMonitorDataModel(actionPropertyRuleCreator);
 		controller = new ClientMonitorController(monitorModel);
 
 		setLoadingImage();
@@ -68,7 +74,7 @@ public class MonitorViewPanel extends VerticalPanel implements RequestHistoryCal
 		
 		flp=new FilterListPanel(monitorModel, controller);
 		panel.add(flp);
-		createTabbedDataViewsPanel();
+		createTabbedDataViewsPanel(actionPropertyRuleCreator);
 		panel.add(tabs);
 		
 		panel.setHeight(600);
@@ -80,14 +86,17 @@ public class MonitorViewPanel extends VerticalPanel implements RequestHistoryCal
 
 	}
 	
-	private void createTabbedDataViewsPanel(){
+	private void createTabbedDataViewsPanel(ActionPropertyRuleSelectorModel actionPropertyRuleCreator){
 		tabs=new TabbedDataViewPanel();
 		tabs.setId("_tabMainPanel");
 		
 		//TODO: this indicatorTable should be a GroupedDataViewPanel and added like others
-		ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(monitorModel, controller);
-		tabs.addTab("Table",indicatorTable,false);
-		  		  
+//		ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(monitorModel, controller);
+//		tabs.addTab("Table",indicatorTable,false);
+		 
+		GroupedDataViewPanel tableWithChooser = new GroupedDataViewPanel(DataViewPanelType.TABLE, monitorModel, controller, controller.getDefaultGroupingOption(), "tablePanel", "comboTableType");
+		addDataView("tableViewTab", "Table View", tableWithChooser);
+		
 		GroupedDataViewPanel pieChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.PIE_CHART, monitorModel, controller, controller.getDefaultGroupingOption(), "pieChartFilterPanel", "comboPieChartType");
 		addDataView("pieChartViewTab", "Pie Chart View", pieChartWithChooser);
 
