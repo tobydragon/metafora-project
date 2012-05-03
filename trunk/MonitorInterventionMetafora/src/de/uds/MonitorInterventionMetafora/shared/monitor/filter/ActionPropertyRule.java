@@ -200,7 +200,7 @@ public class ActionPropertyRule  implements Serializable{
 					}
 				}
 				else {
-					return MonitorConstants.BLANK_PROPERTY.equalsIgnoreCase(valueToFilterBy);
+					return MonitorConstants.BLANK_PROPERTY_LABEL.equalsIgnoreCase(valueToFilterBy);
 	//				System.out.println("DEBUG:\t\t[ActionProperty.ruleIncludesAction] no value for action=\n" + action + "\nRule=" + this);
 				}
 			}

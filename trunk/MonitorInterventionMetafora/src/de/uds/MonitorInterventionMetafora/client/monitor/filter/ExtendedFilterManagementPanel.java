@@ -22,6 +22,8 @@ import de.uds.MonitorInterventionMetafora.client.monitor.grouping.ActionProperty
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModelType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 
@@ -38,13 +40,13 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 	
 	
 	//TODO remove all dependencies on controller, controller is notified through the grid store 
-	public ExtendedFilterManagementPanel(ListStore<PropertyComboBoxItemModel> items, ClientMonitorController controller, EditorGrid<IndicatorFilterItemGridRowModel> grid){
+	public ExtendedFilterManagementPanel( ClientMonitorController controller, EditorGrid<IndicatorFilterItemGridRowModel> grid){
 
 		interfaceManager= controller;
 		this.grid = grid;
 		 FormLayout layout = new FormLayout();
 		 
-		entityComboBox = new ActionPropertyComboBox(items, "_entityComboBox");
+		entityComboBox = new ActionPropertyComboBox(ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.FILTER), "_entityComboBox");
 		entityComboBox.setForceSelection(true);
 		entityComboBox.setPosition(0, -2);
 

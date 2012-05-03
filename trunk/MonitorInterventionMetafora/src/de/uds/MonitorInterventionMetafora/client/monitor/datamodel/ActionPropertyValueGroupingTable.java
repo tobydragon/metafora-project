@@ -34,7 +34,7 @@ public class ActionPropertyValueGroupingTable {
 		}
 		else {
 //			System.out.println("INFO\t\t[ActionPropertyRule.addAction] can't get actionValue from action:\n" + action + "\n from rule: " + actionPropertyRule);
-			addActionValue(MonitorConstants.BLANK_PROPERTY);
+			addActionValue(MonitorConstants.BLANK_PROPERTY_LABEL);
 		}
 	}
 

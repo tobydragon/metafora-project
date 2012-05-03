@@ -1,13 +1,11 @@
-/*
- * Ext GWT 2.2.5 - Ext for GWT
- * Copyright(c) 2007-2010, Ext JS, LLC.
- * licensing@extjs.com
- * 
- * http://extjs.com/license
- */
+
 package de.uds.MonitorInterventionMetafora.client.monitor.dataview.table;
 
+import java.util.Date;
+
 import com.extjs.gxt.ui.client.data.BaseModel;
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
@@ -36,19 +34,18 @@ public class IndicatorGridRowItem extends BaseModel {
 	 		   usersString=usersString+" - "+u.getid();
 			}
 			
-			set("name", usersString);
-		    set("actiontype", indicator.getCfActionType().getType());
-		    set("classification", indicator.getCfActionType().getClassification());
+			set(MonitorConstants.USER_ID_LABEL, usersString);
+		    set(MonitorConstants.ACTION_TYPE_LABEL, indicator.getCfActionType().getType());
+		    set(MonitorConstants.ACTION_CLASSIFICATION_LABEL, indicator.getCfActionType().getClassification());
 		    if (indicator.getCfContent() != null){
-			    set("description", indicator.getCfContent().getDescription());
-			    set("tool", indicator.getCfContent().getPropertyValue("TOOL"));
+			    set(MonitorConstants.DESCRIPTION_LABEL, indicator.getCfContent().getDescription());
+			    set(MonitorConstants.TOOL_LABEL, indicator.getCfContent().getPropertyValue("TOOL"));
 		    }
 		    else {
-		    	set("desription", MonitorConstants.BLANK_PROPERTY);
-		    	set("tool", MonitorConstants.BLANK_PROPERTY);
+		    	set(MonitorConstants.DESCRIPTION_LABEL, MonitorConstants.BLANK_PROPERTY_LABEL);
+		    	set(MonitorConstants.TOOL_LABEL, MonitorConstants.BLANK_PROPERTY_LABEL);
 		    }
-		    set("time", GWTUtils.getTime(indicator.getTime()));
-		    set("date", GWTUtils.getDate(indicator.getTime()));
+		    set(MonitorConstants.ACTION_TIME_LABEL, DateTimeFormat.getFormat(PredefinedFormat.DATE_TIME_SHORT).format (new Date(indicator.getTime())) );
 		}
 		catch (Exception e){
 			logger.error("[setGridItemProperties] missing attributes, row not added for indicator: " +indicator.toString());

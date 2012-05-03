@@ -5,45 +5,44 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.google.gwt.visualization.client.DataTable;
+
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.IndicatorGridRowItem;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
 
 public class ClientMonitorDataModel {
 	
 	private List<CfAction> allActions;
 	private ActionFilter actionFilter;
 	
-	private List<ActionPropertyRule> rulesToGroupBy;
-	private ListStore<PropertyComboBoxItemModel> groupingRuleComboBoxItems;
-	
-	private List<ActionPropertyRule> rulesToFilterBy;
-	private ListStore<PropertyComboBoxItemModel> filterRuleComboBoxItems;
-
-	
 	private  List<CfAction> filteredActions;
+	
+	private GroupingStore<IndicatorGridRowItem> tableViewModel;
+	
+	ActionPropertyRuleSelectorModel ruleSelectorModel;
+	//for aggregated data views (charts so far)
 	//a mapping of IndicatorPropertyTables, which each tracking the different values 
 	//and occurrence counts for an AcionPropertyRule
 	private Map<String, ActionPropertyValueGroupingTable> rule2ValueGroupingTableMap;
 	
-	public ClientMonitorDataModel(){
+	public ClientMonitorDataModel(ActionPropertyRuleSelectorModel ruleSelectorModel){
+		this.ruleSelectorModel = ruleSelectorModel;
 		actionFilter = new ActionFilter();
 		allActions = new Vector<CfAction>();
-		
-		rulesToGroupBy = createGroupingRules();
-		rulesToFilterBy = createFilteringRules();
-		groupingRuleComboBoxItems = createRuleComboBoxItems(rulesToGroupBy);
-		filterRuleComboBoxItems = createRuleComboBoxItems(rulesToFilterBy);
-		
+		tableViewModel = new GroupingStore<IndicatorGridRowItem>();
 		clearFilteredData();
 	}
 	
 	public void clearFilteredData(){
 		filteredActions = new Vector<CfAction>();
-		rule2ValueGroupingTableMap = createIndicatorPropertyTableMap(rulesToGroupBy);	
+		tableViewModel.removeAll();
+		rule2ValueGroupingTableMap = createIndicatorPropertyTableMap();	
 	}
 	
 	public void updateFilteredList(){
@@ -54,6 +53,8 @@ public class ClientMonitorDataModel {
 	public void addFilteredData(List<CfAction> actionsToFilter){
 		for (CfAction action : actionsToFilter){
 			if (actionFilter.currentFilterGridIncludesAction(action)){
+				tableViewModel.add(new IndicatorGridRowItem(action));
+				
 				for (ActionPropertyValueGroupingTable indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
 					indicatorPropertyTable.addAction(action);
 				}
@@ -76,50 +77,14 @@ public class ClientMonitorDataModel {
 	}
 	
 	//Creates table for each rule, where each row will represent one value for each rule
-	private Map<String, ActionPropertyValueGroupingTable> createIndicatorPropertyTableMap(List<ActionPropertyRule> actionPropertyRulesIn) {
+	private Map<String, ActionPropertyValueGroupingTable> createIndicatorPropertyTableMap() {
 		Map<String, ActionPropertyValueGroupingTable> inMap = new HashMap<String, ActionPropertyValueGroupingTable>();
-		for (ActionPropertyRule actionPropertyRule : actionPropertyRulesIn){
+		//Make a table for each possible rule that can be grouped by
+		for (ActionPropertyRule actionPropertyRule : ruleSelectorModel.getAssociatedRules()){
 			ActionPropertyValueGroupingTable actionPropertyValueGroupingTable = new ActionPropertyValueGroupingTable(actionPropertyRule);
 			inMap.put(actionPropertyRule.getKey(), actionPropertyValueGroupingTable);
 		}
 		return inMap;
-	}
-
-	private List<ActionPropertyRule> createGroupingRules() {
-		List<ActionPropertyRule> newGroupings = new Vector<ActionPropertyRule>();
-	
-		//ACTION_TYPE
-		newGroupings.add( new ActionPropertyRule(ActionElementType.ACTION_TYPE, "Classification", "Action Classification"));
-		newGroupings.add(new ActionPropertyRule(ActionElementType.ACTION_TYPE, "type", "Action type"));
-
-		//USER
-		newGroupings.add( new ActionPropertyRule(ActionElementType.USER, "id", "User ID"));
-		
-		//CONTENT
-		newGroupings.add(new ActionPropertyRule(ActionElementType.CONTENT, "Tool", "Tool"));
-		newGroupings.add(new ActionPropertyRule(ActionElementType.CONTENT, "INDICATOR_TYPE", "Indicator Type"));
-		newGroupings.add(new ActionPropertyRule(ActionElementType.CONTENT, "CHALLENGE_NAME", "Challenge Name"));
-		newGroupings.add(new ActionPropertyRule(ActionElementType.CONTENT, "GROUP_ID", "Group ID"));
-		
-		return newGroupings;
-	}
-	
-	private List<ActionPropertyRule> createFilteringRules(){
-		//groupings are a subset of filters
-		List<ActionPropertyRule> newFilters = createGroupingRules();
-
-		newFilters.add(new ActionPropertyRule(ActionElementType.ACTION, "time", "Action Time"));
-		newFilters.add(new ActionPropertyRule(ActionElementType.CONTENT, "description", "Description"));
-
-		return newFilters;
-	}
-	
-	private ListStore<PropertyComboBoxItemModel> createRuleComboBoxItems(List<ActionPropertyRule> rules){
-		ListStore<PropertyComboBoxItemModel> propertyComboBoxItems = new ListStore<PropertyComboBoxItemModel>();
-		for (ActionPropertyRule rule : rules){
-			propertyComboBoxItems.add(new PropertyComboBoxItemModel(rule));
-		}
-		return propertyComboBoxItems;
 	}
 	
 	public DataTable getDataTable(ActionPropertyRule propertyToGroupBy){
@@ -146,14 +111,8 @@ public class ClientMonitorDataModel {
 		return filteredActions;
 	}
 	
-	
-	
-	public ListStore<PropertyComboBoxItemModel> getGroupingRulesComboBoxModel(){
-		return groupingRuleComboBoxItems;
-	}
-	
-	public ListStore<PropertyComboBoxItemModel> getFilterRulesComboBoxModel(){
-		return filterRuleComboBoxItems;
+	public GroupingStore<IndicatorGridRowItem> getTableViewModel(){
+		return tableViewModel;
 	}
 	
 }
