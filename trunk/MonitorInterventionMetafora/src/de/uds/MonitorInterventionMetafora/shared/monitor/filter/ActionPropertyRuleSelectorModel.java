@@ -84,5 +84,9 @@ public class ActionPropertyRuleSelectorModel {
 
 		return newFilters;
 	}
+	
+	public static ActionPropertyRule getDefaultGrouping(){
+		return new ActionPropertyRule(ActionElementType.CONTENT, "Tool", MonitorConstants.TOOL_LABEL);
+	}
 
 }

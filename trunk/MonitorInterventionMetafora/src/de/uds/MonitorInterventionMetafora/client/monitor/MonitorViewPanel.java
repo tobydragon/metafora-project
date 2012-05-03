@@ -14,6 +14,7 @@ import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModelType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
@@ -90,17 +91,15 @@ public class MonitorViewPanel extends VerticalPanel implements RequestHistoryCal
 		tabs=new TabbedDataViewPanel();
 		tabs.setId("_tabMainPanel");
 		
-		//TODO: this indicatorTable should be a GroupedDataViewPanel and added like others
-//		ExtendedGroupedGrid indicatorTable=new ExtendedGroupedGrid(monitorModel, controller);
-//		tabs.addTab("Table",indicatorTable,false);
-		 
-		GroupedDataViewPanel tableWithChooser = new GroupedDataViewPanel(DataViewPanelType.TABLE, monitorModel, controller, controller.getDefaultGroupingOption(), "tablePanel", "comboTableType");
+		ActionPropertyRule defaultGrouping = ActionPropertyRuleSelectorModel.getDefaultGrouping();
+		
+		GroupedDataViewPanel tableWithChooser = new GroupedDataViewPanel(DataViewPanelType.TABLE, monitorModel, controller, defaultGrouping, "tablePanel", "comboTableType");
 		addDataView("tableViewTab", "Table View", tableWithChooser);
 		
-		GroupedDataViewPanel pieChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.PIE_CHART, monitorModel, controller, controller.getDefaultGroupingOption(), "pieChartFilterPanel", "comboPieChartType");
+		GroupedDataViewPanel pieChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.PIE_CHART, monitorModel, controller, defaultGrouping, "pieChartFilterPanel", "comboPieChartType");
 		addDataView("pieChartViewTab", "Pie Chart View", pieChartWithChooser);
 
-		GroupedDataViewPanel barChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.BAR_CHART, monitorModel, controller, controller.getDefaultGroupingOption(), "barChartFilterPanel", "comboColumnChartType");
+		GroupedDataViewPanel barChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.BAR_CHART, monitorModel, controller, defaultGrouping, "barChartFilterPanel", "comboColumnChartType");
 		addDataView("barChartViewTab", "Bar Chart View", barChartWithChooser);
 	}
 	
