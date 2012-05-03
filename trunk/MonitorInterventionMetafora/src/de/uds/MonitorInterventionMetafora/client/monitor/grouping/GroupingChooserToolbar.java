@@ -31,6 +31,7 @@ public class GroupingChooserToolbar extends ToolBar{
 		comboType.addSelectionChangedListener(comboListener);
 	    
 	    Button retriveBtn=new Button("Re-Group");
+	    retriveBtn.setShadow(true);
 //	    retriveBtn.setWidth("65px");
 //	    retriveBtn.setHeight("29px");
 	    

@@ -412,7 +412,7 @@ GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
     	public void run() {
     		store.removeAll(); 
     		store.add(tvm.parseToIndicatorGridRowList(true,ignoreNotifications));
-    		 _indicatorCount.setText("Total Indicador Count: "+store.getCount());
+    		 _indicatorCount.setText("Total Indicator Count: "+store.getCount());
     		
           }
         };

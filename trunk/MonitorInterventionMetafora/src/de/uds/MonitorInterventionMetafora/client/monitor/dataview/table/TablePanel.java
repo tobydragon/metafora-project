@@ -55,7 +55,12 @@ public class TablePanel extends DataViewPanel {
 	}
 	
 	public void refresh() {
-//		model.getTableViewModel().groupBy(groupingProperty.getDisplayText());
+		if (groupingProperty != null && !groupingProperty.equals("") ){
+			model.getTableViewModel().groupBy(groupingProperty.getDisplayText());
+		}
+		else {
+			model.getTableViewModel().clearGrouping();
+		}
 	}
 	
 	@Override
@@ -76,21 +81,29 @@ public class TablePanel extends DataViewPanel {
 //---------------------------------------------
 	GroupingView getGridView(final ColumnModel cm){
 		GroupingView view = new GroupingView();
-		    view.setShowGroupedColumn(true);
+		    view.setShowGroupedColumn(false);
 		    view.setForceFit(true);
 		    
 		    //straight from - http://dev.sencha.com/deploy/gxt-2.2.5/docs/api/index.html	
 		    view.setGroupRenderer(new GridGroupRenderer() {
 		      public String render(GroupColumnData data) {
-		        String f = cm.getColumnById(data.field).getHeader();
+		    	  String f="None";
+		    	  if (data.field != null &&  !data.field.equals("")){
+		    		  try {
+		    			  f = cm.getColumnById(data.field).getHeader();
+		    		  }
+		    		  catch (Exception e) {
+		    			  System.err.println("ERROR\t\tTablePanel.getGridView: no column for field:" + data.field + ":");
+		    		  }
+		    	  }
+		    	  else {
+	    			  System.err.println("ERROR\t\tTablePanel.getGridView: no column for field:" + data.field + ":");  
+		    	  }
+		        
 		        String l = data.models.size() == 1 ? "Indicator" : "Indicators";
 		        return f + ": " + data.group + " (" + data.models.size() + " " + l + ")";
 		      }
-		    });
-		    
-		    
-		    view.setShowGroupedColumn(true);
-		
+		    });		
 		return view;
 	}
 	
@@ -120,12 +133,7 @@ public class TablePanel extends DataViewPanel {
 		    ColumnConfig time = new ColumnConfig(MonitorConstants.ACTION_TIME_LABEL, MonitorConstants.ACTION_TIME_LABEL, 50);
 		    time.setWidth(75);
 		    time.setRenderer(getbackgroundColorRenderer());
-		    
-//		    ColumnConfig date = new ColumnConfig(MonitorConstants.ACTION_TIME_LABEL, "Date", 20);
-//		    date.setWidth(75);
-//		    
-//		    date.setDateTimeFormat(DateTimeFormat.getFormat("MM/dd/y"));
-//		    date.setRenderer(getbackgroundColorRenderer());
+
 
 		    List<ColumnConfig> config = new ArrayList<ColumnConfig>();
 		    config.add(username);
@@ -134,8 +142,6 @@ public class TablePanel extends DataViewPanel {
 		    config.add(description);
 		    config.add(tool);
 		    config.add(time);
-//		    config.add(date);
-		  
 
 		    return new ColumnModel(config);
 	}
