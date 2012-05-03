@@ -1,9 +1,23 @@
 Deployment
 
-Right-click "war" folder -> export
-
 Ensure:
 
 1) GeneralUtils.getAppicationAndResourceDirectory is set to work with Tomcat
+	(For an unknown reason, the base directory of our java code is wherever the tomcat script is run from)
 
 2) correct user settings for deployment in xmpp-settings.xml
+	(Ensure these settings are a seperate user for your deployment of MonitorFeedbackTool
+	
+To Export:
+
+1) Build GWT
+2) Right-click project, choose "refresh" (to ensure eclipse is up-to-date with file system).
+
+3) Right-click "war" sub-directory
+4) choose "Export"
+5) Choose "General -> archive file"
+6) On the war directory in the top left window, click the arrow to display it's contents
+7) Un-check the war directory, check all (4) sub-directories of the war file
+8) In the left panel, check the "visualizer.html" and "visualizer.css" files
+9) In the radiobuttons on the bottom-right, select "create only selected directories"
+10) Name the file with ".war" extension, and select "okay"
