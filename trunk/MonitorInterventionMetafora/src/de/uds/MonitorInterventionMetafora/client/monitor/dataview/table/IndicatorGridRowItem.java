@@ -40,6 +40,8 @@ public class IndicatorGridRowItem extends BaseModel {
 		    if (indicator.getCfContent() != null){
 			    set(MonitorConstants.DESCRIPTION_LABEL, indicator.getCfContent().getDescription());
 			    set(MonitorConstants.TOOL_LABEL, indicator.getCfContent().getPropertyValue("TOOL"));
+			    set(MonitorConstants.CHALLENGE_NAME_LABEL, indicator.getCfContent().getPropertyValue("CHALLENGE_NAME"));
+			    set(MonitorConstants.INDICATOR_TYPE_LABEL, indicator.getCfContent().getPropertyValue("INDICATOR_TYPE"));
 		    }
 		    else {
 		    	set(MonitorConstants.DESCRIPTION_LABEL, MonitorConstants.BLANK_PROPERTY_LABEL);

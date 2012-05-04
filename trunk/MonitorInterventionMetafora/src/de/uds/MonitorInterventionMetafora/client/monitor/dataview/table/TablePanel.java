@@ -123,7 +123,7 @@ public class TablePanel extends DataViewPanel {
 		    classification.setRenderer(getbackgroundColorRenderer());
 		    
 		    ColumnConfig description = new ColumnConfig(MonitorConstants.DESCRIPTION_LABEL, MonitorConstants.DESCRIPTION_LABEL, 50);
-		    description.setWidth(500);    
+		    description.setWidth(300);    
 		    description.setRenderer(getbackgroundColorRenderer());
 		    
 		    ColumnConfig tool = new ColumnConfig(MonitorConstants.TOOL_LABEL, MonitorConstants.TOOL_LABEL, 50);
@@ -134,6 +134,13 @@ public class TablePanel extends DataViewPanel {
 		    time.setWidth(75);
 		    time.setRenderer(getbackgroundColorRenderer());
 
+		    ColumnConfig challengeName = new ColumnConfig(MonitorConstants.CHALLENGE_NAME_LABEL, MonitorConstants.CHALLENGE_NAME_LABEL, 50);
+		    time.setWidth(75);
+		    time.setRenderer(getbackgroundColorRenderer());
+		    
+		    ColumnConfig indicatorType = new ColumnConfig(MonitorConstants.INDICATOR_TYPE_LABEL, MonitorConstants.INDICATOR_TYPE_LABEL, 50);
+		    time.setWidth(75);
+		    time.setRenderer(getbackgroundColorRenderer());
 
 		    List<ColumnConfig> config = new ArrayList<ColumnConfig>();
 		    config.add(username);
@@ -142,6 +149,8 @@ public class TablePanel extends DataViewPanel {
 		    config.add(description);
 		    config.add(tool);
 		    config.add(time);
+		    config.add(challengeName);
+		    config.add(indicatorType);
 
 		    return new ColumnModel(config);
 	}
