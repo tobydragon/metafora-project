@@ -153,7 +153,7 @@
 		<connection-name>VisualizerCommand</connection-name>
 		<username>VisualizerCommand</username>
 		<password>VisualizerCommand</password>
-		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
+		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
 		<alias>VisualizerCommand</alias>
 		<device>VisualizerCommand</device>
 	</xmpp-channel-setting>

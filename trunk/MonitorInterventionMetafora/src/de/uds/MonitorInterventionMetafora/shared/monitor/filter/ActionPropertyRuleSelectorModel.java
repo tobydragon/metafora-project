@@ -77,7 +77,7 @@ public class ActionPropertyRuleSelectorModel {
 	
 	public static  List<ActionPropertyRule> createFilteringRules(){
 		//groupings are a subset of filters
-		List<ActionPropertyRule> newFilters =  new Vector<ActionPropertyRule>();
+		List<ActionPropertyRule> newFilters =  createGroupingRules();
 
 		newFilters.add(new ActionPropertyRule(ActionElementType.ACTION, "time", MonitorConstants.ACTION_TIME_LABEL));
 		newFilters.add(new ActionPropertyRule(ActionElementType.CONTENT, "description", MonitorConstants.DESCRIPTION_LABEL));

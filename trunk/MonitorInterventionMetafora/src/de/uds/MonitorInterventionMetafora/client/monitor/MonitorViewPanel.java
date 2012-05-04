@@ -1,6 +1,8 @@
 package de.uds.MonitorInterventionMetafora.client.monitor;
 
 import java.util.List;
+
+import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.google.gwt.user.client.ui.Image;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
@@ -9,7 +11,6 @@ import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitor
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.TabbedDataViewPanel;
-import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.ExtendedGroupedGrid;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
@@ -20,7 +21,7 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRu
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 
-public class MonitorViewPanel extends VerticalPanel implements RequestHistoryCallBack{
+public class MonitorViewPanel extends ContentPanel implements RequestHistoryCallBack{
 
 	Image loadingImage;
 	FilterListPanel flp;
@@ -33,12 +34,18 @@ public class MonitorViewPanel extends VerticalPanel implements RequestHistoryCal
 	ClientMonitorDataModelUpdater updater;
 	ClientMonitorDataModel monitorModel;
 	
+	
 	public MonitorViewPanel(){
 
 		actionPropertyRuleCreator = ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.GROUPING);
 		monitorModel = new ClientMonitorDataModel(actionPropertyRuleCreator);
 		controller = new ClientMonitorController(monitorModel);
 
+		updater = new ClientMonitorDataModelUpdater(monitorModel, controller);
+
+		UpdaterToolbar refreshTools = new UpdaterToolbar(updater);
+		this.setTopComponent(refreshTools);
+		
 		setLoadingImage();
 		
 		sendStartupMessage();	
@@ -61,20 +68,19 @@ public class MonitorViewPanel extends VerticalPanel implements RequestHistoryCal
 	}
 
 	@Override
-	public void onSuccess(List<CfAction> _actionList) {
+	public void onSuccess(List<CfAction> actionList) {
 	
-		if(_actionList!=null){
-		 	 System.out.println("INFO\t\t[MonitorPanelContainer.onSuccess] Adding actions count=" + _actionList.size());
-			monitorModel.addData(_actionList);
+		if(actionList!=null){
+		 	 System.out.println("INFO\t\t[MonitorPanelContainer.onSuccess] Adding actions count=" + actionList.size());
+			monitorModel.addData(actionList);
 		}
-		updater = new ClientMonitorDataModelUpdater(monitorModel, controller);
-		updater.startUpdates();
+		
+		//updater.startUpdates();
 	
 		VerticalPanel panel=new VerticalPanel();
-		panel.setId("allContainer");
-		
 		flp=new FilterListPanel(monitorModel, controller);
 		panel.add(flp);
+		
 		createTabbedDataViewsPanel(actionPropertyRuleCreator);
 		panel.add(tabs);
 		

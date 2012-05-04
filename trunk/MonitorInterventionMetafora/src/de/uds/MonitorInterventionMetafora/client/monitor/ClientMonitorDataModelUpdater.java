@@ -19,20 +19,18 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 		this.controller = controller;
 	}
 	
-	public void update(List<CfAction> actions){
+	public void receiveUpdate(List<CfAction> actions){
 		clientDataModel.addData(actions);
 		controller.refreshViews();
 	}
 
 	public void startUpdates(){
-		this.scheduleRepeating(5000);
+		this.scheduleRepeating(3000);
 	}
 	
 	public void stopUpdates(){
 		this.cancel();	
 	}
-	
-	
 	
 	@Override
 	public void onFailure(Throwable caught) {
@@ -42,18 +40,21 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 	@Override
 	public void onSuccess(List<CfAction> actions) {
 		if(actions!=null && actions.size() > 0){	
-			update(actions);
+			receiveUpdate(actions);
 			System.out.println("DEBUG [UpdatingDataModel.onSuccess] Action recieved and list updated");
 		}
 		else{
 			System.out.println("DEBUG [UpdatingDataModel.onSuccess] No Action Update Recieved");
 		}
 	}
+	
+	public void getUpdate(){
+		ServerCommunication.getInstance().processAction(clientDataModel.getLastAction(),this);
+	}
 
 	@Override
 	public void run() {
-		ServerCommunication.getInstance().processAction(clientDataModel.getLastAction(),this);
-		
+		getUpdate();
 	}
 
 	public ClientMonitorDataModel getClientDataModel() {

@@ -81,7 +81,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	
 		AnalysisManager.getAnalysisManagerInstance().sendToAllAgents("Notification",cfAction);
 	
-		System.out.println("Notifications are send to the agentss!!");
+		System.out.println("Notifications are send to the agents!!");
 		return new CfAction();
 	}
 	
