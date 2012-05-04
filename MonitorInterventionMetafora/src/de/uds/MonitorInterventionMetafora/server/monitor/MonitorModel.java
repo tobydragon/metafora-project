@@ -16,13 +16,20 @@ public class MonitorModel {
 		cfActions=new Vector<CfAction>();
 	}
 	
-	public void addAction(CfAction action){
+	public synchronized void addAction(CfAction action){
+		if (action.getTime() > System.currentTimeMillis()){
+			logger.error("[addAction] Bad timestamp, changing to current time for action:\n"+ action);
+			action.setTime(System.currentTimeMillis());
+		}
 		cfActions.add(action);
 		Collections.sort(cfActions);
 	}
 
 	public List<CfAction> requestUpdate(CfAction cfAction){
 		if(cfAction!=null){
+			if (cfAction.getTime()>System.currentTimeMillis()){
+				logger.error("[requestUpdate] bad action time, newer than current time for action\n" + cfAction);
+			}
 			return requestUpdate(cfAction.getTime());
 		}
 		else {
@@ -32,7 +39,7 @@ public class MonitorModel {
 	}
 	
 	public List<CfAction> requestUpdate(long _lastActionTime) {
-		System.out.println("DEBUG: [MainServer.getActionUpdates] "+ _lastActionTime);
+		System.out.println("DEBUG: [MonitorModel.requestUpdate] "+ _lastActionTime);
 		List<CfAction> _newActionList=new Vector<CfAction>();
 		
 		//walk list backwards because very few end action will be new
