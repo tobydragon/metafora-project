@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//import org.apache.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.jdom.CDATA;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -19,15 +19,12 @@ import org.jdom.output.XMLOutputter;
 
 import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
-import de.uds.MonitorInterventionMetafora.shared.utils.LogLevel;
-import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 
 //wrapper class for an Element in JDOM
 //catches and prints errors, no attributes may be null
 
 public class  XmlFragment {
-//	static Logger logger = Logger.getLogger(XmlFragment.class);
-	static Logger logger = Logger.getLogger(XmlFragment.class, LogLevel.INFO);
+	static Logger logger = Logger.getLogger(XmlFragment.class);
 
 	
 	static SAXBuilder builder = new SAXBuilder();

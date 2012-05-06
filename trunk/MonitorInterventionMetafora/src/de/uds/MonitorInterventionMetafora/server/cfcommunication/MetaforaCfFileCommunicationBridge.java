@@ -13,10 +13,10 @@ public class MetaforaCfFileCommunicationBridge extends SimpleCfFileCommunication
 	private static String analysisConnectionNameOut = null;
 	
 	static {
-		commandConnectionNameIn =GeneralUtil.getAplicationResourceDirectory()+ "conffiles/xml/test/commandChannelInput.xml";
-		analysisConnectionNameIn = GeneralUtil.getAplicationResourceDirectory()+"conffiles/xml/test/analysisChannelInput.xml";
-		commandConnectionNameOut = GeneralUtil.getAplicationResourceDirectory()+"conffiles/xml/test/commandChannelOutput.xml";
-		analysisConnectionNameOut =GeneralUtil.getAplicationResourceDirectory()+ "conffiles/xml/test/analysisChannelOutput.xml";
+		commandConnectionNameIn =GeneralUtil.getRealPath("conffiles/xml/test/commandChannelInput.xml");
+		analysisConnectionNameIn = GeneralUtil.getRealPath("conffiles/xml/test/analysisChannelInput.xml");
+		commandConnectionNameOut = GeneralUtil.getRealPath("conffiles/xml/test/commandChannelOutput.xml");
+		analysisConnectionNameOut =GeneralUtil.getRealPath("conffiles/xml/test/analysisChannelOutput.xml");
 		
 		// TODO: Read filenames from config file, see static in CfXmppCommunicationBridge
 	}

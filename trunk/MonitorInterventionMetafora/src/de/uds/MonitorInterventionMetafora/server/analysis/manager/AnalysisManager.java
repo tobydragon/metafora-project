@@ -20,7 +20,7 @@ public class AnalysisManager {
 	 List<CfAction> cfActions;
 	NotificationManager notificationManager;
 	static AnalysisManager instance; 
-	String  notificationsSourceFile=GeneralUtil.getAplicationResourceDirectory()+"conffiles/toolconf/notifications.xml";
+	String  notificationsSourceFile= GeneralUtil.getRealPath("conffiles/toolconf/notifications.xml");
 
 	
 	

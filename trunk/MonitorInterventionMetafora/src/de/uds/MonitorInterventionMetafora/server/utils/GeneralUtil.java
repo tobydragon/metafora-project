@@ -2,6 +2,8 @@ package de.uds.MonitorInterventionMetafora.server.utils;
 
 import java.io.File;
 
+import de.uds.MonitorInterventionMetafora.server.InitServlet;
+
 
 public class GeneralUtil {
 	
@@ -27,15 +29,7 @@ public class GeneralUtil {
 		 return start;
 	}
 	
-	public static String getAplicationResourceDirectory(){
-		//when running locally
-		return "";
-		
-		//when running direct from tomcat
-//		return  ".."+File.separator+"webapps"+File.separator+"MonitorInterventionMetafora"+File.separator;
-		
-		//when running from lasad script
-//		return  ".."+File.separator+".."+File.separator+"apache-tomcat-7.0.8"+File.separator+"webapps"+File.separator+"MonitorInterventionMetafora"+File.separator;
-
+	public static String getRealPath(String string){
+		return InitServlet.getStaticServletContext().getRealPath(string);
 	}
 }

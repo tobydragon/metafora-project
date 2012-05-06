@@ -6,7 +6,17 @@
          xmlns="http://java.sun.com/xml/ns/javaee">
 
   <!-- Servlets -->
-
+  
+    <servlet>
+    <servlet-name>InitServlet</servlet-name>
+    <servlet-class>de.uds.MonitorInterventionMetafora.server.InitServlet</servlet-class>
+    <init-param>
+      <param-name>log4j-properties</param-name>
+      <param-value>/WEB-INF/log4j.properties</param-value>
+     </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
  <servlet>
     <servlet-name>greetServlet</servlet-name>
     <servlet-class>de.uds.MonitorInterventionMetafora.server.MainServer</servlet-class>
