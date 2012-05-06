@@ -1,9 +1,7 @@
 package de.uds.MonitorInterventionMetafora.server;
 
 import java.util.List;
-
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationService;
 import de.uds.MonitorInterventionMetafora.server.analysis.manager.AnalysisManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
@@ -16,7 +14,7 @@ import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
-import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * The server side implementation of the RPC service.
@@ -25,7 +23,6 @@ import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 public class MainServer extends RemoteServiceServlet implements CommunicationService {
 	Logger logger = Logger.getLogger(this.getClass());
 
-	String configFilepath = GeneralUtil.getAplicationResourceDirectory()+"conffiles/toolconf/configuration.xml";
 	public Configuration configuration;
 	
 	MonitorModel monitorModel;
@@ -34,7 +31,9 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	
 	CfAgentCommunicationManager feedbackCommunicationManager;
 	
-	public MainServer(){		
+	public MainServer(){	
+		super();
+	
 		configuration = readConfiguration();
 		CfCommunicationMethodType communicationMethodType = configuration.getDataSouceType();
 		
@@ -46,6 +45,8 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	}
 	
 	private Configuration readConfiguration(){
+		String configFilepath = GeneralUtil.getRealPath("conffiles/toolconf/configuration.xml");
+
 		XmlConfigParser connectionParser = new XmlConfigParser(configFilepath);
 		Configuration configuration =connectionParser.toActiveConfiguration();
 		return configuration;
@@ -53,7 +54,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 
 	@Override
 	public CfAction sendAction(String _user,CfAction cfAction) {
-		System.out.println("INFO: [MainServer.sendAction] action = \n" + CfActionParser.toXml(cfAction));
+		logger.debug("action = \n" + CfActionParser.toXml(cfAction));
 		feedbackCommunicationManager.sendMessage(cfAction);
 		//TODO: should be void, not have a callback...
 		return null;
@@ -85,4 +86,5 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		return new CfAction();
 	}
 	
+	 
 }
