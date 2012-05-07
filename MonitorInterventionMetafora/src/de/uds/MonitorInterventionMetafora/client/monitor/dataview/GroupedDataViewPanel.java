@@ -36,6 +36,7 @@ public class GroupedDataViewPanel extends ContentPanel {
 		this.setCollapsible(false);
 	    this.setFrame(true);
 	    this.setWidth(960);
+	    this.setHeaderVisible(false);
 	    
 	    this.setTopComponent(groupingChooserToolbar);
 	    this.add(dataViewPanel);
