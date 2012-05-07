@@ -175,6 +175,46 @@ public class ActionPropertyRule  implements Serializable{
 		return actionValue;
 	}
 	
+	
+	boolean isStatisfyConditionWithMultipleValues(String _valueToFilterBy,String _actionValue,OperationType _operation){
+		String [] filterValueList=_valueToFilterBy.split(",");
+		boolean result=false;
+		if(filterValueList!=null&&filterValueList.length<=0)
+			result= false;
+		
+
+		if(_operation==OperationType.ISONEOF)
+		{
+			for(String filtervalue:filterValueList){
+				
+				if(_actionValue.equalsIgnoreCase(filtervalue.trim())){
+					result=true;
+				}
+				
+			}
+			
+			
+		}
+		else if(_operation==OperationType.CONTAINSONEOF)
+		{
+			
+			
+			for(String filtervalue:filterValueList){
+				
+				if((_actionValue.toLowerCase().contains(filtervalue.trim().toLowerCase()))){
+					result=true;
+				}
+				
+			}
+			
+			
+		}
+		
+		return result;
+		
+	}
+	
+	
 	public boolean ruleIncludesAction(CfAction action){
 		try {
 			if(valueToFilterBy != null){
@@ -195,9 +235,26 @@ public class ActionPropertyRule  implements Serializable{
 							return false;
 						}
 					}
+					
+					else if (operationtype == OperationType.ISONEOF)
+					{
+						
+						return isStatisfyConditionWithMultipleValues(valueToFilterBy,actionValue,OperationType.ISONEOF);
+					}
+					else if (operationtype == OperationType.CONTAINSONEOF)
+					{
+						
+						return isStatisfyConditionWithMultipleValues(valueToFilterBy,actionValue,OperationType.CONTAINSONEOF);
+					}
+					
 					else {
 						System.err.println("ERROR:\t\t[ActionProperty.ruleIncludesAction] Unrecognized OperationType=" + operationtype);
 					}
+					
+					
+					
+					
+					
 				}
 				else {
 					return MonitorConstants.BLANK_PROPERTY_LABEL.equalsIgnoreCase(valueToFilterBy);
