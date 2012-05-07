@@ -124,8 +124,14 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 	
 		OperationsComboBoxModel _equals=new OperationsComboBoxModel("Equals",OperationType.EQUALS);
 		OperationsComboBoxModel _contains=new OperationsComboBoxModel("Contains",OperationType.CONTAINS);
+		OperationsComboBoxModel _isoneof=new OperationsComboBoxModel("Is One Of",OperationType.ISONEOF);
+		OperationsComboBoxModel _containsoneof=new OperationsComboBoxModel("Contains One Of",OperationType.CONTAINSONEOF);
+		
 		_operations.add(_equals);
 		_operations.add(_contains);
+		_operations.add(_isoneof);
+		_operations.add(_containsoneof);
+		
 		}
 		else{
 			OperationsComboBoxModel _occuredWithIn=new OperationsComboBoxModel("OccuredWithIn",OperationType.OCCUREDWITHIN);
