@@ -48,7 +48,9 @@ public class MonitorViewPanel extends ContentPanel implements RequestHistoryCall
 		
 		setLoadingImage();
 		
-		sendStartupMessage();	
+		sendStartupMessage();
+		
+		this.setHeaderVisible(false);
 	}
 	
 	private void sendStartupMessage() {
