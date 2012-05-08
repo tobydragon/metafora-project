@@ -14,6 +14,7 @@ public abstract class DataViewPanel extends VerticalPanel{
 	protected ActionPropertyRule groupingProperty;
 	protected ClientMonitorDataModel model;
 	
+
 	public DataViewPanel(ActionPropertyRule groupingProperty, ClientMonitorDataModel model){
 		this.groupingProperty = groupingProperty;
 		this.model = model;

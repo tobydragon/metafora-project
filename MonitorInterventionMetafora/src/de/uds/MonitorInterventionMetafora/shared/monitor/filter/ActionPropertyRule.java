@@ -176,42 +176,27 @@ public class ActionPropertyRule  implements Serializable{
 	}
 	
 	
-	boolean isStatisfyConditionWithMultipleValues(String _valueToFilterBy,String _actionValue,OperationType _operation){
-		String [] filterValueList=_valueToFilterBy.split(",");
-		boolean result=false;
-		if(filterValueList!=null&&filterValueList.length<=0)
-			result= false;
+	boolean isStatisfyConditionWithMultipleValues(String valueToFilterBy,String actionValue,OperationType operation){
+		String [] filterValueList=valueToFilterBy.split(",");
 		
-
-		if(_operation==OperationType.ISONEOF)
-		{
-			for(String filtervalue:filterValueList){
-				
-				if(_actionValue.equalsIgnoreCase(filtervalue.trim())){
-					result=true;
-				}
-				
-			}
-			
-			
+		if(filterValueList!=null&&filterValueList.length<=0){
+			return false;
 		}
-		else if(_operation==OperationType.CONTAINSONEOF)
-		{
-			
-			
+		if(operation==OperationType.ISONEOF){
 			for(String filtervalue:filterValueList){
-				
-				if((_actionValue.toLowerCase().contains(filtervalue.trim().toLowerCase()))){
-					result=true;
+				if(actionValue.equalsIgnoreCase(filtervalue.trim())){
+					return true;
 				}
-				
 			}
-			
-			
 		}
-		
-		return result;
-		
+		else if(operation==OperationType.CONTAINSONEOF) {
+			for(String filtervalue:filterValueList){		
+				if((actionValue.toLowerCase().contains(filtervalue.trim().toLowerCase()))){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	

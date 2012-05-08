@@ -9,7 +9,7 @@ import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.google.gwt.visualization.client.DataTable;
 
-import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.IndicatorGridRowItem;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.CfActionGridRow;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
@@ -19,23 +19,24 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRu
 public class ClientMonitorDataModel {
 	
 	private List<CfAction> allActions;
+	
 	private ActionFilter actionFilter;
 	
 	private  List<CfAction> filteredActions;
 	
-	private GroupingStore<IndicatorGridRowItem> tableViewModel;
+	private GroupingStore<CfActionGridRow> tableViewModel;
 	
 	ActionPropertyRuleSelectorModel ruleSelectorModel;
 	//for aggregated data views (charts so far)
 	//a mapping of IndicatorPropertyTables, which each tracking the different values 
 	//and occurrence counts for an AcionPropertyRule
-	private Map<String, ActionPropertyValueGroupingTable> rule2ValueGroupingTableMap;
+	private Map<String, ActionPropertyValueGroupingTableModel> rule2ValueGroupingTableMap;
 	
 	public ClientMonitorDataModel(ActionPropertyRuleSelectorModel ruleSelectorModel){
 		this.ruleSelectorModel = ruleSelectorModel;
 		actionFilter = new ActionFilter();
 		allActions = new Vector<CfAction>();
-		tableViewModel = new GroupingStore<IndicatorGridRowItem>();
+		tableViewModel = new GroupingStore<CfActionGridRow>();
 		clearFilteredData();
 	}
 	
@@ -53,9 +54,9 @@ public class ClientMonitorDataModel {
 	public void addFilteredData(List<CfAction> actionsToFilter){
 		for (CfAction action : actionsToFilter){
 			if (actionFilter.currentFilterGridIncludesAction(action)){
-				tableViewModel.add(new IndicatorGridRowItem(action));
+				tableViewModel.add(new CfActionGridRow(action));
 				
-				for (ActionPropertyValueGroupingTable indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
+				for (ActionPropertyValueGroupingTableModel indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
 					indicatorPropertyTable.addAction(action);
 				}
 				filteredActions.add(action);
@@ -77,18 +78,18 @@ public class ClientMonitorDataModel {
 	}
 	
 	//Creates table for each rule, where each row will represent one value for each rule
-	private Map<String, ActionPropertyValueGroupingTable> createIndicatorPropertyTableMap() {
-		Map<String, ActionPropertyValueGroupingTable> inMap = new HashMap<String, ActionPropertyValueGroupingTable>();
+	private Map<String, ActionPropertyValueGroupingTableModel> createIndicatorPropertyTableMap() {
+		Map<String, ActionPropertyValueGroupingTableModel> inMap = new HashMap<String, ActionPropertyValueGroupingTableModel>();
 		//Make a table for each possible rule that can be grouped by
 		for (ActionPropertyRule actionPropertyRule : ruleSelectorModel.getAssociatedRules()){
-			ActionPropertyValueGroupingTable actionPropertyValueGroupingTable = new ActionPropertyValueGroupingTable(actionPropertyRule);
+			ActionPropertyValueGroupingTableModel actionPropertyValueGroupingTable = new ActionPropertyValueGroupingTableModel(actionPropertyRule);
 			inMap.put(actionPropertyRule.getKey(), actionPropertyValueGroupingTable);
 		}
 		return inMap;
 	}
 	
 	public DataTable getDataTable(ActionPropertyRule propertyToGroupBy){
-		ActionPropertyValueGroupingTable table = rule2ValueGroupingTableMap.get(propertyToGroupBy.getKey());
+		ActionPropertyValueGroupingTableModel table = rule2ValueGroupingTableMap.get(propertyToGroupBy.getKey());
 		if (table != null){
 			return table.getDataTable();
 		}
@@ -98,7 +99,7 @@ public class ClientMonitorDataModel {
 	}
 
 	public int getMaxValue(ActionPropertyRule propertyToGroupBy){
-		ActionPropertyValueGroupingTable table = rule2ValueGroupingTableMap.get(propertyToGroupBy.getKey());
+		ActionPropertyValueGroupingTableModel table = rule2ValueGroupingTableMap.get(propertyToGroupBy.getKey());
 		if (table != null){
 			return table.getMaxValue();
 		}
@@ -111,7 +112,7 @@ public class ClientMonitorDataModel {
 		return filteredActions;
 	}
 	
-	public GroupingStore<IndicatorGridRowItem> getTableViewModel(){
+	public GroupingStore<CfActionGridRow> getTableViewModel(){
 		return tableViewModel;
 	}
 	
