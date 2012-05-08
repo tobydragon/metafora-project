@@ -24,17 +24,21 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 public class MonitorViewPanel extends ContentPanel implements RequestHistoryCallBack{
 
 	Image loadingImage;
+	
+	
+	//Views
+	UpdaterToolbar updaterToolbar;
 	FilterListPanel flp;
+	TabbedDataViewPanel tabbedDataViewPanel;
 	
-	ClientMonitorController controller;
-	TabbedDataViewPanel tabs;
-	
+	//models
 	ActionPropertyRuleSelectorModel actionPropertyRuleCreator;
-	
-	ClientMonitorDataModelUpdater updater;
 	ClientMonitorDataModel monitorModel;
 	
-	
+	//controllers
+	ClientMonitorDataModelUpdater updater;
+	ClientMonitorController controller;
+		
 	public MonitorViewPanel(){
 
 		actionPropertyRuleCreator = ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.GROUPING);
@@ -43,14 +47,13 @@ public class MonitorViewPanel extends ContentPanel implements RequestHistoryCall
 
 		updater = new ClientMonitorDataModelUpdater(monitorModel, controller);
 
-		UpdaterToolbar refreshTools = new UpdaterToolbar(updater);
-		this.setTopComponent(refreshTools);
+		updaterToolbar = new UpdaterToolbar(updater);
+		this.setTopComponent(updaterToolbar);
+		this.setHeaderVisible(false);
 		
 		setLoadingImage();
 		
-		sendStartupMessage();
-		
-		this.setHeaderVisible(false);
+		sendStartupMessage();	
 	}
 	
 	private void sendStartupMessage() {
@@ -77,14 +80,14 @@ public class MonitorViewPanel extends ContentPanel implements RequestHistoryCall
 			monitorModel.addData(actionList);
 		}
 		
-		//updater.startUpdates();
+		updaterToolbar.setAutoRefresh(true);
 	
 		VerticalPanel panel=new VerticalPanel();
 		flp=new FilterListPanel(monitorModel, controller);
 		panel.add(flp);
 		
 		createTabbedDataViewsPanel(actionPropertyRuleCreator);
-		panel.add(tabs);
+		panel.add(tabbedDataViewPanel);
 		
 		panel.setHeight(600);
 		 
@@ -96,8 +99,8 @@ public class MonitorViewPanel extends ContentPanel implements RequestHistoryCall
 	}
 	
 	private void createTabbedDataViewsPanel(ActionPropertyRuleSelectorModel actionPropertyRuleCreator){
-		tabs=new TabbedDataViewPanel();
-		tabs.setId("_tabMainPanel");
+		tabbedDataViewPanel=new TabbedDataViewPanel();
+		tabbedDataViewPanel.setId("_tabMainPanel");
 		
 		ActionPropertyRule defaultGrouping = ActionPropertyRuleSelectorModel.getDefaultGrouping();
 		
@@ -112,7 +115,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestHistoryCall
 	}
 	
 	private void addDataView(String id, String name, GroupedDataViewPanel panel){
-		 tabs.addTab(id, name, panel,false);
+		 tabbedDataViewPanel.addTab(id, name, panel,false);
 		 controller.addDataView(panel);
 	}
 	
