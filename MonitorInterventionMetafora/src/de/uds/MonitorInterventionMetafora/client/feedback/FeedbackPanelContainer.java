@@ -1,25 +1,25 @@
 package de.uds.MonitorInterventionMetafora.client.feedback;
 
-
-import com.extjs.gxt.ui.client.widget.Label;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class FeedbackPanelContainer extends VerticalPanel {
 	private de.uds.MonitorInterventionMetafora.client.feedback.Outbox outbox;
-	private RequestResponse requestResponse;
 	private TemplatePool templatePool;
-	private RequestStack requestStack;
 	static private FeedbackPanelContainer INSTANCE;
 
 	public static String[] userNames = {"Agnes", "Bobby", "Cath"};
 	
 	public FeedbackPanelContainer(){
+		
+		
 		INSTANCE = this;
 		
 		final VerticalPanel top1VPanel = new VerticalPanel();
@@ -37,19 +37,32 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		
 
 		outbox = new Outbox(leftVPanel);
-		requestStack = new RequestStack(leftVPanel);
-		requestResponse = new RequestResponse(leftVPanel);
-		templatePool = new TemplatePool(rightVPanel);
+		
+		
+		 RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET,
+	        "resources/feedback/sample-messages.xml");
+
+	    try {
+	      requestBuilder.sendRequest(null, new RequestCallback() {
+	        public void onError(Request request, Throwable exception) {
+	          requestFailed(exception);
+	        }
+
+	        public void onResponseReceived(Request request, Response response) {
+	    		templatePool = new TemplatePool(rightVPanel, response.getText());
+	        }
+	      });
+	    } catch (RequestException ex) {
+	      requestFailed(ex);
+	    }
 	}
 	
-	protected void mockupRequest(String name) {
-		UserRequest request = new UserRequest(name);
-		requestStack.incomingRequest(request);
-	}
-	public void declareRequestHandled() {
-		requestStack.declareRequestHandled();
-		requestResponse.setEnabled(false);
-	}
+
+	  private void requestFailed(Throwable exception) {
+	    Window.alert("Failed to send the message: "
+	        + exception.getMessage());
+	  }
+	  
 
 
 
@@ -66,11 +79,5 @@ public class FeedbackPanelContainer extends VerticalPanel {
 	}
 	public static TemplatePool getTemplatePool() {
 		return INSTANCE.templatePool;
-	}
-	public static RequestStack getRequestStack() {
-		return INSTANCE.requestStack;
-	}
-	public static RequestResponse getRequestResponse() {
-		return INSTANCE.requestResponse;
 	}
 }

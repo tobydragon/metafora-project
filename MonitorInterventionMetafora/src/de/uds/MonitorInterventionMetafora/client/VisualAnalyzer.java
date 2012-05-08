@@ -31,9 +31,9 @@ class VisualAnalyzer implements EntryPoint {
 		  VisualizationUtils.loadVisualizationApi(new Runnable() {
 	      public void run() {
 	    	  FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer();
-	    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel();
+	    	  //MonitorViewPanel _monitoringContainer=new MonitorViewPanel();
 	    	  MainContainerTabPanel _mainPanel=new MainContainerTabPanel();
-	    	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
+	    	  //_mainPanel.addTab("Monitoring", _monitoringContainer,false);
 	    	  _mainPanel.addTab("Feedback", _feedbackPanelContainer,false);
 	    	  
 	    	  RootPanel.get().add(_mainPanel);
