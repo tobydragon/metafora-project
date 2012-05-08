@@ -64,5 +64,9 @@ public class UpdaterToolbar extends ToolBar{
 	    this.add(refreshButton);
 	    
 	}
+	
+	public void setAutoRefresh(boolean setting){
+		autoRefresh.setValue(setting);
+	}
 
 }
