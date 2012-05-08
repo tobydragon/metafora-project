@@ -21,7 +21,7 @@ private static ServletContext staticServletContext = null;
 		  String propertiesFilename = staticServletContext.getRealPath(log4jfile);
 		  PropertyConfigurator.configure(propertiesFilename);
 		  logger.info("MonitorInterventionMetafora logger configured according to " + propertiesFilename);
-		}else{
+		} else {
 		  System.err.println("Error setting up logger for MonitorInterventionMetafora. " +
 		  		"Check that the log4j-properties in init is set to a file.");
 		}

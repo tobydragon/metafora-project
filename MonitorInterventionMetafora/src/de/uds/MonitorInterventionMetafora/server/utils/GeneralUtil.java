@@ -21,7 +21,7 @@ public class GeneralUtil {
 		return true;
 	}
 	
-	public static String getStartOfString(String wholeString){
+	public static String getStartOfString(String wholeString) {
 		String start = wholeString.replaceAll("\n", "");
 		 if (start.length() > 30){
 			 start = start.substring(0,29);
