@@ -19,7 +19,6 @@ import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunicati
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.CfActionCallBack;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
@@ -64,22 +63,12 @@ public class Outbox implements CfActionCallBack {
 		//send mode
 		sendModeRadioColumn = new VerticalPanel();
 		sendModeRadioButtonPopup = new RadioButton("sendMode", "No Interruption");
-		ClickHandler noRequestClickHandler = new ClickHandler(){
-			@Override
-			public void onClick(ClickEvent event) {
-				FeedbackPanelContainer.getRequestStack().clearDetails();
-				FeedbackPanelContainer.getRequestResponse().setEnabled(false);
-			}
-		};
 		sendModeRadioButtonPopup.setValue(true, true);
-		sendModeRadioButtonPopup.addClickHandler(noRequestClickHandler);
 		sendModeRadioColumn.add(sendModeRadioButtonPopup);
 		sendModeRadioButtonSuggestion = new RadioButton("sendMode", "Low Interruption");
 		sendModeRadioButtonSuggestion.setEnabled(true);
-		sendModeRadioButtonSuggestion.addClickHandler(noRequestClickHandler);
 		sendModeRadioColumn.add(sendModeRadioButtonSuggestion);
 		sendModeRadioButtonSuggestion = new RadioButton("sendMode", "High Interruption");
-		sendModeRadioButtonSuggestion.addClickHandler(noRequestClickHandler);
 		sendModeRadioColumn.add(sendModeRadioButtonSuggestion);
 		//TODO: not needed anymore. Remove
 		sendModeRadioButtonResponse = new RadioButton("sendMode", "Response to request");
@@ -163,15 +152,6 @@ public class Outbox implements CfActionCallBack {
 	public TextBox getMessageTextBox()
 	{
 		return messageTextBox;
-	}
-	public void incomingRequest(UserRequest r) {
-		sendModeRadioButtonResponse.setValue(true, true);
-		//select user as recipient
-		for(int i=0; i<recipientNamesColumn.getWidgetCount(); i++)
-		{
-			CheckBox cb = (CheckBox) recipientNamesColumn.getWidget(i);
-			cb.setValue(cb.getText().equals(r.name));
-		}
 	}
 	@Override
 	public void onFailure(Throwable caught) {
@@ -258,10 +238,7 @@ public class Outbox implements CfActionCallBack {
 	 	ServerCommunication.getInstance().processAction("FeedbackClient",feedbackMessage,this);	
 
 		messageTextBox.setText("");
-		if(sendModeRadioButtonResponse.getValue())
-		{
-			FeedbackPanelContainer.getInstance().declareRequestHandled();
-		}
+		
 		
 		
 	}
