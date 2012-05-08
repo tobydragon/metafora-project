@@ -14,14 +14,14 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 
-public class IndicatorGridRowItem extends BaseModel {
+public class CfActionGridRow extends BaseModel {
 	private Logger logger = Logger.getLogger(this.getClass());
 	
 	private static final long serialVersionUID = 6376988771728912041L;
 
 	private CfAction indicator;
 
-	public IndicatorGridRowItem (CfAction indicator){
+	public CfActionGridRow (CfAction indicator){
 		this.indicator = indicator;
 		setGridItemProperties();
 	}

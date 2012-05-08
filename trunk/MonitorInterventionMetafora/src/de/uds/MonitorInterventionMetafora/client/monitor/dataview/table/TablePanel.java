@@ -28,24 +28,10 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRu
 
 public class TablePanel extends DataViewPanel {
 
-	//TODO: Total and filtered indicator count, maybe for all dataViewPanels, not just table?
-	private  Grid<IndicatorGridRowItem> tableView;
+	private  Grid<CfActionGridRow> tableView;
 	
 	public TablePanel( ClientMonitorDataModel model, ActionPropertyRule groupingProperty) {
 		super(groupingProperty, model);
-		
-		
-		
-		
-//	    panel.setHeading("Indicator List");
-//	    panel.setIcon(Resources.ICONS.table());
-//	    panel.setCollapsible(false);
-//	    panel.setFrame(true);
-//	    panel.setId("_groupedGridPanel");
-//	    panel.setWidth(960);
-		 
-		
-//		refresh();
 	}
 
 	@Override
@@ -68,7 +54,7 @@ public class TablePanel extends DataViewPanel {
 	    super.onRender(parent, index);
 	    ColumnModel columnModel = getColumnModel();
 	    
-	    tableView = new Grid<IndicatorGridRowItem>(model.getTableViewModel(), columnModel);
+	    tableView = new Grid<CfActionGridRow>(model.getTableViewModel(), columnModel);
 		tableView.setView(getGridView(columnModel));
 		tableView.setWidth(950);
 		tableView.setHeight(540);
@@ -155,17 +141,17 @@ public class TablePanel extends DataViewPanel {
 		    return new ColumnModel(config);
 	}
 	
-	GridCellRenderer<IndicatorGridRowItem>  getbackgroundColorRenderer(){
+	GridCellRenderer<CfActionGridRow>  getbackgroundColorRenderer(){
 		
 		
-		GridCellRenderer<IndicatorGridRowItem> ColoredGrid = new GridCellRenderer<IndicatorGridRowItem>() {
+		GridCellRenderer<CfActionGridRow> ColoredGrid = new GridCellRenderer<CfActionGridRow>() {
 
 	        @Override
-	        public String render(IndicatorGridRowItem model,
+	        public String render(CfActionGridRow model,
 	                String property, ColumnData _config,
 	                int rowIndex, int colIndex,
-	                ListStore<IndicatorGridRowItem> store,
-	                Grid<IndicatorGridRowItem> grid) {
+	                ListStore<CfActionGridRow> store,
+	                Grid<CfActionGridRow> grid) {
 
 	        	String  valueOfCell =  model.get(property); 
 	            

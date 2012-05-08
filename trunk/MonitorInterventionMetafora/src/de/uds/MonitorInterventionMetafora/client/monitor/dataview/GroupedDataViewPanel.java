@@ -11,6 +11,8 @@ public class GroupedDataViewPanel extends ContentPanel {
 	GroupingChooserToolbar groupingChooserToolbar;
 	DataViewPanel dataViewPanel;
 	
+	//TODO: Total and filtered indicator count, maybe for all dataViewPanels, not just table?
+
 	//TODO: Get rid of all ID Strings (last 2 params)
 	public GroupedDataViewPanel(DataViewPanelType dataViewPanelType, ClientMonitorDataModel model, 
 			ClientMonitorController controller, ActionPropertyRule  groupingProperty, String panelId, String groupingChooserId){
