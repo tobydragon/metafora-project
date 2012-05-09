@@ -42,7 +42,8 @@ public class MonitorViewPanel extends ContentPanel implements RequestHistoryCall
 	public MonitorViewPanel(){
 
 		actionPropertyRuleCreator = ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.GROUPING);
-		monitorModel = new ClientMonitorDataModel(actionPropertyRuleCreator);
+		ActionPropertyRuleSelectorModel filterPropertyRuleSelector = ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.FILTER);
+		monitorModel = new ClientMonitorDataModel(actionPropertyRuleCreator, filterPropertyRuleSelector);
 		controller = new ClientMonitorController(monitorModel);
 
 		updater = new ClientMonitorDataModelUpdater(monitorModel, controller);
@@ -94,7 +95,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestHistoryCall
 		this.remove(loadingImage);
 		this.add(panel);
 		this.layout();
-		this.setHeight(600);
+		this.setHeight(800);
 
 	}
 	

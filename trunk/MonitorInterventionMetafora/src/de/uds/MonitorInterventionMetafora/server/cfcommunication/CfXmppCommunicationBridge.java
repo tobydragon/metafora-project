@@ -116,8 +116,9 @@ public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMes
 	public void newMessage(String user, String message, String arg2) {
 		logger.info("[newMessage] from user(" + user + "), starts with: "  + GeneralUtil.getStartOfString(message) );
 		logger.debug("[newMessage] from user(" + user + ") \n" + message);
-		
+		System.out.println("Message!!:"+message);
 		message = XmlUtil.convertSpecialCharactersToDescripitons(message);
+		
 		XmlFragment actionXml = XmlFragment.getFragmentFromString(message);
 		if (actionXml != null){
 			CfAction action = CfActionParser.fromXml(actionXml);

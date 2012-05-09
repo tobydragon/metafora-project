@@ -2,6 +2,10 @@ package de.uds.MonitorInterventionMetafora.client.monitor;
 
 import java.util.Vector;
 
+import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.store.ListStore;
+import com.extjs.gxt.ui.client.store.Store;
+import com.extjs.gxt.ui.client.store.StoreEvent;
 import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
@@ -11,7 +15,7 @@ import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
-import de.uds.MonitorInterventionMetafora.client.monitor.filter.IndicatorFilterItemGridRowModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 public class ClientMonitorController {
@@ -22,9 +26,28 @@ public class ClientMonitorController {
 	
 	public ClientMonitorController(ClientMonitorDataModel actionModel){
 		this.dataModel = actionModel;
+		addFilterModelListeners(actionModel.getFilterGridViewModel());
 		dataViewPanels = new Vector<GroupedDataViewPanel>();
 	}
 	
+	
+	void addFilterModelListeners(ListStore<FilterGridRow> filterGridStore){
+		
+		filterGridStore.addListener(Store.Add, new Listener<StoreEvent<FilterGridRow>>() {
+	        public void handleEvent(StoreEvent<FilterGridRow> be) {
+	        	filtersUpdated();        	
+	        }
+	      });
+		
+		filterGridStore.addListener(Store.Remove, new Listener<StoreEvent<FilterGridRow>>() {
+	        public void handleEvent(StoreEvent<FilterGridRow> be) {
+	        	filtersUpdated();        	
+	        }
+	      });
+		
+		
+		
+	}
 	public void addDataView(GroupedDataViewPanel panel){
 		dataViewPanels.add(panel);
 	}
@@ -41,9 +64,9 @@ public class ClientMonitorController {
 	}
 	
 //	 ------------------------ Code that should be moved  to filter class ---------------------------//
-
+//TODO: Remove this method
 	public void addFilterItem(ActionPropertyRule newFilterEntity){		
-		EditorGrid<IndicatorFilterItemGridRowModel> _grid = getFilterListEditorGrid();
+		EditorGrid<FilterGridRow> _grid = getFilterListEditorGrid();
 		SimpleComboBox<String> _filterCombo = getFilterListComboBox();
 		String _key= newFilterEntity.getKey();
           
@@ -54,7 +77,7 @@ public class ClientMonitorController {
 //	        	_filterCombo.clearSelections();
 //	        }        
 	
-	        IndicatorFilterItemGridRowModel  _newRow = new IndicatorFilterItemGridRowModel(newFilterEntity.getPropertyName(),newFilterEntity.getValue(),newFilterEntity.getType().toString(),newFilterEntity.getDisplayText(),newFilterEntity.getOperationType().toString().toUpperCase()); 
+	        FilterGridRow  _newRow = new FilterGridRow(newFilterEntity); 
 	
 	        _grid.stopEditing();  
 	        _grid.getStore().insert(_newRow, 0);  
@@ -82,9 +105,9 @@ public class ClientMonitorController {
 	
 	
 	
-	boolean isInFilterList(String _key,EditorGrid<IndicatorFilterItemGridRowModel> _grid){
+	boolean isInFilterList(String _key,EditorGrid<FilterGridRow> _grid){
 		 for (int i = 0; i < _grid.getStore().getCount(); i++) {
-			 IndicatorFilterItemGridRowModel _item =	 _grid.getStore().getAt(i);
+			 FilterGridRow _item =	 _grid.getStore().getAt(i);
 			 String rowKey= _item.getKey();
 			 
 			 if(rowKey.equalsIgnoreCase(_key)){	
@@ -97,9 +120,9 @@ public class ClientMonitorController {
 	 
 //	 ------------------------ Code that should be removed ---------------------------//
 		
-	public EditorGrid<IndicatorFilterItemGridRowModel>  getFilterListEditorGrid(){
+	public EditorGrid<FilterGridRow>  getFilterListEditorGrid(){
 		
-		EditorGrid<IndicatorFilterItemGridRowModel> editorGrid = (EditorGrid<IndicatorFilterItemGridRowModel>) ComponentManager.get().get("_filterItemGrid");
+		EditorGrid<FilterGridRow> editorGrid = (EditorGrid<FilterGridRow>) ComponentManager.get().get("_filterItemGrid");
 		return editorGrid;
 	}
 	

@@ -59,8 +59,8 @@ public class ActionPropertyRule  implements Serializable{
 	  return propertyName; 
   }
   
-  public void setEntityName(String _entityName){
-	  propertyName=_entityName; 
+  public void setPropertyName(String propertyName){
+	  this.propertyName=propertyName; 
   }
 
   public String getValue() {

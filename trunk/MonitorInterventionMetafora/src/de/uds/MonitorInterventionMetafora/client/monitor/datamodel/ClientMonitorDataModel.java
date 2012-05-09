@@ -7,9 +7,11 @@ import java.util.Vector;
 
 import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
+import com.extjs.gxt.ui.client.store.Store;
 import com.google.gwt.visualization.client.DataTable;
 
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.CfActionGridRow;
+import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
@@ -25,26 +27,42 @@ public class ClientMonitorDataModel {
 	private  List<CfAction> filteredActions;
 	
 	private GroupingStore<CfActionGridRow> tableViewModel;
-	
-	ActionPropertyRuleSelectorModel ruleSelectorModel;
+	//private ListStore<FilterGridRow> filterGridViewModel;
+	ActionPropertyRuleSelectorModel groupingSelectorModel;
+	ActionPropertyRuleSelectorModel filterSelectorModel;
 	//for aggregated data views (charts so far)
 	//a mapping of IndicatorPropertyTables, which each tracking the different values 
 	//and occurrence counts for an AcionPropertyRule
 	private Map<String, ActionPropertyValueGroupingTableModel> rule2ValueGroupingTableMap;
 	
-	public ClientMonitorDataModel(ActionPropertyRuleSelectorModel ruleSelectorModel){
-		this.ruleSelectorModel = ruleSelectorModel;
+	public ClientMonitorDataModel(ActionPropertyRuleSelectorModel groupingSelectorModel,ActionPropertyRuleSelectorModel filterSelectorModel ){
+		this.groupingSelectorModel = groupingSelectorModel;
+		this.filterSelectorModel=filterSelectorModel;
 		actionFilter = new ActionFilter();
 		allActions = new Vector<CfAction>();
+		
 		tableViewModel = new GroupingStore<CfActionGridRow>();
 		clearFilteredData();
 	}
+	
+	public ActionPropertyRuleSelectorModel getFilterSelectorModel(){
+		
+		return filterSelectorModel;
+	}
+	
 	
 	public void clearFilteredData(){
 		filteredActions = new Vector<CfAction>();
 		tableViewModel.removeAll();
 		rule2ValueGroupingTableMap = createIndicatorPropertyTableMap();	
 	}
+	
+	
+	public ListStore<FilterGridRow> getFilterGridViewModel(){
+		
+		return actionFilter.getFilterStore();
+	}
+	
 	
 	public void updateFilteredList(){
 		clearFilteredData();
@@ -53,7 +71,7 @@ public class ClientMonitorDataModel {
 	
 	public void addFilteredData(List<CfAction> actionsToFilter){
 		for (CfAction action : actionsToFilter){
-			if (actionFilter.currentFilterGridIncludesAction(action)){
+			if (actionFilter.filterIncludesAction(action)){
 				tableViewModel.add(new CfActionGridRow(action));
 				
 				for (ActionPropertyValueGroupingTableModel indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
@@ -81,7 +99,7 @@ public class ClientMonitorDataModel {
 	private Map<String, ActionPropertyValueGroupingTableModel> createIndicatorPropertyTableMap() {
 		Map<String, ActionPropertyValueGroupingTableModel> inMap = new HashMap<String, ActionPropertyValueGroupingTableModel>();
 		//Make a table for each possible rule that can be grouped by
-		for (ActionPropertyRule actionPropertyRule : ruleSelectorModel.getAssociatedRules()){
+		for (ActionPropertyRule actionPropertyRule : groupingSelectorModel.getAssociatedRules()){
 			ActionPropertyValueGroupingTableModel actionPropertyValueGroupingTable = new ActionPropertyValueGroupingTableModel(actionPropertyRule);
 			inMap.put(actionPropertyRule.getKey(), actionPropertyValueGroupingTable);
 		}

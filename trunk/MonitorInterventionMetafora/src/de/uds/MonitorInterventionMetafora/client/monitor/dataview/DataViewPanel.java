@@ -18,6 +18,7 @@ public abstract class DataViewPanel extends VerticalPanel{
 	public DataViewPanel(ActionPropertyRule groupingProperty, ClientMonitorDataModel model){
 		this.groupingProperty = groupingProperty;
 		this.model = model;
+		
 	}
 		
 	public ActionPropertyRule getGroupingProperty() {
@@ -50,6 +51,7 @@ public abstract class DataViewPanel extends VerticalPanel{
 		else if (dataViewPanelType == DataViewPanelType.BAR_CHART){
 			  dataViewPanel = new BarChartPanel(model, controller, groupedDataViewController, groupingProperty); 
 		}
+		
 		return dataViewPanel;
 	}
 

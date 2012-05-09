@@ -94,7 +94,7 @@ public class XmlConfigParser {
 				{			
 					ActionPropertyRule _filterItem=new ActionPropertyRule();
 					_filterItem.setType(ActionElementType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
-					_filterItem.setEntityName(propertyFragment.getAttributeValue(ServerFormatStrings.ENTITYNAME));
+					_filterItem.setPropertyName(propertyFragment.getAttributeValue(ServerFormatStrings.ENTITYNAME));
 					_filterItem.setOperationType(OperationType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.OPERATION).toUpperCase()));
 					_filterItem.setValue(propertyFragment.getAttributeValue(ServerFormatStrings.VALUE));				
 					 indicatorFilter.addIndicatorEntity(_filterItem.getPropertyName(), _filterItem);
@@ -124,7 +124,7 @@ public class XmlConfigParser {
 			{			
 				ActionPropertyRule _filterItem=new ActionPropertyRule();
 				_filterItem.setType(ActionElementType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
-				_filterItem.setEntityName(propertyFragment.getAttributeValue(ServerFormatStrings.ENTITYNAME));
+				_filterItem.setPropertyName(propertyFragment.getAttributeValue(ServerFormatStrings.ENTITYNAME));
 				_filterItem.setOperationType(OperationType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.OPERATION).toUpperCase()));
 				_filterItem.setValue(propertyFragment.getAttributeValue(ServerFormatStrings.VALUE));				
 				 indicatorFilter.addIndicatorEntity(_filterItem.getPropertyName(), _filterItem);
