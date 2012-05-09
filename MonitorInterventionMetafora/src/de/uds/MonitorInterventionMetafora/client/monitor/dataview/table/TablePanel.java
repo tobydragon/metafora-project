@@ -57,10 +57,12 @@ public class TablePanel extends DataViewPanel {
 	    tableView = new Grid<CfActionGridRow>(model.getTableViewModel(), columnModel);
 		tableView.setView(getGridView(columnModel));
 		tableView.setWidth(950);
-		tableView.setHeight(540);
+		tableView.setHeight(550);
 		
 		tableView.addListener(Events.RowClick, new TableRowDisplaySelectionListener());
+		//this.setHeight(560);
 		this.add(tableView);
+		
 
 	}
 	

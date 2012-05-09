@@ -12,7 +12,7 @@ public class ActionPropertyComboBox extends ComboBox<PropertyComboBoxItemModel>{
 		super();
 		setId(panelId);
 		
-		setEmptyText("Select property:");
+		setEmptyText("Select property");
 	    setDisplayField("displayText");
 	    setWidth(150);
 	    setEditable(false);

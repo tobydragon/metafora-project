@@ -31,15 +31,17 @@ public class FilterListPanel extends ContentPanel {
 		
 		//maintenance.
 //		FilterListGridModel flm=new FilterListGridModel(maintenance);
-		ExtendedFilterGrid ef=new ExtendedFilterGrid(_maintenance, interfaceManager);		
-		this.add(ef);	
+		//ExtendedFilterGrid ef=new ExtendedFilterGrid(_maintenance, interfaceManager);	
+		FilterGrid filterGird=new FilterGrid(_maintenance, interfaceManager);
+		this.add(filterGird);	
 		
 		 this.addListener(Events.Collapse, new Listener<BaseEvent>()
         {
 
             public void handleEvent(BaseEvent be)
             {
-            	//TODO: Make this work for the whole tab pane, not just the table view
+            	//TODO: Put drop down menu for filter here and Make this work for the whole tab pane, not just the table view
+             //    Make this work for the whole tab pane, not just the table view
            //interfaceManager.getGroupedGridContentPanel().setWidth(600);
 //            	if(interfaceManager.getTableViewEditorGrid()!=null)
 //           interfaceManager.getTableViewEditorGrid().setHeight(540);	

@@ -24,11 +24,12 @@ public OperationsComboBoxModel() {
 
   }
 
+private OperationType operationType;
 
-public OperationsComboBoxModel(String _displayText,OperationType _operationType) {
-	setDisplayText(_displayText);
-	setOperationType(_operationType);
-	
+public OperationsComboBoxModel(String displayText,OperationType operationType) {
+	setDisplayText(displayText);
+	setOperationType(operationType);
+	this.operationType=operationType;	
 	
 }
     
@@ -39,9 +40,9 @@ public void setOperationType(OperationType _operationType){
 	
 }
 
-public String getOperationType(){
+public OperationType getOperationType(){
 	
-	return get("operationtype");
+	return operationType;
 	
 }
 

@@ -14,6 +14,7 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
+import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.OperationsComboBoxModel;
@@ -28,27 +29,24 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 
 
-public class ExtendedFilterManagementPanel extends HorizontalPanel{
+public class FilterManagementToolBar extends ToolBar{
 
-	private  ComboBox<PropertyComboBoxItemModel> entityComboBox;
+	private  ComboBox<PropertyComboBoxItemModel> filterPropertyComboBox;
 	private ComboBox<OperationsComboBoxModel> operationComboBox;
 	private TextField<String> entityValueTextBox; 
 	private  Button addButton;
-	
-	private ClientMonitorController interfaceManager;
 	EditorGrid<FilterGridRow> grid;
 	
 	
 	//TODO remove all dependencies on controller, controller is notified through the grid store 
-	public ExtendedFilterManagementPanel( ClientMonitorController controller, EditorGrid<FilterGridRow> grid){
+	public FilterManagementToolBar(EditorGrid<FilterGridRow> grid, ActionPropertyRuleSelectorModel filterRuleSelectorModel){
 
-		interfaceManager= controller;
 		this.grid = grid;
 		 FormLayout layout = new FormLayout();
 		 
-		entityComboBox = new ActionPropertyComboBox(ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.FILTER), "_entityComboBox");
-		entityComboBox.setForceSelection(true);
-		entityComboBox.setPosition(0, -2);
+		filterPropertyComboBox = new ActionPropertyComboBox(filterRuleSelectorModel, "_entityComboBox");
+		filterPropertyComboBox.setForceSelection(true);
+		filterPropertyComboBox.setPosition(0, -2);
 
 		
 		 
@@ -91,7 +89,7 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 	        	operationComboBox.clearSelections();
 	        }
 	    };
-		entityComboBox.addSelectionChangedListener(comboListenerItem);
+		filterPropertyComboBox.addSelectionChangedListener(comboListenerItem);
 		
 		addButton=new Button("Add Filter",getAddButtonEvent());
 		addButton.setIcon(Resources.ICONS.add());
@@ -100,7 +98,7 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		addButton.setLayoutData(new FitLayout());
 		
 		
-		this.add(entityComboBox);
+		this.add(filterPropertyComboBox);
 		this.add(operationComboBox);
 		this.add(entityValueTextBox);
 		this.add(addButton);
@@ -150,26 +148,30 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 			public void componentSelected(ButtonEvent ce) {
 				
 				
-				if(entityComboBox.validate() && operationComboBox.validate()&&entityValueTextBox.validate()){
+				if(filterPropertyComboBox.validate() && operationComboBox.validate()&&entityValueTextBox.validate()){
 				
-				ComboBox<OperationsComboBoxModel> operationCombo= interfaceManager.getOperationsComboBox();
-				TextField<String> entityValue=interfaceManager.getFilterEntityValueTextField();
+				//ComboBox<OperationsComboBoxModel> operationCombo= interfaceManager.getOperationsComboBox();
+			
 				
 				
-				ActionPropertyRule selectedEntity = entityComboBox.getValue().getActionPropertyRule();
-				OperationsComboBoxModel selectedOperation=operationCombo.getValue();
-				String filterValue=entityValue.getValue();
-				if(selectedEntity==null)
-					return;
-//				
-//				if(OperationType.getFromString(selectedOperation.getOperationType())==OperationType.OCCUREDWITHIN&&!GWTUtils.isNumber(filterValue))
-//				{
-//					
-//					 MessageBox.alert("Info", "Time should be an integer value and in minutes",null);
-//					 return;
-//				}
+				ActionPropertyRule newFilterRule=new ActionPropertyRule();
+				newFilterRule.setDisplayText(filterPropertyComboBox.getValue().getActionPropertyRule().getDisplayText());
+				newFilterRule.setPropertyName(filterPropertyComboBox.getValue().getActionPropertyRule().getPropertyName());
+				
+				newFilterRule.setType(filterPropertyComboBox.getValue().getActionPropertyRule().getType());
+				newFilterRule.setOperationType(operationComboBox.getValue().getOperationType());
+				newFilterRule.setValue(entityValueTextBox.getValue());
+				
+				
+				
+				if(newFilterRule.getOperationType()==OperationType.OCCUREDWITHIN&&!GWTUtils.isNumber(newFilterRule.getValue()))
+				{
+					
+					 MessageBox.alert("Info", "Time should be an integer value and in minutes",null);
+					 return;
+				}
 
-				FilterGridRow  _newRow=new FilterGridRow(selectedEntity); 
+				FilterGridRow  _newRow=new FilterGridRow(newFilterRule); 
 		    	
 		        
 		        grid.stopEditing();  
@@ -179,9 +181,9 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		        grid.startEditing(grid.getStore().indexOf(_newRow), 0); 
 		     
 				
-		        entityComboBox.clearSelections();
-		        operationCombo.clearSelections();
-		        entityValue.clear();
+		        filterPropertyComboBox.clearSelections();
+		        operationComboBox.clearSelections();
+		        entityValueTextBox.clear();
 
 				}
 				

@@ -63,6 +63,8 @@ public class  XmlFragment {
 	
 	public static synchronized XmlFragment getFragmentFromString(String xmlString){
 		try {
+			
+			System.out.println("XMLLL:"+xmlString);
     		Document doc = builder.build( new StringReader(xmlString ) );
     		return getFragment(doc);
 		}

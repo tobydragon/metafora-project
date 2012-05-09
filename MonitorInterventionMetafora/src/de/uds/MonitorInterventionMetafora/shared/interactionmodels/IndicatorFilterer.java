@@ -8,7 +8,7 @@ import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.monitor.filter.IndicatorFilterItemGridRowModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -375,18 +375,18 @@ public class IndicatorFilterer implements Serializable{
 	List<ActionPropertyRule> getActiveFiltersFromFilterGrid(){
 		List<ActionPropertyRule> _activeFilters=new ArrayList<ActionPropertyRule>();
 		
-	    EditorGrid<IndicatorFilterItemGridRowModel> _grid = (EditorGrid<IndicatorFilterItemGridRowModel>) ComponentManager.get().get("_filterItemGrid");
+	    EditorGrid<FilterGridRow> _grid = (EditorGrid<FilterGridRow>) ComponentManager.get().get("_filterItemGrid");
 		if (_grid != null && _grid.getStore() != null){
 			for(int i=0;i<_grid.getStore().getCount();i++){
 				
-				IndicatorFilterItemGridRowModel _row=_grid.getStore().getAt(i);
+			/*	FilterGridRow _row=_grid.getStore().getAt(i);
 				ActionPropertyRule _filter=new ActionPropertyRule();
 				_filter.setDisplayText(_row.getDisplayText());
 				_filter.setType(ActionElementType.getFromString(_row.getType().toUpperCase()));
 				_filter.setOperationType(OperationType.getFromString(_row.getOperation().toUpperCase()));
 				_filter.setEntityName(_row.getProperty());
 				_filter.setValue(_row.getValue());
-				_activeFilters.add(_filter);
+				_activeFilters.add(_filter);*/
 							
 			}
 		}
