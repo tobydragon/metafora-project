@@ -9,7 +9,6 @@ import com.google.gwt.core.client.GWT;
 
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.CfActionCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestHistoryCallBack;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
@@ -32,12 +31,6 @@ public class ServerCommunication implements Serializable {
 	}
 	
 
-	private ServerCommunication() {
-		getClientHandler();
-
-	//	RemoteEventServiceFactory GWTEventServiceFactory = RemoteEventServiceFactory.getInstance();
-		//myGWTEventService = GWTEventServiceFactory.getRemoteEventService();
-	}
 
 	
 public void processAction(String _user,CfAction cfAction,CfActionCallBack actionCallBack)
@@ -47,15 +40,11 @@ public void processAction(String _user,CfAction cfAction,CfActionCallBack action
 	
 }
 	
-public void processAction(String _user,CfAction cfAction,RequestHistoryCallBack historyCallback) {
-		
-		serviceServlet.sendRequestHistoryAction(_user, cfAction,historyCallback);
-	
-}
+
  
-public void processAction(String _user,CfAction cfAction,RequestConfigurationCallBack configurationCallback) {
+public void processAction(CfAction cfAction,RequestConfigurationCallBack configurationCallback) {
 		
-		serviceServlet.sendRequestConfiguration(_user,cfAction,configurationCallback);
+		serviceServlet.sendRequestConfiguration(cfAction,configurationCallback);
 	
 }
 
@@ -67,28 +56,4 @@ public void processAction(CfAction _lastcfAction,RequestUpdateCallBack updateCal
 
 
 
-// not used for now
-private void getClientHandler(){
-/*
-	RemoteEventServiceFactory gwtEventServiceFactory = RemoteEventServiceFactory.getInstance();
-	gwtEventServiceFactory.requestClientHandler(new AsyncCallback<ClientHandler>() {
-		
-		public void onFailure(Throwable caught) {
-		}
-
-		public void onSuccess(ClientHandler result) {
-			
-			
-			System.out.println("Client Success:"+result.getConnectionId());
-		}
-	});*/
-}
-
-/**
- * Private constructor to support Singleton
- */
- 
-//private RemoteEventListener myListener = null;
- 
- 
 }

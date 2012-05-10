@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.Timer;
 
-import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
+import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
@@ -13,10 +13,12 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 
 	private ClientMonitorDataModel clientDataModel;
 	private ClientMonitorController controller;
+	private CommunicationServiceAsync monitoringViewServiceServlet;
 
-	public ClientMonitorDataModelUpdater(ClientMonitorDataModel monitorModel, ClientMonitorController controller) {
+	public ClientMonitorDataModelUpdater(ClientMonitorDataModel monitorModel, ClientMonitorController controller,CommunicationServiceAsync monitoringViewServiceServlet) {
 		this.clientDataModel = monitorModel;
 		this.controller = controller;
+		this.monitoringViewServiceServlet=monitoringViewServiceServlet;
 	}
 	
 	public void receiveUpdate(List<CfAction> actions){
@@ -49,7 +51,11 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 	}
 	
 	public void getUpdate(){
-		ServerCommunication.getInstance().processAction(clientDataModel.getLastAction(),this);
+		
+		monitoringViewServiceServlet.requestUpdate(clientDataModel.getLastAction(),this);
+		
+		
+		//ServerCommunication.getInstance().processAction(clientDataModel.getLastAction(),this);
 	}
 
 	@Override

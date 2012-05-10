@@ -2,12 +2,14 @@ package de.uds.MonitorInterventionMetafora.client.monitor.dataview.chart;
 
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
+import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.events.OnMouseOutHandler;
 import com.google.gwt.visualization.client.events.OnMouseOverHandler;
 import com.google.gwt.visualization.client.visualizations.corechart.AxisOptions;
 import com.google.gwt.visualization.client.visualizations.corechart.ColumnChart;
 import com.google.gwt.visualization.client.visualizations.corechart.Options;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ActionPropertyValueGroupingTableModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
@@ -38,7 +40,8 @@ public class BarChartPanel extends DataViewPanel {
 	}
 	
 	public void refresh(){
-	    barChartView.draw(model.getDataTable(groupingProperty), getBarChartOptions(model.getMaxValue(groupingProperty)));
+		DataTable tableModel = model.getDataTable(groupingProperty);
+	    barChartView.draw(tableModel, getBarChartOptions(model.getMaxValue(groupingProperty)));
 	    super.refresh();
 	}
 	

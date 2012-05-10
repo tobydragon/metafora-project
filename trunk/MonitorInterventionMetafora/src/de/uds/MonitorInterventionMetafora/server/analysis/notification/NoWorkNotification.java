@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.manager.AnalysisManager;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;

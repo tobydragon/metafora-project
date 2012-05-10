@@ -61,17 +61,13 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	}
 
 	@Override
-	public Configuration sendRequestConfiguration(String _user,CfAction cfAction) {
+	public Configuration sendRequestConfiguration(CfAction cfAction) {
 		//TODO: should take no params, if not used... What is _user?
 		logger.info("sendRequestConfiguration]");
 		return configuration;
 	}
 
-	@Override
-	public List<CfAction> sendRequestHistoryAction(String _user,CfAction cfAction) {
-		return monitorModel.requestUpdate(null);
-	}
-
+	
 	@Override
 	public List<CfAction> requestUpdate(CfAction cfAction) {
 		return monitorModel.requestUpdate(cfAction);

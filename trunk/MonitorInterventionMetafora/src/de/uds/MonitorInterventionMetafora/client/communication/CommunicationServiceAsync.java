@@ -23,13 +23,10 @@ public interface CommunicationServiceAsync {
 	//void sendRequestHistoryAction(CfAction cfAction,
 		//	AsyncCallback<List<CfAction>> callback);
 
-	void sendRequestConfiguration(String _user,CfAction cfAction,
+	void sendRequestConfiguration(CfAction cfAction,
 			AsyncCallback<Configuration> callback);
 
 	void sendAction(String _user,CfAction cfAction, AsyncCallback<CfAction> callback);
-
-	void sendRequestHistoryAction(String _user,CfAction cfAction,
-			AsyncCallback<List<CfAction>> callback);
 
 	void requestUpdate(CfAction _lastcfAction,
 			AsyncCallback<List<CfAction>> callback);
