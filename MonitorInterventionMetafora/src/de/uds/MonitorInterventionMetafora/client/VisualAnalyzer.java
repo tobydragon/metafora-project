@@ -16,10 +16,13 @@
 package de.uds.MonitorInterventionMetafora.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.visualization.client.VisualizationUtils;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
+import de.uds.MonitorInterventionMetafora.client.communication.CommunicationService;
+import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.feedback.FeedbackPanelContainer;
 import de.uds.MonitorInterventionMetafora.client.monitor.MonitorViewPanel;
 
@@ -30,8 +33,11 @@ class VisualAnalyzer implements EntryPoint {
 		  //TODO: Check this, it seems like it only waits for pieChart, what about BarChart, etc.?
 		  VisualizationUtils.loadVisualizationApi(new Runnable() {
 	      public void run() {
+	    	  
+	    	 CommunicationServiceAsync monitoringViewServiceServlet = GWT.create(CommunicationService.class);
+	    	  
 	    	  FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer();
-	    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel();
+	    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel(monitoringViewServiceServlet);
 	    	  MainContainerTabPanel _mainPanel=new MainContainerTabPanel();
 	    	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
 	    	  _mainPanel.addTab("Feedback", _feedbackPanelContainer,false);

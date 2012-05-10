@@ -5,8 +5,9 @@ import java.util.List;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.google.gwt.user.client.ui.Image;
-import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestHistoryCallBack;
+
+import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
+import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
@@ -21,11 +22,11 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRu
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 
-public class MonitorViewPanel extends ContentPanel implements RequestHistoryCallBack{
+public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallBack{
 
 	Image loadingImage;
 	
-	
+	private CommunicationServiceAsync monitoringViewServiceServlet;
 	//Views
 	UpdaterToolbar updaterToolbar;
 	FilterListPanel flp;
@@ -39,14 +40,15 @@ public class MonitorViewPanel extends ContentPanel implements RequestHistoryCall
 	ClientMonitorDataModelUpdater updater;
 	ClientMonitorController controller;
 		
-	public MonitorViewPanel(){
+	public MonitorViewPanel(CommunicationServiceAsync monitoringViewServiceServlet){
 
+		this.monitoringViewServiceServlet=monitoringViewServiceServlet;
 		actionPropertyRuleCreator = ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.GROUPING);
 		ActionPropertyRuleSelectorModel filterPropertyRuleSelector = ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.FILTER);
 		monitorModel = new ClientMonitorDataModel(actionPropertyRuleCreator, filterPropertyRuleSelector);
 		controller = new ClientMonitorController(monitorModel);
 
-		updater = new ClientMonitorDataModelUpdater(monitorModel, controller);
+		updater = new ClientMonitorDataModelUpdater(monitorModel, controller,monitoringViewServiceServlet);
 
 		updaterToolbar = new UpdaterToolbar(updater);
 		this.setTopComponent(updaterToolbar);
@@ -65,7 +67,8 @@ public class MonitorViewPanel extends ContentPanel implements RequestHistoryCall
 	 	 _cfActionType.setType("START_FILE_INPUT");
 	 	 startupMessage.setCfActionType(_cfActionType);
 	 	 System.out.println("INFO\t\t[MonitorPanelContainer.sendStartupMessage] Sending monitoring start from Client");
-	 	 ServerCommunication.getInstance().processAction("MonitoringClient",startupMessage,this);	
+	 	 monitoringViewServiceServlet.requestUpdate(startupMessage,this);
+	 	 // ServerCommunication.getInstance().processAction(startupMessage,this);	
 	}
 
 	@Override

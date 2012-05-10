@@ -48,8 +48,6 @@ import com.extjs.gxt.ui.client.event.GridEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.button.Button;
-
-import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
@@ -308,7 +306,7 @@ public class ExtendedFilterGrid  extends LayoutContainer implements RequestConfi
 	 	 _action.setCfActionType(_cfActionType);
 	 	 
 	    
-		ServerCommunication.getInstance().processAction("Tool",_action,this);
+		//ServerCommunication.getInstance().processAction(_action,this);
 
 	    return filterGroupCombo;
 	  
