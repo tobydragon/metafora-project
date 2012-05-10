@@ -42,17 +42,6 @@ public void processAction(String _user,CfAction cfAction,CfActionCallBack action
 	
 
  
-public void processAction(CfAction cfAction,RequestConfigurationCallBack configurationCallback) {
-		
-		serviceServlet.sendRequestConfiguration(cfAction,configurationCallback);
-	
-}
-
-public void processAction(CfAction _lastcfAction,RequestUpdateCallBack updateCallback) {
-	
-	serviceServlet.requestUpdate(_lastcfAction,updateCallback);
-
-}
 
 
 
