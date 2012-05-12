@@ -12,6 +12,11 @@ import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
+
+import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
+import de.uds.MonitorInterventionMetafora.client.logger.Log;
+import de.uds.MonitorInterventionMetafora.client.logger.Logger;
+import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
@@ -35,13 +40,30 @@ public class ClientMonitorController {
 		
 		filterGridStore.addListener(Store.Add, new Listener<StoreEvent<FilterGridRow>>() {
 	        public void handleEvent(StoreEvent<FilterGridRow> be) {
-	        	filtersUpdated();        	
+	        	filtersUpdated();
+	        	Log userActionLog=new Log();
+	        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
+	        	userActionLog.setDescription("New Filter Rule is added to the filter.",be.getModels().get(0).getActionPropertyRule());
+	        	userActionLog.setTriggeredBy(be.getModels().get(0).getActionPropertyRule().getOrigin());
+	        	userActionLog.setUserActionType(UserActionType.FILTER_ADDED);
+	        	Logger.getLoggerInstance().log(userActionLog);
+	      
 	        }
 	      });
-		
+
+	
 		filterGridStore.addListener(Store.Remove, new Listener<StoreEvent<FilterGridRow>>() {
 	        public void handleEvent(StoreEvent<FilterGridRow> be) {
-	        	filtersUpdated();        	
+	        	filtersUpdated();
+	        	
+	        	Log userActionLog=new Log();
+	        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
+	        	userActionLog.setDescription("Filter Rule is removed from the filter.",be.getModel().getActionPropertyRule());
+	        	userActionLog.setTriggeredBy(be.getModel().getActionPropertyRule().getOrigin());
+	        	userActionLog.setUserActionType(UserActionType.FILTER_REMOVED);
+	        	Logger.getLoggerInstance().log(userActionLog);
+	        	
+	        	
 	        }
 	      });
 		
@@ -64,25 +86,14 @@ public class ClientMonitorController {
 	}
 	
 //	 ------------------------ Code that should be moved  to filter class ---------------------------//
-//TODO: Remove this method
-	public void addFilterItem(ActionPropertyRule newFilterEntity){		
-		EditorGrid<FilterGridRow> _grid = getFilterListEditorGrid();
-		SimpleComboBox<String> _filterCombo = getFilterListComboBox();
+
+	public void addRule(ActionPropertyRule newFilterEntity){		
 		String _key= newFilterEntity.getKey();
-          
-		if(!isInFilterList(_key,_grid) && !newFilterEntity.getValue().equalsIgnoreCase("")){
-        
-//	        if(!reset){
-//	        	reset=true;
-//	        	_filterCombo.clearSelections();
-//	        }        
-	
+		if(!isInFilterList(_key) && !newFilterEntity.getValue().equalsIgnoreCase("")){
 	        FilterGridRow  _newRow = new FilterGridRow(newFilterEntity); 
-	
-	        _grid.stopEditing();  
-	        _grid.getStore().insert(_newRow, 0);  
-	        _grid.startEditing(_grid.getStore().indexOf(_newRow), 0); 
-	        _filterCombo.clearSelections();
+	        dataModel.getFilterGridViewModel().insert(_newRow, 0);  
+	       //* _grid.startEditing(_grid.getStore().indexOf(_newRow), 0); 
+	       //* _filterCombo.clearSelections();
 	       
 	       
 	        //TODO: make a new way to set the tabs back to table tab
@@ -105,9 +116,9 @@ public class ClientMonitorController {
 	
 	
 	
-	boolean isInFilterList(String _key,EditorGrid<FilterGridRow> _grid){
-		 for (int i = 0; i < _grid.getStore().getCount(); i++) {
-			 FilterGridRow _item =	 _grid.getStore().getAt(i);
+	boolean isInFilterList(String _key){
+		 for (int i = 0; i < dataModel.getFilterGridViewModel().getCount(); i++) {
+			 FilterGridRow _item =	 dataModel.getFilterGridViewModel().getAt(i);
 			 String rowKey= _item.getKey();
 			 
 			 if(rowKey.equalsIgnoreCase(_key)){	
@@ -120,11 +131,7 @@ public class ClientMonitorController {
 	 
 //	 ------------------------ Code that should be removed ---------------------------//
 		
-	public EditorGrid<FilterGridRow>  getFilterListEditorGrid(){
-		
-		EditorGrid<FilterGridRow> editorGrid = (EditorGrid<FilterGridRow>) ComponentManager.get().get("_filterItemGrid");
-		return editorGrid;
-	}
+	
 	
 	public SimpleComboBox<String> getFilterListComboBox(){
 		

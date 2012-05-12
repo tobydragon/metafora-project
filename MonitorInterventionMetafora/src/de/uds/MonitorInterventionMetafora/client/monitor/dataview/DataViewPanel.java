@@ -14,10 +14,13 @@ public abstract class DataViewPanel extends VerticalPanel{
 	protected ActionPropertyRule groupingProperty;
 	protected ClientMonitorDataModel model;
 	
+	
+	
 
 	public DataViewPanel(ActionPropertyRule groupingProperty, ClientMonitorDataModel model){
 		this.groupingProperty = groupingProperty;
 		this.model = model;
+		
 		
 	}
 		
@@ -30,16 +33,19 @@ public abstract class DataViewPanel extends VerticalPanel{
 		refresh();
 	}
 
+	
 	public void refresh(){
 		this.layout();
 	}
 	
 	public abstract int getSelectedRow();
+	public abstract DataViewPanelType getViewType();
+	
 	
 	public static DataViewPanel createDataViewPanel(DataViewPanelType dataViewPanelType, ClientMonitorDataModel model, 
 			ClientMonitorController controller, GroupedDataViewPanel groupedDataViewController, ActionPropertyRule  groupingProperty){
 		DataViewPanel dataViewPanel = null;
-		
+
 		if (dataViewPanelType == DataViewPanelType.TABLE){  
 			dataViewPanel = new TablePanel(model, groupingProperty); 
 

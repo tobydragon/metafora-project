@@ -16,6 +16,17 @@ public class MonitorConstants {
 	public static final String ACTION_TIME_LABEL = "Action Time";
 	public static final String DESCRIPTION_LABEL = "Description";
 	
+	public static final String PROPERTY_NAME="Property";
+	public static final String OPERATION_TYPE="Operation Type:";
+	public static final String ACTION_ELEMENT_TYPE="Element Type:";
+	public static final String VALUE="Value";
+	public static final String ORIGIN="Origin";
+	
+	public static final String ACTIONS_COUNT="ACTIONS_COUNT";
+	public static final String FILTERED_ACTIONS_COUNT="FILTERED_ACTIONS_COUNT";
+	
+	
+	
 	
 
 }

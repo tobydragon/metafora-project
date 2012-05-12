@@ -10,6 +10,7 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyComboBoxItemModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
@@ -21,6 +22,7 @@ public class GroupingChooserToolbar extends ToolBar{
 	private ComboBox<PropertyComboBoxItemModel> comboType;
 	
 	GroupedDataViewPanel parentViewPanel;
+	
 
 	public GroupingChooserToolbar(final GroupedDataViewPanel parentViewPanel, ActionPropertyRule groupingProperty, String panelId){
 		

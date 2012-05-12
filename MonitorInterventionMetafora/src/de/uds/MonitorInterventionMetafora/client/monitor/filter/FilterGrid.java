@@ -179,5 +179,11 @@ public class FilterGrid  extends LayoutContainer {
        
        return cm;
    }
+  
+  public EditorGrid<FilterGridRow>  getGrid(){
+	  
+	  return grid;
+  }
+  
 		
 }

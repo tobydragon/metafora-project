@@ -10,10 +10,15 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Store;
 import com.google.gwt.visualization.client.DataTable;
 
+import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
+import de.uds.MonitorInterventionMetafora.client.logger.Log;
+import de.uds.MonitorInterventionMetafora.client.logger.Logger;
+import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.CfActionGridRow;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
+import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
@@ -80,6 +85,20 @@ public class ClientMonitorDataModel {
 				filteredActions.add(action);
 			}
 		}
+		
+		
+		
+		
+		Log userActionLog=new Log();
+    	userActionLog.setComponentType(ComponentType.ACTION_FILTERER);
+    	userActionLog.setDescription("Actions are filtered by the rules:",actionFilter.getFilterStore());
+    	userActionLog.setTriggeredBy(ComponentType.ACTION_FILTERER);
+    	userActionLog.setUserActionType(UserActionType.ACTION_FILTERING);
+    	userActionLog.addProperty(MonitorConstants.ACTIONS_COUNT,Integer.toString(actionsToFilter.size()));
+    	userActionLog.addProperty(MonitorConstants.FILTERED_ACTIONS_COUNT,Integer.toString(filteredActions.size()));
+    	Logger.getLoggerInstance().log(userActionLog);
+		
+		
 	}
 	
 	public void addData(List<CfAction> actions){

@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.server.utils;
 import java.io.File;
 
 import de.uds.MonitorInterventionMetafora.server.InitServlet;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
 
 public class GeneralUtil {
@@ -32,4 +33,6 @@ public class GeneralUtil {
 	public static String getRealPath(String string){
 		return InitServlet.getStaticServletContext().getRealPath(string);
 	}
+	
+	
 }

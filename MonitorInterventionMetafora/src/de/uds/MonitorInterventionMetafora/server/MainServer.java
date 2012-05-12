@@ -61,12 +61,11 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	}
 
 	@Override
-	public Configuration sendRequestConfiguration(CfAction cfAction) {
+	public Configuration requestConfiguration(CfAction cfAction) {
 		//TODO: should take no params, if not used... What is _user?
 		logger.info("sendRequestConfiguration]");
 		return configuration;
 	}
-
 	
 	@Override
 	public List<CfAction> requestUpdate(CfAction cfAction) {
@@ -80,6 +79,15 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	
 		System.out.println("Notifications are send to the agents!!");
 		return new CfAction();
+	}
+
+	@Override
+	public String sendLogAction(CfAction logAction) {
+		System.out.println("1*********************************************");
+		System.out.println("Log Action:"+logAction.toString());
+		System.out.println("2*********************************************");
+		
+		return null;
 	}
 	
 	 
