@@ -14,22 +14,14 @@ import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration
  * The async counterpart of <code>GreetingService</code>.
  */
 public interface CommunicationServiceAsync {
-	//void inputToServer(Map<String, String> cr, AsyncCallback<String> callback);
 
-	//void sendRequest(String cr, AsyncCallback<String> callback);
-
-	//void sendRequest(Map<String, String> cr,AsyncCallback<Map<String, Map<String, String>>> callback);
-
-	//void sendRequestHistoryAction(CfAction cfAction,
-		//	AsyncCallback<List<CfAction>> callback);
-
-	void sendRequestConfiguration(CfAction cfAction,
-			AsyncCallback<Configuration> callback);
+	void requestConfiguration(CfAction cfAction,AsyncCallback<Configuration> callback);
 
 	void sendAction(String _user,CfAction cfAction, AsyncCallback<CfAction> callback);
 
-	void requestUpdate(CfAction _lastcfAction,
-			AsyncCallback<List<CfAction>> callback);
+	void requestUpdate(CfAction _lastcfAction, AsyncCallback<List<CfAction>> callback);
+	
+	void sendLogAction(CfAction logAction,AsyncCallback<String> callback);
 	
 	void sendNotificationToAgents(CfAction cfAction, AsyncCallback<CfAction> callback);
 	

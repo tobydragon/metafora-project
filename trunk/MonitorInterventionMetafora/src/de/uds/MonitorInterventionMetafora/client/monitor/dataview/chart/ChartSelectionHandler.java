@@ -31,8 +31,8 @@ public class ChartSelectionHandler  extends SelectHandler{
 	    //get the value from the data table used to populate the char that was clicked
 	    newFilterRule.setValue(model.getDataTable(currentGroupingProp).getValueString(selection, 0));
 	    newFilterRule.setOperationType(OperationType.EQUALS);
-	    
-	    controller.addFilterItem(newFilterRule);
+	    newFilterRule.setOrigin(view.getViewType());
+	    controller.addRule(newFilterRule);
 	}
 	
 	

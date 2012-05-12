@@ -18,6 +18,11 @@ import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.event.TabPanelEvent;
 
+import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
+import de.uds.MonitorInterventionMetafora.client.logger.Log;
+import de.uds.MonitorInterventionMetafora.client.logger.Logger;
+import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
+
 
 public class TabbedDataViewPanel extends VerticalPanel {
 
@@ -27,96 +32,64 @@ public class TabbedDataViewPanel extends VerticalPanel {
 	
 	public TabbedDataViewPanel(){
 		
-	
 		tabPanel = new TabPanel();
 		tabPanel.setWidth(970);
-		//CCtabPanel.setHeight(445);
-		
 		tabPanel.setHeight(662);
-		//tabPanel.set
 		tabPanel.addListener(Events.Select, new SelectionListener<TabPanelEvent>() {
 
             @Override
             public void componentSelected(TabPanelEvent ce) {
             	
-            	
-            	//Info.display("","a"+ce.getItem().getTabIndex());
+            	Log userActionLog=new Log();
+            	userActionLog.setComponentType(ComponentType.VIEW_TAB_PANEL);
+            	userActionLog.setDescription(ce.getItem().getText()+" Tab is activated in Views Tab Panel");
+            	userActionLog.setTriggeredBy(ComponentType.VIEW_TAB_PANEL);
+            	userActionLog.setUserActionType(UserActionType.TAB_CHANGE);
+            	Logger.getLoggerInstance().log(userActionLog);
             	
             }
         });
-    
-		tabPanel.setId("_multiModelTabPanel");
-		//this.setId("_multiModelVerticalPanel");
 		this.add(tabPanel);
-		
-		
 	}
 
 	
-	public TabbedDataViewPanel(String _lbl){
-		
+	public TabbedDataViewPanel(String _lbl){	
 	if(_lbl!=null){
 		this.add(new Label(_lbl));
-		
-		
 		tabPanel = new TabPanel();
-		
-		
 		this.add(tabPanel);
-		
-	
 	}
 	}
 	
 	
 	public TabPanel getTabPanel(){
-		
 		return tabPanel;
 	}
 	
 	public void addTab(String _lbl,Widget _widget,boolean _closable){
-		
-	 TabItem _item=new TabItem(_lbl);
-	 _item.setLayout(new FitLayout());
 	 
+	 TabItem _item=new TabItem(_lbl);
+	 _item.setLayout(new FitLayout()); 
 	 _item.setClosable(_closable);
 	 _item.add(_widget);
 	 _item.setHeight(450);
 	 _item.setId(_lbl);
-	 
-	
- 
 	 tabPanel.add(_item);
-	 
-	//	tabPanel.getTabBar().get
-		//tabPanel.add(item)(_widget,_lbl);
-		//tabPanel.selectTab(0);
-		
-	
-		
 	}
 	
 	public void addTab(String id,String _lbl,Widget _widget,boolean _closable){
-		
-		 TabItem _item=new TabItem(_lbl);
-		 _item.setLayout(new FitLayout());
 		 
+		TabItem _item=new TabItem(_lbl);
+		 _item.setLayout(new FitLayout());
 		 _item.setClosable(_closable);
 		 _item.add(_widget);
 		 _item.setHeight(450);
 		 _item.setId(id);
-		 tabPanel.add(_item);
-		 
-		//	tabPanel.getTabBar().get
-			//tabPanel.add(item)(_widget,_lbl);
-			//tabPanel.selectTab(0);
-			
-		
-			
+		 tabPanel.add(_item);	
 		}
 
 	public void switchToTab(int index){
-				
+	
 		tabPanel.setTabIndex(index);
 	}
 	

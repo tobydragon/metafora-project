@@ -22,6 +22,7 @@ import com.google.gwt.user.client.Element;
 
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
@@ -43,6 +44,7 @@ public class TablePanel extends DataViewPanel {
 	public void refresh() {
 		if (groupingProperty != null && !groupingProperty.equals("") ){
 			model.getTableViewModel().groupBy(groupingProperty.getDisplayText());
+			
 		}
 		else {
 			model.getTableViewModel().clearGrouping();
@@ -175,6 +177,12 @@ public class TablePanel extends DataViewPanel {
 	        
 	        return ColoredGrid;
 		
+	}
+
+	@Override
+	public DataViewPanelType getViewType() {
+		
+		return DataViewPanelType.TABLE;
 	}
 
 }

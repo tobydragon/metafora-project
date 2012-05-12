@@ -20,20 +20,14 @@ public interface CommunicationService  extends RemoteService  {
 	
 	CfAction sendAction(String _user,CfAction cfAction);
 	
-	
-	
 	List<CfAction> requestUpdate(CfAction _lastcfAction);
-
-	Configuration sendRequestConfiguration(CfAction cfAction);
-
+	
+	Configuration requestConfiguration(CfAction cfAction);
+	
 	CfAction sendNotificationToAgents(CfAction cfAction);
-
-
-
 	
-	
-	
-	//Map<String, Map<String, String>> sendRequest(Map<String, String> cr);
+	String sendLogAction(CfAction logAction);
+
 	
 	
 }

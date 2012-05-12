@@ -12,6 +12,7 @@ import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ActionPropertyValueGroupingTableModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
@@ -22,6 +23,7 @@ public class BarChartPanel extends DataViewPanel {
 	
 	public BarChartPanel(ClientMonitorDataModel _model, ClientMonitorController controller, GroupedDataViewPanel groupedDataViewController, ActionPropertyRule  groupingProperty){
 		super(groupingProperty, _model);
+		
 		
 		this.setId("barChartVerticalPanel");
 		createBarChart(controller);
@@ -97,6 +99,12 @@ public class BarChartPanel extends DataViewPanel {
 			}}; 
 		 
 	 }
+
+	@Override
+	public DataViewPanelType getViewType() {
+		
+		return DataViewPanelType.BAR_CHART;
+	}
 	
 	
 }

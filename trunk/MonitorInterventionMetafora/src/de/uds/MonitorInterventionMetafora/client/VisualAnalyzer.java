@@ -25,6 +25,7 @@ import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServ
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.feedback.FeedbackPanelContainer;
 import de.uds.MonitorInterventionMetafora.client.monitor.MonitorViewPanel;
+import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 
 class VisualAnalyzer implements EntryPoint {
@@ -35,7 +36,9 @@ class VisualAnalyzer implements EntryPoint {
 	      public void run() {
 	    	  
 	    	 CommunicationServiceAsync monitoringViewServiceServlet = GWT.create(CommunicationService.class);
-	    	  
+	    	
+	    	 User.userID= Long.toString(GWTUtils.getTimeStamp());
+	    	 
 	    	  FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer();
 	    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel(monitoringViewServiceServlet);
 	    	  MainContainerTabPanel _mainPanel=new MainContainerTabPanel();

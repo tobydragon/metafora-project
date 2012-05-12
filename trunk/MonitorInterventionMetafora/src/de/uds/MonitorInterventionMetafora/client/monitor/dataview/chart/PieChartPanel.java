@@ -10,6 +10,7 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart.Pie
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 public class PieChartPanel extends  DataViewPanel {
@@ -59,5 +60,11 @@ public class PieChartPanel extends  DataViewPanel {
 		    }
 	    }
 	    return selection;
+	}
+
+	@Override
+	public DataViewPanelType getViewType() {
+		
+		return DataViewPanelType.PIE_CHART;
 	}
 }

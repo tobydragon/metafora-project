@@ -38,7 +38,14 @@ public class GroupingChooserPanel extends HorizontalPanel{
 	   
 	        	if(selectedProperty!=null){
         			parentViewPanel.changeGroupingProperty(selectedProperty);
+	        	
+        			
+	        	
 	        	}
+	        	
+	        	
+	        	
+	        	
 	         }
 	     });
 

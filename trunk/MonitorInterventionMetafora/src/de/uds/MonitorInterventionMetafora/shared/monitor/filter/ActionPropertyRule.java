@@ -12,6 +12,8 @@ package de.uds.MonitorInterventionMetafora.shared.monitor.filter;
 
 import java.io.Serializable;
 
+import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
@@ -32,6 +34,7 @@ public class ActionPropertyRule  implements Serializable{
 	private OperationType operationtype;
 	private ActionElementType type;
 	private String valueToFilterBy="";
+	private DataViewPanelType  origin;
 
 	public ActionPropertyRule() {
 	}
@@ -71,7 +74,13 @@ public class ActionPropertyRule  implements Serializable{
 	  valueToFilterBy= _value;
   }
 
+  public void setOrigin(DataViewPanelType  origin){
+	  this.origin=origin;
+  }
   
+  public DataViewPanelType  getOrigin(){
+	  return origin;
+  } 
   public void setType(ActionElementType _type){
 	  
 	  type= _type;
