@@ -14,6 +14,7 @@ public class MonitorModel {
 	
 	public MonitorModel(){
 		cfActions=new Vector<CfAction>();
+	
 	}
 	
 	public synchronized void addAction(CfAction action){

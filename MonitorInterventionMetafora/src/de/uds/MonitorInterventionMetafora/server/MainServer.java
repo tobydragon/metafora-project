@@ -69,6 +69,8 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	
 	@Override
 	public List<CfAction> requestUpdate(CfAction cfAction) {
+		
+	
 		return monitorModel.requestUpdate(cfAction);
 	}
 
