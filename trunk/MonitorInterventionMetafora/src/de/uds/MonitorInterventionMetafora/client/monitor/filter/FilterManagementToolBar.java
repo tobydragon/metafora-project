@@ -16,6 +16,7 @@ import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 
+import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyComboBoxItemModel;
@@ -93,7 +94,7 @@ public class FilterManagementToolBar extends ToolBar{
 		
 		addButton=new Button("Add Filter",getAddButtonEvent());
 		addButton.setIcon(Resources.ICONS.add());
-		addButton.setId("ww");
+		//addButton.setId("ww");
 		addButton.setPosition(0,-9);
 		addButton.setLayoutData(new FitLayout());
 		
@@ -161,6 +162,7 @@ public class FilterManagementToolBar extends ToolBar{
 				newFilterRule.setType(filterPropertyComboBox.getValue().getActionPropertyRule().getType());
 				newFilterRule.setOperationType(operationComboBox.getValue().getOperationType());
 				newFilterRule.setValue(entityValueTextBox.getValue());
+				newFilterRule.setOrigin(ComponentType.FILTER_MANAGEMENT_TOOLBAR);
 				
 				
 				
