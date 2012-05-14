@@ -34,7 +34,7 @@ public class ActionPropertyRule  implements Serializable{
 	private OperationType operationtype;
 	private ActionElementType type;
 	private String valueToFilterBy="";
-	private DataViewPanelType  origin;
+	private ComponentType  origin;
 
 	public ActionPropertyRule() {
 	}
@@ -75,12 +75,32 @@ public class ActionPropertyRule  implements Serializable{
   }
 
   public void setOrigin(DataViewPanelType  origin){
-	  this.origin=origin;
+	  this.origin=getComponentType(origin);
   }
   
-  public DataViewPanelType  getOrigin(){
+  public void setOrigin(ComponentType  origin){
+	  this.origin=origin;
+  }
+  public ComponentType  getOrigin(){
 	  return origin;
   } 
+  
+  ComponentType getComponentType(DataViewPanelType viewType){
+		ComponentType componentType = null;
+		switch(viewType){
+		case TABLE:
+			componentType=ComponentType.ACTION_TABLE;
+			break;
+		case PIE_CHART:
+			componentType=ComponentType.PIE_CHART;
+			break;
+		case BAR_CHART:
+			componentType=ComponentType.BAR_CHART;
+			break;
+		}
+		return componentType;
+	}
+  
   public void setType(ActionElementType _type){
 	  
 	  type= _type;
@@ -93,6 +113,8 @@ public class ActionPropertyRule  implements Serializable{
 	  
 	  operationtype=_operationtype;
   }
+  
+  
   
    
  public OperationType getOperationType(){
