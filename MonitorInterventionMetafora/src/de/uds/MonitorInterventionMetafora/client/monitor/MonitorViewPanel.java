@@ -104,7 +104,6 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 	
 	private void createTabbedDataViewsPanel(ActionPropertyRuleSelectorModel actionPropertyRuleCreator){
 		tabbedDataViewPanel=new TabbedDataViewPanel();
-		tabbedDataViewPanel.setId("_tabMainPanel");
 		
 		ActionPropertyRule defaultGrouping = ActionPropertyRuleSelectorModel.getDefaultGrouping();
 		
@@ -116,6 +115,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 
 		GroupedDataViewPanel barChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.BAR_CHART, monitorModel, controller, defaultGrouping, "barChartFilterPanel", "comboColumnChartType");
 		addDataView("barChartViewTab", "Bar Chart View", barChartWithChooser);
+		
 	}
 	
 	private void addDataView(String id, String name, GroupedDataViewPanel panel){

@@ -5,6 +5,8 @@ import java.util.Map;
 
 
 
+import com.extjs.gxt.ui.client.Style.HideMode;
+import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.TabItem;
@@ -35,6 +37,7 @@ public class TabbedDataViewPanel extends VerticalPanel {
 		tabPanel = new TabPanel();
 		tabPanel.setWidth(970);
 		tabPanel.setHeight(662);
+		tabPanel.setLayoutData(new FitLayout());
 		tabPanel.addListener(Events.Select, new SelectionListener<TabPanelEvent>() {
 
             @Override
@@ -74,7 +77,12 @@ public class TabbedDataViewPanel extends VerticalPanel {
 	 _item.add(_widget);
 	 _item.setHeight(450);
 	 _item.setId(_lbl);
+	 _item.setHideMode(HideMode.OFFSETS);
+	 tabPanel.render(_item.getElement());
+	 tabPanel.repaint();
+	 _item.repaint();
 	 tabPanel.add(_item);
+	 
 	}
 	
 	public void addTab(String id,String _lbl,Widget _widget,boolean _closable){
@@ -85,12 +93,23 @@ public class TabbedDataViewPanel extends VerticalPanel {
 		 _item.add(_widget);
 		 _item.setHeight(450);
 		 _item.setId(id);
-		 tabPanel.add(_item);	
+		 _item.setHideMode(HideMode.OFFSETS);
+		 
+		 tabPanel.repaint();
+		 
+		// _item.repaint();
+		 _item.repaint();
+		 tabPanel.render(_item.getElement());
+		 tabPanel.add(_item);
+		
+		
+		
 		}
 
 	public void switchToTab(int index){
 	
 		tabPanel.setTabIndex(index);
+	
 	}
 	
 

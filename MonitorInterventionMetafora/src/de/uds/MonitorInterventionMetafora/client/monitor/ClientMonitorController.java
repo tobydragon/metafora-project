@@ -19,6 +19,7 @@ import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.OperationsComboBoxModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
@@ -41,6 +42,15 @@ public class ClientMonitorController {
 		filterGridStore.addListener(Store.Add, new Listener<StoreEvent<FilterGridRow>>() {
 	        public void handleEvent(StoreEvent<FilterGridRow> be) {
 	        	filtersUpdated();
+	        	
+	     //   	getView("pieChartVerticalPanel").layout();
+	       
+	        	//getView("pieChartVerticalPanel").refresh();
+	        	
+	        	//getView("barChartVerticalPanel").layout();
+	 	       
+	        //	getView("barChartVerticalPanel").refresh();
+	        	
 	        	Log userActionLog=new Log();
 	        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
 	        	userActionLog.setDescription("New Filter Rule is added to the filter.",be.getModels().get(0).getActionPropertyRule());
@@ -77,6 +87,8 @@ public class ClientMonitorController {
 	public void refreshViews() {
 		for (GroupedDataViewPanel panel : dataViewPanels){
 			panel.refresh();
+			
+			
 		}
 	}
 	
@@ -133,6 +145,14 @@ public class ClientMonitorController {
 		
 	
 	
+	
+	
+public DataViewPanel getView(String id){
+		
+		return (DataViewPanel)ComponentManager.get().get(id);
+	}
+
+
 	public SimpleComboBox<String> getFilterListComboBox(){
 		
 		return (SimpleComboBox<String>) ComponentManager.get().get("_filterGroupCombo");

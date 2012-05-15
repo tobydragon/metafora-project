@@ -44,7 +44,11 @@ public class BarChartPanel extends DataViewPanel {
 	public void refresh(){
 		DataTable tableModel = model.getDataTable(groupingProperty);
 	    barChartView.draw(tableModel, getBarChartOptions(model.getMaxValue(groupingProperty)));
+		//barChartView.draw(tableModel);
+	    barChartView.setLayoutData(new FitLayout());
+	  
 	    super.refresh();
+	    this.repaint();
 	}
 	
 	public Options  getBarChartOptions(int _maxValue){
