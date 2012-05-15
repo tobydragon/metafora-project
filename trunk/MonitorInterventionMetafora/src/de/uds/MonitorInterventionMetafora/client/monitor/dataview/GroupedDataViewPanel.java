@@ -54,9 +54,14 @@ public class GroupedDataViewPanel extends ContentPanel {
 
 	public void refresh() {
 		dataViewPanel.refresh();
-		layout();
+		this.setLayoutNeeded(true);
+		this.layout();
 	}
 
+	public DataViewPanelType getDataViewType(){
+	
+		return dataViewPanelType;
+	}
 	public ActionPropertyRule getSelectedGroupingProperty() {
 		return groupingChooserToolbar.getSelectedProperty();
 	}

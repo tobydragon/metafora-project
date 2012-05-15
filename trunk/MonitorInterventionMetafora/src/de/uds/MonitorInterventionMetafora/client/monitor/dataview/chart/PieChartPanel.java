@@ -25,8 +25,16 @@ public class PieChartPanel extends  DataViewPanel {
 	}
  
 	public void refresh(){
+		//pieChartView.draw(model.getDataTable(groupingProperty));
+	
 		pieChartView.draw(model.getDataTable(groupingProperty), getPieChartOptions());
+		pieChartView.setLayoutData(new FitLayout());
+		
+		//pieChartView.
+		
+		this.repaint();
 		super.refresh();
+		
 	}
 	
 	private void createPieChart(ClientMonitorController controller) {
