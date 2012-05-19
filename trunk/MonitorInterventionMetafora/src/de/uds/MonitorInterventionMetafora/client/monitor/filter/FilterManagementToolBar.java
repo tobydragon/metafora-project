@@ -9,6 +9,7 @@ import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
+import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
@@ -35,12 +36,15 @@ public class FilterManagementToolBar extends ToolBar{
 	private  ComboBox<PropertyComboBoxItemModel> filterPropertyComboBox;
 	private ComboBox<OperationsComboBoxModel> operationComboBox;
 	private TextField<String> entityValueTextBox; 
+	private SimpleComboBox<String> filterGroupCombo;
 	private  Button addButton;
 	EditorGrid<FilterGridRow> grid;
 	
 	
 	//TODO remove all dependencies on controller, controller is notified through the grid store 
-	public FilterManagementToolBar(EditorGrid<FilterGridRow> grid, ActionPropertyRuleSelectorModel filterRuleSelectorModel){
+	public FilterManagementToolBar(EditorGrid<FilterGridRow> grid, ActionPropertyRuleSelectorModel filterRuleSelectorModel,final SimpleComboBox<String> filterGroupCombo){
+
+this.filterGroupCombo=filterGroupCombo;
 
 		this.grid = grid;
 		 FormLayout layout = new FormLayout();
@@ -88,6 +92,7 @@ public class FilterManagementToolBar extends ToolBar{
 		        	operationComboBox.setStore(getOperations(false));
 	        	}
 	        	operationComboBox.clearSelections();
+	        	
 	        }
 	    };
 		filterPropertyComboBox.addSelectionChangedListener(comboListenerItem);
@@ -186,6 +191,7 @@ public class FilterManagementToolBar extends ToolBar{
 		        filterPropertyComboBox.clearSelections();
 		        operationComboBox.clearSelections();
 		        entityValueTextBox.clear();
+		        filterGroupCombo.clearSelections();
 
 				}
 				

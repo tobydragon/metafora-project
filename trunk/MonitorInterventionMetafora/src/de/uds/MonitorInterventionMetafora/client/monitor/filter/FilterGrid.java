@@ -51,6 +51,10 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 
+import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
+import de.uds.MonitorInterventionMetafora.client.logger.Log;
+import de.uds.MonitorInterventionMetafora.client.logger.Logger;
+import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
@@ -80,8 +84,8 @@ public class FilterGrid  extends LayoutContainer {
     ContentPanel panel = new ContentPanel();
     grid = new EditorGrid<FilterGridRow>(model.getFilterGridViewModel(), getColumnModel());
     grid.setBorders(true);
-    FilterManagementToolBar _filterManagementToolBar=new FilterManagementToolBar(grid,model.getFilterSelectorModel());
-    panel.setBottomComponent(_filterManagementToolBar);
+    
+    
     panel.setHeaderVisible(false);
     panel.setIcon(Resources.ICONS.table());
     panel.setButtonAlign(HorizontalAlignment.CENTER);
@@ -93,9 +97,13 @@ public class FilterGrid  extends LayoutContainer {
     panel.setLayout(new FitLayout());
     panel.add(grid);
     filterSelectorToolBar=new FilterSelectorToolBar(grid,model,controller);
-    panel.setTopComponent(filterSelectorToolBar);
+    FilterManagementToolBar _filterManagementToolBar=new FilterManagementToolBar(grid,model.getFilterSelectorModel(),filterSelectorToolBar.getFilterSelectorComboBox());
+    panel.setBottomComponent(_filterManagementToolBar);
     
+    panel.setTopComponent(filterSelectorToolBar);
     add(panel);
+    
+    
    
     
   }
