@@ -48,26 +48,27 @@ import com.extjs.gxt.ui.client.event.GridEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
+
+import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
+
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
-import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
-import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
+
 
 public class FilterGrid  extends LayoutContainer {
 
 	 EditorGrid<FilterGridRow> grid;
      ClientMonitorController controller;
 	 ClientMonitorDataModel model;
+	 FilterSelectorToolBar filterSelectorToolBar;
+	 
 	
 	public FilterGrid(ClientMonitorDataModel model, ClientMonitorController controller){
+		
 		this.model = model;
 		this.controller = controller;
+		
 	}
 	
 
@@ -91,6 +92,9 @@ public class FilterGrid  extends LayoutContainer {
     grid.setHeight(180);
     panel.setLayout(new FitLayout());
     panel.add(grid);
+    filterSelectorToolBar=new FilterSelectorToolBar(grid,model,controller);
+    panel.setTopComponent(filterSelectorToolBar);
+    
     add(panel);
    
     
@@ -146,8 +150,8 @@ public class FilterGrid  extends LayoutContainer {
 
             	
             	store.remove(model);
-            	//filterGroupCombo.clearSelections();
-            
+            	filterSelectorToolBar.getFilterSelectorComboBox().clearSelections();
+            	
             
             }
           });

@@ -1,6 +1,8 @@
 package de.uds.MonitorInterventionMetafora.server;
 
 import java.util.List;
+import java.util.Vector;
+
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationService;
 import de.uds.MonitorInterventionMetafora.server.analysis.manager.AnalysisManager;
@@ -13,7 +15,13 @@ import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
+import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -33,6 +41,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	
 	public MainServer(){	
 		super();
+
 	
 		configuration = readConfiguration();
 		CfCommunicationMethodType communicationMethodType = configuration.getDataSouceType();

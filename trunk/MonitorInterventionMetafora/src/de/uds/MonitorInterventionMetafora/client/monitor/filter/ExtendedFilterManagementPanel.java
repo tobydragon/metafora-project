@@ -143,7 +143,7 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 	
 	SelectionListener<ButtonEvent> getAddButtonEvent(){
 		
-		
+		/*
 		SelectionListener<ButtonEvent> _addBtnEvent=new SelectionListener<ButtonEvent>() {
 
 			@Override
@@ -189,8 +189,8 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 			}
 			};
 		
-			
-		return  _addBtnEvent;
+			*/
+		return  null;
 	}
 	
 	

@@ -16,7 +16,7 @@ public class ServerFormatStrings {
 	public static final String PROPERTY="property";
 	public static final String VALUE="value";
 	public static final String EDITABLE="editable";
-	public static final String ENTITYNAME="entityname";
+	public static final String PROPERTYRULENAME="propertyrulename";
 	public static final String FILTERITEM="filteritem";
 	public static final String OPERATION="operation";
 	public static final String NOTIFICATIONS="notifications";

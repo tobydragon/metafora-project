@@ -10,6 +10,7 @@ import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 
+import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.logger.Log;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
@@ -25,8 +26,9 @@ public class FilterListPanel extends ContentPanel {
 	FilterGrid filterGird;
 	private ClientMonitorController interfaceManager;
 	ClientMonitorDataModel maintenance;
-	public FilterListPanel(ClientMonitorDataModel _maintenance, ClientMonitorController controller){
-		
+	CommunicationServiceAsync serverlet;
+	public FilterListPanel(ClientMonitorDataModel _maintenance, ClientMonitorController controller,CommunicationServiceAsync serverlet){
+		this.serverlet=serverlet;
 		maintenance=_maintenance;
 		interfaceManager= controller;
 		this.setCollapsible(true);

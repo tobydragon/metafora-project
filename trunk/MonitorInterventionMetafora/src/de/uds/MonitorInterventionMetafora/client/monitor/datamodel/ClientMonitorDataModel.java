@@ -10,6 +10,8 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Store;
 import com.google.gwt.visualization.client.DataTable;
 
+import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
+import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.logger.Log;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
@@ -18,18 +20,20 @@ import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.CfAction
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
 
-public class ClientMonitorDataModel {
+public class ClientMonitorDataModel{
 	
 	private List<CfAction> allActions;
-	
-	private ActionFilter actionFilter;
+	private Map<String, ActionFilter> allActionFilters;
+	private ActionFilter currentActionFilter;
 	
 	private  List<CfAction> filteredActions;
+	private CommunicationServiceAsync monitoringViewServiceServlet;
 	
 	private GroupingStore<CfActionGridRow> tableViewModel;
 	//private ListStore<FilterGridRow> filterGridViewModel;
@@ -40,14 +44,27 @@ public class ClientMonitorDataModel {
 	//and occurrence counts for an AcionPropertyRule
 	private Map<String, ActionPropertyValueGroupingTableModel> rule2ValueGroupingTableMap;
 	
-	public ClientMonitorDataModel(ActionPropertyRuleSelectorModel groupingSelectorModel,ActionPropertyRuleSelectorModel filterSelectorModel ){
+	public ClientMonitorDataModel(ActionPropertyRuleSelectorModel groupingSelectorModel,ActionPropertyRuleSelectorModel filterSelectorModel,CommunicationServiceAsync monitoringViewServiceServlet){
+		
 		this.groupingSelectorModel = groupingSelectorModel;
 		this.filterSelectorModel=filterSelectorModel;
-		actionFilter = new ActionFilter();
+		this.monitoringViewServiceServlet=monitoringViewServiceServlet;
+		currentActionFilter = new ActionFilter();
 		allActions = new Vector<CfAction>();
+		allActionFilters=new HashMap<String, ActionFilter>();
 		
 		tableViewModel = new GroupingStore<CfActionGridRow>();
+	
 		clearFilteredData();
+		
+		
+	}
+	
+	
+	
+	public CommunicationServiceAsync getServiceServlet(){
+		
+		return monitoringViewServiceServlet;
 	}
 	
 	public ActionPropertyRuleSelectorModel getFilterSelectorModel(){
@@ -65,8 +82,9 @@ public class ClientMonitorDataModel {
 	
 	public ListStore<FilterGridRow> getFilterGridViewModel(){
 		
-		return actionFilter.getFilterStore();
+		return currentActionFilter.getFilterStore();
 	}
+	
 	
 	
 	public void updateFilteredList(){
@@ -76,7 +94,7 @@ public class ClientMonitorDataModel {
 	
 	public void addFilteredData(List<CfAction> actionsToFilter){
 		for (CfAction action : actionsToFilter){
-			if (actionFilter.filterIncludesAction(action)){
+			if (currentActionFilter.filterIncludesAction(action)){
 				tableViewModel.add(new CfActionGridRow(action));
 				
 				for (ActionPropertyValueGroupingTableModel indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
@@ -91,7 +109,7 @@ public class ClientMonitorDataModel {
 		
 		Log userActionLog=new Log();
     	userActionLog.setComponentType(ComponentType.ACTION_FILTERER);
-    	userActionLog.setDescription("Actions are filtered by the rules:",actionFilter.getFilterStore());
+    	userActionLog.setDescription("Actions are filtered by the rules:",currentActionFilter.getFilterStore());
     	userActionLog.setTriggeredBy(ComponentType.ACTION_FILTERER);
     	userActionLog.setUserActionType(UserActionType.ACTION_FILTERING);
     	userActionLog.addProperty(MonitorConstants.ACTIONS_COUNT,Integer.toString(actionsToFilter.size()));
@@ -152,5 +170,7 @@ public class ClientMonitorDataModel {
 	public GroupingStore<CfActionGridRow> getTableViewModel(){
 		return tableViewModel;
 	}
+
+
 	
 }
