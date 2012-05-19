@@ -45,10 +45,10 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 		this.monitoringViewServiceServlet=monitoringViewServiceServlet;
 		actionPropertyRuleCreator = ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.GROUPING);
 		ActionPropertyRuleSelectorModel filterPropertyRuleSelector = ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.FILTER);
-		monitorModel = new ClientMonitorDataModel(actionPropertyRuleCreator, filterPropertyRuleSelector);
+		monitorModel = new ClientMonitorDataModel(actionPropertyRuleCreator, filterPropertyRuleSelector,monitoringViewServiceServlet);
 		controller = new ClientMonitorController(monitorModel);
 
-		updater = new ClientMonitorDataModelUpdater(monitorModel, controller,monitoringViewServiceServlet);
+		updater = new ClientMonitorDataModelUpdater(monitorModel, controller);
 
 		updaterToolbar = new UpdaterToolbar(updater);
 		this.setTopComponent(updaterToolbar);
@@ -87,7 +87,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 		updaterToolbar.setAutoRefresh(true);
 	
 		VerticalPanel panel=new VerticalPanel();
-		flp=new FilterListPanel(monitorModel, controller);
+		flp=new FilterListPanel(monitorModel, controller,monitoringViewServiceServlet);
 		panel.add(flp);
 		
 		createTabbedDataViewsPanel(actionPropertyRuleCreator);

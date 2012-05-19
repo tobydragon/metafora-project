@@ -56,6 +56,8 @@ public class ClientMonitorController {
 	        	userActionLog.setDescription("New Filter Rule is added to the filter.",be.getModels().get(0).getActionPropertyRule());
 	        	userActionLog.setTriggeredBy(be.getModels().get(0).getActionPropertyRule().getOrigin());
 	        	userActionLog.setUserActionType(UserActionType.FILTER_ADDED);
+	        
+	        	
 	        	Logger.getLoggerInstance().log(userActionLog);
 	      
 	        }
@@ -146,7 +148,7 @@ public class ClientMonitorController {
 	
 	
 	
-	
+	/*
 public DataViewPanel getView(String id){
 		
 		return (DataViewPanel)ComponentManager.get().get(id);
@@ -169,5 +171,5 @@ public DataViewPanel getView(String id){
 		
 		return (TextField<String>) ComponentManager.get().get("entityValueText");
 	}
-
+*/
 }

@@ -48,6 +48,7 @@ import com.extjs.gxt.ui.client.event.GridEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.button.Button;
+
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
@@ -56,6 +57,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
@@ -328,13 +330,13 @@ public void onFailure(Throwable caught) {
 public void onSuccess(Configuration result) {
 	
 	
-	final Map<String, IndicatorFilter> confFilters=result.getFilters();
+	final Map<String, ActionFilter> confFilters=result.getActionFilters();
 
   for(String filtername: confFilters.keySet()){
 	    filterGroupCombo.add(filtername);  
 	    }
 	    
-	    
+  /*
 	    filterGroupCombo.addListener(Events.Change, new Listener<FieldEvent>() {  
 	      public void handleEvent(FieldEvent be) {  
 	        String filterSetKey = filterGroupCombo.getSimpleValue();
@@ -368,7 +370,7 @@ public void onSuccess(Configuration result) {
 	        
 	        
 	      }  
-	    });
+	    }); */
 	    
 	    
 	

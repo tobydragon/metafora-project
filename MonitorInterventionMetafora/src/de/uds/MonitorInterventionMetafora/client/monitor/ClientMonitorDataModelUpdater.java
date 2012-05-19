@@ -13,12 +13,12 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 
 	private ClientMonitorDataModel clientDataModel;
 	private ClientMonitorController controller;
-	private CommunicationServiceAsync monitoringViewServiceServlet;
+	
 
-	public ClientMonitorDataModelUpdater(ClientMonitorDataModel monitorModel, ClientMonitorController controller,CommunicationServiceAsync monitoringViewServiceServlet) {
+	public ClientMonitorDataModelUpdater(ClientMonitorDataModel monitorModel, ClientMonitorController controller) {
 		this.clientDataModel = monitorModel;
 		this.controller = controller;
-		this.monitoringViewServiceServlet=monitoringViewServiceServlet;
+		
 	}
 	
 	public void receiveUpdate(List<CfAction> actions){
@@ -52,7 +52,7 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 	
 	public void getUpdate(){
 		
-		monitoringViewServiceServlet.requestUpdate(clientDataModel.getLastAction(),this);
+		clientDataModel.getServiceServlet().requestUpdate(clientDataModel.getLastAction(),this);
 		
 		
 		//ServerCommunication.getInstance().processAction(clientDataModel.getLastAction(),this);

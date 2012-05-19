@@ -10,6 +10,8 @@ package de.uds.MonitorInterventionMetafora.client.monitor.filter;
 
 
 
+import java.io.Serializable;
+
 import com.extjs.gxt.ui.client.data.BaseModel;
 
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
@@ -17,7 +19,7 @@ import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.Operation
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 //TODO: remake this class, as IndicatorGridRowItem, where it holds the IndicatorEntity and also sets the necessary values for the table
-public class FilterGridRow extends BaseModel {
+public class FilterGridRow extends BaseModel implements Serializable {
 
 
 	

@@ -1,34 +1,64 @@
 package de.uds.MonitorInterventionMetafora.shared.monitor.filter;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+
 import java.util.List;
 import java.util.Vector;
 
-import com.extjs.gxt.ui.client.store.ListStore;
-import com.extjs.gxt.ui.client.widget.ComponentManager;
-import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
-
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.FilterViewModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 
-public class ActionFilter {
+public class ActionFilter implements Serializable{
 
-	//List<ActionPropertyRule> filterRules;
-	private ListStore<FilterGridRow> filterRules;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6017681413593886575L;
+	private String name="";
+	private boolean editable=false;
+	List<ActionPropertyRule> actionPropertyRules;
+	private FilterViewModel filterRules;
+	//private ListStore<FilterGridRow> filterRules;
+	private boolean isServerFilter;
+	
 	
 	public ActionFilter(){
-		filterRules = new ListStore<FilterGridRow>();
+		isServerFilter=false;
+		actionPropertyRules=new Vector<ActionPropertyRule>();
+		filterRules = new FilterViewModel();
+	}
+	public ActionFilter(boolean isServerFilter){
+		this.isServerFilter=isServerFilter;
+		actionPropertyRules=new Vector<ActionPropertyRule>();
+		filterRules = new FilterViewModel();
 	}
 	
 
+	public void setEditable(boolean editable){
+		
+		this.editable=editable;
+	}
 	
+	public boolean getEditable(){
+		
+		return editable;
+	}
+	public void setName(String name){
+		this.name=name;
+	}
+	
+	public String getName(){
+		return name;
+	}
 	public void addFilterRule(ActionPropertyRule filterRule){
+		actionPropertyRules.add(filterRule);
+		if(!isServerFilter){
 		filterRules.add(new FilterGridRow(filterRule));
 		}
+		}
 	
-	public ListStore<FilterGridRow>  getFilterStore(){
+	public FilterViewModel  getFilterStore(){
 		
 		return filterRules;
 	
@@ -44,13 +74,29 @@ public class ActionFilter {
 	}
 	
 
+public List<ActionPropertyRule>  getActionPropertyRules(){
+		
+		return actionPropertyRules;
+	}
+	
 	public boolean filterIncludesAction(CfAction action){
+		if(isServerFilter){
+			for (ActionPropertyRule rule : actionPropertyRules){
+				if (! rule.ruleIncludesAction(action)){
+					return false;
+				}
+			}
+			return true;
+		}
+		
+	else {
 		for (FilterGridRow rule : filterRules.getRange(0, filterRules.getCount()-1)){
-			if (! rule.getActionPropertyRule().ruleIncludesAction(action)){
+			if (!rule.getActionPropertyRule().ruleIncludesAction(action)){
 				return false;
 			}
 		}
 		return true;
+		}		
 	}
 	
 	

@@ -87,7 +87,8 @@ public class Log {
 	}
 	
 	
-	public ComponentType getTriggeredBy(){	
+	public ComponentType getTriggeredBy(){
+		
 		return triggeredBy;
 	}
 	
@@ -123,7 +124,7 @@ public void setDescription(String descriptionText,ListStore<FilterGridRow> filte
 	
 	propertyString=propertyString+"]";
 	
-	this.descriptionText=propertyString;
+	this.descriptionText=descriptionText+" "+propertyString;
 		
 }
 
@@ -176,8 +177,15 @@ public String getDescription(){
 			
 		logObject.addProperty(new CfProperty(key, properties.get(key)));
 		}
-		CfObject	triggeredByObject = new CfObject(triggeredBy.toString(),triggeredBy.toString());		
-
+		
+		CfObject	triggeredByObject;
+		if(triggeredBy==null){
+		triggeredByObject= new CfObject(component.toString(),component.toString());		
+		}
+		else{
+			
+			triggeredByObject= new CfObject(triggeredBy.toString(),triggeredBy.toString());		
+		}
 		CfContent myContent = new CfContent(descriptionText);
 		logAction.addObject(logObject);
 		logAction.addObject(triggeredByObject);

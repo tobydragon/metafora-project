@@ -8,6 +8,7 @@ import java.util.Map;
 import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 //import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 
 
@@ -22,10 +23,10 @@ public class Configuration implements Serializable{
 	CfCommunicationMethodType communicationMethodType = CfCommunicationMethodType.file;
 	String historyStartTime = MetaforaStrings.CURRENT_TIME;
 	
-	Map<String, IndicatorFilter> filters;
+	Map<String, ActionFilter> filters;
 	
 	public Configuration(){
-		filters=new HashMap<String,IndicatorFilter>();
+		filters=new HashMap<String,ActionFilter>();
 		//notifications=new ArrayList<Notification>();
 	}
 	
@@ -37,18 +38,18 @@ public class Configuration implements Serializable{
 		return name;
 	}
 	
-	public void addFilter(IndicatorFilter af){
-		filters.put(af.name, af);
+	public void addActionFilter(ActionFilter af){
+		filters.put(af.getName(), af);
 	}
 	
-	public void addFilters(List<IndicatorFilter> _filters){
+	public void addFilters(List<ActionFilter> actionfilters){
 		filters.clear();
-		for(IndicatorFilter _enty:_filters){
-			filters.put(_enty.name, _enty);
+		for(ActionFilter filter:actionfilters){
+			filters.put(filter.getName(), filter);
 		}
 	}
 	
-	public Map<String, IndicatorFilter>  getFilters(){	
+	public Map<String, ActionFilter>  getActionFilters(){	
 		return filters;
 	}
 	
