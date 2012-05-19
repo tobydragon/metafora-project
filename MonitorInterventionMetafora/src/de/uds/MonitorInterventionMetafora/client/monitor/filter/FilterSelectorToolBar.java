@@ -5,9 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 import com.extjs.gxt.ui.client.data.ModelData;
+import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.FieldEvent;
 import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.store.Store;
+import com.extjs.gxt.ui.client.store.StoreEvent;
+import com.extjs.gxt.ui.client.widget.MessageBox;
+import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
@@ -20,6 +26,7 @@ import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunicati
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
+import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
@@ -34,14 +41,17 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 private ClientMonitorDataModel model;
 	 private CommunicationServiceAsync serverlet;
 	 private SimpleComboBox<String> filterGroupCombo;
+	 private Button clearbtn;
+	 private Button saveAsBtn;
 	 
 	 public FilterSelectorToolBar(EditorGrid<FilterGridRow> grid,ClientMonitorDataModel model,ClientMonitorController controller){
-		 
+		 filterGroupCombo = new SimpleComboBox<String>(); 
 		 	this.grid=grid;	
 		 	this.model=model;
 		 	this.controller=controller;
 		 	model.getServiceServlet().requestConfiguration(null, this);
 		 	filterSets=new HashMap<String, ActionFilter>();
+		 	
 		 	
 		 	
 		    
@@ -52,6 +62,28 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 void renderToolBar(){
 		 this.add(new LabelToolItem("Filter Set:"));
 		 this.add(renderFilterSelectorComboBox());
+		 saveAsBtn= new Button("Save As",new SelectionListener<ButtonEvent>() {
+				@Override
+				public void componentSelected(ButtonEvent ce) {
+					MessageBox.info("Message","All filters are removed!!", null);		    
+				    grid.getStore().removeAll();
+				    filterGroupCombo.clearSelections();
+				} });
+		 saveAsBtn.setIcon(Resources.ICONS.save());
+		 saveAsBtn.setToolTip("Save  property rules as a filter");
+		 
+		 clearbtn = new Button("Clear",new SelectionListener<ButtonEvent>() {
+				@Override
+				public void componentSelected(ButtonEvent ce) {
+					MessageBox.info("Message","All filters are removed!!", null);		    
+				    grid.getStore().removeAll();
+				    filterGroupCombo.clearSelections();
+				} });
+		 
+		 clearbtn.setIcon(Resources.ICONS.clear());
+		 clearbtn.setToolTip("Clear all filter rules.");
+		 this.add(saveAsBtn);
+		 this.add(clearbtn);
 		 
 	 }
 	 
@@ -61,7 +93,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 }
 	 
 	 public SimpleComboBox<String> renderFilterSelectorComboBox(){
-		filterGroupCombo = new SimpleComboBox<String>();  
+		 
 	    filterGroupCombo.setTriggerAction(TriggerAction.ALL);  
 	    filterGroupCombo.setEditable(false);  
 	    filterGroupCombo.setFireChangeEventOnSetValue(true);  
@@ -118,6 +150,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	public void onSuccess(Configuration result) {
 		filterSets=result.getActionFilters();
 		renderToolBar();
+		
 		
 	}
 
