@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.client.monitor.dataview;
 
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.logger.Log;
@@ -21,10 +22,10 @@ public class GroupedDataViewPanel extends ContentPanel {
 //Nuu
 	//TODO: Get rid of all ID Strings (last 2 params)
 	public GroupedDataViewPanel(DataViewPanelType dataViewPanelType, ClientMonitorDataModel model, 
-			ClientMonitorController controller, ActionPropertyRule  groupingProperty, String panelId, String groupingChooserId){
-		this.dataViewPanel = DataViewPanel.createDataViewPanel(dataViewPanelType, model, controller, this, groupingProperty);
+			ClientMonitorController controller, ActionPropertyRule  groupingProperty, SimpleComboBox<String> filterGroupCombo){
+		this.dataViewPanel = DataViewPanel.createDataViewPanel(dataViewPanelType, model, controller, this, groupingProperty,filterGroupCombo);
 		this.dataViewPanelType=dataViewPanelType;
-		groupingChooserToolbar = new GroupingChooserToolbar(this, groupingProperty, groupingChooserId);
+		groupingChooserToolbar = new GroupingChooserToolbar(this, groupingProperty);
 		
 		this.setCollapsible(false);
 	    this.setFrame(true);

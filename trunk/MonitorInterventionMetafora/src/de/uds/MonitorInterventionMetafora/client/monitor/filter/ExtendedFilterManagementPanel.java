@@ -46,7 +46,7 @@ public class ExtendedFilterManagementPanel extends HorizontalPanel{
 		this.grid = grid;
 		 FormLayout layout = new FormLayout();
 		 
-		entityComboBox = new ActionPropertyComboBox(ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.FILTER), "_entityComboBox");
+		entityComboBox = new ActionPropertyComboBox(ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.FILTER));
 		entityComboBox.setForceSelection(true);
 		entityComboBox.setPosition(0, -2);
 

@@ -49,7 +49,7 @@ this.filterGroupCombo=filterGroupCombo;
 		this.grid = grid;
 		 FormLayout layout = new FormLayout();
 		 
-		filterPropertyComboBox = new ActionPropertyComboBox(filterRuleSelectorModel, "_entityComboBox");
+		filterPropertyComboBox = new ActionPropertyComboBox(filterRuleSelectorModel);
 		filterPropertyComboBox.setForceSelection(true);
 		filterPropertyComboBox.setPosition(0, -2);
 

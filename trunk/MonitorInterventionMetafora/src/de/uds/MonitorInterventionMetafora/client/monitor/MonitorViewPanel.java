@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
+import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.google.gwt.user.client.ui.Image;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
@@ -90,7 +91,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 		flp=new FilterListPanel(monitorModel, controller,monitoringViewServiceServlet);
 		panel.add(flp);
 		
-		createTabbedDataViewsPanel(actionPropertyRuleCreator);
+		createTabbedDataViewsPanel(actionPropertyRuleCreator,flp.getFilterGrid().getfilterSelectorToolBar().getFilterSelectorComboBox());
 		panel.add(tabbedDataViewPanel);
 		
 		panel.setHeight(600);
@@ -102,18 +103,18 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 
 	}
 	
-	private void createTabbedDataViewsPanel(ActionPropertyRuleSelectorModel actionPropertyRuleCreator){
+	private void createTabbedDataViewsPanel(ActionPropertyRuleSelectorModel actionPropertyRuleCreator,SimpleComboBox<String> filterGroupCombo){
 		tabbedDataViewPanel=new TabbedDataViewPanel();
 		
 		ActionPropertyRule defaultGrouping = ActionPropertyRuleSelectorModel.getDefaultGrouping();
 		
-		GroupedDataViewPanel tableWithChooser = new GroupedDataViewPanel(DataViewPanelType.TABLE, monitorModel, controller, defaultGrouping, "tablePanel", "comboTableType");
+		GroupedDataViewPanel tableWithChooser = new GroupedDataViewPanel(DataViewPanelType.TABLE, monitorModel, controller, defaultGrouping, filterGroupCombo);
 		addDataView("tableViewTab", "Table View", tableWithChooser);
 		
-		GroupedDataViewPanel pieChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.PIE_CHART, monitorModel, controller, defaultGrouping, "pieChartFilterPanel", "comboPieChartType");
+		GroupedDataViewPanel pieChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.PIE_CHART, monitorModel, controller, defaultGrouping,filterGroupCombo);
 		addDataView("pieChartViewTab", "Pie Chart View", pieChartWithChooser);
 
-		GroupedDataViewPanel barChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.BAR_CHART, monitorModel, controller, defaultGrouping, "barChartFilterPanel", "comboColumnChartType");
+		GroupedDataViewPanel barChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.BAR_CHART, monitorModel, controller, defaultGrouping, filterGroupCombo);
 		addDataView("barChartViewTab", "Bar Chart View", barChartWithChooser);
 		
 	}

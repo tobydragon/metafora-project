@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.client.monitor.dataview;
 
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
+import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
@@ -44,7 +45,7 @@ public abstract class DataViewPanel extends VerticalPanel{
 	
 	
 	public static DataViewPanel createDataViewPanel(DataViewPanelType dataViewPanelType, ClientMonitorDataModel model, 
-			ClientMonitorController controller, GroupedDataViewPanel groupedDataViewController, ActionPropertyRule  groupingProperty){
+			ClientMonitorController controller, GroupedDataViewPanel groupedDataViewController, ActionPropertyRule  groupingProperty,SimpleComboBox<String> filterGroupCombo){
 		
 		DataViewPanel dataViewPanel = null;
 		if (dataViewPanelType == DataViewPanelType.TABLE){  
@@ -52,11 +53,11 @@ public abstract class DataViewPanel extends VerticalPanel{
 
 		}
 		else if (dataViewPanelType == DataViewPanelType.PIE_CHART){  
-			dataViewPanel = new PieChartPanel(model, controller, groupingProperty); 
+			dataViewPanel = new PieChartPanel(model, controller, groupingProperty,filterGroupCombo); 
 
 		}
 		else if (dataViewPanelType == DataViewPanelType.BAR_CHART){
-			  dataViewPanel = new BarChartPanel(model, controller, groupedDataViewController, groupingProperty); 
+			  dataViewPanel = new BarChartPanel(model, controller, groupedDataViewController, groupingProperty,filterGroupCombo); 
 		}
 		
 		return dataViewPanel;

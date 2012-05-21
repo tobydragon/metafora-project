@@ -1,5 +1,6 @@
 package de.uds.MonitorInterventionMetafora.client.monitor.dataview.chart;
 
+import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
 import com.google.gwt.core.client.JsArray;
@@ -16,11 +17,12 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRu
 public class PieChartPanel extends  DataViewPanel {
 	
 	private PieChart pieChartView;
+	private SimpleComboBox<String> filterGroupCombo;
 	
-	public PieChartPanel(ClientMonitorDataModel _model, ClientMonitorController controller, ActionPropertyRule  groupingProperty){
+	public PieChartPanel(ClientMonitorDataModel _model, ClientMonitorController controller, ActionPropertyRule  groupingProperty,SimpleComboBox<String> filterGroupCombo){
 		super(groupingProperty, _model);
-		
-		this.setId("pieChartVerticalPanel");
+		this.filterGroupCombo=filterGroupCombo;
+		//this.setId("pieChartVerticalPanel");
 		createPieChart(controller);
 	}
  
@@ -29,9 +31,6 @@ public class PieChartPanel extends  DataViewPanel {
 	
 		pieChartView.draw(model.getDataTable(groupingProperty), getPieChartOptions());
 		pieChartView.setLayoutData(new FitLayout());
-		
-		//pieChartView.
-		
 		this.repaint();
 		super.refresh();
 		
@@ -41,7 +40,7 @@ public class PieChartPanel extends  DataViewPanel {
 		if (groupingProperty != null){
 			pieChartView = new PieChart(model.getDataTable(groupingProperty), getPieChartOptions());
 			this.add(pieChartView);  
-		    pieChartView.addSelectHandler(new ChartSelectionHandler(this, model, controller));
+		    pieChartView.addSelectHandler(new ChartSelectionHandler(this, model, controller,filterGroupCombo));
 		    pieChartView.setLayoutData(new FitLayout());
 		    refresh();
 		}
