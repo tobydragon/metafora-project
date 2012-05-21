@@ -117,6 +117,11 @@ public class  XmlFragment {
 		element.addContent(new CDATA(contentString));
 	}
 	
+	public void removeNode(String nodeName){
+		element.removeChild(nodeName);
+		
+		
+	}
 	public Element getClone(){
 		return (Element)element.clone();
 	}

@@ -19,17 +19,22 @@ import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.toolbar.LabelToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
+import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class FilterSelectorToolBar extends ToolBar implements RequestConfigurationCallBack{
 	
@@ -65,9 +70,48 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		 saveAsBtn= new Button("Save As",new SelectionListener<ButtonEvent>() {
 				@Override
 				public void componentSelected(ButtonEvent ce) {
-					MessageBox.info("Message","All filters are removed!!", null);		    
-				    grid.getStore().removeAll();
-				    filterGroupCombo.clearSelections();
+					MessageBox.info("Message","Not functional yet", null);
+				
+				/*
+					ActionFilter filter=new ActionFilter();
+					filter.setName(Long.toString(GWTUtils.getTimeStamp()));
+					filter.setEditable(true);
+					ActionPropertyRule rule;
+					rule=new ActionPropertyRule();
+					rule.setDisplayText("testfilter");
+					rule.setOperationType(OperationType.CONTAINS);
+					rule.setOrigin(ComponentType.ACTION_FILTERER);
+					rule.setPropertyName("id");
+					rule.setType(ActionElementType.USER);
+					rule.setValue("bo");
+					filter.addFilterRule(rule);
+					
+					rule=new ActionPropertyRule();
+					rule.setDisplayText("testfilter2");
+					rule.setOperationType(OperationType.EQUALS);
+					rule.setOrigin(ComponentType.ACTION_FILTERER);
+					rule.setPropertyName("id");
+					rule.setType(ActionElementType.USER);
+					rule.setValue("ug");
+					filter.addFilterRule(rule);
+		
+					model.getServiceServlet().saveNewFilter(null, filter,new AsyncCallback<Boolean>(){
+
+						@Override
+						public void onFailure(Throwable caught) {
+							MessageBox.info("Error","New filter is not saved", null);
+							
+						}
+
+						@Override
+						public void onSuccess(Boolean result) {
+							
+							MessageBox.info("Error","New filter  saving result" +result, null);
+						
+							
+						}});
+					*/
+				    
 				} });
 		 saveAsBtn.setIcon(Resources.ICONS.save());
 		 saveAsBtn.setToolTip("Save  property rules as a filter");
@@ -139,6 +183,8 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 }
 
 
+	 public void update(){}
+	 
 	@Override
 	public void onFailure(Throwable caught) {
 		// TODO Auto-generated method stub
