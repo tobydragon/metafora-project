@@ -21,6 +21,7 @@ import de.uds.MonitorInterventionMetafora.shared.utils.ServerFormatStrings;
 public class XmlConfigParser {
 	
 	XmlFragment configFragment;
+	private String sourceFile="";
 	
  
 	public XmlConfigParser(XmlFragment newStart){
@@ -28,6 +29,7 @@ public class XmlConfigParser {
 	}
 	
 	public XmlConfigParser(String filename){
+		sourceFile=filename;
 		configFragment = XmlFragment.getFragmentFromLocalFile(filename);
 	}
 	
@@ -62,7 +64,7 @@ public class XmlConfigParser {
 		_conf.setName(confFragment.getAttributeValue(ServerFormatStrings.NAME));
 		_conf.setDataSourceType(confFragment.getChildValue(ServerFormatStrings.DATA_SOURCE_TYPE));
 		_conf.setHistoryStartTime(confFragment.getChildValue(ServerFormatStrings.HISTORY_START_TIME));
-		 XmlFragment  filtersFragment=XmlFragment.getFragmentFromString(confFragment.toString()).accessChild("filters");
+		 XmlFragment  filtersFragment=XmlFragment.getFragmentFromString(confFragment.toString()).accessChild(ServerFormatStrings.FILTERS);
 		 _conf.addFilters(getActionFilterList(filtersFragment));
 		// XmlFragmentInterface  notificationFragment=XmlFragment.getFragmentFromString(confFragment.toString());
 		 //_conf.addNotifications(getNotificationList(notificationFragment));
@@ -73,6 +75,53 @@ public class XmlConfigParser {
 		}
 		
 		return _conf;
+		
+	}
+	
+	
+	public boolean saveNewFilterToConfiguration(ActionFilter filter){	
+		Configuration _conf=null;
+		
+		for(XmlFragment confFragment: configFragment.getChildren(ServerFormatStrings.CONFIGURATION)){
+		
+		if(confFragment.getAttributeValue("active").equalsIgnoreCase("1") || confFragment.getAttributeValue("active").equalsIgnoreCase("true")){			
+	    _conf=new Configuration();
+		_conf.setName(confFragment.getAttributeValue(ServerFormatStrings.NAME));
+		_conf.setDataSourceType(confFragment.getChildValue(ServerFormatStrings.DATA_SOURCE_TYPE));
+		_conf.setHistoryStartTime(confFragment.getChildValue(ServerFormatStrings.HISTORY_START_TIME));
+		 XmlFragment  filtersFragment=XmlFragment.getFragmentFromString(confFragment.toString()).accessChild(ServerFormatStrings.FILTERS);
+		 filtersFragment.addContent(ToXmlFragment(filter));
+		 confFragment.removeNode(ServerFormatStrings.FILTERS);
+		 confFragment.addContent(filtersFragment);
+		 configFragment.removeNode(ServerFormatStrings.CONFIGURATION);
+		 configFragment.addContent(confFragment);
+		 configFragment.overwriteFile(sourceFile);
+		return true;
+		}
+		}
+		 return false;
+		
+	}
+	
+	
+	
+	XmlFragment ToXmlFragment(ActionFilter filter){
+		
+
+		XmlFragment xmlFragment= new XmlFragment(ServerFormatStrings.FILTER);
+	    xmlFragment.setAttribute(ServerFormatStrings.NAME, filter.getName());
+	    xmlFragment.setAttribute(ServerFormatStrings.EDITABLE, "true");
+	
+	    for(ActionPropertyRule rule:filter.getActionPropertyRules()){
+	    	XmlFragment filterItemFragment= new XmlFragment(ServerFormatStrings.FILTERITEM);
+	    	filterItemFragment.setAttribute(ServerFormatStrings.PROPERTYRULENAME, rule.getPropertyName());
+	    	filterItemFragment.setAttribute(ServerFormatStrings.OPERATION, rule.getOperationType().toString());
+	    	filterItemFragment.setAttribute(ServerFormatStrings.VALUE, rule.getValue());
+	    	filterItemFragment.setAttribute(ServerFormatStrings.Type, rule.getType().toString());
+	    	xmlFragment.addContent(filterItemFragment);
+	    }
+		return xmlFragment;	
+
 		
 	}
 	

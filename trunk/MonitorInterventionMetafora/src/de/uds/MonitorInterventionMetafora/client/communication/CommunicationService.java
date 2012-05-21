@@ -10,6 +10,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 
 
 /**
@@ -26,7 +27,10 @@ public interface CommunicationService  extends RemoteService  {
 	
 	CfAction sendNotificationToAgents(CfAction cfAction);
 	
+	
 	String sendLogAction(CfAction logAction);
+
+	boolean saveNewFilter(CfAction action, ActionFilter filter);
 
 	
 	

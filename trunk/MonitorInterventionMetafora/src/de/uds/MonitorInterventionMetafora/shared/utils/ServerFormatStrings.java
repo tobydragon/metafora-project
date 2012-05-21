@@ -13,6 +13,7 @@ public class ServerFormatStrings {
 	public static final String HISTORY_START_TIME="HISTORY_START_TIME";
 	public static final String NAME="name";
 	public static final String FILTER="filter";
+	public static final String FILTERS="filters";
 	public static final String PROPERTY="property";
 	public static final String VALUE="value";
 	public static final String EDITABLE="editable";
@@ -21,6 +22,7 @@ public class ServerFormatStrings {
 	public static final String OPERATION="operation";
 	public static final String NOTIFICATIONS="notifications";
 	public static final String NOTIFICATION="notification";
+	public static final String CONFIGURATIONS = "configurations";
 	
 	
 	

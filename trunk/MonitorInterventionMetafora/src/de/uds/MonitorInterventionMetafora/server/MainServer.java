@@ -31,8 +31,8 @@ import org.apache.log4j.Logger;
 public class MainServer extends RemoteServiceServlet implements CommunicationService {
 	Logger logger = Logger.getLogger(this.getClass());
 
-	public Configuration configuration;
-	
+	private Configuration configuration;
+	private XmlConfigParser configuratinParser;
 	MonitorModel monitorModel;
 	MonitorController monitorController;
 	AnalysisManager analysisManager;
@@ -56,8 +56,8 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	private Configuration readConfiguration(){
 		String configFilepath = GeneralUtil.getRealPath("conffiles/toolconf/configuration.xml");
 
-		XmlConfigParser connectionParser = new XmlConfigParser(configFilepath);
-		Configuration configuration =connectionParser.toActiveConfiguration();
+		configuratinParser= new XmlConfigParser(configFilepath);
+		Configuration configuration =configuratinParser.toActiveConfiguration();
 		return configuration;
 	}
 
@@ -99,6 +99,12 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		System.out.println("2*********************************************");
 		
 		return null;
+	}
+
+	@Override
+	public boolean saveNewFilter(CfAction action, ActionFilter filter) {
+		
+		return configuratinParser.saveNewFilterToConfiguration(filter);
 	}
 	
 	 

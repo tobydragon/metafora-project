@@ -8,6 +8,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 
 
 /**
@@ -22,6 +23,8 @@ public interface CommunicationServiceAsync {
 	void requestUpdate(CfAction _lastcfAction, AsyncCallback<List<CfAction>> callback);
 	
 	void sendLogAction(CfAction logAction,AsyncCallback<String> callback);
+	
+	void saveNewFilter(CfAction action,ActionFilter filter, AsyncCallback<Boolean> callback);
 	
 	void sendNotificationToAgents(CfAction cfAction, AsyncCallback<CfAction> callback);
 	
