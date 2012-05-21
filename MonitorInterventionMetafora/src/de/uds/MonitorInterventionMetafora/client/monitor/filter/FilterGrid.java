@@ -66,12 +66,18 @@ public class FilterGrid  extends LayoutContainer {
      ClientMonitorController controller;
 	 ClientMonitorDataModel model;
 	 FilterSelectorToolBar filterSelectorToolBar;
+	 FilterManagementToolBar filterManagementToolBar;
+	 ContentPanel panel;
 	 
 	
 	public FilterGrid(ClientMonitorDataModel model, ClientMonitorController controller){
 		
 		this.model = model;
 		this.controller = controller;
+		panel= new ContentPanel();
+		grid = new EditorGrid<FilterGridRow>(model.getFilterGridViewModel(), getColumnModel());
+		filterSelectorToolBar=new FilterSelectorToolBar(grid,model,controller);
+		filterManagementToolBar=new FilterManagementToolBar(grid,model.getFilterSelectorModel(),filterSelectorToolBar.getFilterSelectorComboBox());
 		
 	}
 	
@@ -81,8 +87,7 @@ public class FilterGrid  extends LayoutContainer {
     super.onRender(parent, index);
     setLayout(new FlowLayout(1));
  
-    ContentPanel panel = new ContentPanel();
-    grid = new EditorGrid<FilterGridRow>(model.getFilterGridViewModel(), getColumnModel());
+  
     grid.setBorders(true);
     
     
@@ -96,9 +101,7 @@ public class FilterGrid  extends LayoutContainer {
     grid.setHeight(180);
     panel.setLayout(new FitLayout());
     panel.add(grid);
-    filterSelectorToolBar=new FilterSelectorToolBar(grid,model,controller);
-    FilterManagementToolBar _filterManagementToolBar=new FilterManagementToolBar(grid,model.getFilterSelectorModel(),filterSelectorToolBar.getFilterSelectorComboBox());
-    panel.setBottomComponent(_filterManagementToolBar);
+    panel.setBottomComponent(filterManagementToolBar);
     
     panel.setTopComponent(filterSelectorToolBar);
     add(panel);
@@ -198,4 +201,9 @@ public class FilterGrid  extends LayoutContainer {
   }
   
 		
+  public FilterSelectorToolBar getfilterSelectorToolBar(){
+	  
+	  return filterSelectorToolBar;
+	  
+  }
 }

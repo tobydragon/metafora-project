@@ -24,12 +24,12 @@ public class GroupingChooserToolbar extends ToolBar{
 	GroupedDataViewPanel parentViewPanel;
 	
 
-	public GroupingChooserToolbar(final GroupedDataViewPanel parentViewPanel, ActionPropertyRule groupingProperty, String panelId){
+	public GroupingChooserToolbar(final GroupedDataViewPanel parentViewPanel, ActionPropertyRule groupingProperty){
 		
 		this.selectedProperty = groupingProperty;
 		this.parentViewPanel = parentViewPanel;
 		
-		comboType = new ActionPropertyComboBox(ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.GROUPING), panelId);
+		comboType = new ActionPropertyComboBox(ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.GROUPING));
 		comboType.addSelectionChangedListener(comboListener);
 	    
 	    Button retriveBtn=new Button("Re-Group");

@@ -8,9 +8,9 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRu
 
 public class ActionPropertyComboBox extends ComboBox<PropertyComboBoxItemModel>{
 	
-	public ActionPropertyComboBox(ActionPropertyRuleSelectorModel model, String panelId){
+	public ActionPropertyComboBox(ActionPropertyRuleSelectorModel model){
 		super();
-		setId(panelId);
+		//setId(panelId);
 		
 		setEmptyText("Select property");
 	    setDisplayField("displayText");

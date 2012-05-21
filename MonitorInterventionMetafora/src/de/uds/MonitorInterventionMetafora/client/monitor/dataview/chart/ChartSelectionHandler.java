@@ -1,5 +1,6 @@
 package de.uds.MonitorInterventionMetafora.client.monitor.dataview.chart;
 
+import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.google.gwt.visualization.client.events.SelectHandler;
 
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
@@ -13,10 +14,11 @@ public class ChartSelectionHandler  extends SelectHandler{
 	DataViewPanel view;
 	ClientMonitorDataModel model;
 	ClientMonitorController controller;
-	
-	public ChartSelectionHandler (DataViewPanel view, ClientMonitorDataModel model, ClientMonitorController controller){
+	SimpleComboBox<String> filterGroupCombo;
+	public ChartSelectionHandler (DataViewPanel view, ClientMonitorDataModel model, ClientMonitorController controller,SimpleComboBox<String> filterGroupCombo){
 		this.view = view;
 		this.model = model;
+		this.filterGroupCombo=filterGroupCombo;
 		this.controller = controller;
 	}
 	
@@ -33,6 +35,7 @@ public class ChartSelectionHandler  extends SelectHandler{
 	    newFilterRule.setOperationType(OperationType.EQUALS);
 	    newFilterRule.setOrigin(view.getViewType());
 	    controller.addRule(newFilterRule);
+	    filterGroupCombo.clearSelections();
 	}
 	
 	

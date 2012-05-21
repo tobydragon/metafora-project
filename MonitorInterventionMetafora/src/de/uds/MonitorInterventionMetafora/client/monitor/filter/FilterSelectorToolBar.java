@@ -72,7 +72,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 				public void componentSelected(ButtonEvent ce) {
 					MessageBox.info("Message","Not functional yet", null);
 				
-				/*
+				
 					ActionFilter filter=new ActionFilter();
 					filter.setName(Long.toString(GWTUtils.getTimeStamp()));
 					filter.setEditable(true);
@@ -110,7 +110,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 						
 							
 						}});
-					*/
+					
 				    
 				} });
 		 saveAsBtn.setIcon(Resources.ICONS.save());

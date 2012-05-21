@@ -1,5 +1,6 @@
 package de.uds.MonitorInterventionMetafora.client.monitor.dataview.chart;
 
+import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
 import com.google.gwt.visualization.client.DataTable;
@@ -20,12 +21,13 @@ public class BarChartPanel extends DataViewPanel {
 	
 	private ColumnChart barChartView;
 	int selection=-1;
+	private SimpleComboBox<String> filterGroupCombo;
 	
-	public BarChartPanel(ClientMonitorDataModel _model, ClientMonitorController controller, GroupedDataViewPanel groupedDataViewController, ActionPropertyRule  groupingProperty){
+	public BarChartPanel(ClientMonitorDataModel _model, ClientMonitorController controller, GroupedDataViewPanel groupedDataViewController, ActionPropertyRule  groupingProperty,SimpleComboBox<String> filterGroupCombo){
 		super(groupingProperty, _model);
 		
-		
-		this.setId("barChartVerticalPanel");
+		this.filterGroupCombo=filterGroupCombo;
+		//this.setId("barChartVerticalPanel");
 		createBarChart(controller);
 		barChartView.addOnMouseOutHandler(createMouseOutHandler());
 		barChartView.addOnMouseOverHandler(createOnMouseOverHandler());
@@ -35,7 +37,7 @@ public class BarChartPanel extends DataViewPanel {
 		if (groupingProperty != null){
 			barChartView = new ColumnChart(model.getDataTable(groupingProperty), getBarChartOptions(model.getMaxValue(groupingProperty)));
 			this.add(barChartView);  
-		    barChartView.addSelectHandler(new ChartSelectionHandler(this, model, controller));
+		    barChartView.addSelectHandler(new ChartSelectionHandler(this, model, controller,filterGroupCombo));
 		    barChartView.setLayoutData(new FitLayout());
 		    refresh();
 		}
