@@ -237,7 +237,7 @@ public class Outbox implements CfActionCallBack {
  	 	
 	 	ServerCommunication.getInstance().processAction("FeedbackClient",feedbackMessage,this);	
 
-		messageTextBox.setText("");
+		//messageTextBox.setText("");
 		
 		
 		
