@@ -71,6 +71,7 @@ public class ActionPropertyRuleSelectorModel {
 		newGroupings.add(new ActionPropertyRule(ActionElementType.CONTENT, "INDICATOR_TYPE", MonitorConstants.INDICATOR_TYPE_LABEL));
 		newGroupings.add(new ActionPropertyRule(ActionElementType.CONTENT, "CHALLENGE_NAME", MonitorConstants.CHALLENGE_NAME_LABEL));
 		newGroupings.add(new ActionPropertyRule(ActionElementType.CONTENT, "GROUP_ID", MonitorConstants.GROUP_ID));
+		newGroupings.add(new ActionPropertyRule(ActionElementType.OBJECT, "TAGS", MonitorConstants.TAGS));
 		
 		return newGroupings;
 	}
