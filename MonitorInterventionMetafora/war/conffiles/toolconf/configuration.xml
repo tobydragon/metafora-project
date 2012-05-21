@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurations>
-<configuration name ="Test" active="1">
+  <configuration name="Test" active="1">
+    <data-source-type>xmpp</data-source-type>
+    <!-- Either the "CURRENT_TIME", or the millisecond time of start of history (e.g. "1335798839000") -->
+    <HISTORY_START_TIME>CURRENT_TIME</HISTORY_START_TIME>
+    <filters>
+      <filter name="Default" editable="true">
+        <filteritem propertyrulename="ID" operation="Equals" value="Toby" type="User" />
+      </filter>
+      
+        <filter name="LASAD_ALL" editable="true">
+        <filteritem propertyrulename="TOOL" operation="Contains" value="LASAD" type="Content" />
+    	 </filter>
+    	 <filter name="Recent_LASAD" editable="true">
+    	 <filteritem propertyrulename="TOOL" operation="Contains" value="LASAD" type="Content" />
+         <filteritem propertyrulename="TIME" operation="OccuredWithIn" value="3" type="Action" />
 
-<data-source-type>xmpp</data-source-type>
-
-<!-- Either the "CURRENT_TIME", or the millisecond time of start of history (e.g. "1335798839000") -->
-<HISTORY_START_TIME>CURRENT_TIME</HISTORY_START_TIME>
-
-
-
-<filters>
-<filter name="Default" editable="true">
-<filteritem propertyrulename="ID" operation="Equals"  value="Toby" type="User"/>
-
-</filter>
-
-<filter name="UserandMap" editable="true">
-<filteritem propertyrulename="Map-ID" operation="Equals"  value="1" type="OBJECT"/>
-<filteritem propertyrulename="classification"  operation="Equals"  value="MODIFY" type="Action_Type"/>
-</filter>
-
-
-<filter name="Mixed" editable="true">
-<filteritem propertyrulename="id"  operation="Contains" value="Bob" type="User"/>
-</filter>
-
-</filters>
-
-</configuration>
-
+    	 </filter>
+      
+      
+      
+    </filters>
+  </configuration>
 </configurations>
+
