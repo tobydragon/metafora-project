@@ -27,6 +27,7 @@ public class ActionPropertyValueGroupingTableModel {
 		rowModels = new HashMap<String, ActionPropertyValueModel>();
 	}
 	
+	//TODO: get list of the values and call addaction value multiple times
 	public void addAction(CfAction action){
 		String actionValue = actionPropertyRule.getActionValue(action);
 		if (actionValue != null){
@@ -38,6 +39,7 @@ public class ActionPropertyValueGroupingTableModel {
 		}
 	}
 
+	
 	private void addActionValue(String actionValue, CfAction action) {
 		ActionPropertyValueModel valueModel = rowModels.get(actionValue.toLowerCase());
 		if (valueModel != null){

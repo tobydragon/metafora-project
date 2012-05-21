@@ -142,6 +142,7 @@ public class ActionPropertyRule  implements Serializable{
 	  return getKey();
   }
 
+  //TODO: return list of strings for user;tag;object  and return list of string
 	public String getActionValue(CfAction action) {
 		String actionValue = null;
 		try {
@@ -194,7 +195,10 @@ public class ActionPropertyRule  implements Serializable{
 						actionValue=action.getCfObjects().get(0).getType();
 					} else if (propertyName.equalsIgnoreCase("id")){
 						actionValue=action.getCfObjects().get(0).getId();
-					} 
+					}
+					 else if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
+							actionValue=action.getCfObjects().get(0).getPropertyValue(MonitorConstants.TAGS);
+						} 
 				}
 				break;
 			
