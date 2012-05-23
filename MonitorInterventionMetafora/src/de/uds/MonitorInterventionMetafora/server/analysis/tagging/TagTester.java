@@ -1,6 +1,6 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.tagging;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.manager.TaggingManager;
+import de.uds.MonitorInterventionMetafora.server.analysis.manager.TextManager;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -42,7 +42,7 @@ CfActionType cfActionType = new CfActionType("indicator","OTHER", "true");
 		myAction.setCfContent(myContent);
 	
 		
-		TaggingManager agent=new TaggingManager();
+		TextManager agent=new TextManager(true);
 		agent.tagAction(myAction);
 		//agent.tag("ok, i will not go to cinema, but");
 

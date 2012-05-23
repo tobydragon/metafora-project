@@ -3,20 +3,29 @@ package de.uds.MonitorInterventionMetafora.server.analysis.manager;
 import java.util.List;
 import java.util.Vector;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.tagging.TaggingAgent;
+import org.hamcrest.core.IsAnything;
+
+import de.uds.MonitorInterventionMetafora.server.analysis.tagging.TextAgent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 
-public class TaggingManager {
+public class TextManager {
 
-	TaggingAgent agent;
+	TextAgent agent;
+	boolean addWordCount=false;
 	
-	public TaggingManager(){
+	public TextManager(){
 		
-		agent=new TaggingAgent();
+		agent=new TextAgent();
 	}
 	
+public TextManager(boolean addWordCount){
+		this.addWordCount=addWordCount;
+		agent=new TextAgent(addWordCount);
+	}
+
+
 	public CfAction tagAction(CfAction action){
 	
 		return processActionCfAction(action);
@@ -28,6 +37,10 @@ public class TaggingManager {
 		if(contenttextToTag!=null && contenttextToTag!=""){
 			
 			action.getCfContent().addProperty(agent.tag(contenttextToTag).toCfProperty());
+			if(addWordCount)
+			{
+				action.getCfContent().addProperty(agent.getWordCount(contenttextToTag).toCfProperty());
+			}
 		}
 		
 		
@@ -35,6 +48,10 @@ public class TaggingManager {
 		if(objecttextToTag!=null && objecttextToTag!=""){
 			
 			action.getCfObjects().get(0).addProperty(agent.tag(objecttextToTag).toCfProperty());
+			if(addWordCount)
+			{
+				action.getCfObjects().get(0).addProperty(agent.getWordCount(objecttextToTag).toCfProperty());
+			}
 		}
 		
 		return action;

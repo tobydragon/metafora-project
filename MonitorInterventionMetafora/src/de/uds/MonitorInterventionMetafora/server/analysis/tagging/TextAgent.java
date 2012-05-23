@@ -51,13 +51,14 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
  *
  * @author rohitk
  */
-public class TaggingAgent
+public class TextAgent
 {
 
-	static TaggingAgent instance; 
+	static TextAgent instance;
+	boolean addWordCount=false;
     private Map<String, List<String>> dictionaries = new HashMap<String, List<String>>();
 
-    public TaggingAgent() {
+    public TextAgent() {
          
         File dir = new File(GeneralUtil.getRealPath("dictionaries"));
 
@@ -76,11 +77,28 @@ public class TaggingAgent
 
     }
     
-    
-    public static TaggingAgent getTaggingAgentInstance(){
+    public TextAgent(boolean addWordCount) {
+        this.addWordCount=addWordCount;
+        File dir = new File(GeneralUtil.getRealPath("dictionaries"));
+
+        File[] dictNames = dir.listFiles(new FilenameFilter() { 
+                 public boolean accept(File dir, String filename)
+                      { return filename.endsWith(".txt"); }
+        } );
+        
+        for(File dictFile : dictNames)
+        {
+            String name = dictFile.getName().replace(".txt", "").toUpperCase();
+          
+            dictionaries.put(name, loadDictionary(dictFile));
+        }
+        
+
+    }
+    public static TextAgent getTaggingAgentInstance(){
     	
     	if(instance==null)
-    		instance= new TaggingAgent();
+    		instance= new TextAgent();
     	return instance;
     }
 
@@ -128,7 +146,7 @@ public class TaggingAgent
         if(text==null)
         	text="";
         String normalizedText = normalize(text);
-        TagProperty tagHandler = new TagProperty(normalizedText);
+        TagProperty tagProperty = new TagProperty(normalizedText);
         
          for(String key : dictionaries.keySet())
         {
@@ -138,19 +156,25 @@ public class TaggingAgent
     
             if (namesFound.size() > 0) 
             {
-            	tagHandler.addTag(key, namesFound);
+            	tagProperty.addTag(key, namesFound);
             }
         }
         
 
          
-         return tagHandler;
+         return tagProperty;
         }
 
     
     
     
     
+    
+    
+    public WordCountProperty getWordCount(String textValue) {
+    	
+    	return new WordCountProperty(textValue);
+    }
     
     public TagProperty tag(String textValue) {
         String text=textValue;
