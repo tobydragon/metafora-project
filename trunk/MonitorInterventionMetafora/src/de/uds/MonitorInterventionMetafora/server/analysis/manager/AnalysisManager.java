@@ -19,7 +19,7 @@ public class AnalysisManager {
 	private Vector <CfCommunicationListener> allListeners;
 	 List<CfAction> cfActions;
 	NotificationManager notificationManager;
-	TaggingManager taggingManager;
+
 	static AnalysisManager instance; 
 	String  notificationsSourceFile= GeneralUtil.getRealPath("conffiles/toolconf/notifications.xml");
 
@@ -30,7 +30,7 @@ public class AnalysisManager {
 		
 		allListeners=new Vector<CfCommunicationListener>();
 		notificationManager=new NotificationManager(getNotifications());
-		taggingManager=new TaggingManager();
+		
 	//	notificationManager=NotificationManager.getNotificationManagerInstance(_notifications);
 		//notificationManager.run();
 		cfActions=new ArrayList<CfAction>();

@@ -25,6 +25,7 @@ public class MonitorConstants {
 	public static final String ACTIONS_COUNT="ACTIONS_COUNT";
 	public static final String FILTERED_ACTIONS_COUNT="FILTERED_ACTIONS_COUNT";
 	public static final String TAGS="TAGS";
+	public static final String WORD_COUNT="WORD_COUNT";
 	
 	
 	
