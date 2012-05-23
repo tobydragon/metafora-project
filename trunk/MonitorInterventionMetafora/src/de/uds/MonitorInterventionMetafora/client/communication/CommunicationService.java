@@ -32,6 +32,8 @@ public interface CommunicationService  extends RemoteService  {
 
 	boolean saveNewFilter(CfAction action, ActionFilter filter);
 
+	String removeNewFilter(String filterName);
+
 	
 	
 }

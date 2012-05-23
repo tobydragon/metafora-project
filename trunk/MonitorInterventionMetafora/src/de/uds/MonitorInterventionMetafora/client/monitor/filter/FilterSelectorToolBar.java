@@ -16,6 +16,7 @@ import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
+import com.extjs.gxt.ui.client.widget.form.SimpleComboValue;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.toolbar.LabelToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
@@ -48,9 +49,12 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 private SimpleComboBox<String> filterGroupCombo;
 	 private Button clearbtn;
 	 private Button saveAsBtn;
+	 private Button deleteBtn;
+
 	 
 	 public FilterSelectorToolBar(EditorGrid<FilterGridRow> grid,ClientMonitorDataModel model,ClientMonitorController controller){
 		 filterGroupCombo = new SimpleComboBox<String>(); 
+		
 		 	this.grid=grid;	
 		 	this.model=model;
 		 	this.controller=controller;
@@ -63,37 +67,47 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 }
 
 	 
-	 
+	 boolean isAlreadyIn(String name){
+		for(SimpleComboValue<String> filterName:filterGroupCombo.getStore().getRange(0, filterGroupCombo.getStore().getCount())){
+
+			if(name.equalsIgnoreCase(filterName.getValue())){
+			
+			return true;
+			}
+			
+		}
+		
+		 return false;
+	 }
 	 void renderToolBar(){
 		 this.add(new LabelToolItem("Filter Set:"));
 		 this.add(renderFilterSelectorComboBox());
 		 saveAsBtn= new Button("Save As",new SelectionListener<ButtonEvent>() {
 				@Override
 				public void componentSelected(ButtonEvent ce) {
-					MessageBox.info("Message","Not functional yet", null);
+					
+				String filterName=filterGroupCombo.getSimpleValue();
+				
+				if(filterName.equalsIgnoreCase(""))
+					return;
+				if(isAlreadyIn(filterName)){
+					
+					MessageBox.info("Info","Filter Name is already in the list!", null);
+					return ;
+					}
+							
+			
 				
 				
 					ActionFilter filter=new ActionFilter();
-					filter.setName(Long.toString(GWTUtils.getTimeStamp()));
-					filter.setEditable(true);
-					ActionPropertyRule rule;
-					rule=new ActionPropertyRule();
-					rule.setDisplayText("testfilter");
-					rule.setOperationType(OperationType.CONTAINS);
-					rule.setOrigin(ComponentType.ACTION_FILTERER);
-					rule.setPropertyName("id");
-					rule.setType(ActionElementType.USER);
-					rule.setValue("bo");
-					filter.addFilterRule(rule);
+					filter.setEditable(false);
+					filter.setName(filterName);
 					
-					rule=new ActionPropertyRule();
-					rule.setDisplayText("testfilter2");
-					rule.setOperationType(OperationType.EQUALS);
-					rule.setOrigin(ComponentType.ACTION_FILTERER);
-					rule.setPropertyName("id");
-					rule.setType(ActionElementType.USER);
-					rule.setValue("ug");
-					filter.addFilterRule(rule);
+					for(FilterGridRow row : grid.getStore().getRange(0,grid.getStore().getCount()-1)){
+					
+						filter.addFilterRule(row.getActionPropertyRule());
+					}
+				
 		
 					model.getServiceServlet().saveNewFilter(null, filter,new AsyncCallback<Boolean>(){
 
@@ -105,9 +119,28 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 
 						@Override
 						public void onSuccess(Boolean result) {
-							
-							MessageBox.info("Error","New filter  saving result" +result, null);
-						
+							if(!result){
+							MessageBox.info("Error","New filter cannot be  saved!" +result, null);
+							}
+							else{
+								MessageBox.info("Info","New filter is added successfully!", null);
+								model.getServiceServlet().requestConfiguration(null, new AsyncCallback<Configuration>(){
+
+									@Override
+									public void onFailure(Throwable caught) {
+										// TODO Auto-generated method stub
+										
+									}
+
+									@Override
+									public void onSuccess(Configuration result) {
+										filterSets.clear();
+								
+										filterSets=result.getActionFilters();
+										update();
+										
+									}});
+							}
 							
 						}});
 					
@@ -115,6 +148,17 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 				} });
 		 saveAsBtn.setIcon(Resources.ICONS.save());
 		 saveAsBtn.setToolTip("Save  property rules as a filter");
+		 
+		 
+		 deleteBtn = new Button("Remove",new SelectionListener<ButtonEvent>() {
+				@Override
+				public void componentSelected(ButtonEvent ce) {
+					
+					String filterName=filterGroupCombo.getSimpleValue();
+					
+				    
+				} });
+		 deleteBtn.setIcon(Resources.ICONS.delete());
 		 
 		 clearbtn = new Button("Clear",new SelectionListener<ButtonEvent>() {
 				@Override
@@ -127,7 +171,9 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		 clearbtn.setIcon(Resources.ICONS.clear());
 		 clearbtn.setToolTip("Clear all filter rules.");
 		 this.add(saveAsBtn);
+		// this.add(deleteBtn);
 		 this.add(clearbtn);
+	
 		 
 	 }
 	 
@@ -169,9 +215,8 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 
 	        	}
 	        	
-//	        	controller.filtersUpdated();
-	        	
-	        	
+	        	filterGroupCombo.setEditable(false);
+
 	        }
 	        
 	        
@@ -183,7 +228,18 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 }
 
 
-	 public void update(){}
+	 public void update(){
+		 
+		 filterGroupCombo.clear();
+		 filterGroupCombo.getStore().clearFilters();
+		 for(String filtername: filterSets.keySet())
+		  {
+			   filterGroupCombo.add(filtername);  
+		  }
+		 grid.getStore().removeAll();
+		
+		 filterGroupCombo.setEditable(false);
+	 }
 	 
 	@Override
 	public void onFailure(Throwable caught) {
@@ -196,6 +252,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	public void onSuccess(Configuration result) {
 		filterSets=result.getActionFilters();
 		renderToolBar();
+		
 		
 		
 	}

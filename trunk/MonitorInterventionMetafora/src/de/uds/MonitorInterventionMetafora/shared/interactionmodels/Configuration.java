@@ -74,6 +74,11 @@ public class Configuration implements Serializable{
 		return historyStartTime;
 	}
 	
+	public void removeFilter(String filterName){
+		
+		if(filters.containsKey(filterName))
+		filters.remove(filterName);
+	}
 	
 	/*	
 	public void addNotification(Notification _notification){

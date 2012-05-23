@@ -105,6 +105,40 @@ public class XmlConfigParser {
 	
 	
 	
+	
+	public boolean removeFilterFromConfiguration( String filterName){	
+		Configuration _conf=null;
+		
+		for(XmlFragment confFragment: configFragment.getChildren(ServerFormatStrings.CONFIGURATION)){
+		
+		if(confFragment.getAttributeValue("active").equalsIgnoreCase("1") || confFragment.getAttributeValue("active").equalsIgnoreCase("true")){			
+	    _conf=new Configuration();
+		_conf.setName(confFragment.getAttributeValue(ServerFormatStrings.NAME));
+		_conf.setDataSourceType(confFragment.getChildValue(ServerFormatStrings.DATA_SOURCE_TYPE));
+		_conf.setHistoryStartTime(confFragment.getChildValue(ServerFormatStrings.HISTORY_START_TIME));
+		
+		 for(XmlFragment filterItem:XmlFragment.getFragmentFromString(confFragment.toString()).accessChild(ServerFormatStrings.FILTERS).getChildren(ServerFormatStrings.FILTER)){
+			 if(filterName.equalsIgnoreCase(filterItem.getAttributeValue(ServerFormatStrings.NAME)))
+			 {
+				 //XmlFragment.getFragmentFromString(confFragment.toString()).accessChild(ServerFormatStrings.FILTERS).r
+			 }
+		 }
+		 /*
+		 filtersFragment.addContent(ToXmlFragment(filter));
+		 confFragment.removeNode(ServerFormatStrings.FILTERS);
+		 confFragment.addContent(filtersFragment);
+		 configFragment.removeNode(ServerFormatStrings.CONFIGURATION);
+		 configFragment.addContent(confFragment);*/
+		 configFragment.overwriteFile(sourceFile);
+		return true;
+		}
+		}
+		 return false;
+		
+	}
+	
+	
+	
 	XmlFragment ToXmlFragment(ActionFilter filter){
 		
 

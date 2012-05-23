@@ -36,6 +36,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	MonitorModel monitorModel;
 	MonitorController monitorController;
 	AnalysisManager analysisManager;
+	private boolean isConfigurationUpdated=false;
 	
 	CfAgentCommunicationManager feedbackCommunicationManager;
 	
@@ -73,6 +74,10 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	public Configuration requestConfiguration(CfAction cfAction) {
 		//TODO: should take no params, if not used... What is _user?
 		logger.info("sendRequestConfiguration]");
+		if(isConfigurationUpdated){
+		 configuration = readConfiguration();
+		 isConfigurationUpdated=false;
+		}
 		return configuration;
 	}
 	
@@ -103,8 +108,14 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 
 	@Override
 	public boolean saveNewFilter(CfAction action, ActionFilter filter) {
-		
+		isConfigurationUpdated=true;
 		return configuratinParser.saveNewFilterToConfiguration(filter);
+	}
+
+	@Override
+	public String removeNewFilter(String filterName) {
+		configuration.removeFilter(filterName);
+		return "";
 	}
 	
 	 
