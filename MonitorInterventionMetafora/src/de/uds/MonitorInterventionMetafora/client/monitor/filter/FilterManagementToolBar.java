@@ -192,6 +192,7 @@ this.filterGroupCombo=filterGroupCombo;
 		        operationComboBox.clearSelections();
 		        entityValueTextBox.clear();
 		        filterGroupCombo.clearSelections();
+		        filterGroupCombo.setEditable(true);
 
 				}
 				

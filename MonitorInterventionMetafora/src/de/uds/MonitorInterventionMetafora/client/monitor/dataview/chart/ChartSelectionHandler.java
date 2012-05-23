@@ -36,6 +36,7 @@ public class ChartSelectionHandler  extends SelectHandler{
 	    newFilterRule.setOrigin(view.getViewType());
 	    controller.addRule(newFilterRule);
 	    filterGroupCombo.clearSelections();
+	    filterGroupCombo.setEditable(true);
 	}
 	
 	

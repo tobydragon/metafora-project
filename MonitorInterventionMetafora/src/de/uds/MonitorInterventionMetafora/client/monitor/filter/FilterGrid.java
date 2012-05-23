@@ -162,6 +162,7 @@ public class FilterGrid  extends LayoutContainer {
             	
             	store.remove(model);
             	filterSelectorToolBar.getFilterSelectorComboBox().clearSelections();
+            	filterSelectorToolBar.getFilterSelectorComboBox().setEditable(true);
             	
             
             }
