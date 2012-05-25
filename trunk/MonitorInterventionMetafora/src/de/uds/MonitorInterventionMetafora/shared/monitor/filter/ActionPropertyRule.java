@@ -11,10 +11,14 @@ package de.uds.MonitorInterventionMetafora.shared.monitor.filter;
 
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Vector;
 
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
@@ -143,62 +147,76 @@ public class ActionPropertyRule  implements Serializable{
   }
 
   //TODO: return list of strings for user;tag;object  and return list of string
-	public String getActionValue(CfAction action) {
-		String actionValue = null;
+	public List<String> getActionValue(CfAction action) {
+		
+		List<String> actionValues=new Vector<String>();
+
 		try {
 		switch (getType()){
 			case ACTION_TYPE:
 				if (propertyName.equalsIgnoreCase("classification")){
-					actionValue=action.getCfActionType().getClassification();
+					actionValues.add(action.getCfActionType().getClassification());
 				} else if (propertyName.equalsIgnoreCase("type")){
-					actionValue=action.getCfActionType().getType();
+					actionValues.add(action.getCfActionType().getType());
 				}
 				break;
 			case USER:
-				//TODO: deal with more than one user
+				
 				if (propertyName.equalsIgnoreCase("id")){
 					if (action.getCfUsers().size() >0){
-						actionValue=action.getCfUsers().get(0).getid();
+						for(CfUser user:action.getCfUsers()){
+						actionValues.add(user.getid());
+						}
 					}
 				}
 				break;
 			case CONTENT:
 				if (propertyName.equalsIgnoreCase("TOOL")){
-					actionValue=action.getCfContent().getPropertyValue("TOOL");
+					actionValues.add(action.getCfContent().getPropertyValue("TOOL"));
 				} else if (propertyName.equalsIgnoreCase("INDICATOR_TYPE")){
-					actionValue=action.getCfContent().getPropertyValue("INDICATOR_TYPE");
+					actionValues.add(action.getCfContent().getPropertyValue("INDICATOR_TYPE"));
 				} else if (propertyName.equalsIgnoreCase("CHALLENGE_NAME")){
-					actionValue=action.getCfContent().getPropertyValue("CHALLENGE_NAME");
+					actionValues.add(action.getCfContent().getPropertyValue("CHALLENGE_NAME"));
 				} else if (propertyName.equalsIgnoreCase("GROUP_ID")){
-					actionValue=action.getCfContent().getPropertyValue("GROUP_ID");
+					actionValues.add(action.getCfContent().getPropertyValue("GROUP_ID"));
 				} else if (propertyName.equalsIgnoreCase("description")){
-					actionValue=action.getCfContent().getDescription();
+					actionValues.add(action.getCfContent().getDescription());
 				}
 				break;
 			case ACTION:
 				if (propertyName.equalsIgnoreCase("time")){
-					actionValue= Long.toString(action.getTime());
+					actionValues.add(Long.toString(action.getTime()));
 				}
 				break;
 			case OBJECT:
-				//TODO: Deal with multiple objects
+			
 				if (action.getCfObjects().size() > 0){
+					
+					for(CfObject object:action.getCfObjects()){
+						
 					if (propertyName.equalsIgnoreCase("TOOL")){
-						actionValue=action.getCfObjects().get(0).getPropertyValue("TOOL");
+						actionValues.add(object.getPropertyValue("TOOL"));
 					} else if (propertyName.equalsIgnoreCase("INDICATOR_TYPE")){
-						actionValue=action.getCfObjects().get(0).getPropertyValue("INDICATOR_TYPE");
+						actionValues.add(object.getPropertyValue("INDICATOR_TYPE"));
 					} else if (propertyName.equalsIgnoreCase("CHALLENGE_NAME")){
-						actionValue=action.getCfObjects().get(0).getPropertyValue("CHALLENGE_NAME");
+						actionValues.add(object.getPropertyValue("CHALLENGE_NAME"));
 					} else if (propertyName.equalsIgnoreCase("GROUP_ID")){
-						actionValue=action.getCfObjects().get(0).getPropertyValue("GROUP_ID");
+						actionValues.add(object.getPropertyValue("GROUP_ID"));
 					} else if (propertyName.equalsIgnoreCase("type")){
-						actionValue=action.getCfObjects().get(0).getType();
+						actionValues.add(object.getType());
 					} else if (propertyName.equalsIgnoreCase("id")){
-						actionValue=action.getCfObjects().get(0).getId();
+						actionValues.add(object.getId());
 					}
 					 else if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
-							actionValue=action.getCfObjects().get(0).getPropertyValue(MonitorConstants.TAGS);
+						
+						 String [] tags=object.getPropertyValue(MonitorConstants.TAGS).split(",");
+						 for(String tag:tags){
+						 actionValues.add(tag);
+						 }
 						} 
+					}
+					
+					
 				}
 				break;
 			
@@ -207,7 +225,7 @@ public class ActionPropertyRule  implements Serializable{
 		catch(Exception e){
 			System.out.println("[ActionPropertyRule.getActionValue] No value found in action=\n" + "\nRule:" + this);
 		}
-		return actionValue;
+		return actionValues;
 	}
 	
 	
@@ -238,10 +256,28 @@ public class ActionPropertyRule  implements Serializable{
 	public boolean ruleIncludesAction(CfAction action){
 		try {
 			if(valueToFilterBy != null){
-				String actionValue = getActionValue(action);
+				List<String> actionValues = getActionValue(action);
+				
+				String actionValue=actionValues.get(0);
+				
 				if (actionValue != null){
 					if (operationtype == OperationType.EQUALS){
+						
+						if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
+							
+							for(String value:actionValues){
+								
+								if(valueToFilterBy.equalsIgnoreCase(value))
+								{
+									return true;
+								}
+							}
+							
+						}
+						else{
+						
 						return valueToFilterBy.equalsIgnoreCase(actionValue);
+						}
 					}
 					else if (operationtype == OperationType.CONTAINS){
 						return actionValue.toLowerCase().contains(valueToFilterBy.toLowerCase());

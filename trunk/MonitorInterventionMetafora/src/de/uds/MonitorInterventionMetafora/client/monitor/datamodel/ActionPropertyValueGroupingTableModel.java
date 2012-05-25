@@ -29,7 +29,9 @@ public class ActionPropertyValueGroupingTableModel {
 	
 	//TODO: get list of the values and call addaction value multiple times
 	public void addAction(CfAction action){
-		String actionValue = actionPropertyRule.getActionValue(action);
+		
+		for(String actionValue:actionPropertyRule.getActionValue(action)){
+		
 		if (actionValue != null){
 			addActionValue(actionValue, action);
 		}
@@ -37,6 +39,9 @@ public class ActionPropertyValueGroupingTableModel {
 //			System.out.println("INFO\t\t[ActionPropertyRule.addAction] can't get actionValue from action:\n" + action + "\n from rule: " + actionPropertyRule);
 			addActionValue(MonitorConstants.BLANK_PROPERTY_LABEL, action);
 		}
+		
+		}
+		
 	}
 
 	
