@@ -33,6 +33,19 @@ public class TablePanel extends DataViewPanel {
 	
 	public TablePanel( ClientMonitorDataModel model, ActionPropertyRule groupingProperty) {
 		super(groupingProperty, model);
+		
+		 ColumnModel columnModel = getColumnModel();
+		    
+		    tableView = new Grid<CfActionGridRow>(model.getTableViewModel(), columnModel);
+			tableView.setView(getGridView(columnModel));
+			tableView.setWidth(950);
+			tableView.setHeight(545);
+			this.setHeight(560);
+			
+			tableView.addListener(Events.RowClick, new TableRowDisplaySelectionListener());
+			//this.setHeight(560);
+			this.add(tableView);
+		
 	}
 
 	@Override
@@ -54,17 +67,7 @@ public class TablePanel extends DataViewPanel {
 	@Override
 	  protected void onRender(Element parent, int index) {
 	    super.onRender(parent, index);
-	    ColumnModel columnModel = getColumnModel();
-	    
-	    tableView = new Grid<CfActionGridRow>(model.getTableViewModel(), columnModel);
-		tableView.setView(getGridView(columnModel));
-		tableView.setWidth(950);
-		tableView.setHeight(550);
-		
-		tableView.addListener(Events.RowClick, new TableRowDisplaySelectionListener());
-		//this.setHeight(560);
-		this.add(tableView);
-		
+
 
 	}
 	

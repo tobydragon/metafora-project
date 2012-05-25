@@ -17,15 +17,18 @@ public class GroupedDataViewPanel extends ContentPanel {
 	GroupingChooserToolbar groupingChooserToolbar;
 	DataViewPanel dataViewPanel;
 	DataViewPanelType dataViewPanelType;
+	private StatusPanel statusPanel;
+	
 	
 	//TODO: Total and filtered indicator count, maybe for all dataViewPanels, not just table?
-//Nuu
-	//TODO: Get rid of all ID Strings (last 2 params)
+
+	
 	public GroupedDataViewPanel(DataViewPanelType dataViewPanelType, ClientMonitorDataModel model, 
 			ClientMonitorController controller, ActionPropertyRule  groupingProperty, SimpleComboBox<String> filterGroupCombo){
 		this.dataViewPanel = DataViewPanel.createDataViewPanel(dataViewPanelType, model, controller, this, groupingProperty,filterGroupCombo);
 		this.dataViewPanelType=dataViewPanelType;
 		groupingChooserToolbar = new GroupingChooserToolbar(this, groupingProperty);
+		statusPanel=new StatusPanel(model);
 		
 		this.setCollapsible(false);
 	    this.setFrame(true);
@@ -33,7 +36,7 @@ public class GroupedDataViewPanel extends ContentPanel {
 	    this.setHeight(560);
 	 
 	  
-	    
+	    this.dataViewPanel.add(statusPanel);
 	    this.setTopComponent(groupingChooserToolbar);
 	    this.add(dataViewPanel);
 	    this.setHeaderVisible(false);
@@ -57,6 +60,7 @@ public class GroupedDataViewPanel extends ContentPanel {
 		dataViewPanel.refresh();
 		this.setLayoutNeeded(true);
 		this.layout();
+		statusPanel.refresh();
 	}
 
 	public DataViewPanelType getDataViewType(){
