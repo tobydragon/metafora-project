@@ -29,9 +29,8 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRu
 public class ClientMonitorDataModel{
 	
 	private List<CfAction> allActions;
-	private Map<String, ActionFilter> allActionFilters;
+	//private Map<String, ActionFilter> allActionFilters;
 	private ActionFilter currentActionFilter;
-	
 	private  List<CfAction> filteredActions;
 	private CommunicationServiceAsync monitoringViewServiceServlet;
 	
@@ -51,7 +50,7 @@ public class ClientMonitorDataModel{
 		this.monitoringViewServiceServlet=monitoringViewServiceServlet;
 		currentActionFilter = new ActionFilter();
 		allActions = new Vector<CfAction>();
-		allActionFilters=new HashMap<String, ActionFilter>();
+		//allActionFilters=new HashMap<String, ActionFilter>();
 		
 		tableViewModel = new GroupingStore<CfActionGridRow>();
 	
@@ -79,7 +78,15 @@ public class ClientMonitorDataModel{
 		rule2ValueGroupingTableMap = createIndicatorPropertyTableMap();	
 	}
 	
+	public int getAllActionCount(){
+		
+		return allActions.size();
+	}
 	
+public int getFilteredActionCount(){
+		
+		return filteredActions.size();
+	}
 	public ListStore<FilterGridRow> getFilterGridViewModel(){
 		
 		return currentActionFilter.getFilterStore();
