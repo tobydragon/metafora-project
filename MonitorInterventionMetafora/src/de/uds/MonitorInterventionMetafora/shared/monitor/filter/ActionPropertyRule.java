@@ -280,7 +280,23 @@ public class ActionPropertyRule  implements Serializable{
 						}
 					}
 					else if (operationtype == OperationType.CONTAINS){
+						
+						if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
+							
+							for(String value:actionValues){
+								
+								if(value.toLowerCase().contains(valueToFilterBy.toLowerCase()))
+								{
+									return true;
+								}
+							}
+							
+						}
+						else{
+						
+						
 						return actionValue.toLowerCase().contains(valueToFilterBy.toLowerCase());
+						}
 					}
 					else if (operationtype == OperationType.OCCUREDWITHIN){
 						long timeStamp = Long.valueOf(actionValue);
@@ -294,13 +310,42 @@ public class ActionPropertyRule  implements Serializable{
 					
 					else if (operationtype == OperationType.ISONEOF)
 					{
+						if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
+							
+							for(String value:actionValues){
+								
+								if(isStatisfyConditionWithMultipleValues(valueToFilterBy,value,OperationType.ISONEOF))
+								{
+									return true;
+								}
+							}
+							
+						}
+						else{
+						
+						
 						
 						return isStatisfyConditionWithMultipleValues(valueToFilterBy,actionValue,OperationType.ISONEOF);
+						}
 					}
 					else if (operationtype == OperationType.CONTAINSONEOF)
 					{
 						
+						if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
+							
+							for(String value:actionValues){
+								
+								if(isStatisfyConditionWithMultipleValues(valueToFilterBy,value,OperationType.CONTAINSONEOF))
+								{
+									return true;
+								}
+							}
+							
+						}
+						else{
+						
 						return isStatisfyConditionWithMultipleValues(valueToFilterBy,actionValue,OperationType.CONTAINSONEOF);
+						}
 					}
 					
 					else {
