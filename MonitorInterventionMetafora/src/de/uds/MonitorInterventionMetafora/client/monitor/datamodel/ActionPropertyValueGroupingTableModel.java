@@ -31,15 +31,13 @@ public class ActionPropertyValueGroupingTableModel {
 	public void addAction(CfAction action){
 		
 		for(String actionValue:actionPropertyRule.getActionValue(action)){
-		
-		if (actionValue != null){
-			addActionValue(actionValue, action);
-		}
-		else {
-//			System.out.println("INFO\t\t[ActionPropertyRule.addAction] can't get actionValue from action:\n" + action + "\n from rule: " + actionPropertyRule);
-			addActionValue(MonitorConstants.BLANK_PROPERTY_LABEL, action);
-		}
-		
+			if (actionValue != null){
+				addActionValue(actionValue, action);
+			}
+			else {
+	//			System.out.println("INFO\t\t[ActionPropertyRule.addAction] can't get actionValue from action:\n" + action + "\n from rule: " + actionPropertyRule);
+				addActionValue(MonitorConstants.BLANK_PROPERTY_LABEL, action);
+			}
 		}
 		
 	}
@@ -58,6 +56,8 @@ public class ActionPropertyValueGroupingTableModel {
 			setRow(valueModel);
 		}
 	}
+	
+
 	
 	public void setRow(ActionPropertyValueModel rowModel){
 		dataTable.setValue( rowModel.getRowIndex(), 0, rowModel.getPropertyValue());
