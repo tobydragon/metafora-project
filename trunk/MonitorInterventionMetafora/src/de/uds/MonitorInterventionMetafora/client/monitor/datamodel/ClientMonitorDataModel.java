@@ -93,7 +93,7 @@ public int getFilteredActionCount(){
 	}
 	
 	
-	
+	// TODO: optimize!
 	public void updateFilteredList(){
 		clearFilteredData();
 		addFilteredData(allActions);
@@ -103,7 +103,7 @@ public int getFilteredActionCount(){
 		for (CfAction action : actionsToFilter){
 			if (currentActionFilter.filterIncludesAction(action)){
 				tableViewModel.add(new CfActionGridRow(action));
-				
+				//TODO: if checknox of update charts is not check dont do this part
 				for (ActionPropertyValueGroupingTableModel indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
 					indicatorPropertyTable.addAction(action);
 				}
@@ -127,7 +127,7 @@ public int getFilteredActionCount(){
 	}
 	
 	public void addData(List<CfAction> actions){
-		allActions.addAll(actions);
+		 allActions.addAll(actions);
 		addFilteredData(actions);
 	}
 	
