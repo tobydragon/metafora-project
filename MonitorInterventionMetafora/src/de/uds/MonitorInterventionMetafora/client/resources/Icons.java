@@ -34,5 +34,7 @@ public interface Icons extends ImageBundle {
   AbstractImagePrototype clear();
   @Resource("save.gif")
   AbstractImagePrototype save();
+  @Resource("settings.png")
+  AbstractImagePrototype configuration();
 
 }

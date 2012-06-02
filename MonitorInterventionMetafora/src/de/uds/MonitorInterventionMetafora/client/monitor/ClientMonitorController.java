@@ -37,7 +37,7 @@ public class ClientMonitorController {
 	}
 	
 	
-	void addFilterModelListeners(ListStore<FilterGridRow> filterGridStore){
+	public void addFilterModelListeners(ListStore<FilterGridRow> filterGridStore){
 		
 		filterGridStore.addListener(Store.Add, new Listener<StoreEvent<FilterGridRow>>() {
 	        public void handleEvent(StoreEvent<FilterGridRow> be) {

@@ -41,9 +41,9 @@ public class FilterManagementToolBar extends ToolBar{
 	EditorGrid<FilterGridRow> grid;
 	
 	
-	//TODO remove all dependencies on controller, controller is notified through the grid store 
+ 
 	public FilterManagementToolBar(EditorGrid<FilterGridRow> grid, ActionPropertyRuleSelectorModel filterRuleSelectorModel,final SimpleComboBox<String> filterGroupCombo){
-
+	
 this.filterGroupCombo=filterGroupCombo;
 
 		this.grid = grid;
@@ -122,6 +122,15 @@ this.filterGroupCombo=filterGroupCombo;
 	
 	
 
+	
+	
+	
+	
+
+
+	
+	
+	
 	ListStore<OperationsComboBoxModel>	getOperations(boolean _isTimeOperation){
 		ListStore<OperationsComboBoxModel> _operations=new ListStore<OperationsComboBoxModel>();
 		if(!_isTimeOperation){
@@ -188,6 +197,7 @@ this.filterGroupCombo=filterGroupCombo;
 		        grid.startEditing(grid.getStore().indexOf(_newRow), 0); 
 		     
 				
+		        
 		        filterPropertyComboBox.clearSelections();
 		        operationComboBox.clearSelections();
 		        entityValueTextBox.clear();

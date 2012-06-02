@@ -45,20 +45,28 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 private EditorGrid<FilterGridRow> grid;
 	 private ClientMonitorController controller;
 	 private ClientMonitorDataModel model;
-	 private CommunicationServiceAsync serverlet;
+	 
 	 private SimpleComboBox<String> filterGroupCombo;
 	 private Button clearbtn;
 	 private Button saveAsBtn;
 	 private Button deleteBtn;
+	 boolean isMainFilterSet;
 
 	 
-	 public FilterSelectorToolBar(EditorGrid<FilterGridRow> grid,ClientMonitorDataModel model,ClientMonitorController controller){
+	 public FilterSelectorToolBar(EditorGrid<FilterGridRow> grid,ClientMonitorDataModel model,ClientMonitorController controller,boolean isMainFilterSet){
+		
+		 this.isMainFilterSet=isMainFilterSet;
+		 
 		 filterGroupCombo = new SimpleComboBox<String>(); 
 		
 		 	this.grid=grid;	
 		 	this.model=model;
 		 	this.controller=controller;
-		 	model.getServiceServlet().requestConfiguration(null, this);
+		 	
+		 	model.getServiceServlet().requestConfiguration(isMainFilterSet, this);
+		 
+		 	
+		 	
 		 	filterSets=new HashMap<String, ActionFilter>();
 		 	
 		 	
@@ -66,6 +74,26 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		    
 	 }
 
+	 
+	 public FilterSelectorToolBar(EditorGrid<FilterGridRow> grid,ClientMonitorDataModel model, boolean isMainFilterSet){
+			
+		 this.isMainFilterSet=isMainFilterSet;
+		 this.model=model;
+		 filterGroupCombo = new SimpleComboBox<String>(); 
+		
+		 	this.grid=grid;	
+		 
+		 	model.getServiceServlet().requestConfiguration(isMainFilterSet, this);
+		 
+		 	
+		 	
+		 	filterSets=new HashMap<String, ActionFilter>();
+		 	
+		 	
+		 	
+		    
+	 }
+	 
 	 
 	 boolean isAlreadyIn(String name){
 		for(SimpleComboValue<String> filterName:filterGroupCombo.getStore().getRange(0, filterGroupCombo.getStore().getCount())){
@@ -82,7 +110,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 void renderToolBar(){
 		 this.add(new LabelToolItem("Filter Set:"));
 		 this.add(renderFilterSelectorComboBox());
-		 saveAsBtn= new Button("Save As",new SelectionListener<ButtonEvent>() {
+		 saveAsBtn= new Button("Save",new SelectionListener<ButtonEvent>() {
 				@Override
 				public void componentSelected(ButtonEvent ce) {
 					
@@ -124,7 +152,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 							}
 							else{
 								MessageBox.info("Info","New filter is added successfully!", null);
-								model.getServiceServlet().requestConfiguration(null, new AsyncCallback<Configuration>(){
+								model.getServiceServlet().requestConfiguration(isMainFilterSet, new AsyncCallback<Configuration>(){
 
 									@Override
 									public void onFailure(Throwable caught) {

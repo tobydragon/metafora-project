@@ -19,6 +19,7 @@ import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelT
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
@@ -292,6 +293,20 @@ public class ActionPropertyRule  implements Serializable{
 							}
 							
 						}
+						
+						else if (propertyName.equalsIgnoreCase(CommonFormatStrings.ID_STRING)){
+							
+							for(String value:actionValues){
+								
+								if(value.toLowerCase().contains(valueToFilterBy.toLowerCase()))
+								{
+									return true;
+								}
+							}
+							
+						}
+						
+						
 						else{
 						
 						
@@ -321,6 +336,20 @@ public class ActionPropertyRule  implements Serializable{
 							}
 							
 						}
+						
+						
+						else if (propertyName.equalsIgnoreCase(CommonFormatStrings.ID_STRING)){
+							
+							for(String value:actionValues){
+								
+								if(isStatisfyConditionWithMultipleValues(valueToFilterBy,value,OperationType.ISONEOF))
+								{
+									return true;
+								}
+							}
+							
+						}
+						
 						else{
 						
 						
