@@ -33,7 +33,8 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 
 	static String generalConfigFile="conffiles/toolconf/configuration.xml";
 	static String mainFiltersFile="conffiles/toolconf/mainfilters.xml";
-	private Configuration configuration;
+	private Configuration generalConfiguration;
+	private Configuration mainFilterSetConfiguration;
 	private XmlConfigParser configuratinParser;
 	MonitorModel monitorModel;
 	MonitorController monitorController;
@@ -46,10 +47,11 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		super();
 
 	
-		configuration = readConfiguration(false);
-		CfCommunicationMethodType communicationMethodType = configuration.getDataSouceType();
+		generalConfiguration = readConfiguration(false);
+		mainFilterSetConfiguration=readConfiguration(true);
+		CfCommunicationMethodType communicationMethodType = generalConfiguration.getDataSouceType();
 		
-		monitorController = new MonitorController(communicationMethodType, configuration.getHistoryStartTime());
+		monitorController = new MonitorController(communicationMethodType, generalConfiguration.getHistoryStartTime());
 		monitorModel = monitorController.getModel();
 		
 		
@@ -81,20 +83,20 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		//TODO: should take no params, if not used... What is _user?
 		logger.info("sendRequestConfiguration]");
 		if(isConfigurationUpdated && !isMainFilter){
-		 configuration = readConfiguration(false);
+		 generalConfiguration = readConfiguration(false);
 		 isConfigurationUpdated=false;
 		}
 		else if(isMainFilter){
 			
 			
-			configuration=readConfiguration(true);
+			generalConfiguration=readConfiguration(true);
 		}
 		
 			
 		
 		
 		
-		return configuration;
+		return generalConfiguration;
 	}
 	
 	@Override
@@ -123,14 +125,23 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	}
 
 	@Override
-	public boolean saveNewFilter(CfAction action, ActionFilter filter) {
+	public boolean saveNewFilter(boolean isMainFilters, ActionFilter filter) {
+		if(!isMainFilters){
 		isConfigurationUpdated=true;
+		configuratinParser=new XmlConfigParser(generalConfigFile);
+		
 		return configuratinParser.saveNewFilterToConfiguration(filter);
+		}
+		else{
+			configuratinParser=new XmlConfigParser(mainFiltersFile);
+			return configuratinParser.saveNewFilterToConfiguration(filter);
+		}
+		
 	}
 
 	@Override
 	public String removeNewFilter(String filterName) {
-		configuration.removeFilter(filterName);
+		generalConfiguration.removeFilter(filterName);
 		return "";
 	}
 	

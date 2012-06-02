@@ -259,7 +259,10 @@ public class ActionPropertyRule  implements Serializable{
 			if(valueToFilterBy != null){
 				List<String> actionValues = getActionValue(action);
 				
+				if(actionValues.size()<=0)
+					return false;
 				String actionValue=actionValues.get(0);
+				
 				
 				if (actionValue != null){
 					if (operationtype == OperationType.EQUALS){

@@ -48,7 +48,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 
 	 private SimpleComboBox<String> filterGroupCombo;
 	 private Button clearbtn;
-	 private Button saveAsBtn;
+	 public Button saveAsBtn;
 	 private Button deleteBtn;
 	 boolean isMainFilterSet;
 
@@ -74,7 +74,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		    
 	 }
 
-	 
+	 /*
 	 public FilterSelectorToolBar(EditorGrid<FilterGridRow> grid,ClientMonitorDataModel model, boolean isMainFilterSet){
 			
 		 this.isMainFilterSet=isMainFilterSet;
@@ -85,14 +85,12 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		 
 		 	model.getServiceServlet().requestConfiguration(isMainFilterSet, this);
 		 
-		 	
-		 	
 		 	filterSets=new HashMap<String, ActionFilter>();
 		 	
 		 	
 		 	
 		    
-	 }
+	 }*/
 	 
 	 
 	 boolean isAlreadyIn(String name){
@@ -125,6 +123,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 					}
 							
 			
+				saveAsBtn.setEnabled(false);
 				
 				
 					ActionFilter filter=new ActionFilter();
@@ -137,16 +136,21 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 					}
 				
 		
-					model.getServiceServlet().saveNewFilter(null, filter,new AsyncCallback<Boolean>(){
+					model.getServiceServlet().saveNewFilter(isMainFilterSet, filter,new AsyncCallback<Boolean>(){
 
+						
 						@Override
 						public void onFailure(Throwable caught) {
 							MessageBox.info("Error","New filter is not saved", null);
+							
+							saveAsBtn.setEnabled(true);
 							
 						}
 
 						@Override
 						public void onSuccess(Boolean result) {
+							
+							saveAsBtn.setEnabled(true);
 							if(!result){
 							MessageBox.info("Error","New filter cannot be  saved!" +result, null);
 							}
@@ -267,6 +271,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		 grid.getStore().removeAll();
 		
 		 filterGroupCombo.setEditable(false);
+		 controller.filtersUpdated();
 	 }
 	 
 	@Override

@@ -24,7 +24,7 @@ public interface CommunicationServiceAsync {
 	
 	void sendLogAction(CfAction logAction,AsyncCallback<String> callback);
 	
-	void saveNewFilter(CfAction action,ActionFilter filter, AsyncCallback<Boolean> callback);
+	void saveNewFilter(boolean isMainFilters,ActionFilter filter, AsyncCallback<Boolean> callback);
 	void removeNewFilter(String filterName, AsyncCallback<String> callback);
 	
 	void sendNotificationToAgents(CfAction cfAction, AsyncCallback<CfAction> callback);
