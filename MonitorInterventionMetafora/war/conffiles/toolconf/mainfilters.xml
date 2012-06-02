@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurations>
+  <configuration name="Test" active="1">
+    <filters>
+      <filter name="Main1" editable="true">
+        <filteritem propertyrulename="ID" operation="Equals" value="Toby" type="User" />
+      </filter>
+      
+        <filter name="Main2" editable="true">
+        <filteritem propertyrulename="TOOL" operation="Contains" value="LASAD" type="Content" />
+    	 </filter>
+    	 <filter name="Main2" editable="true">
+    	 <filteritem propertyrulename="TOOL" operation="Contains" value="LASAD" type="Content" />
+         <filteritem propertyrulename="TIME" operation="OccuredWithIn" value="3" type="Action" />
+
+    	 </filter>
+      
+      
+      
+    </filters>
+  </configuration>
+</configurations>
+
