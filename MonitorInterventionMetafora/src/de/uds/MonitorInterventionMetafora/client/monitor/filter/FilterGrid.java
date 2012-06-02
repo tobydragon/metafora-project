@@ -94,7 +94,7 @@ public class FilterGrid  extends LayoutContainer {
 		grid = new EditorGrid<FilterGridRow>(model.getMainFilterGridViewModel(),getColumnModel());
 		controller.addFilterModelListeners(grid.getStore());
 		
-		filterSelectorToolBar=new FilterSelectorToolBar(grid,model,isMainFilterSet);
+		filterSelectorToolBar=new FilterSelectorToolBar(grid,model,controller,isMainFilterSet);
 		
 		
 		filterManagementToolBar=new FilterManagementToolBar(grid,model.getFilterSelectorModel(),filterSelectorToolBar.getFilterSelectorComboBox());

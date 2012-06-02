@@ -30,7 +30,7 @@ public interface CommunicationService  extends RemoteService  {
 	
 	String sendLogAction(CfAction logAction);
 
-	boolean saveNewFilter(CfAction action, ActionFilter filter);
+	boolean saveNewFilter(boolean isMainFilters, ActionFilter filter);
 
 	String removeNewFilter(String filterName);
 
