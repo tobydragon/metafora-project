@@ -31,6 +31,7 @@ public class ClientMonitorDataModel{
 	private List<CfAction> allActions;
 	//private Map<String, ActionFilter> allActionFilters;
 	private ActionFilter currentActionFilter;
+	private FilterViewModel  mainFilters;
 	private  List<CfAction> filteredActions;
 	private CommunicationServiceAsync monitoringViewServiceServlet;
 	
@@ -48,10 +49,12 @@ public class ClientMonitorDataModel{
 		this.groupingSelectorModel = groupingSelectorModel;
 		this.filterSelectorModel=filterSelectorModel;
 		this.monitoringViewServiceServlet=monitoringViewServiceServlet;
-		currentActionFilter = new ActionFilter();
+		
 		allActions = new Vector<CfAction>();
 		//allActionFilters=new HashMap<String, ActionFilter>();
 		
+		mainFilters=new FilterViewModel();
+		currentActionFilter = new ActionFilter(mainFilters);
 		tableViewModel = new GroupingStore<CfActionGridRow>();
 	
 		clearFilteredData();
@@ -92,6 +95,11 @@ public int getFilteredActionCount(){
 		return currentActionFilter.getFilterStore();
 	}
 	
+public FilterViewModel getMainFilterGridViewModel(){
+		
+		return mainFilters;
+	}
+	
 	
 	// TODO: optimize!
 	public void updateFilteredList(){
@@ -100,6 +108,8 @@ public int getFilteredActionCount(){
 	}
 	
 	public void addFilteredData(List<CfAction> actionsToFilter){
+		
+
 		for (CfAction action : actionsToFilter){
 			if (currentActionFilter.filterIncludesAction(action)){
 				tableViewModel.add(new CfActionGridRow(action));

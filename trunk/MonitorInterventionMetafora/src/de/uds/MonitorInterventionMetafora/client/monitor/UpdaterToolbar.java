@@ -13,6 +13,9 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
+
+import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyComboBoxItemModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
@@ -24,10 +27,11 @@ public class UpdaterToolbar extends ToolBar{
 	 
 	private CheckBox autoRefresh;
 	private Button refreshButton;
+	private Button configurationButton;
 	
 	final ClientMonitorDataModelUpdater updater;
 
-	public UpdaterToolbar(ClientMonitorDataModelUpdater updater){
+	public UpdaterToolbar(ClientMonitorDataModelUpdater updater,final ClientMonitorDataModel _maintenance, final ClientMonitorController controller, final CommunicationServiceAsync serverlet){
 		this.updater = updater;
 		
 		autoRefresh = new CheckBox();
@@ -57,11 +61,26 @@ public class UpdaterToolbar extends ToolBar{
 	        	System.out.println("refreshClicked");
 	        	UpdaterToolbar.this.updater.getUpdate();
 	        }  
+	      });
+		
+		
+		
+		configurationButton = new Button(); 
+		configurationButton.setToolTip("Configuration");
+		configurationButton.setIcon(Resources.ICONS.configuration());
+		configurationButton.setWidth(25);
+		configurationButton.addSelectionListener(new SelectionListener<ButtonEvent>() {  
+	        @Override  
+	        public void componentSelected(ButtonEvent ce) {  
+	        	ConfigurationPanel panel=new ConfigurationPanel(_maintenance,controller,serverlet);
+	        }  
 	      });  
+
 
 	    this.setWidth(600);
 	    this.add(autoRefresh);
 	    this.add(refreshButton);
+	    this.add(configurationButton);
 	    
 	}
 	

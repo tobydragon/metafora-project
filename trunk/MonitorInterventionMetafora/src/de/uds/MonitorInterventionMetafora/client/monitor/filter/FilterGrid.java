@@ -57,7 +57,9 @@ import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.FilterViewModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
 
 
 public class FilterGrid  extends LayoutContainer {
@@ -68,18 +70,40 @@ public class FilterGrid  extends LayoutContainer {
 	 FilterSelectorToolBar filterSelectorToolBar;
 	 FilterManagementToolBar filterManagementToolBar;
 	 ContentPanel panel;
+	 boolean isMainFilterSet;
+	 
 	 
 	
 	public FilterGrid(ClientMonitorDataModel model, ClientMonitorController controller){
-		
+		isMainFilterSet=false;
 		this.model = model;
 		this.controller = controller;
 		panel= new ContentPanel();
 		grid = new EditorGrid<FilterGridRow>(model.getFilterGridViewModel(), getColumnModel());
-		filterSelectorToolBar=new FilterSelectorToolBar(grid,model,controller);
+		filterSelectorToolBar=new FilterSelectorToolBar(grid,model,controller,false);
 		filterManagementToolBar=new FilterManagementToolBar(grid,model.getFilterSelectorModel(),filterSelectorToolBar.getFilterSelectorComboBox());
 		
 	}
+	
+	public FilterGrid(CommunicationServiceAsync servlet,ClientMonitorDataModel model,ClientMonitorController controller,boolean isMainFilterSet){
+		
+		this.model =model;
+		//this.controller = controller;
+		this.isMainFilterSet=isMainFilterSet;
+		panel= new ContentPanel();
+		grid = new EditorGrid<FilterGridRow>(model.getMainFilterGridViewModel(),getColumnModel());
+		controller.addFilterModelListeners(grid.getStore());
+		
+		filterSelectorToolBar=new FilterSelectorToolBar(grid,model,isMainFilterSet);
+		
+		
+		filterManagementToolBar=new FilterManagementToolBar(grid,model.getFilterSelectorModel(),filterSelectorToolBar.getFilterSelectorComboBox());
+		
+	}
+	
+	
+	
+	
 	
 
   @Override
@@ -96,9 +120,15 @@ public class FilterGrid  extends LayoutContainer {
     panel.setButtonAlign(HorizontalAlignment.CENTER);
     panel.setCollapsible(true);
     panel.setFrame(true);
-    panel.setSize(960, 150);
+    panel.setSize(960, 152);
     grid.setWidth(950);
-    grid.setHeight(180);
+    grid.setHeight(150);
+    if(isMainFilterSet)
+    {
+    	panel.setHeight(300);
+    	grid.setHeight(300);
+    }
+    
     panel.setLayout(new FitLayout());
     panel.add(grid);
     panel.setBottomComponent(filterManagementToolBar);

@@ -31,6 +31,8 @@ import org.apache.log4j.Logger;
 public class MainServer extends RemoteServiceServlet implements CommunicationService {
 	Logger logger = Logger.getLogger(this.getClass());
 
+	static String generalConfigFile="conffiles/toolconf/configuration.xml";
+	static String mainFiltersFile="conffiles/toolconf/mainfilters.xml";
 	private Configuration configuration;
 	private XmlConfigParser configuratinParser;
 	MonitorModel monitorModel;
@@ -44,7 +46,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		super();
 
 	
-		configuration = readConfiguration();
+		configuration = readConfiguration(false);
 		CfCommunicationMethodType communicationMethodType = configuration.getDataSouceType();
 		
 		monitorController = new MonitorController(communicationMethodType, configuration.getHistoryStartTime());
@@ -54,9 +56,13 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		feedbackCommunicationManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.command);							
 	}
 	
-	private Configuration readConfiguration(){
-		String configFilepath = GeneralUtil.getRealPath("conffiles/toolconf/configuration.xml");
-
+	private Configuration readConfiguration(boolean isMainConfig){
+		String configFilepath = "";
+		if(isMainConfig){
+			configFilepath = GeneralUtil.getRealPath(mainFiltersFile);	
+		}else{
+		configFilepath = GeneralUtil.getRealPath(generalConfigFile);
+		}
 		configuratinParser= new XmlConfigParser(configFilepath);
 		Configuration configuration =configuratinParser.toActiveConfiguration();
 		return configuration;
@@ -71,13 +77,23 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	}
 
 	@Override
-	public Configuration requestConfiguration(CfAction cfAction) {
+	public Configuration requestConfiguration(boolean isMainFilter) {
 		//TODO: should take no params, if not used... What is _user?
 		logger.info("sendRequestConfiguration]");
-		if(isConfigurationUpdated){
-		 configuration = readConfiguration();
+		if(isConfigurationUpdated && !isMainFilter){
+		 configuration = readConfiguration(false);
 		 isConfigurationUpdated=false;
 		}
+		else if(isMainFilter){
+			
+			
+			configuration=readConfiguration(true);
+		}
+		
+			
+		
+		
+		
 		return configuration;
 	}
 	

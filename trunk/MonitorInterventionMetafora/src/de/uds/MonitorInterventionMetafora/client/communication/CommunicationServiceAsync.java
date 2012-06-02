@@ -16,7 +16,7 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
  */
 public interface CommunicationServiceAsync {
 
-	void requestConfiguration(CfAction cfAction,AsyncCallback<Configuration> callback);
+	void requestConfiguration(boolean isMainFilters,AsyncCallback<Configuration> callback);
 
 	void sendAction(String _user,CfAction cfAction, AsyncCallback<CfAction> callback);
 

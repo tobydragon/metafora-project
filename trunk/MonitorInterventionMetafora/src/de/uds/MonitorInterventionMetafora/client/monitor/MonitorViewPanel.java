@@ -51,7 +51,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 
 		updater = new ClientMonitorDataModelUpdater(monitorModel, controller);
 
-		updaterToolbar = new UpdaterToolbar(updater);
+		updaterToolbar = new UpdaterToolbar(updater,monitorModel,controller,monitoringViewServiceServlet);
 		this.setTopComponent(updaterToolbar);
 		this.setHeaderVisible(false);
 		

@@ -23,7 +23,7 @@ public interface CommunicationService  extends RemoteService  {
 	
 	List<CfAction> requestUpdate(CfAction _lastcfAction);
 	
-	Configuration requestConfiguration(CfAction cfAction);
+	Configuration requestConfiguration(boolean isMainFilters);
 	
 	CfAction sendNotificationToAgents(CfAction cfAction);
 	
