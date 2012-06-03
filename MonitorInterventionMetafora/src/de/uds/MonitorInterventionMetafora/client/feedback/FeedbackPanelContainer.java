@@ -7,6 +7,7 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -70,9 +71,9 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		return INSTANCE;
 	}
 
-	public static TextBox getMessageTextBox()
+	public static TextArea getMessageTextArea()
 	{
-		return INSTANCE.outbox.getMessageTextBox();
+		return INSTANCE.outbox.getMessageTextArea();
 	}
 	public static Outbox getOutbox() {
 		return INSTANCE.outbox;
