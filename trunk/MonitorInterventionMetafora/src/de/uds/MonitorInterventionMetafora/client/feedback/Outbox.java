@@ -27,7 +27,7 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class Outbox implements CfActionCallBack {
 	
-	private TextBox messageTextBox;
+	private TextArea messageTextArea;
 	private VerticalPanel vpanel,sendModeRadioColumn;
 	private HorizontalPanel sendOptionsRow;
 	public RadioButton sendModeRadioButtonPopup;
@@ -48,12 +48,12 @@ public class Outbox implements CfActionCallBack {
 		vpanel.add(sectionLabel);
 
 		//text box
-		messageTextBox = new TextBox();
-		messageTextBox.setText("");
-		messageTextBox.setPixelSize(sectionWidth, 100);		
-		messageTextBox.setFocus(true);
-		messageTextBox.selectAll();
-		vpanel.add(messageTextBox);
+		messageTextArea = new TextArea();
+		messageTextArea.setText("");
+		messageTextArea.setPixelSize(sectionWidth, 100);		
+		messageTextArea.setFocus(true);
+		messageTextArea.selectAll();
+		vpanel.add(messageTextArea);
 		//vpanel.setce;
 
 		//send options
@@ -149,9 +149,9 @@ public class Outbox implements CfActionCallBack {
 			
 		}
 	}
-	public TextBox getMessageTextBox()
+	public TextArea getMessageTextArea()
 	{
-		return messageTextBox;
+		return messageTextArea;
 	}
 	@Override
 	public void onFailure(Throwable caught) {
@@ -231,13 +231,17 @@ public class Outbox implements CfActionCallBack {
 				cfObject.addProperty(new CfProperty("username",cb.getText()));				
 			}
 		}					
- 	 	cfObject.addProperty(new CfProperty("text",messageTextBox.getText()));	
+ 	 	cfObject.addProperty(new CfProperty("text",messageTextArea.getText()));	
  	 	cfObject.addProperty(new CfProperty("interruption_type",getSelectedIntteruptionType()));
  	 	feedbackMessage.addObject(cfObject);
  	 	
 	 	ServerCommunication.getInstance().processAction("FeedbackClient",feedbackMessage,this);	
 
-		//messageTextBox.setText("");
+	 	if(messageTextArea.getText().length()>0)
+	 	{
+	 		FeedbackPanelContainer.getTemplatePool().addMessageToHistory(messageTextArea.getText());
+	 	}
+		messageTextArea.setText("");
 		
 		
 		
