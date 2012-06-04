@@ -106,6 +106,29 @@ public class TabbedDataViewPanel extends VerticalPanel {
 		
 		}
 
+	public void  addjustSize(boolean isExpanded){
+		
+		if(isExpanded){
+			
+			tabPanel.setWidth(970);
+			tabPanel.setHeight(500);
+			for(TabItem item:tabPanel.getItems()){
+				
+				item.setHeight(350);
+			}
+			
+		}
+		else{
+			
+			tabPanel.setWidth(970);
+			tabPanel.setHeight(662);
+			for(TabItem item:tabPanel.getItems()){
+				
+				item.setHeight(450);
+			}
+			
+		}
+	}
 	public void switchToTab(int index){
 	
 		tabPanel.setTabIndex(index);
