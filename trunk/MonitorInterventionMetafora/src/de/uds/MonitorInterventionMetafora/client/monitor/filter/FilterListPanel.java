@@ -83,6 +83,12 @@ public class FilterListPanel extends ContentPanel {
 	}
 	
 	
+	public ContentPanel getFilterGridPanel(){
+		
+		return this;
+		
+		
+	}
 	
 	public FilterListPanel(ClientMonitorDataModel _maintenance, ClientMonitorController controller,CommunicationServiceAsync serverlet,boolean isMainFilterSet){
 		this.serverlet=serverlet;

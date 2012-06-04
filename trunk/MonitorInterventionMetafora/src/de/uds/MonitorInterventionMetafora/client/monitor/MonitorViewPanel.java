@@ -2,6 +2,9 @@ package de.uds.MonitorInterventionMetafora.client.monitor;
 
 import java.util.List;
 
+import com.extjs.gxt.ui.client.event.BaseEvent;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
@@ -9,6 +12,10 @@ import com.google.gwt.user.client.ui.Image;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
+import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
+import de.uds.MonitorInterventionMetafora.client.logger.Log;
+import de.uds.MonitorInterventionMetafora.client.logger.Logger;
+import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
@@ -89,6 +96,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 	
 		VerticalPanel panel=new VerticalPanel();
 		flp=new FilterListPanel(monitorModel, controller,monitoringViewServiceServlet);
+		enableResizeListener(flp.getFilterGridPanel());
 		panel.add(flp);
 		
 		createTabbedDataViewsPanel(actionPropertyRuleCreator,flp.getFilterGrid().getfilterSelectorToolBar().getFilterSelectorComboBox());
@@ -101,6 +109,30 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 		this.layout();
 		this.setHeight(800);
 
+	}
+	
+	
+	void enableResizeListener(ContentPanel panel){
+		
+		panel.addListener(Events.Collapse, new Listener<BaseEvent>()
+			        {
+
+			            public void handleEvent(BaseEvent be)
+			            {
+			            	tabbedDataViewPanel.addjustSize(false);
+			            	
+			            };
+			        });
+					 
+		panel.addListener(Events.Expand, new Listener<BaseEvent>()
+			        {
+
+			            public void handleEvent(BaseEvent be)
+			            {
+			            	tabbedDataViewPanel.addjustSize(true);
+			            };
+			        });
+		
 	}
 	
 	private void createTabbedDataViewsPanel(ActionPropertyRuleSelectorModel actionPropertyRuleCreator,SimpleComboBox<String> filterGroupCombo){
@@ -116,6 +148,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 
 		GroupedDataViewPanel barChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.BAR_CHART, monitorModel, controller, defaultGrouping, filterGroupCombo);
 		addDataView("barChartViewTab", "Bar Chart View", barChartWithChooser);
+		
 		
 	}
 	
