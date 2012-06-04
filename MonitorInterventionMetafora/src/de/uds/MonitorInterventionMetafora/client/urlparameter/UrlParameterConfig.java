@@ -9,13 +9,14 @@ public class UrlParameterConfig {
 
 	private String username="";
 	private String password="";
+	private String configID="";
 	
 
 	public UrlParameterConfig(){
 		
 			username = com.google.gwt.user.client.Window.Location.getParameter("user");
 			password = com.google.gwt.user.client.Window.Location.getParameter("pw");
-			
+			configID = com.google.gwt.user.client.Window.Location.getParameter("config");
 		}
 	
 	public String getUsername() {
@@ -32,7 +33,9 @@ public class UrlParameterConfig {
 	public String getPassword() {
 		return password;
 	}
-
+	public String getConfig() {
+		return configID;
+	}
 
 
 
