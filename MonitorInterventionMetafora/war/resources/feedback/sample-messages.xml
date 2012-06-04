@@ -1,37 +1,30 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <messages> 
 <set id="Planning">
-<message>Don't forget to reflect on your plan.</message>
+<message>Does your work on the challenge match your plan? If not consider revising the plan to show what you have done.</message>
+<message>Do you need to revise/adjust your plan?</message>
+<message>Your plan seems to be splitting in different directions. Consider eventually bringing your outcomes together</message>
 <message>There seem to be too many cards that are not linked.</message>
 <message>There seem to be too many process cards.</message>
 <message>Consider using stages.</message>
+<message>It seems that you haven't allocated roles.</message>
+<message>It seems that you haven't allocated attitudes</message>
+<message>Don't forget that each box should only contain one idea. Try to use more than one card for your long texts</message>
 </set>
-<set id="L2L2">
+<set id="Collaboration">
+<message>Are you having difficulties?  Do you need to ask for help from others or from the teacher?</message>
 </set>
 <set id="Discussion">
+<message>Please use the drop-down menus on LASAD contributions to clarify your entries.</message>
+<message>Consider contributing to the LASAD discussion / chat</message>
+<message>Consider contributing to your group's chat</message>
+<message>Don't forget that each box should only contain one idea. Try to use more than one card for your long texts</message>
 </set>
 <set id="Building">
-<message>Don't forget to reflect on your plan.</message>
-<message>There seem to be too many cards that are not linked.</message>
-<message>There seem to be too many process cards.</message>
-<message>Consider using stages.</message>
-<message>Don't forget to reflect on your plan.</message>
-<message>There seem to be too many cards that are not linked.</message>
-<message>There seem to be too many process cards.</message>
-<message>Consider using stages.</message>
-<message>Don't forget to reflect on your plan.</message>
-<message>There seem to be too many cards that are not linked.</message>
-<message>There seem to be too many process cards.</message>
-<message>Consider using stages.</message>
-<message>Don't forget to reflect on your plan.</message>
-<message>There seem to be too many cards that are not linked.</message>
-<message>There seem to be too many process cards.</message>
-<message>Consider using stages.</message>
-<message>Don't forget to reflect on your plan.</message>
-<message>There seem to be too many cards that are not linked.</message>
-<message>There seem to be too many process cards.</message>
-<message>Consider using stages.</message>
+<message>Are you having difficulties? X's model is quite similar so you may want to ask for help?</message>
+<message>Have you finished? Consider sharing your model with others</message>
 </set>
 <set id="Reflecting">
+<message>Don't forget to reflect on your plan.</message>
 </set>
 </messages>
