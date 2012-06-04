@@ -39,6 +39,7 @@ class VisualAnalyzer implements EntryPoint {
 	    	 CommunicationServiceAsync monitoringViewServiceServlet = GWT.create(CommunicationService.class);
 	    	 UrlParameterConfig urlParameters=new UrlParameterConfig();
 	    	 User.userID= urlParameters.getUsername();
+	    	 User.mainConfig=urlParameters.getConfig();
 	    	 System.out.println("User:"+User.userID);
 	    	 
 	    	  FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer();

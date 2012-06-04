@@ -23,6 +23,7 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 
+import de.uds.MonitorInterventionMetafora.client.User;
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
@@ -205,6 +206,8 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		 this.add(saveAsBtn);
 		// this.add(deleteBtn);
 		 this.add(clearbtn);
+		
+		 filterGroupCombo.setSimpleValue(User.mainConfig);
 	
 		 
 	 }
