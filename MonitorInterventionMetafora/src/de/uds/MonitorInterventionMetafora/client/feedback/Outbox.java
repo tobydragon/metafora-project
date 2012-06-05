@@ -169,7 +169,7 @@ public class Outbox implements CfActionCallBack {
 		final DecoratedPopupPanel popup = new DecoratedPopupPanel(true);
 		final TextArea textArea = new TextArea();
 		textArea.setText(recepientNames);
-		final Button createButton = new Button("Create");
+		final Button createButton = new Button("Done");
 		ClickHandler createClickHandler = new ClickHandler() {
 
 		    @Override
@@ -199,6 +199,7 @@ public class Outbox implements CfActionCallBack {
 		okAndCancelPanel.add(createButton);
 		okAndCancelPanel.add(cancelButton);
 		textBoxWithOKAndCancel.setSpacing(6);
+		textBoxWithOKAndCancel.add(new Label("Names (one per line)"));
 		textBoxWithOKAndCancel.add(textArea);
 		textBoxWithOKAndCancel.add(okAndCancelPanel);
 	        popup.setWidget(textBoxWithOKAndCancel);

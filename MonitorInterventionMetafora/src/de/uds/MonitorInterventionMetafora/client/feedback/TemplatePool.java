@@ -104,7 +104,7 @@ public class TemplatePool {
 	
 	//create tab for message history
 	messageHistory = new HistoryTabWidget();
-	String sentMessagesTitle = "Sent Messages";
+	String sentMessagesTitle = "Sent";
 	messageHistory.setTitle(sentMessagesTitle);
 	tabWidgets.add(messageHistory);
 	tabBar.insertTab(sentMessagesTitle, tabBar.getTabCount());
