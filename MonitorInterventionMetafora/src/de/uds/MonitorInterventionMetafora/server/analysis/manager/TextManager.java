@@ -53,6 +53,14 @@ public TextManager(boolean addWordCount){
 				action.getCfObjects().get(0).addProperty(agent.getWordCount(objecttextToTag).toCfProperty());
 			}
 		}
+		else {
+			
+			action.getCfObjects().get(0).addProperty(agent.tag("").toEmptyCfProperty());
+			if(addWordCount)
+			{
+				action.getCfObjects().get(0).addProperty(agent.getWordCount("").toEmptyCfProperty());
+			}
+		}
 		
 		return action;
 		

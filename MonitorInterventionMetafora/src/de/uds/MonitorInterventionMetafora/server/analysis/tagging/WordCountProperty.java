@@ -76,14 +76,22 @@ return count;
     	
     	CfProperty property=new CfProperty();
     	property.setId(text);
-    	
-    	System.out.println("Text:"+text);
-    	System.out.println("Count:"+wordCount);
+    
     	
     	property.setName(MonitorConstants.WORD_COUNT);
     	property.setValue(Integer.toString(wordCount));
     	return property;
     }
     
+  public CfProperty toEmptyCfProperty(){
+    	
+    	CfProperty property=new CfProperty();
+    	property.setId(MonitorConstants.BLANK_PROPERTY_LABEL);
+
+    	
+    	property.setName(MonitorConstants.WORD_COUNT);
+    	property.setValue("0");
+    	return property;
+    }
    
 }
