@@ -38,6 +38,9 @@ public class TabbedDataViewPanel extends VerticalPanel {
 		tabPanel.setWidth(970);
 		tabPanel.setHeight(662);
 		tabPanel.setLayoutData(new FitLayout());
+		tabPanel.setBorders(false);
+		this.setBorders(false);
+	
 		tabPanel.addListener(Events.Select, new SelectionListener<TabPanelEvent>() {
 
             @Override
@@ -77,6 +80,7 @@ public class TabbedDataViewPanel extends VerticalPanel {
 	 _item.add(_widget);
 	 _item.setHeight(450);
 	 _item.setId(_lbl);
+	 _item.setBorders(false);
 	 _item.setHideMode(HideMode.OFFSETS);
 	 tabPanel.render(_item.getElement());
 	 tabPanel.repaint();
@@ -93,6 +97,7 @@ public class TabbedDataViewPanel extends VerticalPanel {
 		 _item.add(_widget);
 		 _item.setHeight(450);
 		 _item.setId(id);
+		 _item.setBorders(false);
 		 _item.setHideMode(HideMode.OFFSETS);
 		 
 		 tabPanel.repaint();
@@ -110,22 +115,31 @@ public class TabbedDataViewPanel extends VerticalPanel {
 		
 		if(isExpanded){
 			
-			tabPanel.setWidth(970);
-			tabPanel.setHeight(500);
+			//tabPanel.setWidth(970);
+			tabPanel.setHeight(427);
+			this.setHeight(430);
 			for(TabItem item:tabPanel.getItems()){
 				
 				item.setHeight(350);
+				
+				
 			}
+			
+			this.repaint();
+			tabPanel.repaint();
 			
 		}
 		else{
 			
-			tabPanel.setWidth(970);
-			tabPanel.setHeight(662);
+			//abPanel.setWidth(970);
+			tabPanel.setHeight(625);
+			this.setHeight(628);
 			for(TabItem item:tabPanel.getItems()){
 				
 				item.setHeight(450);
+				this.repaint();
 			}
+			tabPanel.repaint();
 			
 		}
 	}

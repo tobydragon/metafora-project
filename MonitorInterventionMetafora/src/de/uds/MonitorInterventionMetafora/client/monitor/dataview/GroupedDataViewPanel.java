@@ -59,8 +59,10 @@ public class GroupedDataViewPanel extends ContentPanel {
 		            public void handleEvent(BaseEvent be)
 		            {
 		            	
-		            	
+		            	dataViewPanel.setHeight(557);
 		            	GroupedDataViewPanel.this.setHeight(560);
+		            	GroupedDataViewPanel.this.refresh();
+		            	dataViewPanel.refresh();
 		            };
 		        });
 				 
@@ -70,7 +72,10 @@ public class GroupedDataViewPanel extends ContentPanel {
 		            public void handleEvent(BaseEvent be)
 		            {
 		            	
+		            	dataViewPanel.setHeight(357);
 		            	GroupedDataViewPanel.this.setHeight(360);
+		            	GroupedDataViewPanel.this.refresh();
+		            	dataViewPanel.refresh();
 		            	
 		            };
 		        });
