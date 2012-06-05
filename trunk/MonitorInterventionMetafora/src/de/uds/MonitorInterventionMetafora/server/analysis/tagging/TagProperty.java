@@ -114,9 +114,16 @@ public class TagProperty {
     	property.setName(MonitorConstants.TAGS);
     	property.setValue(getTags());
     	
-    	System.out.println("ID:"+property.getId());
-    	System.out.println("NAME:"+property.getName());
-    	System.out.println("VALUE:"+property.getValue());
+    	return property;
+    }
+    
+ public CfProperty toEmptyCfProperty(){
+    	
+    	CfProperty property=new CfProperty();
+    	property.setId(MonitorConstants.BLANK_PROPERTY_LABEL);
+    	
+    	property.setName(MonitorConstants.TAGS);
+    	property.setValue(MonitorConstants.BLANK_PROPERTY_LABEL);
     	return property;
     }
     

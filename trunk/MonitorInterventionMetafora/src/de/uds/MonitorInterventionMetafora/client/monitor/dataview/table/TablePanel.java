@@ -151,7 +151,7 @@ public class TablePanel extends DataViewPanel {
 	        
 		    ColumnConfig tags = new ColumnConfig(MonitorConstants.TAGS_LABEL, MonitorConstants.TAGS_LABEL, 50);
 		    tags.setWidth(50);
-		    //tags.setRenderer(getbackgroundColorRenderer());
+		    tags.setRenderer(getbackgroundColorRenderer());
 		    
 		    ColumnConfig wordcount = new ColumnConfig(MonitorConstants.WORD_COUNT_LABEL, MonitorConstants.WORD_COUNT_LABEL, 30);
 		    wordcount.setWidth(50);
@@ -194,7 +194,7 @@ public class TablePanel extends DataViewPanel {
 	        	
 	      
 	        	//if(model.get(MonitorConstants.TAGS_LABEL)!=null){
-	        	valueOfCell=  model.get(MonitorConstants.TAGS).toString(); 
+	        	valueOfCell=  model.getTags();
 	            
 	        	
 	        	if(valueOfCell!=null){
@@ -209,6 +209,7 @@ public class TablePanel extends DataViewPanel {
 	            else if(valueOfCell.toLowerCase().contains("negativity")){
 	            	
 	            	//System.out.println("Setting background:"+model.getColor());
+	            	
 	            	
 	            return "<span style='background-color:" +"#D2FF3C"+ "'>" + valueOfCell+ "</span>";
 	            		
