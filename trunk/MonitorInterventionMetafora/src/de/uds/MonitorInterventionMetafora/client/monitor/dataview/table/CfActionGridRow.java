@@ -39,6 +39,10 @@ public class CfActionGridRow extends BaseModel {
 		    set(MonitorConstants.ACTION_CLASSIFICATION_LABEL, indicator.getCfActionType().getClassification());
 		    if (indicator.getCfContent() != null){
 			    set(MonitorConstants.DESCRIPTION_LABEL, indicator.getCfContent().getDescription());
+			    
+			    
+			    
+			    
 			    set(MonitorConstants.TOOL_LABEL, indicator.getCfContent().getPropertyValue("TOOL"));
 			    set(MonitorConstants.CHALLENGE_NAME_LABEL, indicator.getCfContent().getPropertyValue("CHALLENGE_NAME"));
 			    set(MonitorConstants.INDICATOR_TYPE_LABEL, indicator.getCfContent().getPropertyValue("INDICATOR_TYPE"));
@@ -47,7 +51,21 @@ public class CfActionGridRow extends BaseModel {
 		    	set(MonitorConstants.DESCRIPTION_LABEL, MonitorConstants.BLANK_PROPERTY_LABEL);
 		    	set(MonitorConstants.TOOL_LABEL, MonitorConstants.BLANK_PROPERTY_LABEL);
 		    }
+		    if(indicator.getCfObjects().get(0)!=null){
+		    set(MonitorConstants.TAGS_LABEL,indicator.getCfObjects().get(0).getProperty(MonitorConstants.TAGS));
+		    set(MonitorConstants.WORD_COUNT_LABEL,indicator.getCfObjects().get(0).getProperty(MonitorConstants.WORD_COUNT));
+		    }
+		    
+		    else{
+		    	
+		    	set(MonitorConstants.TAGS_LABEL,MonitorConstants.BLANK_PROPERTY_LABEL);
+			    set(MonitorConstants.WORD_COUNT_LABEL,MonitorConstants.BLANK_PROPERTY_LABEL);
+		    }
+		    
 		    set(MonitorConstants.ACTION_TIME_LABEL, DateTimeFormat.getFormat(PredefinedFormat.DATE_TIME_SHORT).format (new Date(indicator.getTime())) );
+		
+		
+		
 		}
 		catch (Exception e){
 			logger.error("[setGridItemProperties] missing attributes, row not added for indicator: " +indicator.toString());

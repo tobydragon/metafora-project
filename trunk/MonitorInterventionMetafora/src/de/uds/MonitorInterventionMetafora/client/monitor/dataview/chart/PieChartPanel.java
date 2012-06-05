@@ -12,6 +12,8 @@ import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.TabbedDataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 public class PieChartPanel extends  DataViewPanel {
@@ -19,7 +21,8 @@ public class PieChartPanel extends  DataViewPanel {
 	private PieChart pieChartView;
 	private SimpleComboBox<String> filterGroupCombo;
 	
-	public PieChartPanel(ClientMonitorDataModel _model, ClientMonitorController controller, ActionPropertyRule  groupingProperty,SimpleComboBox<String> filterGroupCombo){
+	public PieChartPanel(ClientMonitorDataModel _model, ClientMonitorController controller, ActionPropertyRule  groupingProperty,
+			SimpleComboBox<String> filterGroupCombo,FilterListPanel filterPanel,TabbedDataViewPanel tabbedDataViewPanel){
 		super(groupingProperty, _model);
 		this.filterGroupCombo=filterGroupCombo;
 		//this.setId("pieChartVerticalPanel");
@@ -73,5 +76,11 @@ public class PieChartPanel extends  DataViewPanel {
 	public DataViewPanelType getViewType() {
 		
 		return DataViewPanelType.PIE_CHART;
+	}
+
+	@Override
+	public void enableAdjustSize() {
+		// TODO Auto-generated method stub
+		
 	}
 }

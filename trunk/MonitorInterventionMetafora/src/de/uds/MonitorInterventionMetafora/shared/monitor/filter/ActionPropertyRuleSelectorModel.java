@@ -61,6 +61,7 @@ public class ActionPropertyRuleSelectorModel {
 	
 		//ACTION_TYPE
 		newGroupings.add(new ActionPropertyRule(ActionElementType.ACTION_TYPE, "Classification", MonitorConstants.ACTION_CLASSIFICATION_LABEL));
+		newGroupings.add(new ActionPropertyRule(ActionElementType.ACTION_TYPE, "UnGroup", MonitorConstants.ACTION_REMOVE_GROUPING_LABEL));
 		newGroupings.add(new ActionPropertyRule(ActionElementType.ACTION_TYPE, "type", MonitorConstants.ACTION_TYPE_LABEL));
 
 		//USER

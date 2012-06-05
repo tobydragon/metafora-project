@@ -15,6 +15,8 @@ import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitor
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.TabbedDataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 public class BarChartPanel extends DataViewPanel {
@@ -23,7 +25,9 @@ public class BarChartPanel extends DataViewPanel {
 	int selection=-1;
 	private SimpleComboBox<String> filterGroupCombo;
 	
-	public BarChartPanel(ClientMonitorDataModel _model, ClientMonitorController controller, GroupedDataViewPanel groupedDataViewController, ActionPropertyRule  groupingProperty,SimpleComboBox<String> filterGroupCombo){
+	public BarChartPanel(ClientMonitorDataModel _model, ClientMonitorController controller, GroupedDataViewPanel groupedDataViewController, 
+			ActionPropertyRule  groupingProperty,
+			SimpleComboBox<String> filterGroupCombo,FilterListPanel filterPanel,TabbedDataViewPanel tabbedDataViewPanel){
 		super(groupingProperty, _model);
 		
 		this.filterGroupCombo=filterGroupCombo;
@@ -110,6 +114,12 @@ public class BarChartPanel extends DataViewPanel {
 	public DataViewPanelType getViewType() {
 		
 		return DataViewPanelType.BAR_CHART;
+	}
+
+	@Override
+	public void enableAdjustSize() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
