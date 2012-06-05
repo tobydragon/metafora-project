@@ -1,5 +1,8 @@
 package de.uds.MonitorInterventionMetafora.client.monitor.dataview;
 
+import com.extjs.gxt.ui.client.event.BaseEvent;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 
@@ -9,6 +12,8 @@ import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.TablePanel;
+import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.grouping.GroupingChooserToolbar;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
@@ -24,12 +29,13 @@ public class GroupedDataViewPanel extends ContentPanel {
 
 	
 	public GroupedDataViewPanel(DataViewPanelType dataViewPanelType, ClientMonitorDataModel model, 
-			ClientMonitorController controller, ActionPropertyRule  groupingProperty, SimpleComboBox<String> filterGroupCombo){
-		this.dataViewPanel = DataViewPanel.createDataViewPanel(dataViewPanelType, model, controller, this, groupingProperty,filterGroupCombo);
+			ClientMonitorController controller, ActionPropertyRule  groupingProperty, SimpleComboBox<String> filterGroupCombo,FilterListPanel filterPanel,
+			TabbedDataViewPanel tabbedDataViewPanel){
+		this.dataViewPanel = DataViewPanel.createDataViewPanel(dataViewPanelType, model, controller, this, groupingProperty,filterGroupCombo,filterPanel,tabbedDataViewPanel);
 		this.dataViewPanelType=dataViewPanelType;
 		groupingChooserToolbar = new GroupingChooserToolbar(this, groupingProperty);
 		statusPanel=new StatusPanel(model);
-		
+		enableReSize(filterPanel);
 		this.setCollapsible(false);
 	    this.setFrame(true);
 	    this.setWidth(960);
@@ -42,6 +48,37 @@ public class GroupedDataViewPanel extends ContentPanel {
 	    this.setHeaderVisible(false);
 	    
 	}
+	
+	
+	void enableReSize(ContentPanel filterPanel){
+		
+		
+		filterPanel.addListener(Events.Collapse, new Listener<BaseEvent>()
+		        {
+
+		            public void handleEvent(BaseEvent be)
+		            {
+		            	
+		            	
+		            	GroupedDataViewPanel.this.setHeight(560);
+		            };
+		        });
+				 
+		filterPanel.addListener(Events.Expand, new Listener<BaseEvent>()
+		        {
+
+		            public void handleEvent(BaseEvent be)
+		            {
+		            	
+		            	GroupedDataViewPanel.this.setHeight(360);
+		            	
+		            };
+		        });
+	
+		
+	}
+	
+	
 	
 	public void changeGroupingProperty(ActionPropertyRule newPropToGroupBy){
 		dataViewPanel.setGroupingProperty(newPropToGroupBy);

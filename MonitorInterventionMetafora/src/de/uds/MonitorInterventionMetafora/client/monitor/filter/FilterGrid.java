@@ -232,6 +232,12 @@ public class FilterGrid  extends LayoutContainer {
   }
   
 		
+  
+  public ContentPanel  getPanel(){
+	  
+	  return panel;
+  }
+  
   public FilterSelectorToolBar getfilterSelectorToolBar(){
 	  
 	  return filterSelectorToolBar;

@@ -96,10 +96,10 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 	
 		VerticalPanel panel=new VerticalPanel();
 		flp=new FilterListPanel(monitorModel, controller,monitoringViewServiceServlet);
-		enableResizeListener(flp.getFilterGridPanel());
+		//enableResizeListener(flp.getFilterGridPanel());
 		panel.add(flp);
 		
-		createTabbedDataViewsPanel(actionPropertyRuleCreator,flp.getFilterGrid().getfilterSelectorToolBar().getFilterSelectorComboBox());
+		createTabbedDataViewsPanel(actionPropertyRuleCreator,flp.getFilterGrid().getfilterSelectorToolBar().getFilterSelectorComboBox(),flp);
 		panel.add(tabbedDataViewPanel);
 		
 		panel.setHeight(600);
@@ -111,7 +111,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 
 	}
 	
-	
+	/*
 	void enableResizeListener(ContentPanel panel){
 		
 		panel.addListener(Events.Collapse, new Listener<BaseEvent>()
@@ -134,19 +134,20 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 			        });
 		
 	}
-	
-	private void createTabbedDataViewsPanel(ActionPropertyRuleSelectorModel actionPropertyRuleCreator,SimpleComboBox<String> filterGroupCombo){
+	*/
+	private void createTabbedDataViewsPanel(ActionPropertyRuleSelectorModel actionPropertyRuleCreator,SimpleComboBox<String> filterGroupCombo,
+			FilterListPanel filterPanel){
 		tabbedDataViewPanel=new TabbedDataViewPanel();
 		
 		ActionPropertyRule defaultGrouping = ActionPropertyRuleSelectorModel.getDefaultGrouping();
 		
-		GroupedDataViewPanel tableWithChooser = new GroupedDataViewPanel(DataViewPanelType.TABLE, monitorModel, controller, defaultGrouping, filterGroupCombo);
+		GroupedDataViewPanel tableWithChooser = new GroupedDataViewPanel(DataViewPanelType.TABLE, monitorModel, controller, defaultGrouping, filterGroupCombo,filterPanel,tabbedDataViewPanel);
 		addDataView("tableViewTab", "Table View", tableWithChooser);
 		
-		GroupedDataViewPanel pieChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.PIE_CHART, monitorModel, controller, defaultGrouping,filterGroupCombo);
+		GroupedDataViewPanel pieChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.PIE_CHART, monitorModel, controller, defaultGrouping,filterGroupCombo,filterPanel,tabbedDataViewPanel);
 		addDataView("pieChartViewTab", "Pie Chart View", pieChartWithChooser);
 
-		GroupedDataViewPanel barChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.BAR_CHART, monitorModel, controller, defaultGrouping, filterGroupCombo);
+		GroupedDataViewPanel barChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.BAR_CHART, monitorModel, controller, defaultGrouping, filterGroupCombo,filterPanel,tabbedDataViewPanel);
 		addDataView("barChartViewTab", "Bar Chart View", barChartWithChooser);
 		
 		
