@@ -48,7 +48,7 @@ public class TablePanel extends DataViewPanel {
 		    tableView = new Grid<CfActionGridRow>(model.getTableViewModel(), columnModel);
 			tableView.setView(getGridView(columnModel));
 			tableView.setWidth(950);
-			tableView.setHeight(545);
+		
 			tableView.getStore().sort(MonitorConstants.ACTION_TIME_LABEL, SortDir.DESC);
 	
 			this.setHeight(560);
@@ -190,26 +190,19 @@ public class TablePanel extends DataViewPanel {
 	                Grid<CfActionGridRow> grid) {
 
 	        	String  valueOfCell ="";
-	        	
-	        	
-	      
-	        	//if(model.get(MonitorConstants.TAGS_LABEL)!=null){
 	        	valueOfCell=  model.getTags();
 	            
 	        	
 	        	if(valueOfCell!=null){
 	        	
 	            if(valueOfCell.toLowerCase().contains("abuse")){
-	            	
-	            	//System.out.println("Setting background:"+model.getColor());
+	   
 	            	
 	            return "<span style='background-color:" +"#FA0053"+ "'>" + valueOfCell+ "</span>";
 	            		
 	            }
-	            else if(valueOfCell.toLowerCase().contains("negativity")){
-	            	
-	            	//System.out.println("Setting background:"+model.getColor());
-	            	
+	            else if(valueOfCell.toLowerCase().contains("negati")){
+	          
 	            	
 	            return "<span style='background-color:" +"#D2FF3C"+ "'>" + valueOfCell+ "</span>";
 	            		
@@ -244,8 +237,10 @@ public class TablePanel extends DataViewPanel {
 		            public void handleEvent(BaseEvent be)
 		            {
 		            	tabbedDataViewPanel.addjustSize(false);
-		            	tableView.setHeight(545);
-		            	TablePanel.this.setHeight(560);
+		            	tableView.setHeight(500);
+		            	TablePanel.this.setHeight(503);
+		            	TablePanel.this.refresh();
+		            	
 		            	
 		            	
 		            };
@@ -259,8 +254,10 @@ public class TablePanel extends DataViewPanel {
 		            	
 		            	tabbedDataViewPanel.addjustSize(true);
 		            	
-		            	tableView.setHeight(450);
-		            	TablePanel.this.setHeight(460);
+		            	tableView.setHeight(300);
+		           
+		            	TablePanel.this.setHeight(302);
+		            	TablePanel.this.refresh();
 		            	
 		            };
 		        });
