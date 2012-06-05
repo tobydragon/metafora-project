@@ -16,7 +16,7 @@ public class FeedbackPanelContainer extends VerticalPanel {
 	private TemplatePool templatePool;
 	static private FeedbackPanelContainer INSTANCE;
 
-	public static String[] userNames = {"Agnes", "Bobby", "Cath"};
+	public static String[] userNames = {"Alice", "Bob", "Maria"};
 	
 	public FeedbackPanelContainer(){
 		
