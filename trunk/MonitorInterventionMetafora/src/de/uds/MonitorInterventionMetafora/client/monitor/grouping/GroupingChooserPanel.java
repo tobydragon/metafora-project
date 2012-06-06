@@ -1,17 +1,21 @@
 package de.uds.MonitorInterventionMetafora.client.monitor.grouping;
 
+import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedListener;
+import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.Label;
+import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Button;
+import com.extjs.gxt.ui.client.widget.button.Button;
 
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyComboBoxItemModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 public class GroupingChooserPanel extends HorizontalPanel{
@@ -29,25 +33,20 @@ public class GroupingChooserPanel extends HorizontalPanel{
 //		comboType = new ActionPropertyComboBox(items, panelId);
 		comboType.addSelectionChangedListener(comboListener);
 	    
-	    Button retriveBtn=new Button("Re-Group");
-	    retriveBtn.setWidth("65px");
-	    retriveBtn.setHeight("29px");
-	   
-	    retriveBtn.addClickHandler(new ClickHandler() {
-	        public void onClick(ClickEvent event) {
-	   
-	        	if(selectedProperty!=null){
+	    Button retriveBtn=new Button("",new SelectionListener<ButtonEvent>() {
+			@Override
+			public void componentSelected(ButtonEvent ce) {
+				if(selectedProperty!=null){
         			parentViewPanel.changeGroupingProperty(selectedProperty);
-	        	
-        			
-	        	
+
 	        	}
-	        	
-	        	
-	        	
-	        	
-	         }
-	     });
+			} });
+	    
+	    
+	    retriveBtn.setIcon(Resources.ICONS.refresh());
+	    retriveBtn.setWidth("45px");
+	    retriveBtn.setHeight("29px");
+	  
 
 	    this.setWidth(600);
 	    this.add(new Label("Type:"));

@@ -1,5 +1,9 @@
 package de.uds.MonitorInterventionMetafora.client.monitor.dataview.chart;
 
+import com.extjs.gxt.ui.client.event.BaseEvent;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
@@ -16,6 +20,7 @@ import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.TabbedDataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.TablePanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
@@ -24,12 +29,16 @@ public class BarChartPanel extends DataViewPanel {
 	private ColumnChart barChartView;
 	int selection=-1;
 	private SimpleComboBox<String> filterGroupCombo;
+	FilterListPanel filterPanel;
+	TabbedDataViewPanel tabbedDataViewPanel;
 	
 	public BarChartPanel(ClientMonitorDataModel _model, ClientMonitorController controller, GroupedDataViewPanel groupedDataViewController, 
 			ActionPropertyRule  groupingProperty,
 			SimpleComboBox<String> filterGroupCombo,FilterListPanel filterPanel,TabbedDataViewPanel tabbedDataViewPanel){
 		super(groupingProperty, _model);
 		
+		this.filterPanel=filterPanel;
+		this.tabbedDataViewPanel=tabbedDataViewPanel;
 		this.filterGroupCombo=filterGroupCombo;
 		//this.setId("barChartVerticalPanel");
 		createBarChart(controller);
@@ -118,8 +127,44 @@ public class BarChartPanel extends DataViewPanel {
 
 	@Override
 	public void enableAdjustSize() {
-		// TODO Auto-generated method stub
 		
+		
+		filterPanel.addListener(Events.Collapse, new Listener<BaseEvent>()
+		        {
+
+		            public void handleEvent(BaseEvent be)
+		            {
+		            	tabbedDataViewPanel.addjustSize(false);
+		            	
+		            	
+		            	for(Component item:tabbedDataViewPanel.getItems()){
+		            		
+		            		item.recalculate();
+		            		item.repaint();
+		            		
+		            	}
+		            	
+		            };
+		        });
+				 
+		filterPanel.addListener(Events.Expand, new Listener<BaseEvent>()
+		        {
+
+		            public void handleEvent(BaseEvent be)
+		            {
+		            	
+		            	tabbedDataViewPanel.addjustSize(true);
+		            	
+for(Component item:tabbedDataViewPanel.getItems()){
+		            		
+		            		item.recalculate();
+		            		item.repaint();
+		            		
+		            	}
+		            	
+		            };
+		        });
+	
 	}
 	
 	
