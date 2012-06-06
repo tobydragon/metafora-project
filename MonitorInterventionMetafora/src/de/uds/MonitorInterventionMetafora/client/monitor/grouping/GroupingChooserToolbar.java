@@ -12,6 +12,7 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyComboBoxItemModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModelType;
@@ -32,7 +33,7 @@ public class GroupingChooserToolbar extends ToolBar{
 		comboType = new ActionPropertyComboBox(ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.GROUPING));
 		comboType.addSelectionChangedListener(comboListener);
 	    
-	    Button retriveBtn=new Button("Re-Group");
+	   /* Button retriveBtn=new Button("Re-Group");
 	    retriveBtn.setShadow(true);
 //	    retriveBtn.setWidth("65px");
 //	    retriveBtn.setHeight("29px");
@@ -44,8 +45,24 @@ public class GroupingChooserToolbar extends ToolBar{
         			parentViewPanel.changeGroupingProperty(selectedProperty);
 	        	}
 	        }  
-	      });  
+	      });  */
 
+	    
+	    Button retriveBtn=new Button("",new SelectionListener<ButtonEvent>() {
+			@Override
+			public void componentSelected(ButtonEvent ce) {
+				if(selectedProperty!=null){
+        			parentViewPanel.changeGroupingProperty(selectedProperty);
+
+	        	}
+			} });
+	    
+	    
+	    retriveBtn.setIcon(Resources.ICONS.refresh());
+	    //retriveBtn.setBorders(true);
+	    retriveBtn.setShadow(true);
+	    
+	    
 	    this.setWidth(600);
 	    this.add(new Label("Type:"));
 	    this.add(comboType);
