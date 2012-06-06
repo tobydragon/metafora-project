@@ -199,6 +199,8 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 					MessageBox.info("Message","All filters are removed!!", null);		    
 				    grid.getStore().removeAll();
 				    filterGroupCombo.clearSelections();
+				    if(isMainFilterSet)
+				    	 controller.filtersUpdated();
 				} });
 		 
 		 clearbtn.setIcon(Resources.ICONS.clear());
