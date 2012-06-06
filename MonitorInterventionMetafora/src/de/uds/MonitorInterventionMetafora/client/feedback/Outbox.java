@@ -129,7 +129,7 @@ public class Outbox implements CfActionCallBack {
 		sendButton.addStyleName("sendButton");
 		sendButton.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
-				sendMessageToServer();
+				  sendMessageToServer();
 			}
 		});
 
@@ -224,20 +224,26 @@ public class Outbox implements CfActionCallBack {
  	 	//TODO: what happens with IDs? And do they matter? 
  	 	//Can we uniquely auto-increment them? Perhaps use that java UUID library? 
  	 	CfObject cfObject = new CfObject("0","message");
+ 	 	
+ 	 	String usernames = "";
+ 	 	
 		for(int i=0; i<recipientNamesColumn.getWidgetCount(); i++)
 		{
 			CheckBox cb = (CheckBox) recipientNamesColumn.getWidget(i);
 			if (cb.getValue()) {
 				//TODO: deal with multiple usernames (properties can't have same name value)
-				cfObject.addProperty(new CfProperty("username",cb.getText()));				
+				usernames = usernames + cb.getText() + "|";
 			}
-		}					
+		}	
+		//it is easier to just remove the last |
+		usernames = usernames.substring(0, usernames.length()-1);
+
+		cfObject.addProperty(new CfProperty("username",usernames));				
  	 	cfObject.addProperty(new CfProperty("text",messageTextArea.getText()));	
  	 	cfObject.addProperty(new CfProperty("interruption_type",getSelectedIntteruptionType()));
  	 	feedbackMessage.addObject(cfObject);
  	 	
 	 	ServerCommunication.getInstance().processAction("FeedbackClient",feedbackMessage,this);	
-
 	 	if(messageTextArea.getText().length()>0)
 	 	{
 	 		FeedbackPanelContainer.getTemplatePool().addMessageToHistory(messageTextArea.getText());
