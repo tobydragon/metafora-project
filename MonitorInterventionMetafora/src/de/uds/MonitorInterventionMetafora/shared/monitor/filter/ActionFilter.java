@@ -19,7 +19,7 @@ public class ActionFilter implements Serializable{
 	private boolean editable=false;
 	List<ActionPropertyRule> actionPropertyRules;
 	private FilterViewModel filterRules;
-	private FilterViewModel mainFilterRules;
+	
 	//private ListStore<FilterGridRow> filterRules;
 	private boolean isServerFilter;
 	
@@ -28,7 +28,7 @@ public class ActionFilter implements Serializable{
 		isServerFilter=false;
 		actionPropertyRules=new Vector<ActionPropertyRule>();
 		filterRules = new FilterViewModel();
-		mainFilterRules=new FilterViewModel();
+	
 	}
 	
 	
@@ -36,7 +36,8 @@ public class ActionFilter implements Serializable{
 		isServerFilter=false;
 		actionPropertyRules=new Vector<ActionPropertyRule>();
 		filterRules = new FilterViewModel();
-		this.mainFilterRules=mainFilterRules;
+		filterRules = mainFilterRules;
+		
 	}
 	
 	
@@ -44,7 +45,7 @@ public class ActionFilter implements Serializable{
 		this.isServerFilter=isServerFilter;
 		actionPropertyRules=new Vector<ActionPropertyRule>();
 		filterRules = new FilterViewModel();
-		mainFilterRules=new FilterViewModel();
+
 	}
 	
 
@@ -72,6 +73,9 @@ public class ActionFilter implements Serializable{
 		filterRules.add(new FilterGridRow(filterRule));
 		}
 		}
+	
+	
+
 	
 	public FilterViewModel  getFilterStore(){
 		
@@ -106,12 +110,6 @@ public List<ActionPropertyRule>  getActionPropertyRules(){
 		
 	else {
 		
-		
-		for (FilterGridRow rule : mainFilterRules.getRange(0, mainFilterRules.getCount()-1)){
-			if (!rule.getActionPropertyRule().ruleIncludesAction(action)){
-				return false;
-			}
-		}
 		
 		
 		

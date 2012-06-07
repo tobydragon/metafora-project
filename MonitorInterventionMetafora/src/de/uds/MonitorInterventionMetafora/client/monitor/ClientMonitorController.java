@@ -32,7 +32,7 @@ public class ClientMonitorController {
 	
 	public ClientMonitorController(ClientMonitorDataModel actionModel){
 		this.dataModel = actionModel;
-		addFilterModelListeners(actionModel.getFilterGridViewModel());
+		//addFilterModelListeners(actionModel.getFilterGridViewModel());
 		dataViewPanels = new Vector<GroupedDataViewPanel>();
 	}
 	
@@ -82,6 +82,54 @@ public class ClientMonitorController {
 		
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public void addMainFilterListeners(ListStore<FilterGridRow> filterGridStore){
+		
+		filterGridStore.addListener(Store.Add, new Listener<StoreEvent<FilterGridRow>>() {
+	        public void handleEvent(StoreEvent<FilterGridRow> be) {
+	        
+	     
+	        	
+	        	Log userActionLog=new Log();
+	        	userActionLog.setComponentType(ComponentType.MAIN_CONFIGURATION_TABLE);
+	        	userActionLog.setDescription("New Filter Rule is added to the Main Configuration.",be.getModels().get(0).getActionPropertyRule());
+	        	userActionLog.setTriggeredBy(be.getModels().get(0).getActionPropertyRule().getOrigin());
+	        	userActionLog.setUserActionType(UserActionType.CONFIGURATION_RULE_ADDED);
+	        
+	        	
+	        	Logger.getLoggerInstance().log(userActionLog);
+	      
+	        }
+	      });
+
+	
+		filterGridStore.addListener(Store.Remove, new Listener<StoreEvent<FilterGridRow>>() {
+	        public void handleEvent(StoreEvent<FilterGridRow> be) {
+	       
+	        	Log userActionLog=new Log();
+	        	userActionLog.setComponentType(ComponentType.MAIN_CONFIGURATION_TABLE);
+	        	userActionLog.setDescription("Filter Rule is removed from the Main Configuration.",be.getModel().getActionPropertyRule());
+	        	userActionLog.setTriggeredBy(be.getModel().getActionPropertyRule().getOrigin());
+	        	userActionLog.setUserActionType(UserActionType.CONFIGURATION_RULE_REMOVED);
+	        	Logger.getLoggerInstance().log(userActionLog);
+	        	
+	        	
+	        }
+	      });
+		
+		
+		
+	}
+	
 	public void addDataView(GroupedDataViewPanel panel){
 		dataViewPanels.add(panel);
 	}

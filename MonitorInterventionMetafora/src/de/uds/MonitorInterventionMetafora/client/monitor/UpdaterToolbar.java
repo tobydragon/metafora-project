@@ -28,6 +28,7 @@ public class UpdaterToolbar extends ToolBar{
 	private CheckBox autoRefresh;
 	private Button refreshButton;
 	private Button configurationButton;
+	private ConfigurationPanel cofigurationPanel;
 	
 	final ClientMonitorDataModelUpdater updater;
 
@@ -37,6 +38,7 @@ public class UpdaterToolbar extends ToolBar{
 		autoRefresh = new CheckBox();
 	    autoRefresh.setBoxLabel("Auto Refresh");
 		autoRefresh.setValue(false);
+		cofigurationPanel=new ConfigurationPanel(_maintenance,controller,serverlet);
 		
 		autoRefresh.addListener(Events.Change, 
 			new Listener<BaseEvent>() {
@@ -72,7 +74,7 @@ public class UpdaterToolbar extends ToolBar{
 		configurationButton.addSelectionListener(new SelectionListener<ButtonEvent>() {  
 	        @Override  
 	        public void componentSelected(ButtonEvent ce) {  
-	        	ConfigurationPanel panel=new ConfigurationPanel(_maintenance,controller,serverlet);
+	        	cofigurationPanel.show();
 	        }  
 	      });  
 

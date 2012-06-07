@@ -39,12 +39,14 @@ public class FilterManagementToolBar extends ToolBar{
 	private SimpleComboBox<String> filterGroupCombo;
 	private  Button addButton;
 	EditorGrid<FilterGridRow> grid;
+	Button applyBtn;
 	
 	
  
-	public FilterManagementToolBar(EditorGrid<FilterGridRow> grid, ActionPropertyRuleSelectorModel filterRuleSelectorModel,final SimpleComboBox<String> filterGroupCombo){
+	public FilterManagementToolBar(EditorGrid<FilterGridRow> grid, ActionPropertyRuleSelectorModel filterRuleSelectorModel,final SimpleComboBox<String> filterGroupCombo,Button applyBtn){
 	
 this.filterGroupCombo=filterGroupCombo;
+this.applyBtn=applyBtn;
 
 		this.grid = grid;
 		 FormLayout layout = new FormLayout();
@@ -203,6 +205,7 @@ this.filterGroupCombo=filterGroupCombo;
 		        entityValueTextBox.clear();
 		        filterGroupCombo.clearSelections();
 		        filterGroupCombo.setEditable(true);
+		        applyBtn.setEnabled(true);
 
 				}
 				

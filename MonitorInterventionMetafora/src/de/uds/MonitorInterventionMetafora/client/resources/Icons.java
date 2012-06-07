@@ -29,6 +29,8 @@ public interface Icons extends ImageBundle {
   
   @Resource("refresh.gif")
   AbstractImagePrototype refresh();
+  @Resource("ok.gif")
+  AbstractImagePrototype ok();
 
   @Resource("Trash.gif")
   AbstractImagePrototype clear();
