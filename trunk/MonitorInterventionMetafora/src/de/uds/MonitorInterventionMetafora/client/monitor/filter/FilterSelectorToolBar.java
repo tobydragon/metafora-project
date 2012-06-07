@@ -50,6 +50,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 private SimpleComboBox<String> filterGroupCombo;
 	 private Button clearbtn;
 	 public Button saveAsBtn;
+	 public Button applyFilterBtn;
 	 private Button deleteBtn;
 	 boolean isMainFilterSet;
 
@@ -63,15 +64,13 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		 	this.grid=grid;	
 		 	this.model=model;
 		 	this.controller=controller;
-		 	
-		 	model.getServiceServlet().requestConfiguration(isMainFilterSet, this);
-		 
-		 	
-		 	
-		 	filterSets=new HashMap<String, ActionFilter>();
-		 	
-		 	
-		 	
+		 	applyFilterBtn=new Button("Apply");
+		 	if(isMainFilterSet){
+		 	model.getServiceServlet().requestMainConfiguration( this);
+		 	}
+		 	else{		 		
+		 		model.getServiceServlet().requestConfiguration(this);
+		 	}
 		    
 	 }
 
@@ -94,6 +93,10 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 }*/
 	 
 	 
+	 public Button getApplyButton(){
+		 
+		 return applyFilterBtn;
+	 }
 	 boolean isAlreadyIn(String name){
 		for(SimpleComboValue<String> filterName:filterGroupCombo.getStore().getRange(0, filterGroupCombo.getStore().getCount())){
 
@@ -109,7 +112,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 void renderToolBar(){
 		 this.add(new LabelToolItem("Filter Set:"));
 		 this.add(renderFilterSelectorComboBox());
-		 saveAsBtn= new Button("Save",new SelectionListener<ButtonEvent>() {
+		 saveAsBtn= new Button("Save Filter",new SelectionListener<ButtonEvent>() {
 				@Override
 				public void componentSelected(ButtonEvent ce) {
 					
@@ -157,7 +160,8 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 							}
 							else{
 								MessageBox.info("Info","New filter is added successfully!", null);
-								model.getServiceServlet().requestConfiguration(isMainFilterSet, new AsyncCallback<Configuration>(){
+								if(isMainFilterSet){
+								model.getServiceServlet().requestMainConfiguration(new AsyncCallback<Configuration>(){
 
 									@Override
 									public void onFailure(Throwable caught) {
@@ -173,6 +177,28 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 										update();
 										
 									}});
+	
+							}
+								
+								else{
+									
+									model.getServiceServlet().requestConfiguration(new AsyncCallback<Configuration>(){
+
+										@Override
+										public void onFailure(Throwable caught) {
+											// TODO Auto-generated method stub
+											
+										}
+
+										@Override
+										public void onSuccess(Configuration result) {
+											filterSets.clear();
+									
+											filterSets=result.getActionFilters();
+											update();
+											
+										}});
+								}
 							}
 							
 						}});
@@ -193,14 +219,35 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 				} });
 		 deleteBtn.setIcon(Resources.ICONS.delete());
 		 
+		 
+		 applyFilterBtn.addSelectionListener(new SelectionListener<ButtonEvent>() {
+				@Override
+				public void componentSelected(ButtonEvent ce) {
+					
+					
+					model.applyMainFilter();
+					model.updateFilteredList();
+					controller.filtersUpdated();
+					applyFilterBtn.setEnabled(false);
+				
+					
+					
+				    
+				} });
+		 applyFilterBtn.setIcon(Resources.ICONS.ok());
+		 applyFilterBtn.setEnabled(false);
+		 
+		 
+		 
 		 clearbtn = new Button("Clear",new SelectionListener<ButtonEvent>() {
 				@Override
 				public void componentSelected(ButtonEvent ce) {
 					MessageBox.info("Message","All filters are removed!!", null);		    
 				    grid.getStore().removeAll();
 				    filterGroupCombo.clearSelections();
-				    if(isMainFilterSet)
-				    	 controller.filtersUpdated();
+				  
+					model.updateFilteredList();
+					controller.filtersUpdated();
 				} });
 		 
 		 clearbtn.setIcon(Resources.ICONS.clear());
@@ -208,9 +255,10 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		 this.add(saveAsBtn);
 		// this.add(deleteBtn);
 		 this.add(clearbtn);
-		
-		 filterGroupCombo.setSimpleValue(User.mainConfig);
-	
+		 if(isMainFilterSet){
+		 this.add(applyFilterBtn);
+		 }
+		 
 		 
 	 }
 	 
@@ -253,9 +301,11 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	        	}
 	        	
 	        	filterGroupCombo.setEditable(false);
+	        	
+	        	
 
 	        }
-	        
+	        applyFilterBtn.setEnabled(true);
 	        
 	      }  
 	    }); 
@@ -288,9 +338,18 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 
 	@Override
 	public void onSuccess(Configuration result) {
+		filterSets=new HashMap<String, ActionFilter>();
 		filterSets=result.getActionFilters();
 		renderToolBar();
-		
+		if(isMainFilterSet){
+		if(User.mainConfig!=null){
+			 filterGroupCombo.setSimpleValue(User.mainConfig);
+			 	model.applyMainFilter();
+				model.updateFilteredList();
+				controller.filtersUpdated();
+				applyFilterBtn.setEnabled(false);
+			 }
+		}
 		
 		
 	}
