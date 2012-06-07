@@ -27,7 +27,7 @@ public class GroupedDataViewPanel extends ContentPanel {
 	
 	//TODO: Total and filtered indicator count, maybe for all dataViewPanels, not just table?
 
-	
+
 	public GroupedDataViewPanel(DataViewPanelType dataViewPanelType, ClientMonitorDataModel model, 
 			ClientMonitorController controller, ActionPropertyRule  groupingProperty, SimpleComboBox<String> filterGroupCombo,FilterListPanel filterPanel,
 			TabbedDataViewPanel tabbedDataViewPanel){

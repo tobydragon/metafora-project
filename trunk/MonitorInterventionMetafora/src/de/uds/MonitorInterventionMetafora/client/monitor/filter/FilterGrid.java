@@ -80,8 +80,9 @@ public class FilterGrid  extends LayoutContainer {
 		this.controller = controller;
 		panel= new ContentPanel();
 		grid = new EditorGrid<FilterGridRow>(model.getFilterGridViewModel(), getColumnModel());
+		controller.addFilterModelListeners(grid.getStore());
 		filterSelectorToolBar=new FilterSelectorToolBar(grid,model,controller,false);
-		filterManagementToolBar=new FilterManagementToolBar(grid,model.getFilterSelectorModel(),filterSelectorToolBar.getFilterSelectorComboBox());
+		filterManagementToolBar=new FilterManagementToolBar(grid,model.getFilterSelectorModel(),filterSelectorToolBar.getFilterSelectorComboBox(),filterSelectorToolBar.getApplyButton());
 		
 	}
 	
@@ -92,12 +93,12 @@ public class FilterGrid  extends LayoutContainer {
 		this.isMainFilterSet=isMainFilterSet;
 		panel= new ContentPanel();
 		grid = new EditorGrid<FilterGridRow>(model.getMainFilterGridViewModel(),getColumnModel());
-		controller.addFilterModelListeners(grid.getStore());
+		controller.addMainFilterListeners(grid.getStore());
 		
 		filterSelectorToolBar=new FilterSelectorToolBar(grid,model,controller,isMainFilterSet);
 		
 		
-		filterManagementToolBar=new FilterManagementToolBar(grid,model.getFilterSelectorModel(),filterSelectorToolBar.getFilterSelectorComboBox());
+		filterManagementToolBar=new FilterManagementToolBar(grid,model.getFilterSelectorModel(),filterSelectorToolBar.getFilterSelectorComboBox(),filterSelectorToolBar.getApplyButton());
 		
 	}
 	
@@ -193,6 +194,7 @@ public class FilterGrid  extends LayoutContainer {
             	store.remove(model);
             	filterSelectorToolBar.getFilterSelectorComboBox().clearSelections();
             	filterSelectorToolBar.getFilterSelectorComboBox().setEditable(true);
+            	filterSelectorToolBar.getApplyButton().setEnabled(true);
             	
             
             }

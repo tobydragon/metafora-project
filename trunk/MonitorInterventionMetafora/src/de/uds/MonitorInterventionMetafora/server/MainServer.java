@@ -34,7 +34,6 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	static String generalConfigFile="conffiles/toolconf/configuration.xml";
 	static String mainFiltersFile="conffiles/toolconf/mainfilters.xml";
 	private Configuration generalConfiguration;
-	private Configuration mainFilterSetConfiguration;
 	private XmlConfigParser configuratinParser;
 	MonitorModel monitorModel;
 	MonitorController monitorController;
@@ -48,7 +47,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 
 	
 		generalConfiguration = readConfiguration(false);
-		mainFilterSetConfiguration=readConfiguration(true);
+	
 		CfCommunicationMethodType communicationMethodType = generalConfiguration.getDataSouceType();
 		
 		monitorController = new MonitorController(communicationMethodType, generalConfiguration.getHistoryStartTime());
@@ -79,24 +78,23 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	}
 
 	@Override
-	public Configuration requestConfiguration(boolean isMainFilter) {
+	public Configuration requestConfiguration() {
 		//TODO: should take no params, if not used... What is _user?
 		logger.info("sendRequestConfiguration]");
-		if(isConfigurationUpdated && !isMainFilter){
+		if(isConfigurationUpdated){
 		 generalConfiguration = readConfiguration(false);
 		 isConfigurationUpdated=false;
-		}
-		else if(isMainFilter){
-			
-			
-			generalConfiguration=readConfiguration(true);
+		 
+		 return generalConfiguration;
 		}
 		
+		else{
+			return generalConfiguration;
+		}
+		
+		
+		
 			
-		
-		
-		
-		return generalConfiguration;
 	}
 	
 	@Override
@@ -143,6 +141,12 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	public String removeNewFilter(String filterName) {
 		generalConfiguration.removeFilter(filterName);
 		return "";
+	}
+
+	@Override
+	public Configuration requestMainConfiguration() {
+		
+		return readConfiguration(true);
 	}
 	
 	 

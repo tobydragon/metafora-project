@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.client.logger;
 public enum ComponentType {
 	ACTION_TABLE,
 	FILTER_TABLE,
+	MAIN_CONFIGURATION_TABLE,
 	MAIN_TAB_PANEL,
 	VIEW_TAB_PANEL,
 	PIE_CHART,

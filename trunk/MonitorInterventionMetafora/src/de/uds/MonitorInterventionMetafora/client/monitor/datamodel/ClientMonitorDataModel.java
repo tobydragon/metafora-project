@@ -31,8 +31,14 @@ public class ClientMonitorDataModel{
 	private List<CfAction> allActions;
 	//private Map<String, ActionFilter> allActionFilters;
 	private ActionFilter currentActionFilter;
-	private FilterViewModel  mainFilters;
+	private ActionFilter mainActionFilter;
+	private CfAction lastRecievedAction;
+	private Configuration currentFilterSets;
+	private Configuration mainFilterSets;
+
+	//private FilterViewModel  mainFilters;
 	private  List<CfAction> filteredActions;
+
 	private CommunicationServiceAsync monitoringViewServiceServlet;
 	
 	private GroupingStore<CfActionGridRow> tableViewModel;
@@ -52,15 +58,20 @@ public class ClientMonitorDataModel{
 		
 		allActions = new Vector<CfAction>();
 		//allActionFilters=new HashMap<String, ActionFilter>();
-		
-		mainFilters=new FilterViewModel();
-		currentActionFilter = new ActionFilter(mainFilters);
+	
+	//	model.getServiceServlet().requestConfiguration(isMainFilterSet, this);
+		//mainFilters=new FilterViewModel();
+		currentActionFilter = new ActionFilter();
+		mainActionFilter=new ActionFilter();
+		//mainActionFilter.setFilterStore(mainFilters);
 		tableViewModel = new GroupingStore<CfActionGridRow>();
 	
 		clearFilteredData();
 		
 		
 	}
+	
+	
 	
 	
 	
@@ -74,6 +85,8 @@ public class ClientMonitorDataModel{
 		return filterSelectorModel;
 	}
 	
+	
+
 	
 	public void clearFilteredData(){
 		filteredActions = new Vector<CfAction>();
@@ -97,9 +110,42 @@ public int getFilteredActionCount(){
 	
 public FilterViewModel getMainFilterGridViewModel(){
 		
-		return mainFilters;
+		return mainActionFilter.getFilterStore();
 	}
 	
+
+List<CfAction> applyMainFilter(List<CfAction> actionsToFilter){
+	
+	
+	List<CfAction> actions=new Vector<CfAction>();
+	for (CfAction action : actionsToFilter){
+		if (mainActionFilter.filterIncludesAction(action)){
+			
+			actions.add(action);
+		}
+	}
+	
+	return actions;
+}
+
+public void applyMainFilter(){
+	List<CfAction> temp=new Vector<CfAction>();
+	
+	temp.addAll(allActions);
+	
+	
+	allActions.clear();
+	allActions.addAll(applyMainFilter(temp));
+
+	temp=new Vector<CfAction>();
+	temp.addAll(filteredActions);
+	filteredActions.clear();
+	filteredActions.addAll(applyMainFilter(temp));
+	
+	
+	
+	
+}
 	
 	// TODO: optimize!
 	public void updateFilteredList(){
@@ -109,9 +155,10 @@ public FilterViewModel getMainFilterGridViewModel(){
 	
 	public void addFilteredData(List<CfAction> actionsToFilter){
 		
-
+		
 		for (CfAction action : actionsToFilter){
 			if (currentActionFilter.filterIncludesAction(action)){
+				
 				tableViewModel.add(new CfActionGridRow(action));
 				//TODO: if checknox of update charts is not check dont do this part
 				for (ActionPropertyValueGroupingTableModel indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
@@ -120,6 +167,8 @@ public FilterViewModel getMainFilterGridViewModel(){
 				filteredActions.add(action);
 			}
 		}
+		
+		
 		
 		
 		
@@ -137,16 +186,23 @@ public FilterViewModel getMainFilterGridViewModel(){
 	}
 	
 	public void addData(List<CfAction> actions){
-		 allActions.addAll(actions);
-		addFilteredData(actions);
+		
+		if(actions!=null&&actions.size()>0){
+		int index=actions.size()-1;
+		lastRecievedAction=actions.get(index);
+		}
+		allActions.addAll(applyMainFilter(actions));
+		
+		
+		addFilteredData(allActions);
 	}
 	
+	
+	
+	
 	public CfAction getLastAction(){
-		if(allActions.size()<=0){
-			return null;
-		}
-		int index=allActions.size()-1;
-		return allActions.get(index);
+		
+		return lastRecievedAction;		
 	}
 	
 	//Creates table for each rule, where each row will represent one value for each rule
@@ -187,6 +243,9 @@ public FilterViewModel getMainFilterGridViewModel(){
 	public GroupingStore<CfActionGridRow> getTableViewModel(){
 		return tableViewModel;
 	}
+
+
+
 
 
 	

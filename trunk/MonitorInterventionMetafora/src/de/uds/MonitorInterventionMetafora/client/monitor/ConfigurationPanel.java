@@ -41,11 +41,11 @@ public class ConfigurationPanel  extends Window  {
 	      this.setWidth("1000");
 	      this.setHeight("405");
 	      this.setPagePosition(12,15);
-	      this.setDraggable(false);
+	      
 	      configurationPanel.setExpanded(true);
 	      configurationPanel.setCollapsible(false);
 	   
-	      this.show();
+	      
 	      
 	     // this.center();
 	      

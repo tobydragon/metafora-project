@@ -27,7 +27,7 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 	}
 
 	public void startUpdates(){
-		this.scheduleRepeating(3000);
+		this.scheduleRepeating(5000);
 	}
 	
 	public void stopUpdates(){

@@ -16,7 +16,7 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
  */
 public interface CommunicationServiceAsync {
 
-	void requestConfiguration(boolean isMainFilters,AsyncCallback<Configuration> callback);
+	void requestConfiguration(AsyncCallback<Configuration> callback);
 
 	void sendAction(String _user,CfAction cfAction, AsyncCallback<CfAction> callback);
 
@@ -28,6 +28,8 @@ public interface CommunicationServiceAsync {
 	void removeNewFilter(String filterName, AsyncCallback<String> callback);
 	
 	void sendNotificationToAgents(CfAction cfAction, AsyncCallback<CfAction> callback);
+
+	void requestMainConfiguration(AsyncCallback<Configuration> callback);
 	
 	
 

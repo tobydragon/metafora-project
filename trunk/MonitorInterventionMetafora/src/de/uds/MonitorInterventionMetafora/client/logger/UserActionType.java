@@ -3,6 +3,8 @@ package de.uds.MonitorInterventionMetafora.client.logger;
 public enum UserActionType {
 	FILTER_ADDED,
 	FILTER_REMOVED,
+	CONFIGURATION_RULE_REMOVED,
+	CONFIGURATION_RULE_ADDED,
 	ACTION_RE_GROUP,
 	ACTION_FILTERING,
 	TAB_CHANGE,
