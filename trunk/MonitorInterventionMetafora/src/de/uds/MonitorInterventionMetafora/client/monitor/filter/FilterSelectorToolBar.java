@@ -74,24 +74,6 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		    
 	 }
 
-	 /*
-	 public FilterSelectorToolBar(EditorGrid<FilterGridRow> grid,ClientMonitorDataModel model, boolean isMainFilterSet){
-			
-		 this.isMainFilterSet=isMainFilterSet;
-		 this.model=model;
-		 filterGroupCombo = new SimpleComboBox<String>(); 
-		
-		 	this.grid=grid;	
-		 
-		 	model.getServiceServlet().requestConfiguration(isMainFilterSet, this);
-		 
-		 	filterSets=new HashMap<String, ActionFilter>();
-		 	
-		 	
-		 	
-		    
-	 }*/
-	 
 	 
 	 public Button getApplyButton(){
 		 
