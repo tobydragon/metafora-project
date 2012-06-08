@@ -10,7 +10,9 @@ import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 
@@ -26,12 +28,17 @@ public class CfActionGridRow extends BaseModel {
 		setGridItemProperties();
 	}
 
+	//TODO: all of these should use the ActionPropertyRule to get the value for the row...
 	private void setGridItemProperties(){
 		
 		try {
 			String usersString="";
-			for(CfUser u : indicator.getCfUsers()){
-	 		   usersString=usersString+" - "+u.getid();
+//			for(CfUser u : indicator.getCfUsers()){
+//	 		   usersString=usersString+" - "+u.getid();
+//			}
+			ActionPropertyRule userRule = new ActionPropertyRule(ActionElementType.USER, "id", MonitorConstants.USER_ID_LABEL);
+			for (String user : userRule.getActionValue(indicator)){
+				usersString += "-" + user;
 			}
 			
 			set(MonitorConstants.USER_ID_LABEL, usersString);

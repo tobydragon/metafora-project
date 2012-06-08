@@ -11,6 +11,7 @@ package de.uds.MonitorInterventionMetafora.shared.monitor.filter;
 
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -30,6 +31,8 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 public class ActionPropertyRule  implements Serializable{
 
 	private static final long serialVersionUID = 3617519429426816927L;
+
+	List<String> userRoles = Arrays.asList("student");
 
 	
 
@@ -149,7 +152,6 @@ public class ActionPropertyRule  implements Serializable{
 
   //TODO: return list of strings for user;tag;object  and return list of string
 	public List<String> getActionValue(CfAction action) {
-		
 		List<String> actionValues=new Vector<String>();
 
 		try {
@@ -164,12 +166,33 @@ public class ActionPropertyRule  implements Serializable{
 			case USER:
 				
 				if (propertyName.equalsIgnoreCase("id")){
-					if (action.getCfUsers().size() >0){
+					if (action.getCfUsers().size() > 0){
 						for(CfUser user:action.getCfUsers()){
-						actionValues.add(user.getid());
+							for (String userRole : userRoles){
+								if ( userRole.equalsIgnoreCase(user.getrole())){
+									actionValues.add(user.getid());
+								}
+							}
+						}
+					}
+					//Also look to object for user (Planning tool hack)
+					for(CfObject cfObject : action.getCfObjects()){
+						String name = cfObject.getPropertyValue("USERNAME"); 	
+						if (name != null){
+							boolean nameAlreadyPresent = false;
+							for (String currentName : actionValues){
+								if (currentName.equalsIgnoreCase(name)){
+									nameAlreadyPresent=true;
+								}
+							}
+							if (!nameAlreadyPresent){
+								actionValues.add(name);
+							}
 						}
 					}
 				}
+				
+				
 				break;
 			case CONTENT:
 				if (propertyName.equalsIgnoreCase("TOOL")){
