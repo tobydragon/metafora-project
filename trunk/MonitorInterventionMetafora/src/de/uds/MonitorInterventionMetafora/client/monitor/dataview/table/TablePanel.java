@@ -49,7 +49,7 @@ public class TablePanel extends DataViewPanel {
 			tableView.setView(getGridView(columnModel));
 			tableView.setWidth(950);
 		
-			tableView.getStore().sort(MonitorConstants.ACTION_TIME_LABEL, SortDir.DESC);
+//			tableView.getStore().sort(MonitorConstants.ACTION_TIME_LABEL, SortDir.DESC);
 	
 			this.setHeight(560);
 			this.filterPanel=filterPanel;
