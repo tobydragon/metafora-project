@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.extjs.gxt.ui.client.data.ModelData;
+import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.FieldEvent;
 import com.extjs.gxt.ui.client.event.Listener;
@@ -14,6 +16,7 @@ import com.extjs.gxt.ui.client.store.Store;
 import com.extjs.gxt.ui.client.store.StoreEvent;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboValue;
@@ -29,6 +32,7 @@ import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunicati
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
+import de.uds.MonitorInterventionMetafora.client.monitor.UpdaterToolbar;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
@@ -50,21 +54,49 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 private SimpleComboBox<String> filterGroupCombo;
 	 private Button clearbtn;
 	 public Button saveAsBtn;
+	 public Button applyMainFilterBtn;
 	 public Button applyFilterBtn;
 	 private Button deleteBtn;
+	 private CheckBox autoRefreshCharts;
 	 boolean isMainFilterSet;
+	 boolean updateViews=false;
+	 
 
 	 
-	 public FilterSelectorToolBar(EditorGrid<FilterGridRow> grid,ClientMonitorDataModel model,ClientMonitorController controller,boolean isMainFilterSet){
+	 public FilterSelectorToolBar(final EditorGrid<FilterGridRow> grid,final ClientMonitorDataModel model,final ClientMonitorController controller,boolean isMainFilterSet){
 		
 		 this.isMainFilterSet=isMainFilterSet;
-		 
+		 applyFilterBtn=new Button("Apply");
+		 applyMainFilterBtn=new Button("Apply");
+		 autoRefreshCharts= new CheckBox();
+		 autoRefreshCharts.setBoxLabel("Auto View Update");
+		 autoRefreshCharts.setValue(false);
+		 controller.removeFilterModelListeners(grid.getStore());
+		 autoRefreshCharts.addListener(Events.Change, 
+					new Listener<BaseEvent>() {
+			        	public void handleEvent(BaseEvent be) {
+			        		if (autoRefreshCharts.getValue()) {
+			        			updateViews=true;
+			        			applyFilterBtn.setEnabled(false);
+			        			controller.addFilterModelListeners(grid.getStore());
+			        			model.updateFilteredList();
+								controller.filtersUpdated();
+			        			
+			        		}
+			        		else {
+			        			
+			        			updateViews=false;
+			        			controller.removeFilterModelListeners(grid.getStore());
+			        			applyFilterBtn.setEnabled(true);
+			        		}
+			        	}
+					});
 		 filterGroupCombo = new SimpleComboBox<String>(); 
 		
 		 	this.grid=grid;	
 		 	this.model=model;
 		 	this.controller=controller;
-		 	applyFilterBtn=new Button("Apply");
+		 	
 		 	if(isMainFilterSet){
 		 	model.getServiceServlet().requestMainConfiguration( this);
 		 	}
@@ -77,7 +109,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	 
 	 public Button getApplyButton(){
 		 
-		 return applyFilterBtn;
+		 return applyMainFilterBtn;
 	 }
 	 boolean isAlreadyIn(String name){
 		for(SimpleComboValue<String> filterName:filterGroupCombo.getStore().getRange(0, filterGroupCombo.getStore().getCount())){
@@ -202,24 +234,39 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		 deleteBtn.setIcon(Resources.ICONS.delete());
 		 
 		 
+		 applyMainFilterBtn.addSelectionListener(new SelectionListener<ButtonEvent>() {
+				@Override
+				public void componentSelected(ButtonEvent ce) {
+					
+				
+					model.applyMainFilter();
+					model.updateFilteredList();
+					controller.filtersUpdated();
+					applyMainFilterBtn.setEnabled(false);
+					
+				MessageBox.info("Info","Selected configurations are applied!",null);
+					
+					
+				    
+				} });
+		 
+		 applyMainFilterBtn.setIcon(Resources.ICONS.ok());
+		 applyMainFilterBtn.setEnabled(false);
+		 
 		 applyFilterBtn.addSelectionListener(new SelectionListener<ButtonEvent>() {
 				@Override
 				public void componentSelected(ButtonEvent ce) {
 					
 					
-					model.applyMainFilter();
 					model.updateFilteredList();
 					controller.filtersUpdated();
-					applyFilterBtn.setEnabled(false);
 				
+					MessageBox.info("Info","Selected filters are applied!",null);
 					
-					
-				    
 				} });
+					
 		 applyFilterBtn.setIcon(Resources.ICONS.ok());
-		 applyFilterBtn.setEnabled(false);
-		 
-		 
+		
 		 
 		 clearbtn = new Button("Clear",new SelectionListener<ButtonEvent>() {
 				@Override
@@ -238,7 +285,11 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		// this.add(deleteBtn);
 		 this.add(clearbtn);
 		 if(isMainFilterSet){
-		 this.add(applyFilterBtn);
+		 this.add(applyMainFilterBtn);
+		 }
+		 else{
+			 this.add(applyFilterBtn);
+			 this.add(autoRefreshCharts);
 		 }
 		 
 		 
@@ -287,7 +338,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 	        	
 
 	        }
-	        applyFilterBtn.setEnabled(true);
+	        applyMainFilterBtn.setEnabled(true);
 	        
 	      }  
 	    }); 
@@ -329,7 +380,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 			 	model.applyMainFilter();
 				model.updateFilteredList();
 				controller.filtersUpdated();
-				applyFilterBtn.setEnabled(false);
+				applyMainFilterBtn.setEnabled(false);
 			 }
 		}
 		
