@@ -22,6 +22,7 @@ import com.extjs.gxt.ui.client.widget.MessageBox;
 
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
+import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
@@ -73,6 +74,7 @@ public class FilterGrid  extends LayoutContainer {
 	 boolean isMainFilterSet;
 	 
 	 
+	 
 	
 	public FilterGrid(ClientMonitorDataModel model, ClientMonitorController controller){
 		isMainFilterSet=false;
@@ -91,6 +93,8 @@ public class FilterGrid  extends LayoutContainer {
 		this.model =model;
 		//this.controller = controller;
 		this.isMainFilterSet=isMainFilterSet;
+		
+		
 		panel= new ContentPanel();
 		grid = new EditorGrid<FilterGridRow>(model.getMainFilterGridViewModel(),getColumnModel());
 		controller.addMainFilterListeners(grid.getStore());
@@ -99,6 +103,8 @@ public class FilterGrid  extends LayoutContainer {
 		
 		
 		filterManagementToolBar=new FilterManagementToolBar(grid,model.getFilterSelectorModel(),filterSelectorToolBar.getFilterSelectorComboBox(),filterSelectorToolBar.getApplyButton());
+		
+		
 		
 	}
 	

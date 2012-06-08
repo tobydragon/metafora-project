@@ -29,55 +29,45 @@ public class ClientMonitorController {
 	private ClientMonitorDataModel dataModel;
 	
 	private Vector<GroupedDataViewPanel> dataViewPanels;
+	private Listener<StoreEvent<FilterGridRow>> storeAddListener;
+	private Listener<StoreEvent<FilterGridRow>> storeRemoveListener;
 	
 	public ClientMonitorController(ClientMonitorDataModel actionModel){
 		this.dataModel = actionModel;
-		//addFilterModelListeners(actionModel.getFilterGridViewModel());
+		
 		dataViewPanels = new Vector<GroupedDataViewPanel>();
 	}
 	
 	
 	public void addFilterModelListeners(ListStore<FilterGridRow> filterGridStore){
 		
-		filterGridStore.addListener(Store.Add, new Listener<StoreEvent<FilterGridRow>>() {
-	        public void handleEvent(StoreEvent<FilterGridRow> be) {
-	        	filtersUpdated();
-	        	
-	     //   	getView("pieChartVerticalPanel").layout();
-	       
-	        	//getView("pieChartVerticalPanel").refresh();
-	        	
-	        	//getView("barChartVerticalPanel").layout();
-	 	       
-	        //	getView("barChartVerticalPanel").refresh();
-	        	
-	        	Log userActionLog=new Log();
-	        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
-	        	userActionLog.setDescription("New Filter Rule is added to the filter.",be.getModels().get(0).getActionPropertyRule());
-	        	userActionLog.setTriggeredBy(be.getModels().get(0).getActionPropertyRule().getOrigin());
-	        	userActionLog.setUserActionType(UserActionType.FILTER_ADDED);
-	        
-	        	
-	        	Logger.getLoggerInstance().log(userActionLog);
-	      
-	        }
-	      });
-
-	
-		filterGridStore.addListener(Store.Remove, new Listener<StoreEvent<FilterGridRow>>() {
-	        public void handleEvent(StoreEvent<FilterGridRow> be) {
-	        	filtersUpdated();
-	        	
-	        	Log userActionLog=new Log();
-	        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
-	        	userActionLog.setDescription("Filter Rule is removed from the filter.",be.getModel().getActionPropertyRule());
-	        	userActionLog.setTriggeredBy(be.getModel().getActionPropertyRule().getOrigin());
-	        	userActionLog.setUserActionType(UserActionType.FILTER_REMOVED);
-	        	Logger.getLoggerInstance().log(userActionLog);
-	        	
-	        	
-	        }
-	      });
+		
+		storeAddListener=new Listener<StoreEvent<FilterGridRow>>() {
+		        public void handleEvent(StoreEvent<FilterGridRow> be) {
+		        	filtersUpdated();
+		        	Log userActionLog=new Log();
+		        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
+		        	userActionLog.setDescription("New Filter Rule is added to the filter.",be.getModels().get(0).getActionPropertyRule());
+		        	userActionLog.setTriggeredBy(be.getModels().get(0).getActionPropertyRule().getOrigin());
+		        	userActionLog.setUserActionType(UserActionType.FILTER_ADDED);	
+		        	Logger.getLoggerInstance().log(userActionLog);
+		        	}
+		      };
+		
+		      storeRemoveListener=new Listener<StoreEvent<FilterGridRow>>() {
+			        public void handleEvent(StoreEvent<FilterGridRow> be) {
+			        	filtersUpdated();
+			        	Log userActionLog=new Log();
+			        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
+			        	userActionLog.setDescription("Filter Rule is removed from the filter.",be.getModel().getActionPropertyRule());
+			        	userActionLog.setTriggeredBy(be.getModel().getActionPropertyRule().getOrigin());
+			        	userActionLog.setUserActionType(UserActionType.FILTER_REMOVED);
+			        	Logger.getLoggerInstance().log(userActionLog);
+			        }
+			      };
+		
+		filterGridStore.addListener(Store.Add,storeAddListener);
+		filterGridStore.addListener(Store.Remove,storeRemoveListener);
 		
 		
 		
@@ -85,7 +75,12 @@ public class ClientMonitorController {
 	
 	
 	
-	
+	public void removeFilterModelListeners(ListStore<FilterGridRow> filterGridStore){
+		
+		filterGridStore.removeListener(Store.Add,storeAddListener);
+		filterGridStore.removeListener(Store.Remove,storeRemoveListener);
+		
+	}
 	
 	
 	
@@ -137,8 +132,6 @@ public class ClientMonitorController {
 	public void refreshViews() {
 		for (GroupedDataViewPanel panel : dataViewPanels){
 			panel.refresh();
-			
-			
 		}
 	}
 	
