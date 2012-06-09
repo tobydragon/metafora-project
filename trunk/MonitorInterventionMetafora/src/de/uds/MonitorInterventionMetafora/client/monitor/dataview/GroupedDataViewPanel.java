@@ -7,7 +7,7 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
-import de.uds.MonitorInterventionMetafora.client.logger.Log;
+import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
@@ -89,7 +89,7 @@ public class GroupedDataViewPanel extends ContentPanel {
 		dataViewPanel.setGroupingProperty(newPropToGroupBy);
 		
 		//Logging Action
-		Log userActionLog=new Log();
+		UserLog userActionLog=new UserLog();
     	userActionLog.setComponentType(dataViewPanelType);
     	userActionLog.setDescription("Grouping actions  for "+userActionLog.getComponentType()+" Grouping Rule:",newPropToGroupBy);
     	userActionLog.setTriggeredBy(userActionLog.getComponentType());

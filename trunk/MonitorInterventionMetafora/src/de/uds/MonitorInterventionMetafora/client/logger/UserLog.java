@@ -20,7 +20,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
-public class Log {
+public class UserLog {
 	 private ComponentType component;
 	 private UserActionType userActionType;
 	 private String descriptionText;
@@ -29,7 +29,7 @@ public class Log {
 	 private List<FilterGridRow> filterRules;
 	 private Map<String, String> properties;
 	 
-	public Log(){
+	public UserLog(){
 		
 		properties=new HashMap<String,String>();
 		user=new User();

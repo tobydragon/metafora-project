@@ -2,6 +2,7 @@ package de.uds.MonitorInterventionMetafora.client.monitor;
 
 import java.util.Vector;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Store;
@@ -14,7 +15,7 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
-import de.uds.MonitorInterventionMetafora.client.logger.Log;
+import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
@@ -45,7 +46,7 @@ public class ClientMonitorController {
 		storeAddListener=new Listener<StoreEvent<FilterGridRow>>() {
 		        public void handleEvent(StoreEvent<FilterGridRow> be) {
 		        	filtersUpdated();
-		        	Log userActionLog=new Log();
+		        	UserLog userActionLog=new UserLog();
 		        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
 		        	userActionLog.setDescription("New Filter Rule is added to the filter.",be.getModels().get(0).getActionPropertyRule());
 		        	userActionLog.setTriggeredBy(be.getModels().get(0).getActionPropertyRule().getOrigin());
@@ -57,7 +58,7 @@ public class ClientMonitorController {
 		      storeRemoveListener=new Listener<StoreEvent<FilterGridRow>>() {
 			        public void handleEvent(StoreEvent<FilterGridRow> be) {
 			        	filtersUpdated();
-			        	Log userActionLog=new Log();
+			        	UserLog userActionLog=new UserLog();
 			        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
 			        	userActionLog.setDescription("Filter Rule is removed from the filter.",be.getModel().getActionPropertyRule());
 			        	userActionLog.setTriggeredBy(be.getModel().getActionPropertyRule().getOrigin());
@@ -94,7 +95,7 @@ public class ClientMonitorController {
 	        
 	     
 	        	
-	        	Log userActionLog=new Log();
+	        	UserLog userActionLog=new UserLog();
 	        	userActionLog.setComponentType(ComponentType.MAIN_CONFIGURATION_TABLE);
 	        	userActionLog.setDescription("New Filter Rule is added to the Main Configuration.",be.getModels().get(0).getActionPropertyRule());
 	        	userActionLog.setTriggeredBy(be.getModels().get(0).getActionPropertyRule().getOrigin());
@@ -110,7 +111,7 @@ public class ClientMonitorController {
 		filterGridStore.addListener(Store.Remove, new Listener<StoreEvent<FilterGridRow>>() {
 	        public void handleEvent(StoreEvent<FilterGridRow> be) {
 	       
-	        	Log userActionLog=new Log();
+	        	UserLog userActionLog=new UserLog();
 	        	userActionLog.setComponentType(ComponentType.MAIN_CONFIGURATION_TABLE);
 	        	userActionLog.setDescription("Filter Rule is removed from the Main Configuration.",be.getModel().getActionPropertyRule());
 	        	userActionLog.setTriggeredBy(be.getModel().getActionPropertyRule().getOrigin());
@@ -130,9 +131,12 @@ public class ClientMonitorController {
 	}
 	
 	public void refreshViews() {
+		Log.debug("Refreshing View is started");
 		for (GroupedDataViewPanel panel : dataViewPanels){
 			panel.refresh();
+			Log.debug(panel.getTitle()+" is refreshed");
 		}
+		Log.debug("Refreshing View is completed");
 	}
 	
 	public void filtersUpdated(){

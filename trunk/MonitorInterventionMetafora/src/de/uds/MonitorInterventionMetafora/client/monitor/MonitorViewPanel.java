@@ -9,11 +9,13 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.google.gwt.user.client.ui.Image;
+import com.allen_sauer.gwt.log.client.Log;
+
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
-import de.uds.MonitorInterventionMetafora.client.logger.Log;
+import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
@@ -59,6 +61,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 		updater = new ClientMonitorDataModelUpdater(monitorModel, controller);
 
 		updaterToolbar = new UpdaterToolbar(updater,monitorModel,controller,monitoringViewServiceServlet);
+		updaterToolbar.setAutoRefresh(false);
 		this.setTopComponent(updaterToolbar);
 		this.setHeaderVisible(false);
 		
@@ -75,6 +78,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 	 	 _cfActionType.setType("START_FILE_INPUT");
 	 	 startupMessage.setCfActionType(_cfActionType);
 	 	 System.out.println("INFO\t\t[MonitorPanelContainer.sendStartupMessage] Sending monitoring start from Client");
+	 	Log.debug("Update Request is sent");
 	 	 monitoringViewServiceServlet.requestUpdate(startupMessage,this);
 	 	 // ServerCommunication.getInstance().processAction(startupMessage,this);	
 	}
@@ -86,13 +90,14 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 
 	@Override
 	public void onSuccess(List<CfAction> actionList) {
-	
+		
+		Log.debug("Update Respone is recieved.Action Size:"+actionList.size());
 		if(actionList!=null){
 		 	 System.out.println("INFO\t\t[MonitorPanelContainer.onSuccess] Adding actions count=" + actionList.size());
 			monitorModel.addData(actionList);
 		}
 		
-		updaterToolbar.setAutoRefresh(true);
+		
 	
 		VerticalPanel panel=new VerticalPanel();
 		flp=new FilterListPanel(monitorModel, controller,monitoringViewServiceServlet);
@@ -111,30 +116,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 
 	}
 	
-	/*
-	void enableResizeListener(ContentPanel panel){
-		
-		panel.addListener(Events.Collapse, new Listener<BaseEvent>()
-			        {
 
-			            public void handleEvent(BaseEvent be)
-			            {
-			            	tabbedDataViewPanel.addjustSize(false);
-			            	
-			            };
-			        });
-					 
-		panel.addListener(Events.Expand, new Listener<BaseEvent>()
-			        {
-
-			            public void handleEvent(BaseEvent be)
-			            {
-			            	tabbedDataViewPanel.addjustSize(true);
-			            };
-			        });
-		
-	}
-	*/
 	private void createTabbedDataViewsPanel(ActionPropertyRuleSelectorModel actionPropertyRuleCreator,SimpleComboBox<String> filterGroupCombo,
 			FilterListPanel filterPanel){
 		tabbedDataViewPanel=new TabbedDataViewPanel();

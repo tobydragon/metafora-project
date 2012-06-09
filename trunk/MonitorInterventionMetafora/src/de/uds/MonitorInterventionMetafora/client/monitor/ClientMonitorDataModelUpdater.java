@@ -2,6 +2,7 @@ package de.uds.MonitorInterventionMetafora.client.monitor;
 
 import java.util.List;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.user.client.Timer;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
@@ -41,6 +42,8 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 
 	@Override
 	public void onSuccess(List<CfAction> actions) {
+		
+		Log.debug("Update Response is recieved from the model.Action Size:"+actions.size());
 		if(actions!=null && actions.size() > 0){	
 			receiveUpdate(actions);
 			System.out.println("DEBUG [UpdatingDataModel.onSuccess] Action recieved and list updated");
@@ -52,6 +55,7 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 	
 	public void getUpdate(){
 		
+		Log.debug("Update Request is sent from model!");
 		clientDataModel.getServiceServlet().requestUpdate(clientDataModel.getLastAction(),this);
 		
 		

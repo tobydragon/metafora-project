@@ -27,7 +27,7 @@ public static Logger getLoggerInstance(){
 
 	
 
-public void log(Log actionLog){
+public void log(UserLog actionLog){
 	loggingServiceServlet.sendLogAction(actionLog.toCfAction(),this);
 }
 

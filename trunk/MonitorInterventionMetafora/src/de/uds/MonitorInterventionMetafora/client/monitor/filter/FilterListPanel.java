@@ -12,7 +12,7 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
-import de.uds.MonitorInterventionMetafora.client.logger.Log;
+import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
@@ -54,7 +54,7 @@ public class FilterListPanel extends ContentPanel {
             	
             	
             	
-            	Log userActionLog=new Log();
+            	UserLog userActionLog=new UserLog();
             	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
             	userActionLog.setDescription("Filter Panel is collapsed.");
             	userActionLog.setTriggeredBy(ComponentType.FILTER_TABLE);
@@ -71,7 +71,7 @@ public class FilterListPanel extends ContentPanel {
             	//TODO: Make this work for the whole tab pane, not just the table view
             //interfaceManager.getGroupedGridContentPanel().setWidth(600);
 //            	interfaceManager.getTableViewEditorGrid().setHeight(326);     	
-            	Log userActionLog=new Log();
+            	UserLog userActionLog=new UserLog();
             	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
             	userActionLog.setDescription("Filter Panel is expanded.");
             	userActionLog.setTriggeredBy(ComponentType.FILTER_TABLE);
@@ -124,7 +124,7 @@ public class FilterListPanel extends ContentPanel {
             	
             	
             	
-            	Log userActionLog=new Log();
+            	UserLog userActionLog=new UserLog();
             	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
             	userActionLog.setDescription("Filter Panel is collapsed.");
             	userActionLog.setTriggeredBy(ComponentType.FILTER_TABLE);
@@ -141,7 +141,7 @@ public class FilterListPanel extends ContentPanel {
             	//TODO: Make this work for the whole tab pane, not just the table view
             //interfaceManager.getGroupedGridContentPanel().setWidth(600);
 //            	interfaceManager.getTableViewEditorGrid().setHeight(326);     	
-            	Log userActionLog=new Log();
+            	UserLog userActionLog=new UserLog();
             	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
             	userActionLog.setDescription("Filter Panel is expanded.");
             	userActionLog.setTriggeredBy(ComponentType.FILTER_TABLE);
