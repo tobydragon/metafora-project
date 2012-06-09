@@ -21,7 +21,7 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.event.TabPanelEvent;
 
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
-import de.uds.MonitorInterventionMetafora.client.logger.Log;
+import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 
@@ -46,7 +46,7 @@ public class TabbedDataViewPanel extends VerticalPanel {
             @Override
             public void componentSelected(TabPanelEvent ce) {
             	
-            	Log userActionLog=new Log();
+            	UserLog userActionLog=new UserLog();
             	userActionLog.setComponentType(ComponentType.VIEW_TAB_PANEL);
             	userActionLog.setDescription(ce.getItem().getText()+" Tab is activated in Views Tab Panel");
             	userActionLog.setTriggeredBy(ComponentType.VIEW_TAB_PANEL);

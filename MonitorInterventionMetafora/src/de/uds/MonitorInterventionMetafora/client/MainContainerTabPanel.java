@@ -12,7 +12,7 @@ import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
-import de.uds.MonitorInterventionMetafora.client.logger.Log;
+import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 
@@ -31,7 +31,7 @@ public class MainContainerTabPanel extends VerticalPanel {
             public void componentSelected(TabPanelEvent ce) {
             	
             	
-            	Log userActionLog=new Log();
+            	UserLog userActionLog=new UserLog();
             	userActionLog.setComponentType(ComponentType.MAIN_TAB_PANEL);
             	userActionLog.setDescription(ce.getItem().getText()+" Tab is activated in Main Tab Panel");
             	userActionLog.setTriggeredBy(ComponentType.MAIN_TAB_PANEL);

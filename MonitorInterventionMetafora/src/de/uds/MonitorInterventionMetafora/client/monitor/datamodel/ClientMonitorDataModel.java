@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Store;
@@ -13,7 +14,7 @@ import com.google.gwt.visualization.client.DataTable;
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
-import de.uds.MonitorInterventionMetafora.client.logger.Log;
+import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.CfActionGridRow;
@@ -116,15 +117,17 @@ public FilterViewModel getMainFilterGridViewModel(){
 
 List<CfAction> applyMainFilter(List<CfAction> actionsToFilter){
 	
-	
+	Log.debug("Adding new actions:Applying main filter is started");
 	List<CfAction> actions=new Vector<CfAction>();
 	for (CfAction action : actionsToFilter){
 		if (mainActionFilter.filterIncludesAction(action)){
 			
+			
 			actions.add(action);
+		
 		}
 	}
-	
+	Log.debug("Adding new actions:Applying main filter is completed");
 	return actions;
 }
 
@@ -154,26 +157,38 @@ public void applyMainFilter(){
 	}
 	
 	public void addFilteredData(List<CfAction> actionsToFilter){
-		
-		
+		List<CfActionGridRow> tableRows=new Vector<CfActionGridRow>();
+		Log.debug("Applying user filter is started");
 		for (CfAction action : actionsToFilter){
 			if (currentActionFilter.filterIncludesAction(action)){
-				
+				//TODO: this cause the problem
+				/*
 				tableViewModel.add(new CfActionGridRow(action));
 				//TODO: if checknox of update charts is not check dont do this part
 				for (ActionPropertyValueGroupingTableModel indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
 					indicatorPropertyTable.addAction(action);
+				}*/
+				
+				
+				tableRows.add(new CfActionGridRow(action));
+				
+				//TODO: if checknox of update charts is not check dont do this part
+				for (ActionPropertyValueGroupingTableModel indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
+					indicatorPropertyTable.addAction(action);
 				}
+				
 				filteredActions.add(action);
 			}
 		}
+		Log.debug("Filtering is completed and now adding actions to the tableview");
+		tableViewModel.add(tableRows);
+		Log.debug("Adding actions to the tableview is finished");
+		Log.debug("Applying user filter is completed");
 		
 		
 		
 		
-		
-		
-		Log userActionLog=new Log();
+		UserLog userActionLog=new UserLog();
     	userActionLog.setComponentType(ComponentType.ACTION_FILTERER);
     	userActionLog.setDescription("Actions are filtered by the rules:",currentActionFilter.getFilterStore());
     	userActionLog.setTriggeredBy(ComponentType.ACTION_FILTERER);
@@ -186,15 +201,17 @@ public void applyMainFilter(){
 	}
 	
 	public void addData(List<CfAction> actions){
-		
+		Log.debug("Adding new actions to the List was started");
 		if(actions!=null&&actions.size()>0){
 		int index=actions.size()-1;
 		lastRecievedAction=actions.get(index);
 		}
+		Log.debug("Adding new actions: Last actions is set");
 		allActions.addAll(applyMainFilter(actions));
-		
+		Log.debug("Main filter is appied and Actions are added to main list");
 		
 		addFilteredData(allActions);
+		Log.debug("Adding new actions to the main List and  filtered List was completed");
 	}
 	
 	

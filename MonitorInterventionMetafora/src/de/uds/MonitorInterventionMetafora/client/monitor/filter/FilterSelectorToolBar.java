@@ -146,7 +146,7 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 				
 					ActionFilter filter=new ActionFilter();
 					filter.setEditable(false);
-					filter.setName(filterName);
+					filter.setName(filterName.toLowerCase());
 					
 					for(FilterGridRow row : grid.getStore().getRange(0,grid.getStore().getCount()-1)){
 					

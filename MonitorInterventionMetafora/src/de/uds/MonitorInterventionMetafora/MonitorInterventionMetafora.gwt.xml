@@ -4,6 +4,26 @@
   <inherits name='com.google.gwt.user.User'/>
   
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- For development, a default of `DEBUG` is recommended -->
+  <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />
+ <set-property name="log_WindowLogger" value="DISABLED" />
+
+
+
+
   <!-- Inherit the default GWT style sheet.  You can change       -->
   <!-- the theme of your GWT application by uncommenting          -->
   <!-- any one of the following lines.                            -->

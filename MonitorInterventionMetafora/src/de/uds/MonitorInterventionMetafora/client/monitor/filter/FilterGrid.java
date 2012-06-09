@@ -53,7 +53,7 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
-import de.uds.MonitorInterventionMetafora.client.logger.Log;
+import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;

@@ -34,7 +34,9 @@ public class UrlParameterConfig {
 		return password;
 	}
 	public String getConfig() {
-		return configID;
+		if(configID!=null)
+		return configID.toLowerCase();
+		return null;
 	}
 
 
