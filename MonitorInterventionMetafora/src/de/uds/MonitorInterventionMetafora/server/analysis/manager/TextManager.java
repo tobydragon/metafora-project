@@ -55,10 +55,12 @@ public TextManager(boolean addWordCount){
 		}
 		else {
 			
+			if(action.getCfObjects().size()>0){
 			action.getCfObjects().get(0).addProperty(agent.tag("").toEmptyCfProperty());
 			if(addWordCount)
 			{
 				action.getCfObjects().get(0).addProperty(agent.getWordCount("").toEmptyCfProperty());
+			}
 			}
 		}
 		
