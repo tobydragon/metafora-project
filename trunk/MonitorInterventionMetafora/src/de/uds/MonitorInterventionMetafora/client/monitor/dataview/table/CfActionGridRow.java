@@ -58,7 +58,7 @@ public class CfActionGridRow extends BaseModel {
 		    	set(MonitorConstants.DESCRIPTION_LABEL, MonitorConstants.BLANK_PROPERTY_LABEL);
 		    	set(MonitorConstants.TOOL_LABEL, MonitorConstants.BLANK_PROPERTY_LABEL);
 		    }
-		    if(indicator.getCfObjects().get(0)!=null){
+		    if(indicator.getCfObjects().size()>0 &&indicator.getCfObjects().get(0)!=null){
 		    set(MonitorConstants.TAGS_LABEL,indicator.getCfObjects().get(0).getProperty(MonitorConstants.TAGS).getValue());
 		    set(MonitorConstants.WORD_COUNT_LABEL,indicator.getCfObjects().get(0).getProperty(MonitorConstants.WORD_COUNT).getValue());
 		    }
