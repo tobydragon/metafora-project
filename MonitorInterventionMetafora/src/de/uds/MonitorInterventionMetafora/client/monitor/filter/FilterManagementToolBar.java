@@ -141,11 +141,14 @@ this.applyBtn=applyBtn;
 		OperationsComboBoxModel _contains=new OperationsComboBoxModel("Contains",OperationType.CONTAINS);
 		OperationsComboBoxModel _isoneof=new OperationsComboBoxModel("Is One Of",OperationType.ISONEOF);
 		OperationsComboBoxModel _containsoneof=new OperationsComboBoxModel("Contains One Of",OperationType.CONTAINSONEOF);
-		
+		OperationsComboBoxModel _isnot=new OperationsComboBoxModel("Is Not",OperationType.ISNOT);
+		OperationsComboBoxModel _doesnotcontain=new OperationsComboBoxModel("Does Not Contain",OperationType.DOESNOTCONTAIN);
 		_operations.add(_equals);
 		_operations.add(_contains);
 		_operations.add(_isoneof);
 		_operations.add(_containsoneof);
+		_operations.add(_isnot);
+		_operations.add(_doesnotcontain);
 		
 		}
 		else{

@@ -92,10 +92,11 @@ public class CfActionGridRow extends BaseModel {
 
 	
 	public String getTags(){
+		if(indicator.getCfObjects().size()>0){
 		if(indicator.getCfObjects().get(0)!=null){
 		    return indicator.getCfObjects().get(0).getProperty(MonitorConstants.TAGS).getValue();
 		}
-		
+		}
 		return "";
 	}
 }

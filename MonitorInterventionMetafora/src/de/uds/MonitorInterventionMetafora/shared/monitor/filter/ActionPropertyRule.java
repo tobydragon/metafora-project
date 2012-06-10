@@ -339,6 +339,68 @@ public class ActionPropertyRule  implements Serializable{
 						return actionValue.toLowerCase().contains(valueToFilterBy.toLowerCase());
 						}
 					}
+	else if (operationtype == OperationType.ISNOT){
+						
+						if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
+							
+							for(String value:actionValues){
+								
+								if(!value.toLowerCase().equalsIgnoreCase(valueToFilterBy.toLowerCase()))
+								{
+									return true;
+								}
+							}
+							
+						}
+						
+						else if (propertyName.equalsIgnoreCase(CommonFormatStrings.ID_STRING)){
+							
+							for(String value:actionValues){
+								
+								if(!value.toLowerCase().equalsIgnoreCase(valueToFilterBy.toLowerCase()))
+								{
+									return true;
+								}
+							}
+							
+						}
+						
+						else{
+						return !actionValue.toLowerCase().equalsIgnoreCase(valueToFilterBy.toLowerCase());
+						}
+					}
+					
+	else if (operationtype == OperationType.DOESNOTCONTAIN){
+		
+		if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
+			
+			for(String value:actionValues){
+				
+				if(!value.toLowerCase().contains(valueToFilterBy.toLowerCase()))
+				{
+					return true;
+				}
+			}
+			
+		}
+		
+		else if (propertyName.equalsIgnoreCase(CommonFormatStrings.ID_STRING)){
+			
+			for(String value:actionValues){
+				
+				if(!value.toLowerCase().contains(valueToFilterBy.toLowerCase()))
+				{
+					return true;
+				}
+			}
+			
+		}
+		
+		else{
+		return !actionValue.toLowerCase().contains(valueToFilterBy.toLowerCase());
+		}
+	}
+					
 					else if (operationtype == OperationType.OCCUREDWITHIN){
 						long timeStamp = Long.valueOf(actionValue);
 						if(GWTUtils.getDifferenceInMinutes(timeStamp) <= Integer.valueOf(valueToFilterBy)){

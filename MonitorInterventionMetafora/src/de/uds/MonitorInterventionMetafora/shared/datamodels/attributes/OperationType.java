@@ -5,7 +5,7 @@ public enum OperationType {
 	CONTAINS,
 	OCCUREDWITHIN,
 	ISONEOF,
-	CONTAINSONEOF
+	CONTAINSONEOF,ISNOT,DOESNOTCONTAIN
 	;
 	
 	public  static OperationType getFromString(String str){
