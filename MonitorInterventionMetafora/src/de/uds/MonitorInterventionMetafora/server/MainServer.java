@@ -39,7 +39,9 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	MonitorController monitorController;
 	AnalysisManager analysisManager;
 	private boolean isConfigurationUpdated=false;
+
 	
+
 	CfAgentCommunicationManager feedbackCommunicationManager;
 	
 	public MainServer(){	
@@ -64,7 +66,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		}else{
 		configFilepath = GeneralUtil.getRealPath(generalConfigFile);
 		}
-		configuratinParser= new XmlConfigParser(configFilepath);
+		XmlConfigParser configuratinParser= new XmlConfigParser(configFilepath);
 		Configuration configuration =configuratinParser.toActiveConfiguration();
 		return configuration;
 	}
@@ -100,10 +102,24 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	@Override
 	public List<CfAction> requestUpdate(CfAction cfAction) {
 		
-	
-		return monitorModel.requestUpdate(cfAction);
+		logger.info("[requestUpdate]  requesting update is revieced  by the server");
+		List<CfAction> actions=monitorModel.requestUpdate(cfAction);
+		logger.info("[requestUpdate]  requesting update is answered  by the server.Action Count:"+actions.size());
+		
+		return actions;
+		
 	}
 
+	
+	void sendUpdateRequest(CfAction action){
+		
+		
+	}
+	
+	
+	
+	
+	
 	@Override
 	public CfAction sendNotificationToAgents(CfAction cfAction) {
 	
@@ -126,12 +142,12 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	public boolean saveNewFilter(boolean isMainFilters, ActionFilter filter) {
 		if(!isMainFilters){
 		isConfigurationUpdated=true;
-		configuratinParser=new XmlConfigParser(generalConfigFile);
+		configuratinParser=new XmlConfigParser(GeneralUtil.getRealPath(generalConfigFile));
 		
 		return configuratinParser.saveNewFilterToConfiguration(filter);
 		}
 		else{
-			configuratinParser=new XmlConfigParser(mainFiltersFile);
+			configuratinParser=new XmlConfigParser(GeneralUtil.getRealPath(mainFiltersFile));
 			return configuratinParser.saveNewFilterToConfiguration(filter);
 		}
 		
@@ -148,6 +164,9 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		
 		return readConfiguration(true);
 	}
+
+	
+
 	
 	 
 }
