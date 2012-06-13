@@ -6,6 +6,7 @@ import com.extjs.gxt.ui.client.widget.grid.GridSelectionModel;
 import com.google.gwt.user.client.ui.PopupPanel;
 
 import de.uds.MonitorInterventionMetafora.client.PopupCfActionDisplay;
+import de.uds.MonitorInterventionMetafora.client.display.CfActionDisplay;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
 public class TableRowDisplaySelectionListener extends GridSelectionModel<CfActionGridRow>{
@@ -18,7 +19,8 @@ public class TableRowDisplaySelectionListener extends GridSelectionModel<CfActio
 			CfAction indicator = ge.getModel().getIndicator();
 			
 
-			new PopupCfActionDisplay(indicator);
+			new CfActionDisplay(indicator);
+			//new PopupCfActionDisplay(indicator);
 		}
     	
 

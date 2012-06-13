@@ -3,25 +3,8 @@
   <!-- Inherit the core Web Toolkit stuff.                        -->
   <inherits name='com.google.gwt.user.User'/>
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <!-- For development, a default of `DEBUG` is recommended -->
   <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />
- <set-property name="log_WindowLogger" value="DISABLED" />
-
-
 
 
   <!-- Inherit the default GWT style sheet.  You can change       -->
@@ -32,8 +15,11 @@
   <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>   
   <inherits name="com.extjs.gxt.ui.GXT" />  -->
-<inherits name="com.extjs.gxt.ui.GXT" />
-
+<inherits name='com.extjs.gxt.ui.GXT' />
+  <inherits name='com.sencha.gxt.ui.GXT'/>
+   <inherits name='com.sencha.gxt.chart.Chart' />
+  
+<inherits name="com.sencha.gwt.uibinder.UiBinder"/>
   <inherits name='com.google.gwt.visualization.Visualization'/>
  <inherits name="com.google.gwt.xml.XML" />
     
