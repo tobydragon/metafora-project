@@ -21,6 +21,7 @@ import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.OperationsComboBoxModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
@@ -32,6 +33,7 @@ public class ClientMonitorController {
 	private Vector<GroupedDataViewPanel> dataViewPanels;
 	private Listener<StoreEvent<FilterGridRow>> storeAddListener;
 	private Listener<StoreEvent<FilterGridRow>> storeRemoveListener;
+	private boolean onlyRefreshTable=false;
 	
 	public ClientMonitorController(ClientMonitorDataModel actionModel){
 		this.dataModel = actionModel;
@@ -45,6 +47,7 @@ public class ClientMonitorController {
 		
 		storeAddListener=new Listener<StoreEvent<FilterGridRow>>() {
 		        public void handleEvent(StoreEvent<FilterGridRow> be) {
+		        	Log.debug("A new filter is added to the grid:");
 		        	filtersUpdated();
 		        	UserLog userActionLog=new UserLog();
 		        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
@@ -57,6 +60,7 @@ public class ClientMonitorController {
 		
 		      storeRemoveListener=new Listener<StoreEvent<FilterGridRow>>() {
 			        public void handleEvent(StoreEvent<FilterGridRow> be) {
+			        	Log.debug("A Filter is removed!");
 			        	filtersUpdated();
 			        	UserLog userActionLog=new UserLog();
 			        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
@@ -75,6 +79,10 @@ public class ClientMonitorController {
 	}
 	
 	
+	public void setOnlyRefreshTable(boolean onlyRefreshTable){
+		
+		this.onlyRefreshTable=onlyRefreshTable;
+	}
 	
 	public void removeFilterModelListeners(ListStore<FilterGridRow> filterGridStore){
 		
@@ -134,15 +142,36 @@ public class ClientMonitorController {
 		Log.debug("Refreshing View is started");
 		for (GroupedDataViewPanel panel : dataViewPanels){
 			panel.refresh();
-			Log.debug(panel.getTitle()+" is refreshed");
+			
+			Log.debug(panel.getDataViewType()+" is refreshed");
 		}
 		Log.debug("Refreshing View is completed");
 	}
 	
 	public void filtersUpdated(){
+		
+		Log.debug("onlyRefreshTable:"+onlyRefreshTable);
 		dataModel.updateFilteredList();
+		if(onlyRefreshTable){
+			refreshTableView();
+		}
+		else{
         refreshViews();
+			}
+		}
+	
+	
+	public void refreshTableView() {
+		for (GroupedDataViewPanel panel : dataViewPanels){
+			if(panel.getDataViewType()==DataViewPanelType.TABLE){
+			panel.refresh();
+			}
+			
+		}
+		Log.debug("Refreshing  Table View is completed");
 	}
+	
+	
 	
 //	 ------------------------ Code that should be moved  to filter class ---------------------------//
 

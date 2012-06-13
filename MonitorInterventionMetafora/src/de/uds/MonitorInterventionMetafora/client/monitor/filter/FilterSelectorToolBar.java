@@ -71,23 +71,29 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		 autoRefreshCharts= new CheckBox();
 		 autoRefreshCharts.setBoxLabel("Auto View Update");
 		 autoRefreshCharts.setValue(false);
-		 controller.removeFilterModelListeners(grid.getStore());
+		 //controller.removeFilterModelListeners(grid.getStore());
 		 autoRefreshCharts.addListener(Events.Change, 
 					new Listener<BaseEvent>() {
 			        	public void handleEvent(BaseEvent be) {
 			        		if (autoRefreshCharts.getValue()) {
 			        			updateViews=true;
-			        			applyFilterBtn.setEnabled(false);
-			        			controller.addFilterModelListeners(grid.getStore());
+			        			controller.setOnlyRefreshTable(true);
+			        			//applyFilterBtn.setEnabled(false);
+			        			//controller.addFilterModelListeners(grid.getStore());
 			        			model.updateFilteredList();
 								controller.filtersUpdated();
+			        		
 			        			
 			        		}
 			        		else {
 			        			
 			        			updateViews=false;
-			        			controller.removeFilterModelListeners(grid.getStore());
-			        			applyFilterBtn.setEnabled(true);
+			        			
+			        			controller.setOnlyRefreshTable(false);
+			        			//controller.filtersUpdated();
+			        			//model.updateFilteredList();
+			        			//controller.removeFilterModelListeners(grid.getStore());
+			        			//applyFilterBtn.setEnabled(true);
 			        		}
 			        	}
 					});
@@ -288,8 +294,8 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		 this.add(applyMainFilterBtn);
 		 }
 		 else{
-			 this.add(applyFilterBtn);
-			 this.add(autoRefreshCharts);
+			// this.add(applyFilterBtn);
+			// this.add(autoRefreshCharts);
 		 }
 		 
 		 
