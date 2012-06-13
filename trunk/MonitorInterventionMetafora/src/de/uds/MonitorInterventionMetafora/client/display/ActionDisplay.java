@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.sencha.gxt.widget.core.client.form.FieldLabel;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class ActionDisplay extends ContentPanel{
 
@@ -21,7 +22,7 @@ public class ActionDisplay extends ContentPanel{
 	
 	public ActionDisplay(CfAction action) {
 		actionTime=new TextField<String>();
-		actionTime.setValue(Long.toString(action.getTime()));
+		actionTime.setValue(GWTUtils.getFullDate(action.getTime()));
 		actionTime.setReadOnly(true);
 		actionType=new TextField<String>();
 		actionType.setValue(action.getCfActionType().getType());

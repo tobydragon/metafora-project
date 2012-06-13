@@ -29,7 +29,7 @@ public class GWTUtils {
 		Date date = new Date(input);
 		
 		
-		return DateTimeFormat.getFormat(DateTimeFormat.PredefinedFormat.DATE_FULL).format(date);
+		return DateTimeFormat.getFormat(DateTimeFormat.PredefinedFormat.DATE_TIME_FULL).format(date);
 
 	}	
 	

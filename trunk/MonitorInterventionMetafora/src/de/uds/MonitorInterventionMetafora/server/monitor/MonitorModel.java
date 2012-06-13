@@ -7,13 +7,14 @@ import java.util.Vector;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 
-public class MonitorModel {
+public class MonitorModel implements Runnable {
 	Logger logger = Logger.getLogger(this.getClass());
 	
 	List<CfAction> cfActions;
-	
+	List<CfAction> cfActionsQues;
 	public MonitorModel(){
 		cfActions=new Vector<CfAction>();
+		cfActionsQues=new Vector<CfAction>();
 	
 	}
 	
@@ -26,7 +27,9 @@ public class MonitorModel {
 		Collections.sort(cfActions);
 	}
 
-	public List<CfAction> requestUpdate(CfAction cfAction){
+	
+	
+	public synchronized List<CfAction>   requestUpdate(CfAction cfAction){
 		if(cfAction!=null){
 			if (cfAction.getTime()>System.currentTimeMillis()){
 				logger.error("[requestUpdate] bad action time, newer than current time for action\n" + cfAction);
@@ -39,8 +42,11 @@ public class MonitorModel {
 		}
 	}
 	
-	public List<CfAction> requestUpdate(long _lastActionTime) {
+	
+	public synchronized List<CfAction> requestUpdate(long _lastActionTime) {
 		System.out.println("DEBUG: [MonitorModel.requestUpdate] "+ _lastActionTime);
+		
+		logger.info("[requestUpdate]  requesting update is started in server");
 		List<CfAction> _newActionList=new Vector<CfAction>();
 		
 		//walk list backwards because very few end action will be new
@@ -50,6 +56,7 @@ public class MonitorModel {
 				_newActionList.add(cfActions.get(i));
 			}
 		}
+		logger.info("[requestUpdate] requesting update is complete in server");
 		return _newActionList;	
 	}
 	
@@ -60,6 +67,13 @@ public class MonitorModel {
 		}
 			
 		return false;
+	}
+
+	@Override
+	public void run() {
+		
+		
+		
 	}
 
 

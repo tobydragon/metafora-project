@@ -21,6 +21,8 @@ import com.extjs.gxt.ui.client.widget.grid.GridGroupRenderer;
 import com.extjs.gxt.ui.client.widget.grid.GroupColumnData;
 import com.extjs.gxt.ui.client.widget.grid.GroupingView;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Element;
 
@@ -48,6 +50,7 @@ public class TablePanel extends DataViewPanel {
 		    tableView = new Grid<CfActionGridRow>(model.getTableViewModel(), columnModel);
 			tableView.setView(getGridView(columnModel));
 			tableView.setWidth(950);
+			
 		
 //			tableView.getStore().sort(MonitorConstants.ACTION_TIME_LABEL, SortDir.DESC);
 	

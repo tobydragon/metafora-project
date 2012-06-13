@@ -31,6 +31,7 @@ public class GeneralUtil {
 	}
 	
 	public static String getRealPath(String string){
+		//return string;
 		return InitServlet.getStaticServletContext().getRealPath(string);
 	}
 	
