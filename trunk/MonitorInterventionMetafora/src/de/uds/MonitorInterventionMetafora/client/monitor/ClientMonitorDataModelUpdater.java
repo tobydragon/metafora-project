@@ -63,12 +63,9 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 		
 		Log.debug("1Update Request is sent from model is started!");
 		
+	Log.debug("Update Request is sent from model!");
+		clientDataModel.getServiceServlet().requestUpdate(clientDataModel.getLastAction(),this);
 		
-		 CommunicationServiceAsync monitoringServ = GWT.create(CommunicationService.class);
-		
-		 monitoringServ.requestUpdate(clientDataModel.getLastAction(),this);
-	//	clientDataModel.getServiceServlet()
-		Log.debug("2Update Request is sent from model is started!");
 		
 		
 		//ServerCommunication.getInstance().processAction(clientDataModel.getLastAction(),this);

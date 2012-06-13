@@ -103,10 +103,10 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	public List<CfAction> requestUpdate(CfAction cfAction) {
 		
 		logger.info("[requestUpdate]  requesting update is revieced  by the server");
-		List<CfAction> actions=monitorModel.requestUpdate(cfAction);
-		logger.info("[requestUpdate]  requesting update is answered  by the server.Action Count:"+actions.size());
 		
-		return actions;
+	
+		
+		return monitorModel.requestUpdate(cfAction);
 		
 	}
 

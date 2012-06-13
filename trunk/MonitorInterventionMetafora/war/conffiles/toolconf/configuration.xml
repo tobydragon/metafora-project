@@ -8,18 +8,29 @@
       <filter name="Default" editable="true">
         <filteritem propertyrulename="ID" operation="Equals" value="Toby" type="User" />
       </filter>
-      
-        <filter name="LASAD_ALL" editable="true">
+      <filter name="LASAD_ALL" editable="true">
         <filteritem propertyrulename="TOOL" operation="Contains" value="LASAD" type="Content" />
-    	 </filter>
-    	 <filter name="Recent_LASAD" editable="true">
-    	 <filteritem propertyrulename="TOOL" operation="Contains" value="LASAD" type="Content" />
-         <filteritem propertyrulename="TIME" operation="OccuredWithIn" value="3" type="Action" />
-
-    	 </filter>
-      
-      
-      
+      </filter>
+      <filter name="Recent_LASAD" editable="true">
+        <filteritem propertyrulename="TOOL" operation="Contains" value="LASAD" type="Content" />
+        <filteritem propertyrulename="TIME" operation="OccuredWithIn" value="3" type="Action" />
+      </filter>
+      <filter name="ugurtest" editable="true">
+        <filteritem propertyrulename="id" operation="CONTAINS" value="ob" type="USER" />
+      </filter>
+      <filter name="ugur2" editable="true">
+        <filteritem propertyrulename="id" operation="CONTAINS" value="ob" type="USER" />
+      </filter>
+      <filter name="ugur3" editable="true">
+        <filteritem propertyrulename="id" operation="CONTAINS" value="ob" type="USER" />
+      </filter>
+      <filter name="black" editable="true">
+        <filteritem propertyrulename="type" operation="EQUALS" value="7" type="ACTION_TYPE" />
+        <filteritem propertyrulename="id" operation="CONTAINS" value="ob" type="USER" />
+      </filter>
+      <filter name="bob" editable="true">
+        <filteritem propertyrulename="id" operation="CONTAINS" value="b" type="USER" />
+      </filter>
     </filters>
   </configuration>
 </configurations>
