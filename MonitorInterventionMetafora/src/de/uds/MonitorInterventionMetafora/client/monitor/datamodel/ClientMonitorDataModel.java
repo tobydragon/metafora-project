@@ -140,10 +140,10 @@ public void applyMainFilter(){
 	allActions.clear();
 	allActions.addAll(applyMainFilter(temp));
 
-	temp=new Vector<CfAction>();
-	temp.addAll(filteredActions);
-	filteredActions.clear();
-	filteredActions.addAll(applyMainFilter(temp));
+	List<CfAction> temp2=new Vector<CfAction>();
+	temp2.addAll(filteredActions);
+	clearFilteredData();
+	filteredActions=applyMainFilter(temp2);
 	
 	
 	
@@ -158,6 +158,7 @@ public void applyMainFilter(){
 	
 	public void addFilteredData(List<CfAction> actionsToFilter){
 		List<CfActionGridRow> tableRows=new Vector<CfActionGridRow>();
+		filteredActions.clear();
 		Log.debug("Applying user filter is started");
 		for (CfAction action : actionsToFilter){
 			if (currentActionFilter.filterIncludesAction(action)){
@@ -205,12 +206,13 @@ public void applyMainFilter(){
 		if(actions!=null&&actions.size()>0){
 		int index=actions.size()-1;
 		lastRecievedAction=actions.get(index);
-		}
+		
 		Log.debug("Adding new actions: Last actions is set");
 		allActions.addAll(applyMainFilter(actions));
 		Log.debug("Main filter is appied and Actions are added to main list");
 		
 		addFilteredData(allActions);
+		}
 		Log.debug("Adding new actions to the main List and  filtered List was completed");
 	}
 	

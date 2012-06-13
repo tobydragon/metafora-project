@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interactiondata>
+  <actions>
+  
+  
+  <action time="1339062044897">
+<actiontype classification="create" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="Aigua_1_node_13" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;
+&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;
+&lt;object&gt;
+&lt;node id=&quot;Aigua_1_node_13&quot;&gt;
+&lt;graphics&gt;
+&lt;scalefactor value=&quot;50&quot;/&gt;
+&lt;bordercolor value=&quot;#AAAAAA&quot;/&gt;
+&lt;position x=&quot;856&quot; y=&quot;548&quot;/&gt;
+&lt;/graphics&gt;
+&lt;properties&gt;
+&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/images/attitudes/our_hat.svg&quot;/&gt;
+&lt;categorie value=&quot;Actitudes&quot;/&gt;
+&lt;name value=&quot;Carta de actitud&quot;/&gt;
+&lt;/properties&gt;
+&lt;/node&gt;
+&lt;/object&gt;
+">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="Aigua_11"/>
+<property name="GROUP_ID" value="Aigua_1"/>
+<property name="TOKEN" value="1339059915850"/>
+<property name="MAPNAME" value="Aigua_1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[Aigua_11 performed action createNode]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="7"/>
+<property name="CHALLENGE_NAME" value="Bec o no?"/>
+<property name="ACTIVITY_TYPE" value="createNode"/>
+<property name="asdadURLdas" value="http://www.garanti.com.tr"/>
+<property name="asdadURL2das" value="http://www.garanti.com.tr"/>
+</properties>
+</content>
+</action>
+  
+      <action time="1329219014153">
+      <actiontype type="indicator" classification="shouldbeinthemiddleCREATE" succeed="true" />
+      <user id="Ugur" role="UserID" />
+      <object id="11" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="2490" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2214" />
+          <property name="MAP-ID" value="2" />
+          <property name="-url" value="http://www.haberturk.com.tr" />
+          
+        </properties>
+      </object>
+         <object id="1ugur1" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="2490" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2214" />
+          <property name="MAP-ID" value="2" />
+          <property name="-url" value="http://www.milliyet.com.tr" />
+          
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has created box 2 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+          <property name="-url" value="http://www.facebook.com" />
+        </properties>
+      </content>
+    </action>
+  
+      <action time="1329989867850">
+      <actiontype type="indicator" classification="ShouldbelastCREATE" succeed="true" />
+      <user id="Toby" role="UserID" />
+      <object id="9" type="Help Request">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2306" />
+          <property name="USERNAME" value="Toby" />
+          <property name="POS-X" value="2279" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Toby has created box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    
+    
+    
+    <action time="1329146626152">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="38" type="Comment">
+        <properties>
+          <property name="TEXT" value="some text" />
+          <property name="POS-Y" value="2668" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2374" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has modified box 4 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329146642967">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="38" type="Comment">
+        <properties>
+          <property name="TEXT" value="different text" />
+          <property name="POS-Y" value="2668" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2374" />
+          <property name="MAP-ID" value="1" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has modified box 4 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329146749289">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="42" type="link">
+        <properties />
+      </object>
+      <content>
+        <description><![CDATA[Maria has created link 5 of type link]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329146776119">
+      <actiontype type="indicator" classification="DELETE" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="42" type="link">
+        <properties />
+      </object>
+      <content>
+        <description><![CDATA[Maria has deleted link 5 of type link]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329218448974">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="1" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="2372" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2267" />
+          <property name="MAP-ID" value="1" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has created box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329218448982">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Ugur" role="UserID" />
+      <object id="1" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="2372" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2267" />
+          <property name="MAP-ID" value="1" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has created box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329218532859">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="1" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="2414" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2350" />
+          <property name="MAP-ID" value="1" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has modified box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329218537029">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="1" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="2395" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2407" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has modified box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329218587200">
+      <actiontype type="indicator" classification="UGURMODIFY" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="1" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="2403" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2342" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has modified box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+
+    <action time="1329219017177">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="11" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="2480" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2156" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has modified box 2 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329219020424">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="11" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="2586" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2059" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has modified box 2 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329219024567">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="16" type="Comment">
+        <properties>
+          <property name="POS-Y" value="2700" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2422" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has created box 3 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329219120332">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="16" type="Comment">
+        <properties>
+          <property name="POS-Y" value="2729" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2442" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has modified box 3 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329219673000">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="1" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="1187" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2009" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has created box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329219697628">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="1" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="1171" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2208" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has modified box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329227330460">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Toby" role="UserID" />
+      <object id="5" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="2420" />
+          <property name="USERNAME" value="Toby" />
+          <property name="POS-X" value="2296" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Toby has created box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329227340161">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Toby" role="UserID" />
+      <object id="5" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="2415" />
+          <property name="USERNAME" value="Toby" />
+          <property name="POS-X" value="2406" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Toby has modified box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329228465120">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Toby" role="UserID" />
+      <object id="5" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="2424" />
+          <property name="USERNAME" value="Toby" />
+          <property name="POS-X" value="2484" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Toby has modified box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329229437473">
+      <actiontype type="indicator" classification="MODIFY" succeed="true" />
+      <user id="Toby" role="UserID" />
+      <object id="5" type="Help Request">
+        <properties>
+          <property name="POS-Y" value="2455" />
+          <property name="USERNAME" value="Toby" />
+          <property name="POS-X" value="2385" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Toby has modified box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329302653037">
+      <actiontype type="indicator" classification="OTHER" succeed="true" />
+      <user id="Toby" role="UserID" />
+      <content>
+        <description><![CDATA[Toby has joined LASAD map [SessionID: 2]]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329302710514">
+      <actiontype type="indicator" classification="OTHER" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <content>
+        <description><![CDATA[Maria has joined LASAD map [SessionID: 2]]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329303026352">
+      <actiontype type="indicator" classification="OTHER" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <content>
+        <description><![CDATA[Maria has left LASAD map 2]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+    <action time="1329988182162">
+      <actiontype type="indicator" classification="CREATE" succeed="true" />
+      <user id="Toby" role="UserID" />
+      <object id="1" type="Help Request">
+        <properties>
+          <property name="TOOL" value="LASAD" />
+          <property name="POS-Y" value="2273" />
+          <property name="USERNAME" value="Toby" />
+          <property name="POS-X" value="2231" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Toby has created box 1 of type Help Request]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+<action time="1329146593653">
+      <actiontype type="indicator" classification="shouldbefirstCREATE" succeed="true" />
+      <user id="Maria" role="UserID" />
+      <object id="38" type="Comment">
+        <properties>
+          <property name="POS-Y" value="2668" />
+          <property name="USERNAME" value="Maria" />
+          <property name="POS-X" value="2374" />
+          <property name="MAP-ID" value="2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[Maria has created box 4 of type Comment]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="TOOL" value="LASAD" />
+        </properties>
+      </content>
+    </action>
+  </actions>
+</interactiondata>
+

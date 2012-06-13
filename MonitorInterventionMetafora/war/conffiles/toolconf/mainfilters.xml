@@ -5,18 +5,41 @@
       <filter name="Main1" editable="true">
         <filteritem propertyrulename="ID" operation="Equals" value="Toby" type="User" />
       </filter>
-      
-        <filter name="Main2" editable="true">
+      <filter name="Main2" editable="true">
         <filteritem propertyrulename="TOOL" operation="Contains" value="LASAD" type="Content" />
-    	 </filter>
-    	 <filter name="Main2" editable="true">
-    	 <filteritem propertyrulename="TOOL" operation="Contains" value="LASAD" type="Content" />
-         <filteritem propertyrulename="TIME" operation="OccuredWithIn" value="3" type="Action" />
-
-    	 </filter>
-      
-      
-      
+      </filter>
+      <filter name="Main2" editable="true">
+        <filteritem propertyrulename="TOOL" operation="Contains" value="LASAD" type="Content" />
+        <filteritem propertyrulename="TIME" operation="OccuredWithIn" value="3" type="Action" />
+      </filter>
+      <filter name="mainfilter" editable="true">
+        <filteritem propertyrulename="id" operation="CONTAINS" value="er" type="USER" />
+      </filter>
+      <filter name="543534" editable="true">
+        <filteritem propertyrulename="type" operation="EQUALS" value="435" type="ACTION_TYPE" />
+        <filteritem propertyrulename="id" operation="CONTAINS" value="er" type="USER" />
+      </filter>
+      <filter name="ug" editable="true">
+        <filteritem propertyrulename="Classification" operation="EQUALS" value="4" type="ACTION_TYPE" />
+      </filter>
+      <filter name="666" editable="true">
+        <filteritem propertyrulename="type" operation="EQUALS" value="666" type="ACTION_TYPE" />
+        <filteritem propertyrulename="type" operation="EQUALS" value="7" type="ACTION_TYPE" />
+        <filteritem propertyrulename="ID" operation="EQUALS" value="Toby" type="USER" />
+      </filter>
+      <filter name="u" editable="true">
+        <filteritem propertyrulename="id" operation="CONTAINS" value="bo" type="USER" />
+      </filter>
+      <filter name="uhu" editable="true">
+        <filteritem propertyrulename="Classification" operation="CONTAINS" value="ea" type="ACTION_TYPE" />
+        <filteritem propertyrulename="id" operation="CONTAINS" value="bo" type="USER" />
+      </filter>
+      <filter name="ugur29" editable="true">
+        <filteritem propertyrulename="Classification" operation="CONTAINS" value="ot" type="ACTION_TYPE" />
+      </filter>
+      <filter name="mod" editable="true">
+        <filteritem propertyrulename="type" operation="CONTAINS" value="mod" type="ACTION_TYPE" />
+      </filter>
     </filters>
   </configuration>
 </configurations>
