@@ -1,5 +1,7 @@
 package de.uds.MonitorInterventionMetafora.client.feedback;
 
+import java.util.Calendar;
+
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -40,7 +42,7 @@ public class FeedbackPanelContainer extends VerticalPanel {
 
 		outbox = new Outbox(leftVPanel);
 		
-		String URL = "resources/feedback/sample-messages_" + User.locale + ".xml?nocache=" + Math.random();
+		String URL = "resources/feedback/sample-messages_" + User.locale + ".xml?nocache=" + Calendar.getInstance();
 		//System.out.println(URL);
 		RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET,URL);
 
