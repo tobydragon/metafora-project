@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import de.uds.MonitorInterventionMetafora.client.User;
 
 public class FeedbackPanelContainer extends VerticalPanel {
 	private de.uds.MonitorInterventionMetafora.client.feedback.Outbox outbox;
@@ -39,9 +40,9 @@ public class FeedbackPanelContainer extends VerticalPanel {
 
 		outbox = new Outbox(leftVPanel);
 		
-		
-		 RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET,
-	        "resources/feedback/sample-messages.xml");
+		String URL = "resources/feedback/sample-messages_" + User.locale + ".xml?nocache=" + Math.random();
+		//System.out.println(URL);
+		RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET,URL);
 
 	    try {
 	      requestBuilder.sendRequest(null, new RequestCallback() {
