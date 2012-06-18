@@ -60,7 +60,7 @@ public class TemplatePool {
 			}
 			
 		});
-		tabBar.selectTab(3, true);
+		tabBar.selectTab(0, true);
 
 		vpanel.add(tabBar);
 		vpanel.add(scrollPanel);
