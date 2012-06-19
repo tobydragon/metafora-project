@@ -1,5 +1,12 @@
 package de.uds.MonitorInterventionMetafora.server;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.List;
 import java.util.Vector;
 
@@ -15,12 +22,8 @@ import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
-import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
-import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 import org.apache.log4j.Logger;
 
@@ -28,129 +31,128 @@ import org.apache.log4j.Logger;
  * The server side implementation of the RPC service.
  */
 @SuppressWarnings("serial")
-public class MainServer extends RemoteServiceServlet implements CommunicationService {
+public class MainServer extends RemoteServiceServlet implements
+		CommunicationService {
 	Logger logger = Logger.getLogger(this.getClass());
 
-	static String generalConfigFile="conffiles/toolconf/configuration.xml";
-	static String mainFiltersFile="conffiles/toolconf/mainfilters.xml";
+	static String generalConfigFile = "conffiles/toolconf/configuration.xml";
+	static String mainFiltersFile = "conffiles/toolconf/mainfilters.xml";
+	static String logDir="useractionlogs/";
 	private Configuration generalConfiguration;
 	private XmlConfigParser configuratinParser;
 	MonitorModel monitorModel;
 	MonitorController monitorController;
 	AnalysisManager analysisManager;
-	private boolean isConfigurationUpdated=false;
-
-	
+	private boolean isConfigurationUpdated = false;
 
 	CfAgentCommunicationManager feedbackCommunicationManager;
-	
-	public MainServer(){	
+
+	public MainServer() {
 		super();
 
-	
 		generalConfiguration = readConfiguration(false);
-	
-		CfCommunicationMethodType communicationMethodType = generalConfiguration.getDataSouceType();
-		
-		monitorController = new MonitorController(communicationMethodType, generalConfiguration.getHistoryStartTime());
+
+		CfCommunicationMethodType communicationMethodType = generalConfiguration
+				.getDataSouceType();
+
+		monitorController = new MonitorController(communicationMethodType,
+				generalConfiguration.getHistoryStartTime());
 		monitorModel = monitorController.getModel();
-		
-		
-		feedbackCommunicationManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.command);							
+
+		feedbackCommunicationManager = CfAgentCommunicationManager.getInstance(
+				communicationMethodType, CommunicationChannelType.command);
 	}
-	
-	private Configuration readConfiguration(boolean isMainConfig){
+
+	private synchronized Configuration readConfiguration(boolean isMainConfig) {
 		String configFilepath = "";
-		if(isMainConfig){
-			configFilepath = GeneralUtil.getRealPath(mainFiltersFile);	
-		}else{
-		configFilepath = GeneralUtil.getRealPath(generalConfigFile);
+		if (isMainConfig) {
+			configFilepath = GeneralUtil.getRealPath(mainFiltersFile);
+		} else {
+			configFilepath = GeneralUtil.getRealPath(generalConfigFile);
 		}
-		XmlConfigParser configuratinParser= new XmlConfigParser(configFilepath);
-		Configuration configuration =configuratinParser.toActiveConfiguration();
+		XmlConfigParser configuratinParser = new XmlConfigParser(configFilepath);
+		Configuration configuration = configuratinParser
+				.toActiveConfiguration();
 		return configuration;
 	}
 
 	@Override
-	public CfAction sendAction(String _user,CfAction cfAction) {
+	public CfAction sendAction(String _user, CfAction cfAction) {
 		logger.debug("action = \n" + CfActionParser.toXml(cfAction));
 		feedbackCommunicationManager.sendMessage(cfAction);
-		//TODO: should be void, not have a callback...
+		// TODO: should be void, not have a callback...
 		return null;
 	}
 
 	@Override
 	public Configuration requestConfiguration() {
-		//TODO: should take no params, if not used... What is _user?
+		// TODO: should take no params, if not used... What is _user?
 		logger.info("sendRequestConfiguration]");
-		if(isConfigurationUpdated){
-		 generalConfiguration = readConfiguration(false);
-		 isConfigurationUpdated=false;
-		 
-		 return generalConfiguration;
-		}
-		
-		else{
+		if (isConfigurationUpdated) {
+			generalConfiguration = readConfiguration(false);
+			isConfigurationUpdated = false;
+
 			return generalConfiguration;
 		}
-		
-		
-		
-			
-	}
-	
-	@Override
-	public List<CfAction> requestUpdate(CfAction cfAction) {
-		
-		logger.info("[requestUpdate]  requesting update is revieced  by the server");
-		
-	
-		
-		return monitorModel.requestUpdate(cfAction);
-		
+
+		else {
+			return generalConfiguration;
+		}
+
 	}
 
-	
-	void sendUpdateRequest(CfAction action){
-		
-		
+	@Override
+	public List<CfAction> requestUpdate(CfAction cfAction) {
+
+		logger.info("[requestUpdate]  requesting update is revieced  by the server");
+
+		return monitorModel.requestUpdate(cfAction);
+
 	}
-	
-	
-	
-	
-	
+
+	void sendUpdateRequest(CfAction action) {
+
+	}
+
 	@Override
 	public CfAction sendNotificationToAgents(CfAction cfAction) {
-	
-		AnalysisManager.getAnalysisManagerInstance().sendToAllAgents("Notification",cfAction);
-	
+
+		AnalysisManager.getAnalysisManagerInstance().sendToAllAgents(
+				"Notification", cfAction);
+
 		System.out.println("Notifications are send to the agents!!");
 		return new CfAction();
 	}
 
 	@Override
 	public String sendLogAction(CfAction logAction) {
-		System.out.println("1*********************************************");
-		System.out.println("Log Action:"+logAction.toString());
-		System.out.println("2*********************************************");
-		
+		System.out.println("LOG_ACTION_START");
+		String actionString=CfActionParser.toXml(logAction).toString();
+		System.out.println(actionString);
+		try {
+			toLogFile(actionString);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("LOG_ACTION_END");
 		return null;
 	}
 
 	@Override
 	public boolean saveNewFilter(boolean isMainFilters, ActionFilter filter) {
-		if(!isMainFilters){
-		isConfigurationUpdated=true;
-		configuratinParser=new XmlConfigParser(GeneralUtil.getRealPath(generalConfigFile));
-		
-		return configuratinParser.saveNewFilterToConfiguration(filter);
-		}
-		else{
-			configuratinParser=new XmlConfigParser(GeneralUtil.getRealPath(mainFiltersFile));
+		if (!isMainFilters) {
+			isConfigurationUpdated = true;
+			configuratinParser = new XmlConfigParser(
+					GeneralUtil.getRealPath(generalConfigFile));
+
+			return configuratinParser.saveNewFilterToConfiguration(filter);
+		} else {
+			configuratinParser = new XmlConfigParser(
+					GeneralUtil.getRealPath(mainFiltersFile));
 			return configuratinParser.saveNewFilterToConfiguration(filter);
 		}
-		
+
 	}
 
 	@Override
@@ -161,12 +163,37 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 
 	@Override
 	public Configuration requestMainConfiguration() {
-		
+
 		return readConfiguration(true);
 	}
 
-	
+	synchronized void  toLogFile(String logAction) throws IOException {
 
+		String fileName =logDir+GeneralUtil.getCurrentDate()+".txt";
+
+		fileName=GeneralUtil.getRealPath(fileName);
+		File file = new File(fileName);
+		System.out.println("File:"+fileName);
+		if (!file.exists()) {
+			logger.info("[LogFile] File does not exist.Creating file:"
+					+ fileName);
+			file.createNewFile();
+		}
+
+		
 	
-	 
+		
+		FileWriter fileWritter = new FileWriter(file.getName(), true);
+		BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
+		bufferWritter.append(logAction);
+	
+	
+		bufferWritter.close();
+		logger.info("[LogFile] Log is written to file.File:" + fileName);
+		
+		
+		
+
+	}
+
 }

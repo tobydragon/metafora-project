@@ -15,6 +15,10 @@ import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
+import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
+import de.uds.MonitorInterventionMetafora.client.logger.Logger;
+import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
+import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyComboBoxItemModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
@@ -44,11 +48,25 @@ public class UpdaterToolbar extends ToolBar{
 			new Listener<BaseEvent>() {
 	        	public void handleEvent(BaseEvent be) {
 	        		if (autoRefresh.getValue()) {
-	        			System.out.println("autoRefresh unChecked");
+	        			
+	        			
+	        			UserLog userActionLog=new UserLog();
+	                	userActionLog.setComponentType(ComponentType.UPDATER_TOOLBAR);
+	                	userActionLog.setDescription("Auto Refresh is enabled!");
+	                	userActionLog.setTriggeredBy(ComponentType.UPDATER_TOOLBAR);
+	                	userActionLog.setUserActionType(UserActionType.AUTO_REFRESH_ENABLED);
+	                	Logger.getLoggerInstance().log(userActionLog);
+	        			
 	        			UpdaterToolbar.this.updater.startUpdates();
 	        		}
 	        		else {
-	        			System.out.println("autoRefresh unChecked");
+	        			
+	        			UserLog userActionLog=new UserLog();
+	                	userActionLog.setComponentType(ComponentType.UPDATER_TOOLBAR);
+	                	userActionLog.setDescription("Auto Refresh is disabled!");
+	                	userActionLog.setTriggeredBy(ComponentType.UPDATER_TOOLBAR);
+	                	userActionLog.setUserActionType(UserActionType.AUTO_REFRESH_DISABLED);
+	                	Logger.getLoggerInstance().log(userActionLog);
 	        			UpdaterToolbar.this.updater.stopUpdates();
 	        		}
 	        	}

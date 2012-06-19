@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import de.uds.MonitorInterventionMetafora.client.User;
+import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class FeedbackPanelContainer extends VerticalPanel {
 	private de.uds.MonitorInterventionMetafora.client.feedback.Outbox outbox;
@@ -43,8 +44,9 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		outbox = new Outbox(leftVPanel);
 		
 		Date date = new Date();
-		String URL = "resources/feedback/sample-messages_" + User.locale + ".xml?nocache=" + date.getTime();
-		//System.out.println(URL);
+		String URL = "./resources/feedback/sample-messages_" + User.locale + ".xml?nocache=" + date.getTime();
+		System.out.println("Panel URL"+URL);
+	
 		RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET,URL);
 
 	    try {

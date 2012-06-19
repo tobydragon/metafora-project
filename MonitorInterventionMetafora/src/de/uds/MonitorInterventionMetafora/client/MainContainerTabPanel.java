@@ -36,6 +36,7 @@ public class MainContainerTabPanel extends VerticalPanel {
             	userActionLog.setDescription(ce.getItem().getText()+" Tab is activated in Main Tab Panel");
             	userActionLog.setTriggeredBy(ComponentType.MAIN_TAB_PANEL);
             	userActionLog.setUserActionType(UserActionType.TAB_CHANGE);
+            	
             	Logger.getLoggerInstance().log(userActionLog);
             	
             }

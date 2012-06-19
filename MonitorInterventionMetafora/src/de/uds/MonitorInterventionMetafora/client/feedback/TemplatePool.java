@@ -2,6 +2,7 @@ package de.uds.MonitorInterventionMetafora.client.feedback;
 
 import java.util.ArrayList;
 
+import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -20,6 +21,11 @@ import com.google.gwt.xml.client.Element;
 import com.google.gwt.xml.client.NodeList;
 import com.google.gwt.xml.client.XMLParser;
 
+import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
+import de.uds.MonitorInterventionMetafora.client.logger.Logger;
+import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
+import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
+
 
 
 public class TemplatePool {
@@ -28,6 +34,7 @@ public class TemplatePool {
 	private ArrayList<TabWidget> tabWidgets;
 	private HistoryTabWidget messageHistory;
 	private VerticalPanel xmlVPanel;
+	private String tabTitle="";
 	
 	public TemplatePool(ComplexPanel parent, String XML)
 	{
@@ -57,6 +64,9 @@ public class TemplatePool {
 				} else {
 				   scrollPanel.setWidget(tabWidgets.get(event.getSelectedItem()).getMainVPanel());
 				}
+				
+				tabTitle=tabBar.getTabHTML(event.getSelectedItem());
+				
 			}
 			
 		});
@@ -94,6 +104,9 @@ public class TemplatePool {
 	   TabWidget tabWidget = new TabWidget();
 	   tabWidgets.add(tabWidget);
 	   tabWidget.setTitle(tabTitle);
+	   if(iset==0){
+	   this.tabTitle=tabTitle;
+	   }
 	   tabBar.addTab(tabTitle);
 	                                      
 		for (int imessage=0; imessage<numberOfMessages; imessage++) {
@@ -139,7 +152,17 @@ public class TemplatePool {
 		{
 			@Override
 			public void onClick(ClickEvent event) {
-				FeedbackPanelContainer.getMessageTextArea().setText(msgText);
+				FeedbackPanelContainer.getMessageTextArea().setText(msgText);			
+				UserLog userActionLog=new UserLog();
+            	userActionLog.setComponentType(ComponentType.FEEDBACK_TEMPLATE_POOL);
+            	userActionLog.setDescription("Text selection for feedback: Feedback_Type="+tabTitle+","+"Text="+msgText);
+            	userActionLog.setUserActionType(UserActionType.FEEDBACK_TEXT_SELECTION);
+             	userActionLog.setTriggeredBy(ComponentType.FEEDBACK_TEMPLATE_POOL);
+             	userActionLog.addProperty("FEEDBACK_TYPE",tabTitle);
+             	userActionLog.addProperty("FEEDBACK_TEXT",msgText);
+             	
+            	Logger.getLoggerInstance().log(userActionLog);
+				
 			}		
 		});
 		tabWidget.getButtonsVPanel().add(b);

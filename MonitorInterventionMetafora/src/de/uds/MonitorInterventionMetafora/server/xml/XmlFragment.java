@@ -17,8 +17,16 @@ import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
+import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfUserParser;
 import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 
 //wrapper class for an Element in JDOM
 //catches and prints errors, no attributes may be null
@@ -184,6 +192,7 @@ public class  XmlFragment {
 		return "";
 	}
 	
+
 	public boolean overwriteFile(String filename){
 		try {
 			File f1 = new File(filename);
