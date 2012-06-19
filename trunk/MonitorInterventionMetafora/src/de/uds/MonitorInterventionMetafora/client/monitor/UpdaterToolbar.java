@@ -13,6 +13,7 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
+import com.google.gwt.user.client.Timer;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
@@ -79,7 +80,19 @@ public class UpdaterToolbar extends ToolBar{
 	        @Override  
 	        public void componentSelected(ButtonEvent ce) {  
 	        	System.out.println("refreshClicked");
+	        	
+	        	Timer t = new Timer() {
+	        	      public void run() {
+	        	    	  refreshButton.setEnabled(true);
+	        	      }
+	        	    };
+
+	        	    // Schedule the timer to run once in 5 seconds.
+	        	    t.schedule(5000);
+	        	
 	        	UpdaterToolbar.this.updater.getUpdate();
+	        	refreshButton.setEnabled(false);
+	        	
 	        }  
 	      });
 		
