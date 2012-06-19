@@ -174,15 +174,18 @@ public void applyMainFilter(){
 				tableRows.add(new CfActionGridRow(action));
 				
 				//TODO: if checknox of update charts is not check dont do this part
-				for (ActionPropertyValueGroupingTableModel indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
-					indicatorPropertyTable.addAction(action);
-				}
 				
 				filteredActions.add(action);
 			}
 		}
 		Log.debug("Filtering is completed and now adding actions to the tableview");
+		
 		tableViewModel.add(tableRows);
+		
+		for (ActionPropertyValueGroupingTableModel indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
+			indicatorPropertyTable.addActions(filteredActions);
+		}
+		
 		Log.debug("Adding actions to the tableview is finished");
 		Log.debug("Applying user filter is completed");
 		

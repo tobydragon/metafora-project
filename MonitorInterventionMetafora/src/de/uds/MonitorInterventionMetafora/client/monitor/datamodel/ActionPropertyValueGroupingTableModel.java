@@ -48,9 +48,12 @@ public class ActionPropertyValueGroupingTableModel {
 	
 	
 	public void addActions(List<CfAction> actions){
-		dataTable = DataTable.create();
-		dataTable.addColumn(ColumnType.STRING, "Property Value");
-	    dataTable.addColumn(ColumnType.NUMBER, "Count");
+		if(dataTable.getNumberOfRows()>0){
+		 for(int i=0;i<dataTable.getNumberOfRows();i++){
+			 dataTable.removeRow(i);
+			 
+		 }
+		}
 		rowModels.clear();
 		
 	    for(CfAction action:actions){
