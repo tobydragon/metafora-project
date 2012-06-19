@@ -7,9 +7,9 @@
 <message>There seem to be too many cards that are not linked.</message>
 <message>There seem to be too many process cards.</message>
 <message>Consider using stages.</message>
-<message>It seems that you haven't allocated roles.</message>
-<message>It seems that you haven't allocated attitudes</message>
-<message>Don't forget that each box should only contain one idea. Try to use more than one card for your long texts</message>
+<message>It seems that you have not allocated roles.</message>
+<message>It seems that you have not allocated attitudes</message>
+<message>Do not forget that each box should only contain one idea. Try to use more than one card for your long texts</message>
 </set>
 <set id="Collaboration">
 <message>Are you having difficulties?  Do you need to ask for help from others or from the teacher?</message>
@@ -17,11 +17,11 @@
 <set id="Discussion">
 <message>Please use the drop-down menus on LASAD contributions to clarify your entries.</message>
 <message>Consider contributing to the LASAD discussion / chat</message>
-<message>Consider contributing to your group's chat</message>
-<message>Don't forget that each box should only contain one idea. Try to use more than one card for your long texts</message>
+<message>Consider contributing to your group  chat</message>
+<message>Do not forget that each box should only contain one idea. Try to use more than one card for your long texts</message>
 </set>
 <set id="Building">
-<message>Are you having difficulties? X's model is quite similar so you may want to ask for help?</message>
+<message>Are you having difficulties? X  model is quite similar so you may want to ask for help?</message>
 <message>Have you finished? Consider sharing your model with others</message>
 </set>
 <set id="Reflecting">
