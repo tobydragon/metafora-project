@@ -17,6 +17,10 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.CfActionCallBack;
+import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
+import de.uds.MonitorInterventionMetafora.client.logger.Logger;
+import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
+import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
@@ -91,11 +95,31 @@ public class Outbox implements CfActionCallBack {
 
 				@Override
 				public void onClick(ClickEvent event) {
-					for(int i=0; i<=recipientNamesColumn.getWidgetCount(); i++)
+					String users="";
+					for(int i=0; i<recipientNamesColumn.getWidgetCount(); i++)
 					{
 						CheckBox cb = (CheckBox) recipientNamesColumn.getWidget(i);
 						cb.setValue(positive, false);
-					}					
+						users=users+","+cb.getText();
+						
+							
+					}
+					
+					UserLog userActionLog=new UserLog();
+	            	userActionLog.setComponentType(ComponentType.FEEDBACK_OUTBOX);
+	            	if(positive){
+	            	userActionLog.setDescription("All users were selected.Users:"+users);
+	            	userActionLog.setUserActionType(UserActionType.SELECT_ALL_USERS);
+	            	}
+	            	else{
+	            		
+	            		userActionLog.setDescription("All users were deselected.");
+		            	userActionLog.setUserActionType(UserActionType.DESELECT_ALL_USERS);
+	            	}
+	            	userActionLog.setTriggeredBy(ComponentType.FEEDBACK_OUTBOX);
+	            	
+	            	Logger.getLoggerInstance().log(userActionLog);
+				
 				}				
 			});
 			}
@@ -117,6 +141,18 @@ public class Outbox implements CfActionCallBack {
 					CheckBox checkbox = (CheckBox) recipientNamesColumn.getWidget(i);
 					recepientNames = recepientNames + checkbox.getText() + "\n" ;
 			    }
+				
+				
+				
+				UserLog userActionLog=new UserLog();
+            	userActionLog.setComponentType(ComponentType.FEEDBACK_OUTBOX);
+            	userActionLog.setDescription("Students  list is updated.New Users:"+recepientNames);
+            	userActionLog.setUserActionType(UserActionType.UPDATE_STUDENT_LIST);
+             	userActionLog.setTriggeredBy(ComponentType.FEEDBACK_OUTBOX);
+            	Logger.getLoggerInstance().log(userActionLog);
+				
+				
+				
 				editRecipientNames(recepientNames);
 			}
 		});
@@ -236,6 +272,7 @@ public class Outbox implements CfActionCallBack {
 			}
 		}	
 		//it is easier to just remove the last |
+		if(usernames.length()>0)
 		usernames = usernames.substring(0, usernames.length()-1);
 
 		cfObject.addProperty(new CfProperty("username",usernames));				
@@ -250,6 +287,16 @@ public class Outbox implements CfActionCallBack {
 	 	}
 		messageTextArea.setText("");
 		
+		
+		UserLog userActionLog=new UserLog();
+    	userActionLog.setComponentType(ComponentType.FEEDBACK_OUTBOX);
+    	userActionLog.setDescription("Wizard sent feedback to the students:"+usernames+", Message: "+messageTextArea.getText());
+    	userActionLog.setUserActionType(UserActionType.SEND_FEEDBACK);
+     	userActionLog.setTriggeredBy(ComponentType.FEEDBACK_OUTBOX);
+     	userActionLog.addProperty("USER_NAMES", usernames);
+     	userActionLog.addProperty("TEXT",messageTextArea.getText());
+     	userActionLog.addProperty("INTERUPTION_TYPE", getSelectedIntteruptionType());
+    	Logger.getLoggerInstance().log(userActionLog);
 		
 		
 	}

@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.client.monitor.datamodel;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gwt.visualization.client.DataTable;
@@ -30,6 +31,8 @@ public class ActionPropertyValueGroupingTableModel {
 	//TODO: get list of the values and call addaction value multiple times
 	public void addAction(CfAction action){
 		
+		
+	    
 		for(String actionValue:actionPropertyRule.getActionValue(action)){
 			if (actionValue != null){
 				addActionValue(actionValue, action);
@@ -42,6 +45,31 @@ public class ActionPropertyValueGroupingTableModel {
 		
 	}
 
+	
+	
+	public void addActions(List<CfAction> actions){
+		dataTable = DataTable.create();
+		dataTable.addColumn(ColumnType.STRING, "Property Value");
+	    dataTable.addColumn(ColumnType.NUMBER, "Count");
+		rowModels.clear();
+		
+	    for(CfAction action:actions){
+		for(String actionValue:actionPropertyRule.getActionValue(action)){
+			if (actionValue != null){
+				addActionValue(actionValue, action);
+			}
+			else {
+	//			System.out.println("INFO\t\t[ActionPropertyRule.addAction] can't get actionValue from action:\n" + action + "\n from rule: " + actionPropertyRule);
+				addActionValue(MonitorConstants.BLANK_PROPERTY_LABEL, action);
+			}
+		}}
+		
+		
+		
+	}
+
+	
+	
 	
 	private void addActionValue(String actionValue, CfAction action) {
 		ActionPropertyValueModel valueModel = rowModels.get(actionValue.toLowerCase());

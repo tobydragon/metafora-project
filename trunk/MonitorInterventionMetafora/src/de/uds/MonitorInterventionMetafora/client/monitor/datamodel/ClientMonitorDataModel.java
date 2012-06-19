@@ -202,6 +202,8 @@ public void applyMainFilter(){
 	}
 	
 	public void addData(List<CfAction> actions){
+		
+		tableViewModel.removeAll();
 		Log.debug("Adding new actions to the List was started");
 		if(actions!=null&&actions.size()>0){
 		int index=actions.size()-1;
