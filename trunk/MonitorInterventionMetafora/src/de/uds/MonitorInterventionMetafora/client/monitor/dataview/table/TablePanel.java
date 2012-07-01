@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.client.monitor.dataview.table;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.Style.SortDir;
 import com.extjs.gxt.ui.client.event.BaseEvent;
@@ -10,6 +11,8 @@ import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
+import com.extjs.gxt.ui.client.store.Store;
+import com.extjs.gxt.ui.client.store.StoreEvent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
@@ -21,15 +24,26 @@ import com.extjs.gxt.ui.client.widget.grid.GridGroupRenderer;
 import com.extjs.gxt.ui.client.widget.grid.GroupColumnData;
 import com.extjs.gxt.ui.client.widget.grid.GroupingView;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
+import com.extjs.gxt.ui.client.widget.table.Table;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.HTMLTable;
+import com.google.gwt.view.client.ListDataProvider;
+import com.googlecode.gwtTableToExcel.client.TableToExcelClient;
 
+import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
+import de.uds.MonitorInterventionMetafora.client.logger.Logger;
+import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
+import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.TabbedDataViewPanel;
+import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterListPanel;
 
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
@@ -40,11 +54,20 @@ public class TablePanel extends DataViewPanel {
 	private  Grid<CfActionGridRow> tableView;
 	private FilterListPanel filterPanel;
 	private TabbedDataViewPanel tabbedDataViewPanel;
+
 	
 	public TablePanel( ClientMonitorDataModel model, ActionPropertyRule groupingProperty,FilterListPanel filterPanel
 			,TabbedDataViewPanel tabbedDataViewPanel) {
 		super(groupingProperty, model);
 		
+		
+		
+	
+		
+		
+		
+		
+
 		 ColumnModel columnModel = getColumnModel();
 		    
 		    tableView = new Grid<CfActionGridRow>(model.getTableViewModel(), columnModel);
@@ -59,11 +82,19 @@ public class TablePanel extends DataViewPanel {
 			this.tabbedDataViewPanel=tabbedDataViewPanel;
 			tableView.addListener(Events.RowClick, new TableRowDisplaySelectionListener());
 			//this.setHeight(560);
+			
 			this.add(tableView);
+			this.add(model.getExelClient());
 			enableAdjustSize();
+			
 		
 	}
 
+	
+	
+	
+	
+	
 	@Override
 	public int getSelectedRow() {
 		
@@ -230,6 +261,18 @@ public class TablePanel extends DataViewPanel {
 		return DataViewPanelType.TABLE;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
 	@Override
 	public void enableAdjustSize() {
 		
