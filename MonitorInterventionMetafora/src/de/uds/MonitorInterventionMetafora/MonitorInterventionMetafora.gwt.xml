@@ -18,6 +18,7 @@
 <inherits name='com.extjs.gxt.ui.GXT' />
   <inherits name='com.sencha.gxt.ui.GXT'/>
    <inherits name='com.sencha.gxt.chart.Chart' />
+   <inherits name="com.googlecode.gwtTableToExcel.gwtTableToExcel" />
   
 <inherits name="com.sencha.gwt.uibinder.UiBinder"/>
   <inherits name='com.google.gwt.visualization.Visualization'/>
