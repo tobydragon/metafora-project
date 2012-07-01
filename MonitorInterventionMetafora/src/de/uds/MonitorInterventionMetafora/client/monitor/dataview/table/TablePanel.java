@@ -7,14 +7,20 @@ import com.allen_sauer.gwt.log.client.Log;
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.Style.SortDir;
 import com.extjs.gxt.ui.client.event.BaseEvent;
+import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Store;
 import com.extjs.gxt.ui.client.store.StoreEvent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Info;
+import com.extjs.gxt.ui.client.widget.Label;
+import com.extjs.gxt.ui.client.widget.MessageBox;
+import com.extjs.gxt.ui.client.widget.Window;
+import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
@@ -31,6 +37,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTMLTable;
 import com.google.gwt.view.client.ListDataProvider;
 import com.googlecode.gwtTableToExcel.client.TableToExcelClient;
@@ -45,7 +52,14 @@ import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelT
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.TabbedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterListPanel;
+import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
@@ -54,18 +68,14 @@ public class TablePanel extends DataViewPanel {
 	private  Grid<CfActionGridRow> tableView;
 	private FilterListPanel filterPanel;
 	private TabbedDataViewPanel tabbedDataViewPanel;
+	private ContentPanel tableViewPanel;
+	private Button exportBtn;
+	private Window popupWaitPanel;
 
 	
-	public TablePanel( ClientMonitorDataModel model, ActionPropertyRule groupingProperty,FilterListPanel filterPanel
+	public TablePanel( final ClientMonitorDataModel model, ActionPropertyRule groupingProperty,FilterListPanel filterPanel
 			,TabbedDataViewPanel tabbedDataViewPanel) {
 		super(groupingProperty, model);
-		
-		
-		
-	
-		
-		
-		
 		
 
 		 ColumnModel columnModel = getColumnModel();
@@ -81,10 +91,60 @@ public class TablePanel extends DataViewPanel {
 			this.filterPanel=filterPanel;
 			this.tabbedDataViewPanel=tabbedDataViewPanel;
 			tableView.addListener(Events.RowClick, new TableRowDisplaySelectionListener());
-			//this.setHeight(560);
 			
-			this.add(tableView);
-			this.add(model.getExelClient());
+			
+			tableViewPanel=new ContentPanel();
+			tableViewPanel.setHeaderVisible(false);
+			tableViewPanel.setHeight(545);
+			
+			popupWaitPanel=new Window();
+			popupWaitPanel.setWidth("560");
+			popupWaitPanel.setHeight("670");
+			popupWaitPanel.setModal(true);
+			//popupPanel.setResizable(false);
+			popupWaitPanel.setPagePosition(150,60);
+			popupWaitPanel.add(new Label("Initilizing  indicator export.Please wait..."));
+			popupWaitPanel.setClosable(false);
+			
+			
+			 exportBtn = new Button("Export To Excel",new SelectionListener<ButtonEvent>() {
+					@Override
+					public void componentSelected(ButtonEvent ce) {
+						
+						//popupWaitPanel.show();
+						exportBtn.setEnabled(false);
+						Window popupPanel=new Window();
+						popupPanel.setWidth("560");
+						popupPanel.setHeight("670");
+						popupPanel.setModal(true);
+						TableToExcelClient tableToExcelClient = new TableToExcelClient(getFlexTable(model.getFilteredActions()),"Export to EXCEL","indicators.xls");
+
+						popupPanel.add(new Label("Please click following link to export the indicators:"));
+						popupPanel.add(tableToExcelClient.build());
+						
+						popupPanel.setPagePosition(150,50);
+						//popupWaitPanel.hide();
+						popupPanel.show();
+						exportBtn.setEnabled(true);
+						
+						
+					} });
+			 
+			 exportBtn.setIcon(Resources.ICONS.excel());
+			 exportBtn.setToolTip("Export to Excel");
+			 
+
+				tableViewPanel.add(tableView);
+				tableViewPanel.add(exportBtn);
+				this.add(tableViewPanel);
+				
+			 
+			
+			
+			this.refresh();
+			
+			
+			//this.add(model.getExelClient());
 			enableAdjustSize();
 			
 		
@@ -100,6 +160,50 @@ public class TablePanel extends DataViewPanel {
 		
 		return 0;
 	}
+	
+	
+	public FlexTable getFlexTable(List<CfAction> actions){
+		
+		
+		FlexTable flexTable = new FlexTable();
+		
+		
+		   flexTable.setText(0,0, "Users");
+           flexTable.setText(0,1, "Action Type");
+           flexTable.setText(0,2, "Classification");
+           flexTable.setText(0,3, "Description");
+           flexTable.setText(0,4, "Tags");
+           flexTable.setText(0,5, "Word Count");
+           flexTable.setText(0,6, "Tool");
+           flexTable.setText(0,7, "Time");
+           flexTable.setText(0,8, "Challenge");
+           flexTable.setText(0,9, "Indicator Type");
+		
+           int rowindex=0;
+		for (int i = 0; i < actions.size(); i++) {
+			CfActionGridRow row = new CfActionGridRow(actions.get(i));
+          
+            rowindex++;
+            
+			
+                    flexTable.setText(rowindex,0, row.getUsers());
+                    flexTable.setText(rowindex,1, row.getActionType());
+                    flexTable.setText(rowindex,2, row.getClassification());
+                    flexTable.setText(rowindex,3, row.getDescription());
+                    flexTable.setText(rowindex,4, row.getTags());
+                    flexTable.setText(rowindex,5, row.getWordCount());
+                    flexTable.setText(rowindex,6, row.getTool());
+                    flexTable.setText(rowindex,7, row.getTime());
+                    flexTable.setText(rowindex,8, row.getChallengeName());
+                    flexTable.setText(rowindex,9, row.getIndicatorType());
+            
+    }
+
+		
+		return flexTable;
+
+	}
+	
 	
 	public void refresh() {
 		if (groupingProperty != null && !groupingProperty.equals("") ){
@@ -284,6 +388,7 @@ public class TablePanel extends DataViewPanel {
 		            {
 		            	tabbedDataViewPanel.addjustSize(false);
 		            	tableView.setHeight(500);
+		            	tableViewPanel.setHeight("520");
 		            	TablePanel.this.setHeight(503);
 		            	TablePanel.this.refresh();
 		            	
@@ -301,6 +406,7 @@ public class TablePanel extends DataViewPanel {
 		            	tabbedDataViewPanel.addjustSize(true);
 		            	
 		            	tableView.setHeight(300);
+		            	tableViewPanel.setHeight("298");
 		           
 		            	TablePanel.this.setHeight(302);
 		            	TablePanel.this.refresh();
@@ -312,4 +418,22 @@ public class TablePanel extends DataViewPanel {
 		
 	}
 
+	
+	CfActionGridRow getTableHeaders(){
+		
+		CfAction action=new CfAction();
+		action.getCfUsers().add(new CfUser("ID", "ID"));
+		action.setCfActionType(new CfActionType(MonitorConstants.ACTION_TYPE_LABEL,MonitorConstants.ACTION_CLASSIFICATION_LABEL, "false"));
+		action.setCfContent(new CfContent(MonitorConstants.DESCRIPTION_LABEL));
+		action.getCfContent().addProperty(new CfProperty("TOOL", "TOOL"));
+		action.getCfContent().addProperty(new CfProperty("CHALLENGE_NAME", "CHALLENGE_NAME"));
+		action.getCfContent().addProperty(new CfProperty("INDICATOR_TYPE",MonitorConstants.INDICATOR_TYPE_LABEL));
+		action.addObject(new CfObject("Object", "Object"));
+		action.getCfObjects().get(0).addProperty(new CfProperty(MonitorConstants.TAGS,MonitorConstants.TAGS));
+		action.getCfObjects().get(0).addProperty(new CfProperty(MonitorConstants.WORD_COUNT, MonitorConstants.WORD_COUNT_LABEL));
+		action.setTime(0);
+		CfActionGridRow headers=new CfActionGridRow(action);
+		
+		return headers;
+	}
 }
