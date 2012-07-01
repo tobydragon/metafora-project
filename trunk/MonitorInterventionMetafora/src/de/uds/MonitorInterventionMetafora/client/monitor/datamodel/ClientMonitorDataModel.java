@@ -46,12 +46,11 @@ public class ClientMonitorDataModel{
 	private ActionFilter mainActionFilter;
 	private CfAction lastRecievedAction;
 	
-	private CellTable<CfActionGridRow> table;
-	private ListDataProvider<CfActionGridRow> dataProvider;
 
 	//private FilterViewModel  mainFilters;
 	private  List<CfAction> filteredActions;
 	private List<CfActionGridRow> tableRows;
+	
 	
 
 	private CommunicationServiceAsync monitoringViewServiceServlet;
@@ -80,22 +79,18 @@ public class ClientMonitorDataModel{
 		mainActionFilter=new ActionFilter();
 		//mainActionFilter.setFilterStore(mainFilters);
 		tableViewModel = new GroupingStore<CfActionGridRow>();
-		renderCellTable();
+		
+		
 		clearFilteredData();
 		
 		
-	}
-	
-	
-	
-	
-	public FormPanel getExelClient(){
 		
-		TableToExcelClient exelclient=new TableToExcelClient(table,"Export To Exel","Indicators.xls");
-		FormPanel panel=exelclient.build();
-		return panel ;
 	}
 	
+	
+	
+	
+
 	public CommunicationServiceAsync getServiceServlet(){
 		
 		return monitoringViewServiceServlet;
@@ -186,7 +181,7 @@ public void applyMainFilter(){
 		
 		filteredActions.clear();
 		tableRows=new Vector<CfActionGridRow>();
-		tableRows.add(getTableHeaders());
+		//tableRows.add(getTableHeaders());
 		Log.debug("Applying user filter is started");
 		for (CfAction action : actionsToFilter){
 			if (currentActionFilter.filterIncludesAction(action)){
@@ -209,10 +204,7 @@ public void applyMainFilter(){
 		Log.debug("Filtering is completed and now adding actions to the tableview");
 		
 		tableViewModel.add(tableRows);
-		dataProvider.getList().clear();
-		dataProvider.getList().addAll(tableRows);
-		
-		
+	
 		for (ActionPropertyValueGroupingTableModel indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
 			indicatorPropertyTable.addActions(filteredActions);
 		}
@@ -302,117 +294,7 @@ public void applyMainFilter(){
 
 
 
-void renderCellTable(){
-	table = new CellTable<CfActionGridRow>();
-		
-		TextColumn<CfActionGridRow> username = new TextColumn<CfActionGridRow>() {
-		      @Override
-		      public String getValue(CfActionGridRow action) {
-		        return action.getUsers();
-		      }
-		    };
-		    
-		TextColumn<CfActionGridRow> actiontype = new TextColumn<CfActionGridRow>() {
-			      @Override
-			      public String getValue(CfActionGridRow action) {
-			        return action.getActionType();
-			      }
-			    };
-	    
-	    TextColumn<CfActionGridRow> classification = new TextColumn<CfActionGridRow>() {
-				      @Override
-				      public String getValue(CfActionGridRow action) {
-				        return action.getClassification();
-				      }
-				    };   
-	    
-				    
-	  
-	    TextColumn<CfActionGridRow> description = new TextColumn<CfActionGridRow>() {
-					      @Override
-					      public String getValue(CfActionGridRow action) {
-					        return action.getDescription();
-					      }
-					    };  
-				    
-		 TextColumn<CfActionGridRow> tags = new TextColumn<CfActionGridRow>() {
-						      @Override
-						      public String getValue(CfActionGridRow action) {
-						        return action.getTags();
-						      }
-						    };  		    
-	    
-		TextColumn<CfActionGridRow> wordcount = new TextColumn<CfActionGridRow>() {
-							      @Override
-							      public String getValue(CfActionGridRow action) {
-							        return action.getWordCount();
-							      }
-							    };  
-							    
-       TextColumn<CfActionGridRow> tool = new TextColumn<CfActionGridRow>() {
-								      @Override
-								      public String getValue(CfActionGridRow action) {
-								        return action.getTool();
-								      }
-								    };  						    
-							    
-	    
-	  TextColumn<CfActionGridRow> time = new TextColumn<CfActionGridRow>() {
-									      @Override
-									      public String getValue(CfActionGridRow action) {
-									        return action.getTime();
-									      }
-									    }; 
-									    
-    TextColumn<CfActionGridRow> challengename = new TextColumn<CfActionGridRow>() {
-										      @Override
-										      public String getValue(CfActionGridRow action) {
-										        return action.getChallengeName();
-										      }
-										    };  
-								    
-	TextColumn<CfActionGridRow> indicatortype = new TextColumn<CfActionGridRow>() {
-											      @Override
-											      public String getValue(CfActionGridRow action) {
-											        return action.getIndicatorType();
-											      }
-											    };  
-	    
-	    
-											  
-											    table.addColumn(username);
-											    table.addColumn(actiontype);
-											    table.addColumn(classification);
-											    table.addColumn(description);
-											    table.addColumn(tags);
-											    table.addColumn(wordcount);
-											    table.addColumn(tool);
-											    table.addColumn(time);
-											    table.addColumn(challengename);
-											    table.addColumn(indicatortype);
-											    dataProvider= new ListDataProvider<CfActionGridRow>();
 
-dataProvider.addDataDisplay(table);
-
-
-
-	}
 	
-CfActionGridRow getTableHeaders(){
-	
-	CfAction action=new CfAction();
-	action.getCfUsers().add(new CfUser("ID", "ID"));
-	action.setCfActionType(new CfActionType(MonitorConstants.ACTION_TYPE_LABEL,MonitorConstants.ACTION_CLASSIFICATION_LABEL, "false"));
-	action.setCfContent(new CfContent(MonitorConstants.DESCRIPTION_LABEL));
-	action.getCfContent().addProperty(new CfProperty("TOOL", "TOOL"));
-	action.getCfContent().addProperty(new CfProperty("CHALLENGE_NAME", "CHALLENGE_NAME"));
-	action.getCfContent().addProperty(new CfProperty("INDICATOR_TYPE",MonitorConstants.INDICATOR_TYPE_LABEL));
-	action.addObject(new CfObject("Object", "Object"));
-	action.getCfObjects().get(0).addProperty(new CfProperty(MonitorConstants.TAGS,MonitorConstants.TAGS));
-	action.getCfObjects().get(0).addProperty(new CfProperty(MonitorConstants.WORD_COUNT, MonitorConstants.WORD_COUNT_LABEL));
-	action.setTime(0);
-	CfActionGridRow headers=new CfActionGridRow(action);
-	
-	return headers;
-}
+
 }
