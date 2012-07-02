@@ -41,8 +41,7 @@ class VisualAnalyzer implements EntryPoint {
 	    	 User.userID= urlParameters.getUsername();
 	    	 User.mainConfig=urlParameters.getConfig();
 	    	 User.locale = urlParameters.getLocale();
-	    	 User.receiver = urlParameters.getLocale();
-	    	 System.out.println("User:"+User.userID);
+	    	 User.receiver = urlParameters.getReceiver();
 	    	 
 	    	  FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer();
 	    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel(monitoringViewServiceServlet);
