@@ -46,7 +46,6 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		Date date = new Date();
 		String URL = "./resources/feedback/sample-messages_" + User.locale + ".xml?nocache=" + date.getTime();
 		System.out.println("Panel URL"+URL);
-	
 		RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET,URL);
 
 	    try {
