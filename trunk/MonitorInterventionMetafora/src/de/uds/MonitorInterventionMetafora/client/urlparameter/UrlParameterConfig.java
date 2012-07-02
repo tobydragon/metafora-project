@@ -11,13 +11,15 @@ public class UrlParameterConfig {
 	private String password="";
 	private String configID="";
 	private String locale="";
+	private String receiver="";
 
 	public UrlParameterConfig(){
 		
 			username = com.google.gwt.user.client.Window.Location.getParameter("user");
 			password = com.google.gwt.user.client.Window.Location.getParameter("pw");
 			configID = com.google.gwt.user.client.Window.Location.getParameter("config");
-			locale = com.google.gwt.user.client.Window.Location.getParameter("locale");
+			receiver = com.google.gwt.user.client.Window.Location.getParameter("receiver");
+			
 
 		}
 	
@@ -45,6 +47,13 @@ public class UrlParameterConfig {
 		if (locale!=null)
 		return locale;
 		return "en";
+	}
+
+
+	public String getReceiver() {
+		if (receiver!=null)
+		return receiver;
+		return "Metafora";
 	}
 
 }

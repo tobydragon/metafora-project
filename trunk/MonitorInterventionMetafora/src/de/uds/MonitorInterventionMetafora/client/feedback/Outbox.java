@@ -15,6 +15,7 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
+import de.uds.MonitorInterventionMetafora.client.User;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.CfActionCallBack;
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
@@ -255,7 +256,14 @@ public class Outbox implements CfActionCallBack {
 	 	
  	 	feedbackMessage.setCfActionType(_cfActionType);
  	 	feedbackMessage.addUser(new CfUser("FeedbackClient", MetaforaStrings.USER_ROLE_ORIGINATOR_STRING));
- 	 	feedbackMessage.addUser(new CfUser("Metafora", MetaforaStrings.USER_ROLE_RECEIVER_STRING));
+ 	 	
+ 	 	//TODO: make sure there is no need to worry about null here
+		String receiver = User.receiver;
+		//this shouldn't be needed but jic
+		if (receiver == null || receiver.equals("")) {
+			receiver = "Metafora";
+		}
+ 	 	feedbackMessage.addUser(new CfUser(receiver, MetaforaStrings.USER_ROLE_RECEIVER_STRING));
  	 	
  	 	//TODO: what happens with IDs? And do they matter? 
  	 	//Can we uniquely auto-increment them? Perhaps use that java UUID library? 
