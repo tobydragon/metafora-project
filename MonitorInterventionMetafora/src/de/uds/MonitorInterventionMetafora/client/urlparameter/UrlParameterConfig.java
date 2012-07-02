@@ -20,7 +20,7 @@ public class UrlParameterConfig {
 			configID = com.google.gwt.user.client.Window.Location.getParameter("config");
 			receiver = com.google.gwt.user.client.Window.Location.getParameter("receiver");
 			
-
+	    	 System.out.println("URL Params: User-"+ username + " : mainConfig-"+ configID + " : receiver-"+ receiver);
 		}
 	
 	public String getUsername() {

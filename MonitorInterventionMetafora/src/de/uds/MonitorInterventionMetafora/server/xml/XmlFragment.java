@@ -40,7 +40,7 @@ public class  XmlFragment {
 	Document doc;
 	Element element;
 	
-	public static XmlFragment getFragmentFromLocalFile(String filename) {
+	public synchronized static XmlFragment getFragmentFromLocalFile(String filename) {
 		logger.debug("[getFragmentFromLocalFile] Working Directory - " + System.getProperty("user.dir"));
 		try {
 			Document doc = builder.build(new File(filename));
