@@ -298,7 +298,7 @@ public class Outbox implements CfActionCallBack {
 		
 		UserLog userActionLog=new UserLog();
     	userActionLog.setComponentType(ComponentType.FEEDBACK_OUTBOX);
-    	userActionLog.setDescription("Wizard sent feedback to the students:"+usernames+", Message: "+messageTextArea.getText());
+    	userActionLog.setDescription("Wizard sent feedback to the students:"+usernames+", Message: "+messageTextArea.getValue());
     	userActionLog.setUserActionType(UserActionType.SEND_FEEDBACK);
      	userActionLog.setTriggeredBy(ComponentType.FEEDBACK_OUTBOX);
      	userActionLog.addProperty("USER_NAMES", usernames);
