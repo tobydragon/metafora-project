@@ -27,7 +27,20 @@
     <url-pattern>/MonitorInterventionMetafora/greet</url-pattern>
   </servlet-mapping>
 
+<servlet>
+                <servlet-name>gwtTableToExcelServlet</servlet-name>
+                <servlet-class>com.googlecode.gwtTableToExcel.server.TableToExcelServlet</servlet-class>
+                 <init-param>
+                <param-name>encoding</param-name>
+                <param-value>UTF-8</param-value>
+        </init-param>
+                
+        </servlet>
 
+        <servlet-mapping>
+                <servlet-name>gwtTableToExcelServlet</servlet-name>
+                <url-pattern>/MonitorInterventionMetafora/excel</url-pattern>
+        </servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>
