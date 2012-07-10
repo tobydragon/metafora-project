@@ -2,6 +2,7 @@ package de.uds.MonitorInterventionMetafora.client.feedback;
 
 import java.util.Date;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -45,7 +46,7 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		
 		Date date = new Date();
 		String URL = "resources/feedback/sample-messages_" + User.locale + ".xml?nocache=" + date.getTime();
-		System.out.println("Panel URL"+URL);
+		Log.info("[constructor] feedback panel URL: "+ URL);
 		RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET,URL);
 
 	    try {
