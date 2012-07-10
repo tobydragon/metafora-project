@@ -293,7 +293,7 @@ public class Outbox implements CfActionCallBack {
 	 	{
 	 		FeedbackPanelContainer.getTemplatePool().addMessageToHistory(messageTextArea.getText());
 	 	}
-		messageTextArea.setText("");
+	
 		
 		
 		UserLog userActionLog=new UserLog();
@@ -306,7 +306,7 @@ public class Outbox implements CfActionCallBack {
      	userActionLog.addProperty("INTERUPTION_TYPE", getSelectedIntteruptionType());
     	Logger.getLoggerInstance().log(userActionLog);
 		
-		
+    	messageTextArea.setText("");	
 	}
 	
 	/*
