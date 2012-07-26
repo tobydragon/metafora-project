@@ -5,11 +5,11 @@ import java.util.Date;
 public class XmppTest {
 
 	public static void main(String args[]) {
-		boolean simpeltest = false;
+		boolean simpeltest = true;
 		boolean compatibilitytest = false;
 		boolean juggler = false;
 		boolean unity = false;
-		boolean analysis = true;
+		boolean analysis = false;
 		
 		if(simpeltest)
 			test();
@@ -189,7 +189,10 @@ public class XmppTest {
 	}
 
 	private static void test() {
+		System.err.println("test");
+		XMPPBridgeCurrent.setServer("metaforaserver.ku-eichstaett.de");
 		XMPPBridgeCurrent.setUser("KUU0004", "KUU0004");
+		//XMPPBridgeCurrent.setUser("testuser", "didPfT");
 
 		try {
 			XMPPBridgeCurrent bridge = XMPPBridgeCurrent.getInstance();
@@ -212,9 +215,9 @@ public class XmppTest {
 				});
 			}
 
-			bridge.connectToChat("test@conference.metafora.ku-eichstaett.de", null);
+			bridge.connectToChat("logger@conference.metaforaserver.ku-eichstaett.de", null);
 			
-			bridge.sendMessageToMultiUserChat("test@conference.metafora.ku-eichstaett.de", 
+			bridge.sendMessageToMultiUserChat("logger@conference.metaforaserver.ku-eichstaett.de", 
 					"a test message", "Metafora Log Messages", "english");
 			
 			bridge.sendMessageToUser("a private message", "KUU0004", "a subject", "en");
