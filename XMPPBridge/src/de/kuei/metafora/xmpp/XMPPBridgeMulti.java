@@ -23,15 +23,15 @@ public class XMPPBridgeMulti {
 		
 	}
 	
-	public boolean isKnownUser(String user){
-		if(userToBridge.containsKey(user)){
+	public boolean isKnownUser(String user, String server){
+		if(userToBridge.containsKey(user+"@"+server)){
 			return true;
 		}
 		return false;
 	}
 	
-	public XMPPBridgeCurrent getBridgeForUser(String user){
-		return userToBridge.get(user);
+	public XMPPBridgeCurrent getBridgeForUser(String user, String server){
+		return userToBridge.get(user+"@"+server);
 	}
 	
 	public synchronized XMPPBridgeCurrent createBridge(String server, String user, String password, String device){
@@ -40,7 +40,7 @@ public class XMPPBridgeMulti {
 		XMPPBridgeCurrent.setDevice(device);
 		
 		XMPPBridgeCurrent bridge = new XMPPBridgeCurrent();
-		userToBridge.put(user, bridge);
+		userToBridge.put(user+"@"+server, bridge);
 		
 		return bridge;
 	}
