@@ -1,0 +1,3366 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<interactiondata id="HUJI-19-06-12-woz">
+<actions>
+<action time="1340111587882">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has left LASAD map 89]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340107283181">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="2-test_node_5" type="&lt;object&gt;&lt;node id=&quot;2-test_node_5&quot;&gt;&lt;graphics&gt;&lt;scalefactor value=&quot;50&quot;/&gt;&lt;bordercolor value=&quot;#AAAAAA&quot;/&gt;&lt;position x=&quot;503&quot; y=&quot;521&quot;/&gt;&lt;/graphics&gt;&lt;properties&gt;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/images/resources/eXpresser.jpg&quot;/&gt;&lt;tool value=&quot;http://web-expresser.appspot.com/?metafora=1&amp;amp;ptNodeId=Mi10ZXN0X25vZGVfNQ%3D%3D&amp;amp;ptMap=Mi10ZXN0&amp;amp;token=1338882009265&amp;amp;locale=en&amp;amp;pw=2fc1c0beb992cd7096975cfebf9d5c3b&amp;amp;ptMap=Mi10ZXN0&amp;amp;contextKey=lK7tgKGeiXlDhg6ETT4U67&quot;/&gt;&lt;categorie value=&quot;Resources&quot;/&gt;&lt;name value=&quot;eXpresser&quot;/&gt;&lt;/properties&gt;&lt;/node&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="Bob"/>
+<property name="GROUP_ID" value="Awesome"/>
+<property name="TOKEN" value="1340107264328"/>
+<property name="MAPNAME" value="2-test"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[Bob performed action modifyPosition]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="modifyPosition"/>
+</properties>
+</content>
+</action>
+<action time="1340107281977">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="2-test_node_5" type="&lt;object&gt;&lt;node id=&quot;2-test_node_5&quot;&gt;&lt;graphics&gt;&lt;scalefactor value=&quot;50&quot;/&gt;&lt;bordercolor value=&quot;#AAAAAA&quot;/&gt;&lt;position x=&quot;497&quot; y=&quot;486&quot;/&gt;&lt;/graphics&gt;&lt;properties&gt;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/images/resources/eXpresser.jpg&quot;/&gt;&lt;tool value=&quot;http://web-expresser.appspot.com/?metafora=1&amp;amp;ptNodeId=Mi10ZXN0X25vZGVfNQ%3D%3D&amp;amp;ptMap=Mi10ZXN0&amp;amp;token=1338882009265&amp;amp;locale=en&amp;amp;pw=2fc1c0beb992cd7096975cfebf9d5c3b&amp;amp;ptMap=Mi10ZXN0&amp;amp;contextKey=lK7tgKGeiXlDhg6ETT4U67&quot;/&gt;&lt;categorie value=&quot;Resources&quot;/&gt;&lt;name value=&quot;eXpresser&quot;/&gt;&lt;/properties&gt;&lt;/node&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="Bob"/>
+<property name="GROUP_ID" value="Awesome"/>
+<property name="TOKEN" value="1340107264328"/>
+<property name="MAPNAME" value="2-test"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[Bob performed action modifyPosition]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="modifyPosition"/>
+</properties>
+</content>
+</action>
+<action time="1340096692185">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="RotemA" role="student"/>
+  <content>
+    <description><![CDATA[RotemA has left LASAD map 90]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340096422162">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Maya" role="student"/>
+  <content>
+    <description><![CDATA[ISA1-Maya has left LASAD map 89]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340096152132">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="adva3" role="student"/>
+  <content>
+    <description><![CDATA[adva3 has left LASAD map 89]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340095672749">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Maya" role="student"/>
+  <content>
+    <description><![CDATA[ISA1-Maya has joined LASAD map 89]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340095666145">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Maya" role="student"/>
+  <content>
+    <description><![CDATA[ISA1-Maya has left LASAD map 90]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340095657093">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Alan" role="student"/>
+  <content>
+    <description><![CDATA[ISA2-Alan has left LASAD map 89]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340095895056">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA2_edge_1" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA2_edge_1&quot;&gt;&#10;&lt;start value=&quot;ISA2_node_9&quot;/&gt;&#10;&lt;end value=&quot;ISA2_node_8&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA2-Arie"/>
+<property name="GROUP_ID" value="N2"/>
+<property name="TOKEN" value="1340087990319"/>
+<property name="MAPNAME" value="ISA2"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA2-Arie performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340095892649">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA2_edge_0" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA2_edge_0&quot;&gt;&#10;&lt;start value=&quot;ISA2_node_8&quot;/&gt;&#10;&lt;end value=&quot;ISA2_node_9&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA2-Arie"/>
+<property name="GROUP_ID" value="N2"/>
+<property name="TOKEN" value="1340087990319"/>
+<property name="MAPNAME" value="ISA2"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA2-Arie performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340095638846">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Maya" role="student"/>
+  <content>
+    <description><![CDATA[ISA1-Maya has joined LASAD map 90]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340095387070">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <content>
+    <description><![CDATA[ISA2-Arie has left LASAD map 89]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340095442675">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_28" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_28&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_22&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_22&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Miri"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087861277"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Miri performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340095175112">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Alan" role="student"/>
+  <content>
+    <description><![CDATA[ISA2-Alan has joined LASAD map 89]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340095017096">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_27" type="&lt;object&gt;&lt;edge id=&quot;ISA1_edge_27&quot;&gt;&lt;start value=&quot;ISA1_node_20&quot;/&gt;&lt;end value=&quot;ISA1_node_20&quot;/&gt;&lt;type value=&quot;SOLID_RED&quot;/&gt;&lt;label value=&quot;not implemented&quot;/&gt;&lt;/edge&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Yuval"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087955185"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Yuval performed action deleteEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="deleteEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340095016291">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_27" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_27&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_20&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_20&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Yuval"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087955185"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Yuval performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340095015891">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_25" type="&lt;object&gt;&lt;edge id=&quot;ISA1_edge_25&quot;&gt;&lt;start value=&quot;ISA1_node_20&quot;/&gt;&lt;end value=&quot;ISA1_node_20&quot;/&gt;&lt;type value=&quot;SOLID_RED&quot;/&gt;&lt;label value=&quot;not implemented&quot;/&gt;&lt;/edge&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Yuval"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087955185"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Yuval performed action deleteEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="deleteEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340095013150">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_26" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_26&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_18&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_18&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Yuval"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087955185"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Yuval performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340095003179">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_25" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_25&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_20&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_20&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Yuval"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087955185"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Yuval performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340094847287">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_24" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_24&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_17&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_8&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Yuval"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087955185"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Yuval performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340094842872">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_23" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_23&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_17&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_17&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Yuval"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087955185"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Yuval performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340094577012">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Miri" role="student"/>
+  <content>
+    <description><![CDATA[ISA1-Miri has left LASAD map 90]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340094799975">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_22" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_22&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_8&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_8&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Yuval"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087955185"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Yuval performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340094398705">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Yuval" role="student"/>
+  <content>
+    <description><![CDATA[ISA1-Yuval has left LASAD map 90]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340094326733">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Yuval" role="student"/>
+  <object id="2048" type="Rule Equivalence">
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="rule-equivlence-text-TEXT" value=""/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="96"/>
+      <property name="USERNAME" value="ISA1-Yuval"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="225"/>
+      <property name="MAP-ID" value="90"/>
+      <property name="TOKEN" value="1340087955185"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA1-Yuval has deleted box 4 of type Rule Equivalence]]></description>
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340087955185"/>
+    </properties>
+  </content>
+</action>
+<action time="1340094325502">
+  <actiontype classification="MODIFY" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Yuval" role="student"/>
+  <object id="2048" type="Rule Equivalence">
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="rule-equivlence-text-TEXT" value=""/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="96"/>
+      <property name="USERNAME" value="ISA1-Yuval"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="225"/>
+      <property name="MAP-ID" value="90"/>
+      <property name="TOKEN" value="1340087955185"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA1-Yuval changed text to '' in box 4 of type Rule Equivalence]]></description>
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340087955185"/>
+    </properties>
+  </content>
+</action>
+<action time="1340094321126">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Yuval" role="student"/>
+  <object id="2048" type="Rule Equivalence">
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="96"/>
+      <property name="USERNAME" value="ISA1-Yuval"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="225"/>
+      <property name="MAP-ID" value="90"/>
+      <property name="TOKEN" value="1340087955185"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA1-Yuval has created box 4 of type Rule Equivalence]]></description>
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340087955185"/>
+    </properties>
+  </content>
+</action>
+<action time="1340097519742">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="Bodmin Piki_node_3" type="&lt;object&gt;&lt;node id=&quot;Bodmin Piki_node_3&quot;&gt;&lt;graphics&gt;&lt;scalefactor value=&quot;100&quot;/&gt;&lt;bordercolor value=&quot;#AAAAAA&quot;/&gt;&lt;position x=&quot;152&quot; y=&quot;789&quot;/&gt;&lt;/graphics&gt;&lt;properties&gt;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/discuss_stage.svg&quot;/&gt;&lt;tool value=&quot;http://adapterrex.hcii.cs.cmu.edu:8090/lasad/?autologin=true&amp;amp;user=$USERNAME($ip)&amp;amp;pw=$USERNAME($ip)&amp;amp;mapid=53&quot;/&gt;&lt;categorie value=&quot;activity stages&quot;/&gt;&lt;name value=&quot;discuss findings&quot;/&gt;&lt;/properties&gt;&lt;/node&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="Catherine"/>
+<property name="GROUP_ID" value="Broadclyst test"/>
+<property name="TOKEN" value="1340097272878"/>
+<property name="MAPNAME" value="Bodmin Piki"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[Catherine performed action modifyPosition]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="modifyPosition"/>
+</properties>
+</content>
+</action>
+<action time="1340097514743">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="Bodmin Piki_node_3" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;node id=&quot;Bodmin Piki_node_3&quot;&gt;&#10;&lt;graphics&gt;&#10;&lt;scalefactor value=&quot;100&quot;/&gt;&#10;&lt;bordercolor value=&quot;#AAAAAA&quot;/&gt;&#10;&lt;position x=&quot;1282&quot; y=&quot;243&quot;/&gt;&#10;&lt;/graphics&gt;&#10;&lt;properties&gt;&#10;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/discuss_stage.svg&quot;/&gt;&#10;&lt;tool value=&quot;http://adapterrex.hcii.cs.cmu.edu:8090/lasad/?autologin=true&amp;amp;user=$USERNAME($ip)&amp;amp;pw=$USERNAME($ip)&amp;amp;mapid=53&quot;/&gt;&#10;&lt;categorie value=&quot;activity stages&quot;/&gt;&#10;&lt;name value=&quot;discuss findings&quot;/&gt;&#10;&lt;/properties&gt;&#10;&lt;/node&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="Catherine"/>
+<property name="GROUP_ID" value="Broadclyst test"/>
+<property name="TOKEN" value="1340097272878"/>
+<property name="MAPNAME" value="Bodmin Piki"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[Catherine performed action createNode]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createNode"/>
+</properties>
+</content>
+</action>
+<action time="1340097507764">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="Bodmin Piki_node_2" type="&lt;object&gt;&lt;node id=&quot;Bodmin Piki_node_2&quot;&gt;&lt;graphics&gt;&lt;scalefactor value=&quot;100&quot;/&gt;&lt;bordercolor value=&quot;#AAAAAA&quot;/&gt;&lt;position x=&quot;150&quot; y=&quot;423&quot;/&gt;&lt;/graphics&gt;&lt;properties&gt;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/images/stages/build_model.svg&quot;/&gt;&lt;tool value=&quot;http://www.google.de/&quot;/&gt;&lt;categorie value=&quot;activity stages&quot;/&gt;&lt;name value=&quot;build model&quot;/&gt;&lt;/properties&gt;&lt;/node&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="Catherine"/>
+<property name="GROUP_ID" value="Broadclyst test"/>
+<property name="TOKEN" value="1340097272878"/>
+<property name="MAPNAME" value="Bodmin Piki"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[Catherine performed action modifyPosition]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="modifyPosition"/>
+</properties>
+</content>
+</action>
+<action time="1340097505518">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="Bodmin Piki_node_2" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;node id=&quot;Bodmin Piki_node_2&quot;&gt;&#10;&lt;graphics&gt;&#10;&lt;scalefactor value=&quot;100&quot;/&gt;&#10;&lt;bordercolor value=&quot;#AAAAAA&quot;/&gt;&#10;&lt;position x=&quot;1282&quot; y=&quot;544&quot;/&gt;&#10;&lt;/graphics&gt;&#10;&lt;properties&gt;&#10;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/images/stages/build_model.svg&quot;/&gt;&#10;&lt;tool value=&quot;http://www.google.de/&quot;/&gt;&#10;&lt;categorie value=&quot;activity stages&quot;/&gt;&#10;&lt;name value=&quot;build model&quot;/&gt;&#10;&lt;/properties&gt;&#10;&lt;/node&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="Catherine"/>
+<property name="GROUP_ID" value="Broadclyst test"/>
+<property name="TOKEN" value="1340097272878"/>
+<property name="MAPNAME" value="Bodmin Piki"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[Catherine performed action createNode]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createNode"/>
+</properties>
+</content>
+</action>
+<action time="1340097498781">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="Bodmin Piki_node_1" type="&lt;object&gt;&lt;node id=&quot;Bodmin Piki_node_1&quot;&gt;&lt;graphics&gt;&lt;scalefactor value=&quot;100&quot;/&gt;&lt;bordercolor value=&quot;#AAAAAA&quot;/&gt;&lt;position x=&quot;140&quot; y=&quot;98&quot;/&gt;&lt;/graphics&gt;&lt;properties&gt;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/images/stages/find_hypothesis.svg&quot;/&gt;&lt;tool value=&quot;http://www.google.de/&quot;/&gt;&lt;categorie value=&quot;activity stages&quot;/&gt;&lt;name value=&quot;find hypothesis&quot;/&gt;&lt;/properties&gt;&lt;/node&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="Catherine"/>
+<property name="GROUP_ID" value="Broadclyst test"/>
+<property name="TOKEN" value="1340097272878"/>
+<property name="MAPNAME" value="Bodmin Piki"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[Catherine performed action modifyPosition]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="modifyPosition"/>
+</properties>
+</content>
+</action>
+<action time="1340097497833">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="Bodmin Piki_node_1" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;node id=&quot;Bodmin Piki_node_1&quot;&gt;&#10;&lt;graphics&gt;&#10;&lt;scalefactor value=&quot;100&quot;/&gt;&#10;&lt;bordercolor value=&quot;#AAAAAA&quot;/&gt;&#10;&lt;position x=&quot;1282&quot; y=&quot;308&quot;/&gt;&#10;&lt;/graphics&gt;&#10;&lt;properties&gt;&#10;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/images/stages/find_hypothesis.svg&quot;/&gt;&#10;&lt;tool value=&quot;http://www.google.de/&quot;/&gt;&#10;&lt;categorie value=&quot;activity stages&quot;/&gt;&#10;&lt;name value=&quot;find hypothesis&quot;/&gt;&#10;&lt;/properties&gt;&#10;&lt;/node&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="Catherine"/>
+<property name="GROUP_ID" value="Broadclyst test"/>
+<property name="TOKEN" value="1340097272878"/>
+<property name="MAPNAME" value="Bodmin Piki"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[Catherine performed action createNode]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createNode"/>
+</properties>
+</content>
+</action>
+<action time="1340097484688">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="Bodmin Piki_node_0" type="&lt;object&gt;&lt;node id=&quot;Bodmin Piki_node_0&quot;&gt;&lt;graphics&gt;&lt;scalefactor value=&quot;50&quot;/&gt;&lt;bordercolor value=&quot;#FFFF00&quot;/&gt;&lt;position x=&quot;-998&quot; y=&quot;-998&quot;/&gt;&lt;/graphics&gt;&lt;properties&gt;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/images/resources/PiKi.jpg&quot;/&gt;&lt;tool value=&quot;http://www.metafora-project.org&quot;/&gt;&lt;categorie value=&quot;Resources&quot;/&gt;&lt;name value=&quot;PiKi&quot;/&gt;&lt;/properties&gt;&lt;/node&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="Catherine"/>
+<property name="GROUP_ID" value="Broadclyst test"/>
+<property name="TOKEN" value="1340097272878"/>
+<property name="MAPNAME" value="Bodmin Piki"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[Catherine performed action deleteNode]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="deleteNode"/>
+</properties>
+</content>
+</action>
+<action time="1340097480467">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="Bodmin Piki_node_0" type="&lt;object&gt;&lt;node id=&quot;Bodmin Piki_node_0&quot;&gt;&lt;graphics&gt;&lt;scalefactor value=&quot;50&quot;/&gt;&lt;bordercolor value=&quot;#FFFF00&quot;/&gt;&lt;position x=&quot;830&quot; y=&quot;427&quot;/&gt;&lt;/graphics&gt;&lt;properties&gt;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/images/resources/PiKi.jpg&quot;/&gt;&lt;tool value=&quot;http://www.metafora-project.org&quot;/&gt;&lt;categorie value=&quot;Resources&quot;/&gt;&lt;name value=&quot;PiKi&quot;/&gt;&lt;/properties&gt;&lt;/node&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="Catherine"/>
+<property name="GROUP_ID" value="Broadclyst test"/>
+<property name="TOKEN" value="1340097272878"/>
+<property name="MAPNAME" value="Bodmin Piki"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[Catherine performed action modifyStateStarted]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="modifyStateStarted"/>
+</properties>
+</content>
+</action>
+<action time="1340097455090">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="Bodmin Piki_node_0" type="&lt;object&gt;&lt;node id=&quot;Bodmin Piki_node_0&quot;&gt;&lt;graphics&gt;&lt;scalefactor value=&quot;50&quot;/&gt;&lt;bordercolor value=&quot;#FFFF00&quot;/&gt;&lt;position x=&quot;826&quot; y=&quot;425&quot;/&gt;&lt;/graphics&gt;&lt;properties&gt;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/images/resources/PiKi.jpg&quot;/&gt;&lt;tool value=&quot;http://www.metafora-project.org&quot;/&gt;&lt;categorie value=&quot;Resources&quot;/&gt;&lt;name value=&quot;PiKi&quot;/&gt;&lt;/properties&gt;&lt;/node&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="Catherine"/>
+<property name="GROUP_ID" value="Broadclyst test"/>
+<property name="TOKEN" value="1340097272878"/>
+<property name="MAPNAME" value="Bodmin Piki"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[Catherine performed action modifyStateStarted]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="modifyStateStarted"/>
+</properties>
+</content>
+</action>
+<action time="1340097452225">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="Bodmin Piki_node_0" type="&lt;object&gt;&lt;node id=&quot;Bodmin Piki_node_0&quot;&gt;&lt;graphics&gt;&lt;scalefactor value=&quot;50&quot;/&gt;&lt;bordercolor value=&quot;#AAAAAA&quot;/&gt;&lt;position x=&quot;822&quot; y=&quot;423&quot;/&gt;&lt;/graphics&gt;&lt;properties&gt;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/images/resources/PiKi.jpg&quot;/&gt;&lt;categorie value=&quot;Resources&quot;/&gt;&lt;name value=&quot;PiKi&quot;/&gt;&lt;/properties&gt;&lt;/node&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="Catherine"/>
+<property name="GROUP_ID" value="Broadclyst test"/>
+<property name="TOKEN" value="1340097272878"/>
+<property name="MAPNAME" value="Bodmin Piki"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[Catherine performed action modifyPosition]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="modifyPosition"/>
+</properties>
+</content>
+</action>
+<action time="1340097451625">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="Bodmin Piki_node_0" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;node id=&quot;Bodmin Piki_node_0&quot;&gt;&#10;&lt;graphics&gt;&#10;&lt;scalefactor value=&quot;50&quot;/&gt;&#10;&lt;bordercolor value=&quot;#AAAAAA&quot;/&gt;&#10;&lt;position x=&quot;1282&quot; y=&quot;740&quot;/&gt;&#10;&lt;/graphics&gt;&#10;&lt;properties&gt;&#10;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/images/resources/PiKi.jpg&quot;/&gt;&#10;&lt;categorie value=&quot;Resources&quot;/&gt;&#10;&lt;name value=&quot;PiKi&quot;/&gt;&#10;&lt;/properties&gt;&#10;&lt;/node&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="Catherine"/>
+<property name="GROUP_ID" value="Broadclyst test"/>
+<property name="TOKEN" value="1340097272878"/>
+<property name="MAPNAME" value="Bodmin Piki"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[Catherine performed action createNode]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createNode"/>
+</properties>
+</content>
+</action>
+<action time="1340094195775">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_21" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_21&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_2&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_2&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Yuval"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087955185"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Yuval performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093767597">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="adva3" role="student"/>
+  <content>
+    <description><![CDATA[adva3 has joined LASAD map 89]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340093667234">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="RotemA" role="student"/>
+  <content>
+    <description><![CDATA[RotemA has joined LASAD map 90]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340093631946">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="RotemA" role="student"/>
+  <content>
+    <description><![CDATA[RotemA has left LASAD map 90]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340093635229">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_20" type="&lt;object&gt;&lt;edge id=&quot;ISA1_edge_20&quot;&gt;&lt;start value=&quot;ISA1_node_13&quot;/&gt;&lt;end value=&quot;ISA1_node_13&quot;/&gt;&lt;type value=&quot;SOLID_RED&quot;/&gt;&lt;label value=&quot;not implemented&quot;/&gt;&lt;/edge&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Miri"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087861277"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Miri performed action deleteEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="deleteEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093298758">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="RotemA" role="student"/>
+  <content>
+    <description><![CDATA[RotemA has joined LASAD map 90]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340093235690">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="2044" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="1050"/>
+      <property name="USERNAME" value="ISA2-Gavriel"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="745"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has created box 35 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </content>
+</action>
+<action time="1340093116027">
+  <actiontype classification="MODIFY" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="2039" type="Comment">
+    <properties>
+      <property name="comment-type-SELECTION" value="5"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="864"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="654"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie changed comment-type to 'Claim' in box 33 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340093114011">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="2043" type="link">
+    <properties>
+      <property name="TARGET_ID" value="2039"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="2023"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created link 34 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340093106872">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="2039" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="873"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="731"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created box 33 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340093148458">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_19" type="&lt;object&gt;&lt;edge id=&quot;ISA1_edge_19&quot;&gt;&lt;start value=&quot;ISA1_node_3&quot;/&gt;&lt;end value=&quot;ISA1_node_1&quot;/&gt;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&lt;label value=&quot;not implemented&quot;/&gt;&lt;/edge&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action deleteEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="deleteEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093006076">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Miri" role="student"/>
+  <object id="2031" type="Rule Equivalence">
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="2400"/>
+      <property name="USERNAME" value="ISA1-Miri"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="2391"/>
+      <property name="MAP-ID" value="90"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA1-Miri has deleted box 2 of type Rule Equivalence]]></description>
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092998561">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Miri" role="student"/>
+  <object id="2035" type="Rule Equivalence">
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="2400"/>
+      <property name="USERNAME" value="ISA1-Miri"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="2391"/>
+      <property name="MAP-ID" value="90"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA1-Miri has deleted box 3 of type Rule Equivalence]]></description>
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092991255">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Miri" role="student"/>
+  <object id="2035" type="Rule Equivalence">
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="2400"/>
+      <property name="USERNAME" value="ISA1-Miri"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="2391"/>
+      <property name="MAP-ID" value="90"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA1-Miri has created box 3 of type Rule Equivalence]]></description>
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092990734">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Miri" role="student"/>
+  <object id="2031" type="Rule Equivalence">
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="2400"/>
+      <property name="USERNAME" value="ISA1-Miri"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="2391"/>
+      <property name="MAP-ID" value="90"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA1-Miri has created box 2 of type Rule Equivalence]]></description>
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092987899">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Yuval" role="student"/>
+  <object id="2027" type="Rule Equivalence">
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="99"/>
+      <property name="USERNAME" value="ISA1-Yuval"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="89"/>
+      <property name="MAP-ID" value="90"/>
+      <property name="TOKEN" value="1340087955185"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA1-Yuval has deleted box 1 of type Rule Equivalence]]></description>
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340087955185"/>
+    </properties>
+  </content>
+</action>
+<action time="1340093120759">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_20" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_20&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_13&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_13&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Yuval"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087955185"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Yuval performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340092981319">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Yuval" role="student"/>
+  <object id="2027" type="Rule Equivalence">
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="99"/>
+      <property name="USERNAME" value="ISA1-Yuval"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="89"/>
+      <property name="MAP-ID" value="90"/>
+      <property name="TOKEN" value="1340087955185"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA1-Yuval has created box 1 of type Rule Equivalence]]></description>
+    <properties>
+      <property name="GROUP_ID" value="ISA1"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340087955185"/>
+    </properties>
+  </content>
+</action>
+<action time="1340093109739">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_19" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_19&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_3&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093109197">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_18" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_18&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_3&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093106606">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_2" type="&lt;object&gt;&lt;edge id=&quot;ISA1_edge_2&quot;&gt;&lt;start value=&quot;ISA1_node_3&quot;/&gt;&lt;end value=&quot;ISA1_node_1&quot;/&gt;&lt;type value=&quot;SOLID_RED&quot;/&gt;&lt;label value=&quot;not implemented&quot;/&gt;&lt;/edge&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action deleteEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="deleteEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093106474">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_17" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_17&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340092945471">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Yuval" role="student"/>
+  <content>
+    <description><![CDATA[ISA1-Yuval has joined LASAD map 90]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340093101568">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_16" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_16&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093100891">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_10" type="&lt;object&gt;&lt;edge id=&quot;ISA1_edge_10&quot;&gt;&lt;start value=&quot;ISA1_node_1&quot;/&gt;&lt;end value=&quot;ISA1_node_1&quot;/&gt;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&lt;label value=&quot;not implemented&quot;/&gt;&lt;/edge&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action deleteEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="deleteEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340092935082">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA1-Miri" role="student"/>
+  <content>
+    <description><![CDATA[ISA1-Miri has joined LASAD map 90]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340093099760">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_15" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_15&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_3&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_3&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093099253">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_14" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_14&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_3&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_3&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093098836">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_13" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_13&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093098777">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_12" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_12&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_9&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_9&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093098078">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_11" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_11&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_9&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093094124">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_4" type="&lt;object&gt;&lt;edge id=&quot;ISA1_edge_4&quot;&gt;&lt;start value=&quot;ISA1_node_1&quot;/&gt;&lt;end value=&quot;ISA1_node_9&quot;/&gt;&lt;type value=&quot;SOLID_RED&quot;/&gt;&lt;label value=&quot;not implemented&quot;/&gt;&lt;/edge&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action deleteEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="deleteEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093091922">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_10" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_10&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093091739">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_9" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_9&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093091272">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_8" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_8&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_9&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_9&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093089207">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_7" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_7&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093088859">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_1" type="&lt;object&gt;&lt;edge id=&quot;ISA1_edge_1&quot;&gt;&lt;start value=&quot;ISA1_node_2&quot;/&gt;&lt;end value=&quot;ISA1_node_2&quot;/&gt;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&lt;label value=&quot;not implemented&quot;/&gt;&lt;/edge&gt;&lt;/object&gt;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action deleteEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="deleteEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093086601">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_6" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_6&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_2&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093076896">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_5" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_5&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_2&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340092833771">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="2023" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="649"/>
+      <property name="USERNAME" value="ISA2-Gavriel"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="554"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has created box 32 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </content>
+</action>
+<action time="1340093064910">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_4" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_4&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_9&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340093050966">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_3" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_3&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_4&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Maya"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340089434494"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Maya performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340092678793">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="2022" type="link">
+    <properties>
+      <property name="TARGET_ID" value="2014"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1952"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created link 31 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092671540">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="2018" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="774"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="149"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has deleted box 30 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092662648">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="2018" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="774"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="149"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created box 30 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092551878">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Alan" role="student"/>
+  <content>
+    <description><![CDATA[ISA2-Alan has left LASAD map 89]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092528978">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="2014" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="797"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="297"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created box 29 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092741955">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_2" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_2&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_3&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Miri"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087861277"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Miri performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340092496306">
+  <actiontype classification="MODIFY" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="2005" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="comment-text-TEXT" value=""/>
+      <property name="POS-Y" value="878"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="4"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie changed text to '' in box 26 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092459406">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="2013" type="link">
+    <properties>
+      <property name="TARGET_ID" value="2009"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1956"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has created link 28 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092411408">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="2009" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="493"/>
+      <property name="USERNAME" value="ISA2-Gavriel"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="294"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has created box 27 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092636818">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_1" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_1&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_2&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_2&quot;/&gt;&#10;&lt;type value=&quot;NO_TIP_BLACK&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Miri"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087861277"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Miri performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340092615770">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="ISA1_edge_0" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;ISA1_edge_0&quot;&gt;&#10;&lt;start value=&quot;ISA1_node_1&quot;/&gt;&#10;&lt;end value=&quot;ISA1_node_3&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="ISA1-Miri"/>
+<property name="GROUP_ID" value="ISA1"/>
+<property name="TOKEN" value="1340087861277"/>
+<property name="MAPNAME" value="ISA1"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[ISA1-Miri performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340092382199">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="2005" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="914"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="116"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created box 26 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092367632">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="1997" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="847"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="35"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has deleted box 24 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092352133">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="2001" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="817"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="56"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has deleted box 25 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092330068">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="2001" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="871"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="90"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created box 25 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092318223">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1997" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="890"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="125"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created box 24 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092317252">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="1996" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1992"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1969"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has created link 23 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092297253">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="1992" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="932"/>
+      <property name="USERNAME" value="ISA2-Gavriel"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="528"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has created box 22 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092295944">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="1988" type="Comment">
+    <properties>
+      <property name="comment-type-SELECTION" value="4"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="901"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="152"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has deleted box 21 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092282034">
+  <actiontype classification="MODIFY" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1988" type="Comment">
+    <properties>
+      <property name="comment-type-SELECTION" value="4"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="901"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="152"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie changed comment-type to 'Explanation' in box 21 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092275808">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1988" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="901"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="152"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created box 21 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092242837">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1987" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1974"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1952"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created link 20 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092229790">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1978" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1974"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1952"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has deleted link 14 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092214101">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1986" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1960"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1952"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created link 19 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092204901">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1985" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1952"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1960"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has deleted link 18 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092202184">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1985" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1952"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1960"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created link 18 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092199243">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1984" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1960"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1952"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has deleted link 17 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092193045">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1984" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1960"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1952"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created link 17 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092187509">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1983" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1960"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1952"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has deleted link 16 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092177607">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1983" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1960"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1952"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created link 16 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092172726">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1964" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1960"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1952"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has deleted link 9 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092169950">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Alan" role="student"/>
+  <object id="1979" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="87"/>
+      <property name="USERNAME" value="ISA2-Alan"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="182"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088098605"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Alan has created box 15 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088098605"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092135501">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1978" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1974"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1952"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created link 14 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092118489">
+  <actiontype classification="MODIFY" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1974" type="Comment">
+    <properties>
+      <property name="comment-type-SELECTION" value="2"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="762"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="501"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie changed comment-type to 'Question' in box 13 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092116119">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1974" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="762"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="501"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created box 13 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092088912">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1973" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1969"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1952"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created link 12 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092059091">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Alan" role="student"/>
+  <object id="1965" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="comment-text-TEXT" value=""/>
+      <property name="POS-Y" value="83"/>
+      <property name="USERNAME" value="ISA2-Alan"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="123"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088098605"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Alan has deleted box 10 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088098605"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092054749">
+  <actiontype classification="MODIFY" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Alan" role="student"/>
+  <object id="1965" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="comment-text-TEXT" value=""/>
+      <property name="POS-Y" value="83"/>
+      <property name="USERNAME" value="ISA2-Alan"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="123"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088098605"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Alan changed text to '' in box 10 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088098605"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092023297">
+  <actiontype classification="MODIFY" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1969" type="Comment">
+    <properties>
+      <property name="comment-type-SELECTION" value="2"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="756"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="312"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie changed comment-type to 'Question' in box 11 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092012751">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1969" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="816"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="376"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created box 11 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340092012579">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Alan" role="student"/>
+  <object id="1965" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="83"/>
+      <property name="USERNAME" value="ISA2-Alan"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="123"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088098605"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Alan has created box 10 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088098605"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091890631">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1964" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1960"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1952"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created link 9 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091882545">
+  <actiontype classification="MODIFY" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1960" type="Comment">
+    <properties>
+      <property name="comment-type-SELECTION" value="2"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="321"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="795"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie changed comment-type to 'Question' in box 8 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091877408">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1960" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="321"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="795"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created box 8 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091851967">
+  <actiontype classification="MODIFY" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="1956" type="Comment">
+    <properties>
+      <property name="comment-type-SELECTION" value="1"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="comment-text-TEXT" value=""/>
+      <property name="POS-Y" value="430"/>
+      <property name="USERNAME" value="ISA2-Gavriel"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="48"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel changed comment-type to 'Suggestion' in box 7 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091848727">
+  <actiontype classification="MODIFY" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="1956" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="comment-text-TEXT" value=""/>
+      <property name="POS-Y" value="430"/>
+      <property name="USERNAME" value="ISA2-Gavriel"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="48"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel changed text to '' in box 7 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091843408">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="1956" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="490"/>
+      <property name="USERNAME" value="ISA2-Gavriel"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="417"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has created box 7 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091821307">
+  <actiontype classification="MODIFY" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1952" type="Comment">
+    <properties>
+      <property name="comment-type-SELECTION" value="4"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="241"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="34"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie changed comment-type to 'Explanation' in box 6 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091815163">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <object id="1952" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="327"/>
+      <property name="USERNAME" value="ISA2-Arie"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="145"/>
+      <property name="MAP-ID" value="89"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Arie has created box 6 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091778292">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="1951" type="link">
+    <properties>
+      <property name="TARGET_ID" value="1947"/>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="SOURCE_ID" value="1940"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="USERNAME" value="ISA2-Gavriel"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has created link 5 of type link]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091778292">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="1947" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="487"/>
+      <property name="USERNAME" value="ISA2-Gavriel"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="289"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has created box 4 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091739078">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Alan" role="student"/>
+  <object id="1940" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="216"/>
+      <property name="USERNAME" value="ISA2-Alan"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="205"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088098605"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Alan has created box 3 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088098605"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091716612">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="1936" type="Comment">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="50"/>
+      <property name="USERNAME" value="ISA2-Gavriel"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="116"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has created box 2 of type Comment]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091709974">
+  <actiontype classification="DELETE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="1932" type="Rule Equivalence">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="62"/>
+      <property name="USERNAME" value="ISA2-Gavriel"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="17"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has deleted box 1 of type Rule Equivalence]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091705090">
+  <actiontype classification="CREATE" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <object id="1932" type="Rule Equivalence">
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="POS-Y" value="62"/>
+      <property name="USERNAME" value="ISA2-Gavriel"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="POS-X" value="17"/>
+      <property name="MAP-ID" value="89"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has created box 1 of type Rule Equivalence]]></description>
+    <properties>
+      <property name="GROUP_ID" value="N2"/>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Default Challenge"/>
+      <property name="TOKEN" value="1340088746916"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091680967">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Alan" role="student"/>
+  <content>
+    <description><![CDATA[ISA2-Alan has joined LASAD map 89]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091117575">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Gavriel" role="student"/>
+  <content>
+    <description><![CDATA[ISA2-Gavriel has joined LASAD map 89]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340091036723">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="ISA2-Arie" role="student"/>
+  <content>
+    <description><![CDATA[ISA2-Arie has joined LASAD map 89]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340090841796">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="reuma2" role="student"/>
+  <content>
+    <description><![CDATA[reuma2 has left LASAD map 88]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340090640556">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="reuma2" role="student"/>
+  <content>
+    <description><![CDATA[reuma2 has joined LASAD map 88]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340089266758">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="reuma2" role="student"/>
+  <content>
+    <description><![CDATA[reuma2 has left LASAD map 87]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340089058785">
+  <actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+  <user id="reuma2" role="student"/>
+  <content>
+    <description><![CDATA[reuma2 has joined LASAD map 87]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="LASAD"/>
+    </properties>
+  </content>
+</action>
+<action time="1340089187242">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="1test_node_1" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;node id=&quot;1test_node_1&quot;&gt;&#10;&lt;graphics&gt;&#10;&lt;scalefactor value=&quot;50&quot;/&gt;&#10;&lt;bordercolor value=&quot;#AAAAAA&quot;/&gt;&#10;&lt;position x=&quot;793&quot; y=&quot;2&quot;/&gt;&#10;&lt;/graphics&gt;&#10;&lt;properties&gt;&#10;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/images/resources/Discussion.jpg&quot;/&gt;&#10;&lt;tool value=&quot;http://adapterrex.cs.cmu.edu:8080/lasad/LASAD_Client.html?autologin=true&amp;amp;mapId=87&quot;/&gt;&#10;&lt;categorie value=&quot;Resources&quot;/&gt;&#10;&lt;name value=&quot;Discussion&quot;/&gt;&#10;&lt;/properties&gt;&#10;&lt;/node&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="reuma2"/>
+<property name="GROUP_ID" value="Awesome"/>
+<property name="TOKEN" value="1340087955185"/>
+<property name="MAPNAME" value="1test"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[reuma2 performed action createNode]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createNode"/>
+</properties>
+</content>
+</action>
+<action time="1340088566618">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="1test_edge_2" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;1test_edge_2&quot;&gt;&#10;&lt;start value=&quot;1test_node_9&quot;/&gt;&#10;&lt;end value=&quot;1test_node_9&quot;/&gt;&#10;&lt;type value=&quot;SOLID_BLUE&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="reuma2"/>
+<property name="GROUP_ID" value="1-test"/>
+<property name="TOKEN" value="1340087955185"/>
+<property name="MAPNAME" value="1test"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[reuma2 performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+<action time="1340088543604">
+<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+<user id="PlanningTool" role="originator"/>
+<object id="1test_edge_1" type="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;!DOCTYPE object SYSTEM &quot;http://metafora.ku-eichstaett.de/dtd/planningtoolelement.dtd&quot;&gt;&#10;&lt;object&gt;&#10;&lt;edge id=&quot;1test_edge_1&quot;&gt;&#10;&lt;start value=&quot;1test_node_31&quot;/&gt;&#10;&lt;end value=&quot;1test_node_9&quot;/&gt;&#10;&lt;type value=&quot;SOLID_RED&quot;/&gt;&#10;&lt;label value=&quot;not implemented&quot;/&gt;&#10;&lt;/edge&gt;&#10;&lt;/object&gt;&#10;">
+<properties>
+<property name="TOOL" value="PlanningTool"/>
+<property name="USERNAME" value="reuma2"/>
+<property name="GROUP_ID" value="1-test"/>
+<property name="TOKEN" value="1340087955185"/>
+<property name="MAPNAME" value="1test"/>
+</properties>
+</object>
+<content>
+<description><![CDATA[reuma2 performed action createEdge]]></description>
+<properties>
+<property name="INDICATOR_TYPE" value="activity"/>
+<property name="TOOL" value="PlanningTool"/>
+<property name="CHALLENGE_ID" value="1"/>
+<property name="CHALLENGE_NAME" value="Default Challenge"/>
+<property name="ACTIVITY_TYPE" value="createEdge"/>
+</properties>
+</content>
+</action>
+
+<!-- chat copied retrospectively by mm's xslt -->
+
+<action time="1340093572771">
+   <actiontype classification="other"
+               logged="true"
+               succeed="true"
+               type="CHAT_MESSAGE"/>
+   <user id="ISA1-Maya" ip="1340089434494" role="originator"/>
+   <object id="0" type="chat_message">
+      <properties>
+         <property name="message" value=":):):):):):)"/>
+      </properties>
+   </object>
+   <content>
+      <properties>
+         <property name="groupId" value="Metafora"/>
+         <property name="challengeId" value="1"/>
+         <property name="challengeName" value="Default Challenge"/>
+      </properties>
+   </content>
+</action>
+<action time="1340093538297">
+   <actiontype classification="other"
+               logged="true"
+               succeed="true"
+               type="CHAT_MESSAGE"/>
+   <user id="ISA1-Maya" ip="1340089434494" role="originator"/>
+   <object id="0" type="chat_message">
+      <properties>
+         <property name="message" value=":)"/>
+      </properties>
+   </object>
+   <content>
+      <properties>
+         <property name="groupId" value="Metafora"/>
+         <property name="challengeId" value="1"/>
+         <property name="challengeName" value="Default Challenge"/>
+      </properties>
+   </content>
+</action>
+
+ 
+<!-- feedback copied retrospectively by mm's xslt -->
+<action time="1340095673549">
+  <actiontype classification="create"
+               logged="true"
+               succeed="UNKOWN"
+               type="feedback"/>
+  <user id="FeedbackClient" role="originator"/>
+  <user id="Metafora" role="receiver"/>
+  <object id="0" type="message">
+      <properties>
+         <property name="interruption_type" value="high_interruption"/>
+         <property name="text" value=""/>
+         <property name="username" value="Rotem"/>
+      </properties>
+  </object>
+</action>
+<action time="1340095660707">
+  <actiontype classification="create"
+               logged="true"
+               succeed="UNKOWN"
+               type="feedback"/>
+  <user id="FeedbackClient" role="originator"/>
+  <user id="Metafora" role="receiver"/>
+  <object id="0" type="message">
+      <properties>
+         <property name="interruption_type" value="no_interruption"/>
+         <property name="text" value="Hi&#xA;"/>
+         <property name="username" value="Rotem"/>
+      </properties>
+  </object>
+</action>
+<action time="1340082731486">
+  <actiontype classification="create"
+               logged="true"
+               succeed="UNKOWN"
+               type="feedback"/>
+  <user id="FeedbackClient" role="originator"/>
+  <user id="Metafora" role="receiver"/>
+  <object id="0" type="message">
+      <properties>
+         <property name="interruption_type" value="high_interruption"/>
+         <property name="text" value="Hello"/>
+         <property name="username" value="Rotem"/>
+      </properties>
+  </object>
+</action>
+
+
+</actions>
+</interactiondata>
