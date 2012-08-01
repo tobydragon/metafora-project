@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.manager;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import org.hamcrest.core.IsAnything;
@@ -85,15 +86,16 @@ public TextManager(boolean addWordCount){
 	private List<CfProperty> getContentPropertiesToTag(CfAction action){
 		
 		List<CfProperty> propertiesToTag=new Vector<CfProperty>();
-		
-		for(String propertyKey:action.getCfContent().getProperties().keySet()){
-			
-			if(propertyKey.toUpperCase().endsWith("TEXT") || propertyKey.toUpperCase().endsWith("TXT")){
-				CfProperty property=action.getCfContent().getProperty(propertyKey);
-				propertiesToTag.add(property);
-			}
-			
-		}
+
+		if (action.getCfContent() != null) 
+    		for(Map.Entry<String, CfProperty> entry:action.getCfContent().getProperties().entrySet()){	
+    		    	String propertyKey = (String) entry.getKey(); 
+    			if(propertyKey.toUpperCase().endsWith("TEXT") || propertyKey.toUpperCase().endsWith("TXT")){
+    				CfProperty property=action.getCfContent().getProperty(propertyKey);
+    				propertiesToTag.add(property);
+    			}
+    			
+    		}
 		return propertiesToTag;
 		
 	}
