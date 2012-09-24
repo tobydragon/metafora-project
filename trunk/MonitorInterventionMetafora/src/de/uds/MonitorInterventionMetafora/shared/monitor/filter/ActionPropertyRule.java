@@ -15,13 +15,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
+import com.allen_sauer.gwt.log.client.Log;
+
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionSubsection;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
@@ -40,24 +42,24 @@ public class ActionPropertyRule  implements Serializable{
 	private String displayText="";
 
 	private OperationType operationtype;
-	private ActionElementType type;
+	private ActionSubsection type;
 	private String valueToFilterBy="";
 	private ComponentType  origin;
 
 	public ActionPropertyRule() {
 	}
 
-	public ActionPropertyRule(ActionElementType actionElementType, String propertyName) {
+	public ActionPropertyRule(ActionSubsection actionElementType, String propertyName) {
 		this(actionElementType, propertyName, propertyName);
 	}
 	
-	public ActionPropertyRule(ActionElementType actionElementType, String propertyName, String displayName) {
+	public ActionPropertyRule(ActionSubsection actionElementType, String propertyName, String displayName) {
 		this.type = actionElementType;
 		this.propertyName = propertyName;
 		this.displayText = displayName;
 	}
   
-  public ActionPropertyRule(String _entityName, String _value,ActionElementType _type,OperationType _operationtype) {
+  public ActionPropertyRule(String _entityName, String _value,ActionSubsection _type,OperationType _operationtype) {
    
 	  propertyName=_entityName;
 	  valueToFilterBy=_value;
@@ -109,11 +111,11 @@ public class ActionPropertyRule  implements Serializable{
 		return componentType;
 	}
   
-  public void setType(ActionElementType _type){
+  public void setType(ActionSubsection _type){
 	  
 	  type= _type;
 	  }
-  public ActionElementType getType() {
+  public ActionSubsection getType() {
 	    return type;
 	  }
   
@@ -150,7 +152,6 @@ public class ActionPropertyRule  implements Serializable{
 	  return getKey();
   }
 
-  //TODO: return list of strings for user;tag;object  and return list of string
 	public List<String> getActionValue(CfAction action) {
 		List<String> actionValues=new Vector<String>();
 
@@ -175,25 +176,35 @@ public class ActionPropertyRule  implements Serializable{
 							}
 						}
 					}
-					//Also look to object for user (Planning tool hack)
-					for(CfObject cfObject : action.getCfObjects()){
-						String name = cfObject.getPropertyValue("USERNAME"); 	
-						if (name != null){
-							boolean nameAlreadyPresent = false;
-							for (String currentName : actionValues){
-								if (currentName.equalsIgnoreCase(name)){
-									nameAlreadyPresent=true;
+					//Also look to content for user (Planning tool hack)
+					
+					String name=null;	
+					if (action.getCfContent() != null){
+						name = action.getCfContent().getPropertyValue("USERNAME"); 
+					}
+					if (name != null){
+							actionValues.add(name);
+					}
+					else {
+						//Also look to object for user (Planning tool hack)
+						for(CfObject cfObject : action.getCfObjects()){
+							name = cfObject.getPropertyValue("USERNAME"); 	
+							if (name != null){
+								boolean nameAlreadyPresent = false;
+								for (String currentName : actionValues){
+									if (currentName.equalsIgnoreCase(name)){
+										nameAlreadyPresent=true;
+									}
 								}
-							}
-							if (!nameAlreadyPresent){
-								actionValues.add(name);
+								if (!nameAlreadyPresent){
+									actionValues.add(name);
+								}
 							}
 						}
 					}
 				}
-				
-				
 				break;
+				
 			case CONTENT:
 				if (propertyName.equalsIgnoreCase("TOOL")){
 					actionValues.add(action.getCfContent().getPropertyValue("TOOL"));
@@ -259,14 +270,14 @@ public class ActionPropertyRule  implements Serializable{
 		if(filterValueList!=null&&filterValueList.length<=0){
 			return false;
 		}
-		if(operation==OperationType.ISONEOF){
+		if(operation==OperationType.IS_ONE_OF){
 			for(String filtervalue:filterValueList){
 				if(actionValue.equalsIgnoreCase(filtervalue.trim())){
 					return true;
 				}
 			}
 		}
-		else if(operation==OperationType.CONTAINSONEOF) {
+		else if(operation==OperationType.CONTAINS_ONE_OF) {
 			for(String filtervalue:filterValueList){		
 				if((actionValue.toLowerCase().contains(filtervalue.trim().toLowerCase()))){
 					return true;
@@ -339,69 +350,69 @@ public class ActionPropertyRule  implements Serializable{
 						return actionValue.toLowerCase().contains(valueToFilterBy.toLowerCase());
 						}
 					}
-	else if (operationtype == OperationType.ISNOT){
+					else if (operationtype == OperationType.IS_NOT){
 						
-						if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
+					if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
+						
+						for(String value:actionValues){
 							
-							for(String value:actionValues){
-								
-								if(!value.toLowerCase().equalsIgnoreCase(valueToFilterBy.toLowerCase()))
-								{
-									return true;
-								}
+							if(!value.toLowerCase().equalsIgnoreCase(valueToFilterBy.toLowerCase()))
+							{
+								return true;
 							}
-							
 						}
 						
-						else if (propertyName.equalsIgnoreCase(CommonFormatStrings.ID_STRING)){
-							
-							for(String value:actionValues){
-								
-								if(!value.toLowerCase().equalsIgnoreCase(valueToFilterBy.toLowerCase()))
-								{
-									return true;
-								}
-							}
-							
-						}
-						
-						else{
-						return !actionValue.toLowerCase().equalsIgnoreCase(valueToFilterBy.toLowerCase());
-						}
 					}
 					
-	else if (operationtype == OperationType.DOESNOTCONTAIN){
-		
-		if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
-			
-			for(String value:actionValues){
-				
-				if(!value.toLowerCase().contains(valueToFilterBy.toLowerCase()))
-				{
-					return true;
-				}
-			}
-			
-		}
-		
-		else if (propertyName.equalsIgnoreCase(CommonFormatStrings.ID_STRING)){
-			
-			for(String value:actionValues){
-				
-				if(!value.toLowerCase().contains(valueToFilterBy.toLowerCase()))
-				{
-					return true;
-				}
-			}
-			
-		}
-		
-		else{
-		return !actionValue.toLowerCase().contains(valueToFilterBy.toLowerCase());
-		}
-	}
+					else if (propertyName.equalsIgnoreCase(CommonFormatStrings.ID_STRING)){
+						
+						for(String value:actionValues){
+							
+							if(!value.toLowerCase().equalsIgnoreCase(valueToFilterBy.toLowerCase()))
+							{
+								return true;
+							}
+						}
+						
+					}
 					
-					else if (operationtype == OperationType.OCCUREDWITHIN){
+					else{
+						return !actionValue.toLowerCase().equalsIgnoreCase(valueToFilterBy.toLowerCase());
+					}
+				}
+					
+				else if (operationtype == OperationType.DOES_NOT_CONTAIN){
+					
+					if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
+						
+						for(String value:actionValues){
+							
+							if(!value.toLowerCase().contains(valueToFilterBy.toLowerCase()))
+							{
+								return true;
+							}
+						}
+						
+					}
+					
+					else if (propertyName.equalsIgnoreCase(CommonFormatStrings.ID_STRING)){
+						
+						for(String value:actionValues){
+							
+							if(!value.toLowerCase().contains(valueToFilterBy.toLowerCase()))
+							{
+								return true;
+							}
+						}
+						
+					}
+					
+					else{
+					return !actionValue.toLowerCase().contains(valueToFilterBy.toLowerCase());
+					}
+				}
+					
+					else if (operationtype == OperationType.OCCURED_WITHIN){
 						long timeStamp = Long.valueOf(actionValue);
 						if(GWTUtils.getDifferenceInMinutes(timeStamp) <= Integer.valueOf(valueToFilterBy)){
 							return true;
@@ -411,13 +422,33 @@ public class ActionPropertyRule  implements Serializable{
 						}
 					}
 					
-					else if (operationtype == OperationType.ISONEOF)
+					else if (operationtype == OperationType.IS_AFTER){
+						long timeStamp = Long.valueOf(actionValue);
+						if(timeStamp >= Long.valueOf(valueToFilterBy)){
+							return true;
+						}
+						else {
+							return false;
+						}
+					}
+					
+					else if (operationtype == OperationType.IS_BEFORE){
+						long timeStamp = Long.valueOf(actionValue);
+						if(timeStamp < Long.valueOf(valueToFilterBy)){
+							return true;
+						}
+						else {
+							return false;
+						}
+					}
+					
+					else if (operationtype == OperationType.IS_ONE_OF)
 					{
 						if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
 							
 							for(String value:actionValues){
 								
-								if(isStatisfyConditionWithMultipleValues(valueToFilterBy,value,OperationType.ISONEOF))
+								if(isStatisfyConditionWithMultipleValues(valueToFilterBy,value,OperationType.IS_ONE_OF))
 								{
 									return true;
 								}
@@ -430,7 +461,7 @@ public class ActionPropertyRule  implements Serializable{
 							
 							for(String value:actionValues){
 								
-								if(isStatisfyConditionWithMultipleValues(valueToFilterBy,value,OperationType.ISONEOF))
+								if(isStatisfyConditionWithMultipleValues(valueToFilterBy,value,OperationType.IS_ONE_OF))
 								{
 									return true;
 								}
@@ -442,17 +473,17 @@ public class ActionPropertyRule  implements Serializable{
 						
 						
 						
-						return isStatisfyConditionWithMultipleValues(valueToFilterBy,actionValue,OperationType.ISONEOF);
+						return isStatisfyConditionWithMultipleValues(valueToFilterBy,actionValue,OperationType.IS_ONE_OF);
 						}
 					}
-					else if (operationtype == OperationType.CONTAINSONEOF)
+					else if (operationtype == OperationType.CONTAINS_ONE_OF)
 					{
 						
 						if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
 							
 							for(String value:actionValues){
 								
-								if(isStatisfyConditionWithMultipleValues(valueToFilterBy,value,OperationType.CONTAINSONEOF))
+								if(isStatisfyConditionWithMultipleValues(valueToFilterBy,value,OperationType.CONTAINS_ONE_OF))
 								{
 									return true;
 								}
@@ -461,7 +492,7 @@ public class ActionPropertyRule  implements Serializable{
 						}
 						else{
 						
-						return isStatisfyConditionWithMultipleValues(valueToFilterBy,actionValue,OperationType.CONTAINSONEOF);
+						return isStatisfyConditionWithMultipleValues(valueToFilterBy,actionValue,OperationType.CONTAINS_ONE_OF);
 						}
 					}
 					
@@ -487,6 +518,14 @@ public class ActionPropertyRule  implements Serializable{
 			System.err.println("ERROR\t\t[ActionPropertyRule.ruleIncludesAction] action \n"+ action + "\n rule: " + this +" \n" + e);
 		}
 		return false;
+	}
+	
+	public boolean isValid(){
+		if (type == null || operationtype==null || valueToFilterBy == null){
+			Log.warn("[isValid] ActionPropertyRule not valid, missing info: " + toString());
+			return false;
+		}
+		return true;
 	}
 	
 }

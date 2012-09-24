@@ -1,16 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <xmpp-settings>
-	
+	 <!--
 	<command-agent-connection>visualizer-command-test-ugur</command-agent-connection>
 	<analysis-agent-connection>visualizer-analysis-test-ugur</analysis-agent-connection>
-	
-	  <!-- 
+	 
+	  
 	<command-agent-connection>visualizer-command-test-toby</command-agent-connection>
 	<analysis-agent-connection>visualizer-analysis-test-toby</analysis-agent-connection>
-	 
 	  -->
-	  <!-- 
+	<!--
+	<command-agent-connection>visualizer-command-test-almer</command-agent-connection>
+	<analysis-agent-connection>visualizer-analysis-test-almer</analysis-agent-connection>
+	
+	<!--   
 	<command-agent-connection>visualizer-command-test</command-agent-connection>
 	<analysis-agent-connection>visualizer-analysis-test</analysis-agent-connection>
- 	 -->
+	-->
 </xmpp-settings>

@@ -15,7 +15,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionSubsection;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
@@ -23,7 +23,7 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 public class IndicatorFilterer implements Serializable{
 
 	//List<CfAction> actions;
-	//List<IndicatorEntity> filtwers;
+	//List<IndicatorEntity> filters;
 	
 	/**
 	 * 
@@ -88,7 +88,7 @@ public class IndicatorFilterer implements Serializable{
 	boolean isSatisfyFilter(long time,ActionPropertyRule _entity){
 		
 		boolean result=false;
-		if(_entity.getOperationType()==OperationType.OCCUREDWITHIN){
+		if(_entity.getOperationType()==OperationType.OCCURED_WITHIN){
 		
 			if(GWTUtils.getDifferenceInMinutes(time)<=Integer.parseInt(_entity.getValue())){
 				

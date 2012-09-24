@@ -14,7 +14,7 @@ import java.io.Serializable;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionSubsection;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
@@ -94,12 +94,12 @@ public FilterGridRow() {
   }
 
   
-  public void setType(ActionElementType _type){
+  public void setType(ActionSubsection _type){
 	  
 	  set("filtertype", _type.toString());
 	  filterRule.setType(_type);
   }
-  public ActionElementType getType() {
+  public ActionSubsection getType() {
 	    return filterRule.getType();
 	  }
    

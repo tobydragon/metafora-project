@@ -11,17 +11,15 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import de.uds.MonitorInterventionMetafora.client.User;
-import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class FeedbackPanelContainer extends VerticalPanel {
 	private de.uds.MonitorInterventionMetafora.client.feedback.Outbox outbox;
 	private TemplatePool templatePool;
 	static private FeedbackPanelContainer INSTANCE;
 
-	public static String[] userNames = {"Alice", "Bob", "Maria"};
+	public static String[] userNames = {"Alan", "Mary", "David"};
 	
 	public FeedbackPanelContainer(){
 		

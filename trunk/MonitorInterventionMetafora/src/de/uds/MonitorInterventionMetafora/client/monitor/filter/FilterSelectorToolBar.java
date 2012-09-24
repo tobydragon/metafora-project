@@ -35,7 +35,7 @@ import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController
 import de.uds.MonitorInterventionMetafora.client.monitor.UpdaterToolbar;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionSubsection;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;

@@ -1,7 +1,10 @@
 package de.uds.MonitorInterventionMetafora.client.display;
 
+import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.Window;
+import com.extjs.gxt.ui.client.widget.button.Button;
 import com.google.gwt.user.client.ui.PopupPanel;
 
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyGridModel;
@@ -21,23 +24,31 @@ public class CfActionDisplay extends VerticalPanel{
 		
 		
 		
+		Button plainTextWindowButton=new Button("Plain Text",new SelectionListener<ButtonEvent>() {
+			@Override
+			public void componentSelected(ButtonEvent ce) {
+				new PlainTextDisplay(CfActionDisplay.this.action);
+			} });
+		
+		this.add(plainTextWindowButton);
 	
-	this.action=action;
-	this.setWidth("600");
-	this.setHeight("550");
-	ActionDisplay actionDisplay=new ActionDisplay(action);
-	actionDisplay.setHeader("Indicator Info");
-	this.add(actionDisplay);
-	if(action.getCfContent()!=null){
-	PropertyDisplay contentProperties=new PropertyDisplay(action.getCfContent().getProperties(),"Indicator Content",new PropertyGridModel("Description",action.getCfContent().getDescription()));
-	this.add(contentProperties);
-	}
-	if(action.getCfObjects()!=null && action.getCfObjects().size()>0){
-	CfObjectDisplay objectDisplay=new CfObjectDisplay(action.getCfObjects());
-	this.add(objectDisplay);
+		this.action=action;
+		this.setWidth("600");
+		this.setHeight("550");
+		ActionDisplay actionDisplay=new ActionDisplay(action);
+		actionDisplay.setHeader("Indicator Info");
+		this.add(actionDisplay);
+		if(action.getCfContent()!=null){
+			PropertyDisplay contentProperties=new PropertyDisplay(action.getCfContent().getProperties(),"Indicator Content",new PropertyGridModel("Description",action.getCfContent().getDescription()));
+			this.add(contentProperties);
+		}
+		if(action.getCfObjects()!=null && action.getCfObjects().size()>0){
+		CfObjectDisplay objectDisplay=new CfObjectDisplay(action.getCfObjects());
+		this.add(objectDisplay);
 	}
 	
 
+	
 	
 	popupPanel.add(this);
 	
