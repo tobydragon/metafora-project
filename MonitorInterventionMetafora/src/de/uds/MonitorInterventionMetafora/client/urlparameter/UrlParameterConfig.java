@@ -1,5 +1,7 @@
 package de.uds.MonitorInterventionMetafora.client.urlparameter;
 
+import com.allen_sauer.gwt.log.client.Log;
+
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 
@@ -24,7 +26,7 @@ public class UrlParameterConfig {
 			if (localeStr != null){
 				locale = localeStr;
 			}
-	    	 System.out.println("URL Params: User-"+ username + " : mainConfig-"+ configID + " : receiver-"+ receiver + " : locale-"+ locale);
+	    	 Log.info("URL Params: User-"+ username + " : mainConfig-"+ configID + " : receiver-"+ receiver + " : locale-"+ locale);
 		}
 	
 	public String getUsername() {

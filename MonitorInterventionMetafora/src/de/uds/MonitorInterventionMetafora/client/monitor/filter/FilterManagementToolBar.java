@@ -24,6 +24,7 @@ import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyCombo
 import de.uds.MonitorInterventionMetafora.client.monitor.grouping.ActionPropertyComboBox;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationsCategory;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModelType;
@@ -45,8 +46,8 @@ public class FilterManagementToolBar extends ToolBar{
  
 	public FilterManagementToolBar(EditorGrid<FilterGridRow> grid, ActionPropertyRuleSelectorModel filterRuleSelectorModel,final SimpleComboBox<String> filterGroupCombo,Button applyBtn){
 	
-this.filterGroupCombo=filterGroupCombo;
-this.applyBtn=applyBtn;
+		this.filterGroupCombo=filterGroupCombo;
+		this.applyBtn=applyBtn;
 
 		this.grid = grid;
 		 FormLayout layout = new FormLayout();
@@ -64,7 +65,7 @@ this.applyBtn=applyBtn;
 		
 		operationComboBox.setDisplayField("displaytext");
 		operationComboBox.setValueField("operationtype");
-		operationComboBox.setStore(getOperations(false));
+		operationComboBox.setStore(getOperations(OperationsCategory.STANDARD));
 		operationComboBox.setPosition(0, -2);
 		operationComboBox.setEditable(false);
 		operationComboBox.setForceSelection(true);
@@ -85,14 +86,10 @@ this.applyBtn=applyBtn;
 	        @Override
 	        public void selectionChanged(SelectionChangedEvent<PropertyComboBoxItemModel> se) { 
 
-	        	if(se.getSelectedItem().getActionPropertyRule().getPropertyName().equalsIgnoreCase("TIME")){
-		        	operationComboBox.getStore().removeAll();
-		        	operationComboBox.setStore(getOperations(true));
-	        	}
-	        	else{
-	        	   	operationComboBox.getStore().removeAll();
-		        	operationComboBox.setStore(getOperations(false));
-	        	}
+	        	OperationsCategory operationsCategory = OperationsCategory.getCategoryFromPropertyName(se.getSelectedItem().getActionPropertyRule().getPropertyName());
+	        	
+	        	operationComboBox.getStore().removeAll();
+	        	operationComboBox.setStore(getOperations(operationsCategory));
 	        	operationComboBox.clearSelections();
 	        	
 	        }
@@ -116,109 +113,58 @@ this.applyBtn=applyBtn;
 		//this.setWidth(600);
 				
 		this.layout();
-		
-	     
-
-
 	}
 	
+	//TODO: Efficiency - these models need only be created once, and saved in attribute, then accessed when needed
+	ListStore<OperationsComboBoxModel>	getOperations(OperationsCategory category){
+		return buildOperationsComboBoxModel(category);
+	}
 	
-
-	
-	
-	
-	
-
-
-	
-	
-	
-	ListStore<OperationsComboBoxModel>	getOperations(boolean _isTimeOperation){
-		ListStore<OperationsComboBoxModel> _operations=new ListStore<OperationsComboBoxModel>();
-		if(!_isTimeOperation){
-	
-		OperationsComboBoxModel _equals=new OperationsComboBoxModel("Equals",OperationType.EQUALS);
-		OperationsComboBoxModel _contains=new OperationsComboBoxModel("Contains",OperationType.CONTAINS);
-		OperationsComboBoxModel _isoneof=new OperationsComboBoxModel("Is One Of",OperationType.ISONEOF);
-		OperationsComboBoxModel _containsoneof=new OperationsComboBoxModel("Contains One Of",OperationType.CONTAINSONEOF);
-		OperationsComboBoxModel _isnot=new OperationsComboBoxModel("Is Not",OperationType.ISNOT);
-		OperationsComboBoxModel _doesnotcontain=new OperationsComboBoxModel("Does Not Contain",OperationType.DOESNOTCONTAIN);
-		_operations.add(_equals);
-		_operations.add(_contains);
-		_operations.add(_isoneof);
-		_operations.add(_containsoneof);
-		_operations.add(_isnot);
-		_operations.add(_doesnotcontain);
-		
+	public ListStore<OperationsComboBoxModel> buildOperationsComboBoxModel(OperationsCategory category){
+		ListStore<OperationsComboBoxModel> opsComboBoxModel=new ListStore<OperationsComboBoxModel>();
+		for (OperationType operationType : OperationType.getOperations(category)){
+			opsComboBoxModel.add(new OperationsComboBoxModel(operationType));
 		}
-		else{
-			OperationsComboBoxModel _occuredWithIn=new OperationsComboBoxModel("OccuredWithIn",OperationType.OCCUREDWITHIN);
-			_operations.add(_occuredWithIn);	
-			
-		}
-		return _operations;
+		return opsComboBoxModel;
 	}
 	
 	SelectionListener<ButtonEvent> getAddButtonEvent(){
-		
-		
-		SelectionListener<ButtonEvent> _addBtnEvent=new SelectionListener<ButtonEvent>() {
-
+		SelectionListener<ButtonEvent> _addBtnEvent = new SelectionListener<ButtonEvent>() {
 			@Override
 			public void componentSelected(ButtonEvent ce) {
-				
-				
 				if(filterPropertyComboBox.validate() && operationComboBox.validate()&&entityValueTextBox.validate()){
 				
-				//ComboBox<OperationsComboBoxModel> operationCombo= interfaceManager.getOperationsComboBox();
-			
-				
-				
-				ActionPropertyRule newFilterRule=new ActionPropertyRule();
-				newFilterRule.setDisplayText(filterPropertyComboBox.getValue().getActionPropertyRule().getDisplayText());
-				newFilterRule.setPropertyName(filterPropertyComboBox.getValue().getActionPropertyRule().getPropertyName());
-				
-				newFilterRule.setType(filterPropertyComboBox.getValue().getActionPropertyRule().getType());
-				newFilterRule.setOperationType(operationComboBox.getValue().getOperationType());
-				newFilterRule.setValue(entityValueTextBox.getValue());
-				newFilterRule.setOrigin(ComponentType.FILTER_MANAGEMENT_TOOLBAR);
-				
-				
-				
-				if(newFilterRule.getOperationType()==OperationType.OCCUREDWITHIN&&!GWTUtils.isNumber(newFilterRule.getValue()))
-				{
+					ActionPropertyRule newFilterRule=new ActionPropertyRule();
+					newFilterRule.setDisplayText(filterPropertyComboBox.getValue().getActionPropertyRule().getDisplayText());
+					newFilterRule.setPropertyName(filterPropertyComboBox.getValue().getActionPropertyRule().getPropertyName());
 					
-					 MessageBox.alert("Info", "Time should be an integer value and in minutes",null);
-					 return;
+					newFilterRule.setType(filterPropertyComboBox.getValue().getActionPropertyRule().getType());
+					newFilterRule.setOperationType(operationComboBox.getValue().getOperationType());
+					newFilterRule.setValue(entityValueTextBox.getValue());
+					newFilterRule.setOrigin(ComponentType.FILTER_MANAGEMENT_TOOLBAR);
+	
+					if(newFilterRule.getOperationType().isTimeOperation() && !GWTUtils.isLong(newFilterRule.getValue())) {
+						 MessageBox.alert("Info", "Time should be an integer value and in minutes",null);
+						 return;
+					}
+	
+					FilterGridRow  _newRow=new FilterGridRow(newFilterRule); 
+			    	
+			        grid.stopEditing();  
+			        grid.getStore().insert(_newRow, 0);
+			        grid.startEditing(grid.getStore().indexOf(_newRow), 0); 
+			     
+			        filterPropertyComboBox.clearSelections();
+			        operationComboBox.clearSelections();
+			        entityValueTextBox.clear();
+			        filterGroupCombo.clearSelections();
+			        filterGroupCombo.setEditable(true);
+			        applyBtn.setEnabled(true);
 				}
-
-				FilterGridRow  _newRow=new FilterGridRow(newFilterRule); 
-		    	
-		        
-		        grid.stopEditing();  
-		        grid.getStore().insert(_newRow, 0);
-		        
-//		        interfaceManager.filtersUpdated();
-		        grid.startEditing(grid.getStore().indexOf(_newRow), 0); 
-		     
-				
-		        
-		        filterPropertyComboBox.clearSelections();
-		        operationComboBox.clearSelections();
-		        entityValueTextBox.clear();
-		        filterGroupCombo.clearSelections();
-		        filterGroupCombo.setEditable(true);
-		        applyBtn.setEnabled(true);
-
-				}
-				
 				
 			}
-			};
-		
-			
+		};	
 		return  _addBtnEvent;
 	}
-	
 	
 }

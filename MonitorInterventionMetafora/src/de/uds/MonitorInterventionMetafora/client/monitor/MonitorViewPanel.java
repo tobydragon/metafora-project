@@ -77,7 +77,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 	 	 CfActionType _cfActionType=new CfActionType();
 	 	 _cfActionType.setType("START_FILE_INPUT");
 	 	 startupMessage.setCfActionType(_cfActionType);
-	 	 System.out.println("INFO\t\t[MonitorPanelContainer.sendStartupMessage] Sending monitoring start from Client");
+	 	 Log.info("[sendStartupMessage] start by requesting update from Client");
 	 	Log.debug("Update Request is sent");
 	 	 monitoringViewServiceServlet.requestUpdate(startupMessage,this);
 	 	 // ServerCommunication.getInstance().processAction(startupMessage,this);	
@@ -91,7 +91,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 	@Override
 	public void onSuccess(List<CfAction> actionList) {
 		
-		Log.debug("Update Respone is recieved.Action Size:"+actionList.size());
+		Log.debug("Update Response recieved, Action Size: "+actionList.size());
 		if(actionList!=null){
 		 	 System.out.println("INFO\t\t[MonitorPanelContainer.onSuccess] Adding actions count=" + actionList.size());
 			monitorModel.addData(actionList);

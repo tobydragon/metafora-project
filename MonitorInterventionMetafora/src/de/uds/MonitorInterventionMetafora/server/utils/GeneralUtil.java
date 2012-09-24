@@ -11,7 +11,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
 public class GeneralUtil {
 	
-	private static final long MAX_LAG_MESSAGE_MILLIS = 20000;
+	private static final long MAX_LAG_MESSAGE_MILLIS = 2000000;
 
 	public static boolean isTimeRecent(long time) {
 		return isTimeRecent(time, MAX_LAG_MESSAGE_MILLIS);

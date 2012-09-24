@@ -8,17 +8,8 @@ import java.util.Vector;
 import com.allen_sauer.gwt.log.client.Log;
 import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
-import com.extjs.gxt.ui.client.store.Store;
-
-import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.ui.FormPanel;
-import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.visualization.client.DataTable;
-import com.googlecode.gwtTableToExcel.client.TableToExcelClient;
-
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
@@ -26,13 +17,6 @@ import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.CfActionGridRow;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionElementType;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
@@ -232,14 +216,14 @@ public void applyMainFilter(){
 		tableViewModel.removeAll();
 		Log.debug("Adding new actions to the List was started");
 		if(actions!=null&&actions.size()>0){
-		int index=actions.size()-1;
-		lastRecievedAction=actions.get(index);
-		
-		Log.debug("Adding new actions: Last actions is set");
-		allActions.addAll(applyMainFilter(actions));
-		Log.debug("Main filter is appied and Actions are added to main list");
-		
-		addFilteredData(allActions);
+			int index=actions.size()-1;
+			lastRecievedAction=actions.get(index);
+			
+			Log.debug("Adding new actions: Last actions is set");
+			allActions.addAll(applyMainFilter(actions));
+			Log.debug("Main filter is appied and Actions are added to main list");
+			
+			addFilteredData(allActions);
 		}
 		Log.debug("Adding new actions to the main List and  filtered List was completed");
 	}

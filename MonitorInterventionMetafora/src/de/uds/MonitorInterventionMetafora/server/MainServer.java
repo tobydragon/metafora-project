@@ -120,15 +120,15 @@ public class MainServer extends RemoteServiceServlet implements
 		AnalysisManager.getAnalysisManagerInstance().sendToAllAgents(
 				"Notification", cfAction);
 
-		System.out.println("Notifications are send to the agents!!");
+		System.out.println("Notifications are sent to the agents!!");
 		return new CfAction();
 	}
 
 	@Override
 	public String sendLogAction(CfAction logAction) {
-		System.out.println("LOG_ACTION_START");
+		//System.out.println("LOG_ACTION_START");
 		String actionString=CfActionParser.toXml(logAction).toString();
-		System.out.println(actionString);
+		//System.out.println(actionString);
 		try {
 			toLogFile(actionString);
 		} catch (IOException e) {

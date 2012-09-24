@@ -158,4 +158,22 @@
 		<device>VisualizerCommand</device>
 	</xmpp-channel-setting>
 	
+	<xmpp-channel-setting channelid="visualizer-analysis-test-almer">
+		<connection-name>VisualizerAnalysisTestAlmer</connection-name>
+		<username>VisualizerAnalysisTestAlmer</username>
+		<password>VisualizerAnalysisTestAlmer</password>
+		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>VisualizerAnalysisTestAlmer</alias>
+		<device>VisualizerAnalysisTestAlmer</device>
+	</xmpp-channel-setting>
+	
+	<xmpp-channel-setting channelid="visualizer-command-test-almer">
+		<connection-name>VisualizerCommandTestAlmer</connection-name>
+		<username>VisualizerCommandTestAlmer</username>
+		<password>VisualizerCommandTestAlmer</password>
+		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>VisualizerCommandTestAlmer</alias>
+		<device>VisualizerCommandTestAlmer</device>
+	</xmpp-channel-setting>
+	
 </xmpp-connect-settings>

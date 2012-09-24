@@ -25,11 +25,10 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 	}
 	
 	public void receiveUpdate(List<CfAction> actions){
-		Log.debug("Action 5: "+actions.size());
 		clientDataModel.addData(actions);
-		Log.debug("Action 6: "+actions.size());
+		Log.debug("Step 4: Data has been added to model");
 		controller.refreshViews();
-		Log.debug("Action 7: "+actions.size());
+		Log.debug("Step 5: views updated");
 	}
 
 	public void startUpdates(){
@@ -48,27 +47,19 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 	@Override
 	public void onSuccess(List<CfAction> actions) {
 		
-		Log.debug("3Update Response is recieved from the model.Action Size:"+actions.size());
+		Log.info("Step 3: Update Response is recieved from the model.Action Size:"+actions.size());
 		if(actions!=null && actions.size() > 0){
-			Log.debug("4 updated model.Action Size:"+actions.size());
 			receiveUpdate(actions);
-			System.out.println("DEBUG [UpdatingDataModel.onSuccess] Action recieved and list updated");
+			Log.debug("Step 6: Everything updated.");
 		}
 		else{
-			System.out.println("DEBUG [UpdatingDataModel.onSuccess] No Action Update Recieved");
+			Log.debug("No Actions returned to update");
 		}
 	}
 	
 	public void getUpdate(){
-		
-		Log.debug("1Update Request is sent from model is started!");
-		
-	Log.debug("Update Request is sent from model!");
+		Log.debug("Step 1: Update Request is sent from model!");
 		clientDataModel.getServiceServlet().requestUpdate(clientDataModel.getLastAction(),this);
-		
-		
-		
-		//ServerCommunication.getInstance().processAction(clientDataModel.getLastAction(),this);
 	}
 
 	@Override

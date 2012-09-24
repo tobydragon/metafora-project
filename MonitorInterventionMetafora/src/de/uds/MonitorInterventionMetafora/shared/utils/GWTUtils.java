@@ -65,12 +65,10 @@ public class GWTUtils {
 	}
 	
 	
-	public static boolean isNumber(String _value){
-		
-		
+	public static boolean isLong(String _value){
 		
 		try {
-		   Integer.parseInt(_value);
+		   Long.parseLong(_value);
 		   return true;
 		}
 		catch(NumberFormatException nFE) {

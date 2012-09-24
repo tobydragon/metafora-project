@@ -150,14 +150,14 @@ public class TablePanel extends DataViewPanel {
 		
 		
 		   flexTable.setText(0,0, "Users");
-           flexTable.setText(0,1, "Action Type");
+//           flexTable.setText(0,1, "Action Type");
            flexTable.setText(0,2, "Classification");
            flexTable.setText(0,3, "Description");
            flexTable.setText(0,4, "Tags");
            flexTable.setText(0,5, "Word Count");
            flexTable.setText(0,6, "Tool");
            flexTable.setText(0,7, "Time");
-           flexTable.setText(0,8, "Challenge");
+//           flexTable.setText(0,8, "Challenge");
            flexTable.setText(0,9, "Indicator Type");
 		
            int rowindex=0;
@@ -168,14 +168,14 @@ public class TablePanel extends DataViewPanel {
             
 			
                     flexTable.setText(rowindex,0, row.getUsers());
-                    flexTable.setText(rowindex,1, row.getActionType());
+//                    flexTable.setText(rowindex,1, row.getActionType());
                     flexTable.setText(rowindex,2, row.getClassification());
                     flexTable.setText(rowindex,3, row.getDescription());
                     flexTable.setText(rowindex,4, row.getTags());
                     flexTable.setText(rowindex,5, row.getWordCount());
                     flexTable.setText(rowindex,6, row.getTool());
                     flexTable.setText(rowindex,7, row.getTime());
-                    flexTable.setText(rowindex,8, row.getChallengeName());
+//                    flexTable.setText(rowindex,8, row.getChallengeName());
                     flexTable.setText(rowindex,9, row.getIndicatorType());
             
     }
@@ -243,8 +243,8 @@ public class TablePanel extends DataViewPanel {
 		    actionType.setAlignment(HorizontalAlignment.RIGHT);
 		    //actionType.setRenderer(getbackgroundColorRenderer());
 		    
-		    ColumnConfig classification = new ColumnConfig(MonitorConstants.ACTION_CLASSIFICATION_LABEL, MonitorConstants.ACTION_CLASSIFICATION_LABEL, 60);
-		    classification.setWidth(50);
+//		    ColumnConfig classification = new ColumnConfig(MonitorConstants.ACTION_CLASSIFICATION_LABEL, MonitorConstants.ACTION_CLASSIFICATION_LABEL, 60);
+//		    classification.setWidth(50);
 		    //classification.setRenderer(getbackgroundColorRenderer());
 		    
 		    ColumnConfig description = new ColumnConfig(MonitorConstants.DESCRIPTION_LABEL, MonitorConstants.DESCRIPTION_LABEL, 50);
@@ -256,13 +256,13 @@ public class TablePanel extends DataViewPanel {
 		    //tool.setRenderer(getbackgroundColorRenderer());
 		    
 
-		    ColumnConfig challengeName = new ColumnConfig(MonitorConstants.CHALLENGE_NAME_LABEL, MonitorConstants.CHALLENGE_NAME_LABEL, 50);
-		    challengeName.setWidth(75);
+//		    ColumnConfig challengeName = new ColumnConfig(MonitorConstants.CHALLENGE_NAME_LABEL, MonitorConstants.CHALLENGE_NAME_LABEL, 50);
+//		    challengeName.setWidth(75);
 		    //challengeName.setRenderer(getbackgroundColorRenderer());
 		   
 		    
 		    ColumnConfig time = new ColumnConfig(MonitorConstants.ACTION_TIME_LABEL, MonitorConstants.ACTION_TIME_LABEL, 50);
-		    time.setWidth(50);
+		    time.setWidth(70);
 		    //time.setRenderer(getbackgroundColorRenderer());
 		    time.setDateTimeFormat(DateTimeFormat.getFormat("yyyy-MM-dd G HH:mm:ss"));
 		    
@@ -284,13 +284,13 @@ public class TablePanel extends DataViewPanel {
 		    List<ColumnConfig> config = new ArrayList<ColumnConfig>();
 		    config.add(username);
 		    config.add(actionType);
-		    config.add(classification);
+//		    config.add(classification);
 		    config.add(description);
 		    config.add(tags);
 		    config.add(wordcount);
 		    config.add(tool);
 		    config.add(time);
-		    config.add(challengeName);
+//		    config.add(challengeName);
 		    config.add(indicatorType);
 
 		    return new ColumnModel(config);
@@ -311,33 +311,20 @@ public class TablePanel extends DataViewPanel {
 	        	String  valueOfCell ="";
 	        	valueOfCell=  model.getTags();
 	            
-	        	
 	        	if(valueOfCell!=null){
-	        	
-	            if(valueOfCell.toLowerCase().contains("abuse")){
-	   
-	            	
-	            return "<span style='background-color:" +"#FA0053"+ "'>" + valueOfCell+ "</span>";
-	            		
-	            }
-	            else if(valueOfCell.toLowerCase().contains("negati")){
-	          
-	            	
-	            return "<span style='background-color:" +"#D2FF3C"+ "'>" + valueOfCell+ "</span>";
-	            		
-	            }
-	        }
+		            if(valueOfCell.toLowerCase().contains("abuse")){
+		            	return "<span style='background-color:" +"#FA0053"+ "'>" + valueOfCell+ "</span>";
+		            }
+		            else if(valueOfCell.toLowerCase().contains("help")){
+		            	return "<span style='background-color:" +"#D2FF3C"+ "'>" + valueOfCell+ "</span>";		
+		            }
+	        	}
 	            
-	           return valueOfCell; 
-
-
-
-	        }    
-
+	        	return valueOfCell; 
+	        	}    
 	        };
 	        
 	        return ColoredGrid;
-		
 	}
 
 	@Override
