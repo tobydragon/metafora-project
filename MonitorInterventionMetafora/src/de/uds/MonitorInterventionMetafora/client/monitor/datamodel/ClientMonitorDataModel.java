@@ -40,12 +40,10 @@ public class ClientMonitorDataModel{
 	private CommunicationServiceAsync monitoringViewServiceServlet;
 	
 	private GroupingStore<CfActionGridRow> tableViewModel;
-	//private ListStore<FilterGridRow> filterGridViewModel;
 	ActionPropertyRuleSelectorModel groupingSelectorModel;
 	ActionPropertyRuleSelectorModel filterSelectorModel;
-	//for aggregated data views (charts so far)
-	//a mapping of IndicatorPropertyTables, which each tracking the different values 
-	//and occurrence counts for an AcionPropertyRule
+	
+	//for aggregated data views (charts so far), a mapping of IndicatorPropertyTables, which each tracking the different values and each indicator for an AcionPropertyRule
 	private Map<String, ActionPropertyValueGroupingTableModel> rule2ValueGroupingTableMap;
 	
 	public ClientMonitorDataModel(ActionPropertyRuleSelectorModel groupingSelectorModel,ActionPropertyRuleSelectorModel filterSelectorModel,CommunicationServiceAsync monitoringViewServiceServlet){
@@ -55,102 +53,43 @@ public class ClientMonitorDataModel{
 		this.monitoringViewServiceServlet=monitoringViewServiceServlet;
 		
 		allActions = new Vector<CfAction>();
-		//allActionFilters=new HashMap<String, ActionFilter>();
-	
-	//	model.getServiceServlet().requestConfiguration(isMainFilterSet, this);
-		//mainFilters=new FilterViewModel();
 		currentActionFilter = new ActionFilter();
 		mainActionFilter=new ActionFilter();
-		//mainActionFilter.setFilterStore(mainFilters);
 		tableViewModel = new GroupingStore<CfActionGridRow>();
 		
-		
 		clearFilteredData();
-		
-		
-		
 	}
-	
-	
-	
-	
-
-	public CommunicationServiceAsync getServiceServlet(){
-		
-		return monitoringViewServiceServlet;
-	}
-	
-	public ActionPropertyRuleSelectorModel getFilterSelectorModel(){
-		
-		return filterSelectorModel;
-	}
-	
-	
-
 	
 	public void clearFilteredData(){
 		filteredActions = new Vector<CfAction>();	
 		tableViewModel.removeAll();
 		rule2ValueGroupingTableMap = createIndicatorPropertyTableMap();	
-		
-		
-		
 	}
 	
-	public int getAllActionCount(){
-		
-		return allActions.size();
-	}
-	
-public int getFilteredActionCount(){
-		
-		return filteredActions.size();
-	}
-	public ListStore<FilterGridRow> getFilterGridViewModel(){
-		
-		return currentActionFilter.getFilterStore();
-	}
-	
-public FilterViewModel getMainFilterGridViewModel(){
-		
-		return mainActionFilter.getFilterStore();
-	}
-	
-
-List<CfAction> applyMainFilter(List<CfAction> actionsToFilter){
-	
-	Log.debug("Adding new actions:Applying main filter is started");
-	List<CfAction> actions=new Vector<CfAction>();
-	for (CfAction action : actionsToFilter){
-		if (mainActionFilter.filterIncludesAction(action)){
-			
-			
-			actions.add(action);
-		
+	List<CfAction> applyMainFilter(List<CfAction> actionsToFilter){
+		Log.debug("Adding new actions:Applying main filter is started");
+		List<CfAction> actions=new Vector<CfAction>();
+		for (CfAction action : actionsToFilter){
+			if (mainActionFilter.filterIncludesAction(action)){
+				actions.add(action);
+			}
 		}
+		Log.debug("Adding new actions:Applying main filter is completed");
+		return actions;
 	}
-	Log.debug("Adding new actions:Applying main filter is completed");
-	return actions;
-}
 
-public void applyMainFilter(){
-	List<CfAction> temp=new Vector<CfAction>();
+	public void applyMainFilter(){
+		List<CfAction> temp=new Vector<CfAction>();
+		
+		temp.addAll(allActions);
+		allActions.clear();
+		allActions.addAll(applyMainFilter(temp));
 	
-	temp.addAll(allActions);
-	
-	
-	allActions.clear();
-	allActions.addAll(applyMainFilter(temp));
-
-	List<CfAction> temp2=new Vector<CfAction>();
-	temp2.addAll(filteredActions);
-	clearFilteredData();
-	filteredActions=applyMainFilter(temp2);
-	
-	
-	
-	
-}
+		List<CfAction> temp2=new Vector<CfAction>();
+		temp2.addAll(filteredActions);
+		clearFilteredData();
+		filteredActions=applyMainFilter(temp2);	
+	}
 	
 	// TODO: optimize!
 	public void updateFilteredList(){
@@ -159,46 +98,34 @@ public void applyMainFilter(){
 		
 	}
 	
-	
-	
 	public void addFilteredData(List<CfAction> actionsToFilter){
 		
 		filteredActions.clear();
 		tableRows=new Vector<CfActionGridRow>();
-		//tableRows.add(getTableHeaders());
-		Log.debug("Applying user filter is started");
+		Log.debug("[addFilteredData] Filtering started");
 		for (CfAction action : actionsToFilter){
 			if (currentActionFilter.filterIncludesAction(action)){
 				//TODO: this cause the problem
 				/*
 				tableViewModel.add(new CfActionGridRow(action));
-				//TODO: if checknox of update charts is not check dont do this part
+				//TODO: if checkbox of update charts is not check dont do this part
 				for (ActionPropertyValueGroupingTableModel indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
 					indicatorPropertyTable.addAction(action);
 				}*/
-				
-				
 				tableRows.add(new CfActionGridRow(action));
 				
-				//TODO: if checknox of update charts is not check dont do this part
-				
+				//TODO: if checkbox of update charts is not check dont do this part
 				filteredActions.add(action);
 			}
 		}
-		Log.debug("Filtering is completed and now adding actions to the tableview");
-		
+		Log.debug("[addFilteredData] Filtering completed: Now adding actions to the tableview");
 		tableViewModel.add(tableRows);
-	
 		for (ActionPropertyValueGroupingTableModel indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
 			indicatorPropertyTable.addActions(filteredActions);
 		}
-		
-		Log.debug("Adding actions to the tableview is finished");
 		Log.debug("Applying user filter is completed");
-		
-		
-		
-		
+
+		//TODO: put this in separate class 
 		UserLog userActionLog=new UserLog();
     	userActionLog.setComponentType(ComponentType.ACTION_FILTERER);
     	userActionLog.setDescription("Actions are filtered by the rules:",currentActionFilter.getFilterStore());
@@ -207,12 +134,9 @@ public void applyMainFilter(){
     	userActionLog.addProperty(MonitorConstants.ACTIONS_COUNT,Integer.toString(actionsToFilter.size()));
     	userActionLog.addProperty(MonitorConstants.FILTERED_ACTIONS_COUNT,Integer.toString(filteredActions.size()));
     	Logger.getLoggerInstance().log(userActionLog);
-		
-		
 	}
 	
 	public void addData(List<CfAction> actions){
-		
 		tableViewModel.removeAll();
 		Log.debug("Adding new actions to the List was started");
 		if(actions!=null&&actions.size()>0){
@@ -227,15 +151,7 @@ public void applyMainFilter(){
 		}
 		Log.debug("Adding new actions to the main List and  filtered List was completed");
 	}
-	
-	
-	
-	
-	public CfAction getLastAction(){
-		
-		return lastRecievedAction;		
-	}
-	
+
 	//Creates table for each rule, where each row will represent one value for each rule
 	private Map<String, ActionPropertyValueGroupingTableModel> createIndicatorPropertyTableMap() {
 		Map<String, ActionPropertyValueGroupingTableModel> inMap = new HashMap<String, ActionPropertyValueGroupingTableModel>();
@@ -275,10 +191,32 @@ public void applyMainFilter(){
 		return tableViewModel;
 	}
 
-
-
-
-
+	public CommunicationServiceAsync getServiceServlet(){
+		return monitoringViewServiceServlet;
+	}
 	
+	public ActionPropertyRuleSelectorModel getFilterSelectorModel(){
+		return filterSelectorModel;
+	}
+
+	public int getAllActionCount(){
+		return allActions.size();
+	}
+	
+	public int getFilteredActionCount(){
+		return filteredActions.size();
+	}
+	
+	public ListStore<FilterGridRow> getFilterGridViewModel(){
+		return currentActionFilter.getFilterStore();
+	}
+	
+	public FilterViewModel getMainFilterGridViewModel(){
+		return mainActionFilter.getFilterStore();
+	}
+	
+	public CfAction getLastAction(){
+		return lastRecievedAction;		
+	}
 
 }
