@@ -1,19 +1,13 @@
 
 package de.uds.MonitorInterventionMetafora.client.monitor.dataview.table;
 
-import java.util.Date;
-
 import com.extjs.gxt.ui.client.data.BaseModel;
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionSubsection;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
-import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 
 public class CfActionGridRow extends BaseModel {
@@ -69,11 +63,7 @@ public class CfActionGridRow extends BaseModel {
 			    set(MonitorConstants.WORD_COUNT_LABEL,MonitorConstants.BLANK_PROPERTY_LABEL);
 		    }
 		    
-//		    set(MonitorConstants.ACTION_TIME_LABEL, DateTimeFormat.getFormat(PredefinedFormat.DATE_TIME_SHORT).format (new Date(indicator.getTime())) );
-		    set(MonitorConstants.ACTION_TIME_LABEL, DateTimeFormat.getFormat("HH:mm:ss '@' dd'/'MM").format (new Date(indicator.getTime())) );
-		
-		
-		
+		    set(MonitorConstants.ACTION_TIME_LABEL, indicator.getTime()+"" );		
 		}
 		catch (Exception e){
 			logger.error("[setGridItemProperties] missing attributes, row not added for indicator: " +indicator.toString());
