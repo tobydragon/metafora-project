@@ -20,7 +20,6 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatString
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.NotificationType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilterer;
 
 public class NoWorkNotification  implements  Notification {
 
@@ -71,8 +70,8 @@ public class NoWorkNotification  implements  Notification {
 	
 		List<CfAction> filteredActionList=new ArrayList<CfAction>();
 		
-		IndicatorFilterer filterer =new IndicatorFilterer();
-		filteredActionList=filterer.getFilteredIndicatorList(cfActions,filter.toIndicatorEntityList());
+//		IndicatorFilterer filterer =new IndicatorFilterer();
+//		filteredActionList=filterer.getFilteredIndicatorList(cfActions,filter.toIndicatorEntityList());
 		
 		if(filteredActionList.size()<=0)
 			return true;

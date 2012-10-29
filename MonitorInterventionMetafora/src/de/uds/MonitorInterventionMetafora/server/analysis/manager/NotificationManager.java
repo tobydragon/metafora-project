@@ -12,7 +12,6 @@ import java.util.TimerTask;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilterer;
 
 public class NotificationManager extends TimerTask{
 
@@ -21,14 +20,14 @@ public class NotificationManager extends TimerTask{
 	Timer notificationManagerTimer;
 	//List<NoWorkNotification_old> noWorkNotifications;
 	List<CfAction> cfActions;
-	IndicatorFilterer filterAgent;
+	//IndicatorFilterer filterAgent;
 	
 	
 
 	public NotificationManager(){
 		
 		cfActions=new ArrayList<CfAction>();
-		filterAgent=new IndicatorFilterer();
+		//filterAgent=new IndicatorFilterer();
 		notificationManagerTimer=new Timer();
 		notificationManagerTimer.schedule(this,0,120000);
 		
@@ -39,7 +38,7 @@ public class NotificationManager extends TimerTask{
 	public NotificationManager(List<Notification> _notifications){
 		
 		cfActions=new ArrayList<CfAction>();
-		filterAgent=new IndicatorFilterer();
+		//filterAgent=new IndicatorFilterer();
 		notifications=new ArrayList<Notification>();
 		notifications.addAll(_notifications);
 		
