@@ -5,7 +5,7 @@ import com.google.gwt.junit.client.GWTTestCase;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ActionPropertyValueGroupingTableModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ActionPropertyValueModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionSubsection;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 
 public class ClientMonitorDataModelTest extends GWTTestCase{
@@ -26,7 +26,7 @@ public class ClientMonitorDataModelTest extends GWTTestCase{
 		TestDataRetreiver testDataRetreiver = new TestDataRetreiver();
 //		System.out.println(testDataRetreiver.getActions());
 //		System.out.println(testDataRetreiver.getModel().getAllActions());
-		ActionPropertyValueGroupingTableModel table = new ActionPropertyValueGroupingTableModel(new ActionPropertyRule(ActionSubsection.ACTION_TYPE, "classification"));
+		ActionPropertyValueGroupingTableModel table = new ActionPropertyValueGroupingTableModel(new ActionPropertyRule(PropertyLocation.ACTION_TYPE, "classification"));
 		
 		for (CfAction action : testDataRetreiver.getActions()){
 			table.addAction(action);

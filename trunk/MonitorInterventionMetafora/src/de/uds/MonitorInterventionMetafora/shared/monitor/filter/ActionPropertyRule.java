@@ -23,7 +23,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionSubsection;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
@@ -42,28 +42,28 @@ public class ActionPropertyRule  implements Serializable{
 	private String displayText="";
 
 	private OperationType operationtype;
-	private ActionSubsection type;
+	private PropertyLocation propertyLocation;
 	private String valueToFilterBy="";
 	private ComponentType  origin;
 
 	public ActionPropertyRule() {
 	}
 
-	public ActionPropertyRule(ActionSubsection actionElementType, String propertyName) {
+	public ActionPropertyRule(PropertyLocation actionElementType, String propertyName) {
 		this(actionElementType, propertyName, propertyName);
 	}
 	
-	public ActionPropertyRule(ActionSubsection actionElementType, String propertyName, String displayName) {
-		this.type = actionElementType;
+	public ActionPropertyRule(PropertyLocation actionElementType, String propertyName, String displayName) {
+		this.propertyLocation = actionElementType;
 		this.propertyName = propertyName;
 		this.displayText = displayName;
 	}
   
-  public ActionPropertyRule(String _entityName, String _value,ActionSubsection _type,OperationType _operationtype) {
+  public ActionPropertyRule(String _entityName, String _value,PropertyLocation _type,OperationType _operationtype) {
    
 	  propertyName=_entityName;
 	  valueToFilterBy=_value;
-	  type=_type;
+	  propertyLocation=_type;
 	 operationtype=_operationtype;
 	  
   }
@@ -111,12 +111,12 @@ public class ActionPropertyRule  implements Serializable{
 		return componentType;
 	}
   
-  public void setType(ActionSubsection _type){
+  public void setType(PropertyLocation _type){
 	  
-	  type= _type;
+	  propertyLocation= _type;
 	  }
-  public ActionSubsection getType() {
-	    return type;
+  public PropertyLocation getType() {
+	    return propertyLocation;
 	  }
   
   public void setOperationType(OperationType _operationtype){
@@ -521,7 +521,7 @@ public class ActionPropertyRule  implements Serializable{
 	}
 	
 	public boolean isValid(){
-		if (type == null || operationtype==null || valueToFilterBy == null){
+		if (propertyLocation == null || operationtype==null || valueToFilterBy == null){
 			Log.warn("[isValid] ActionPropertyRule not valid, missing info: " + toString());
 			return false;
 		}

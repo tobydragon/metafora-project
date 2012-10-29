@@ -15,7 +15,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.FilterAttributeName;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionSubsection;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;

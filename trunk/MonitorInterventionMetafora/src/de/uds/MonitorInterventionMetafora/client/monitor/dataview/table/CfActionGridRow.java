@@ -5,7 +5,7 @@ import com.extjs.gxt.ui.client.data.BaseModel;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionSubsection;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
@@ -30,7 +30,7 @@ public class CfActionGridRow extends BaseModel {
 //			for(CfUser u : indicator.getCfUsers()){
 //	 		   usersString=usersString+" - "+u.getid();
 //			}
-			ActionPropertyRule userRule = new ActionPropertyRule(ActionSubsection.USER, "id", MonitorConstants.USER_ID_LABEL);
+			ActionPropertyRule userRule = new ActionPropertyRule(PropertyLocation.USER, "id", MonitorConstants.USER_ID_LABEL);
 			for (String user : userRule.getActionValue(indicator)){
 				usersString += "-" + user;
 			}
@@ -63,7 +63,9 @@ public class CfActionGridRow extends BaseModel {
 			    set(MonitorConstants.WORD_COUNT_LABEL,MonitorConstants.BLANK_PROPERTY_LABEL);
 		    }
 		    
-		    set(MonitorConstants.ACTION_TIME_LABEL, indicator.getTime()+"" );		
+		    set(MonitorConstants.ACTION_TIME_LABEL, indicator.getTime()+"" );
+		   // set(MonitorConstants.ACTION_TIME_LABEL, DateTimeFormat.getFormat("HH:mm:ss '@' dd'/'MM").format (new Date(indicator.getTime())) );
+
 		}
 		catch (Exception e){
 			logger.error("[setGridItemProperties] missing attributes, row not added for indicator: " +indicator.toString());
