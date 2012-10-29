@@ -9,7 +9,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.notification.NoWorkNotification;
 import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionSubsection;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.NotificationType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
@@ -179,7 +179,7 @@ public class XmlConfigParser {
 				for(XmlFragment propertyFragment : filterFragment.getChildren(ServerFormatStrings.FILTERITEM))
 				{			
 					ActionPropertyRule _filterItem=new ActionPropertyRule();
-					_filterItem.setType(ActionSubsection.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
+					_filterItem.setType(PropertyLocation.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
 					_filterItem.setPropertyName(propertyFragment.getAttributeValue(ServerFormatStrings.PROPERTYRULENAME));
 					_filterItem.setOperationType(OperationType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.OPERATION).toUpperCase()));
 					_filterItem.setValue(propertyFragment.getAttributeValue(ServerFormatStrings.VALUE));				
@@ -209,7 +209,7 @@ public class XmlConfigParser {
 			for(XmlFragment propertyFragment : filterFragment.getChildren(ServerFormatStrings.FILTERITEM))
 			{			
 				ActionPropertyRule actionPropertyRule=new ActionPropertyRule();
-				actionPropertyRule.setType(ActionSubsection.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
+				actionPropertyRule.setType(PropertyLocation.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.Type).toUpperCase()));
 				actionPropertyRule.setPropertyName(propertyFragment.getAttributeValue(ServerFormatStrings.PROPERTYRULENAME));
 				actionPropertyRule.setOperationType(OperationType.getFromString(propertyFragment.getAttributeValue(ServerFormatStrings.OPERATION).toUpperCase()));
 				actionPropertyRule.setValue(propertyFragment.getAttributeValue(ServerFormatStrings.VALUE));	

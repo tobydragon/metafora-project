@@ -1,13 +1,13 @@
 package de.uds.MonitorInterventionMetafora.shared.datamodels.attributes;
 
-public enum ActionSubsection {
+public enum PropertyLocation {
 	ACTION,
 	ACTION_TYPE,
 	USER,
 	OBJECT,
 	CONTENT;
 	
-	public static ActionSubsection getFromString(String str){
+	public static PropertyLocation getFromString(String str){
 		try {
 			return valueOf(str);
 		}

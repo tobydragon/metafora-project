@@ -6,7 +6,7 @@ import java.util.Vector;
 import com.extjs.gxt.ui.client.store.ListStore;
 
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyComboBoxItemModel;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.ActionSubsection;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 
 public class ActionPropertyRuleSelectorModel {
@@ -60,19 +60,19 @@ public class ActionPropertyRuleSelectorModel {
 		List<ActionPropertyRule> newGroupings = new Vector<ActionPropertyRule>();
 	
 		//ACTION_TYPE
-		newGroupings.add(new ActionPropertyRule(ActionSubsection.ACTION_TYPE, "Classification", MonitorConstants.ACTION_CLASSIFICATION_LABEL));
-		newGroupings.add(new ActionPropertyRule(ActionSubsection.ACTION_TYPE, "UnGroup", MonitorConstants.ACTION_REMOVE_GROUPING_LABEL));
-		newGroupings.add(new ActionPropertyRule(ActionSubsection.ACTION_TYPE, "type", MonitorConstants.ACTION_TYPE_LABEL));
+		newGroupings.add(new ActionPropertyRule(PropertyLocation.ACTION_TYPE, "Classification", MonitorConstants.ACTION_CLASSIFICATION_LABEL));
+		newGroupings.add(new ActionPropertyRule(PropertyLocation.ACTION_TYPE, "UnGroup", MonitorConstants.ACTION_REMOVE_GROUPING_LABEL));
+		newGroupings.add(new ActionPropertyRule(PropertyLocation.ACTION_TYPE, "type", MonitorConstants.ACTION_TYPE_LABEL));
 
 		//USER
-		newGroupings.add(new ActionPropertyRule(ActionSubsection.USER, "id", MonitorConstants.USER_ID_LABEL));
+		newGroupings.add(new ActionPropertyRule(PropertyLocation.USER, "id", MonitorConstants.USER_ID_LABEL));
 		
 		//CONTENT
-		newGroupings.add(new ActionPropertyRule(ActionSubsection.CONTENT, "Tool", MonitorConstants.TOOL_LABEL));
-		newGroupings.add(new ActionPropertyRule(ActionSubsection.CONTENT, "INDICATOR_TYPE", MonitorConstants.INDICATOR_TYPE_LABEL));
-		newGroupings.add(new ActionPropertyRule(ActionSubsection.CONTENT, "CHALLENGE_NAME", MonitorConstants.CHALLENGE_NAME_LABEL));
-		newGroupings.add(new ActionPropertyRule(ActionSubsection.CONTENT, "GROUP_ID", MonitorConstants.GROUP_ID));
-		newGroupings.add(new ActionPropertyRule(ActionSubsection.OBJECT, "TAGS", MonitorConstants.TAGS));
+		newGroupings.add(new ActionPropertyRule(PropertyLocation.CONTENT, "Tool", MonitorConstants.TOOL_LABEL));
+		newGroupings.add(new ActionPropertyRule(PropertyLocation.CONTENT, "INDICATOR_TYPE", MonitorConstants.INDICATOR_TYPE_LABEL));
+		newGroupings.add(new ActionPropertyRule(PropertyLocation.CONTENT, "CHALLENGE_NAME", MonitorConstants.CHALLENGE_NAME_LABEL));
+		newGroupings.add(new ActionPropertyRule(PropertyLocation.CONTENT, "GROUP_ID", MonitorConstants.GROUP_ID));
+		newGroupings.add(new ActionPropertyRule(PropertyLocation.OBJECT, "TAGS", MonitorConstants.TAGS));
 		
 		return newGroupings;
 	}
@@ -81,14 +81,14 @@ public class ActionPropertyRuleSelectorModel {
 		//groupings are a subset of filters
 		List<ActionPropertyRule> newFilters =  createGroupingRules();
 
-		newFilters.add(new ActionPropertyRule(ActionSubsection.ACTION, "time", MonitorConstants.ACTION_TIME_LABEL));
-		newFilters.add(new ActionPropertyRule(ActionSubsection.CONTENT, "description", MonitorConstants.DESCRIPTION_LABEL));
+		newFilters.add(new ActionPropertyRule(PropertyLocation.ACTION, "time", MonitorConstants.ACTION_TIME_LABEL));
+		newFilters.add(new ActionPropertyRule(PropertyLocation.CONTENT, "description", MonitorConstants.DESCRIPTION_LABEL));
 
 		return newFilters;
 	}
 	
 	public static ActionPropertyRule getDefaultGrouping(){
-		return new ActionPropertyRule(ActionSubsection.CONTENT, "Tool", MonitorConstants.TOOL_LABEL);
+		return new ActionPropertyRule(PropertyLocation.CONTENT, "Tool", MonitorConstants.TOOL_LABEL);
 	}
 
 }
