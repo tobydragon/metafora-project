@@ -3,11 +3,10 @@ package de.uds.MonitorInterventionMetafora.server.cfcommunication;
 import java.util.Date;
 import java.util.Vector;
 
-//import org.apache.log4j.Logger;
-
-
+import org.apache.log4j.Logger;
 
 import de.kuei.metafora.xmpp.XMPPBridge;
+import de.kuei.metafora.xmpp.XMPPBridgeCurrent;
 import de.kuei.metafora.xmpp.XMPPMessageListener;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
 import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
@@ -16,11 +15,10 @@ import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlUtil;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.utils.LogLevel;
-import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
+
 
 public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMessageListener{
-	static Logger logger = Logger.getLogger(CfXmppCommunicationBridge.class, LogLevel.WARN);
+	static Logger logger = Logger.getLogger(CfXmppCommunicationBridge.class);
 	
 	private static String commandConnectionName = null;
 	private static String analysisConnectionName = null;
@@ -29,9 +27,14 @@ public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMes
 		//config file location
 		String instanceConfigFilepath = GeneralUtil.getRealPath("conffiles/xmpp/xmpp-settings.xml");
 		XmlConfigParser instanceParser = new XmlConfigParser(instanceConfigFilepath);
-
-		logger.info("Creating static connections for channels");
 		
+		String server = instanceParser.getConfigValue("server");
+		if(server !=null){
+			XMPPBridgeCurrent.setServer(server);	
+		}
+		else {
+			logger.warn("server not defined in config file, not setting XMPPBridgeCurrent.setServer");
+		}
 		commandConnectionName = createConnection(CommunicationChannelType.command, instanceParser);
 		analysisConnectionName = createConnection(CommunicationChannelType.analysis, instanceParser);	
 	}
@@ -61,7 +64,7 @@ public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMes
 		return null;
 	}
 	
-}
+	}
 	
 	private XMPPBridge xmppBridge;
 	
@@ -87,7 +90,8 @@ public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMes
 			xmppBridge.connect(true);
 			xmppBridge.registerListener(this);
 			xmppBridge.sendMessage(connectionName + " connected at " + System.currentTimeMillis());
-			logger.info(connectionName + " connected to xmppBridge at " + new Date());			
+			logger.info(connectionName + " connected to xmppBridge at " + new Date());
+
 		}
 		catch(Exception e){
 			logger.error("[constructor] " + ErrorUtil.getStackTrace(e) );
@@ -116,9 +120,8 @@ public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMes
 	public void newMessage(String user, String message, String arg2) {
 		logger.info("[newMessage] from user(" + user + "), starts with: "  + GeneralUtil.getStartOfString(message) );
 		logger.debug("[newMessage] from user(" + user + ") \n" + message);
-		System.out.println("Message!!:"+message);
-		message = XmlUtil.convertSpecialCharactersToDescripitons(message);
 		
+		message = XmlUtil.convertSpecialCharactersToDescripitons(message);
 		XmlFragment actionXml = XmlFragment.getFragmentFromString(message);
 		if (actionXml != null){
 			CfAction action = CfActionParser.fromXml(actionXml);

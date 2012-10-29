@@ -28,7 +28,7 @@ import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.Operation
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
-//a class representing a rule about an aspect of an action (to filter or group by).
+//a class representing a rule about an aspect(property) of an action (to filter or group by).
 //This could be a standard attribute or a property of a CfAction...
 public class ActionPropertyRule  implements Serializable{
 
@@ -176,38 +176,38 @@ public class ActionPropertyRule  implements Serializable{
 							}
 						}
 					}
-					//Also look to content for user (Planning tool hack)
-					
-					String name=null;	
-					if (action.getCfContent() != null){
-						name = action.getCfContent().getPropertyValue("USERNAME"); 
-					}
-					if (name != null){
-							actionValues.add(name);
-					}
-					else {
-						//Also look to object for user (Planning tool hack)
-						for(CfObject cfObject : action.getCfObjects()){
-							name = cfObject.getPropertyValue("USERNAME"); 	
-							if (name != null){
-								boolean nameAlreadyPresent = false;
-								for (String currentName : actionValues){
-									if (currentName.equalsIgnoreCase(name)){
-										nameAlreadyPresent=true;
-									}
-								}
-								if (!nameAlreadyPresent){
-									actionValues.add(name);
-								}
-							}
-						}
-					}
+//					//Also look to content for user (Planning tool hack)
+//					
+//					String name=null;	
+//					if (action.getCfContent() != null){
+//						name = action.getCfContent().getPropertyValue("USERNAME"); 
+//					}
+//					if (name != null){
+//							actionValues.add(name);
+//					}
+//					else {
+//						//Also look to object for user (Planning tool hack)
+//						for(CfObject cfObject : action.getCfObjects()){
+//							name = cfObject.getPropertyValue("USERNAME"); 	
+//							if (name != null){
+//								boolean nameAlreadyPresent = false;
+//								for (String currentName : actionValues){
+//									if (currentName.equalsIgnoreCase(name)){
+//										nameAlreadyPresent=true;
+//									}
+//								}
+//								if (!nameAlreadyPresent){
+//									actionValues.add(name);
+//								}
+//							}
+//						}
+//					}
 				}
 				break;
 				
 			case CONTENT:
-				if (propertyName.equalsIgnoreCase("TOOL")){
-					actionValues.add(action.getCfContent().getPropertyValue("TOOL"));
+				if (propertyName.equalsIgnoreCase("SENDING_TOOL")){
+					actionValues.add(action.getCfContent().getPropertyValue("SENDING_TOOL"));
 				} else if (propertyName.equalsIgnoreCase("INDICATOR_TYPE")){
 					actionValues.add(action.getCfContent().getPropertyValue("INDICATOR_TYPE"));
 				} else if (propertyName.equalsIgnoreCase("CHALLENGE_NAME")){
@@ -229,8 +229,8 @@ public class ActionPropertyRule  implements Serializable{
 					
 					for(CfObject object:action.getCfObjects()){
 						
-					if (propertyName.equalsIgnoreCase("TOOL")){
-						actionValues.add(object.getPropertyValue("TOOL"));
+					if (propertyName.equalsIgnoreCase("OBJECT_HOME_TOOL")){
+						actionValues.add(object.getPropertyValue("OBJECT_HOME_TOOL"));
 					} else if (propertyName.equalsIgnoreCase("INDICATOR_TYPE")){
 						actionValues.add(object.getPropertyValue("INDICATOR_TYPE"));
 					} else if (propertyName.equalsIgnoreCase("CHALLENGE_NAME")){
@@ -264,7 +264,7 @@ public class ActionPropertyRule  implements Serializable{
 	}
 	
 	
-	boolean isStatisfyConditionWithMultipleValues(String valueToFilterBy,String actionValue,OperationType operation){
+	boolean satisfiesConditionWithMultipleValues(String valueToFilterBy,String actionValue,OperationType operation){
 		String [] filterValueList=valueToFilterBy.split(",");
 		
 		if(filterValueList!=null&&filterValueList.length<=0){
@@ -448,7 +448,7 @@ public class ActionPropertyRule  implements Serializable{
 							
 							for(String value:actionValues){
 								
-								if(isStatisfyConditionWithMultipleValues(valueToFilterBy,value,OperationType.IS_ONE_OF))
+								if(satisfiesConditionWithMultipleValues(valueToFilterBy,value,OperationType.IS_ONE_OF))
 								{
 									return true;
 								}
@@ -461,7 +461,7 @@ public class ActionPropertyRule  implements Serializable{
 							
 							for(String value:actionValues){
 								
-								if(isStatisfyConditionWithMultipleValues(valueToFilterBy,value,OperationType.IS_ONE_OF))
+								if(satisfiesConditionWithMultipleValues(valueToFilterBy,value,OperationType.IS_ONE_OF))
 								{
 									return true;
 								}
@@ -473,7 +473,7 @@ public class ActionPropertyRule  implements Serializable{
 						
 						
 						
-						return isStatisfyConditionWithMultipleValues(valueToFilterBy,actionValue,OperationType.IS_ONE_OF);
+						return satisfiesConditionWithMultipleValues(valueToFilterBy,actionValue,OperationType.IS_ONE_OF);
 						}
 					}
 					else if (operationtype == OperationType.CONTAINS_ONE_OF)
@@ -483,7 +483,7 @@ public class ActionPropertyRule  implements Serializable{
 							
 							for(String value:actionValues){
 								
-								if(isStatisfyConditionWithMultipleValues(valueToFilterBy,value,OperationType.CONTAINS_ONE_OF))
+								if(satisfiesConditionWithMultipleValues(valueToFilterBy,value,OperationType.CONTAINS_ONE_OF))
 								{
 									return true;
 								}
@@ -492,7 +492,7 @@ public class ActionPropertyRule  implements Serializable{
 						}
 						else{
 						
-						return isStatisfyConditionWithMultipleValues(valueToFilterBy,actionValue,OperationType.CONTAINS_ONE_OF);
+						return satisfiesConditionWithMultipleValues(valueToFilterBy,actionValue,OperationType.CONTAINS_ONE_OF);
 						}
 					}
 					
@@ -521,7 +521,7 @@ public class ActionPropertyRule  implements Serializable{
 	}
 	
 	public boolean isValid(){
-		if (propertyLocation == null || operationtype==null || valueToFilterBy == null){
+		if (propertyName == null || propertyLocation == null || operationtype==null || valueToFilterBy == null){
 			Log.warn("[isValid] ActionPropertyRule not valid, missing info: " + toString());
 			return false;
 		}
