@@ -1,6 +1,8 @@
 
 package de.uds.MonitorInterventionMetafora.client.monitor.dataview.table;
 
+import java.util.List;
+
 import com.extjs.gxt.ui.client.data.BaseModel;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
@@ -8,6 +10,8 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatString
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.StandardRuleBuilder;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.StandardRuleType;
 import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
 
 public class CfActionGridRow extends BaseModel {
@@ -22,48 +26,52 @@ public class CfActionGridRow extends BaseModel {
 		setGridItemProperties();
 	}
 
-	//TODO: all of these should use the ActionPropertyRule to get the value for the row...
+	private void setGridItemPropertySingleValue(StandardRuleType type){
+		ActionPropertyRule rule = StandardRuleBuilder.buildStandardRule(type);
+		set(rule.getDisplayText(), getGridItemPropertySingleValue(type));
+	}
+	
+	private void setGridItemPropertyMultipleValues(StandardRuleType type){
+		ActionPropertyRule rule = StandardRuleBuilder.buildStandardRule(type);
+		set(rule.getDisplayText(), getGridItemPropertyMultipleValues(type));
+	}
+	
+	public String getGridItemPropertySingleValue(StandardRuleType type){
+		ActionPropertyRule rule = StandardRuleBuilder.buildStandardRule(type);
+	    String value = rule.getSingleActionValue(indicator);
+	    if (value == null){
+	    	value = MonitorConstants.BLANK_PROPERTY_LABEL;
+	    }
+		return value;
+	}
+	
+	public String getGridItemPropertyMultipleValues(StandardRuleType type){
+		ActionPropertyRule rule = StandardRuleBuilder.buildStandardRule(type);
+	    List<String> values = rule.getActionValue(indicator);
+	    String valuesString="";
+		for (String user : values){
+			valuesString += user + "-";
+		}
+		return valuesString;
+	}
+	
+	
 	private void setGridItemProperties(){
 		
 		try {
-			String usersString="";
-//			for(CfUser u : indicator.getCfUsers()){
-//	 		   usersString=usersString+" - "+u.getid();
-//			}
-			ActionPropertyRule userRule = new ActionPropertyRule(PropertyLocation.USER, "id", MonitorConstants.USER_ID_LABEL);
-			for (String user : userRule.getActionValue(indicator)){
-				usersString += "-" + user;
-			}
+			setGridItemPropertyMultipleValues(StandardRuleType.USER_ID);
 			
-			set(MonitorConstants.USER_ID_LABEL, usersString);
-		    set(MonitorConstants.ACTION_TYPE_LABEL, indicator.getCfActionType().getType());
-		    set(MonitorConstants.ACTION_CLASSIFICATION_LABEL, indicator.getCfActionType().getClassification());
-		    if (indicator.getCfContent() != null){
-			    set(MonitorConstants.DESCRIPTION_LABEL, indicator.getCfContent().getDescription());
+//			set(MonitorConstants.ACTION_TYPE_LABEL, indicator.getCfActionType().getType());
+			setGridItemPropertySingleValue(StandardRuleType.ACTION_CLASSIFICATION);
+		    setGridItemPropertySingleValue(StandardRuleType.DESCRIPTION);
+		    setGridItemPropertySingleValue(StandardRuleType.SENDING_TOOL);
+		    setGridItemPropertySingleValue(StandardRuleType.CHALLENGE_NAME);
+		    setGridItemPropertySingleValue(StandardRuleType.INDICATOR_TYPE);
+		    setGridItemPropertySingleValue(StandardRuleType.TAGS);
+		    setGridItemPropertySingleValue(StandardRuleType.TAGS);
+		    setGridItemPropertySingleValue(StandardRuleType.WORD_COUNT);
+		    setGridItemPropertySingleValue(StandardRuleType.TIME);
 			    
-			    
-			    
-			    
-			    set(MonitorConstants.TOOL_LABEL, indicator.getCfContent().getPropertyValue("TOOL"));
-			    set(MonitorConstants.CHALLENGE_NAME_LABEL, indicator.getCfContent().getPropertyValue("CHALLENGE_NAME"));
-			    set(MonitorConstants.INDICATOR_TYPE_LABEL, indicator.getCfContent().getPropertyValue("INDICATOR_TYPE"));
-		    }
-		    else {
-		    	set(MonitorConstants.DESCRIPTION_LABEL, MonitorConstants.BLANK_PROPERTY_LABEL);
-		    	set(MonitorConstants.TOOL_LABEL, MonitorConstants.BLANK_PROPERTY_LABEL);
-		    }
-		    if(indicator.getCfObjects().size()>0 &&indicator.getCfObjects().get(0)!=null){
-		    set(MonitorConstants.TAGS_LABEL,indicator.getCfObjects().get(0).getProperty(MonitorConstants.TAGS).getValue());
-		    set(MonitorConstants.WORD_COUNT_LABEL,indicator.getCfObjects().get(0).getProperty(MonitorConstants.WORD_COUNT).getValue());
-		    }
-		    
-		    else{
-		    	
-		    	set(MonitorConstants.TAGS_LABEL,MonitorConstants.BLANK_PROPERTY_LABEL);
-			    set(MonitorConstants.WORD_COUNT_LABEL,MonitorConstants.BLANK_PROPERTY_LABEL);
-		    }
-		    
-		    set(MonitorConstants.ACTION_TIME_LABEL, indicator.getTime()+"" );
 		   // set(MonitorConstants.ACTION_TIME_LABEL, DateTimeFormat.getFormat("HH:mm:ss '@' dd'/'MM").format (new Date(indicator.getTime())) );
 
 		}
@@ -85,88 +93,88 @@ public class CfActionGridRow extends BaseModel {
 
 	
 	
-	public String getIndicatorType(){
-		
-		String value=get(MonitorConstants.INDICATOR_TYPE_LABEL);
-		if(value==null)
-			value="";
-	return value;
-			
-	}
-	
-	public String getChallengeName(){
-		
-		String value=get(MonitorConstants.CHALLENGE_NAME_LABEL);
-		if(value==null)
-			value="";
-	return value;
-			
-	}
-	
-	
-	
-	
-	
-	public String getTime(){
-		
-		String value=get(MonitorConstants.ACTION_TIME_LABEL);
-		if(value==null)
-			value="";
-	return value;
-			
-	}
-	
-	public String getTool(){
-		
-		String value=get(MonitorConstants.TOOL_LABEL);
-		if(value==null)
-			value="";
-	return value;
-			
-	}
-	public String getWordCount(){
-		
-		String value=get(MonitorConstants.WORD_COUNT_LABEL);
-		if(value==null)
-			value="";
-	return value;
-			
-	}
-	public String getDescription(){
-		
-		String value=get(MonitorConstants.DESCRIPTION_LABEL);
-		if(value==null)
-			value="";
-	return value;
-		
-	}
-	public String getClassification(){
-		String value=get(MonitorConstants.ACTION_CLASSIFICATION_LABEL);
-		if(value==null)
-			value="";
-	return value;
-	}
-	public String getActionType(){
-		
-		String value= get(MonitorConstants.ACTION_TYPE_LABEL);
-		if(value==null)
-			value="";
-	return value;
-	}
-	public String getUsers(){
-		
-		String value= get(MonitorConstants.USER_ID_LABEL);
-		if(value==null)
-			value="";
-	return value;
-	
-	}
-	public String getTags(){
-		if(indicator.getCfObjects().size()>0){
-		if(indicator.getCfObjects().get(0)!=null){
-		    return indicator.getCfObjects().get(0).getProperty(MonitorConstants.TAGS).getValue();
-		}
-		}
-		return "";
-	}
+//	public String getIndicatorType(){
+//		
+//		String value=get(MonitorConstants.INDICATOR_TYPE_LABEL);
+//		if(value==null)
+//			value="";
+//	return value;
+//			
+//	}
+//	
+//	public String getChallengeName(){
+//		
+//		String value=get(MonitorConstants.CHALLENGE_NAME_LABEL);
+//		if(value==null)
+//			value="";
+//	return value;
+//			
+//	}
+//	
+//	
+//	
+//	
+//	
+//	public String getTime(){
+//		
+//		String value=get(MonitorConstants.ACTION_TIME_LABEL);
+//		if(value==null)
+//			value="";
+//	return value;
+//			
+//	}
+//	
+//	public String getTool(){
+//		
+//		String value=get(MonitorConstants.TOOL_LABEL);
+//		if(value==null)
+//			value="";
+//	return value;
+//			
+//	}
+//	public String getWordCount(){
+//		
+//		String value=get(MonitorConstants.WORD_COUNT_LABEL);
+//		if(value==null)
+//			value="";
+//	return value;
+//			
+//	}
+//	public String getDescription(){
+//		
+//		String value=get(MonitorConstants.DESCRIPTION_LABEL);
+//		if(value==null)
+//			value="";
+//	return value;
+//		
+//	}
+//	public String getClassification(){
+//		String value=get(MonitorConstants.ACTION_CLASSIFICATION_LABEL);
+//		if(value==null)
+//			value="";
+//	return value;
+//	}
+//	public String getActionType(){
+//		
+//		String value= get(MonitorConstants.ACTION_TYPE_LABEL);
+//		if(value==null)
+//			value="";
+//	return value;
+//	}
+//	public String getUsers(){
+//		
+//		String value= get(MonitorConstants.USER_ID_LABEL);
+//		if(value==null)
+//			value="";
+//	return value;
+//	
+//	}
+//	public String getTags(){
+//		if(indicator.getCfObjects().size()>0){
+//		if(indicator.getCfObjects().get(0)!=null){
+//		    return indicator.getCfObjects().get(0).getProperty(MonitorConstants.TAGS).getValue();
+//		}
+//		}
+//		return "";
+//	}
 }

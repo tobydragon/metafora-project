@@ -11,6 +11,7 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 
 public class ActionPropertyRuleSelectorModel {
 	
+	
 	private ListStore<PropertyComboBoxItemModel> ruleComboBoxItems;
 		
 	public ActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType selectorType, List<ActionPropertyRule> propertyRulesIn){
@@ -58,37 +59,34 @@ public class ActionPropertyRuleSelectorModel {
 	
 	public static List<ActionPropertyRule> createGroupingRules() {
 		List<ActionPropertyRule> newGroupings = new Vector<ActionPropertyRule>();
-	
-		//ACTION_TYPE
-		newGroupings.add(new ActionPropertyRule(PropertyLocation.ACTION_TYPE, "Classification", MonitorConstants.ACTION_CLASSIFICATION_LABEL));
-		newGroupings.add(new ActionPropertyRule(PropertyLocation.ACTION_TYPE, "UnGroup", MonitorConstants.ACTION_REMOVE_GROUPING_LABEL));
-		newGroupings.add(new ActionPropertyRule(PropertyLocation.ACTION_TYPE, "type", MonitorConstants.ACTION_TYPE_LABEL));
+//		TODO: figure out how this was used and fix it
+//		newGroupings.add(new ActionPropertyRule(PropertyLocation.ACTION_TYPE, "UnGroup", MonitorConstants.ACTION_REMOVE_GROUPING_LABEL));
 
-		//USER
-		newGroupings.add(new ActionPropertyRule(PropertyLocation.USER, "id", MonitorConstants.USER_ID_LABEL));
-		
-		//CONTENT
-		newGroupings.add(new ActionPropertyRule(PropertyLocation.CONTENT, "Tool", MonitorConstants.TOOL_LABEL));
-		newGroupings.add(new ActionPropertyRule(PropertyLocation.CONTENT, "INDICATOR_TYPE", MonitorConstants.INDICATOR_TYPE_LABEL));
-		newGroupings.add(new ActionPropertyRule(PropertyLocation.CONTENT, "CHALLENGE_NAME", MonitorConstants.CHALLENGE_NAME_LABEL));
-		newGroupings.add(new ActionPropertyRule(PropertyLocation.CONTENT, "GROUP_ID", MonitorConstants.GROUP_ID));
-		newGroupings.add(new ActionPropertyRule(PropertyLocation.OBJECT, "TAGS", MonitorConstants.TAGS));
+		newGroupings.addAll(createCommonRules());
+		return newGroupings;
+	}
+	
+	public static List <ActionPropertyRule> createCommonRules(){
+		List<ActionPropertyRule> newGroupings = new Vector<ActionPropertyRule>();
+		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.ACTION_CLASSIFICATION));
+		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.ACTION_TYPE));
+		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.USER_ID));
+		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.SENDING_TOOL));
+		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.INDICATOR_TYPE));
+		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.CHALLENGE_NAME));
+		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.GROUP_ID));
+		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.TAGS));
 		
 		return newGroupings;
 	}
 	
 	public static  List<ActionPropertyRule> createFilteringRules(){
-		//groupings are a subset of filters
-		List<ActionPropertyRule> newFilters =  createGroupingRules();
+		List<ActionPropertyRule> newGroupings = new Vector<ActionPropertyRule>();
 
-		newFilters.add(new ActionPropertyRule(PropertyLocation.ACTION, "time", MonitorConstants.ACTION_TIME_LABEL));
-		newFilters.add(new ActionPropertyRule(PropertyLocation.CONTENT, "description", MonitorConstants.DESCRIPTION_LABEL));
-
-		return newFilters;
-	}
-	
-	public static ActionPropertyRule getDefaultGrouping(){
-		return new ActionPropertyRule(PropertyLocation.CONTENT, "Tool", MonitorConstants.TOOL_LABEL);
+		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.TIME));
+		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.DESCRIPTION));
+		newGroupings.addAll(createCommonRules());
+		return newGroupings;
 	}
 
 }

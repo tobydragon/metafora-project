@@ -16,8 +16,9 @@ public class XmlUtil {
 	}
 	
 	public  static String convertSpecialCharacterDescriptionsBack(String toConvertBack){
-		toConvertBack = toConvertBack.replaceAll("&amp;", "&");
+		
 		try {
+			toConvertBack = toConvertBack.replaceAll("&amp;", "&");
 			return URLDecoder.decode(toConvertBack, "UTF-8");
 		}
 		catch(Exception e){

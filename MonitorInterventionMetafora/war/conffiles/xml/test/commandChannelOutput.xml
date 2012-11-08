@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interactiondata>
+  <actions>
+    <action time="1347344846829">
+      <actiontype type="feedback" classification="create" succeed="UNKOWN" logged="true" />
+      <user id="FeedbackClient" role="originator" />
+      <user id="Metafora" role="receiver" />
+      <object id="0" type="message">
+        <properties>
+          <property name="username" value="yang" />
+          <property name="text" value="There seem to be too many process cards." />
+          <property name="interruption_type" value="high_interruption" />
+        </properties>
+      </object>
+    </action>
+    <action time="1347344862115">
+      <actiontype type="feedback" classification="create" succeed="UNKOWN" logged="true" />
+      <user id="FeedbackClient" role="originator" />
+      <user id="Metafora" role="receiver" />
+      <object id="0" type="message">
+        <properties>
+          <property name="username" value="Alina" />
+          <property name="text" value="There seem to be too many cards that are not linked." />
+          <property name="interruption_type" value="high_interruption" />
+        </properties>
+      </object>
+    </action>
+    <action time="1347357531178">
+      <actiontype type="feedback" classification="create" succeed="UNKOWN" logged="true" />
+      <user id="FeedbackClient" role="originator" />
+      <user id="Metafora" role="receiver" />
+      <object id="0" type="message">
+        <properties>
+          <property name="username" value="David" />
+          <property name="text" value="There seem to be too many cards that are not linked." />
+          <property name="interruption_type" value="high_interruption" />
+        </properties>
+      </object>
+    </action>
+    <action time="1347357561527">
+      <actiontype type="feedback" classification="create" succeed="UNKOWN" logged="true" />
+      <user id="FeedbackClient" role="originator" />
+      <user id="Metafora" role="receiver" />
+      <object id="0" type="message">
+        <properties>
+          <property name="username" value="David" />
+          <property name="text" value="Your plan seems to be splitting in different directions. Consider eventually bringing your outcomes together" />
+          <property name="interruption_type" value="high_interruption" />
+        </properties>
+      </object>
+    </action>
+  </actions>
+</interactiondata>
+

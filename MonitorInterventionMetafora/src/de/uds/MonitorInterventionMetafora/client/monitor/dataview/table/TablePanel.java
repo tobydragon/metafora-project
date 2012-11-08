@@ -45,6 +45,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.StandardRuleType;
 
 public class TablePanel extends DataViewPanel {
 
@@ -67,8 +68,7 @@ public class TablePanel extends DataViewPanel {
 		tableView.setView(getGridView(columnModel));
 		tableView.setWidth(950);
 
-		tableView.getStore().sort(MonitorConstants.ACTION_TIME_LABEL,
-				SortDir.DESC);
+		tableView.getStore().sort(StandardRuleType.TIME.toString(), SortDir.DESC);
 
 		this.setHeight(560);
 		this.filterPanel = filterPanel;
@@ -142,16 +142,16 @@ public class TablePanel extends DataViewPanel {
 
 		FlexTable flexTable = new FlexTable();
 
-		flexTable.setText(0, 0, "Users");
+		flexTable.setText(0, 0, StandardRuleType.USER_ID.toString());
 		// flexTable.setText(0,1, "Action Type");
-		flexTable.setText(0, 2, "Classification");
-		flexTable.setText(0, 3, "Description");
-		flexTable.setText(0, 4, "Tags");
-		flexTable.setText(0, 5, "Word Count");
-		flexTable.setText(0, 6, "Tool");
-		flexTable.setText(0, 7, "Time");
+		flexTable.setText(0, 2, StandardRuleType.ACTION_CLASSIFICATION.toString());
+		flexTable.setText(0, 3, StandardRuleType.DESCRIPTION.toString());
+		flexTable.setText(0, 4, StandardRuleType.TAGS.toString());
+		flexTable.setText(0, 5, StandardRuleType.WORD_COUNT.toString());
+		flexTable.setText(0, 6, StandardRuleType.SENDING_TOOL.toString());
+		flexTable.setText(0, 7, StandardRuleType.TIME.toString());
 		// flexTable.setText(0,8, "Challenge");
-		flexTable.setText(0, 9, "Indicator Type");
+		flexTable.setText(0, 9, StandardRuleType.INDICATOR_TYPE.toString());
 
 		int rowindex = 0;
 		for (int i = 0; i < actions.size(); i++) {
@@ -159,16 +159,16 @@ public class TablePanel extends DataViewPanel {
 
 			rowindex++;
 
-			flexTable.setText(rowindex, 0, row.getUsers());
+			flexTable.setText(rowindex, 0, row.getGridItemPropertySingleValue(StandardRuleType.USER_ID));
 			// flexTable.setText(rowindex,1, row.getActionType());
-			flexTable.setText(rowindex, 2, row.getClassification());
-			flexTable.setText(rowindex, 3, row.getDescription());
-			flexTable.setText(rowindex, 4, row.getTags());
-			flexTable.setText(rowindex, 5, row.getWordCount());
-			flexTable.setText(rowindex, 6, row.getTool());
-			flexTable.setText(rowindex, 7, row.getTime());
+			flexTable.setText(rowindex, 2, row.getGridItemPropertySingleValue(StandardRuleType.ACTION_CLASSIFICATION));
+			flexTable.setText(rowindex, 3, row.getGridItemPropertySingleValue(StandardRuleType.DESCRIPTION));
+			flexTable.setText(rowindex, 4, row.getGridItemPropertySingleValue(StandardRuleType.TAGS));
+			flexTable.setText(rowindex, 5, row.getGridItemPropertySingleValue(StandardRuleType.WORD_COUNT));
+			flexTable.setText(rowindex, 6, row.getGridItemPropertySingleValue(StandardRuleType.SENDING_TOOL));
+			flexTable.setText(rowindex, 7, row.getGridItemPropertySingleValue(StandardRuleType.TIME));
 			// flexTable.setText(rowindex,8, row.getChallengeName());
-			flexTable.setText(rowindex, 9, row.getIndicatorType());
+			flexTable.setText(rowindex, 9, row.getGridItemPropertySingleValue(StandardRuleType.INDICATOR_TYPE));
 
 		}
 
@@ -226,68 +226,51 @@ public class TablePanel extends DataViewPanel {
 	}
 
 	private ColumnModel getColumnModel() {
-		ColumnConfig username = new ColumnConfig(
-				MonitorConstants.USER_ID_LABEL, MonitorConstants.USER_ID_LABEL,
-				50);
+		ColumnConfig username = new ColumnConfig(StandardRuleType.USER_ID.toString(), StandardRuleType.USER_ID.toString(), 50);
 		username.setWidth(50);
 		// username.setRenderer(getbackgroundColorRenderer());
 
-		ColumnConfig actionType = new ColumnConfig(
-				MonitorConstants.ACTION_TYPE_LABEL,
-				MonitorConstants.ACTION_TYPE_LABEL, 50);
-		actionType.setWidth(50);
-		actionType.setAlignment(HorizontalAlignment.RIGHT);
-		// actionType.setRenderer(getbackgroundColorRenderer());
-
-		// ColumnConfig classification = new
-		// ColumnConfig(MonitorConstants.ACTION_CLASSIFICATION_LABEL,
-		// MonitorConstants.ACTION_CLASSIFICATION_LABEL, 60);
-		// classification.setWidth(50);
-		// classification.setRenderer(getbackgroundColorRenderer());
+		ColumnConfig actionClassfication = new ColumnConfig(
+				StandardRuleType.ACTION_CLASSIFICATION.toString(),
+				StandardRuleType.ACTION_CLASSIFICATION.toString(), 50);
+		actionClassfication.setWidth(50);
+		actionClassfication.setAlignment(HorizontalAlignment.CENTER);
 
 		ColumnConfig description = new ColumnConfig(
-				MonitorConstants.DESCRIPTION_LABEL,
-				MonitorConstants.DESCRIPTION_LABEL, 50);
+				StandardRuleType.DESCRIPTION.toString(),
+				StandardRuleType.DESCRIPTION.toString(), 50);
 		description.setWidth(250);
-		// description.setRenderer(getbackgroundColorRenderer());
 
-		ColumnConfig tool = new ColumnConfig(MonitorConstants.TOOL_LABEL,
-				MonitorConstants.TOOL_LABEL, 50);
+		ColumnConfig tool = new ColumnConfig(StandardRuleType.SENDING_TOOL.toString(),
+				StandardRuleType.SENDING_TOOL.toString(), 50);
 		tool.setWidth(50);
-		// tool.setRenderer(getbackgroundColorRenderer());
-
-		// ColumnConfig challengeName = new
-		// ColumnConfig(MonitorConstants.CHALLENGE_NAME_LABEL,
-		// MonitorConstants.CHALLENGE_NAME_LABEL, 50);
-		// challengeName.setWidth(75);
-		// challengeName.setRenderer(getbackgroundColorRenderer());
 
 		ColumnConfig time = new ColumnConfig(
-				MonitorConstants.ACTION_TIME_LABEL,
-				MonitorConstants.ACTION_TIME_LABEL, 50);
+				StandardRuleType.TIME.toString(),
+				StandardRuleType.TIME.toString(), 50);
 		time.setWidth(80);
 		// time.setRenderer(getbackgroundColorRenderer());
 		time.setRenderer(getDateTimeRenderer());
 
-		ColumnConfig tags = new ColumnConfig(MonitorConstants.TAGS_LABEL,
-				MonitorConstants.TAGS_LABEL, 50);
+		ColumnConfig tags = new ColumnConfig(StandardRuleType.TAGS.toString(),
+				StandardRuleType.TAGS.toString(), 50);
 		tags.setWidth(50);
 		tags.setRenderer(getbackgroundColorRenderer());
 
 		ColumnConfig wordcount = new ColumnConfig(
-				MonitorConstants.WORD_COUNT_LABEL,
-				MonitorConstants.WORD_COUNT_LABEL, 30);
+				StandardRuleType.WORD_COUNT.toString(),
+				StandardRuleType.WORD_COUNT.toString(), 30);
 		wordcount.setWidth(50);
 
 		ColumnConfig indicatorType = new ColumnConfig(
-				MonitorConstants.INDICATOR_TYPE_LABEL,
-				MonitorConstants.INDICATOR_TYPE_LABEL, 50);
+				StandardRuleType.INDICATOR_TYPE.toString(),
+				StandardRuleType.INDICATOR_TYPE.toString(), 50);
 		indicatorType.setWidth(75);
 		// indicatorType.setRenderer(getbackgroundColorRenderer());
 
 		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
 		config.add(username);
-		config.add(actionType);
+		config.add(actionClassfication);
 		// config.add(classification);
 		config.add(description);
 		config.add(tags);
@@ -313,7 +296,7 @@ public class TablePanel extends DataViewPanel {
 					ColumnData _config, int rowIndex, int colIndex,
 					ListStore<CfActionGridRow> store, Grid<CfActionGridRow> grid) {
 
-				String valueOfCell = model.getTime();
+				String valueOfCell = model.getGridItemPropertySingleValue(StandardRuleType.TIME);
 				String rendered = DateTimeFormat.getFormat(
 						PredefinedFormat.DATE_FULL).format(
 						new Date(new Long(valueOfCell)));
@@ -335,7 +318,7 @@ public class TablePanel extends DataViewPanel {
 					ListStore<CfActionGridRow> store, Grid<CfActionGridRow> grid) {
 
 				String valueOfCell = "";
-				valueOfCell = model.getTags();
+				valueOfCell = model.getGridItemPropertySingleValue(StandardRuleType.TAGS);
 
 				if (valueOfCell != null) {
 					if (valueOfCell.toLowerCase().contains("abuse")) {
@@ -395,28 +378,28 @@ public class TablePanel extends DataViewPanel {
 	CfActionGridRow getTableHeaders() {
 
 		CfAction action = new CfAction();
-		action.getCfUsers().add(new CfUser("ID", "ID"));
+		action.getCfUsers().add(new CfUser(StandardRuleType.USER_ID.toString(), StandardRuleType.USER_ID.toString()));
 		action.setCfActionType(new CfActionType(
-				MonitorConstants.ACTION_TYPE_LABEL,
-				MonitorConstants.ACTION_CLASSIFICATION_LABEL, "false"));
-		action.setCfContent(new CfContent(MonitorConstants.DESCRIPTION_LABEL));
-		action.getCfContent().addProperty(new CfProperty("TOOL", "TOOL"));
+				StandardRuleType.ACTION_TYPE.toString(),
+				StandardRuleType.ACTION_CLASSIFICATION.toString(), "false"));
+		action.setCfContent(new CfContent(StandardRuleType.DESCRIPTION.toString()));
+		action.getCfContent().addProperty(new CfProperty(StandardRuleType.SENDING_TOOL.toString(), StandardRuleType.SENDING_TOOL.toString()));
 		action.getCfContent().addProperty(
-				new CfProperty("CHALLENGE_NAME", "CHALLENGE_NAME"));
+				new CfProperty(StandardRuleType.CHALLENGE_NAME.toString(), StandardRuleType.CHALLENGE_NAME.toString()));
 		action.getCfContent().addProperty(
-				new CfProperty("INDICATOR_TYPE",
-						MonitorConstants.INDICATOR_TYPE_LABEL));
+				new CfProperty(StandardRuleType.INDICATOR_TYPE.toString(),
+						StandardRuleType.INDICATOR_TYPE.toString()));
 		action.addObject(new CfObject("Object", "Object"));
 		action.getCfObjects()
 				.get(0)
 				.addProperty(
-						new CfProperty(MonitorConstants.TAGS,
-								MonitorConstants.TAGS));
+						new CfProperty(StandardRuleType.TAGS.toString(),
+								StandardRuleType.TAGS.toString()));
 		action.getCfObjects()
 				.get(0)
 				.addProperty(
-						new CfProperty(MonitorConstants.WORD_COUNT,
-								MonitorConstants.WORD_COUNT_LABEL));
+						new CfProperty(StandardRuleType.WORD_COUNT.toString(),
+								StandardRuleType.WORD_COUNT.toString()));
 		action.setTime(0);
 		CfActionGridRow headers = new CfActionGridRow(action);
 

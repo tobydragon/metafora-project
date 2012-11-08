@@ -37,7 +37,9 @@ public class CfObjectParser {
 		Map<String, CfProperty> cfProperties = new HashMap<String, CfProperty>();
 		for (XmlFragment cfPropertyElement : propertyFragment.getChildren(CommonFormatStrings.PROPERTY_STRING)){
 			CfProperty cfProperty = CfPropertyParser.fromXml(cfPropertyElement);
-			cfProperties.put(cfProperty.getName(), cfProperty);
+			if (cfProperty != null){
+				cfProperties.put(cfProperty.getName(), cfProperty);
+			}
 		}
 		return new CfObject(id, type, cfProperties);	
 	}

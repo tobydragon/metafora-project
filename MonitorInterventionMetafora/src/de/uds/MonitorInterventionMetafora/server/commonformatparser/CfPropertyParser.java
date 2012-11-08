@@ -22,13 +22,19 @@ public class CfPropertyParser {
 	public static CfProperty fromXml(XmlFragment xmlFragment){
 		String name = xmlFragment.getAttributeValue(CommonFormatStrings.NAME_STRING);
 		String value = xmlFragment.getAttributeValue(CommonFormatStrings.VALUE_STRING);
-		value = XmlUtil.convertSpecialCharacterDescriptionsBack(value);
-		String id = xmlFragment.getAttributeValue(CommonFormatStrings.ID_STRING);
-		if (id != null){
-			return new CfProperty(name, value, id);
+		if (name != null && value != null){
+			value = XmlUtil.convertSpecialCharacterDescriptionsBack(value);
+			String id = xmlFragment.getAttributeValue(CommonFormatStrings.ID_STRING);
+			if (id != null){
+				return new CfProperty(name, value, id);
+			}
+			else {
+				return new CfProperty(name, value);
+			}
 		}
 		else {
-			return new CfProperty(name, value);
+			
+			return null;
 		}
 	}
 

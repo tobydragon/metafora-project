@@ -144,7 +144,7 @@
 		<connection-name>VisualizerAnalysis</connection-name>
 		<username>VisualizerAnalysis</username>
 		<password>VisualizerAnalysis</password>
-		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
+		<chatroom>analysis@conference.metaforaserver.ku.de</chatroom>
 		<alias>VisualizerAnalysis</alias>
 		<device>VisualizerAnalysis</device>
 	</xmpp-channel-setting>
@@ -153,7 +153,7 @@
 		<connection-name>VisualizerCommand</connection-name>
 		<username>VisualizerCommand</username>
 		<password>VisualizerCommand</password>
-		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
+		<chatroom>command@conference.metaforaserver.ku.de</chatroom>
 		<alias>VisualizerCommand</alias>
 		<device>VisualizerCommand</device>
 	</xmpp-channel-setting>

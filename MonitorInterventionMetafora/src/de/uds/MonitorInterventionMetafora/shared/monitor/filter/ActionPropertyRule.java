@@ -31,10 +31,10 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 //a class representing a rule about an aspect(property) of an action (to filter or group by).
 //This could be a standard attribute or a property of a CfAction...
 public class ActionPropertyRule  implements Serializable{
-
+	
 	private static final long serialVersionUID = 3617519429426816927L;
 
-	List<String> userRoles = Arrays.asList("student");
+//	List<String> userRoles = Arrays.asList("student");
 
 	
 
@@ -49,6 +49,18 @@ public class ActionPropertyRule  implements Serializable{
 	public ActionPropertyRule() {
 	}
 
+	public ActionPropertyRule clone(){
+		ActionPropertyRule newRule  = new ActionPropertyRule();
+		newRule.propertyName= this.propertyName;
+		newRule.displayText= this.displayText;
+		newRule.operationtype= this.operationtype;
+		newRule.propertyLocation= this.propertyLocation;
+		newRule.valueToFilterBy= this.valueToFilterBy;
+		newRule.origin= this.origin;
+		
+		return newRule;
+	}
+	
 	public ActionPropertyRule(PropertyLocation actionElementType, String propertyName) {
 		this(actionElementType, propertyName, propertyName);
 	}
@@ -152,7 +164,15 @@ public class ActionPropertyRule  implements Serializable{
 	  return getKey();
   }
 
-	public List<String> getActionValue(CfAction action) {
+	public String getSingleActionValue(CfAction action){
+		List<String> values = getActionValue(action);
+		if (values.size() > 0){
+			return values.get(0);
+		}
+		else return null;
+	}
+  
+  public List<String> getActionValue(CfAction action) {
 		List<String> actionValues=new Vector<String>();
 
 		try {
@@ -169,40 +189,13 @@ public class ActionPropertyRule  implements Serializable{
 				if (propertyName.equalsIgnoreCase("id")){
 					if (action.getCfUsers().size() > 0){
 						for(CfUser user:action.getCfUsers()){
-							for (String userRole : userRoles){
-								if ( userRole.equalsIgnoreCase(user.getrole())){
-									actionValues.add(user.getid());
-								}
+							if ( "originator".equalsIgnoreCase(user.getrole())){
+								actionValues.add(user.getid());
 							}
 						}
 					}
-//					//Also look to content for user (Planning tool hack)
-//					
-//					String name=null;	
-//					if (action.getCfContent() != null){
-//						name = action.getCfContent().getPropertyValue("USERNAME"); 
-//					}
-//					if (name != null){
-//							actionValues.add(name);
-//					}
-//					else {
-//						//Also look to object for user (Planning tool hack)
-//						for(CfObject cfObject : action.getCfObjects()){
-//							name = cfObject.getPropertyValue("USERNAME"); 	
-//							if (name != null){
-//								boolean nameAlreadyPresent = false;
-//								for (String currentName : actionValues){
-//									if (currentName.equalsIgnoreCase(name)){
-//										nameAlreadyPresent=true;
-//									}
-//								}
-//								if (!nameAlreadyPresent){
-//									actionValues.add(name);
-//								}
-//							}
-//						}
-//					}
 				}
+				
 				break;
 				
 			case CONTENT:
