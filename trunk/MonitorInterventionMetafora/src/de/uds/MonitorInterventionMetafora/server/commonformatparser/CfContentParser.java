@@ -46,7 +46,9 @@ public class CfContentParser {
 		if (propertyFragment != null){
 			for (XmlFragment cfPropertyElement : propertyFragment.getChildren(CommonFormatStrings.PROPERTY_STRING)){
 				CfProperty cfProperty = CfPropertyParser.fromXml(cfPropertyElement);
-				cfProperties.put(cfProperty.getName(), cfProperty);
+				if (cfProperty != null){
+					cfProperties.put(cfProperty.getName(), cfProperty);
+				}
 			}
 		}
 		else {

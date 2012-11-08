@@ -87,7 +87,7 @@ public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMes
 
 		try{
 			xmppBridge = XMPPBridge.getConnection(connectionName);
-			xmppBridge.connect(true);
+//			xmppBridge.connect(true);
 			xmppBridge.registerListener(this);
 			xmppBridge.sendMessage(connectionName + " connected at " + System.currentTimeMillis());
 			logger.info(connectionName + " connected to xmppBridge at " + new Date());

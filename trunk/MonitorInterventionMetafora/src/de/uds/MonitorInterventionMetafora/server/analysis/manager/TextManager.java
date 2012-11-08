@@ -1,7 +1,10 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.manager;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.Vector;
 
 import org.hamcrest.core.IsAnything;
@@ -72,33 +75,33 @@ public TextManager(boolean addWordCount){
 	private List<CfProperty> getObjectPropertiesToTag(CfAction action){
 		List<CfProperty> propertiesToTag=new Vector<CfProperty>();
 		for(CfObject object:action.getCfObjects()){	
-			
-			for(String propertyKey:object.getProperties().keySet()){
-						
-						if(propertyKey.toUpperCase().endsWith("TEXT") || propertyKey.toUpperCase().endsWith("TXT")){
-							CfProperty property=object.getProperty(propertyKey);
-							propertiesToTag.add(property);
-						}	}	
-			}
-					return propertiesToTag;
+			propertiesToTag.addAll(getPropertiesToTag(object.getProperties().values()));
+		}
+		return propertiesToTag;
 	}
 	
 	private List<CfProperty> getContentPropertiesToTag(CfAction action){
-		
 		List<CfProperty> propertiesToTag=new Vector<CfProperty>();
-
 		if (action.getCfContent() != null) 
-    		for(Map.Entry<String, CfProperty> entry:action.getCfContent().getProperties().entrySet()){	
-    		    	String propertyKey = (String) entry.getKey(); 
-    			if(propertyKey.toUpperCase().endsWith("TEXT") || propertyKey.toUpperCase().endsWith("TXT")){
-    				CfProperty property=action.getCfContent().getProperty(propertyKey);
-    				propertiesToTag.add(property);
-    			}
-    			
-    		}
+			propertiesToTag.addAll(getPropertiesToTag(action.getCfContent().getProperties().values()));
 		return propertiesToTag;
-		
 	}
+	
+	private Collection<CfProperty> getPropertiesToTag(Collection<CfProperty> properties){
+		Collection<CfProperty> propertiesToTag=new Vector<CfProperty>();
+
+		if (properties != null){
+			for(CfProperty property: properties ){	
+		    	String propertyKey = property.getName(); 
+				if(propertyKey.toUpperCase().endsWith("TEXT") || propertyKey.toUpperCase().endsWith("TXT")){
+					propertiesToTag.add(property);
+				}
+			}
+		}
+		return propertiesToTag;
+	}
+	
+	
 
 	private String getTextfromPropertyList(List<CfProperty> properties){
 		

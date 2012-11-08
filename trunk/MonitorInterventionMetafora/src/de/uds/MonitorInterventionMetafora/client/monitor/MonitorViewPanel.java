@@ -29,6 +29,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModelType;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.StandardRuleBuilder;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 
@@ -121,7 +122,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 			FilterListPanel filterPanel){
 		tabbedDataViewPanel=new TabbedDataViewPanel();
 		
-		ActionPropertyRule defaultGrouping = ActionPropertyRuleSelectorModel.getDefaultGrouping();
+		ActionPropertyRule defaultGrouping = StandardRuleBuilder.getDefaultGroupingRule();
 		
 		GroupedDataViewPanel tableWithChooser = new GroupedDataViewPanel(DataViewPanelType.TABLE, monitorModel, controller, defaultGrouping, filterGroupCombo,filterPanel,tabbedDataViewPanel);
 		addDataView("tableViewTab", "Table View", tableWithChooser);

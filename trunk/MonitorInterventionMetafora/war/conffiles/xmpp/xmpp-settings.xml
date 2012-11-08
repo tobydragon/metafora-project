@@ -17,8 +17,8 @@
   
   	
   	<server>metaforaserver.ku.de</server>
-	
+	<!-- 
 	<command-agent-connection>visualizer-command-test</command-agent-connection>
 	<analysis-agent-connection>visualizer-analysis-test</analysis-agent-connection>
-	
+	 -->
 </xmpp-settings>
