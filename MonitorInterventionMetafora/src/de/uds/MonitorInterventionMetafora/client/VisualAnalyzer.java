@@ -27,6 +27,8 @@ import de.uds.MonitorInterventionMetafora.client.feedback.FeedbackPanelContainer
 import de.uds.MonitorInterventionMetafora.client.monitor.MonitorViewPanel;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
+//migen specific tools commented out for now
+//import de.uds.MonitorInterventionMetafora.client.migen.TeacherTools;
 
 
 class VisualAnalyzer implements EntryPoint {
@@ -42,10 +44,15 @@ class VisualAnalyzer implements EntryPoint {
 	    	 User.mainConfig=urlParameters.getConfig();
 	    	 User.locale = urlParameters.getLocale();
 	    	 User.receiver = urlParameters.getReceiver();
+	    	 User.testServer = urlParameters.getTestServer();
 	    	 
 	    	  FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer();
 	    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel(monitoringViewServiceServlet);
 	    	  MainContainerTabPanel _mainPanel=new MainContainerTabPanel();
+	    	  //migen specific tools commented out for now
+	    	  //TeacherTools _migenContainer=new TeacherTools(monitoringViewServiceServlet);
+	    	  //_mainPanel.addTab("Migen", _migenContainer,false);
+
 	    	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
 	    	  _mainPanel.addTab("Feedback", _feedbackPanelContainer,false);
 	    	  

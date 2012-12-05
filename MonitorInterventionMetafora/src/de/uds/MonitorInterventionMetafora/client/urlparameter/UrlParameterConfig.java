@@ -14,6 +14,7 @@ public class UrlParameterConfig {
 	private String configID="";
 	private String locale="en";
 	private String receiver="";
+	private boolean testServer= false;
 
 	public UrlParameterConfig(){
 		
@@ -26,7 +27,11 @@ public class UrlParameterConfig {
 			if (localeStr != null){
 				locale = localeStr;
 			}
-	    	 Log.info("URL Params: User-"+ username + " : mainConfig-"+ configID + " : receiver-"+ receiver + " : locale-"+ locale);
+			String testServerStr = com.google.gwt.user.client.Window.Location.getParameter("testServer");
+			if (testServerStr != null){
+			    testServer = Boolean.parseBoolean(testServerStr);
+			}
+			Log.info("URL Params: User-"+ username + " : mainConfig-"+ configID + " : receiver-"+ receiver + " : locale-"+ locale);
 		}
 	
 	public String getUsername() {
@@ -55,6 +60,9 @@ public class UrlParameterConfig {
 		return "en";
 	}
 
+	public boolean getTestServer() {
+	   return testServer; 
+	}
 
 	public String getReceiver() {
 		if (receiver!=null)
