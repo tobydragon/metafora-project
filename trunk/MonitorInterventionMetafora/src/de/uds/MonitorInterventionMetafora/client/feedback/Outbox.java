@@ -24,6 +24,7 @@ import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
@@ -40,7 +41,8 @@ public class Outbox implements CfActionCallBack {
 	public RadioButton sendModeRadioButtonResponse;
 	public int sectionWidth = 400;
 	public VerticalPanel recipientNamesColumn;
-//	private boolean recipientsSelectionButtonSetToAll=true;
+	//private boolean recipientsSelectionButtonSetToAll=true;
+	private String TOOL_NAME = "FEEDBACK_CLIENT";
 	
 	public Outbox(ComplexPanel parent)
 	{
@@ -48,7 +50,7 @@ public class Outbox implements CfActionCallBack {
 		parent.add(vpanel);
 		
 		//section label
-		final Label sectionLabel = new Label("Type your message below");
+		final Label sectionLabel = new Label("Type your message below (will be sent to " + User.receiver + ")");
 		sectionLabel.setStyleName("sectionLabel");
 		vpanel.add(sectionLabel);
 
@@ -249,59 +251,61 @@ public class Outbox implements CfActionCallBack {
 	 	feedbackMessage.setTime(GWTUtils.getTimeStamp());
 	 	  
 		 CfActionType _cfActionType=new CfActionType();
-	 	 _cfActionType.setType("feedback");
+	 	 _cfActionType.setType("FEEDBACK");
 	 	_cfActionType.setClassification("create");
 	 	_cfActionType.setSucceed("UNKOWN");
-	 	_cfActionType.setLogged("true");
-	 	
+	 	//abusing testServer parameter to set logged or not
+	 	//as of email with KP and TD "Metafora | updated XML for feedback messages"
+	 	_cfActionType.setLogged(User.testServer + "");
+	 	 	
  	 	feedbackMessage.setCfActionType(_cfActionType);
- 	 	feedbackMessage.addUser(new CfUser("FeedbackClient", MetaforaStrings.USER_ROLE_ORIGINATOR_STRING));
+
+		for(int i=0; i<recipientNamesColumn.getWidgetCount(); i++)
+		{
+			CheckBox cb = (CheckBox) recipientNamesColumn.getWidget(i);
+			if (cb.getValue()) {
+				//TODO: deal with multiple usernames (properties can't have same name value)
+				//usernames = usernames + cb.getText() + "|";
+				feedbackMessage.addUser(new CfUser(cb.getText(),"receiver"));				
+			}
+		}	 	 	
  	 	
+ 	 	//TODO: what happens with IDs? And do they matter? 
+ 	 	//Can we uniquely auto-increment them? Perhaps use that java UUID library? 
+ 	 	CfObject cfObject = new CfObject("0","MESSAGE");
+ 	 	
+ 	 	cfObject.addProperty(new CfProperty("INTERRUPTION_TYPE",getSelectedIntteruptionType()));
+ 	 	cfObject.addProperty(new CfProperty("TEXT",messageTextArea.getText()));	
+
+ 	 	feedbackMessage.addObject(cfObject);
+ 	 	
+
  	 	//TODO: make sure there is no need to worry about null here
 		String receiver = User.receiver;
 		//this shouldn't be needed but jic
 		if (receiver == null || receiver.equals("")) {
 			receiver = "Metafora";
 		}
- 	 	feedbackMessage.addUser(new CfUser(receiver, MetaforaStrings.USER_ROLE_RECEIVER_STRING));
- 	 	
- 	 	//TODO: what happens with IDs? And do they matter? 
- 	 	//Can we uniquely auto-increment them? Perhaps use that java UUID library? 
- 	 	CfObject cfObject = new CfObject("0","message");
- 	 	
- 	 	String usernames = "";
- 	 	
-		for(int i=0; i<recipientNamesColumn.getWidgetCount(); i++)
-		{
-			CheckBox cb = (CheckBox) recipientNamesColumn.getWidget(i);
-			if (cb.getValue()) {
-				//TODO: deal with multiple usernames (properties can't have same name value)
-				usernames = usernames + cb.getText() + "|";
-			}
-		}	
-		//it is easier to just remove the last |
-		if(usernames.length()>0)
-		usernames = usernames.substring(0, usernames.length()-1);
+		
+		CfContent myContent = new CfContent();
+		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_RECEIVING_TOOL,receiver));
+		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL,TOOL_NAME));
+ 	 	feedbackMessage.setCfContent(myContent);
 
-		cfObject.addProperty(new CfProperty("username",usernames));				
- 	 	cfObject.addProperty(new CfProperty("text",messageTextArea.getText()));	
- 	 	cfObject.addProperty(new CfProperty("interruption_type",getSelectedIntteruptionType()));
- 	 	feedbackMessage.addObject(cfObject);
- 	 	
 	 	ServerCommunication.getInstance().processAction("FeedbackClient",feedbackMessage,this);	
 	 	if(messageTextArea.getText().length()>0)
 	 	{
 	 		FeedbackPanelContainer.getTemplatePool().addMessageToHistory(messageTextArea.getText());
 	 	}
 	
-		
-		
+
+ 	 	
 		UserLog userActionLog=new UserLog();
     	userActionLog.setComponentType(ComponentType.FEEDBACK_OUTBOX);
-    	userActionLog.setDescription("Wizard sent feedback to the students:"+usernames+", Message: "+messageTextArea.getValue());
+    	//userActionLog.setDescription("Wizard sent feedback to the students:"+usernames+", Message: "+messageTextArea.getValue());
     	userActionLog.setUserActionType(UserActionType.SEND_FEEDBACK);
      	userActionLog.setTriggeredBy(ComponentType.FEEDBACK_OUTBOX);
-     	userActionLog.addProperty("USER_NAMES", usernames);
+     	//userActionLog.addProperty("USER_NAMES", usernames);
      	userActionLog.addProperty("TEXT",messageTextArea.getText());
      	userActionLog.addProperty("INTERUPTION_TYPE", getSelectedIntteruptionType());
     	Logger.getLoggerInstance().log(userActionLog);
