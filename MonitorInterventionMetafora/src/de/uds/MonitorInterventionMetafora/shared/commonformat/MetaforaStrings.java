@@ -44,5 +44,8 @@ public class MetaforaStrings {
 	public static final String CLASSIFICATION_OTHER_STRING = "other";
 	
 	public static final String CURRENT_TIME = "CURRENT_TIME"; 
+	
+	public static final String PROPERTY_NAME_RECEIVING_TOOL = "RECEIVING_TOOL";
+	public static final String PROPERTY_NAME_SENDING_TOOL = "SENDING_TOOL";
 
 }
