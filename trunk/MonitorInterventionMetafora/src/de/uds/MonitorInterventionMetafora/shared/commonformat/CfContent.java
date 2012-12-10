@@ -21,7 +21,8 @@ public class CfContent implements Serializable  {
 	private Map<String, CfProperty> properties;
 	
 	public CfContent(){
-		
+	  super();	
+	  this.properties = new HashMap<String, CfProperty>();
 	}
 	
 	public CfContent(String description) {
