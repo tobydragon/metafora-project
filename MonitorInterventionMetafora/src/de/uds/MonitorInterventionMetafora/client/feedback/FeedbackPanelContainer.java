@@ -12,7 +12,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import de.uds.MonitorInterventionMetafora.client.User;
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 
 public class FeedbackPanelContainer extends VerticalPanel {
 	private de.uds.MonitorInterventionMetafora.client.feedback.Outbox outbox;
@@ -22,8 +22,6 @@ public class FeedbackPanelContainer extends VerticalPanel {
 	public static String[] userNames = {"Alan", "Mary", "David"};
 	
 	public FeedbackPanelContainer(){
-		
-		
 		INSTANCE = this;
 		
 		final VerticalPanel top1VPanel = new VerticalPanel();
@@ -38,50 +36,47 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		top1VPanel.add(top2HPanel);
 		top2HPanel.add(leftVPanel);
 		top2HPanel.add(rightVPanel);
-		
 
 		outbox = new Outbox(leftVPanel);
 		
 		Date date = new Date();
-		String URL = "resources/feedback/sample-messages_" + User.locale + ".xml?nocache=" + date.getTime();
+		String locale = UrlParameterConfig.getInstance().getLocale();
+		String URL = "resources/feedback/sample-messages_" + locale + ".xml?nocache=" + date.getTime();
 		Log.info("[constructor] feedback panel URL: "+ URL);
 		RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET,URL);
 
-	    try {
-	      requestBuilder.sendRequest(null, new RequestCallback() {
-	        public void onError(Request request, Throwable exception) {
-	          requestFailed(exception);
-	        }
+		try {
+			requestBuilder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+					requestFailed(exception);
+				}
 
-	        public void onResponseReceived(Request request, Response response) {
-	    		templatePool = new TemplatePool(rightVPanel, response.getText());
-	        }
-	      });
-	    } catch (RequestException ex) {
-	      requestFailed(ex);
-	    }
+				public void onResponseReceived(Request request, Response response) {
+					templatePool = new TemplatePool(rightVPanel, response.getText());
+				}
+			});
+		} catch (RequestException ex) {
+			requestFailed(ex);
+		}
 	}
 	
 
-	  private void requestFailed(Throwable exception) {
-	    Window.alert("Failed to send the message: "
-	        + exception.getMessage());
-	  }
-	  
-
-
+	private void requestFailed(Throwable exception) {
+		Window.alert("Failed to send the message: " + exception.getMessage());
+	}
 
 	public static FeedbackPanelContainer getInstance() {
 		return INSTANCE;
 	}
 
-	public static TextArea getMessageTextArea()
-	{
+	public static TextArea getMessageTextArea() {
 		return INSTANCE.outbox.getMessageTextArea();
 	}
+	
 	public static Outbox getOutbox() {
 		return INSTANCE.outbox;
 	}
+	
 	public static TemplatePool getTemplatePool() {
 		return INSTANCE.templatePool;
 	}

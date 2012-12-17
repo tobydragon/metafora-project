@@ -26,7 +26,6 @@ import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServ
 import de.uds.MonitorInterventionMetafora.client.feedback.FeedbackPanelContainer;
 import de.uds.MonitorInterventionMetafora.client.monitor.MonitorViewPanel;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
-import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 //migen specific tools commented out for now
 //import de.uds.MonitorInterventionMetafora.client.migen.TeacherTools;
 
@@ -39,12 +38,14 @@ class VisualAnalyzer implements EntryPoint {
 	      public void run() {
 	    	  
 	    	 CommunicationServiceAsync monitoringViewServiceServlet = GWT.create(CommunicationService.class);
-	    	 UrlParameterConfig urlParameters=new UrlParameterConfig();
-	    	 User.userID= urlParameters.getUsername();
-	    	 User.mainConfig=urlParameters.getConfig();
-	    	 User.locale = urlParameters.getLocale();
-	    	 User.receiver = urlParameters.getReceiver();
-	    	 User.testServer = urlParameters.getTestServer();
+	    	 // Almer start
+//	    	 UrlParameterConfig urlParameters = UrlParameterConfig.getInstance();
+//	    	 User.userID= urlParameters.getUsername();
+//	    	 User.mainConfig=urlParameters.getConfig();
+//	    	 User.locale = urlParameters.getLocale();
+//	    	 User.receiver = urlParameters.getReceiver();
+//	    	 User.testServer = urlParameters.getTestServer();
+	    	 // Almer end
 	    	 
 	    	  FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer();
 	    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel(monitoringViewServiceServlet);
