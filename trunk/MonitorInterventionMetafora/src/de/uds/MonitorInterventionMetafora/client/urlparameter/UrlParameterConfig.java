@@ -15,6 +15,12 @@ public class UrlParameterConfig {
 	private static UrlParameterConfig singletonInstance = null;
 
 	private UrlParameterConfig() {
+		/*
+		 * TODO: use default values if url params are not provided
+		 * if URL params are not NULL - read url params
+		 * else if xml_file_is_found - use xml
+		 * else - use hard-coded values
+		 */
 		username = com.google.gwt.user.client.Window.Location.getParameter("user");
 		password = com.google.gwt.user.client.Window.Location.getParameter("pw");
 		configID = com.google.gwt.user.client.Window.Location.getParameter("config");
