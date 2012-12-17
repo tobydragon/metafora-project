@@ -11,6 +11,7 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import de.uds.MonitorInterventionMetafora.client.User;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -162,7 +163,8 @@ public String getDescription(){
 			
 		CfActionType cfActionType = new CfActionType("LOG",userActionType.toString(), "true","true");
 		CfAction logAction = new CfAction(System.currentTimeMillis(), cfActionType);
-		logAction.addUser(new CfUser(User.userID,User.userID));
+		String userID = UrlParameterConfig.getInstance().getUsername();
+		logAction.addUser(new CfUser(userID, userID));
 		
 		CfObject	logObject = new CfObject(component.toString(),component.toString());
 		String rules="[";

@@ -10,18 +10,17 @@ import com.google.gwt.user.client.ui.DecoratedPopupPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RadioButton;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
-import de.uds.MonitorInterventionMetafora.client.User;
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.CfActionCallBack;
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -50,7 +49,8 @@ public class Outbox implements CfActionCallBack {
 		parent.add(vpanel);
 		
 		//section label
-		final Label sectionLabel = new Label("Type your message below (will be sent to " + User.receiver + ")");
+		String receiver = UrlParameterConfig.getInstance().getReceiver();
+		final Label sectionLabel = new Label("Type your message below (will be sent to " + receiver + ")");
 		sectionLabel.setStyleName("sectionLabel");
 		vpanel.add(sectionLabel);
 
@@ -256,7 +256,8 @@ public class Outbox implements CfActionCallBack {
 	 	_cfActionType.setSucceed("UNKOWN");
 	 	//abusing testServer parameter to set logged or not
 	 	//as of email with KP and TD "Metafora | updated XML for feedback messages"
-	 	_cfActionType.setLogged(User.testServer + "");
+	 	String testServer = UrlParameterConfig.getInstance().getTestServer() + "";
+	 	_cfActionType.setLogged(testServer);
 	 	 	
  	 	feedbackMessage.setCfActionType(_cfActionType);
 
@@ -281,7 +282,7 @@ public class Outbox implements CfActionCallBack {
  	 	
 
  	 	//TODO: make sure there is no need to worry about null here
-		String receiver = User.receiver;
+		String receiver = UrlParameterConfig.getInstance().getReceiver();
 		//this shouldn't be needed but jic
 		if (receiver == null || receiver.equals("")) {
 			receiver = "Metafora";
