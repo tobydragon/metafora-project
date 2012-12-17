@@ -6,13 +6,13 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class UrlParameterConfig {
 	
-	private String username = "";
-	private String password = "";
-	private String configID = "";
-	private String locale = "en";
-	private String receiver = "";
-	private boolean testServer = false;
-	private static UrlParameterConfig singletonInstance = null;
+	private String username;
+	private String password;
+	private String configID;
+	private String locale;
+	private String receiver;
+	private boolean testServer;
+	private static UrlParameterConfig singletonInstance;
 
 	private UrlParameterConfig() {
 		/*
@@ -25,15 +25,17 @@ public class UrlParameterConfig {
 		password = com.google.gwt.user.client.Window.Location.getParameter("pw");
 		configID = com.google.gwt.user.client.Window.Location.getParameter("config");
 		receiver = com.google.gwt.user.client.Window.Location.getParameter("receiver");
+		locale = com.google.gwt.user.client.Window.Location.getParameter("locale");
 
-		String localeStr = com.google.gwt.user.client.Window.Location.getParameter("locale");
-		if (localeStr != null) {
-			locale = localeStr;
-		}
+		username = (username == null) ? "" : username;
+		password = (password == null) ? "" : password;
+		configID = (configID == null) ? "" : configID;
+		receiver = (receiver == null) ? "" : receiver;
+		locale = (locale == null) ? "" : locale;
+		
 		String testServerStr = com.google.gwt.user.client.Window.Location.getParameter("testServer");
-		if (testServerStr != null) {
-			testServer = Boolean.parseBoolean(testServerStr);
-		}
+		testServer = (testServerStr == null) ? false : Boolean.parseBoolean(testServerStr); 
+
 		Log.info("URL Params: User-" + username + " : mainConfig-" + configID + " : receiver-" + receiver + " : locale-" + locale);
 	}
 
