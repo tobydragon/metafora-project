@@ -26,14 +26,14 @@ public class UserLog {
 	 private UserActionType userActionType;
 	 private String descriptionText;
 	 private ComponentType triggeredBy;
-	 private User user;
+//	 private User user;
 	 private List<FilterGridRow> filterRules;
 	 private Map<String, String> properties;
 	 
 	public UserLog(){
 		
 		properties=new HashMap<String,String>();
-		user=new User();
+//		user=new User();
 		filterRules=new Vector<FilterGridRow>();
 	}
 	
@@ -52,13 +52,13 @@ public class UserLog {
 		return component;
 	}
 	
-	public void setUser(User user){
-		this.user=user;
-	}
+//	public void setUser(User user){
+//		this.user=user;
+//	}
 	
-	public User getUser(){
-		return user;
-	}
+//	public User getUser(){
+//		return user;
+//	}
 	public void setTriggeredBy(ComponentType triggeredBy){
 		this.triggeredBy=triggeredBy;
 		}
