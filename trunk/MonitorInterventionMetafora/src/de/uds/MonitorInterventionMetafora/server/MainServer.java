@@ -167,32 +167,24 @@ public class MainServer extends RemoteServiceServlet implements
 		return readConfiguration(true);
 	}
 
-	synchronized void  toLogFile(String logAction) throws IOException {
-
+	synchronized void toLogFile(String logAction) throws IOException {
 		String fileName =logDir+GeneralUtil.getCurrentDate()+".txt";
 
 		fileName=GeneralUtil.getRealPath(fileName);
 		File file = new File(fileName);
 		System.out.println("File:"+fileName);
 		if (!file.exists()) {
-			logger.info("[LogFile] File does not exist.Creating file:"
-					+ fileName);
+			logger.info("[LogFile] File does not exist. Creating file:" + fileName);
 			file.createNewFile();
 		}
 
-		
+		FileWriter fileWriter = new FileWriter(file, true);
+		BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
+		bufferWriter.append(logAction);
 	
-		
-		FileWriter fileWritter = new FileWriter(file.getName(), true);
-		BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
-		bufferWritter.append(logAction);
-	
-	
-		bufferWritter.close();
+		bufferWriter.close();
+		fileWriter.close();
 		logger.info("[LogFile] Log is written to file.File:" + fileName);
-		
-		
-		
 
 	}
 
