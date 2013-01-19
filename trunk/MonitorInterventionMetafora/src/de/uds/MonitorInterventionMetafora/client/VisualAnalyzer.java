@@ -28,6 +28,7 @@ import de.uds.MonitorInterventionMetafora.client.monitor.MonitorViewPanel;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 //migen specific tools commented out for now
 //import de.uds.MonitorInterventionMetafora.client.migen.TeacherTools;
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
 
 
 class VisualAnalyzer implements EntryPoint {
@@ -46,18 +47,22 @@ class VisualAnalyzer implements EntryPoint {
 //	    	 User.receiver = urlParameters.getReceiver();
 //	    	 User.testServer = urlParameters.getTestServer();
 	    	 // Almer end
-	    	 
-	    	  FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer();
+
+	    	 MainContainerTabPanel _mainPanel=new MainContainerTabPanel();
+
+	    	 //If userType is not wizardy then monitoring is not needed
+	    	 if (UrlParameterConfig.getInstance().getUserType() != UserType.METAFORA_USER) {
 	    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel(monitoringViewServiceServlet);
-	    	  MainContainerTabPanel _mainPanel=new MainContainerTabPanel();
 	    	  //migen specific tools commented out for now
 	    	  //TeacherTools _migenContainer=new TeacherTools(monitoringViewServiceServlet);
 	    	  //_mainPanel.addTab("Migen", _migenContainer,false);
-
 	    	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
-	    	  _mainPanel.addTab("Feedback", _feedbackPanelContainer,false);
+	    	 } 
+	    	 
+	    	 FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer();
+	    	 _mainPanel.addTab("Feedback", _feedbackPanelContainer,false);
 	    	  
-	    	  RootPanel.get().add(_mainPanel);
+	    	 RootPanel.get().add(_mainPanel);
 	
 	    	
 	      }}, PieChart.PACKAGE);

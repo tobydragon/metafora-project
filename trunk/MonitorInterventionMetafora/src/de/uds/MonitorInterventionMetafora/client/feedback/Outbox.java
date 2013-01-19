@@ -131,8 +131,7 @@ public class Outbox implements CfActionCallBack {
 		allNone.add(new SelectAllRecipientsButton("all",true));
 		allNone.add(new SelectAllRecipientsButton("none",false));
 		userGroupColumn.add(allNone);
-		
-		createCheckBoxes(FeedbackPanelContainer.userNames);
+		createCheckBoxes(FeedbackPanelContainer.userIDsArray);
 
 		//edit students button
 		final Button editStudentsButton = new Button("edit");
@@ -265,7 +264,6 @@ public class Outbox implements CfActionCallBack {
 		{
 			CheckBox cb = (CheckBox) recipientNamesColumn.getWidget(i);
 			if (cb.getValue()) {
-				//TODO: deal with multiple usernames (properties can't have same name value)
 				//usernames = usernames + cb.getText() + "|";
 				feedbackMessage.addUser(new CfUser(cb.getText(),"receiver"));				
 			}
@@ -280,12 +278,11 @@ public class Outbox implements CfActionCallBack {
 
  	 	feedbackMessage.addObject(cfObject);
  	 	
-
- 	 	//TODO: make sure there is no need to worry about null here
 		String receiver = UrlParameterConfig.getInstance().getReceiver();
 		//this shouldn't be needed but jic
 		if (receiver == null || receiver.equals("")) {
-			receiver = "Metafora";
+			receiver = MetaforaStrings.RECEIVER_METAFORA;
+
 		}
 		
 		CfContent myContent = new CfContent();

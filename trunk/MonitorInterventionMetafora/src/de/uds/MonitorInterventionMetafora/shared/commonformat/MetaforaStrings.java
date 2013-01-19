@@ -47,5 +47,7 @@ public class MetaforaStrings {
 	
 	public static final String PROPERTY_NAME_RECEIVING_TOOL = "RECEIVING_TOOL";
 	public static final String PROPERTY_NAME_SENDING_TOOL = "SENDING_TOOL";
-
+	
+	public static final String RECEIVER_METAFORA = "METAFORA";
+	public static final String RECEIVER_METAFORA_TEST = "METAFORA_TEST";
 }

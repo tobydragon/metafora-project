@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.client.feedback;
 
 import java.util.Date;
+import java.util.StringTokenizer; 
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.http.client.Request;
@@ -19,10 +20,16 @@ public class FeedbackPanelContainer extends VerticalPanel {
 	private TemplatePool templatePool;
 	static private FeedbackPanelContainer INSTANCE;
 
-	public static String[] userNames = {"Alan", "Mary", "David"};
+	public static String[] userIDsArray = {"Alan", "Mary", "David"};
 	
 	public FeedbackPanelContainer(){
 		INSTANCE = this;
+		
+		//TOODO: this is awful and only a shortcut now
+		String configUserIDs = UrlParameterConfig.getInstance().getReceiverIDs();
+		if ((configUserIDs != null) || (configUserIDs != "")) {
+		    userIDsArray= parseStringToArray(configUserIDs);
+		}
 		
 		final VerticalPanel top1VPanel = new VerticalPanel();
 		final VerticalPanel leftVPanel = new VerticalPanel();
@@ -61,6 +68,15 @@ public class FeedbackPanelContainer extends VerticalPanel {
 	}
 	
 
+	/**
+	 * Accepts a string separated with | and returns an array
+	 * @param s
+	 */
+	private String[] parseStringToArray(String listOfStrings) {
+	    String delimiter = "\\|";
+	    return listOfStrings.split(delimiter);	    
+	}
+	
 	private void requestFailed(Throwable exception) {
 		Window.alert("Failed to send the message: " + exception.getMessage());
 	}
@@ -80,4 +96,5 @@ public class FeedbackPanelContainer extends VerticalPanel {
 	public static TemplatePool getTemplatePool() {
 		return INSTANCE.templatePool;
 	}
+	
 }
