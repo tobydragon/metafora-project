@@ -40,12 +40,12 @@ public class UrlParameterConfig {
 
 		if (userTypeString == null) { 
 		    userType = UserType.METAFORA_USER;
-		} else if (userTypeString.equals("standard")) {
-	                userType = UserType.STANDARD_WIZARD;
-		} else if (userTypeString.equals("power")) {
+		} else if (userTypeString.equals("METAFORA_USER")) {
+		    userType = UserType.METAFORA_USER;
+		} else if (userTypeString.equals("POWER")) {
 	        	userType = UserType.POWER_WIZARD;
-		} else userType = UserType.METAFORA_USER;
-
+		} else userType = UserType.STANDARD_WIZARD;
+		
 		username = (username == null) ? "" : username;
 		receiverIDs = (receiverIDs == null) ? "" : receiverIDs;
 		password = (password == null) ? "" : password;
