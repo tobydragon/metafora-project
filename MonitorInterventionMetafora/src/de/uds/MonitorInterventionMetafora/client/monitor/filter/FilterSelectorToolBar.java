@@ -1,46 +1,33 @@
 package de.uds.MonitorInterventionMetafora.client.monitor.filter;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import com.extjs.gxt.ui.client.data.ModelData;
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
-import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.FieldEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
-import com.extjs.gxt.ui.client.store.Store;
-import com.extjs.gxt.ui.client.store.StoreEvent;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
-import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
+import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboValue;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.toolbar.LabelToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-
-import de.uds.MonitorInterventionMetafora.client.User;
-import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
-import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestConfigurationCallBack;
-import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.monitor.ClientMonitorController;
-import de.uds.MonitorInterventionMetafora.client.monitor.UpdaterToolbar;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
-import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class FilterSelectorToolBar extends ToolBar implements RequestConfigurationCallBack{
 	
@@ -374,23 +361,22 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 		
 	}
 
-
 	@Override
 	public void onSuccess(Configuration result) {
-		filterSets=new HashMap<String, ActionFilter>();
-		filterSets=result.getActionFilters();
+		filterSets = new HashMap<String, ActionFilter>();
+		filterSets = result.getActionFilters();
 		renderToolBar();
-		if(isMainFilterSet){
-		if(User.mainConfig!=null){
-			 filterGroupCombo.setSimpleValue(User.mainConfig);
-			 	model.applyMainFilter();
+		if (isMainFilterSet) {
+			String mainConfig = UrlParameterConfig.getInstance().getConfig();
+			if (mainConfig != null) {
+				filterGroupCombo.setSimpleValue(mainConfig);
+				model.applyMainFilter();
 				model.updateFilteredList();
 				controller.filtersUpdated();
 				applyMainFilterBtn.setEnabled(false);
-			 }
+			}
 		}
-		
-		
+
 	}
 
 
