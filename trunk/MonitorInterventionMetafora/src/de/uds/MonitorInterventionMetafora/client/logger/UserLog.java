@@ -7,8 +7,6 @@ import java.util.Vector;
 
 import com.extjs.gxt.ui.client.store.ListStore;
 
-
-import de.uds.MonitorInterventionMetafora.client.User;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
