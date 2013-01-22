@@ -1,6 +1,5 @@
 package de.uds.MonitorInterventionMetafora.client.feedback;
 
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
@@ -11,6 +10,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.TextArea;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
@@ -21,6 +21,7 @@ import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -33,8 +34,10 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 public class Outbox implements CfActionCallBack {
 	
 	private TextArea messageTextArea;
+	private TextBox objectIdsTextBox;
 	private VerticalPanel vpanel,sendModeRadioColumn;
 	private HorizontalPanel sendOptionsRow;
+	private HorizontalPanel objectIdsRow;
 	public RadioButton sendModeRadioButtonPopup;
 	public RadioButton sendModeRadioButtonSuggestion;
 	public RadioButton sendModeRadioButtonResponse;
@@ -67,6 +70,19 @@ public class Outbox implements CfActionCallBack {
 		sendOptionsRow = new HorizontalPanel();
 		sendOptionsRow.setSpacing(3);
 		sendOptionsRow.add(new Label("send as"));
+		
+		// object ids
+		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.POWER_WIZARD)) {
+			objectIdsRow = new HorizontalPanel();
+			objectIdsRow.setSpacing(3);
+			objectIdsRow.add(new Label("object ids"));
+			objectIdsTextBox = new TextBox();
+			objectIdsTextBox.setText("");
+			objectIdsTextBox.selectAll();
+			objectIdsRow.add(objectIdsTextBox);
+			vpanel.add(objectIdsRow);
+		}
+		
 		//send mode
 		sendModeRadioColumn = new VerticalPanel();
 		sendModeRadioButtonPopup = new RadioButton("sendMode", "No Interruption");
@@ -191,6 +207,7 @@ public class Outbox implements CfActionCallBack {
 	{
 		return messageTextArea;
 	}
+	
 	@Override
 	public void onFailure(Throwable caught) {
 		// TODO Auto-generated method stub
@@ -252,7 +269,7 @@ public class Outbox implements CfActionCallBack {
 		 CfActionType _cfActionType=new CfActionType();
 	 	 _cfActionType.setType("FEEDBACK");
 	 	_cfActionType.setClassification("create");
-	 	_cfActionType.setSucceed("UNKOWN");
+	 	_cfActionType.setSucceed("UNKNOWN");
 	 	//abusing testServer parameter to set logged or not
 	 	//as of email with KP and TD "Metafora | updated XML for feedback messages"
 	 	String testServer = UrlParameterConfig.getInstance().getTestServer() + "";
@@ -271,12 +288,20 @@ public class Outbox implements CfActionCallBack {
  	 	
  	 	//TODO: what happens with IDs? And do they matter? 
  	 	//Can we uniquely auto-increment them? Perhaps use that java UUID library? 
- 	 	CfObject cfObject = new CfObject("0","MESSAGE");
+ 	 	CfObject cfObject = new CfObject("0", MetaforaStrings.PROPERTY_VALUE_MESSAGE_STRING);
  	 	
- 	 	cfObject.addProperty(new CfProperty("INTERRUPTION_TYPE",getSelectedIntteruptionType()));
- 	 	cfObject.addProperty(new CfProperty("TEXT",messageTextArea.getText()));	
-
+ 	 	cfObject.addProperty(new CfProperty("INTERRUPTION_TYPE", getSelectedIntteruptionType()));
+ 	 	cfObject.addProperty(new CfProperty("TEXT", messageTextArea.getText()));
  	 	feedbackMessage.addObject(cfObject);
+
+ 	 	if (UrlParameterConfig.getInstance().getUserType().equals(UserType.POWER_WIZARD)) {
+ 	 		String objectIdsString = objectIdsTextBox.getText();
+ 	 		String[] split = objectIdsString.replaceAll("\\s+", "").split(",");
+ 	 		for (String id : split) {
+ 	 			feedbackMessage.addObject(new CfObject(id, MetaforaStrings.REFERABLE_OBJECT_STRING));
+ 	 		}
+ 	 	}
+ 	 	
  	 	
 		String receiver = UrlParameterConfig.getInstance().getReceiver();
 		//this shouldn't be needed but jic
@@ -298,17 +323,18 @@ public class Outbox implements CfActionCallBack {
 	
 
  	 	
-		UserLog userActionLog=new UserLog();
+		UserLog userActionLog = new UserLog();
     	userActionLog.setComponentType(ComponentType.FEEDBACK_OUTBOX);
     	//userActionLog.setDescription("Wizard sent feedback to the students:"+usernames+", Message: "+messageTextArea.getValue());
     	userActionLog.setUserActionType(UserActionType.SEND_FEEDBACK);
      	userActionLog.setTriggeredBy(ComponentType.FEEDBACK_OUTBOX);
      	//userActionLog.addProperty("USER_NAMES", usernames);
-     	userActionLog.addProperty("TEXT",messageTextArea.getText());
+     	userActionLog.addProperty("TEXT", messageTextArea.getText());
      	userActionLog.addProperty("INTERUPTION_TYPE", getSelectedIntteruptionType());
     	Logger.getLoggerInstance().log(userActionLog);
 		
-    	messageTextArea.setText("");	
+    	messageTextArea.setText("");
+    	objectIdsTextBox.setText("");
 	}
 	
 	/*

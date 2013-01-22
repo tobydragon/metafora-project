@@ -28,6 +28,7 @@ public class MetaforaStrings {
 	public static final String PROPERTY_TYPE_TEMPLATE_STRING = "TEMPLATE";
 	public static final String PROPERTY_TYPE_REQUEST_ID_STRING = "REQUEST_ID";
 	public static final String PROPERTY_TYPE_FILE_URL_STRING = "URL";
+	public static final String PROPERTY_VALUE_MESSAGE_STRING = "MESSAGE";
 
 
 	public static final String PROPERTY_TYPE_ELEMENT_TYPE_STRING = "ELEMENT_TYPE";
@@ -38,7 +39,7 @@ public class MetaforaStrings {
 	public static final String OBJECT_TYPE_HELP_REQUEST_STRING = "HELP_REQUEST";
 	
 	public static final String REFERABLE_OBJECT_STRING = "REFERABLE_OBJECT";
-	public static final String ACTION_TYPE_SUCCEEDED_UNKNOWN_STRING = "UNKOWN";
+	public static final String ACTION_TYPE_SUCCEEDED_UNKNOWN_STRING = "UNKNOWN";
 	public static final String USER_ROLE_ORIGINATOR_STRING = "originator";
 	public static final String USER_ROLE_RECEIVER_STRING = "receiver";
 	public static final String CLASSIFICATION_OTHER_STRING = "other";
