@@ -39,7 +39,7 @@ public class UrlParameterConfig {
 		String userTypeString = com.google.gwt.user.client.Window.Location.getParameter("userType");
 
 		if (userTypeString == null) { 
-		    userType = UserType.METAFORA_USER;
+		    userType = UserType.STANDARD_WIZARD;
 		} else if (userTypeString.equals("METAFORA_USER")) {
 		    userType = UserType.METAFORA_USER;
 		} else if (userTypeString.equals("POWER")) {
