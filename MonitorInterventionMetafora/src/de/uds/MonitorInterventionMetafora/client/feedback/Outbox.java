@@ -296,9 +296,10 @@ public class Outbox implements CfActionCallBack {
 
  	 	if (UrlParameterConfig.getInstance().getUserType().equals(UserType.POWER_WIZARD)) {
  	 		String objectIdsString = objectIdsTextBox.getText();
- 	 		String[] split = objectIdsString.replaceAll("\\s+", "").split(",");
+ 	 		String[] split = objectIdsString.replaceAll("\\D*", " ").replaceAll("\\s+", ",").split(",");
  	 		for (String id : split) {
- 	 			feedbackMessage.addObject(new CfObject(id, MetaforaStrings.REFERABLE_OBJECT_STRING));
+ 	 			if (!"".equals(id))
+ 	 				feedbackMessage.addObject(new CfObject(id, MetaforaStrings.REFERABLE_OBJECT_STRING));
  	 		}
  	 	}
  	 	
