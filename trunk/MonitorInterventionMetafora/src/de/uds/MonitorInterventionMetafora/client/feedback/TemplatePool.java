@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.client.feedback;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -8,6 +9,7 @@ import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ComplexPanel;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TabBar;
@@ -25,6 +27,14 @@ import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
+import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class TemplatePool {
 	private VerticalPanel vpanel;
@@ -141,19 +151,85 @@ public class TemplatePool {
 		textArea.setText(XML);
 		textArea.setSize("480px", "450px");
 
-		Button xmlVPanelButton = new Button("Re-populate");
-		xmlVPanelButton.addClickHandler(new ClickHandler() {
+		// Re-populate button
+		Button repopulateButton = new Button("Re-populate");
+		repopulateButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
 				populateTabs(textArea.getText());
 			}
 		});
+		
+		// Send button
+		Button sendButton = new Button("Send");
+		sendButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				sendSuggestedMessages(textArea.getText());
+			}
+		});
+		
+		// Refresh button
+		Button refreshButton = new Button("Refresh");
+		refreshButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				updateMessages();
+			}
 
-		xmlVPanel.add(xmlVPanelButton);
+		});
+		
+		HorizontalPanel buttonsPanel = new HorizontalPanel();
+		buttonsPanel.setSpacing(3);
+		buttonsPanel.add(repopulateButton);
+		buttonsPanel.add(sendButton);
+		buttonsPanel.add(refreshButton);
+		xmlVPanel.add(buttonsPanel);
+		
 		xmlVPanel.add(textArea);
-
+		
 	}
 
+	/**
+	 * 
+	 * @param XML
+	 */
+	private void sendSuggestedMessages(String XML) {
+		Outbox outbox = FeedbackPanelContainer.getInstance().getOutbox();
+		List<String> userIds = outbox.getSelectedRecipients();
+		
+		// Create cfAction
+		CfActionType cfActionType = new CfActionType();
+		cfActionType.setType(MetaforaStrings.ACTION_TYPE_SUGGESTED_MESSAGES_STRING);
+		cfActionType.setClassification("create");
+		cfActionType.setSucceed(MetaforaStrings.ACTION_TYPE_SUCCEEDED_UNKNOWN_STRING);
+		cfActionType.setLogged("false");
+
+		CfAction cfAction = new CfAction(GWTUtils.getTimeStamp(), cfActionType);
+		for (String userId : userIds) {
+			cfAction.addUser(new CfUser(userId, "receiver"));
+		}
+		
+		String receiver = UrlParameterConfig.getInstance().getReceiver();
+		receiver = (receiver == null || receiver.equals("")) ? MetaforaStrings.RECEIVER_METAFORA : receiver; 
+				
+		CfContent cfContent = new CfContent("<![CDATA[ <suggestions>" + XML + "</suggestions> ]]>");
+		cfContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_RECEIVING_TOOL, receiver));
+		cfContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL,"FEEDBACK_CLIENT"));
+		
+		cfAction.setCfContent(cfContent);
+		
+//		outbox.processAction(cfAction);
+	}
+
+	/**
+	 * 
+	 */
+	private void updateMessages() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	private void addButtonToTabWidget(TabWidget tabWidget, final String msgText) {
 		Button b = new Button(msgText);
 		b.setWidth("480px");

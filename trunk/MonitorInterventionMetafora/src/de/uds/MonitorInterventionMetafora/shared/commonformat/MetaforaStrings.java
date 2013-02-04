@@ -15,6 +15,7 @@ public class MetaforaStrings {
 	public static final String ACTION_TYPE_CREATE_ELEMENT_STRING = "CREATE_ELEMENT";
 	public static final String ACTION_TYPE_UPDATE_ELEMENT_STRING = "UPDATE_ELEMENT";
 	public static final String ACTION_TYPE_DISPLAY_STATE_URL_STRING = "DISPLAY_STATE_URL";
+	public static final String ACTION_TYPE_SUGGESTED_MESSAGES_STRING = "SUGGESTED_MESSAGES";
 	
 	//property types
 	public static final String PROPERTY_TYPE_MAP_ID_STRING = "MAP_ID";
