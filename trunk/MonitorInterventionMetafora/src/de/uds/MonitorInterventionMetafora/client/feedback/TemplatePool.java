@@ -2,8 +2,6 @@ package de.uds.MonitorInterventionMetafora.client.feedback;
 
 import java.util.ArrayList;
 
-import com.extjs.gxt.ui.client.widget.Info;
-import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.SelectionEvent;
@@ -11,13 +9,15 @@ import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ComplexPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TabBar;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.ToggleButton;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.xml.client.Document;
 import com.google.gwt.xml.client.Element;
+import com.google.gwt.xml.client.NamedNodeMap;
+import com.google.gwt.xml.client.Node;
 import com.google.gwt.xml.client.NodeList;
 import com.google.gwt.xml.client.XMLParser;
 
@@ -26,49 +26,47 @@ import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 
-
-
 public class TemplatePool {
 	private VerticalPanel vpanel;
 	private TabBar tabBar;
 	private ArrayList<TabWidget> tabWidgets;
 	private HistoryTabWidget messageHistory;
 	private VerticalPanel xmlVPanel;
-	private String tabTitle="";
-	
-	public TemplatePool(ComplexPanel parent, String XML)
-	{
-		vpanel = new VerticalPanel();		
-		//vpanel.setSpacing(20);
+	private String tabTitle = "";
+
+	public TemplatePool(ComplexPanel parent, String XML) {
+		vpanel = new VerticalPanel();
+		// vpanel.setSpacing(20);
 		parent.add(vpanel);
-		 
-		//section label
+
+		// section label
 		final Label sectionLabel = new Label("Select any of the message templates from any of the tabs below");
 		sectionLabel.setStyleName("sectionLabel");
 		vpanel.add(sectionLabel);
 
 		tabBar = new TabBar();
 
-		//create and populate TABs based on XML
+		// create and populate TABs based on XML
 		populateTabs(XML);
-		
+
 		final ScrollPanel scrollPanel = new ScrollPanel();
 		scrollPanel.setHeight("500px");
-		//scrollPanel.setWidget(tools.get(0).getButtonsVPanel());
-		tabBar.addSelectionHandler(new SelectionHandler<Integer>(){
+		// scrollPanel.setWidget(tools.get(0).getButtonsVPanel());
+		tabBar.addSelectionHandler(new SelectionHandler<Integer>() {
 
 			@Override
 			public void onSelection(SelectionEvent<Integer> event) {
 				if (tabBar.getTabHTML(event.getSelectedItem()).equals("XML")) {
-				   scrollPanel.setWidget(xmlVPanel);
+					scrollPanel.setWidget(xmlVPanel);
 				} else {
-				   scrollPanel.setWidget(tabWidgets.get(event.getSelectedItem()).getMainVPanel());
+					scrollPanel.setWidget(tabWidgets.get(
+							event.getSelectedItem()).getMainVPanel());
 				}
-				
-				tabTitle=tabBar.getTabHTML(event.getSelectedItem());
-				
+
+				tabTitle = tabBar.getTabHTML(event.getSelectedItem());
+
 			}
-			
+
 		});
 		tabBar.selectTab(0, true);
 
@@ -77,108 +75,117 @@ public class TemplatePool {
 	}
 
 	private void populateTabs(String XML) {
-	//create new list of tab widgets
-	tabWidgets = new ArrayList<TabWidget>();
-	//clean tabs
-	int numberOfTabsToremove = tabBar.getTabCount(); 	
-	for (int i=0; i<numberOfTabsToremove; i++) {
-		//Yes, it is removeTab(0) not i. You need to remove always the first
-		//because they get re-numbered !
-		tabBar.removeTab(0);
-	}
-	
-	//create tabs based on top-level XML nodes
-	Document xmlDocument = XMLParser.parse(XML);
-	Element docElement = xmlDocument.getDocumentElement();
-	XMLParser.removeWhitespace(docElement);
-	
-	//get the elements called <sets>
-	NodeList sets = docElement.getElementsByTagName("set");
-	int numberOfSets = sets.getLength();
-	for (int iset=0; iset<numberOfSets; iset++) {
-	   Element setOfMessages = (Element) sets.item(iset);
-	   String tabTitle = setOfMessages.getAttributes().getNamedItem("id").getNodeValue();
-	 	//check here if there are more sets
-	   NodeList messages = setOfMessages.getElementsByTagName("message");
-	   int numberOfMessages = messages.getLength();
-	   TabWidget tabWidget = new TabWidget();
-	   tabWidgets.add(tabWidget);
-	   tabWidget.setTitle(tabTitle);
-	   if(iset==0){
-	   this.tabTitle=tabTitle;
-	   }
-	   tabBar.addTab(tabTitle);
-	                                      
-		for (int imessage=0; imessage<numberOfMessages; imessage++) {
-			final String msgText = messages.item(imessage).getFirstChild().getNodeValue();
-			addButtonToTabWidget(tabWidget, msgText);
+		// create new list of tab widgets
+		tabWidgets = new ArrayList<TabWidget>();
+		// clean tabs
+		int numberOfTabsToremove = tabBar.getTabCount();
+		for (int i = 0; i < numberOfTabsToremove; i++) {
+			// Yes, it is removeTab(0) not i. You need to remove always the
+			// first
+			// because they get re-numbered !
+			tabBar.removeTab(0);
 		}
-	}
-	
-	//create tab for message history
-	messageHistory = new HistoryTabWidget();
-	String sentMessagesTitle = "Sent";
-	messageHistory.setTitle(sentMessagesTitle);
-	tabWidgets.add(messageHistory);
-	tabBar.insertTab(sentMessagesTitle, tabBar.getTabCount());
 
+		// create tabs based on top-level XML nodes
+		Document xmlDocument = XMLParser.parse(XML);
+		Element docElement = xmlDocument.getDocumentElement();
+		XMLParser.removeWhitespace(docElement);
 
-	//create tab for the XML content
-	tabBar.addTab("XML");
-	
-	xmlVPanel = new VerticalPanel();
-	final TextArea textArea = new TextArea(); 
-	textArea.setText(XML);
-	textArea.setSize("480px","450px");
-	
-	Button xmlVPanelButton = new Button("Re-populate");
-	xmlVPanelButton.addClickHandler(new ClickHandler()
-	{
-		@Override
-		public void onClick(ClickEvent event) {
-			populateTabs(textArea.getText());
+		// get the elements called <sets>
+		NodeList sets = docElement.getElementsByTagName("set");
+		int numberOfSets = sets.getLength();
+		for (int iset = 0; iset < numberOfSets; iset++) {
+			Element setOfMessages = (Element) sets.item(iset);
+			String tabTitle = setOfMessages.getAttributes().getNamedItem("id").getNodeValue();
+			// check here if there are more sets
+			NodeList messages = setOfMessages.getElementsByTagName("message");
+			int numberOfMessages = messages.getLength();
+			TabWidget tabWidget = new TabWidget();
+			tabWidgets.add(tabWidget);
+			tabWidget.setTitle(tabTitle);
+			if (iset == 0) {
+				this.tabTitle = tabTitle;
+			}
+			tabBar.addTab(tabTitle);
+
+			for (int imessage = 0; imessage < numberOfMessages; imessage++) {
+				Node messageItem = messages.item(imessage);
+				String msgText = messageItem.getFirstChild().getNodeValue();
+				StringBuffer strBuffer = new StringBuffer(msgText);
+				if (messageItem.hasAttributes()) {
+					NamedNodeMap msgAttributes = messageItem.getAttributes();
+					for (int iattribute = 0; iattribute < msgAttributes.getLength(); iattribute++) {
+						Node msgAttribute = msgAttributes.item(iattribute);
+						if (msgAttribute.getNodeName().equals("style") && msgAttribute.getNodeValue().equals("bold")) {
+							strBuffer.insert(0, "<b>");
+							strBuffer.append("</b>");
+						}
+					}
+				}
+				addButtonToTabWidget(tabWidget, strBuffer.toString());
+			}
 		}
-	});
-	
-	xmlVPanel.add(xmlVPanelButton);
-	xmlVPanel.add(textArea);
+
+		// create tab for message history
+		messageHistory = new HistoryTabWidget();
+		String sentMessagesTitle = "Sent";
+		messageHistory.setTitle(sentMessagesTitle);
+		tabWidgets.add(messageHistory);
+		tabBar.insertTab(sentMessagesTitle, tabBar.getTabCount());
+
+		// create tab for the XML content
+		tabBar.addTab("XML");
+
+		xmlVPanel = new VerticalPanel();
+		final TextArea textArea = new TextArea();
+		textArea.setText(XML);
+		textArea.setSize("480px", "450px");
+
+		Button xmlVPanelButton = new Button("Re-populate");
+		xmlVPanelButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				populateTabs(textArea.getText());
+			}
+		});
+
+		xmlVPanel.add(xmlVPanelButton);
+		xmlVPanel.add(textArea);
 
 	}
-	
+
 	private void addButtonToTabWidget(TabWidget tabWidget, final String msgText) {
 		Button b = new Button(msgText);
 		b.setWidth("480px");
-		b.addClickHandler(new ClickHandler()
-		{
+		b.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				FeedbackPanelContainer.getMessageTextArea().setText(msgText);			
-				UserLog userActionLog=new UserLog();
-            	userActionLog.setComponentType(ComponentType.FEEDBACK_TEMPLATE_POOL);
-            	userActionLog.setDescription("Text selection for feedback: Feedback_Type="+tabTitle+","+"Text="+msgText);
-            	userActionLog.setUserActionType(UserActionType.FEEDBACK_TEXT_SELECTION);
-             	userActionLog.setTriggeredBy(ComponentType.FEEDBACK_TEMPLATE_POOL);
-             	userActionLog.addProperty("FEEDBACK_TYPE",tabTitle);
-             	userActionLog.addProperty("FEEDBACK_TEXT",msgText);
-             	
-            	Logger.getLoggerInstance().log(userActionLog);
-				
-			}		
+				FeedbackPanelContainer.getMessageTextArea().setText(msgText);
+				UserLog userActionLog = new UserLog();
+				userActionLog.setComponentType(ComponentType.FEEDBACK_TEMPLATE_POOL);
+				userActionLog.setDescription("Text selection for feedback: Feedback_Type=" + tabTitle + "," + "Text=" + msgText);
+				userActionLog.setUserActionType(UserActionType.FEEDBACK_TEXT_SELECTION);
+				userActionLog.setTriggeredBy(ComponentType.FEEDBACK_TEMPLATE_POOL);
+				userActionLog.addProperty("FEEDBACK_TYPE", tabTitle);
+				userActionLog.addProperty("FEEDBACK_TEXT", msgText);
+
+				Logger.getLoggerInstance().log(userActionLog);
+
+			}
 		});
 		tabWidget.getButtonsVPanel().add(b);
 	}
 
-
-	class TabWidget{
-		String title="untitled";
+	class TabWidget {
+		String title = "untitled";
 		protected VerticalPanel mainVPanel;
 		protected VerticalPanel headerVPanel;
 		protected VerticalPanel buttonsVPanel;
 		private ScrollPanel buttonsScrollPanel;
-		TabWidget()
-		{
+
+		TabWidget() {
 			mainVPanel = new VerticalPanel();
-//			mainVPanel.
+			// mainVPanel.
 			headerVPanel = new VerticalPanel();
 			buttonsScrollPanel = new ScrollPanel();
 			buttonsScrollPanel.setWidth("500px");
@@ -188,42 +195,42 @@ public class TemplatePool {
 			mainVPanel.add(headerVPanel);
 			mainVPanel.add(buttonsScrollPanel);
 		}
+
 		public VerticalPanel getButtonsVPanel() {
 			return buttonsVPanel;
 		}
+
 		public String getTitle() {
 			return title;
 		}
+
 		public void setTitle(String title) {
 			this.title = title;
 		}
+
 		public VerticalPanel getMainVPanel() {
 			return mainVPanel;
-		}			
+		}
 	}
-	
-	class HistoryTabWidget extends TabWidget{
+
+	class HistoryTabWidget extends TabWidget {
 		private TextArea xmlCodeArea;
 		private ToggleButton xmlToggleButton;
-		HistoryTabWidget()
-		{
+
+		HistoryTabWidget() {
 			super();
 			xmlCodeArea = new TextArea();
 			xmlCodeArea.setWidth("480px");
 			xmlCodeArea.setHeight("450px");
 			xmlToggleButton = new ToggleButton("");
 			toggleCodeView(false);
-			xmlToggleButton.addClickHandler(new ClickHandler()
-			{
+			xmlToggleButton.addClickHandler(new ClickHandler() {
 				@Override
 				public void onClick(ClickEvent event) {
-					if(xmlToggleButton.isDown())
-					{
+					if (xmlToggleButton.isDown()) {
 						toggleCodeView(true);
-						
-					}
-					else
-					{
+
+					} else {
 						toggleCodeView(false);
 					}
 				}
@@ -231,22 +238,23 @@ public class TemplatePool {
 			headerVPanel.add(xmlToggleButton);
 			headerVPanel.add(xmlCodeArea);
 		}
+
 		private void toggleCodeView(boolean codeViewEnabled) {
 			xmlToggleButton.setText(codeViewEnabled ? "view as buttons" : "view as XML code");
 			xmlToggleButton.setWidth("150px");
 			updateXmlCodeArea();
 			buttonsVPanel.setVisible(!codeViewEnabled);
-			xmlCodeArea.setVisible(codeViewEnabled);					
-		}		
+			xmlCodeArea.setVisible(codeViewEnabled);
+		}
+
 		private void updateXmlCodeArea() {
 			String code = "";
-			for(int i=0; i<buttonsVPanel.getWidgetCount(); i++)
-			{
-				String msg = ((Button)buttonsVPanel.getWidget(i)).getText().replaceAll("[\n\r]", " ");
-				code += "<message>"+msg+"</message>\n";
+			for (int i = 0; i < buttonsVPanel.getWidgetCount(); i++) {
+				String msg = ((Button) buttonsVPanel.getWidget(i)).getText().replaceAll("[\n\r]", " ");
+				code += "<message>" + msg + "</message>\n";
 			}
 			xmlCodeArea.setText(code);
-		}		
+		}
 	}
 
 	public void addMessageToHistory(String messageToStudent) {
