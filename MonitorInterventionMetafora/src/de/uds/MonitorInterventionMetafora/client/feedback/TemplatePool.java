@@ -29,6 +29,7 @@ import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
+import de.uds.MonitorInterventionMetafora.server.monitor.SuggestedMessagesController;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -176,7 +177,7 @@ public class TemplatePool {
 		refreshButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				updateMessages();
+				refreshMessages();
 			}
 
 		});
@@ -219,23 +220,24 @@ public class TemplatePool {
 		String receiver = UrlParameterConfig.getInstance().getReceiver();
 		receiver = (receiver == null || receiver.equals("")) ? MetaforaStrings.RECEIVER_METAFORA : receiver; 
 		
-		// set <suggestions/> tag as a root
-		Document xmlDocument = null;
-		try {
-			xmlDocument = XMLParser.parse(XML);
-		} catch(DOMParseException e) {
-			System.out.println("[TemplatePool.sendSuggestedMessages()] Error parsing XML string of suggested messages. 'Send Suggestions' ignored.");
-			return;
-		}
-		Element docElement = xmlDocument.getDocumentElement();
+//		// set <suggestions/> tag as a root
+//		Document xmlDocument = null;
+//		try {
+//			xmlDocument = XMLParser.parse(XML);
+//		} catch(DOMParseException e) {
+//			System.out.println("[TemplatePool.sendSuggestedMessages()] Error parsing XML string of suggested messages. 'Send Suggestions' ignored.");
+//			return;
+//		}
+//		Element messagesElement = xmlDocument.getDocumentElement();
+//		
+//		Document newDocument = XMLParser.createDocument();
+//		Element suggestionsElement = newDocument.createElement("suggestions");
+//		suggestionsElement.appendChild(messagesElement);
+//		XMLParser.removeWhitespace(suggestionsElement);
+//		newDocument.appendChild(suggestionsElement);
 		
-		Document newDocument = XMLParser.createDocument();
-		Element suggestionsElement = newDocument.createElement("suggestions");
-		suggestionsElement.appendChild(docElement);
-		newDocument.appendChild(suggestionsElement);
-		XMLParser.removeWhitespace(suggestionsElement);
-		
-		CfContent cfContent = new CfContent(suggestionsElement.toString());
+//		CfContent cfContent = new CfContent(newDocument.toString());
+		CfContent cfContent = new CfContent(XML);
 		cfContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_RECEIVING_TOOL, receiver));
 		cfContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL,"FEEDBACK_CLIENT"));
 		cfAction.setCfContent(cfContent);
@@ -252,9 +254,13 @@ public class TemplatePool {
 	/**
 	 * 
 	 */
-	private void updateMessages() {
-		// TODO Auto-generated method stub
-		
+	private void refreshMessages() {
+//		String currentUserId = UrlParameterConfig.getInstance().getUsername();
+		String currentUserId = "TestUser";
+		String suggestedMessagesXML = SuggestedMessagesController.getInstance().getSuggestedMessages(currentUserId);
+		if (!"".equals(suggestedMessagesXML)) {
+			populateTabs(suggestedMessagesXML);
+		}
 	}
 	
 	private void addButtonToTabWidget(TabWidget tabWidget, final String msgText) {
