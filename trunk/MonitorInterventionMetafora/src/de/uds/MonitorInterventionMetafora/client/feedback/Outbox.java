@@ -1,8 +1,5 @@
 package de.uds.MonitorInterventionMetafora.client.feedback;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
@@ -265,19 +262,6 @@ public class Outbox implements CfActionCallBack {
 	        popup.center();	
 	}
 	
-	public List<String> getSelectedRecipients() {
-		List<String> selectedRecipients = new ArrayList<String>();
-		for(int i=0; i<recipientNamesColumn.getWidgetCount(); i++)
-		{
-			CheckBox cb = (CheckBox) recipientNamesColumn.getWidget(i);
-			if (cb.getValue()) {
-				//usernames = usernames + cb.getText() + "|";
-				selectedRecipients.add(cb.getText());
-			}
-		}
-		return selectedRecipients;
-	}
-	
 	private void sendMessageToServer() {
 		CfAction feedbackMessage=new CfAction();
 	 	feedbackMessage.setTime(GWTUtils.getTimeStamp());
@@ -293,9 +277,14 @@ public class Outbox implements CfActionCallBack {
 	 	 	
  	 	feedbackMessage.setCfActionType(_cfActionType);
 
- 	 	for (String userId : getSelectedRecipients()) {
- 	 		feedbackMessage.addUser(new CfUser(userId, "receiver"));
- 	 	}
+		for(int i=0; i<recipientNamesColumn.getWidgetCount(); i++)
+		{
+			CheckBox cb = (CheckBox) recipientNamesColumn.getWidget(i);
+			if (cb.getValue()) {
+				//usernames = usernames + cb.getText() + "|";
+				feedbackMessage.addUser(new CfUser(cb.getText(),"receiver"));				
+			}
+		}	 	 	
  	 	
  	 	//TODO: what happens with IDs? And do they matter? 
  	 	//Can we uniquely auto-increment them? Perhaps use that java UUID library? 
@@ -327,7 +316,7 @@ public class Outbox implements CfActionCallBack {
 		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL,TOOL_NAME));
  	 	feedbackMessage.setCfContent(myContent);
 
-	 	processAction(feedbackMessage);
+	 	ServerCommunication.getInstance().processAction("FeedbackClient",feedbackMessage,this);	
 	 	if(messageTextArea.getText().length()>0)
 	 	{
 	 		FeedbackPanelContainer.getTemplatePool().addMessageToHistory(messageTextArea.getText());
@@ -346,11 +335,8 @@ public class Outbox implements CfActionCallBack {
     	Logger.getLoggerInstance().log(userActionLog);
 		
     	messageTextArea.setText("");
-    	objectIdsTextBox.setText("");
-	}
-	
-	public void processAction(CfAction cfAction) {
-		ServerCommunication.getInstance().processAction("FeedbackClient", cfAction, this);		
+    	//check if objectIdsTextBox has been created because if user type is different it will not be there 
+    	if (objectIdsTextBox != null) objectIdsTextBox.setText("");
 	}
 	
 	/*
