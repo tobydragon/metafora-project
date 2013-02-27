@@ -59,7 +59,7 @@ class VisualAnalyzer implements EntryPoint {
 	    	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
 	    	 } 
 	    	 
-	    	 FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer();
+	    	 FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer(monitoringViewServiceServlet);
 	    	 _mainPanel.addTab("Feedback", _feedbackPanelContainer,false);
 	    	  
 	    	 RootPanel.get().add(_mainPanel);

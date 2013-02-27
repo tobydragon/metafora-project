@@ -4,17 +4,14 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutput;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.List;
-import java.util.Vector;
+
+import org.apache.log4j.Logger;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationService;
 import de.uds.MonitorInterventionMetafora.server.analysis.manager.AnalysisManager;
-import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
-import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
 import de.uds.MonitorInterventionMetafora.server.feedback.FeedbackController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
@@ -26,14 +23,11 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMet
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 
-import org.apache.log4j.Logger;
-
 /**
  * The server side implementation of the RPC service.
  */
 @SuppressWarnings("serial")
-public class MainServer extends RemoteServiceServlet implements
-		CommunicationService {
+public class MainServer extends RemoteServiceServlet implements CommunicationService {
 	Logger logger = Logger.getLogger(this.getClass());
 
 	static String generalConfigFile = "conffiles/toolconf/configuration.xml";
@@ -67,14 +61,12 @@ public class MainServer extends RemoteServiceServlet implements
 		feedbackController = new FeedbackController(communicationMethodType);
 	}
 
-//	@Override
-//	public String requestSuggestedMessages(String username) {
-//
-//		logger.info("[requestSuggestedMessages]  for user: " + username );
-//
-//		return feedbackController.requestSuggestedMessages(username);
-//
-//	}
+	@Override
+	public String requestSuggestedMessages(String username) {
+		logger.info("[requestSuggestedMessages]  for user: " + username );
+		return feedbackController.requestSuggestedMessages(username);
+
+	}
 	
 	private synchronized Configuration readConfiguration(boolean isMainConfig) {
 		String configFilepath = "";

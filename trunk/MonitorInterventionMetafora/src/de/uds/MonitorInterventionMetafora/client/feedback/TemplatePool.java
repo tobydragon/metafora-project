@@ -29,7 +29,6 @@ import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
-import de.uds.MonitorInterventionMetafora.server.monitor.SuggestedMessagesController;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -46,8 +45,10 @@ public class TemplatePool {
 	private HistoryTabWidget messageHistory;
 	private VerticalPanel xmlVPanel;
 	private String tabTitle = "";
-
-	public TemplatePool(ComplexPanel parent, String XML) {
+	private ClientFeedbackDataModelUpdater updater;
+	
+	public TemplatePool(ComplexPanel parent, String XML, ClientFeedbackDataModelUpdater updater) {
+		this.updater = updater;
 		vpanel = new VerticalPanel();
 		// vpanel.setSpacing(20);
 		parent.add(vpanel);
@@ -87,7 +88,7 @@ public class TemplatePool {
 		vpanel.add(scrollPanel);
 	}
 
-	private void populateTabs(String XML) {
+	public void populateTabs(String XML) {
 		// create new list of tab widgets
 		tabWidgets = new ArrayList<TabWidget>();
 		// clean tabs
@@ -255,12 +256,14 @@ public class TemplatePool {
 	 * 
 	 */
 	private void refreshMessages() {
-//		String currentUserId = UrlParameterConfig.getInstance().getUsername();
-		String currentUserId = "TestUser";
-		String suggestedMessagesXML = SuggestedMessagesController.getInstance().getSuggestedMessages(currentUserId);
-		if (!"".equals(suggestedMessagesXML)) {
-			populateTabs(suggestedMessagesXML);
-		}
+		String currentUserId = UrlParameterConfig.getInstance().getUsername();
+		updater.refreshSuggestedMessages(currentUserId);
+		
+//		if (!"".equals(suggestedMessagesXML) && suggestedMessagesXML != null) {
+//			populateTabs(suggestedMessagesXML);
+//		} else {
+//			System.err.println("TemplatePool.refreshMessages(): No messages to update.");
+//		}
 	}
 	
 	private void addButtonToTabWidget(TabWidget tabWidget, final String msgText) {
@@ -371,4 +374,12 @@ public class TemplatePool {
 		messageHistory.updateXmlCodeArea();
 	};
 
+	
+	public void setUpdater(ClientFeedbackDataModelUpdater updater) {
+		this.updater = updater;
+	}
+	
+	public ClientFeedbackDataModelUpdater getClientFeedbackDataModelUpdater() {
+		return updater;
+	}
 }

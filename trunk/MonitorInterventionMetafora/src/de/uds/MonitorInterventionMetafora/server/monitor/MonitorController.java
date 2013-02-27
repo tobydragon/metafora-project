@@ -16,9 +16,6 @@ public class MonitorController {
 		
 		HistoryRequester historyRequester = new HistoryRequester(monitorModel);
 		
-		// initialize controller
-		SuggestedMessagesController.getInstance();
-		
 		CfAgentCommunicationManager analysisManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.analysis);				
 		analysisManager.register(monitorListener);
 		
