@@ -3,11 +3,8 @@ package de.uds.MonitorInterventionMetafora.client.monitor;
 import java.util.List;
 
 import com.allen_sauer.gwt.log.client.Log;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Timer;
 
-import de.uds.MonitorInterventionMetafora.client.communication.CommunicationService;
-import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;

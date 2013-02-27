@@ -1,7 +1,6 @@
 package de.uds.MonitorInterventionMetafora.client.feedback;
 
 import java.util.Date;
-import java.util.StringTokenizer; 
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.http.client.Request;
@@ -13,6 +12,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
+
+import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 
 public class FeedbackPanelContainer extends VerticalPanel {
@@ -22,8 +23,22 @@ public class FeedbackPanelContainer extends VerticalPanel {
 
 	public static String[] userIDsArray = {"Alan", "Mary", "David"};
 	
-	public FeedbackPanelContainer(){
+	// models
+	ClientFeedbackDataModel feedbackModel;
+	
+	// controllers
+	ClientFeedbackDataModelUpdater updater;
+	ClientFeedbackController controller;
+	
+	CommunicationServiceAsync monitoringViewServiceServlet;
+	
+	public FeedbackPanelContainer(CommunicationServiceAsync monitoringViewServiceServlet) {
 		INSTANCE = this;
+		this.monitoringViewServiceServlet = monitoringViewServiceServlet;
+		
+		feedbackModel = new ClientFeedbackDataModel(monitoringViewServiceServlet);
+		controller = new ClientFeedbackController();
+		updater = new ClientFeedbackDataModelUpdater(feedbackModel, controller);
 		
 		//TOODO: this is awful and only a shortcut now
 		String configUserIDs = UrlParameterConfig.getInstance().getReceiverIDs();
@@ -59,7 +74,8 @@ public class FeedbackPanelContainer extends VerticalPanel {
 				}
 
 				public void onResponseReceived(Request request, Response response) {
-					templatePool = new TemplatePool(rightVPanel, response.getText());
+					templatePool = new TemplatePool(rightVPanel, response.getText(), updater);
+//					templatePool.setUpdater(updater); // test almer
 				}
 			});
 		} catch (RequestException ex) {
