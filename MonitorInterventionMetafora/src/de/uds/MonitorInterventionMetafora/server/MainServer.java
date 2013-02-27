@@ -16,6 +16,7 @@ import de.uds.MonitorInterventionMetafora.server.analysis.manager.AnalysisManage
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
+import de.uds.MonitorInterventionMetafora.server.feedback.FeedbackController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorModel;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
@@ -40,12 +41,16 @@ public class MainServer extends RemoteServiceServlet implements
 	static String logDir="useractionlogs/";
 	private Configuration generalConfiguration;
 	private XmlConfigParser configuratinParser;
+	
 	MonitorModel monitorModel;
 	MonitorController monitorController;
+	
+	FeedbackController feedbackController;
+	
 	AnalysisManager analysisManager;
 	private boolean isConfigurationUpdated = false;
 
-	CfAgentCommunicationManager feedbackCommunicationManager;
+//	CfAgentCommunicationManager feedbackCommunicationManager;
 
 	public MainServer() {
 		super();
@@ -59,10 +64,18 @@ public class MainServer extends RemoteServiceServlet implements
 				generalConfiguration.getHistoryStartTime());
 		monitorModel = monitorController.getModel();
 
-		feedbackCommunicationManager = CfAgentCommunicationManager.getInstance(
-				communicationMethodType, CommunicationChannelType.command);
+		feedbackController = new FeedbackController(communicationMethodType);
 	}
 
+//	@Override
+//	public String requestSuggestedMessages(String username) {
+//
+//		logger.info("[requestSuggestedMessages]  for user: " + username );
+//
+//		return feedbackController.requestSuggestedMessages(username);
+//
+//	}
+	
 	private synchronized Configuration readConfiguration(boolean isMainConfig) {
 		String configFilepath = "";
 		if (isMainConfig) {
@@ -78,9 +91,7 @@ public class MainServer extends RemoteServiceServlet implements
 
 	@Override
 	public CfAction sendAction(String _user, CfAction cfAction) {
-		logger.debug("action = \n" + CfActionParser.toXml(cfAction));
-		feedbackCommunicationManager.sendMessage(cfAction);
-		// TODO: should be void, not have a callback...
+		feedbackController.sendAction(_user, cfAction);
 		return null;
 	}
 
