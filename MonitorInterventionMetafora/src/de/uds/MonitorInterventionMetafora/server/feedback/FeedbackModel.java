@@ -3,7 +3,10 @@ package de.uds.MonitorInterventionMetafora.server.feedback;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 public class FeedbackModel implements Runnable {
+	Logger logger = Logger.getLogger(this.getClass());
 	
 	private Map<String, String> suggestedMessagesModel;
 	
@@ -16,6 +19,7 @@ public class FeedbackModel implements Runnable {
 	}
 
 	public synchronized String getSuggestedMessages(String username) {
+		logger.info("Save suggested messages for user: " + username);
 		return suggestedMessagesModel.get(username);
 	}
 
