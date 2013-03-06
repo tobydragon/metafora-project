@@ -18,17 +18,17 @@ import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig
 
 public class FeedbackPanelContainer extends VerticalPanel {
 	private de.uds.MonitorInterventionMetafora.client.feedback.Outbox outbox;
-	private TemplatePool templatePool;
+	private SuggestedMessagesView templatePool;
 	static private FeedbackPanelContainer INSTANCE;
 
 	public static String[] userIDsArray = {"Alan", "Mary", "David"};
 	
 	// models
-	ClientFeedbackDataModel feedbackModel;
+	private ClientFeedbackDataModel feedbackModel;
 	
 	// controllers
-	ClientFeedbackDataModelUpdater updater;
-	ClientFeedbackController controller;
+	private ClientFeedbackDataModelUpdater updater;
+//	ClientFeedbackController controller;
 	
 	CommunicationServiceAsync monitoringViewServiceServlet;
 	
@@ -37,8 +37,8 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		this.monitoringViewServiceServlet = monitoringViewServiceServlet;
 		
 		feedbackModel = new ClientFeedbackDataModel(monitoringViewServiceServlet);
-		controller = new ClientFeedbackController();
-		updater = new ClientFeedbackDataModelUpdater(feedbackModel, controller);
+//		controller = new ClientFeedbackController();
+		updater = new ClientFeedbackDataModelUpdater(feedbackModel);
 		
 		//TOODO: this is awful and only a shortcut now
 		String configUserIDs = UrlParameterConfig.getInstance().getReceiverIDs();
@@ -74,8 +74,9 @@ public class FeedbackPanelContainer extends VerticalPanel {
 				}
 
 				public void onResponseReceived(Request request, Response response) {
-					templatePool = new TemplatePool(rightVPanel, response.getText(), updater);
-//					templatePool.setUpdater(updater); // test almer
+					SuggestedMessagesModel suggestedMessagesModel = SuggestedMessagesModel.fromXML(response.getText());
+					SuggestedMessagesController suggestedMessagesController = new SuggestedMessagesController(suggestedMessagesModel);
+					templatePool = new SuggestedMessagesView(rightVPanel, suggestedMessagesModel, suggestedMessagesController, updater);
 				}
 			});
 		} catch (RequestException ex) {
@@ -109,7 +110,7 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		return INSTANCE.outbox;
 	}
 	
-	public static TemplatePool getTemplatePool() {
+	public static SuggestedMessagesView getTemplatePool() {
 		return INSTANCE.templatePool;
 	}
 	

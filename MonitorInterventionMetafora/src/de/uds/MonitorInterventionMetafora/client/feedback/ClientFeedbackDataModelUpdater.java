@@ -5,19 +5,20 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 public class ClientFeedbackDataModelUpdater {// implements RequestUpdateCallBack{
 
 	private ClientFeedbackDataModel feedbackModel;
-	private ClientFeedbackController controller;
+//	private SuggestedMessagesController suggestedMessagesController;
 	
-	public ClientFeedbackDataModelUpdater(ClientFeedbackDataModel feedbackModel, ClientFeedbackController controller) {
+	public ClientFeedbackDataModelUpdater(ClientFeedbackDataModel feedbackModel /*, SuggestedMessagesController controller*/) {
 		this.feedbackModel = feedbackModel;
-		this.controller = controller;
+//		this.suggestedMessagesController = controller;
 	}
 	
 	public void refreshSuggestedMessages(String username) {
 		AsyncCallback callback = new AsyncCallback<String>() {
 			public void onSuccess(String result) {
 				System.out.println("ClientFeedbackDataModelUpdater.refreshSuggestedMessages(): Success");
-				if (result != null && !result.equals(""))
-					FeedbackPanelContainer.getTemplatePool().populateTabs(result);
+				if (result != null && !result.equals("")) {
+					FeedbackPanelContainer.getTemplatePool().populateTabs(SuggestedMessagesModel.fromXML(result));
+				}
 			}
 			
 			public void onFailure(Throwable caught) {
