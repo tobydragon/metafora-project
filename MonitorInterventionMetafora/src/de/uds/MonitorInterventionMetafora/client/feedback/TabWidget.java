@@ -2,7 +2,10 @@ package de.uds.MonitorInterventionMetafora.client.feedback;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -66,6 +69,22 @@ public class TabWidget {
 						controller.changeMessageStyle(getTitle(), rowIndex, false);	// make it NOT bold
 					}
 					
+				}
+			});
+			checkBox.addMouseOverHandler(new MouseOverHandler() {
+				@Override
+				public void onMouseOver(MouseOverEvent event) {
+					// TODO Auto-generated method stub
+					CheckBox source = ((CheckBox) event.getSource());
+					source.setTitle("Make message bold?");
+				}
+			});
+			checkBox.addMouseOutHandler(new MouseOutHandler() {
+				@Override
+				public void onMouseOut(MouseOutEvent event) {
+					// TODO Auto-generated method stub
+					CheckBox source = ((CheckBox) event.getSource());
+					source.setTitle("");
 				}
 			});
 			row.add(checkBox);
