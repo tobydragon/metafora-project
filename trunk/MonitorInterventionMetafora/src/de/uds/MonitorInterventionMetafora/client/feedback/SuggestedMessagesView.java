@@ -119,7 +119,9 @@ public class SuggestedMessagesView {
 				isetZero = true;
 				this.tabTitle = tabTitle;
 			}
-			tabBar.addTab(tabTitle);
+//			tabBar.addTab(tabTitle);
+//			tabBar.addTab("<font color=\"red\">" +tabTitle+ "</font>", true);	// sample way of setting style
+			tabBar.addTab("<i>" +tabTitle+ "</i>", true);	// sample way of setting style
 
 			for (SuggestedMessage msg : suggestionCategory.getSuggestedMessages()) {
 				tabWidget.addSuggestedMessageRow(msg, tabTitle);
