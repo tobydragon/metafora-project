@@ -1,0 +1,20 @@
+/* suggested message button */
+.gwt-Button-highlight {
+	color: green;
+	font-weight: bold;
+}
+
+.sss {
+	width: 13px;
+	height: 13px;
+	background-image: url("");
+	background-repeat: no-repeat;
+}
+
+.gwt-Button-delete {
+	background: white url(../images/delete.gif) center center;
+	vertical-align: middle;
+	height: 12px;
+	width: 12px;
+	cursor: pointer;
+}

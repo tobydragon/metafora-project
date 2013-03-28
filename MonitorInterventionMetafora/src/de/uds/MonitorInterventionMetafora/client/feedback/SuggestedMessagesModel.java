@@ -30,12 +30,12 @@ public class SuggestedMessagesModel {
 	public static String toXML(SuggestedMessagesModel model) {
 		StringBuffer b = new StringBuffer("<?xml version=\"1.0\" encoding=\"US-ASCII\"?>");
 		
-		
 		b.append("<messages>\n");
 		for (SuggestionCategory category : model.getSuggestionCategories()) {
-			b.append("<set id=\"" +category.getName()+ "\">\n");
+			String categoryHighlight = category.isHighlight() ? " highlight=\"true\" " : "";
+			b.append("<set id=\"" +category.getName()+ "\""+ categoryHighlight +">\n");
 			for (SuggestedMessage message : category.getSuggestedMessages()) {
-				String attribute = message.isBold() ? " style=\"bold\"" : "";
+				String attribute = message.isHighlight() ? " highlight=\"true\"" : "";
 				b.append("<message" +attribute+ ">");
 				b.append(message.getText());
 				b.append("</message>\n");
@@ -58,26 +58,32 @@ public class SuggestedMessagesModel {
 		NodeList sets = docElement.getElementsByTagName("set");
 		for (int iset = 0; iset < sets.getLength(); iset++) {
 			Element setOfMessages = (Element) sets.item(iset);
-			String categoryName = setOfMessages.getAttributes().getNamedItem("id").getNodeValue();
+			NamedNodeMap categoryAttributes = setOfMessages.getAttributes();
+			String categoryName = categoryAttributes.getNamedItem("id").getNodeValue();
 			SuggestionCategory suggestionCategory = new SuggestionCategory(categoryName);
 
+			Node highlightItem = categoryAttributes.getNamedItem("highlight");
+			if (highlightItem != null) 
+				suggestionCategory.setHighlight(highlightItem.getNodeValue().equalsIgnoreCase("true") ? true : false);
+			
+			
 			// check here if there are more sets
 			NodeList messages = setOfMessages.getElementsByTagName("message");
 			for (int imessage = 0; imessage < messages.getLength(); imessage++) {
 				
 				Node messageItem = messages.item(imessage);
 				String msgText = messageItem.getFirstChild().getNodeValue();
-				boolean isBold = false;
+				boolean isHighlight = false;
 				if (messageItem.hasAttributes()) {
 					NamedNodeMap msgAttributes = messageItem.getAttributes();
 					for (int iattribute = 0; iattribute < msgAttributes.getLength(); iattribute++) {
 						Node msgAttribute = msgAttributes.item(iattribute);
-						if (msgAttribute.getNodeName().equals("style") && msgAttribute.getNodeValue().equals("bold")) {
-							isBold = true;
+						if (msgAttribute.getNodeName().equals("highlight") && msgAttribute.getNodeValue().equalsIgnoreCase("true")) {
+							isHighlight = true;
 						}
 					}
 				}
-				SuggestedMessage suggestedMessage = new SuggestedMessage(msgText, isBold); 
+				SuggestedMessage suggestedMessage = new SuggestedMessage(msgText, isHighlight); 
 				suggestionCategory.addMessage(suggestedMessage);
 			}
 			model.addCategory(suggestionCategory);
