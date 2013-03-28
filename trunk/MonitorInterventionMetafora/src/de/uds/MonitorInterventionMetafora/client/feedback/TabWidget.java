@@ -1,5 +1,8 @@
 package de.uds.MonitorInterventionMetafora.client.feedback;
 
+import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.MessageBoxEvent;
+import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.MouseOutEvent;
@@ -9,8 +12,10 @@ import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
@@ -30,24 +35,85 @@ public class TabWidget {
 	// Controller
 	protected SuggestedMessagesController controller;
 	
-	public TabWidget() {
+	public TabWidget(String title) {
+		this.title = title;
 		mainVPanel = new VerticalPanel();
-		// mainVPanel.
+		mainVPanel.setSpacing(5);
 		headerVPanel = new VerticalPanel();
+		headerVPanel.setWidth("100%");
+
 		buttonsScrollPanel = new ScrollPanel();
-		buttonsScrollPanel.setWidth("500px");
+		buttonsScrollPanel.setWidth("100%");
 		buttonsScrollPanel.setHeight("450px");
 		buttonsVPanel = new VerticalPanel();
+//		buttonsVPanel.setSpacing(2);
 		buttonsScrollPanel.add(buttonsVPanel);
+		
 		mainVPanel.add(headerVPanel);
 		mainVPanel.add(buttonsScrollPanel);
 	}
 
+	/**
+	 *  Adds some parameters to set 'tab color', 'add new message'
+	 */
+	public void enableTabConfig() {
+		HorizontalPanel configPanel = new HorizontalPanel();
+		configPanel.setSpacing(5);
+		
+		Label tabColorLabel = new Label("Highlight:");
+		CheckBox highlightCheckBox = new CheckBox();
+		highlightCheckBox.setValue(controller.getSuggestedMessagesModel().getSuggestionCategory(title).isHighlight());
+		highlightCheckBox.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				CheckBox source = ((CheckBox) event.getSource());
+				controller.highlightCategory(title, source.getValue());
+				controller.refreshTabs();
+			}
+		});
+		configPanel.add(tabColorLabel);
+		configPanel.add(highlightCheckBox);
+		headerVPanel.add(configPanel);
+
+		// Add new message
+		Button addMessageButton = new Button("Add new message");
+		addMessageButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				System.err.println("Add new message");
+				
+				MessageBox box = MessageBox.prompt("Add new message", "Please type the text of a message:", true);
+			    box.addCallback(new Listener<MessageBoxEvent>() {
+			    	public void handleEvent(MessageBoxEvent be) {
+			    		controller.addNewMessage(title, be.getValue()); 
+			    		controller.refreshTabs();
+			    	}
+			    });
+				
+			}
+		});
+		buttonsVPanel.add(addMessageButton);
+	}
+	
 	public void addSuggestedMessageRow(final SuggestedMessage message, final String tabTitle) {
 		HorizontalPanel row = new HorizontalPanel();
 		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.POWER_WIZARD)) {
+			Button deleteButton = new Button("x");
+//			deleteButton.addStyleDependentName("delete");
+			deleteButton.addClickHandler(new ClickHandler() {
+				@Override
+				public void onClick(ClickEvent event) {
+					Button source = (Button) event.getSource();
+					Widget hpanel = source.getParent();
+					int rowIndex = ((VerticalPanel)hpanel.getParent()).getWidgetIndex(hpanel);
+					controller.removeMessage(title, rowIndex);
+					controller.refreshTabs();
+				}
+			});
+			row.add(deleteButton);
+			
 			CheckBox checkBox = new CheckBox();
-			checkBox.setValue(message.isBold());
+			checkBox.setValue(message.isHighlight());
 			checkBox.addClickHandler(new ClickHandler() {
 				@Override
 				public void onClick(ClickEvent event) {
@@ -59,30 +125,21 @@ public class TabWidget {
 					
 					// next widget to checkbox is our message-suggestion-button
 					Button button = (Button) horizontalPanel.getWidget(checkBoxIndex+1);
-					String buttonText = button.getText();
-					if (source.getValue()) {
-						button.setHTML("<b>" +buttonText+ "</b>");
-						controller.changeMessageStyle(getTitle(), rowIndex, true);	// make it bold
-					} else {
-						buttonText = buttonText.replaceAll("<b>", "").replaceAll("</b>", "");
-						button.setHTML(buttonText);
-						controller.changeMessageStyle(getTitle(), rowIndex, false);	// make it NOT bold
-					}
-					
+					button.setStyleDependentName("highlight", source.getValue());
+					controller.changeMessageStyle(title, rowIndex, source.getValue());	// make it bold
+					controller.refreshTabs();
 				}
 			});
 			checkBox.addMouseOverHandler(new MouseOverHandler() {
 				@Override
 				public void onMouseOver(MouseOverEvent event) {
-					// TODO Auto-generated method stub
 					CheckBox source = ((CheckBox) event.getSource());
-					source.setTitle("Make message bold?");
+					source.setTitle("Highlight?");
 				}
 			});
 			checkBox.addMouseOutHandler(new MouseOutHandler() {
 				@Override
 				public void onMouseOut(MouseOutEvent event) {
-					// TODO Auto-generated method stub
 					CheckBox source = ((CheckBox) event.getSource());
 					source.setTitle("");
 				}
@@ -90,9 +147,10 @@ public class TabWidget {
 			row.add(checkBox);
 		}
 		
-		String msgText = message.isBold() ? "<b>" +message.getText()+ "</b>" : message.getText();
+		String msgText = message.getText();
 		Button b = new Button(msgText);
-		b.setWidth("480px");
+		if (message.isHighlight()) b.addStyleDependentName("highlight");
+		b.setWidth("460px");
 		b.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -106,7 +164,6 @@ public class TabWidget {
 				userActionLog.addProperty("FEEDBACK_TEXT", message.getText());
 
 				Logger.getLoggerInstance().log(userActionLog);
-
 			}
 		});
 		row.add(b);

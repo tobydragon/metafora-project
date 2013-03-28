@@ -79,18 +79,40 @@ public class SuggestedMessagesController {
 		this.suggestedMessagesModel = suggestedMessagesModel;
 	}
 
-	public void changeMessageStyle(String categoryName, int i, boolean isBold) {
+	public void changeMessageStyle(String categoryName, int i, boolean isHighlight) {
 		// TODO Auto-generated method stub
 		SuggestionCategory category = suggestedMessagesModel.getSuggestionCategory(categoryName);
 		if (category != null)
-			category.getSuggestedMessage(i).setBold(isBold);
+			category.getSuggestedMessage(i).setHighlight(isHighlight);
 		else
 			System.err.println("SuggestedMessagesController.changeMessageStyle(): category is null");
-		suggestedMessagesView.populateTabs(suggestedMessagesModel);
+//		suggestedMessagesView.populateTabs(suggestedMessagesModel);
 		
-		String isBoldStr = (isBold) ? "" : " not"; 
+		String isBoldStr = (isHighlight) ? "" : " not"; 
 		Log.info("Message: " +category.getSuggestedMessage(i).getText()+ " in category: "+ categoryName+ " is" + isBoldStr + " bold now");
 	}
+
 	
+	public void addNewMessage(String categoryName, String messageText) {
+		SuggestionCategory category = suggestedMessagesModel.getSuggestionCategory(categoryName);
+		if (category != null)
+			category.addMessage(new SuggestedMessage(messageText));
+	}
+
+	public void refreshTabs() {
+		suggestedMessagesView.populateTabs(suggestedMessagesModel);
+	}
+
+	public void removeMessage(String categoryName, int messageIndex) {
+		SuggestionCategory category = suggestedMessagesModel.getSuggestionCategory(categoryName);
+		if (category != null)
+			category.removeMessage(messageIndex);
+	}
+
+	public void highlightCategory(String categoryName, boolean isHighlight) {
+		SuggestionCategory category = suggestedMessagesModel.getSuggestionCategory(categoryName);
+		if (category != null)
+			category.setHighlight(isHighlight);
+	}
 	
 }

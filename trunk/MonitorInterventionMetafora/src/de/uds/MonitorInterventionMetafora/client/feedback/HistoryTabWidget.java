@@ -10,8 +10,8 @@ public class HistoryTabWidget extends TabWidget {
 	private TextArea xmlCodeArea;
 	private ToggleButton xmlToggleButton;
 
-	public HistoryTabWidget() {
-		super();
+	public HistoryTabWidget(String title) {
+		super(title);
 		xmlCodeArea = new TextArea();
 		xmlCodeArea.setWidth("480px");
 		xmlCodeArea.setHeight("450px");

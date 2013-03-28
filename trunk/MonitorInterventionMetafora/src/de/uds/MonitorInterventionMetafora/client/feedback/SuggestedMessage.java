@@ -2,17 +2,16 @@ package de.uds.MonitorInterventionMetafora.client.feedback;
 
 public class SuggestedMessage {
 	private String text;
-	private boolean isBold;
+	private boolean highlight;
 	
 	public SuggestedMessage(String text) {
 		this(text, false);
 	}
 	
-	public SuggestedMessage(String text, boolean isBold) {
+	public SuggestedMessage(String text, boolean highlight) {
 		this.text = text;
-		this.isBold = isBold;
+		this.highlight = highlight;
 	}
-
 	
 	//
 	// GETTERS & SETTERS
@@ -26,12 +25,12 @@ public class SuggestedMessage {
 		this.text = text;
 	}
 
-	public boolean isBold() {
-		return isBold;
+	public boolean isHighlight() {
+		return highlight;
 	}
 
-	public void setBold(boolean isBold) {
-		this.isBold = isBold;
+	public void setHighlight(boolean highlight) {
+		this.highlight = highlight;
 	}
 	
 	

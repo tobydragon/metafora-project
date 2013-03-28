@@ -30,6 +30,7 @@ import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -65,12 +66,13 @@ public class SuggestedMessagesView {
 		vpanel.add(sectionLabel);
 
 		tabBar = new TabBar();
+		tabBar.setWidth("100%");
 
 		// create and populate TABs based on XML
 		populateTabs(model);
 
 		final ScrollPanel scrollPanel = new ScrollPanel();
-		scrollPanel.setHeight("500px");
+//		scrollPanel.setHeight("500px");
 		// scrollPanel.setWidget(tools.get(0).getButtonsVPanel());
 		tabBar.addSelectionHandler(new SelectionHandler<Integer>() {
 
@@ -111,27 +113,33 @@ public class SuggestedMessagesView {
 		for (SuggestionCategory suggestionCategory : model.getSuggestionCategories()) {
 			String tabTitle = suggestionCategory.getName();
 			
-			TabWidget tabWidget = new TabWidget();
+			TabWidget tabWidget = new TabWidget(tabTitle);
 			tabWidget.setController(controller);
 			tabWidgets.add(tabWidget);
-			tabWidget.setTitle(tabTitle);
+//			tabWidget.setTitle();
+			
+			
 			if (!isetZero) {
 				isetZero = true;
 				this.tabTitle = tabTitle;
 			}
 //			tabBar.addTab(tabTitle);
-//			tabBar.addTab("<font color=\"red\">" +tabTitle+ "</font>", true);	// sample way of setting style
-			tabBar.addTab("<i>" +tabTitle+ "</i>", true);	// sample way of setting style
+//			tabBar.addTab("<font color=\"blue\">" +tabTitle+ "</font>", true);	// sample way of setting style
+			tabBar.addTab("<b>" +tabTitle+ "</b>", true);	// sample way of setting style
 
 			for (SuggestedMessage msg : suggestionCategory.getSuggestedMessages()) {
 				tabWidget.addSuggestedMessageRow(msg, tabTitle);
 			}
+
+			if (UrlParameterConfig.getInstance().getUserType().equals(UserType.POWER_WIZARD)) {
+				tabWidget.enableTabConfig();
+			}
 		}
 
 		// create tab for message history
-		messageHistory = new HistoryTabWidget();
 		String sentMessagesTitle = "Sent";
-		messageHistory.setTitle(sentMessagesTitle);
+		messageHistory = new HistoryTabWidget(sentMessagesTitle);
+//		messageHistory.setTitle(sentMessagesTitle);
 		tabWidgets.add(messageHistory);
 		tabBar.insertTab(sentMessagesTitle, tabBar.getTabCount());
 
@@ -182,34 +190,6 @@ public class SuggestedMessagesView {
 		xmlVPanel.add(textArea);
 		
 	}
-
-	
-//	private void addButtonToTabWidget(TabWidget tabWidget, final SuggestedMessage message) {
-//		CheckBox checkBox = new CheckBox();
-//		checkBox.setValue(message.isBold());
-//		
-//		String msgText = message.isBold() ? "<b>" +message.getText()+ "</b>" : message.getText();
-//		Button b = new Button(msgText);
-//		b.setWidth("480px");
-//		b.addClickHandler(new ClickHandler() {
-//			@Override
-//			public void onClick(ClickEvent event) {
-//				FeedbackPanelContainer.getMessageTextArea().setText(message.getText());
-//				UserLog userActionLog = new UserLog();
-//				userActionLog.setComponentType(ComponentType.FEEDBACK_TEMPLATE_POOL);
-//				userActionLog.setDescription("Text selection for feedback: Feedback_Type=" + tabTitle + "," + "Text=" + message.getText());
-//				userActionLog.setUserActionType(UserActionType.FEEDBACK_TEXT_SELECTION);
-//				userActionLog.setTriggeredBy(ComponentType.FEEDBACK_TEMPLATE_POOL);
-//				userActionLog.addProperty("FEEDBACK_TYPE", tabTitle);
-//				userActionLog.addProperty("FEEDBACK_TEXT", message.getText());
-//
-//				Logger.getLoggerInstance().log(userActionLog);
-//
-//			}
-//		});
-//		tabWidget.getButtonsVPanel().add(b);
-//		tabWidget.getButtonsVPanel().add(checkBox);
-//	}
 
 	public void addMessageToHistory(String messageToStudent) {
 		messageHistory.addSuggestedMessageRow(new SuggestedMessage(messageToStudent), tabTitle);

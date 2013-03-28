@@ -5,6 +5,7 @@ import java.util.Vector;
 
 public class SuggestionCategory {
 	private String name;
+	private boolean highlight;
 	private List<SuggestedMessage> messages;
 	
 	public SuggestionCategory(String name) {
@@ -14,6 +15,10 @@ public class SuggestionCategory {
 
 	public void addMessage(SuggestedMessage message) {
 		messages.add(message);
+	}
+	
+	public void removeMessage(int index) {
+		messages.remove(index);
 	}
 	
 	//
@@ -40,4 +45,11 @@ public class SuggestionCategory {
 		this.messages = messages;
 	}
 	
+	public boolean isHighlight() {
+		return highlight;
+	}
+	
+	public void setHighlight(boolean highlight) {
+		this.highlight = highlight;
+	}
 }
