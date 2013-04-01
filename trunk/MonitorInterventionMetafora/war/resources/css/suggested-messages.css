@@ -4,17 +4,20 @@
 	font-weight: bold;
 }
 
-.sss {
-	width: 13px;
-	height: 13px;
-	background-image: url("");
-	background-repeat: no-repeat;
-}
-
 .gwt-Button-delete {
 	background: white url(../images/delete.gif) center center;
 	vertical-align: middle;
 	height: 12px;
 	width: 12px;
 	cursor: pointer;
+}
+
+.gwt-HTML-selected-highlight {
+	color: black;
+	background-color: white;	
+}
+
+.gwt-HTML-unselected-highlight {
+	color: white;
+	background-color: black;
 }
