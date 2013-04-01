@@ -1,44 +1,25 @@
 package de.uds.MonitorInterventionMetafora.client.feedback;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.BeforeSelectionEvent;
+import com.google.gwt.event.logical.shared.BeforeSelectionHandler;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ComplexPanel;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TabBar;
 import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.ToggleButton;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.xml.client.Document;
-import com.google.gwt.xml.client.Element;
-import com.google.gwt.xml.client.NamedNodeMap;
-import com.google.gwt.xml.client.Node;
-import com.google.gwt.xml.client.NodeList;
-import com.google.gwt.xml.client.XMLParser;
-import com.google.gwt.xml.client.impl.DOMParseException;
 
-import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
-import de.uds.MonitorInterventionMetafora.client.logger.Logger;
-import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
-import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
-import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class SuggestedMessagesView {
 	private VerticalPanel vpanel;
@@ -51,7 +32,7 @@ public class SuggestedMessagesView {
 	private SuggestedMessagesModel model; 
 	private ClientFeedbackDataModelUpdater updater;
 	
-	public SuggestedMessagesView(ComplexPanel parent, SuggestedMessagesModel model, SuggestedMessagesController controller, ClientFeedbackDataModelUpdater updater) {
+	public SuggestedMessagesView(ComplexPanel parent, final SuggestedMessagesModel model, SuggestedMessagesController controller, ClientFeedbackDataModelUpdater updater) {
 		this.controller = controller;
 		controller.setView(this);
 		this.model = model;
@@ -75,23 +56,37 @@ public class SuggestedMessagesView {
 //		scrollPanel.setHeight("500px");
 		// scrollPanel.setWidget(tools.get(0).getButtonsVPanel());
 		tabBar.addSelectionHandler(new SelectionHandler<Integer>() {
-
-			@Override
 			public void onSelection(SelectionEvent<Integer> event) {
 				if (tabBar.getTabHTML(event.getSelectedItem()).equals("XML")) {
 					scrollPanel.setWidget(xmlVPanel);
 				} else {
-					scrollPanel.setWidget(tabWidgets.get(
-							event.getSelectedItem()).getMainVPanel());
+					scrollPanel.setWidget(tabWidgets.get(event.getSelectedItem()).getMainVPanel());
 				}
 
-				tabTitle = tabBar.getTabHTML(event.getSelectedItem());
-
+				HTML html = new HTML(tabBar.getTabHTML(event.getSelectedItem()));
+				tabTitle = html.getText();
+//				tabTitle = tabBar.getTabHTML(event.getSelectedItem());
+//				tabBar.setStyleName("highlight_category_label");
+				html.removeStyleDependentName("unselected-highlight");
+				html.addStyleDependentName("selected-highlight");
+				tabBar.setTabHTML(event.getSelectedItem(), html.toString());
 			}
-
+		});
+		tabBar.addBeforeSelectionHandler(new BeforeSelectionHandler<Integer>() {
+			@Override
+			public void onBeforeSelection(BeforeSelectionEvent<Integer> event) {
+				TabBar source = (TabBar) event.getSource();
+				int index = source.getSelectedTab();
+				if (index > -1 && index < tabWidgets.size() && model.getSuggestionCategory(index).isHighlight()) {
+					String tabHTML = source.getTabHTML(index);
+					HTML html = new HTML(tabHTML);
+					html.removeStyleDependentName("selected-highlight");
+					html.addStyleDependentName("unselected-highlight");
+					source.setTabHTML(index, html.toString());
+				}
+			}
 		});
 		tabBar.selectTab(0, true);
-
 		vpanel.add(tabBar);
 		vpanel.add(scrollPanel);
 	}
@@ -123,9 +118,12 @@ public class SuggestedMessagesView {
 				isetZero = true;
 				this.tabTitle = tabTitle;
 			}
+			
+			HTML html = new HTML(tabTitle);
+			if (suggestionCategory.isHighlight())
+				html.addStyleDependentName("unselected-highlight");
 //			tabBar.addTab(tabTitle);
-//			tabBar.addTab("<font color=\"blue\">" +tabTitle+ "</font>", true);	// sample way of setting style
-			tabBar.addTab("<b>" +tabTitle+ "</b>", true);	// sample way of setting style
+			tabBar.addTab(html.toString(), true);	// sample way of setting style
 
 			for (SuggestedMessage msg : suggestionCategory.getSuggestedMessages()) {
 				tabWidget.addSuggestedMessageRow(msg, tabTitle);
@@ -206,6 +204,9 @@ public class SuggestedMessagesView {
 
 	public void setModel(SuggestedMessagesModel suggestedMessagesModel) {
 		this.model = suggestedMessagesModel;
-		
+	}
+	
+	public TabBar getTabBar() {
+		return tabBar;
 	}
 }

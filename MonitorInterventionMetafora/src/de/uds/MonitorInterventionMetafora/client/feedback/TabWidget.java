@@ -85,8 +85,10 @@ public class TabWidget {
 				MessageBox box = MessageBox.prompt("Add new message", "Please type the text of a message:", true);
 			    box.addCallback(new Listener<MessageBoxEvent>() {
 			    	public void handleEvent(MessageBoxEvent be) {
+			    		int selectedTab = controller.getView().getTabBar().getSelectedTab();
 			    		controller.addNewMessage(title, be.getValue()); 
 			    		controller.refreshTabs();
+			    		controller.getView().getTabBar().selectTab(selectedTab);
 			    	}
 			    });
 				
@@ -106,8 +108,10 @@ public class TabWidget {
 					Button source = (Button) event.getSource();
 					Widget hpanel = source.getParent();
 					int rowIndex = ((VerticalPanel)hpanel.getParent()).getWidgetIndex(hpanel);
+					int selectedTab = controller.getView().getTabBar().getSelectedTab();
 					controller.removeMessage(title, rowIndex);
 					controller.refreshTabs();
+		    		controller.getView().getTabBar().selectTab(selectedTab);
 				}
 			});
 			row.add(deleteButton);
