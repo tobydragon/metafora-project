@@ -62,13 +62,16 @@ public class TabWidget {
 		
 		Label tabColorLabel = new Label("Highlight:");
 		CheckBox highlightCheckBox = new CheckBox();
+		highlightCheckBox.setTitle("Set tab as highlighted?");
 		highlightCheckBox.setValue(controller.getSuggestedMessagesModel().getSuggestionCategory(title).isHighlight());
 		highlightCheckBox.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
+				int selectedTab = controller.getView().getTabBar().getSelectedTab();
 				CheckBox source = ((CheckBox) event.getSource());
 				controller.highlightCategory(title, source.getValue());
 				controller.refreshTabs();
+				controller.getView().getTabBar().selectTab(selectedTab);
 			}
 		});
 		configPanel.add(tabColorLabel);
@@ -99,6 +102,7 @@ public class TabWidget {
 	
 	public void addSuggestedMessageRow(final SuggestedMessage message, final String tabTitle) {
 		HorizontalPanel row = new HorizontalPanel();
+		row.setSpacing(2);
 		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.POWER_WIZARD)) {
 			Button deleteButton = new Button("x");
 //			deleteButton.addStyleDependentName("delete");
@@ -117,10 +121,12 @@ public class TabWidget {
 			row.add(deleteButton);
 			
 			CheckBox checkBox = new CheckBox();
+			checkBox.setTitle("Highlight?");
 			checkBox.setValue(message.isHighlight());
 			checkBox.addClickHandler(new ClickHandler() {
 				@Override
 				public void onClick(ClickEvent event) {
+					int selectedTab = controller.getView().getTabBar().getSelectedTab();
 					CheckBox source = ((CheckBox) event.getSource());
 					HorizontalPanel horizontalPanel = (HorizontalPanel) source.getParent();
 					
@@ -132,22 +138,23 @@ public class TabWidget {
 					button.setStyleDependentName("highlight", source.getValue());
 					controller.changeMessageStyle(title, rowIndex, source.getValue());	// make it bold
 					controller.refreshTabs();
+					controller.getView().getTabBar().selectTab(selectedTab);
 				}
 			});
-			checkBox.addMouseOverHandler(new MouseOverHandler() {
-				@Override
-				public void onMouseOver(MouseOverEvent event) {
-					CheckBox source = ((CheckBox) event.getSource());
-					source.setTitle("Highlight?");
-				}
-			});
-			checkBox.addMouseOutHandler(new MouseOutHandler() {
-				@Override
-				public void onMouseOut(MouseOutEvent event) {
-					CheckBox source = ((CheckBox) event.getSource());
-					source.setTitle("");
-				}
-			});
+//			checkBox.addMouseOverHandler(new MouseOverHandler() {
+//				@Override
+//				public void onMouseOver(MouseOverEvent event) {
+//					CheckBox source = ((CheckBox) event.getSource());
+//					source.setTitle("Highlight?");
+//				}
+//			});
+//			checkBox.addMouseOutHandler(new MouseOutHandler() {
+//				@Override
+//				public void onMouseOut(MouseOutEvent event) {
+//					CheckBox source = ((CheckBox) event.getSource());
+//					source.setTitle("");
+//				}
+//			});
 			row.add(checkBox);
 		}
 		

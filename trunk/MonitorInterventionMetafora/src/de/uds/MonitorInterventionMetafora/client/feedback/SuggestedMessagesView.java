@@ -29,13 +29,13 @@ public class SuggestedMessagesView {
 	private VerticalPanel xmlVPanel;
 	private String tabTitle = "";
 	private SuggestedMessagesController controller;
-	private SuggestedMessagesModel model; 
+	private SuggestedMessagesModel suggestedMessagesModel; 
 	private ClientFeedbackDataModelUpdater updater;
 	
 	public SuggestedMessagesView(ComplexPanel parent, final SuggestedMessagesModel model, SuggestedMessagesController controller, ClientFeedbackDataModelUpdater updater) {
 		this.controller = controller;
 		controller.setView(this);
-		this.model = model;
+		this.suggestedMessagesModel = model;
 		this.updater = updater;
 		vpanel = new VerticalPanel();
 		// vpanel.setSpacing(20);
@@ -65,11 +65,19 @@ public class SuggestedMessagesView {
 
 				HTML html = new HTML(tabBar.getTabHTML(event.getSelectedItem()));
 				tabTitle = html.getText();
-//				tabTitle = tabBar.getTabHTML(event.getSelectedItem());
-//				tabBar.setStyleName("highlight_category_label");
-				html.removeStyleDependentName("unselected-highlight");
-				html.addStyleDependentName("selected-highlight");
-				tabBar.setTabHTML(event.getSelectedItem(), html.toString());
+				
+				SuggestionCategory suggestionCategory = suggestedMessagesModel.getSuggestionCategory(tabTitle);
+				if (suggestionCategory != null) {
+					if (suggestionCategory.isHighlight()) {
+						HTML newHtml = new HTML(tabTitle);
+						newHtml.addStyleDependentName("selected-highlight");
+						tabBar.setTabHTML(event.getSelectedItem(), newHtml.toString());
+					} else {
+						html.removeStyleDependentName("selected-highlight");
+						html.removeStyleDependentName("unselected-highlight");
+						tabBar.setTabHTML(event.getSelectedItem(), tabTitle);
+					}
+				}
 			}
 		});
 		tabBar.addBeforeSelectionHandler(new BeforeSelectionHandler<Integer>() {
@@ -77,12 +85,19 @@ public class SuggestedMessagesView {
 			public void onBeforeSelection(BeforeSelectionEvent<Integer> event) {
 				TabBar source = (TabBar) event.getSource();
 				int index = source.getSelectedTab();
-				if (index > -1 && index < tabWidgets.size() && model.getSuggestionCategory(index).isHighlight()) {
-					String tabHTML = source.getTabHTML(index);
-					HTML html = new HTML(tabHTML);
-					html.removeStyleDependentName("selected-highlight");
-					html.addStyleDependentName("unselected-highlight");
-					source.setTabHTML(index, html.toString());
+				if (index > -1 && index < tabWidgets.size()) {
+					HTML html = new HTML(source.getTabHTML(index));
+					
+					if (model.getSuggestionCategory(index).isHighlight()) {
+						HTML newHtml = new HTML(html.getText());
+						newHtml.addStyleDependentName("unselected-highlight");
+						source.setTabHTML(index, newHtml.toString());
+					} else {
+						html.setStyleName(html.getStylePrimaryName());
+//						html.removeStyleDependentName("selected-highlight");
+//						html.removeStyleDependentName("unselected-highlight");
+						source.setTabHTML(index, html.toString());
+					}
 				}
 			}
 		});
@@ -120,8 +135,9 @@ public class SuggestedMessagesView {
 			}
 			
 			HTML html = new HTML(tabTitle);
-			if (suggestionCategory.isHighlight())
+			if (suggestionCategory.isHighlight()) {
 				html.addStyleDependentName("unselected-highlight");
+			}
 //			tabBar.addTab(tabTitle);
 			tabBar.addTab(html.toString(), true);	// sample way of setting style
 
@@ -203,7 +219,7 @@ public class SuggestedMessagesView {
 	}
 
 	public void setModel(SuggestedMessagesModel suggestedMessagesModel) {
-		this.model = suggestedMessagesModel;
+		this.suggestedMessagesModel = suggestedMessagesModel;
 	}
 	
 	public TabBar getTabBar() {
