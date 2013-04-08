@@ -1,87 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <xmpp-connect-settings>
-	<xmpp-channel-setting channelid="analysis">
-		<connection-name>LasadAnalysis</connection-name>
-		<username>LasadAnalysis</username>
-		<password>LasadAnalysis</password>
-		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>LasadAnalysis</alias>
-		<device>LasadServer</device>
-		<controller-name>Metafora</controller-name>
-	</xmpp-channel-setting>
-	<xmpp-channel-setting channelid="command">
-		<connection-name>LasadCommand</connection-name>
-		<username>LasadCommand</username>
-		<password>LasadCommand</password>
-		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>LasadCommand</alias>
-		<device>LasadServer</device>
-		<controller-name>Metafora</controller-name>
-	</xmpp-channel-setting>
-	<xmpp-channel-setting channelid="analysis-test-toby">
-		<connection-name>LasadAnalysisTest</connection-name>
-		<username>LasadAnalysisTest</username>
-		<password>LasadAnalysisTest</password>
-		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>LasadAnalysisTest</alias>
-		<device>LasadTestServer</device>
-		<controller-name>Metafora-test</controller-name>
-	</xmpp-channel-setting>
-	<xmpp-channel-setting channelid="command-test-toby">
-		<connection-name>LasadCommandTest</connection-name>
-		<username>LasadCommandTest</username>
-		<password>LasadCommandTest</password>
-		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>LasadCommandTest</alias>
-		<device>LasadTestServer</device>
-		<controller-name>Metafora-test</controller-name>
-	</xmpp-channel-setting>
-	<xmpp-channel-setting channelid="analysis-test-ugur">
-		<connection-name>LasadAnalysisTestUgur</connection-name>
-		<username>LasadAnalysisTestUgur</username>
-		<password>LasadAnalysisTestUgur</password>
-		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>LasadAnalysisTestUgur</alias>
-		<device>LasadTestServerUgur</device>
-		<controller-name>Metafora-test-ugur</controller-name>
-	</xmpp-channel-setting>
-	<xmpp-channel-setting channelid="command-test-ugur">
-		<connection-name>LasadCommandTestUgur</connection-name>
-		<username>LasadCommandTestUgur</username>
-		<password>LasadCommandTestUgur</password>
-		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>LasadCommandTestUgur</alias>
-		<device>LasadTestServerUgur</device>
-		<controller-name>Metafora-test-ugur</controller-name>
-	</xmpp-channel-setting>
-	
-	<xmpp-channel-setting channelid="lasad-logger-test-unknown">
-		<connection-name>LasadLoggerTestUknown</connection-name>
-		<username>LasadLoggerTestUknown</username>
-		<password>LasadLoggerTestUknown</password>
-		<chatroom>logger@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>LasadLoggerTestUknown</alias>
-		<device>LasadLoggerTestUknown</device>
-		<controller-name>Metafora-test-uknown</controller-name>
-	</xmpp-channel-setting>
-	<xmpp-channel-setting channelid="lasad-command-test-unknown">
-		<connection-name>LasadCommandTestUknown</connection-name>
-		<username>LasadCommandTestUknown</username>
-		<password>LasadCommandTestUknown</password>
-		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>LasadCommandTestUknown</alias>
-		<device>LasadCommandTestUknown</device>
-		<controller-name>Metafora-test-uknown</controller-name>
-	</xmpp-channel-setting>
-	<xmpp-channel-setting channelid="lasad-analysis-test-unkown">
-		<connection-name>LasadAnalysisTestUknown</connection-name>
-		<username>LasadAnalysisTestUknown</username>
-		<password>LasadAnalysisTestUknown</password>
-		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>LasadAnalysisTestUknown</alias>
-		<device>LasadAnalysisTestUknown</device>
-		<controller-name>Metafora-test-uknown</controller-name>
-	</xmpp-channel-setting>
 	
 	<xmpp-channel-setting channelid="visualizer-command-test-unknown">
 		<connection-name>VisualizerCommandTestUknown</connection-name>
@@ -90,8 +8,8 @@
 		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
 		<alias>VisualizerCommandTestUknown</alias>
 		<device>VisualizerCommandTestUknown</device>
-		<controller-name>Metafora-test-unknown</controller-name>
 	</xmpp-channel-setting>
+	
 	<xmpp-channel-setting channelid="visualizer-analysis-test-unknown">
 		<connection-name>VisualizerAnalysisTestUknown</connection-name>
 		<username>VisualizerAnalysisTestUknown</username>
@@ -99,45 +17,24 @@
 		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
 		<alias>VisualizerAnalysisTestUknown</alias>
 		<device>VisualizerAnalysisTestUknown</device>
-		<controller-name>Metafora-test-unknown</controller-name>
 	</xmpp-channel-setting>
 	
-	<xmpp-channel-setting channelid="visualizer-analysis-test-ugur">
-		<connection-name>VisualizerAnalysisTestUgur</connection-name>
-		<username>VisualizerAnalysisTestUgur</username>
-		<password>VisualizerAnalysisTestUgur</password>
-		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>VisualizerAnalysisTestUgur</alias>
-		<device>VisualizerAnalysisTestUgur</device>
-		<controller-name>Metafora-test-ugur</controller-name>
-	</xmpp-channel-setting>
-	<xmpp-channel-setting channelid="visualizer-command-test-ugur">
-		<connection-name>VisualizerCommandTestUgur</connection-name>
-		<username>VisualizerCommandTestUgur</username>
-		<password>VisualizerCommandTestUgur</password>
-		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>VisualizerCommandTestUgur</alias>
-		<device>VisualizerCommandTestUgur</device>
-		<controller-name>Metafora-test-ugur</controller-name>
+	<xmpp-channel-setting channelid="visualizer-command-deploy-unknown">
+		<connection-name>VisualizerCommandDeployUknown</connection-name>
+		<username>VisualizerCommandDeployUknown</username>
+		<password>VisualizerCommandDeployUknown</password>
+		<chatroom>command@conference.metaforaserver.ku.de</chatroom>
+		<alias>VisualizerCommandDeployUknown</alias>
+		<device>VisualizerCommandDeployUknown</device>
 	</xmpp-channel-setting>
 	
-	<xmpp-channel-setting channelid="visualizer-analysis-test-toby">
-		<connection-name>VisualizerAnalysisTestToby</connection-name>
-		<username>VisualizerAnalysisTestToby</username>
-		<password>VisualizerAnalysisTestToby</password>
-		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>VisualizerAnalysisTestToby</alias>
-		<device>VisualizerAnalysisTestToby</device>
-		<controller-name>Metafora-test-toby</controller-name>
-	</xmpp-channel-setting>
-	<xmpp-channel-setting channelid="visualizer-command-test-toby">
-		<connection-name>VisualizerCommandTestToby</connection-name>
-		<username>VisualizerCommandTestToby</username>
-		<password>VisualizerCommandTestToby</password>
-		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>VisualizerCommandTestToby</alias>
-		<device>VisualizerCommandTestToby</device>
-		<controller-name>Metafora-test-toby</controller-name>
+	<xmpp-channel-setting channelid="visualizer-analysis-deploy-unknown">
+		<connection-name>VisualizerAnalysisDeployUknown</connection-name>
+		<username>VisualizerAnalysisDeployUknown</username>
+		<password>VisualizerAnalysisDeployUknown</password>
+		<chatroom>analysis@conference.metaforaserver.ku.de</chatroom>
+		<alias>VisualizerAnalysisDeployUknown</alias>
+		<device>VisualizerAnalysisDeployUknown</device>
 	</xmpp-channel-setting>
 	
 	<xmpp-channel-setting channelid="visualizer-analysis-test">
@@ -158,22 +55,42 @@
 		<device>VisualizerCommand</device>
 	</xmpp-channel-setting>
 	
-	<xmpp-channel-setting channelid="visualizer-analysis-test-almer">
-		<connection-name>VisualizerAnalysisTestAlmer</connection-name>
-		<username>VisualizerAnalysisTestAlmer</username>
-		<password>VisualizerAnalysisTestAlmer</password>
-		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>VisualizerAnalysisTestAlmer</alias>
-		<device>VisualizerAnalysisTestAlmer</device>
+        
+    <xmpp-channel-setting channelid="visualizer-analysis-deploy-toby">
+		<connection-name>VisualizerAnalysisDeployToby</connection-name>
+		<username>VisualizerAnalysisDeployToby</username>
+		<password>VisualizerAnalysisDeployToby</password>
+		<chatroom>analysis@conference.metaforaserver.ku.de</chatroom>
+		<alias>VisualizerAnalysisDeployToby</alias>
+		<device>VisualizerAnalysisDeployToby</device>
 	</xmpp-channel-setting>
 	
-	<xmpp-channel-setting channelid="visualizer-command-test-almer">
-		<connection-name>VisualizerCommandTestAlmer</connection-name>
-		<username>VisualizerCommandTestAlmer</username>
-		<password>VisualizerCommandTestAlmer</password>
+	<xmpp-channel-setting channelid="visualizer-command-deploy-toby">
+		<connection-name>VisualizerCommandDeployToby</connection-name>
+		<username>VisualizerCommandDeployToby</username>
+		<password>VisualizerCommandDeployToby</password>
+		<chatroom>command@conference.metaforaserver.ku.de</chatroom>
+		<alias>VisualizerCommandDeployToby</alias>
+		<device>VisualizerCommandDeployToby</device>
+	</xmpp-channel-setting>
+	
+	<xmpp-channel-setting channelid="visualizer-analysis-test-toby">
+		<connection-name>VisualizerAnalysisTestToby</connection-name>
+		<username>VisualizerAnalysisTestToby</username>
+		<password>VisualizerAnalysisTestToby</password>
+		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>VisualizerAnalysisTestToby</alias>
+		<device>VisualizerAnalysisTestToby</device>
+	</xmpp-channel-setting>
+	
+	<xmpp-channel-setting channelid="visualizer-command-test-toby">
+		<connection-name>VisualizerCommandTestToby</connection-name>
+		<username>VisualizerCommandTestToby</username>
+		<password>VisualizerCommandTestToby</password>
 		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
-		<alias>VisualizerCommandTestAlmer</alias>
-		<device>VisualizerCommandTestAlmer</device>
+		<alias>VisualizerCommandTestToby</alias>
+		<device>VisualizerCommandTestToby</device>
+		<controller-name>Metafora-test-toby</controller-name>
 	</xmpp-channel-setting>
 	
 </xmpp-connect-settings>

@@ -33,7 +33,7 @@ public enum OperationType {
 			return valueOf(str);
 		}
 		catch (Exception e){
-			Log.error("[getFromString] No operation for type:" + str);
+			Log.error("[OperationType.getFromString] No operation for type:" + str);
 			return null;
 		}	
 	}

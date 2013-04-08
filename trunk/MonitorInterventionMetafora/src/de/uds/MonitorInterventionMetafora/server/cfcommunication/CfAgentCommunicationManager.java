@@ -14,6 +14,7 @@ import org.apache.commons.logging.LogFactory;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 
 public class CfAgentCommunicationManager implements CfCommunicationListener{
 	Log logger = LogFactory.getLog(CfAgentCommunicationManager.class);
@@ -22,7 +23,17 @@ public class CfAgentCommunicationManager implements CfCommunicationListener{
 	
 	// We only maintain one instance of the communication manager, for each method and each channel.
 	// All connections for a specific method and channel speak through this one instance.
-	public static CfAgentCommunicationManager getInstance(CfCommunicationMethodType methodType, CommunicationChannelType channelType){
+	public static CfAgentCommunicationManager getInstance(CfCommunicationMethodType methodType, CommunicationChannelType channelType, XmppServerType xmppServerType){
+		
+		//convert requests to appropriate server info
+		if (xmppServerType == XmppServerType.TEST){
+			if (channelType == CommunicationChannelType.command){
+				channelType = CommunicationChannelType.testCommand;
+			}
+			else if (channelType == CommunicationChannelType.analysis){
+				channelType = CommunicationChannelType.testAnalysis;
+			}
+		}
 		
 		Map<CommunicationChannelType, CfAgentCommunicationManager> channelMap = instanceMatrix.get(methodType);
 		if (channelMap == null){
@@ -39,7 +50,7 @@ public class CfAgentCommunicationManager implements CfCommunicationListener{
 	
 	//default to xmpp
 	public static CfAgentCommunicationManager getInstance(CommunicationChannelType channelType){
-		return getInstance(CfCommunicationMethodType.xmpp, channelType);
+		return getInstance(CfCommunicationMethodType.xmpp, channelType, XmppServerType.TEST);
 	}
 
 	

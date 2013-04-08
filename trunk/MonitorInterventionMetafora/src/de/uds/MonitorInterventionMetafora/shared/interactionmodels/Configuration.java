@@ -4,30 +4,44 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
+import com.allen_sauer.gwt.log.client.Log;
+
+import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
-//import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
-
-
-
 
 public class Configuration implements Serializable{
 	private static final long serialVersionUID = -4344917692123021453L;
 	
-//	Logger logger = Logger.getLogger(this.getClass());
 	String name="";
 	
 	CfCommunicationMethodType communicationMethodType = CfCommunicationMethodType.file;
+	XmppServerType defaultXmppServer = XmppServerType.TEST;
+	
+	boolean testServerMonitoring = true;
+	boolean deployServerMonitoring = true;
 	String historyStartTime = MetaforaStrings.CURRENT_TIME;
 	
 	Map<String, ActionFilter> filters;
 	
 	public Configuration(){
-		filters=new HashMap<String,ActionFilter>();
-		//notifications=new ArrayList<Notification>();
+		this("No Name", "file", "CURRENT", "TEST", "false", "false", new Vector<ActionFilter>());
+	}
+	
+	public Configuration(String name, String communicationMethodType, String historyStartTime, String defaultServer, String testServerMonitoring, String deployServerMonitoring, List<ActionFilter> filters){
+		this.name = name;
+		setDataSourceType(communicationMethodType);
+		this.historyStartTime = historyStartTime;
+		
+		setTestServerMonitoring (testServerMonitoring);
+		setDeployServerMonitoring(deployServerMonitoring);
+		setDefaultXmppServer(defaultServer);
+		
+		this.filters=new HashMap<String,ActionFilter>();
+		addFilters(filters);
 	}
 	
 	public void setName(String _name){
@@ -62,7 +76,39 @@ public class Configuration implements Serializable{
 			communicationMethodType = CfCommunicationMethodType.valueOf(typeString);
 		}
 		catch (Exception e){
+			Log.error("[Configuration.setDataSourceType] Unable to set communication type, probably bad typeString=" + typeString);
+			e.printStackTrace();
 //			logger.error("Unable to set communication type, probably bad typeString=" + typeString + e.toString());
+		}
+	}
+	
+	public void setTestServerMonitoring(String typeString){
+		
+		try {
+			testServerMonitoring = Boolean.valueOf(typeString);
+		}
+		catch (Exception e){
+			Log.error("[Configuration.setTestServerMonitoring] Unable to set, probably bad string=" + typeString + e.toString());
+		}
+	}
+	
+	public void setDeployServerMonitoring(String typeString){
+		
+		try {
+			deployServerMonitoring = Boolean.valueOf(typeString);
+		}
+		catch (Exception e){
+			Log.error("[setDeployServerMonitoring] Unable to set, probably bad string=" + typeString + e.toString());
+		}
+	}
+	
+	
+	public void setDefaultXmppServer(String typeString){
+		try {
+			defaultXmppServer = XmppServerType.valueOf(typeString);
+		}
+		catch (Exception e){
+			Log.error("[setDefaultXmppServer] Unable to set probably bad string=" + typeString + e.toString());
 		}
 	}
 	
@@ -79,25 +125,19 @@ public class Configuration implements Serializable{
 		if(filters.containsKey(filterName))
 		filters.remove(filterName);
 	}
-	
-	/*	
-	public void addNotification(Notification _notification){
-		notifications.add(_notification);
-		
+
+	public XmppServerType getDefaultXmppServer() {
+		return defaultXmppServer;
+	}
+
+	public boolean isTestServerMonitoring() {
+		return testServerMonitoring;
+	}
+
+	public boolean isDeployServerMonitoring() {
+		return deployServerMonitoring;
 	}
 	
-	public void addNotifications(List<Notification> _notifications){
-		notifications.clear();
-		notifications.addAll(_notifications);
-		
-		
-	}
 	
-	
-	public List<Notification> getNotifications(){
-		
-		return notifications;
-	}
-	*/
 	
 }

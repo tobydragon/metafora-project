@@ -48,10 +48,10 @@ public class UrlParameterConfig {
 			userType = UserType.METAFORA_RECOMMENDATIONS;
 		} else userType = UserType.STANDARD_WIZARD;
 		
-		username = (username == null) ? "" : username;
-		receiverIDs = (receiverIDs == null) ? "" : receiverIDs;
-		password = (password == null) ? "" : password;
-		configID = (configID == null) ? "" : configID;
+//		username = (username == null) ? "" : username;
+//		receiverIDs = (receiverIDs == null) ? "" : receiverIDs;
+//		password = (password == null) ? "" : password;
+//		configID = (configID == null) ? "" : configID;
 		receiver = (receiver == null) ? MetaforaStrings.RECEIVER_METAFORA : receiver;
 		locale = (locale == null) ? "en" : locale;
 		
