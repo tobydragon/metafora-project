@@ -10,6 +10,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 
 public class FeedbackController implements CfCommunicationListener {
 	Logger logger = Logger.getLogger(this.getClass());
@@ -17,8 +18,8 @@ public class FeedbackController implements CfCommunicationListener {
 	CfAgentCommunicationManager feedbackCommunicationManager;
 	FeedbackModel feedbackModel;
 	
-	public FeedbackController(CfCommunicationMethodType communicationMethodType){
-		feedbackCommunicationManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.command);
+	public FeedbackController(CfCommunicationMethodType communicationMethodType, XmppServerType xmppServerType){
+		feedbackCommunicationManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.command, xmppServerType);
 		feedbackModel = new FeedbackModel();
 		
 		feedbackCommunicationManager.register(this);

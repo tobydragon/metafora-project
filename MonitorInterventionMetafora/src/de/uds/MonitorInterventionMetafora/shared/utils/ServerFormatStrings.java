@@ -11,6 +11,11 @@ public class ServerFormatStrings {
 	public static final String CONFIGURATION="configuration";
 	public static final String DATA_SOURCE_TYPE="data-source-type";
 	public static final String HISTORY_START_TIME="HISTORY_START_TIME";
+	public static final String DEFAULT_XMPP_SERVER="default-xmpp-server";
+	public static final String TEST_SERVER_MONITORING="test-server-monitoring";
+	public static final String DEPLOY_SERVER_MONITORING="deploy-server-monitoring";
+	
+	
 	public static final String NAME="name";
 	public static final String FILTER="filter";
 	public static final String FILTERS="filters";

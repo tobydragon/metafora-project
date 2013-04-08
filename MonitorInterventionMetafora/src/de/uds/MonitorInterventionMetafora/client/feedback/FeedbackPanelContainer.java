@@ -42,7 +42,7 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		
 		//TOODO: this is awful and only a shortcut now
 		String configUserIDs = UrlParameterConfig.getInstance().getReceiverIDs();
-		if ((configUserIDs != null) || (configUserIDs != "")) {
+		if ((configUserIDs != null) && (configUserIDs != "")) {
 		    userIDsArray= parseStringToArray(configUserIDs);
 		}
 		

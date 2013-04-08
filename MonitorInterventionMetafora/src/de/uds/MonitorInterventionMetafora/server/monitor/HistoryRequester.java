@@ -20,6 +20,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaCommObjects;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 import de.uds.MonitorInterventionMetafora.shared.utils.LogLevel;
 import de.uds.MonitorInterventionMetafora.shared.utils.Logger;
@@ -35,14 +36,14 @@ public class HistoryRequester implements CfCommunicationListener{
 		this.model = model;
 	}
 	
-	public void sendHistoryRequest(CfCommunicationMethodType communicationMethodType, String currentTimeMillis){
+	public void sendHistoryRequest(CfCommunicationMethodType communicationMethodType, String currentTimeMillis, XmppServerType xmppServerType){
 		if (communicationMethodType == CfCommunicationMethodType.xmpp){
-			CfAgentCommunicationManager command = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.command);
+			CfAgentCommunicationManager command = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.command, xmppServerType);
 			command.register(this);
 			sendXmppHistoryRequest(command, currentTimeMillis);
 		}
 		else if (communicationMethodType == CfCommunicationMethodType.file){
-			sendFileHistoryRequest(CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.analysis));
+			sendFileHistoryRequest(CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.analysis, xmppServerType));
 		}
 	}
 

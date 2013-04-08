@@ -5,13 +5,20 @@
     <!-- Either the "xmpp" (to read live) or "file" (to read from "war/xml/test/analysisChannelInput.xml") -->
     <data-source-type>xmpp</data-source-type>
     
+    <!-- Either "DEPLOY" or "TEST" -->
+    <default-xmpp-server>TEST</default-xmpp-server>
+    
+    <!-- Either "true" or "false" -->
+    <test-server-monitoring>false</test-server-monitoring>
+    <deploy-server-monitoring>false</deploy-server-monitoring>
+    
     <!-- Either the "CURRENT_TIME", or the millisecond time of start of history (e.g. "1335798839000") -->
     <HISTORY_START_TIME>CURRENT_TIME</HISTORY_START_TIME>
     
     
     <filters>
       <filter name="Default" editable="true">
-        <filteritem propertyrulename="ID" operation="is one of" value="Toby" type="User" />
+        <filteritem propertyrulename="ID" operation="IS_ONE_OF" value="Toby" type="User" />
       </filter>
       <filter name="LASAD_ALL" editable="true">
         <filteritem propertyrulename="TOOL" operation="CONTAINS" value="LASAD" type="Content" />

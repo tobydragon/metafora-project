@@ -161,7 +161,7 @@ public class ActionPropertyRule  implements Serializable{
   }
   
   public String toString(){
-	  return getKey();
+	  return getKey() + " location - " + propertyLocation;
   }
 
 	public String getSingleActionValue(CfAction action){
@@ -515,7 +515,7 @@ public class ActionPropertyRule  implements Serializable{
 	
 	public boolean isValid(){
 		if (propertyName == null || propertyLocation == null || operationtype==null || valueToFilterBy == null){
-			Log.warn("[isValid] ActionPropertyRule not valid, missing info: " + toString());
+			Log.warn("[ActionPropertyRule.isValid]  missing info: " + toString());
 			return false;
 		}
 		return true;
