@@ -31,6 +31,7 @@ public class SuggestedMessagesView {
 	private SuggestedMessagesController controller;
 	private SuggestedMessagesModel suggestedMessagesModel; 
 	private ClientFeedbackDataModelUpdater updater;
+	private Button getRecommendationsButton;
 	
 	public SuggestedMessagesView(ComplexPanel parent, final SuggestedMessagesModel model, SuggestedMessagesController controller, ClientFeedbackDataModelUpdater updater) {
 		this.controller = controller;
@@ -61,23 +62,23 @@ public class SuggestedMessagesView {
 					scrollPanel.setWidget(xmlVPanel);
 				} else {
 					scrollPanel.setWidget(tabWidgets.get(event.getSelectedItem()).getMainVPanel());
-				}
-
-				HTML html = new HTML(tabBar.getTabHTML(event.getSelectedItem()));
-				tabTitle = html.getText();
-				
-				SuggestionCategory suggestionCategory = suggestedMessagesModel.getSuggestionCategory(tabTitle);
-				if (suggestionCategory != null) {
-					if (suggestionCategory.isHighlight()) {
-						HTML newHtml = new HTML(tabTitle);
-						newHtml.addStyleDependentName("selected-highlight");
-						tabBar.setTabHTML(event.getSelectedItem(), newHtml.toString());
-					} else {
-						html.removeStyleDependentName("selected-highlight");
-						html.removeStyleDependentName("unselected-highlight");
-						tabBar.setTabHTML(event.getSelectedItem(), tabTitle);
+					HTML html = new HTML(tabBar.getTabHTML(event.getSelectedItem()));
+					tabTitle = html.getText();
+					
+					SuggestionCategory suggestionCategory = suggestedMessagesModel.getSuggestionCategory(tabTitle);
+					if (suggestionCategory != null) {
+						if (suggestionCategory.isHighlight()) {
+							HTML newHtml = new HTML(tabTitle);
+							newHtml.addStyleDependentName("selected-highlight");
+							tabBar.setTabHTML(event.getSelectedItem(), newHtml.toString());
+						} else {
+//							html.removeStyleDependentName("selected-highlight");
+//							html.removeStyleDependentName("unselected-highlight");
+							tabBar.setTabHTML(event.getSelectedItem(), tabTitle);
+						}
 					}
 				}
+
 			}
 		});
 		tabBar.addBeforeSelectionHandler(new BeforeSelectionHandler<Integer>() {
@@ -85,18 +86,15 @@ public class SuggestedMessagesView {
 			public void onBeforeSelection(BeforeSelectionEvent<Integer> event) {
 				TabBar source = (TabBar) event.getSource();
 				int index = source.getSelectedTab();
-				if (index > -1 && index < tabWidgets.size()) {
+				if (index > -1 && index < suggestedMessagesModel.getSuggestionCategories().size()) {
 					HTML html = new HTML(source.getTabHTML(index));
+					HTML newHtml = new HTML(html.getText());
 					
-					if (model.getSuggestionCategory(index).isHighlight()) {
-						HTML newHtml = new HTML(html.getText());
+					if (suggestedMessagesModel.getSuggestionCategory(index).isHighlight()) {
 						newHtml.addStyleDependentName("unselected-highlight");
 						source.setTabHTML(index, newHtml.toString());
 					} else {
-						html.setStyleName(html.getStylePrimaryName());
-//						html.removeStyleDependentName("selected-highlight");
-//						html.removeStyleDependentName("unselected-highlight");
-						source.setTabHTML(index, html.toString());
+						source.setTabHTML(index, newHtml.toString());
 					}
 				}
 			}
@@ -107,6 +105,7 @@ public class SuggestedMessagesView {
 	}
 
 	public void populateTabs(SuggestedMessagesModel model) {
+		setModel(model);
 		// create new list of tab widgets
 		tabWidgets = new ArrayList<TabWidget>();
 		// clean tabs
@@ -126,8 +125,6 @@ public class SuggestedMessagesView {
 			TabWidget tabWidget = new TabWidget(tabTitle);
 			tabWidget.setController(controller);
 			tabWidgets.add(tabWidget);
-//			tabWidget.setTitle();
-			
 			
 			if (!isetZero) {
 				isetZero = true;
@@ -138,7 +135,6 @@ public class SuggestedMessagesView {
 			if (suggestionCategory.isHighlight()) {
 				html.addStyleDependentName("unselected-highlight");
 			}
-//			tabBar.addTab(tabTitle);
 			tabBar.addTab(html.toString(), true);	// sample way of setting style
 
 			for (SuggestedMessage msg : suggestionCategory.getSuggestedMessages()) {
@@ -153,7 +149,6 @@ public class SuggestedMessagesView {
 		// create tab for message history
 		String sentMessagesTitle = "Sent";
 		messageHistory = new HistoryTabWidget(sentMessagesTitle);
-//		messageHistory.setTitle(sentMessagesTitle);
 		tabWidgets.add(messageHistory);
 		tabBar.insertTab(sentMessagesTitle, tabBar.getTabCount());
 
@@ -175,7 +170,7 @@ public class SuggestedMessagesView {
 		});
 		
 		// Send button
-		Button sendButton = new Button("Send Suggestions");
+		Button sendButton = new Button("Send recommendations");
 		sendButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -184,8 +179,8 @@ public class SuggestedMessagesView {
 		});
 		
 		// Refresh button
-		Button refreshButton = new Button("Refresh");
-		refreshButton.addClickHandler(new ClickHandler() {
+		getRecommendationsButton = new Button("Get recommendations");
+		getRecommendationsButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
 				String currentUserId = UrlParameterConfig.getInstance().getUsername();
@@ -198,7 +193,7 @@ public class SuggestedMessagesView {
 		buttonsPanel.setSpacing(3);
 		buttonsPanel.add(repopulateButton);
 		buttonsPanel.add(sendButton);
-		buttonsPanel.add(refreshButton);
+		buttonsPanel.add(getRecommendationsButton);
 		xmlVPanel.add(buttonsPanel);
 		
 		xmlVPanel.add(textArea);
@@ -225,4 +220,5 @@ public class SuggestedMessagesView {
 	public TabBar getTabBar() {
 		return tabBar;
 	}
+	
 }

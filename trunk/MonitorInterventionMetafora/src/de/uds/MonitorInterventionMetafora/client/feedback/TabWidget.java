@@ -1,14 +1,12 @@
 package de.uds.MonitorInterventionMetafora.client.feedback;
 
+import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.MessageBoxEvent;
+import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.MouseOutEvent;
-import com.google.gwt.event.dom.client.MouseOutHandler;
-import com.google.gwt.event.dom.client.MouseOverEvent;
-import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -38,7 +36,7 @@ public class TabWidget {
 	public TabWidget(String title) {
 		this.title = title;
 		mainVPanel = new VerticalPanel();
-		mainVPanel.setSpacing(5);
+		mainVPanel.setSpacing(3);
 		headerVPanel = new VerticalPanel();
 		headerVPanel.setWidth("100%");
 
@@ -58,9 +56,9 @@ public class TabWidget {
 	 */
 	public void enableTabConfig() {
 		HorizontalPanel configPanel = new HorizontalPanel();
-		configPanel.setSpacing(5);
+//		configPanel.setSpacing(5);
 		
-		Label tabColorLabel = new Label("Highlight:");
+		Label tabColorLabel = new Label("Highlight tab:");
 		CheckBox highlightCheckBox = new CheckBox();
 		highlightCheckBox.setTitle("Set tab as highlighted?");
 		highlightCheckBox.setValue(controller.getSuggestedMessagesModel().getSuggestionCategory(title).isHighlight());
@@ -80,6 +78,7 @@ public class TabWidget {
 
 		// Add new message
 		Button addMessageButton = new Button("Add new message");
+		addMessageButton.setTitle("Add suggested message to \"" +title+ "\" tab.");
 		addMessageButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -88,10 +87,12 @@ public class TabWidget {
 				MessageBox box = MessageBox.prompt("Add new message", "Please type the text of a message:", true);
 			    box.addCallback(new Listener<MessageBoxEvent>() {
 			    	public void handleEvent(MessageBoxEvent be) {
-			    		int selectedTab = controller.getView().getTabBar().getSelectedTab();
-			    		controller.addNewMessage(title, be.getValue()); 
-			    		controller.refreshTabs();
-			    		controller.getView().getTabBar().selectTab(selectedTab);
+			    		if (be.getValue() != null && !be.getValue().equals("")) {
+				    		int selectedTab = controller.getView().getTabBar().getSelectedTab();
+				    		controller.addNewMessage(title, be.getValue()); 
+				    		controller.refreshTabs();
+				    		controller.getView().getTabBar().selectTab(selectedTab);
+			    		}
 			    	}
 			    });
 				
@@ -100,22 +101,33 @@ public class TabWidget {
 		buttonsVPanel.add(addMessageButton);
 	}
 	
+	private void deleteMessage(String title, int rowIndex, int selectedTab) {		
+		controller.removeMessage(title, rowIndex);
+		controller.refreshTabs();
+		controller.getView().getTabBar().selectTab(selectedTab);
+	}
+	
 	public void addSuggestedMessageRow(final SuggestedMessage message, final String tabTitle) {
 		HorizontalPanel row = new HorizontalPanel();
-		row.setSpacing(2);
+		row.setSpacing(1);
 		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.POWER_WIZARD)) {
-			Button deleteButton = new Button("x");
-//			deleteButton.addStyleDependentName("delete");
-			deleteButton.addClickHandler(new ClickHandler() {
+			com.extjs.gxt.ui.client.widget.button.Button deleteButton = new com.extjs.gxt.ui.client.widget.button.Button();
+			deleteButton.setIconStyle("delete_suggested_message_button");
+			deleteButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
 				@Override
-				public void onClick(ClickEvent event) {
-					Button source = (Button) event.getSource();
+				public void componentSelected(ButtonEvent event) {
+					final int selectedTab = controller.getView().getTabBar().getSelectedTab();
+					com.extjs.gxt.ui.client.widget.button.Button source = (com.extjs.gxt.ui.client.widget.button.Button) event.getSource();
 					Widget hpanel = source.getParent();
-					int rowIndex = ((VerticalPanel)hpanel.getParent()).getWidgetIndex(hpanel);
-					int selectedTab = controller.getView().getTabBar().getSelectedTab();
-					controller.removeMessage(title, rowIndex);
-					controller.refreshTabs();
-		    		controller.getView().getTabBar().selectTab(selectedTab);
+					final int rowIndex = ((VerticalPanel)hpanel.getParent()).getWidgetIndex(hpanel);
+					final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
+						public void handleEvent(MessageBoxEvent be) {
+							if (be.getButtonClicked().getText().equalsIgnoreCase("yes")) {
+								deleteMessage(tabTitle, rowIndex, selectedTab);
+							}
+						}
+					};
+					MessageBox.confirm("Confirm", "Are you sure you want to delete this message?", l);
 				}
 			});
 			row.add(deleteButton);
@@ -141,26 +153,13 @@ public class TabWidget {
 					controller.getView().getTabBar().selectTab(selectedTab);
 				}
 			});
-//			checkBox.addMouseOverHandler(new MouseOverHandler() {
-//				@Override
-//				public void onMouseOver(MouseOverEvent event) {
-//					CheckBox source = ((CheckBox) event.getSource());
-//					source.setTitle("Highlight?");
-//				}
-//			});
-//			checkBox.addMouseOutHandler(new MouseOutHandler() {
-//				@Override
-//				public void onMouseOut(MouseOutEvent event) {
-//					CheckBox source = ((CheckBox) event.getSource());
-//					source.setTitle("");
-//				}
-//			});
 			row.add(checkBox);
 		}
 		
 		String msgText = message.getText();
 		Button b = new Button(msgText);
-		if (message.isHighlight()) b.addStyleDependentName("highlight");
+		if (message.isHighlight()) 
+			b.addStyleDependentName("highlight");
 		b.setWidth("460px");
 		b.addClickHandler(new ClickHandler() {
 			@Override

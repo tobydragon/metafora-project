@@ -48,9 +48,12 @@ public class Outbox implements CfActionCallBack {
 	public VerticalPanel recipientNamesColumn;
 	//private boolean recipientsSelectionButtonSetToAll=true;
 	private String TOOL_NAME = "FEEDBACK_CLIENT";
+	private ClientFeedbackDataModelUpdater feedbackDataModelUpdater;
+	private SuggestedMessagesController suggestedMessagesController;
 	
-	public Outbox(ComplexPanel parent)
+	public Outbox(ComplexPanel parent, ClientFeedbackDataModelUpdater updater)
 	{
+		this.feedbackDataModelUpdater = updater;
 		vpanel = new VerticalPanel();		
 		parent.add(vpanel);
 		
@@ -123,25 +126,19 @@ public class Outbox implements CfActionCallBack {
 						CheckBox cb = (CheckBox) recipientNamesColumn.getWidget(i);
 						cb.setValue(positive, false);
 						users=users+","+cb.getText();
-						
-							
 					}
 					
 					UserLog userActionLog=new UserLog();
 	            	userActionLog.setComponentType(ComponentType.FEEDBACK_OUTBOX);
 	            	if(positive){
-	            	userActionLog.setDescription("All users were selected.Users:"+users);
-	            	userActionLog.setUserActionType(UserActionType.SELECT_ALL_USERS);
-	            	}
-	            	else{
-	            		
+	            		userActionLog.setDescription("All users were selected.Users:"+users);
+	            		userActionLog.setUserActionType(UserActionType.SELECT_ALL_USERS);
+	            	} else {
 	            		userActionLog.setDescription("All users were deselected.");
 		            	userActionLog.setUserActionType(UserActionType.DESELECT_ALL_USERS);
 	            	}
 	            	userActionLog.setTriggeredBy(ComponentType.FEEDBACK_OUTBOX);
-	            	
 	            	Logger.getLoggerInstance().log(userActionLog);
-				
 				}				
 			});
 			}
@@ -163,8 +160,6 @@ public class Outbox implements CfActionCallBack {
 					recepientNames = recepientNames + checkbox.getText() + "\n" ;
 			    }
 				
-				
-				
 				UserLog userActionLog=new UserLog();
             	userActionLog.setComponentType(ComponentType.FEEDBACK_OUTBOX);
             	userActionLog.setDescription("Students  list is updated.New Users:"+recepientNames);
@@ -172,15 +167,13 @@ public class Outbox implements CfActionCallBack {
              	userActionLog.setTriggeredBy(ComponentType.FEEDBACK_OUTBOX);
             	Logger.getLoggerInstance().log(userActionLog);
 				
-				
-				
 				editRecipientNames(recepientNames);
 			}
 		});
 		allNone.add(editStudentsButton);
 		sendOptionsRow.add(userGroupColumn);
-
 		
+		VerticalPanel buttonsVPanel = new VerticalPanel();
 		//send button
 		final Button sendButton = new Button("Send");
 		sendButton.addStyleName("sendButton");
@@ -190,13 +183,43 @@ public class Outbox implements CfActionCallBack {
 			}
 		});
 
-		sendOptionsRow.add(sendButton);
 		sendOptionsRow.setWidth(""+sectionWidth+"px");
-		sendOptionsRow.setCellWidth(sendButton, "70");
 		sendOptionsRow.setCellHorizontalAlignment(sendButton, HasHorizontalAlignment.ALIGN_RIGHT);
+
+		buttonsVPanel.add(sendButton);
+		
+		UserType userType = UrlParameterConfig.getInstance().getUserType();
+		if (userType.equals(UserType.POWER_WIZARD)) {
+			Button sendRecommendationsButton = new Button("Send recommendations");
+			sendRecommendationsButton.addClickHandler(new ClickHandler() {
+				@Override
+				public void onClick(ClickEvent event) {
+					if (suggestedMessagesController != null) {
+						String suggestions = SuggestedMessagesModel.toXML(suggestedMessagesController.getSuggestedMessagesModel());
+						suggestedMessagesController.sendSuggestedMessages(suggestions);
+					}
+				}
+			});
+			buttonsVPanel.add(sendRecommendationsButton);
+		}
+
+		if (userType.equals(UserType.METAFORA_RECOMMENDATIONS) || userType.equals(UserType.POWER_WIZARD)) {
+			// addGetRecommendationsButton
+			Button getRecommendationsButton = new Button("Get Recommendations");
+			getRecommendationsButton.addClickHandler(new ClickHandler() {
+				@Override
+				public void onClick(ClickEvent event) {
+					String currentUserId = UrlParameterConfig.getInstance().getUsername();
+					feedbackDataModelUpdater.refreshSuggestedMessages(currentUserId);
+				}
+			});
+			buttonsVPanel.add(getRecommendationsButton);
+		}
+		
+		
+		sendOptionsRow.add(buttonsVPanel);
 	}
 	
-
 	public void createCheckBoxes(String userNames[]) {
 		recipientNamesColumn.clear();
 		for(int i=0; i<userNames.length; i++)
@@ -333,8 +356,6 @@ public class Outbox implements CfActionCallBack {
 	 		FeedbackPanelContainer.getTemplatePool().addMessageToHistory(messageTextArea.getText());
 	 	}
 	
-
- 	 	
 		UserLog userActionLog = new UserLog();
     	userActionLog.setComponentType(ComponentType.FEEDBACK_OUTBOX);
     	//userActionLog.setDescription("Wizard sent feedback to the students:"+usernames+", Message: "+messageTextArea.getValue());
@@ -375,5 +396,9 @@ public class Outbox implements CfActionCallBack {
 		String result = s.toLowerCase(); 
 		result = result.replace(' ', '_');
 		return result;
+	}
+	
+	public void setSuggestedMessagesController(SuggestedMessagesController controller) {
+		this.suggestedMessagesController = controller;
 	}
 }

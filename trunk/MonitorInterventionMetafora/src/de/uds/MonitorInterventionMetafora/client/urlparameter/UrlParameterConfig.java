@@ -9,7 +9,7 @@ public class UrlParameterConfig {
 	
 
         public enum UserType {
-            METAFORA_USER, STANDARD_WIZARD, POWER_WIZARD
+            METAFORA_USER, STANDARD_WIZARD, POWER_WIZARD, METAFORA_RECOMMENDATIONS
         }
 
 	private String username;
@@ -43,7 +43,9 @@ public class UrlParameterConfig {
 		} else if (userTypeString.equals("METAFORA_USER")) {
 		    userType = UserType.METAFORA_USER;
 		} else if (userTypeString.equals("POWER")) {
-	        	userType = UserType.POWER_WIZARD;
+	        userType = UserType.POWER_WIZARD;
+		} else if (userTypeString.equals("RECOMMENDATIONS")) {
+			userType = UserType.METAFORA_RECOMMENDATIONS;
 		} else userType = UserType.STANDARD_WIZARD;
 		
 		username = (username == null) ? "" : username;
