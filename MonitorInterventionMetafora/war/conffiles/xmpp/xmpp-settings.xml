@@ -10,7 +10,13 @@
 	<test-command-agent-connection>visualizer-command-test-unknown</test-command-agent-connection>
 	<test-analysis-agent-connection>visualizer-analysis-test-unknown</test-analysis-agent-connection>
 	 
-<!--
+<!--	 
+	<command-agent-connection>visualizer-command-deploy</command-agent-connection>
+	<analysis-agent-connection>visualizer-analysis-deploy</analysis-agent-connection>
+	
+	<test-command-agent-connection>visualizer-command-test</test-command-agent-connection>
+	<test-analysis-agent-connection>visualizer-analysis-test</test-analysis-agent-connection>
+
 	<command-agent-connection>visualizer-command-deploy-toby</command-agent-connection>
 	<analysis-agent-connection>visualizer-analysis-deploy-toby</analysis-agent-connection>
 	

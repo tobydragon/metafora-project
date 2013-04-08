@@ -37,24 +37,48 @@
 		<device>VisualizerAnalysisDeployUknown</device>
 	</xmpp-channel-setting>
 	
+	
+	
+	
 	<xmpp-channel-setting channelid="visualizer-analysis-test">
-		<connection-name>VisualizerAnalysis</connection-name>
-		<username>VisualizerAnalysis</username>
-		<password>VisualizerAnalysis</password>
-		<chatroom>analysis@conference.metaforaserver.ku.de</chatroom>
-		<alias>VisualizerAnalysis</alias>
-		<device>VisualizerAnalysis</device>
+		<connection-name>VisualizerAnalysisTest</connection-name>
+		<username>VisualizerAnalysisTest</username>
+		<password>VisualizerAnalysisTest</password>
+		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>VisualizerAnalysisTest</alias>
+		<device>VisualizerAnalysisTest</device>
 	</xmpp-channel-setting>
 	
 	<xmpp-channel-setting channelid="visualizer-command-test">
-		<connection-name>VisualizerCommand</connection-name>
-		<username>VisualizerCommand</username>
-		<password>VisualizerCommand</password>
-		<chatroom>command@conference.metaforaserver.ku.de</chatroom>
-		<alias>VisualizerCommand</alias>
-		<device>VisualizerCommand</device>
+		<connection-name>VisualizerCommandTest</connection-name>
+		<username>VisualizerCommandTest</username>
+		<password>VisualizerCommandTest</password>
+		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>VisualizerCommandTest</alias>
+		<device>VisualizerCommandTest</device>
 	</xmpp-channel-setting>
 	
+	<xmpp-channel-setting channelid="visualizer-analysis-deploy">
+		<connection-name>VisualizerAnalysisDeploy</connection-name>
+		<username>VisualizerAnalysisDeploy</username>
+		<password>VisualizerAnalysisDeploy</password>
+		<chatroom>analysis@conference.metaforaserver.ku.de</chatroom>
+		<alias>VisualizerAnalysisDeploy</alias>
+		<device>VisualizerAnalysisDeploy</device>
+	</xmpp-channel-setting>
+	
+	<xmpp-channel-setting channelid="visualizer-command-deploy">
+		<connection-name>VisualizerCommandDeploy</connection-name>
+		<username>VisualizerCommandDeploy</username>
+		<password>VisualizerCommandDeploy</password>
+		<chatroom>command@conference.metaforaserver.ku.de</chatroom>
+		<alias>VisualizerCommandDeploy</alias>
+		<device>VisualizerCommandDeploy</device>
+	</xmpp-channel-setting>
+	
+        
+        
+        
         
     <xmpp-channel-setting channelid="visualizer-analysis-deploy-toby">
 		<connection-name>VisualizerAnalysisDeployToby</connection-name>
