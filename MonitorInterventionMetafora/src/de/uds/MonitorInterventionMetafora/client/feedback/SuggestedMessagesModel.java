@@ -28,8 +28,7 @@ public class SuggestedMessagesModel {
 	//
 	
 	public static String toXML(SuggestedMessagesModel model) {
-		StringBuffer b = new StringBuffer("<?xml version=\"1.0\" encoding=\"US-ASCII\"?>");
-		
+		StringBuffer b = new StringBuffer("<?xml version=\"1.0\" encoding=\"US-ASCII\"?>");		
 		b.append("<messages>\n");
 		for (SuggestionCategory category : model.getSuggestionCategories()) {
 			String categoryHighlight = category.isHighlight() ? " highlight=\"true\" " : "";
@@ -63,9 +62,8 @@ public class SuggestedMessagesModel {
 			SuggestionCategory suggestionCategory = new SuggestionCategory(categoryName);
 
 			Node highlightItem = categoryAttributes.getNamedItem("highlight");
-			if (highlightItem != null) 
-				suggestionCategory.setHighlight(highlightItem.getNodeValue().equalsIgnoreCase("true") ? true : false);
-			
+			if (highlightItem != null && highlightItem.getNodeValue().equalsIgnoreCase("true")) 
+				suggestionCategory.setHighlight(true);
 			
 			// check here if there are more sets
 			NodeList messages = setOfMessages.getElementsByTagName("message");

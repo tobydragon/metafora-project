@@ -59,7 +59,7 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		top2HPanel.add(leftVPanel);
 		top2HPanel.add(rightVPanel);
 
-		outbox = new Outbox(leftVPanel);
+		outbox = new Outbox(leftVPanel, updater);
 		
 		Date date = new Date();
 		String locale = UrlParameterConfig.getInstance().getLocale();
@@ -77,6 +77,7 @@ public class FeedbackPanelContainer extends VerticalPanel {
 					SuggestedMessagesModel suggestedMessagesModel = SuggestedMessagesModel.fromXML(response.getText());
 					SuggestedMessagesController suggestedMessagesController = new SuggestedMessagesController(suggestedMessagesModel);
 					templatePool = new SuggestedMessagesView(rightVPanel, suggestedMessagesModel, suggestedMessagesController, updater);
+					outbox.setSuggestedMessagesController(suggestedMessagesController);
 				}
 			});
 		} catch (RequestException ex) {

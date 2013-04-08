@@ -3,19 +3,26 @@
 	color: green;
 	font-weight: bold;
 }
+.test {	
+	background-color: #777777; 
+	background: url(../images/delete.gif) center center;
+	color: #D00000;
+	height: 16px; 
+	width: 16px; 
+	background-image: none !important; 
+	vertical-align: top;
+}
 
-.gwt-Button-delete {
-	background: white url(../images/delete.gif) center center;
-	vertical-align: middle;
-	height: 12px;
-	width: 12px;
-	cursor: pointer;
+.delete_suggested_message_button {
+	background: url(../images/delete.gif) no-repeat center left !important;
 }
 
 .gwt-HTML-selected-highlight {
-	color: red;
+	color: green;
+	font-weight: bold;
 }
 
 .gwt-HTML-unselected-highlight {
-	color: blue;
+	color: #C9F7C3;
+	font-weight: bold;
 }
