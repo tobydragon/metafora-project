@@ -46,23 +46,31 @@ public class UrlParameterConfig {
 			userType = UserType.METAFORA_RECOMMENDATIONS;
 		} else userType = UserType.STANDARD_WIZARD;
 		
+		//TD commented this out.  We depend on recieverIDs to be null when not included. These others don't seem better with empty defaults than null.
 //		username = (username == null) ? "" : username;
 //		receiverIDs = (receiverIDs == null) ? "" : receiverIDs;
 //		password = (password == null) ? "" : password;
 //		configID = (configID == null) ? "" : configID;
-		receiver = (receiver == null) ? MetaforaStrings.RECEIVER_METAFORA : receiver;
+		
+		//xmppServeType should be null if receiver is not included, so that default is used
+		if (receiver != null){
+			if (MetaforaStrings.RECEIVER_METAFORA.equalsIgnoreCase(receiver)){
+				xmppServerType = XmppServerType.DEPLOY;
+			}
+			else if (MetaforaStrings.RECEIVER_METAFORA_TEST.equalsIgnoreCase(receiver)){
+				xmppServerType = XmppServerType.TEST;
+			}
+			else {
+				Log.warn("[UrlParameterConfig.contsructor] Unknown receiver, feedback messages will likely be ignored by recipient for receiver - " + receiver);
+			}
+		}
+		
+		
+		receiver = (receiver == null) ? MetaforaStrings.RECEIVER_METAFORA_TEST : receiver;
 		locale = (locale == null) ? "en" : locale;
 		testServer = (testServerStr == null) ? false : Boolean.parseBoolean(testServerStr); 
 		
-		//xmppServeType should be null if parameter is not included, so that default is used
-		if (testServerStr != null){
-			if (testServer == false){
-				xmppServerType = XmppServerType.DEPLOY;
-			}
-			else {
-				xmppServerType = XmppServerType.TEST;
-			}
-		}
+		
 		
 
 		Log.info("URL Params: User-" + username + " : mainConfig-" + configID + " : receiver-" + receiver + " : locale-" + locale + " : userType-" + userType + " : receiverIDs-" + receiverIDs);

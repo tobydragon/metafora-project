@@ -2,6 +2,8 @@ package de.uds.MonitorInterventionMetafora.client.feedback;
 
 import java.util.Date;
 
+import org.apache.http.client.UserTokenHandler;
+
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
@@ -15,6 +17,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
 
 public class FeedbackPanelContainer extends VerticalPanel {
 	private de.uds.MonitorInterventionMetafora.client.feedback.Outbox outbox;
@@ -63,7 +66,8 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		
 		Date date = new Date();
 		String locale = UrlParameterConfig.getInstance().getLocale();
-		String URL = "resources/feedback/sample-messages_" + locale + ".xml?nocache=" + date.getTime();
+		
+		String URL = "resources/feedback/" + getMessageFileNameStart() + locale + ".xml?nocache=" + date.getTime();
 		Log.info("[constructor] feedback panel URL: "+ URL);
 		RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET,URL);
 
@@ -84,8 +88,18 @@ public class FeedbackPanelContainer extends VerticalPanel {
 			requestFailed(ex);
 		}
 	}
-	
 
+	public String getMessageFileNameStart(){
+		String messageFileStart = "external-messages_";
+		if (UrlParameterConfig.getInstance().getUserType() == UserType.METAFORA_USER ||
+			UrlParameterConfig.getInstance().getUserType() == UserType.METAFORA_RECOMMENDATIONS ||
+			UrlParameterConfig.getInstance().getUserType() == UserType.POWER_WIZARD ) {
+			
+			messageFileStart = "peer-messages_";
+		}
+		return messageFileStart;
+	}
+	
 	/**
 	 * Accepts a string separated with | and returns an array
 	 * @param s
