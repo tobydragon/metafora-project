@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
 import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.CfActionCallBack;
+import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.NoActionResponse;
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
@@ -372,7 +373,10 @@ public class Outbox implements CfActionCallBack {
 	}
 	
 	public void processAction(CfAction cfAction) {
-		ServerCommunication.getInstance().processAction("FeedbackClient", cfAction, this);		
+		ServerCommunication.getInstance().sendAction("FeedbackClient", cfAction, this);	
+		if (UrlParameterConfig.getInstance().getXmppServerType() != null){
+			ServerCommunication.getInstance().sendAction(UrlParameterConfig.getInstance().getXmppServerType(), "FeedbackClient", cfAction, new NoActionResponse());	
+		}
 	}
 	
 	/*

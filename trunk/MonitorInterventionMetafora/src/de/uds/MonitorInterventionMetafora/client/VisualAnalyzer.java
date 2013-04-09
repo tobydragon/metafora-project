@@ -39,14 +39,6 @@ class VisualAnalyzer implements EntryPoint {
 	      public void run() {
 	    	  
 	    	 CommunicationServiceAsync monitoringViewServiceServlet = GWT.create(CommunicationService.class);
-	    	 // Almer start
-//	    	 UrlParameterConfig urlParameters = UrlParameterConfig.getInstance();
-//	    	 User.userID= urlParameters.getUsername();
-//	    	 User.mainConfig=urlParameters.getConfig();
-//	    	 User.locale = urlParameters.getLocale();
-//	    	 User.receiver = urlParameters.getReceiver();
-//	    	 User.testServer = urlParameters.getTestServer();
-	    	 // Almer end
 
 	    	 MainContainerTabPanel _mainPanel=new MainContainerTabPanel();
 

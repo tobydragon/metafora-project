@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.client.urlparameter;
 import com.allen_sauer.gwt.log.client.Log;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class UrlParameterConfig {
@@ -20,22 +21,19 @@ public class UrlParameterConfig {
 	private String receiver;
 	private UserType userType;
 	private boolean testServer;
+	private XmppServerType xmppServerType;
 	private static UrlParameterConfig singletonInstance;
+	
 
 	private UrlParameterConfig() {
-		/*
-		 * TODO: use default values if url params are not provided
-		 * if URL params are not NULL - read url params
-		 * else if xml_file_is_found - use xml
-		 * else - use hard-coded values
-		 */
+		
 		username = com.google.gwt.user.client.Window.Location.getParameter("user");
 		receiverIDs = com.google.gwt.user.client.Window.Location.getParameter("receiverIDs");
 		password = com.google.gwt.user.client.Window.Location.getParameter("pw");
 		configID = com.google.gwt.user.client.Window.Location.getParameter("config");
 		receiver = com.google.gwt.user.client.Window.Location.getParameter("receiver");
 		locale = com.google.gwt.user.client.Window.Location.getParameter("locale");
-		
+		String testServerStr = com.google.gwt.user.client.Window.Location.getParameter("testServer");
 		String userTypeString = com.google.gwt.user.client.Window.Location.getParameter("userType");
 
 		if (userTypeString == null) { 
@@ -54,9 +52,18 @@ public class UrlParameterConfig {
 //		configID = (configID == null) ? "" : configID;
 		receiver = (receiver == null) ? MetaforaStrings.RECEIVER_METAFORA : receiver;
 		locale = (locale == null) ? "en" : locale;
-		
-		String testServerStr = com.google.gwt.user.client.Window.Location.getParameter("testServer");
 		testServer = (testServerStr == null) ? false : Boolean.parseBoolean(testServerStr); 
+		
+		//xmppServeType should be null if parameter is not included, so that default is used
+		if (testServerStr != null){
+			if (testServer == false){
+				xmppServerType = XmppServerType.DEPLOY;
+			}
+			else {
+				xmppServerType = XmppServerType.TEST;
+			}
+		}
+		
 
 		Log.info("URL Params: User-" + username + " : mainConfig-" + configID + " : receiver-" + receiver + " : locale-" + locale + " : userType-" + userType + " : receiverIDs-" + receiverIDs);
 	}
@@ -114,5 +121,11 @@ public class UrlParameterConfig {
 	public UserType getUserType() {
 	    return userType;
 	}
+
+	public XmppServerType getXmppServerType() {
+		return xmppServerType;
+	}
+	
+	
 	
 }

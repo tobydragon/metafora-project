@@ -40,13 +40,8 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	ServerInstance mainServer; 
 	ServerInstance testServer;
 	
-	//this is only a pointer to one of the other instances
-	ServerInstance defaultServer;
-	
 	AnalysisManager analysisManager;
 	private boolean isConfigurationUpdated = false;
-
-//	CfAgentCommunicationManager feedbackCommunicationManager;
 
 	public MainServer() {
 		super();
@@ -57,13 +52,6 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		mainServer = new ServerInstance(communicationMethodType, XmppServerType.DEPLOY, generalConfiguration.isDeployServerMonitoring(), generalConfiguration.getHistoryStartTime() );
 		testServer = new ServerInstance(communicationMethodType, XmppServerType.TEST, generalConfiguration.isTestServerMonitoring(), generalConfiguration.getHistoryStartTime() );		
 		
-		//set pointer to default server
-		if (generalConfiguration.getDefaultXmppServer() == XmppServerType.DEPLOY){
-			defaultServer = mainServer;
-		}
-		else {
-			defaultServer = testServer;
-		}
 	}
 
 	private synchronized Configuration readConfiguration(boolean isMainConfig) {
@@ -160,26 +148,55 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 
 	}
 	
-	//--------------
+	//-------  Remote methods handled by serverInstances  ------------------------
 	
 	@Override
 	public String requestSuggestedMessages(String username) {
 		logger.info("[requestSuggestedMessages]  for user: " + username );
-		return defaultServer.requestSuggestedMessages(username);
-
+		return requestSuggestedMessages(generalConfiguration.getDefaultXmppServer(), username);
+	}
+	
+	public String requestSuggestedMessages(XmppServerType xmppServerType, String username) {
+		logger.info("[requestSuggestedMessages]  for user: " + username );
+		if (xmppServerType == XmppServerType.DEPLOY){
+			 return mainServer.requestSuggestedMessages(username);
+		}
+		else {
+			return testServer.requestSuggestedMessages(username);
+		}		
 	}
 
 	@Override
 	public CfAction sendAction(String _user, CfAction cfAction) {
-		defaultServer.sendAction(_user, cfAction);
+		sendAction(generalConfiguration.getDefaultXmppServer(), _user, cfAction);
 		return null;
 	}
+	
+	@Override
+	public void sendAction(XmppServerType serverType, String user, CfAction action) {
+		if (serverType == XmppServerType.DEPLOY){
+			mainServer.sendAction(user, action);
+		}
+		else {
+			testServer.sendAction(user, action);
+		}
+	}
+
 
 	@Override
 	public List<CfAction> requestUpdate(CfAction cfAction) {
-
 		logger.info("[requestUpdate]  requesting update is revieced  by the server");
-		return defaultServer.requestUpdate(cfAction);
+		return requestUpdate(generalConfiguration.getDefaultXmppServer(), cfAction);
+	}
+	
+	public List<CfAction> requestUpdate(XmppServerType xmppServerType, CfAction cfAction) {
+		logger.info("[requestUpdate]  requesting update is revieced  by the server");
+		if (xmppServerType == XmppServerType.DEPLOY){
+			 return mainServer.requestUpdate(cfAction);
+		}
+		else {
+			 return testServer.requestUpdate(cfAction);
+		}
 	}
 
 	void sendUpdateRequest(CfAction action) {	}
@@ -193,7 +210,6 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		System.out.println("Notifications are sent to the agents!!");
 		return new CfAction();
 	}
-
 
 
 }
