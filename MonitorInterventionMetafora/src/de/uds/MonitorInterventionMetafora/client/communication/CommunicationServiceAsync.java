@@ -6,6 +6,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 
 
@@ -16,7 +17,8 @@ public interface CommunicationServiceAsync {
 
 	void requestConfiguration(AsyncCallback<Configuration> callback);
 
-	void sendAction(String _user,CfAction cfAction, AsyncCallback<CfAction> callback);
+	void sendAction (String _user, CfAction cfAction, AsyncCallback<CfAction> callback);
+	void sendAction (XmppServerType serverType, String user, CfAction action, AsyncCallback<Void> callback);
 
 	void requestUpdate(CfAction _lastcfAction, AsyncCallback<List<CfAction>> callback);
 	

@@ -52,7 +52,6 @@ public class ServerInstance {
 		}
 	}
 
-	void sendUpdateRequest(CfAction action) {	}
 
 	public CfAction sendNotificationToAgents(CfAction cfAction) {
 
