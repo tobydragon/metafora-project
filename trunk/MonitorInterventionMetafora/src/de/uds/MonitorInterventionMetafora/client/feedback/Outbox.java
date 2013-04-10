@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.DecoratedPopupPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RadioButton;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -36,6 +37,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class Outbox extends VerticalPanel implements CfActionCallBack {
+	private int PANEL_HEIGHT = 290;
 	
 	private TextArea messageTextArea;
 	private TextBox objectIdsTextBox;
@@ -52,9 +54,16 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 	private ClientFeedbackDataModelUpdater feedbackDataModelUpdater;
 	private SuggestedMessagesController suggestedMessagesController;
 	
+	
 	public Outbox(/*ComplexPanel parent, */ClientFeedbackDataModelUpdater updater)
 	{
 		this.feedbackDataModelUpdater = updater;
+		
+//		final ScrollPanel scrollPanel = new ScrollPanel();
+		VerticalPanel vPanel = new VerticalPanel();
+		ScrollPanel scrollPanel = new ScrollPanel();
+		scrollPanel.setHeight(PANEL_HEIGHT +"px");
+		scrollPanel.setAlwaysShowScrollBars(false);
 
 		
 		//section label
@@ -62,7 +71,8 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		final Label sectionLabel = new Label("Edit your message or type a new one (seinding to " + receiver + ")");
 		sectionLabel.setStyleName("sectionLabel");
 //		vpanel.add(sectionLabel);
-		this.add(sectionLabel);
+//		this.add(sectionLabel);
+		vPanel.add(sectionLabel);
 
 		//text box
 		messageTextArea = new TextArea();
@@ -71,7 +81,9 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		messageTextArea.setFocus(true);
 		messageTextArea.selectAll();
 //		vpanel.add(messageTextArea);
-		this.add(messageTextArea);
+//		this.add(messageTextArea);
+		vPanel.add(messageTextArea);
+
 
 		//send options
 		sendOptionsRow = new HorizontalPanel();
@@ -86,7 +98,8 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 			objectIdsTextBox.setText("");
 			objectIdsTextBox.selectAll();
 			objectIdsRow.add(objectIdsTextBox);
-			this.add(objectIdsRow);
+//			this.add(objectIdsRow);
+			vPanel.add(objectIdsRow);
 		}
 		
 		//send mode
@@ -111,7 +124,9 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		//sendModeRadioColumn.add(sendModeRadioButtonResponse);
 		
 		sendOptionsRow.add(sendModeRadioColumn);
-		this.add(sendOptionsRow);
+//		this.add(sendOptionsRow);
+		vPanel.add(sendOptionsRow);
+		
 		//recipients
 		final VerticalPanel userGroupColumn = new VerticalPanel();
 		userGroupColumn.add(new Label("To:"));
@@ -210,6 +225,9 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		}
 		
 		sendOptionsRow.add(buttonsVPanel);
+		
+		scrollPanel.add(vPanel);
+		this.add(scrollPanel);
 	}
 	
 	public void createCheckBoxes(String userNames[]) {
@@ -333,7 +351,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		String receiver = UrlParameterConfig.getInstance().getReceiver();
 		//this shouldn't be needed but jic
 		if (receiver == null || receiver.equals("")) {
-			receiver = MetaforaStrings.RECEIVER_METAFORA;
+			receiver = MetaforaStrings.RECEIVER_METAFORA_TEST;
 
 		}
 		
