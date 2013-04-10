@@ -1,5 +1,7 @@
 package de.uds.MonitorInterventionMetafora.client.feedback;
 
+import com.extjs.gxt.ui.client.widget.Info;
+import com.extjs.gxt.ui.client.widget.InfoConfig;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class ClientFeedbackDataModelUpdater {// implements RequestUpdateCallBack{
@@ -18,6 +20,9 @@ public class ClientFeedbackDataModelUpdater {// implements RequestUpdateCallBack
 				System.out.println("ClientFeedbackDataModelUpdater.refreshSuggestedMessages(): Success");
 				if (result != null && !result.equals("")) {
 					FeedbackPanelContainer.getTemplatePool().populateTabs(SuggestedMessagesModel.fromXML(result));
+					sendNotificationMessage("Notification", "New recommendations received");
+				} else {
+					sendNotificationMessage("Notification", "Currently there are no recommendations for you");
 				}
 			}
 			
@@ -27,5 +32,11 @@ public class ClientFeedbackDataModelUpdater {// implements RequestUpdateCallBack
 		};
 		
 		feedbackModel.getServiceServlet().requestSuggestedMessages(username, callback);
+	}
+	
+	private void sendNotificationMessage(String title, String message) {
+		InfoConfig config = new InfoConfig(title, message);
+		config.display = 6000;
+		Info.display(config);		
 	}
 }
