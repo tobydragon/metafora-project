@@ -76,9 +76,7 @@ public class Configuration implements Serializable{
 			communicationMethodType = CfCommunicationMethodType.valueOf(typeString);
 		}
 		catch (Exception e){
-			Log.error("[Configuration.setDataSourceType] Unable to set communication type, probably bad typeString=" + typeString);
-			e.printStackTrace();
-//			logger.error("Unable to set communication type, probably bad typeString=" + typeString + e.toString());
+			Log.warn("[Configuration.setDataSourceType] Unable to set communication type, probably bad typeString=" + typeString + " - configName - " + name);
 		}
 	}
 	
