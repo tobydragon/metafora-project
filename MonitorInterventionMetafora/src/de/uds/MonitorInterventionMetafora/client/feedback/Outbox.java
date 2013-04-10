@@ -59,7 +59,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		
 		//section label
 		String receiver = UrlParameterConfig.getInstance().getReceiver();
-		final Label sectionLabel = new Label("Type your message below (will be sent to " + receiver + ")");
+		final Label sectionLabel = new Label("Edit your message or type a new one (seinding to " + receiver + ")");
 		sectionLabel.setStyleName("sectionLabel");
 //		vpanel.add(sectionLabel);
 		this.add(sectionLabel);

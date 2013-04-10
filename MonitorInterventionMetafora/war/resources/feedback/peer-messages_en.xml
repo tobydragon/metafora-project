@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <messages> 
-<set id="Distributed Leadership">
+<set id="Lead Together">
 <message>Let's propose a new idea to helps us explore a different direction</message>
 <message>We need to see how the new ideas are relevant and helpful to our current work</message>
 <message> How could we improve our plan? Let's look at the group planning map together</message>
 <message>Let's assign tasks to help us split the work equally. </message>
 <message>Has everyone contributed in planning the work?</message>
 </set>
-<set id="Mutual engagement">
+<set id="Share Work">
 <message>Has everyone done the work they said they would do?</message>
 <message>Has everyone contributed to the discussion?</message>
 <message>I/We need some help with ...</message>
@@ -16,7 +16,7 @@
 <message>We seem to disagree. Lets ask for help from a third party.</message>
 <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
 </set>
-<set id="Peer Feedback">
+<set id="Friendly Feedback">
 <message>We would like some help in identifying what the problem is with...</message>
 <message>We should share our models and compare them.</message>
 <message>Let's evaluate each other's solution by first revisiting the task</message>

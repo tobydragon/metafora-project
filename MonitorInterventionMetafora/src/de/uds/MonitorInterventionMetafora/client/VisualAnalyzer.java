@@ -43,7 +43,8 @@ class VisualAnalyzer implements EntryPoint {
 	    	 MainContainerTabPanel _mainPanel=new MainContainerTabPanel();
 
 	    	 //If userType is not wizardy then monitoring is not needed
-	    	 if (UrlParameterConfig.getInstance().getUserType() != UserType.METAFORA_USER) {
+	    	 if (UrlParameterConfig.getInstance().getUserType() != UserType.METAFORA_USER ||
+	    			 UrlParameterConfig.getInstance().getUserType() != UserType.METAFORA_RECOMMENDATIONS) {
 	    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel(commServiceServlet);
 	    	  //migen specific tools commented out for now
 	    	  //TeacherTools _migenContainer=new TeacherTools(monitoringViewServiceServlet);

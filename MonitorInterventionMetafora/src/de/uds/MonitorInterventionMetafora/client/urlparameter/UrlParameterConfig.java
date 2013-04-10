@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.client.urlparameter;
 
 import com.allen_sauer.gwt.log.client.Log;
+import com.google.gwt.http.client.URL;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
@@ -27,14 +28,14 @@ public class UrlParameterConfig {
 
 	private UrlParameterConfig() {
 		
-		username = com.google.gwt.user.client.Window.Location.getParameter("user");
-		receiverIDs = com.google.gwt.user.client.Window.Location.getParameter("receiverIDs");
-		password = com.google.gwt.user.client.Window.Location.getParameter("pw");
-		configID = com.google.gwt.user.client.Window.Location.getParameter("config");
-		receiver = com.google.gwt.user.client.Window.Location.getParameter("receiver");
-		locale = com.google.gwt.user.client.Window.Location.getParameter("locale");
-		String testServerStr = com.google.gwt.user.client.Window.Location.getParameter("testServer");
-		String userTypeString = com.google.gwt.user.client.Window.Location.getParameter("userType");
+		username = getAndDecodeUrlParam("user");
+		receiverIDs = getAndDecodeUrlParam("receiverIDs");
+		password = getAndDecodeUrlParam("pw");
+		configID = getAndDecodeUrlParam("config");
+		receiver = getAndDecodeUrlParam("receiver");
+		locale = getAndDecodeUrlParam("locale");
+		String testServerStr = getAndDecodeUrlParam("testServer");
+		String userTypeString = getAndDecodeUrlParam("userType");
 
 		if (userTypeString == null) { 
 		    userType = UserType.STANDARD_WIZARD;
@@ -76,11 +77,15 @@ public class UrlParameterConfig {
 		Log.info("URL Params: User-" + username + " : mainConfig-" + configID + " : receiver-" + receiver + " : locale-" + locale + " : userType-" + userType + " : receiverIDs-" + receiverIDs);
 	}
 
-	/**
-	 * Singleton pattern implementation
-	 * 
-	 * @return
-	 */
+
+	private String getAndDecodeUrlParam(String paramKey){
+		String value = com.google.gwt.user.client.Window.Location.getParameter(paramKey);
+		if (value != null){
+			value = URL.decode(value);
+		}
+		return value;
+	}
+	
 	public static UrlParameterConfig getInstance() {
 		if (singletonInstance == null) {
 			singletonInstance = new UrlParameterConfig();
