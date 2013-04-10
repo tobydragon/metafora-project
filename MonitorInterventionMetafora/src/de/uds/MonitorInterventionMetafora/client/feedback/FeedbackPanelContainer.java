@@ -2,8 +2,6 @@ package de.uds.MonitorInterventionMetafora.client.feedback;
 
 import java.util.Date;
 
-import org.apache.http.client.UserTokenHandler;
-
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
@@ -11,7 +9,6 @@ import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -49,20 +46,10 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		    userIDsArray= parseStringToArray(configUserIDs);
 		}
 		
-		final VerticalPanel top1VPanel = new VerticalPanel();
-		final VerticalPanel leftVPanel = new VerticalPanel();
-		leftVPanel.setWidth("450px");
-		final VerticalPanel rightVPanel = new VerticalPanel();
-		final HorizontalPanel top2HPanel = new HorizontalPanel();
-		
-		add(top1VPanel);
-			
-		//left and right half of page
-		top1VPanel.add(top2HPanel);
-		top2HPanel.add(leftVPanel);
-		top2HPanel.add(rightVPanel);
 
-		outbox = new Outbox(leftVPanel, updater);
+		outbox = new Outbox(updater);
+		this.add(outbox);
+		this.setSpacing(5);
 		
 		Date date = new Date();
 		String locale = UrlParameterConfig.getInstance().getLocale();
@@ -80,7 +67,9 @@ public class FeedbackPanelContainer extends VerticalPanel {
 				public void onResponseReceived(Request request, Response response) {
 					SuggestedMessagesModel suggestedMessagesModel = SuggestedMessagesModel.fromXML(response.getText());
 					SuggestedMessagesController suggestedMessagesController = new SuggestedMessagesController(suggestedMessagesModel);
-					templatePool = new SuggestedMessagesView(rightVPanel, suggestedMessagesModel, suggestedMessagesController, updater);
+					templatePool = new SuggestedMessagesView(suggestedMessagesModel, suggestedMessagesController, updater);
+					suggestedMessagesController.setView(templatePool);
+					insert(templatePool, 0);
 					outbox.setSuggestedMessagesController(suggestedMessagesController);
 				}
 			});

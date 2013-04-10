@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.client.feedback;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.ToggleButton;
 
@@ -42,7 +43,9 @@ public class HistoryTabWidget extends TabWidget {
 	public void updateXmlCodeArea() {
 		String code = "";
 		for (int i = 0; i < buttonsVPanel.getWidgetCount(); i++) {
-			String msg = ((Button) buttonsVPanel.getWidget(i)).getText().replaceAll("[\n\r]", " ");
+			HorizontalPanel hpanel = (HorizontalPanel) buttonsVPanel.getWidget(i);
+			
+			String msg = ((Button) hpanel.getWidget(hpanel.getWidgetCount()-1)).getText().replaceAll("[\n\r]", " ");
 			code += "<message>" + msg + "</message>\n";
 		}
 		xmlCodeArea.setText(code);

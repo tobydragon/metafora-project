@@ -23,10 +23,14 @@ import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
 
 public class TabWidget {
+	// CONSTANTS
+	private int SUGGESTED_MESSAGE_BUTTON_WIDTH = 350;
+	
 	String title = "untitled";
 	protected VerticalPanel mainVPanel;
 	protected VerticalPanel headerVPanel;
 	protected VerticalPanel buttonsVPanel;
+	protected HorizontalPanel configPanel;
 	
 	private ScrollPanel buttonsScrollPanel;
 
@@ -42,7 +46,7 @@ public class TabWidget {
 
 		buttonsScrollPanel = new ScrollPanel();
 		buttonsScrollPanel.setWidth("100%");
-		buttonsScrollPanel.setHeight("450px");
+//		buttonsScrollPanel.setHeight("450px");
 		buttonsVPanel = new VerticalPanel();
 //		buttonsVPanel.setSpacing(2);
 		buttonsScrollPanel.add(buttonsVPanel);
@@ -51,12 +55,32 @@ public class TabWidget {
 		mainVPanel.add(buttonsScrollPanel);
 	}
 
+	public void enableGetRecommendationsButton(final ClientFeedbackDataModelUpdater updater) {
+		if (configPanel == null) {
+			configPanel = new HorizontalPanel();
+			configPanel.setSpacing(3);
+			headerVPanel.add(configPanel);
+		}
+		
+		Button receiveRecommendationsButton = new Button("Get recommendations");
+		receiveRecommendationsButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				String currentUserId = UrlParameterConfig.getInstance().getUsername();
+				updater.refreshSuggestedMessages(currentUserId);
+			}
+
+		});
+		
+		configPanel.add(receiveRecommendationsButton);
+	}
+	
 	/**
 	 *  Adds some parameters to set 'tab color', 'add new message'
 	 */
 	public void enableTabConfig() {
-		HorizontalPanel configPanel = new HorizontalPanel();
-//		configPanel.setSpacing(5);
+		configPanel = new HorizontalPanel();
+		configPanel.setSpacing(3);
 		
 		Label tabColorLabel = new Label("Highlight tab:");
 		CheckBox highlightCheckBox = new CheckBox();
@@ -157,10 +181,18 @@ public class TabWidget {
 		}
 		
 		String msgText = message.getText();
+		
+		// playing with gXt buttons, instead of gWt. GXT buttons take less space, but do not show all of the text
+		// if text is too long on the button
+//		com.extjs.gxt.ui.client.widget.button.Button b = new com.extjs.gxt.ui.client.widget.button.Button();
+//		b.setWidth(SUGGESTED_MESSAGE_BUTTON_WIDTH+"px");
+//		b.setAutoHeight(true);
+//		b.setText(msgText);
+		
 		Button b = new Button(msgText);
 		if (message.isHighlight()) 
 			b.addStyleDependentName("highlight");
-		b.setWidth("460px");
+		b.setWidth(SUGGESTED_MESSAGE_BUTTON_WIDTH + "px");
 		b.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {

@@ -35,11 +35,11 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
-public class Outbox implements CfActionCallBack {
+public class Outbox extends VerticalPanel implements CfActionCallBack {
 	
 	private TextArea messageTextArea;
 	private TextBox objectIdsTextBox;
-	private VerticalPanel vpanel,sendModeRadioColumn;
+	private VerticalPanel sendModeRadioColumn;
 	private HorizontalPanel sendOptionsRow;
 	private HorizontalPanel objectIdsRow;
 	public RadioButton sendModeRadioButtonPopup;
@@ -52,17 +52,17 @@ public class Outbox implements CfActionCallBack {
 	private ClientFeedbackDataModelUpdater feedbackDataModelUpdater;
 	private SuggestedMessagesController suggestedMessagesController;
 	
-	public Outbox(ComplexPanel parent, ClientFeedbackDataModelUpdater updater)
+	public Outbox(/*ComplexPanel parent, */ClientFeedbackDataModelUpdater updater)
 	{
 		this.feedbackDataModelUpdater = updater;
-		vpanel = new VerticalPanel();		
-		parent.add(vpanel);
+
 		
 		//section label
 		String receiver = UrlParameterConfig.getInstance().getReceiver();
 		final Label sectionLabel = new Label("Type your message below (will be sent to " + receiver + ")");
 		sectionLabel.setStyleName("sectionLabel");
-		vpanel.add(sectionLabel);
+//		vpanel.add(sectionLabel);
+		this.add(sectionLabel);
 
 		//text box
 		messageTextArea = new TextArea();
@@ -70,13 +70,12 @@ public class Outbox implements CfActionCallBack {
 		messageTextArea.setPixelSize(sectionWidth, 100);		
 		messageTextArea.setFocus(true);
 		messageTextArea.selectAll();
-		vpanel.add(messageTextArea);
-		//vpanel.setce;
+//		vpanel.add(messageTextArea);
+		this.add(messageTextArea);
 
 		//send options
 		sendOptionsRow = new HorizontalPanel();
-		sendOptionsRow.setSpacing(3);
-		sendOptionsRow.add(new Label("send as"));
+		sendOptionsRow.setSpacing(5);
 		
 		// object ids
 		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.POWER_WIZARD)) {
@@ -87,28 +86,35 @@ public class Outbox implements CfActionCallBack {
 			objectIdsTextBox.setText("");
 			objectIdsTextBox.selectAll();
 			objectIdsRow.add(objectIdsTextBox);
-			vpanel.add(objectIdsRow);
+			this.add(objectIdsRow);
 		}
 		
 		//send mode
 		sendModeRadioColumn = new VerticalPanel();
-		sendModeRadioButtonPopup = new RadioButton("sendMode", "No Interruption");
-		sendModeRadioButtonPopup.setValue(true, true);
-		sendModeRadioColumn.add(sendModeRadioButtonPopup);
-		sendModeRadioButtonSuggestion = new RadioButton("sendMode", "Low Interruption");
+		sendModeRadioColumn.add(new Label("Interruption:"));
+		sendModeRadioButtonSuggestion = new RadioButton("sendMode", "High");
+		sendModeRadioButtonSuggestion.setValue(true, true);
+//		sendModeRadioButtonSuggestion.setEnabled(true);
+		sendModeRadioColumn.add(sendModeRadioButtonSuggestion);
+
+		sendModeRadioButtonSuggestion = new RadioButton("sendMode", "Low");
 		sendModeRadioButtonSuggestion.setEnabled(true);
 		sendModeRadioColumn.add(sendModeRadioButtonSuggestion);
-		sendModeRadioButtonSuggestion = new RadioButton("sendMode", "High Interruption");
-		sendModeRadioColumn.add(sendModeRadioButtonSuggestion);
+		
+		sendModeRadioButtonPopup = new RadioButton("sendMode", "None");
+//		sendModeRadioButtonPopup.setValue(true, true);
+		sendModeRadioColumn.add(sendModeRadioButtonPopup);
+
 		//TODO: not needed anymore. Remove
-		sendModeRadioButtonResponse = new RadioButton("sendMode", "Response to request");
-		sendModeRadioButtonResponse.setEnabled(false);
+//		sendModeRadioButtonResponse = new RadioButton("sendMode", "Response to request");
+//		sendModeRadioButtonResponse.setEnabled(false);
 		//sendModeRadioColumn.add(sendModeRadioButtonResponse);
+		
 		sendOptionsRow.add(sendModeRadioColumn);
-		vpanel.add(sendOptionsRow);
-		sendOptionsRow.add(new Label("to"));
+		this.add(sendOptionsRow);
 		//recipients
 		final VerticalPanel userGroupColumn = new VerticalPanel();
+		userGroupColumn.add(new Label("To:"));
 		recipientNamesColumn = new VerticalPanel();
 		userGroupColumn.add(recipientNamesColumn);
 		
@@ -189,8 +195,7 @@ public class Outbox implements CfActionCallBack {
 
 		buttonsVPanel.add(sendButton);
 		
-		UserType userType = UrlParameterConfig.getInstance().getUserType();
-		if (userType.equals(UserType.POWER_WIZARD)) {
+		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.POWER_WIZARD)) {
 			Button sendRecommendationsButton = new Button("Send recommendations");
 			sendRecommendationsButton.addClickHandler(new ClickHandler() {
 				@Override
@@ -203,20 +208,6 @@ public class Outbox implements CfActionCallBack {
 			});
 			buttonsVPanel.add(sendRecommendationsButton);
 		}
-
-		if (userType.equals(UserType.METAFORA_RECOMMENDATIONS) || userType.equals(UserType.POWER_WIZARD)) {
-			// addGetRecommendationsButton
-			Button getRecommendationsButton = new Button("Get Recommendations");
-			getRecommendationsButton.addClickHandler(new ClickHandler() {
-				@Override
-				public void onClick(ClickEvent event) {
-					String currentUserId = UrlParameterConfig.getInstance().getUsername();
-					feedbackDataModelUpdater.refreshSuggestedMessages(currentUserId);
-				}
-			});
-			buttonsVPanel.add(getRecommendationsButton);
-		}
-		
 		
 		sendOptionsRow.add(buttonsVPanel);
 	}
@@ -383,11 +374,12 @@ public class Outbox implements CfActionCallBack {
 	 * Returns the selected interruption type
 	 */
 	public String getSelectedIntteruptionType() {
-
 		for(int i=0; i<sendModeRadioColumn.getWidgetCount(); i++) {
-			RadioButton rb = (RadioButton) sendModeRadioColumn.getWidget(i);
-			if (rb.getValue()) {
-				return getInterruptionTypeString(rb.getText());
+			if (sendModeRadioColumn.getWidget(i) instanceof RadioButton) {
+				RadioButton rb = (RadioButton) sendModeRadioColumn.getWidget(i);
+				if (rb.getValue()) {
+					return getInterruptionTypeString(rb.getText());
+				}
 			}
 		}
 		return null;

@@ -9,7 +9,6 @@ import com.google.gwt.event.logical.shared.BeforeSelectionHandler;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.ComplexPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -21,8 +20,10 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
 
-public class SuggestedMessagesView {
-	private VerticalPanel vpanel;
+public class SuggestedMessagesView extends VerticalPanel {
+	// CONSTANSTS
+	private int PANEL_HEIGHT = 360;
+	
 	private TabBar tabBar;
 	private ArrayList<TabWidget> tabWidgets;
 	private HistoryTabWidget messageHistory;
@@ -31,21 +32,20 @@ public class SuggestedMessagesView {
 	private SuggestedMessagesController controller;
 	private SuggestedMessagesModel suggestedMessagesModel; 
 	private ClientFeedbackDataModelUpdater updater;
-	private Button getRecommendationsButton;
 	
-	public SuggestedMessagesView(ComplexPanel parent, final SuggestedMessagesModel model, SuggestedMessagesController controller, ClientFeedbackDataModelUpdater updater) {
+	public SuggestedMessagesView(/*ComplexPanel parent, */final SuggestedMessagesModel model, SuggestedMessagesController controller, ClientFeedbackDataModelUpdater updater) {
 		this.controller = controller;
 		controller.setView(this);
 		this.suggestedMessagesModel = model;
 		this.updater = updater;
-		vpanel = new VerticalPanel();
-		// vpanel.setSpacing(20);
-		parent.add(vpanel);
+		
+		this.setBorderWidth(1);
 
 		// section label
 		final Label sectionLabel = new Label("Select any of the message templates from any of the tabs below");
 		sectionLabel.setStyleName("sectionLabel");
-		vpanel.add(sectionLabel);
+//		vpanel.add(sectionLabel);
+		this.add(sectionLabel);
 
 		tabBar = new TabBar();
 		tabBar.setWidth("100%");
@@ -54,7 +54,8 @@ public class SuggestedMessagesView {
 		populateTabs(model);
 
 		final ScrollPanel scrollPanel = new ScrollPanel();
-//		scrollPanel.setHeight("500px");
+		scrollPanel.setHeight(PANEL_HEIGHT +"px");
+		scrollPanel.setAlwaysShowScrollBars(false);
 		// scrollPanel.setWidget(tools.get(0).getButtonsVPanel());
 		tabBar.addSelectionHandler(new SelectionHandler<Integer>() {
 			public void onSelection(SelectionEvent<Integer> event) {
@@ -72,8 +73,6 @@ public class SuggestedMessagesView {
 							newHtml.addStyleDependentName("selected-highlight");
 							tabBar.setTabHTML(event.getSelectedItem(), newHtml.toString());
 						} else {
-//							html.removeStyleDependentName("selected-highlight");
-//							html.removeStyleDependentName("unselected-highlight");
 							tabBar.setTabHTML(event.getSelectedItem(), tabTitle);
 						}
 					}
@@ -100,14 +99,17 @@ public class SuggestedMessagesView {
 			}
 		});
 		tabBar.selectTab(0, true);
-		vpanel.add(tabBar);
-		vpanel.add(scrollPanel);
+		this.add(tabBar);
+		this.add(scrollPanel);
 	}
 
 	public void populateTabs(SuggestedMessagesModel model) {
 		setModel(model);
 		// create new list of tab widgets
 		tabWidgets = new ArrayList<TabWidget>();
+
+		int selectedTab = tabBar == null ? 0 : tabBar.getSelectedTab();
+		
 		// clean tabs
 		int numberOfTabsToremove = tabBar.getTabCount();
 		for (int i = 0; i < numberOfTabsToremove; i++) {
@@ -125,6 +127,12 @@ public class SuggestedMessagesView {
 			TabWidget tabWidget = new TabWidget(tabTitle);
 			tabWidget.setController(controller);
 			tabWidgets.add(tabWidget);
+			
+			// Add 'Get Recommendations' button
+			UserType userType = UrlParameterConfig.getInstance().getUserType();
+			if (userType.equals(UserType.METAFORA_RECOMMENDATIONS)) {
+				tabWidget.enableGetRecommendationsButton(updater);
+			}
 			
 			if (!isetZero) {
 				isetZero = true;
@@ -155,10 +163,10 @@ public class SuggestedMessagesView {
 		// create tab for the XML content
 		tabBar.addTab("XML");
 
-		xmlVPanel = new VerticalPanel();
 		final TextArea textArea = new TextArea();
 		textArea.setText(SuggestedMessagesModel.toXML(model));
-		textArea.setSize("480px", "450px");
+		textArea.setSize("95%", "450px");
+		
 
 		// Re-populate button
 		Button repopulateButton = new Button("Re-populate");
@@ -179,8 +187,8 @@ public class SuggestedMessagesView {
 		});
 		
 		// Refresh button
-		getRecommendationsButton = new Button("Get recommendations");
-		getRecommendationsButton.addClickHandler(new ClickHandler() {
+		Button receiveRecommendationsButton = new Button("Get recommendations");
+		receiveRecommendationsButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
 				String currentUserId = UrlParameterConfig.getInstance().getUsername();
@@ -189,13 +197,19 @@ public class SuggestedMessagesView {
 
 		});
 		
+		if (selectedTab >= tabBar.getTabCount())
+			selectedTab = 0;
+		tabBar.selectTab(selectedTab, true);
+		
 		HorizontalPanel buttonsPanel = new HorizontalPanel();
 		buttonsPanel.setSpacing(3);
 		buttonsPanel.add(repopulateButton);
 		buttonsPanel.add(sendButton);
-		buttonsPanel.add(getRecommendationsButton);
+		buttonsPanel.add(receiveRecommendationsButton);
+
+		xmlVPanel = new VerticalPanel();
+		xmlVPanel.setWidth("100%");
 		xmlVPanel.add(buttonsPanel);
-		
 		xmlVPanel.add(textArea);
 		
 	}
@@ -220,5 +234,4 @@ public class SuggestedMessagesView {
 	public TabBar getTabBar() {
 		return tabBar;
 	}
-	
 }
