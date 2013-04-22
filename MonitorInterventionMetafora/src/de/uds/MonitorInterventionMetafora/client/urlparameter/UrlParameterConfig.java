@@ -11,7 +11,7 @@ public class UrlParameterConfig {
 	
 
         public enum UserType {
-            METAFORA_USER, STANDARD_WIZARD, POWER_WIZARD, METAFORA_RECOMMENDATIONS
+            METAFORA_USER, STANDARD_WIZARD, POWER_WIZARD, METAFORA_RECOMMENDATIONS, TEACHER
         }
 
 	private String username;
@@ -45,6 +45,8 @@ public class UrlParameterConfig {
 	        userType = UserType.POWER_WIZARD;
 		} else if (userTypeString.equals("RECOMMENDATIONS")) {
 			userType = UserType.METAFORA_RECOMMENDATIONS;
+		} else if (userTypeString.equals("TEACHER")) {
+			userType = UserType.TEACHER;
 		} else userType = UserType.STANDARD_WIZARD;
 		
 		//TD commented this out.  We depend on recieverIDs to be null when not included. These others don't seem better with empty defaults than null.
