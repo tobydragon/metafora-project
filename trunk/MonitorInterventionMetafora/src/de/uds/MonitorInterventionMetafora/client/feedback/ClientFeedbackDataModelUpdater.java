@@ -21,8 +21,6 @@ public class ClientFeedbackDataModelUpdater {// implements RequestUpdateCallBack
 				if (result != null && !result.equals("")) {
 					FeedbackPanelContainer.getTemplatePool().populateTabs(SuggestedMessagesModel.fromXML(result));
 					sendNotificationMessage("Notification", "New recommendations received");
-				} else {
-					sendNotificationMessage("Notification", "Currently there are no recommendations for you");
 				}
 			}
 			

@@ -76,9 +76,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		UserType userType = UrlParameterConfig.getInstance().getUserType();
 
 		//text box
-		if (!userType.equals(UserType.POWER_WIZARD)) {
-			addMessageTextArea();
-		}
+		addMessageTextArea();
 
 
 		//send options
@@ -211,7 +209,8 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		messageTextArea.setPixelSize(sectionWidth, 100);		
 		messageTextArea.setFocus(true);
 		messageTextArea.selectAll();
-		vPanel.add(messageTextArea);		
+		if (!UrlParameterConfig.getInstance().getUserType().equals(UserType.POWER_WIZARD))
+			vPanel.add(messageTextArea);		
 	}
 
 	private void addInterruptionLevels() {

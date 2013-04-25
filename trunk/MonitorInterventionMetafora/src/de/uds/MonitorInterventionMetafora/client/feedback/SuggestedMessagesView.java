@@ -52,6 +52,10 @@ public class SuggestedMessagesView extends VerticalPanel {
 
 		// create and populate TABs based on XML
 		populateTabs(model);
+		
+		// Maybe there are suggested messages waiting for the user already
+		String currentUserId = UrlParameterConfig.getInstance().getUsername();
+		updater.refreshSuggestedMessages(currentUserId);
 
 		final ScrollPanel scrollPanel = new ScrollPanel();
 		scrollPanel.setHeight(PANEL_HEIGHT +"px");
@@ -183,6 +187,8 @@ public class SuggestedMessagesView extends VerticalPanel {
 			@Override
 			public void onClick(ClickEvent event) {
 				controller.sendSuggestedMessages(textArea.getText());
+				
+				
 			}
 		});
 		
@@ -213,7 +219,7 @@ public class SuggestedMessagesView extends VerticalPanel {
 		xmlVPanel.add(textArea);
 		
 	}
-
+	
 	public void addMessageToHistory(String messageToStudent) {
 		messageHistory.addSuggestedMessageRow(new SuggestedMessage(messageToStudent), tabTitle);
 		messageHistory.updateXmlCodeArea();
