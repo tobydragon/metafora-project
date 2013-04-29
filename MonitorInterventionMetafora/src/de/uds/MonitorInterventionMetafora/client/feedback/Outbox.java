@@ -85,7 +85,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		
 
 		// object ids
-		if (userType.equals(UserType.POWER_WIZARD)) {
+		if (userType.equals(UserType.RECOMMENDING_WIZARD)) {
 			objectIdsRow = new HorizontalPanel();
 			objectIdsRow.setSpacing(3);
 			objectIdsRow.add(new Label("object ids"));
@@ -170,7 +170,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		
 		VerticalPanel buttonsVPanel = new VerticalPanel();
 		
-		if (userType.equals(UserType.POWER_WIZARD)) {
+		if (userType.equals(UserType.RECOMMENDING_WIZARD)) {
 			Button sendRecommendationsButton = new Button("Send recommendations");
 			sendRecommendationsButton.addClickHandler(new ClickHandler() {
 				@Override
@@ -209,7 +209,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		messageTextArea.setPixelSize(sectionWidth, 100);		
 		messageTextArea.setFocus(true);
 		messageTextArea.selectAll();
-		if (!UrlParameterConfig.getInstance().getUserType().equals(UserType.POWER_WIZARD))
+		if (!UrlParameterConfig.getInstance().getUserType().equals(UserType.RECOMMENDING_WIZARD))
 			vPanel.add(messageTextArea);		
 	}
 
@@ -229,7 +229,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		sendModeRadioColumn.add(sendModeRadioButtonPopup);
 		
 		
-		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.TEACHER)) {
+		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.MESSAGING_WIZARD)) {
 			sendOptionsRow.add(sendModeRadioColumn);
 		}
 	}
@@ -342,7 +342,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
  	 	cfObject.addProperty(new CfProperty("TEXT", messageTextArea.getText()));
  	 	feedbackMessage.addObject(cfObject);
 
- 	 	if (UrlParameterConfig.getInstance().getUserType().equals(UserType.POWER_WIZARD)) {
+ 	 	if (UrlParameterConfig.getInstance().getUserType().equals(UserType.RECOMMENDING_WIZARD)) {
  	 		String objectIdsString = objectIdsTextBox.getText();
  	 		String[] split = objectIdsString.replaceAll("\\D*", " ").replaceAll("\\s+", ",").split(",");
  	 		for (String id : split) {
@@ -396,7 +396,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 	 * Returns the selected interruption type
 	 */
 	public String getSelectedIntteruptionType() {
-		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.TEACHER)) {
+		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.MESSAGING_WIZARD)) {
 			for(int i=0; i<sendModeRadioColumn.getWidgetCount(); i++) {
 				if (sendModeRadioColumn.getWidget(i) instanceof RadioButton) {
 					RadioButton rb = (RadioButton) sendModeRadioColumn.getWidget(i);
