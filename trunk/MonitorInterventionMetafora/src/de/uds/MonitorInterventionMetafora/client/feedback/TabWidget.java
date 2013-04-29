@@ -55,26 +55,6 @@ public class TabWidget {
 		mainVPanel.add(buttonsScrollPanel);
 	}
 
-	public void enableGetRecommendationsButton(final ClientFeedbackDataModelUpdater updater) {
-		if (configPanel == null) {
-			configPanel = new HorizontalPanel();
-			configPanel.setSpacing(3);
-			headerVPanel.add(configPanel);
-		}
-		
-		Button receiveRecommendationsButton = new Button("Get recommendations");
-		receiveRecommendationsButton.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				String currentUserId = UrlParameterConfig.getInstance().getUsername();
-				updater.refreshSuggestedMessages(currentUserId);
-			}
-
-		});
-		
-		configPanel.add(receiveRecommendationsButton);
-	}
-	
 	/**
 	 *  Adds some parameters to set 'tab color', 'add new message'
 	 */
@@ -134,7 +114,7 @@ public class TabWidget {
 	public void addSuggestedMessageRow(final SuggestedMessage message, final String tabTitle) {
 		HorizontalPanel row = new HorizontalPanel();
 		row.setSpacing(1);
-		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.POWER_WIZARD)) {
+		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.RECOMMENDING_WIZARD)) {
 			com.extjs.gxt.ui.client.widget.button.Button deleteButton = new com.extjs.gxt.ui.client.widget.button.Button();
 			deleteButton.setIconStyle("delete_suggested_message_button");
 			deleteButton.addSelectionListener(new SelectionListener<ButtonEvent>() {

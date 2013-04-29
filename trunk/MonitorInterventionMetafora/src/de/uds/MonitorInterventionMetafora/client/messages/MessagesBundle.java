@@ -12,5 +12,7 @@ import com.google.gwt.i18n.client.Constants;
  *
  */
 public interface MessagesBundle extends Constants {
-    String Repeat();
+    String GetRecommendationsButton();
+    
+    String MessagesInstruction();
 }

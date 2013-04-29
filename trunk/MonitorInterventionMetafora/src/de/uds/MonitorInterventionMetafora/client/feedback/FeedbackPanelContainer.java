@@ -81,8 +81,8 @@ public class FeedbackPanelContainer extends VerticalPanel {
 	public String getMessageFileNameStart(){
 		String messageFileStart = "external-messages_";
 		if (UrlParameterConfig.getInstance().getUserType() == UserType.METAFORA_USER ||
-			UrlParameterConfig.getInstance().getUserType() == UserType.METAFORA_RECOMMENDATIONS ||
-			UrlParameterConfig.getInstance().getUserType() == UserType.POWER_WIZARD ) {
+			UrlParameterConfig.getInstance().getUserType() == UserType.METAFORA_TEST ||
+			UrlParameterConfig.getInstance().getUserType() == UserType.RECOMMENDING_WIZARD ) {
 			
 			messageFileStart = "peer-messages_";
 		}

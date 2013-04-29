@@ -11,7 +11,7 @@ public class UrlParameterConfig {
 	
 
         public enum UserType {
-            METAFORA_USER, STANDARD_WIZARD, POWER_WIZARD, METAFORA_RECOMMENDATIONS, TEACHER
+            METAFORA_USER, STANDARD_WIZARD, RECOMMENDING_WIZARD, METAFORA_TEST, MESSAGING_WIZARD
         }
 
 	private String username;
@@ -22,6 +22,7 @@ public class UrlParameterConfig {
 	private String receiver;
 	private UserType userType;
 	private boolean testServer;
+	private boolean monitoring;
 	private XmppServerType xmppServerType;
 	private static UrlParameterConfig singletonInstance;
 	
@@ -35,6 +36,7 @@ public class UrlParameterConfig {
 		receiver = getAndDecodeUrlParam("receiver");
 		locale = getAndDecodeUrlParam("locale");
 		String testServerStr = getAndDecodeUrlParam("testServer");
+		String monitoringStr = getAndDecodeUrlParam("monitoring");
 		String userTypeString = getAndDecodeUrlParam("userType");
 
 		if (userTypeString == null) { 
@@ -42,19 +44,13 @@ public class UrlParameterConfig {
 		} else if (userTypeString.equals("METAFORA_USER")) {
 		    userType = UserType.METAFORA_USER;
 		} else if (userTypeString.equals("POWER")) {
-	        userType = UserType.POWER_WIZARD;
-		} else if (userTypeString.equals("RECOMMENDATIONS")) {
-			userType = UserType.METAFORA_RECOMMENDATIONS;
+	        userType = UserType.RECOMMENDING_WIZARD;
+		} else if (userTypeString.equals("METAFORA_TEST")) {
+			userType = UserType.METAFORA_TEST;
 		} else if (userTypeString.equals("TEACHER")) {
-			userType = UserType.TEACHER;
+			userType = UserType.MESSAGING_WIZARD;
 		} else userType = UserType.STANDARD_WIZARD;
-		
-		//TD commented this out.  We depend on recieverIDs to be null when not included. These others don't seem better with empty defaults than null.
-//		username = (username == null) ? "" : username;
-//		receiverIDs = (receiverIDs == null) ? "" : receiverIDs;
-//		password = (password == null) ? "" : password;
-//		configID = (configID == null) ? "" : configID;
-		
+				
 		//xmppServeType should be null if receiver is not included, so that default is used
 		if (receiver != null){
 			if (MetaforaStrings.RECEIVER_METAFORA.equalsIgnoreCase(receiver)){
@@ -72,9 +68,8 @@ public class UrlParameterConfig {
 		receiver = (receiver == null) ? MetaforaStrings.RECEIVER_METAFORA_TEST : receiver;
 		locale = (locale == null) ? "en" : locale;
 		testServer = (testServerStr == null) ? false : Boolean.parseBoolean(testServerStr); 
-		
-		
-		
+		monitoring = (monitoringStr == null) ? false : Boolean.parseBoolean(monitoringStr); 
+				
 
 		Log.info("URL Params: User-" + username + " : mainConfig-" + configID + " : receiver-" + receiver + " : locale-" + locale + " : userType-" + userType + " : receiverIDs-" + receiverIDs);
 	}
@@ -127,6 +122,10 @@ public class UrlParameterConfig {
 
 	public boolean getTestServer() {
 		return testServer;
+	}
+
+	public boolean getMonitoring() {
+		return monitoring;
 	}
 
 	public String getReceiver() {
