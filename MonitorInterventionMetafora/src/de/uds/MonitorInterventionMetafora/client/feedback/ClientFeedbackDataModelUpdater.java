@@ -15,7 +15,7 @@ public class ClientFeedbackDataModelUpdater {// implements RequestUpdateCallBack
 	}
 	
 	public void refreshSuggestedMessages(String username) {
-		AsyncCallback callback = new AsyncCallback<String>() {
+		AsyncCallback<String> callback = new AsyncCallback<String>() {
 			public void onSuccess(String result) {
 				System.out.println("ClientFeedbackDataModelUpdater.refreshSuggestedMessages(): Success");
 				if (result != null && !result.equals("")) {

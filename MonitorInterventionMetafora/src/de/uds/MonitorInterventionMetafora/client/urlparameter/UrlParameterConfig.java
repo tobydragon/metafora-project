@@ -15,6 +15,8 @@ public class UrlParameterConfig {
         }
 
 	private String username;
+	private String groupId;
+	
 	private String receiverIDs;
 	private String password;
 	private String configID;
@@ -30,6 +32,7 @@ public class UrlParameterConfig {
 	private UrlParameterConfig() {
 		
 		username = getAndDecodeUrlParam("user");
+		groupId = getAndDecodeUrlParam("groupId");
 		receiverIDs = getAndDecodeUrlParam("receiverIDs");
 		password = getAndDecodeUrlParam("pw");
 		configID = getAndDecodeUrlParam("config");
@@ -95,6 +98,10 @@ public class UrlParameterConfig {
 			username = Long.toString(GWTUtils.getTimeStamp());
 		}
 		return username;
+	}
+	
+	public String getGroupId() {
+		return groupId;
 	}
 
 	/**

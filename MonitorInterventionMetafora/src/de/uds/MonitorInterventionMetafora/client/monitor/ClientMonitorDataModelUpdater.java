@@ -5,6 +5,7 @@ import java.util.List;
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.user.client.Timer;
 
+import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.NoActionResponse;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
@@ -55,7 +56,7 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 	}
 	
 	public void getUpdate(){
-		Log.debug("Step 1: Update Request is sent from model!");
+		Log.debug("Step 1: Update Request sent to server");
 		clientDataModel.getServiceServlet().requestUpdate(clientDataModel.getLastAction(),this);
 	}
 
@@ -66,6 +67,10 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 
 	public ClientMonitorDataModel getClientDataModel() {
 		return clientDataModel;
+	}
+
+	public void analyzeGroup(String groupId) {
+		clientDataModel.getServiceServlet().requestAnalysis(groupId, new NoActionResponse());
 	}
 	
 }

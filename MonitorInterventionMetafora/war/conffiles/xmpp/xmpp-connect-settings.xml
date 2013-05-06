@@ -78,6 +78,45 @@
 	
         
         
+    
+    <xmpp-channel-setting channelid="visualizer-analysis-test-uds">
+		<connection-name>VisualizerAnalysisTestUDS</connection-name>
+		<username>VisualizerAnalysisTestUDS</username>
+		<password>VisualizerAnalysisTestUDS</password>
+		<chatroom>analysis@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>VisualizerAnalysisTestUDS</alias>
+		<device>VisualizerAnalysisTestUDS</device>
+	</xmpp-channel-setting>
+	
+	<xmpp-channel-setting channelid="visualizer-command-test-uds">
+		<connection-name>VisualizerCommandTestUDS</connection-name>
+		<username>VisualizerCommandTestUDS</username>
+		<password>VisualizerCommandTestUDS</password>
+		<chatroom>command@conference.metafora.ku-eichstaett.de</chatroom>
+		<alias>VisualizerCommandTestUDS</alias>
+		<device>VisualizerCommandTestUDS</device>
+	</xmpp-channel-setting>
+	
+	<xmpp-channel-setting channelid="visualizer-analysis-deploy-uds">
+		<connection-name>VisualizerAnalysisDeployUDS</connection-name>
+		<username>VisualizerAnalysisDeployUDS</username>
+		<password>VisualizerAnalysisDeployUDS</password>
+		<chatroom>analysis@conference.metaforaserver.ku.de</chatroom>
+		<alias>VisualizerAnalysisDeployUDS</alias>
+		<device>VisualizerAnalysisDeployUDS</device>
+	</xmpp-channel-setting>
+	
+	<xmpp-channel-setting channelid="visualizer-command-deploy-uds">
+		<connection-name>VisualizerCommandDeployUDS</connection-name>
+		<username>VisualizerCommandDeployUDS</username>
+		<password>VisualizerCommandDeployUDS</password>
+		<chatroom>command@conference.metaforaserver.ku.de</chatroom>
+		<alias>VisualizerCommandDeployUDS</alias>
+		<device>VisualizerCommandDeployUDS</device>
+	</xmpp-channel-setting>
+    
+    
+    
         
         
     <xmpp-channel-setting channelid="visualizer-analysis-deploy-toby">

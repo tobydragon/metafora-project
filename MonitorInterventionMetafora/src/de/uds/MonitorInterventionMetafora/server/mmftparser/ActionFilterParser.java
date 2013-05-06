@@ -8,6 +8,7 @@ import com.allen_sauer.gwt.log.client.Log;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.RuleRelation;
 import de.uds.MonitorInterventionMetafora.shared.utils.ServerFormatStrings;
 
 public class ActionFilterParser {
@@ -24,9 +25,10 @@ public class ActionFilterParser {
 	
 	public static ActionFilter fromXml(XmlFragment filterFragment){
 		
-		
 		String filterName=filterFragment.getAttributeValue(ServerFormatStrings.NAME);
 		boolean editable = Boolean.getBoolean(filterFragment.getAttributeValue(ServerFormatStrings.EDITABLE));
+		String type = filterFragment.getAttributeValue(ServerFormatStrings.Type);
+		String color = filterFragment.getAttributeValue(ServerFormatStrings.COLOR);
 		
 		List<ActionPropertyRule> actionPropertyRules = new Vector<ActionPropertyRule>();
 		for(XmlFragment propertyFragment : filterFragment.getChildren(ServerFormatStrings.FILTERITEM))
@@ -39,8 +41,17 @@ public class ActionFilterParser {
 				Log.warn("[ActionFilter.fromXml] Invalid property rule read from xml, ignoring: " + actionPropertyRule.toString());
 			}
 		}
-		ActionFilter actionFilter=new ActionFilter(filterName, editable, actionPropertyRules);
+		ActionFilter actionFilter=new ActionFilter(filterName, editable, type, color, actionPropertyRules, RuleRelation.AND);
 		return actionFilter;
+	}
+	
+	public static List<ActionFilter> listFromXml(XmlFragment filtersFragment){
+		List<ActionFilter> filters = new Vector<ActionFilter>();
+		for(XmlFragment propertyFragment : filtersFragment.getChildren(ServerFormatStrings.FILTER)){			
+			ActionFilter filter=ActionFilterParser.fromXml(propertyFragment);
+			filters.add(filter);
+		}
+		return filters;
 	}
 
 }

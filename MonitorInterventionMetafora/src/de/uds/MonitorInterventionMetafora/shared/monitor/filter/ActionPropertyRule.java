@@ -210,6 +210,12 @@ public class ActionPropertyRule  implements Serializable{
 				} else if (propertyName.equalsIgnoreCase("description")){
 					actionValues.add(action.getCfContent().getDescription());
 				}
+				else if (propertyName.equalsIgnoreCase("ACTIVITY_TYPE")){
+					actionValues.add(action.getCfContent().getPropertyValue("ACTIVITY_TYPE"));
+				}
+				else {
+					Log.warn("ObjectPropertyName not recognized: " + propertyName );
+				}
 				break;
 			case ACTION:
 				if (propertyName.equalsIgnoreCase("time")){
@@ -217,38 +223,36 @@ public class ActionPropertyRule  implements Serializable{
 				}
 				break;
 			case OBJECT:
-			
+				
+				//TODO: Silly to have to list properties. Should get attributes, and then just search for property name for all others.
 				if (action.getCfObjects().size() > 0){
-					
-					for(CfObject object:action.getCfObjects()){
-						
-					if (propertyName.equalsIgnoreCase("OBJECT_HOME_TOOL")){
-						actionValues.add(object.getPropertyValue("OBJECT_HOME_TOOL"));
-					} else if (propertyName.equalsIgnoreCase("INDICATOR_TYPE")){
-						actionValues.add(object.getPropertyValue("INDICATOR_TYPE"));
-					} else if (propertyName.equalsIgnoreCase("CHALLENGE_NAME")){
-						actionValues.add(object.getPropertyValue("CHALLENGE_NAME"));
-					} else if (propertyName.equalsIgnoreCase("GROUP_ID")){
-						actionValues.add(object.getPropertyValue("GROUP_ID"));
-					} else if (propertyName.equalsIgnoreCase("type")){
-						actionValues.add(object.getType());
-					} else if (propertyName.equalsIgnoreCase("id")){
-						actionValues.add(object.getId());
-					}
-					 else if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){
-						
-						 String [] tags=object.getPropertyValue(MonitorConstants.TAGS).split(",");
-						 for(String tag:tags){
-						 actionValues.add(tag);
-						 }
+					for(CfObject object:action.getCfObjects()){	
+						if (propertyName.equalsIgnoreCase("OBJECT_HOME_TOOL")){
+							actionValues.add(object.getPropertyValue("OBJECT_HOME_TOOL"));
+						} else if (propertyName.equalsIgnoreCase("INDICATOR_TYPE")){
+							actionValues.add(object.getPropertyValue("INDICATOR_TYPE"));
+						} else if (propertyName.equalsIgnoreCase("CHALLENGE_NAME")){
+							actionValues.add(object.getPropertyValue("CHALLENGE_NAME"));
+						} else if (propertyName.equalsIgnoreCase("GROUP_ID")){
+							actionValues.add(object.getPropertyValue("GROUP_ID"));
+						} else if (propertyName.equalsIgnoreCase("type")){
+							actionValues.add(object.getType());
+						} else if (propertyName.equalsIgnoreCase("id")){
+							actionValues.add(object.getId());
 						} 
-					}
-					
-					
+						else if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){	
+							 String [] tags=object.getPropertyValue(MonitorConstants.TAGS).split(",");
+							 for(String tag:tags){
+								 actionValues.add(tag);
+							 }
+						}
+						else {
+							Log.warn("ObjectPropertyName not recognized: " + propertyName );
+						}
+					}	
 				}
 				break;
-			
-		}
+			}
 		}
 		catch(Exception e){
 			System.out.println("[ActionPropertyRule.getActionValue] No value found in action=\n" + "\nRule:" + this);

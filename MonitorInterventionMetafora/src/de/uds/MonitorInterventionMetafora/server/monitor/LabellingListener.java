@@ -4,12 +4,16 @@ import de.uds.MonitorInterventionMetafora.server.analysis.manager.TextManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
-public class AnalysisMonitorListener implements CfCommunicationListener{
+
+//This class receives each action and adds appropriate labels to allow analysis work
+public class LabellingListener implements CfCommunicationListener{
 
 	private MonitorModel model;
 	private TextManager taggingManger;
 	
-	public AnalysisMonitorListener(MonitorModel monitorModel){
+	//TODO add labels for PERCEIVED_SOLUTION, POSSIBLE_SOLUTION, POSSIBLE_STRUGGLE
+	
+	public LabellingListener(MonitorModel monitorModel){
 		this.model = monitorModel;
 		taggingManger=new TextManager(true);
 	}

@@ -29,9 +29,15 @@ public class MetaforaCfFileCommunicationBridge extends SimpleCfFileCommunication
 		}
 		else if (type == CommunicationChannelType.analysis){
 			setup(analysisConnectionNameIn, analysisConnectionNameOut, CfFileLocation.LOCAL);
+		}
+		if (type == CommunicationChannelType.testCommand){
+			setup(commandConnectionNameIn, commandConnectionNameOut, CfFileLocation.LOCAL);
+		}
+		else if (type == CommunicationChannelType.testAnalysis){
+			setup(analysisConnectionNameIn, analysisConnectionNameOut, CfFileLocation.LOCAL);
 		} 
 		else {
-			logger.error("[constructor] Uknown connectionType");
+			logger.error("[constructor] Uknown connectionType: " + type);
 			return;
 		}
 	}

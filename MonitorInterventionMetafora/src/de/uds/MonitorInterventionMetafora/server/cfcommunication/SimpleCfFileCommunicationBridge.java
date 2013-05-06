@@ -52,7 +52,7 @@ public class SimpleCfFileCommunicationBridge implements CfCommunicationBridge{
 			fragment = XmlFragment.getFragmentFromRemoteFile(filename);
 		}
 		else {
-			logger.error("[getOrCreateFragment] Unrecognized CfFIleLocation - " + fileLocation);
+			logger.error("[getOrCreateFragment] Unrecognized CfFileLocation - " + fileLocation);
 			fragment = null;
 		}
 		
