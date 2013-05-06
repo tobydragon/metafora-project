@@ -15,8 +15,11 @@
  */
 package de.uds.MonitorInterventionMetafora.client;
 
+import de.uds.MonitorInterventionMetafora.client.messages.MessagesBundle;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.visualization.client.VisualizationUtils;
 import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
@@ -32,6 +35,8 @@ import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig
 
 
 class VisualAnalyzer implements EntryPoint {
+
+    public static MessagesBundle messagesBundle = GWT.create(MessagesBundle.class);
 
 	  public void onModuleLoad() {
 		  //TODO: Check this, it seems like it only waits for pieChart, what about BarChart, etc.?
@@ -51,7 +56,7 @@ class VisualAnalyzer implements EntryPoint {
 	    	 } 
 	    	 
 	    	 FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer(commServiceServlet);
-	    	 _mainPanel.addTab("Messaging", _feedbackPanelContainer,false);
+	    	 _mainPanel.addTab(messagesBundle.ToolLabel(), _feedbackPanelContainer,false);
 	    	  
 	    	 RootPanel.get().add(_mainPanel);
 	

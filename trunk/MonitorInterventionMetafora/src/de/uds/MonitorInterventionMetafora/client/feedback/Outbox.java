@@ -3,6 +3,9 @@ package de.uds.MonitorInterventionMetafora.client.feedback;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.uds.MonitorInterventionMetafora.client.messages.MessagesBundle;
+
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
@@ -37,6 +40,10 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class Outbox extends VerticalPanel implements CfActionCallBack {
+    
+    
+    	public static MessagesBundle messagesBundle = GWT.create(MessagesBundle.class);
+
 	private int PANEL_HEIGHT = 290;
 	
 	private TextArea messageTextArea;
@@ -69,7 +76,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		
 		//section label
 		String receiver = UrlParameterConfig.getInstance().getReceiver();
-		final Label sectionLabel = new Label("Edit your message or type a new one (seinding to " + receiver + ")");
+		final Label sectionLabel = new Label(messagesBundle.EditInstructions());
 		sectionLabel.setStyleName("sectionLabel");
 		vPanel.add(sectionLabel);
 
@@ -102,7 +109,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		
 		//recipients
 		final VerticalPanel userGroupColumn = new VerticalPanel();
-		userGroupColumn.add(new Label("To:"));
+		userGroupColumn.add(new Label(messagesBundle.To()));
 		recipientNamesColumn = new VerticalPanel();
 		userGroupColumn.add(recipientNamesColumn);
 		
@@ -139,13 +146,13 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 			}
 		}
 		HorizontalPanel allNone = new HorizontalPanel();
-		allNone.add(new SelectAllRecipientsButton("all",true));
-		allNone.add(new SelectAllRecipientsButton("none",false));
+		allNone.add(new SelectAllRecipientsButton(messagesBundle.All(),true));
+		allNone.add(new SelectAllRecipientsButton(messagesBundle.None(),false));
 		userGroupColumn.add(allNone);
 		createCheckBoxes(FeedbackPanelContainer.userIDsArray);
 
 		//edit students button
-		final Button editStudentsButton = new Button("edit");
+		final Button editStudentsButton = new Button(messagesBundle.Edit());
 		editStudentsButton.setStyleName("selectAllRecipientsButton");
 		editStudentsButton.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
@@ -184,7 +191,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 			buttonsVPanel.add(sendRecommendationsButton);
 		} else {
 			//send button
-			final Button sendButton = new Button("Send");
+			final Button sendButton = new Button(messagesBundle.Send());
 			sendButton.addStyleName("sendButton");
 			sendButton.addClickHandler(new ClickHandler(){
 				public void onClick(ClickEvent event) {
