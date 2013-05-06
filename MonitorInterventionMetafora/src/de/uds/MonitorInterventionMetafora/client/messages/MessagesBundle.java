@@ -15,4 +15,15 @@ public interface MessagesBundle extends Constants {
     String GetRecommendationsButton();
     
     String MessagesInstruction();
+    
+    String ToolLabel();
+    
+    String EditInstructions(); 
+    
+    String To();
+    String All(); 
+    String None(); 
+    String Edit(); 
+    String Send(); 
+    
 }
