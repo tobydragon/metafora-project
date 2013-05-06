@@ -16,7 +16,7 @@ public class MonitorController {
 	public MonitorController(CfCommunicationMethodType communicationMethodType, String historyStartTime, XmppServerType xmppServerType) {
 		
 		monitorModel = new MonitorModel();
-		AnalysisMonitorListener monitorListener = new AnalysisMonitorListener(monitorModel);
+		LabellingListener monitorListener = new LabellingListener(monitorModel);
 		
 		HistoryRequester historyRequester = new HistoryRequester(monitorModel);
 		
@@ -30,5 +30,8 @@ public class MonitorController {
 		return monitorModel.requestUpdate(cfAction);
 	}
 	
+	public List<CfAction> getActionList(){
+		return monitorModel.getActionList();
+	}
 
 }

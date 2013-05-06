@@ -16,17 +16,32 @@ public class ActionFilter implements Serializable{
 	 */
 	private static final long serialVersionUID = 6017681413593886575L;
 	private String name;
+	
 	private boolean editable;
 	List<ActionPropertyRule> actionPropertyRules;
 	private FilterViewModel filterRules;
 	
-	//private ListStore<FilterGridRow> filterRules;
-	private boolean isServerFilter;
+//	private boolean isServerFilter;
+	
+	private RuleRelation ruleRelation;
+	
+	//optional attributes
+	private String type;
+	private String color;
 	
 	
 	public ActionFilter(String name, boolean editable, List<ActionPropertyRule> actionPropertyRules ){
-		isServerFilter=false;
-		actionPropertyRules=new Vector<ActionPropertyRule>();
+		this (name, editable, null, null, actionPropertyRules, RuleRelation.AND);	
+	}
+	
+	public ActionFilter(String name, boolean editable, String type, String color, List<ActionPropertyRule> actionPropertyRules, RuleRelation ruleRelation ){
+		setName(name);
+		setEditable(editable);
+		setType(type);
+		setColor(color);
+		
+//		isServerFilter=false;
+		this.actionPropertyRules=new Vector<ActionPropertyRule>();
 		filterRules = new FilterViewModel();
 		
 		for (ActionPropertyRule rule : actionPropertyRules){
@@ -35,32 +50,31 @@ public class ActionFilter implements Serializable{
 		
 	}
 	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 	public ActionFilter(){
 		this ("No Name", false, new Vector<ActionPropertyRule>());
 	}
-//	
-//	
-//	public ActionFilter(FilterViewModel mainFilterRules){
-//		isServerFilter=false;
-//		actionPropertyRules=new Vector<ActionPropertyRule>();
-//		filterRules = new FilterViewModel();
-//		filterRules = mainFilterRules;
-//		
-//	}
-//	
-//	
-//	public ActionFilter(boolean isServerFilter){
-//		this.isServerFilter=isServerFilter;
-//		actionPropertyRules=new Vector<ActionPropertyRule>();
-//		filterRules = new FilterViewModel();
-//
-//	}
 
 	public void addFilterRule(ActionPropertyRule filterRule){
 		actionPropertyRules.add(filterRule);
-		if(!isServerFilter){
+//		if(!isServerFilter){
 			filterRules.add(new FilterGridRow(filterRule));
-		}
+//		}
 	}
 	
 	public List<CfAction> getFilteredList(List<CfAction> listToFilter){
@@ -74,7 +88,8 @@ public class ActionFilter implements Serializable{
 	}
 	
 	public boolean filterIncludesAction(CfAction action){
-		if(isServerFilter){
+//		if(isServerFilter){
+		if (ruleRelation == RuleRelation.AND){	
 			for (ActionPropertyRule rule : actionPropertyRules){
 				if (! rule.ruleIncludesAction(action)){
 					return false;
@@ -82,14 +97,26 @@ public class ActionFilter implements Serializable{
 			}
 			return true;
 		}
+		
 		else {
-			for (FilterGridRow rule : filterRules.getRange(0, filterRules.getCount()-1)){
-				if (!rule.getActionPropertyRule().ruleIncludesAction(action)){
-					return false;
+			for (ActionPropertyRule rule : actionPropertyRules){
+				if (rule.ruleIncludesAction(action)){
+					return true;
 				}
 			}
-			return true;
-		}		
+			return false;
+		}
+//		}
+//		
+//		//TODO:  What is this????
+//		else {
+//			for (FilterGridRow rule : filterRules.getRange(0, filterRules.getCount()-1)){
+//				if (!rule.getActionPropertyRule().ruleIncludesAction(action)){
+//					return false;
+//				}
+//			}
+//			return true;
+//		}		
 	}
 	
 	public List<ActionPropertyRule>  getActionPropertyRules(){	

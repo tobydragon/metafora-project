@@ -5,11 +5,10 @@ import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
+import de.uds.MonitorInterventionMetafora.server.analysis.AnalysisController;
 import de.uds.MonitorInterventionMetafora.server.analysis.manager.AnalysisManager;
-import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
 import de.uds.MonitorInterventionMetafora.server.feedback.FeedbackController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
-import de.uds.MonitorInterventionMetafora.server.monitor.MonitorModel;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
@@ -17,13 +16,16 @@ import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerTyp
 public class ServerInstance {
 	Logger logger = Logger.getLogger(this.getClass());
 	
-	MonitorController monitorController;
 	FeedbackController feedbackController;
 	
+	MonitorController monitorController;
+	//Analysis requires a Monitor
+	AnalysisController analysisController;
 		
 	public ServerInstance(CfCommunicationMethodType communicationMethodType, XmppServerType xmppServerType, boolean monitoringOn, String startTime ){
 		if (monitoringOn){
 			monitorController = new MonitorController(communicationMethodType, startTime, xmppServerType);
+			analysisController = new AnalysisController(monitorController);
 		}
 		
 		feedbackController = new FeedbackController(communicationMethodType, xmppServerType);
@@ -60,6 +62,12 @@ public class ServerInstance {
 
 		System.out.println("Notifications are sent to the agents!!");
 		return new CfAction();
+	}
+
+	public void requestAnalysis(String groupId) {
+		if (analysisController != null){
+			analysisController.analyzeGroup(groupId);
+		}
 	}
 
 

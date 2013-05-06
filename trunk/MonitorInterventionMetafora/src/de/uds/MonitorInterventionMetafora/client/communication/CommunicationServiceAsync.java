@@ -33,4 +33,6 @@ public interface CommunicationServiceAsync {
 	void requestMainConfiguration(AsyncCallback<Configuration> callback);
 	
 	void requestSuggestedMessages(String username, AsyncCallback<String> callback);
+
+	void requestAnalysis(String groupId, AsyncCallback<Void> callback);
 }

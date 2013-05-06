@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<interactiondata id="1347339165624">
+	<actions>
+		<action time="1347338957782">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="0"/>
+					<property name="CANNON_DELTA_ANGLE" value="18"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338947331">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="0"/>
+					<property name="CANNON_DELTA_ANGLE" value="0"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338925432">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="2"/>
+					<property name="CANNON_DELTA_ANGLE" value="0"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338917549">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="4"/>
+					<property name="CANNON_DELTA_ANGLE" value="0"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338913048">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="4"/>
+					<property name="CANNON_DELTA_ANGLE" value="0"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338899130">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="4"/>
+					<property name="CANNON_DELTA_ANGLE" value="0"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338890497">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="5"/>
+					<property name="CANNON_DELTA_ANGLE" value="0"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338890497">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="5"/>
+					<property name="CANNON_DELTA_ANGLE" value="0"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338890497">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="5"/>
+					<property name="CANNON_DELTA_ANGLE" value="0"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338890497">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="5"/>
+					<property name="CANNON_DELTA_ANGLE" value="0"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338890497">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="5"/>
+					<property name="CANNON_DELTA_ANGLE" value="0"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338890497">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="5"/>
+					<property name="CANNON_DELTA_ANGLE" value="0"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338890497">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="5"/>
+					<property name="CANNON_DELTA_ANGLE" value="0"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338890497">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="5"/>
+					<property name="CANNON_DELTA_ANGLE" value="0"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338874906">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="17"/>
+					<property name="CANNON_DELTA_ANGLE" value="24"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338874906">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="17"/>
+					<property name="CANNON_DELTA_ANGLE" value="24"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338874906">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="17"/>
+					<property name="CANNON_DELTA_ANGLE" value="24"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338874906">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="17"/>
+					<property name="CANNON_DELTA_ANGLE" value="24"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338874906">
+			<actiontype classification="OTHER" logged="false" succeed="true" type="indicator"/>
+			<user id="David" role="student"/>
+			<object id="1" type="Cannon">
+				<properties>
+					<property name="CANNON_DELTA_POWER" value="17"/>
+					<property name="CANNON_DELTA_ANGLE" value="24"/>
+					<property name="CAMERA_COUNTER" value="0"/>
+					<property name="SAVE_COUNTER" value="0"/>
+					<property name="BLOCK_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_HORIZONTAL" value="min:0,max:Infinity,factor:0.85"/>
+					<property name="BLOCK_0_VERTICAL" value="min:0,max:Infinity,factor:0.4"/>
+					<property name="TRAMPOLINE_0_VERTICAL" value="min:0,max:Infinity,factor:0.85"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David fires the cannon]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PIKI"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347338629315">
+			<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+			<user id="PlanningTool" role="originator"/>
+			<object id="2test4_node_4" type="&lt;object&gt;&lt;node id=&quot;2test4_node_4&quot;&gt;&lt;graphics&gt;&lt;scalefactor value=&quot;50&quot;/&gt;&lt;bordercolor value=&quot;#FFFF00&quot;/&gt;&lt;position x=&quot;491&quot; y=&quot;397&quot;/&gt;&lt;/graphics&gt;&lt;properties&gt;&lt;pictureurl value=&quot;http://metafora.ku-eichstaett.de/images/resources/PiKI.svg&quot;/&gt;&lt;tool value=&quot;http://www.metafora-project.org/piki/piki.php&quot;/&gt;&lt;categorie value=&quot;resources&quot;/&gt;&lt;name value=&quot;PiKi&quot;/&gt;&lt;/properties&gt;&lt;/node&gt;&lt;/object&gt;">
+				<properties>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="USERNAME" value="David"/>
+					<property name="GROUP_ID" value="100-test"/>
+					<property name="TOKEN" value="1347338247858"/>
+					<property name="MAPNAME" value="2test4"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[David started 'PiKi' card]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+					<property name="ACTIVITY_TYPE" value="modifyStateStarted"/>
+				</properties>
+			</content>
+		</action>
+		<action time="1347343846686">
+			<actiontype classification="other" logged="true" succeed="true" type="indicator"/>
+			<user id="PlaTO" role="originator"/>
+			<object id="2" type="split">
+				<properties>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="MAP-ID" value="2test5"/>
+					<property name="NODE" value="node_0"/>
+				</properties>
+			</object>
+			<content>
+				<description><![CDATA[Typed split in map 2test5 at node node_0 caused by David.]]></description>
+				<properties>
+					<property name="INDICATOR_TYPE" value="activity"/>
+					<property name="TOOL" value="PlanningTool"/>
+					<property name="USERNAME" value="David"/>
+					<property name="GROUP_ID" value="Demo"/>
+					<property name="CHALLENGE_ID" value="9"/>
+					<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				</properties>
+			</content>
+		</action>
+	</actions>
+</interactiondata>

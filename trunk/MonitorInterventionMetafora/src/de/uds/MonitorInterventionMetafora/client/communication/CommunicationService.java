@@ -2,7 +2,6 @@ package de.uds.MonitorInterventionMetafora.client.communication;
 
 import java.util.List;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -39,5 +38,5 @@ public interface CommunicationService extends RemoteService {
 	
 	Configuration requestMainConfiguration();
 
-	
+	void requestAnalysis(String groupId);
 }

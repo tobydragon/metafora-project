@@ -147,7 +147,7 @@ public class HistoryRequester implements CfCommunicationListener{
 	private void loadHistoryFromRemoteFile(String historyUrl) {
 		logger.info("[loadHistoryFromRemoteFile] URL="+historyUrl);
 		if (historyUrl != null && model != null){
-			AnalysisMonitorListener myListener = new AnalysisMonitorListener(model);
+			LabellingListener myListener = new LabellingListener(model);
 			SimpleCfFileCommunicationBridge historyBridge = new SimpleCfFileCommunicationBridge(historyUrl, "", CfFileLocation.REMOTE);
 			historyBridge.registerListener(myListener);
 			historyBridge.sendMessages();
@@ -161,7 +161,7 @@ public class HistoryRequester implements CfCommunicationListener{
 	private void loadHistoryFromLocalFile(String historyUrl) {
 		logger.info("[loadHistoryFromLocalFile] URL="+historyUrl);
 		if (historyUrl != null && model != null){
-			AnalysisMonitorListener myListener = new AnalysisMonitorListener(model);
+			LabellingListener myListener = new LabellingListener(model);
 			SimpleCfFileCommunicationBridge historyBridge = new SimpleCfFileCommunicationBridge(historyUrl, "", CfFileLocation.REMOTE);
 			historyBridge.registerListener(myListener);
 			historyBridge.sendMessages();

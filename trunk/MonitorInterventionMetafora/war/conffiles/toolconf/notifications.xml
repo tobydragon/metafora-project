@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<notifications>
+<filters>
 
 
-<notification type="nowork" color="#FF9F9F">
-<filteritem entityname="TIME" operation="OccuredWithIn"  value="5" type="Action"/>
-</notification>
+<filter name = "All no work" type="nowork" color="#FF9F9F">
+	<filteritem entityname="TIME" operation="OccuredWithIn"  value="5" type="Action"/>
+</filter>
 
 
-<notification type="nowork" color="#65FC29">
-<filteritem entityname="Tool"  operation="Equals"  value="Metafora" type="Content"/>
-<filteritem entityname="User"  operation="Equals"  value="Alice"  type="Action_Type"/>
-<filteritem entityname="MapID" operation="Equals"  value="M1" type="Object"/>
-<filteritem entityname="TIME" operation="OccuredWithIn"  value="3" type="Action"/>
-</notification>
+<filter name= "Alice no work" type="nowork" color="#65FC29">
+	<filteritem entityname="Tool"  operation="Equals"  value="Metafora" type="Content"/>
+	<filteritem entityname="User"  operation="Equals"  value="Alice"  type="Action_Type"/>
+	<filteritem entityname="MapID" operation="Equals"  value="M1" type="Object"/>
+	<filteritem entityname="TIME" operation="OccuredWithIn"  value="3" type="Action"/>
+</filter>
 
-</notifications>
+<filter name= "NEW_IDEA" type="NEW_IDEA" color="#65FC29">
+	<filteritem entityname="ACTIVITY_TYPE"  operation="Equals"  value="MODIFY_STATE_STARTED" type="Content"/>
+</filter>
+
+
+</filters>

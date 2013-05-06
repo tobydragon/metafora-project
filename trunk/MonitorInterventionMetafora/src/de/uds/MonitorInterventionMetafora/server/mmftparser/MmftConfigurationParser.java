@@ -26,13 +26,8 @@ public class MmftConfigurationParser {
 		String defaultServer = confFragment.getChildValue(ServerFormatStrings.DEFAULT_XMPP_SERVER);
 		String testServerMonitoring = confFragment.getChildValue(ServerFormatStrings.TEST_SERVER_MONITORING);
 		String deployServerMonitoring = confFragment.getChildValue(ServerFormatStrings.DEPLOY_SERVER_MONITORING);
-//		XmlFragment  filtersFragment=XmlFragment.getFragmentFromString(confFragment.toString()).accessChild(ServerFormatStrings.FILTERS); 
 		
-		List<ActionFilter> filters = new Vector<ActionFilter>();
-		for(XmlFragment propertyFragment : confFragment.accessChild(ServerFormatStrings.FILTERS).getChildren(ServerFormatStrings.FILTER)){			
-			ActionFilter filter=ActionFilterParser.fromXml(propertyFragment);
-			filters.add(filter);
-		}
+		List<ActionFilter> filters = ActionFilterParser.listFromXml(confFragment.accessChild(ServerFormatStrings.FILTERS));
 		
 		Configuration config = new Configuration(name, communicationMethodType, historyStartTime, defaultServer, testServerMonitoring, deployServerMonitoring, filters);
 		return config;

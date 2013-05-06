@@ -24,6 +24,7 @@ import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitor
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyComboBoxItemModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModelType;
@@ -32,6 +33,7 @@ public class UpdaterToolbar extends ToolBar{
 	 
 	private CheckBox autoRefresh;
 	private Button refreshButton;
+	private Button analyzeButton;
 	private Button configurationButton;
 	private ConfigurationPanel cofigurationPanel;
 	
@@ -81,14 +83,13 @@ public class UpdaterToolbar extends ToolBar{
 	        public void componentSelected(ButtonEvent ce) {  
 	        	System.out.println("refreshClicked");
 	        	
+	        	//only enable the button every few seconds
 	        	Timer t = new Timer() {
 	        	      public void run() {
 	        	    	  refreshButton.setEnabled(true);
 	        	      }
-	        	    };
-
-	        	    // Schedule the timer to run once in 5 seconds.
-	        	    t.schedule(5000);
+	        	};
+	        	t.schedule(5000);
 	        	
 	        	UpdaterToolbar.this.updater.getUpdate();
 	        	refreshButton.setEnabled(false);
@@ -97,6 +98,16 @@ public class UpdaterToolbar extends ToolBar{
 	      });
 		
 		
+		analyzeButton = new Button(); 
+		analyzeButton.setToolTip("Analyze");
+		analyzeButton.setText("Analyze");
+		analyzeButton.addSelectionListener(new SelectionListener<ButtonEvent>() {  
+	        @Override  
+	        public void componentSelected(ButtonEvent ce) {  
+	        	System.out.println("Analyze clicked");
+	        	UpdaterToolbar.this.updater.analyzeGroup( UrlParameterConfig.getInstance().getGroupId());
+	        }  
+	      });
 		
 		configurationButton = new Button(); 
 		configurationButton.setToolTip("Configuration");
@@ -113,6 +124,7 @@ public class UpdaterToolbar extends ToolBar{
 	    this.setWidth(600);
 	    this.add(autoRefresh);
 	    this.add(refreshButton);
+	    this.add(analyzeButton);
 	    this.add(configurationButton);
 	    
 	}

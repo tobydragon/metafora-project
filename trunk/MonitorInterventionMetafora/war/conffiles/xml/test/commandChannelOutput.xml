@@ -49,6 +49,38 @@
         </properties>
       </object>
     </action>
+    <action time="1367847734383">
+      <actiontype type="FEEDBACK" classification="create" succeed="UNKNOWN" logged="false" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="100-test" />
+          <property name="INTERRUPTION_TYPE" value="High" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1367848612356">
+      <actiontype type="FEEDBACK" classification="create" succeed="UNKNOWN" logged="false" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="100-test" />
+          <property name="INTERRUPTION_TYPE" value="High" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
   </actions>
 </interactiondata>
 

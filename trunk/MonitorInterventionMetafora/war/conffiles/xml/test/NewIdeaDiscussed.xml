@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- New document created with EditiX at Mon May 06 12:45:36 CEST 2013 -->
-<interactiondata id="1347339165624">
+
 <actions>
 	<action time="1367836984391">
 		<actiontype classification="modify" logged="true" type="LANDMARK"/>
@@ -24,7 +24,7 @@
 			</properties>
 		</content>
 	</action>
- 	<!-- 
+	
 	<action time="1367839459355">
 		<actiontype type="INDICATOR" classification="CREATE" logged="false"/>
 		<user id="Toby135" role="ORIGINATOR"/>
@@ -72,7 +72,4 @@
 			</properties>
 		</content>
 	</action>
-	 -->
 </actions>
-</interactiondata>
-

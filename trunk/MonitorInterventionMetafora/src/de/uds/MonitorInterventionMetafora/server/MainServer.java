@@ -63,7 +63,6 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		}
 		XmlConfigParser configuratinParser = new XmlConfigParser(configFilepath);
 		
-		
 		Configuration configuration = configuratinParser.toActiveConfiguration();
 		return configuration;
 	}
@@ -74,14 +73,8 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		if (isConfigurationUpdated) {
 			generalConfiguration = readConfiguration(false);
 			isConfigurationUpdated = false;
-
-			return generalConfiguration;
 		}
-
-		else {
-			return generalConfiguration;
-		}
-
+		return generalConfiguration;
 	}
 	
 	@Override
@@ -199,6 +192,23 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		}
 	}
 
+	@Override
+	public void requestAnalysis(String groupId) {
+		requestAnalysis(generalConfiguration.getDefaultXmppServer(), groupId);
+	}
+	
+	public void requestAnalysis(XmppServerType xmppServerType, String groupId) {
+		logger.info("[requesAnalysis]  requesting analysis for group ID:" + groupId);
+		if (xmppServerType == XmppServerType.DEPLOY){
+			 mainServer.requestAnalysis(groupId);
+		}
+		else {
+			 testServer.requestAnalysis(groupId);
+		}
+	}
+
+
+
 	void sendUpdateRequest(CfAction action) {	}
 
 	@Override
@@ -210,6 +220,4 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		System.out.println("Notifications are sent to the agents!!");
 		return new CfAction();
 	}
-
-
 }

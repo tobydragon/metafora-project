@@ -11,11 +11,13 @@ public class MonitorModel implements Runnable {
 	Logger logger = Logger.getLogger(this.getClass());
 	
 	List<CfAction> cfActions;
-	List<CfAction> cfActionsQues;
+
 	public MonitorModel(){
 		cfActions=new Vector<CfAction>();
-		cfActionsQues=new Vector<CfAction>();
+	}
 	
+	public List<CfAction> getActionList(){
+		return cfActions;
 	}
 	
 	public synchronized void addAction(CfAction action){
@@ -27,8 +29,6 @@ public class MonitorModel implements Runnable {
 		Collections.sort(cfActions);
 	}
 
-	
-	
 	public synchronized List<CfAction> requestUpdate(CfAction cfAction){
 		if(cfAction!=null){
 			if (cfAction.getTime()>System.currentTimeMillis()){
@@ -42,8 +42,7 @@ public class MonitorModel implements Runnable {
 		}
 	}
 	
-	
-	public synchronized List<CfAction> requestUpdate(long _lastActionTime) {
+	private synchronized List<CfAction> requestUpdate(long _lastActionTime) {
 		System.out.println("DEBUG: [MonitorModel.requestUpdate] "+ _lastActionTime);
 		
 		logger.info("[requestUpdate]  requesting update is started in server");
@@ -65,19 +64,15 @@ public class MonitorModel implements Runnable {
 	}
 	
 	private boolean isNewAction(long _lastActionTime,long _actionTime){
-		
 		if(_actionTime > _lastActionTime){
 			return true;
 		}
-			
 		return false;
 	}
 
 	@Override
 	public void run() {
-		
-		
-		
+	
 	}
 
 

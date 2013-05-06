@@ -57,7 +57,6 @@ public class Configuration implements Serializable{
 	}
 	
 	public void addFilters(List<ActionFilter> actionfilters){
-		filters.clear();
 		for(ActionFilter filter:actionfilters){
 			filters.put(filter.getName(), filter);
 		}
