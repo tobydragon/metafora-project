@@ -1,0 +1,51 @@
+Installing Openfire on Windows.
+0. Download from http://www.igniterealtime.org/downloads/index.jsp
+
+1. There are two options to use when installing an openfire. I chose embeded database.
+
+2. Follow the steps in the user interface.
+
+3. By the way, default administrator name is 'admin'. It is not shown during the installation phase.
+
+4. Create chat rooms in openfire
+	0) Open Admin view in browser: (http://127.0.0.1:9090/index.jsp), I set to use port 9090.
+	1) Go to 'Group Chat' tab
+	2) Click 'Create new room' in the left panel
+	3) Select 'Room ID'. (For LASAD and metafora the are two chat rooms: 'analysis', 'command').
+
+5. Add users
+	0) Open Admin view in browser: (http://127.0.0.1:9090/index.jsp), I set to use port 9090.
+	1) Go to 'Users/Groups' tab
+	2) Select 'Create New User' in the left panel
+	3) Enter Name and password.
+		I needed four users. 
+		Two for each room: LasadAnalysisTestAlmer, LasadAnalysisCommandAlmer.
+		Two for jabber client: VisualizerAnalysisTestAlmer, VisualizerCommandTestAlmer
+
+6. Configure lasad xmpp configs. It might be different now. Since during the time I installed the openfire there was only one xmpp server running. Currently there two: 'deploy' and 'test'.
+	These are the snippets from configurations I used:
+	
+	In 'xmpp-settings.xml' file:
+	<server>localhost</server>
+	<command-agent-connection>visualizer-localhost-command-test-almer</command-agent-connection>
+	<analysis-agent-connection>visualizer-localhost-analysis-test-almer</analysis-agent-connection>
+	
+	In 'xmpp-connect-settins.xml' file:
+ 	<xmpp-channel-setting channelid="visualizer-localhost-analysis-test-almer">
+ 		<connection-name>VisualizerAnalysisTestAlmer</connection-name>
+ 		<username>VisualizerAnalysisTestAlmer</username>
+ 		<password>VisualizerAnalysisTestAlmer</password>
+ 		<chatroom>analysis@conference.uds37839</chatroom> <!-- uds37839 name of my machine in the network -->
+ 		<alias>VisualizerAnalysisTestAlmer</alias>
+ 		<device>VisualizerAnalysisTestAlmer</device>
+ 	</xmpp-channel-setting>
+ 	<xmpp-channel-setting channelid="visualizer-localhost-command-test-almer">
+ 		<connection-name>VisualizerCommandTestAlmer</connection-name>
+ 		<username>VisualizerCommandTestAlmer</username>
+ 		<password>VisualizerCommandTestAlmer</password>
+ 		<chatroom>command@conference.uds37839</chatroom> <!-- uds37839 name of my machine in the network -->
+ 		<alias>VisualizerCommandTestAlmer</alias>
+ 		<device>VisualizerCommandTestAlmer</device>
+ 	</xmpp-channel-setting>
+
+7. Run the server from OPENFIRE_HOME/bin/openfire
