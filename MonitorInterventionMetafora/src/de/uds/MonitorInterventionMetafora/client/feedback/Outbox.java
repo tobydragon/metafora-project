@@ -48,9 +48,10 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 	
 	private TextArea messageTextArea;
 	private TextBox objectIdsTextBox;
+	private HorizontalPanel hPanel;
 	private VerticalPanel vPanel;
 	private VerticalPanel sendModeRadioColumn;
-	private HorizontalPanel sendOptionsRow;
+	private VerticalPanel sendOptionsRow;
 	private HorizontalPanel objectIdsRow;
 	public RadioButton sendModeRadioButtonPopup;
 	public RadioButton sendModeRadioButtonSuggestion;
@@ -69,6 +70,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		
 //		final ScrollPanel scrollPanel = new ScrollPanel();
 		vPanel = new VerticalPanel();
+		hPanel = new HorizontalPanel();
 		ScrollPanel scrollPanel = new ScrollPanel();
 		scrollPanel.setHeight(PANEL_HEIGHT +"px");
 		scrollPanel.setAlwaysShowScrollBars(false);
@@ -76,18 +78,21 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		
 		//section label
 		String receiver = UrlParameterConfig.getInstance().getReceiver();
+		
+		HorizontalPanel labelAndSendButtonPanel = new HorizontalPanel();
+		labelAndSendButtonPanel.setWidth(sectionWidth + "px");
+
+		
 		final Label sectionLabel = new Label(messagesBundle.EditInstructions());
 		sectionLabel.setStyleName("sectionLabel");
-		vPanel.add(sectionLabel);
-
+		labelAndSendButtonPanel.setSpacing(5);
+		
 		UserType userType = UrlParameterConfig.getInstance().getUserType();
 
-		//text box
-		addMessageTextArea();
 
 
 		//send options
-		sendOptionsRow = new HorizontalPanel();
+		sendOptionsRow = new VerticalPanel();
 		sendOptionsRow.setSpacing(5);
 		
 
@@ -101,7 +106,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 			objectIdsTextBox.selectAll();
 			objectIdsRow.add(objectIdsTextBox);
 //			this.add(objectIdsRow);
-			vPanel.add(objectIdsRow);
+			hPanel.add(objectIdsRow);
 		}
 		
 		// send mode
@@ -113,6 +118,12 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		recipientNamesColumn = new VerticalPanel();
 		userGroupColumn.add(recipientNamesColumn);
 		
+		createCheckBoxes(FeedbackPanelContainer.userIDsArray);
+
+		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.MESSAGING_WIZARD)
+		   || UrlParameterConfig.getInstance().getUserType().equals(UserType.RECOMMENDING_WIZARD)) {
+
+
 		class SelectAllRecipientsButton extends Button{
 			SelectAllRecipientsButton(String name, final boolean positive)
 			{
@@ -145,11 +156,11 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 			});
 			}
 		}
+		
 		HorizontalPanel allNone = new HorizontalPanel();
 		allNone.add(new SelectAllRecipientsButton(messagesBundle.All(),true));
 		allNone.add(new SelectAllRecipientsButton(messagesBundle.None(),false));
 		userGroupColumn.add(allNone);
-		createCheckBoxes(FeedbackPanelContainer.userIDsArray);
 
 		//edit students button
 		final Button editStudentsButton = new Button(messagesBundle.Edit());
@@ -173,6 +184,8 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 			}
 		});
 		allNone.add(editStudentsButton);
+		}
+		//end of if wizard 
 		sendOptionsRow.add(userGroupColumn);
 		
 		VerticalPanel buttonsVPanel = new VerticalPanel();
@@ -188,7 +201,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 					}
 				}
 			});
-			buttonsVPanel.add(sendRecommendationsButton);
+			labelAndSendButtonPanel.add(sendRecommendationsButton);
 		} else {
 			//send button
 			final Button sendButton = new Button(messagesBundle.Send());
@@ -199,26 +212,39 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 				}
 			});
 			
-			sendOptionsRow.setWidth(""+sectionWidth+"px");
-			sendOptionsRow.setCellHorizontalAlignment(sendButton, HasHorizontalAlignment.ALIGN_RIGHT);
-			buttonsVPanel.add(sendButton);			
+			labelAndSendButtonPanel.add(sendButton);			
 		}
+
 		
-		sendOptionsRow.add(buttonsVPanel);
-		vPanel.add(sendOptionsRow);
-		scrollPanel.add(vPanel);
-		this.add(scrollPanel);
-	}
-	
-	private void addMessageTextArea() {
+		labelAndSendButtonPanel.add(sectionLabel);
+
+		//vertical panel has first the send button and the label 
+		vPanel.add(labelAndSendButtonPanel);
+
+		//then the horizontal panel has the checkboxes to send
+		hPanel.add(sendOptionsRow);
+
+		hPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+
+		//and then the text box
 		messageTextArea = new TextArea();
 		messageTextArea.setText("");
 		messageTextArea.setPixelSize(sectionWidth, 100);		
 		messageTextArea.setFocus(true);
 		messageTextArea.selectAll();
-		if (!UrlParameterConfig.getInstance().getUserType().equals(UserType.RECOMMENDING_WIZARD))
-			vPanel.add(messageTextArea);		
+		if (!UrlParameterConfig.getInstance().getUserType().equals(UserType.RECOMMENDING_WIZARD)) {
+		    hPanel.add(messageTextArea);
+		    hPanel.setCellHorizontalAlignment(messageTextArea, HasHorizontalAlignment.ALIGN_LEFT);
+
+		}
+		//these two are added on the hpanel
+		vPanel.add(hPanel);
+		
+		//and all of these in the scrollpanel
+		scrollPanel.add(vPanel);
+		this.add(scrollPanel);
 	}
+	
 
 	private void addInterruptionLevels() {
 		
@@ -246,7 +272,9 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		for(int i=0; i<userNames.length; i++)
 		{
 			final String userName = userNames[i];
-			recipientNamesColumn.add(new CheckBox(userName));
+			CheckBox chbox = new CheckBox(userName,true);
+			chbox.setValue(true);
+			recipientNamesColumn.add(chbox);
 			
 		}
 	}
