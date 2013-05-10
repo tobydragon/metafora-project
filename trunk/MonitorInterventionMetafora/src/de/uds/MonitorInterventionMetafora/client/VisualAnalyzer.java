@@ -45,17 +45,20 @@ class VisualAnalyzer implements EntryPoint {
 	    	  
 	    	 CommunicationServiceAsync commServiceServlet = GWT.create(CommunicationService.class);
 
-	    	 MainContainerTabPanel _mainPanel=new MainContainerTabPanel();
+	    	 MainContainerTabPanel _mainPanel;
 
 	    	 if (UrlParameterConfig.getInstance().getMonitoring()) {
+	    		 _mainPanel=new MainContainerTabPanel(1000);
 	    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel(commServiceServlet);
 	    	  //migen specific tools commented out for now
 	    	  //TeacherTools _migenContainer=new TeacherTools(monitoringViewServiceServlet);
 	    	  //_mainPanel.addTab("Migen", _migenContainer,false);
 	    	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
 	    	 } 
-	    	 
-	    	 FeedbackPanelContainer _feedbackPanelContainer=new  FeedbackPanelContainer(commServiceServlet);
+	    	 else {
+	    		 _mainPanel=new MainContainerTabPanel(500);
+	    	 }
+	    	 FeedbackPanelContainer _feedbackPanelContainer = new  FeedbackPanelContainer(commServiceServlet);
 	    	 _mainPanel.addTab(messagesBundle.ToolLabel(), _feedbackPanelContainer,false);
 	    	  
 	    	 RootPanel.get().add(_mainPanel);

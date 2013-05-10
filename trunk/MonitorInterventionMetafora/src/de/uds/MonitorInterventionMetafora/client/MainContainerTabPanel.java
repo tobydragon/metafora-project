@@ -20,10 +20,10 @@ public class MainContainerTabPanel extends VerticalPanel {
 
 	
 	TabPanel _containerTabPanel;
-	public MainContainerTabPanel(){
+	public MainContainerTabPanel(int width){
 		_containerTabPanel=new TabPanel();
 		_containerTabPanel.setHeight(720);
-		_containerTabPanel.setWidth(1000);
+		_containerTabPanel.setWidth(width);
 		_containerTabPanel.setLayoutData(new FitLayout());
 		_containerTabPanel.addListener(Events.Select, new SelectionListener<TabPanelEvent>() {
 
