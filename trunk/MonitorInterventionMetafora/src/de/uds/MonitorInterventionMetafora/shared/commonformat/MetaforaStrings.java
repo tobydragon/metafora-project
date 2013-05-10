@@ -52,4 +52,8 @@ public class MetaforaStrings {
 	
 	public static final String RECEIVER_METAFORA = "METAFORA";
 	public static final String RECEIVER_METAFORA_TEST = "METAFORA_TEST";
+	
+	public static final String PEER_MESSAGE_FILE_NAME_START = "peer-messages_";
+	public static final String EXTERNAL_MESSAGE_FILE_NAME_START = "external-messages_";
+	
 }
