@@ -3,15 +3,20 @@ package de.uds.MonitorInterventionMetafora.client.urlparameter;
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.http.client.URL;
 
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.MessageType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class UrlParameterConfig {
 	
+        public enum MessageType {
+            PEER, EXTERNAL
+        }
 
+    
         public enum UserType {
-            METAFORA_USER, STANDARD_WIZARD, RECOMMENDING_WIZARD, METAFORA_TEST, MESSAGING_WIZARD
+            METAFORA_USER, STANDARD_WIZARD, RECOMMENDING_WIZARD, MESSAGING_WIZARD
         }
 
 	private String username;
@@ -22,6 +27,7 @@ public class UrlParameterConfig {
 	private String configID;
 	private String locale;
 	private String receiver;
+	private MessageType messageType;
 	private UserType userType;
 	private boolean testServer;
 	private boolean monitoring;
@@ -41,19 +47,22 @@ public class UrlParameterConfig {
 		String testServerStr = getAndDecodeUrlParam("testServer");
 		String monitoringStr = getAndDecodeUrlParam("monitoring");
 		String userTypeString = getAndDecodeUrlParam("userType");
+		String messageTypeString = getAndDecodeUrlParam("messageType");
 
 		if (userTypeString == null) { 
 		    userType = UserType.STANDARD_WIZARD;
 		} else if (userTypeString.equals("METAFORA_USER")) {
 		    userType = UserType.METAFORA_USER;
-		} else if (userTypeString.equals("POWER")) {
+		} else if (userTypeString.equals("RECOMMENDING_WIZARD")) {
 	        userType = UserType.RECOMMENDING_WIZARD;
-		} else if (userTypeString.equals("METAFORA_TEST")) {
-			userType = UserType.METAFORA_TEST;
 		} else if (userTypeString.equals("TEACHER")) {
 			userType = UserType.MESSAGING_WIZARD;
 		} else userType = UserType.STANDARD_WIZARD;
-				
+			
+		if (messageTypeString == null || messageTypeString.equals("PEER")) {
+		    messageType = MessageType.PEER;
+		} else messageType = MessageType.EXTERNAL;
+		
 		//xmppServeType should be null if receiver is not included, so that default is used
 		if (receiver != null){
 			if (MetaforaStrings.RECEIVER_METAFORA.equalsIgnoreCase(receiver)){
@@ -69,7 +78,7 @@ public class UrlParameterConfig {
 		
 		
 		receiver = (receiver == null) ? MetaforaStrings.RECEIVER_METAFORA_TEST : receiver;
-		locale = (locale == null) ? "en" : locale;
+		locale = (locale == null) ? "he" : locale;
 		testServer = (testServerStr == null) ? false : Boolean.parseBoolean(testServerStr); 
 		monitoring = (monitoringStr == null) ? false : Boolean.parseBoolean(monitoringStr); 
 				
@@ -145,6 +154,11 @@ public class UrlParameterConfig {
 
 	public XmppServerType getXmppServerType() {
 		return xmppServerType;
+	}
+
+
+	public MessageType getMessageType() {
+	    return messageType;
 	}
 	
 	
