@@ -14,7 +14,9 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.MessageType;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 
 public class FeedbackPanelContainer extends VerticalPanel {
 	private de.uds.MonitorInterventionMetafora.client.feedback.Outbox outbox;
@@ -45,7 +47,7 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		if ((configUserIDs != null) && (configUserIDs != "")) {
 		    userIDsArray= parseStringToArray(configUserIDs);
 		}
-		
+		//ds
 
 		outbox = new Outbox(updater);
 		this.add(outbox);
@@ -79,13 +81,13 @@ public class FeedbackPanelContainer extends VerticalPanel {
 	}
 
 	public String getMessageFileNameStart(){
-		String messageFileStart = "external-messages_";
+		String messageFileStart = MetaforaStrings.EXTERNAL_MESSAGE_FILE_NAME_START;
+		//metafora user  all hosted in metafora get peer messages for sure
+		//other types depend on param
 		if (UrlParameterConfig.getInstance().getUserType() == UserType.METAFORA_USER ||
-			UrlParameterConfig.getInstance().getUserType() == UserType.METAFORA_TEST ||
-			UrlParameterConfig.getInstance().getUserType() == UserType.RECOMMENDING_WIZARD ) {
-			
-			messageFileStart = "peer-messages_";
-		}
+		    UrlParameterConfig.getInstance().getMessageType() == MessageType.PEER) {
+			messageFileStart = MetaforaStrings.PEER_MESSAGE_FILE_NAME_START;
+		} 
 		return messageFileStart;
 	}
 	
