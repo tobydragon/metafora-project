@@ -10,6 +10,8 @@
   <extend-property name="locale" values="he" />
    <extend-property name="locale" values="gr" />
    
+   <set-property-fallback name="locale" value="en"/>
+   
   <!-- For development, a default of `DEBUG` is recommended -->
   <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />
 
