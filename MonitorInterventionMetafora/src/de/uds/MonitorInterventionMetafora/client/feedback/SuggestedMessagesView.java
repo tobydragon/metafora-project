@@ -60,10 +60,6 @@ public class SuggestedMessagesView extends VerticalPanel {
 		
 		sectionLabel.setWidth("300px");
 		// Add 'Get Recommendations' button
-		UserType userType = UrlParameterConfig.getInstance().getUserType();
-		if (userType.equals(UserType.METAFORA_TEST)) {
-		
-    		// Refresh button
     		Button receiveRecommendationsButton = new Button(messagesBundle.GetRecommendationsButton());
     		receiveRecommendationsButton.addClickHandler(new ClickHandler() {
     			@Override
@@ -75,7 +71,6 @@ public class SuggestedMessagesView extends VerticalPanel {
     		});
     		
 		panel.add(receiveRecommendationsButton);
-		}
 		
 		this.add(panel);
 		
