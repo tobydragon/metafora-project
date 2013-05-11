@@ -42,6 +42,10 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 public class Outbox extends VerticalPanel implements CfActionCallBack {
     
     
+    	private static String HIGH_LABEL = "High";
+    	private static String LOW_LABEL = "Low";
+    	private static String NONE_LABEL = "None";
+    	
     	public static MessagesBundle messagesBundle = GWT.create(MessagesBundle.class);
 
 	private int PANEL_HEIGHT = 290;
@@ -249,15 +253,15 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		
 		sendModeRadioColumn = new VerticalPanel();
 		sendModeRadioColumn.add(new Label("Interruption:"));
-		sendModeRadioButtonSuggestion = new RadioButton("sendMode", "High");
+		sendModeRadioButtonSuggestion = new RadioButton("sendMode", HIGH_LABEL);
 		sendModeRadioButtonSuggestion.setValue(true, true);
 		sendModeRadioColumn.add(sendModeRadioButtonSuggestion);
 
-		sendModeRadioButtonSuggestion = new RadioButton("sendMode", "Low");
+		sendModeRadioButtonSuggestion = new RadioButton("sendMode", LOW_LABEL);
 		sendModeRadioButtonSuggestion.setEnabled(true);
 		sendModeRadioColumn.add(sendModeRadioButtonSuggestion);
 		
-		sendModeRadioButtonPopup = new RadioButton("sendMode", "None");
+		sendModeRadioButtonPopup = new RadioButton("sendMode", NONE_LABEL);
 		sendModeRadioColumn.add(sendModeRadioButtonPopup);
 		
 		
@@ -440,18 +444,20 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 				}
 			}
 		} else {
-			return "High";
+			return "HIGH_INTERRUPTION";
 		}
 		return null;
 	}
 	
 	/*
-	 * Returns a space separated string in lowercase and hyphenated 
+	 * Returns the interruption level from None, Low, High mapped to the Metafora strings
 	 */
 	public String getInterruptionTypeString(String s) {
-		String result = s.toLowerCase(); 
-		result = result.replace(' ', '_');
-		return result;
+	    	if (s.equalsIgnoreCase(NONE_LABEL)) {
+	    	    return MetaforaStrings.NO_INTERRUPTION;
+	    	} else if (s.equalsIgnoreCase(LOW_LABEL)) {
+	    	    return MetaforaStrings.LOW_INTERRUPTION;
+	    	} else return MetaforaStrings.HIGH_INTERRUPTION; 
 	}
 	
 	public void setSuggestedMessagesController(SuggestedMessagesController controller) {
