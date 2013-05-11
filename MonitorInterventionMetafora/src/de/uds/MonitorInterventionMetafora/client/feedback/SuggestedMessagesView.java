@@ -59,19 +59,22 @@ public class SuggestedMessagesView extends VerticalPanel {
 		panel.add(sectionLabel);
 		
 		sectionLabel.setWidth("300px");
-		// Add 'Get Recommendations' button
-    		Button receiveRecommendationsButton = new Button(messagesBundle.GetRecommendationsButton());
-    		receiveRecommendationsButton.addClickHandler(new ClickHandler() {
-    			@Override
-    			public void onClick(ClickEvent event) {
-    				String currentUserId = UrlParameterConfig.getInstance().getUsername();
-    				updater.refreshSuggestedMessages(currentUserId);
-    			}
-    
-    		});
-    		
-		panel.add(receiveRecommendationsButton);
 		
+    		//If not wizard nor recommender add 'Get Recommendations' button
+		if ( UrlParameterConfig.getInstance().getUserType() != UserType.RECOMMENDING_WIZARD
+		  && UrlParameterConfig.getInstance().getUserType() != UserType.STANDARD_WIZARD) {    	
+        		Button receiveRecommendationsButton = new Button(messagesBundle.GetRecommendationsButton());
+        		receiveRecommendationsButton.addClickHandler(new ClickHandler() {
+        			@Override
+        			public void onClick(ClickEvent event) {
+        				String currentUserId = UrlParameterConfig.getInstance().getUsername();
+        				updater.refreshSuggestedMessages(currentUserId);
+        			}
+        
+        		});
+        		
+        		panel.add(receiveRecommendationsButton);
+    		}	
 		this.add(panel);
 		
 		tabBar = new TabBar();
@@ -181,7 +184,7 @@ public class SuggestedMessagesView extends VerticalPanel {
 		}
 
 		// create tab for message history
-		String sentMessagesTitle = "Sent";
+		String sentMessagesTitle = messagesBundle.Sent();
 		messageHistory = new HistoryTabWidget(sentMessagesTitle);
 		tabWidgets.add(messageHistory);
 		tabBar.insertTab(sentMessagesTitle, tabBar.getTabCount());

@@ -212,12 +212,12 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 				}
 			});
 			
-			labelAndSendButtonPanel.add(sendButton);			
+			labelAndSendButtonPanel.add(sendButton);
+			labelAndSendButtonPanel.add(sectionLabel);
+	
 		}
 
 		
-		labelAndSendButtonPanel.add(sectionLabel);
-
 		//vertical panel has first the send button and the label 
 		vPanel.add(labelAndSendButtonPanel);
 
