@@ -93,9 +93,9 @@ http://web.lkldev.ioe.ac.uk/MonitorInterventionMetafora/?userType=METAFORA_USER&
 
 (e.g. Alice, Ben and Maria would be all the students in the group and Maria the one accessing it now) 
 
-2. This is the recommender tool configured to send recommendations to the above user (Maria) 
+2. This is the recommender tool configured to send recommendations (peer messages) to the above user (Maria) 
 
-http://web.lkldev.ioe.ac.uk/MonitorInterventionMetafora/?userType=RECOMMENDING_WIZARD&receiverIDs=Alice|Ben|Maria&user=Manolis&receiver=METAFORA&locale=gr
+http://web.lkldev.ioe.ac.uk/MonitorInterventionMetafora/?userType=RECOMMENDING_WIZARD&receiverIDs=Alice|Ben|Maria&user=Manolis&receiver=METAFORA&locale=gr&messageType=PEER
 
 (Note the user now is Manolis since he is sending the recommendations) 
  
