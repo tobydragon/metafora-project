@@ -2,6 +2,7 @@ package de.uds.MonitorInterventionMetafora.client.urlparameter;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.http.client.URL;
+import com.google.gwt.user.client.Window;
 
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.MessageType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
@@ -16,7 +17,7 @@ public class UrlParameterConfig {
 
     
         public enum UserType {
-            METAFORA_USER, STANDARD_WIZARD, RECOMMENDING_WIZARD, MESSAGING_WIZARD
+            METAFORA_USER, RECOMMENDING_WIZARD, MESSAGING_WIZARD
         }
 
 	private String username;
@@ -31,7 +32,8 @@ public class UrlParameterConfig {
 	private UserType userType;
 	private boolean testServer;
 	private boolean monitoring;
-	private XmppServerType xmppServerType;
+	//The Metafora XMPP server type (by default is the test)
+	private XmppServerType xmppServerType = XmppServerType.TEST;
 	private static UrlParameterConfig singletonInstance;
 	
 
@@ -42,47 +44,48 @@ public class UrlParameterConfig {
 		receiverIDs = getAndDecodeUrlParam("receiverIDs");
 		password = getAndDecodeUrlParam("pw");
 		configID = getAndDecodeUrlParam("config");
+		//Determines which server is used for the messages to be sent and received
+		//actually what gets added to the tool
 		receiver = getAndDecodeUrlParam("receiver");
 		locale = getAndDecodeUrlParam("locale");
+		//Used really for determining if things are logged
 		String testServerStr = getAndDecodeUrlParam("testServer");
 		String monitoringStr = getAndDecodeUrlParam("monitoring");
 		String userTypeString = getAndDecodeUrlParam("userType");
 		String messageTypeString = getAndDecodeUrlParam("messageType");
 
 		if (userTypeString == null) { 
-		    userType = UserType.STANDARD_WIZARD;
-		} else if (userTypeString.equals("METAFORA_USER")) {
+		    userType = UserType.MESSAGING_WIZARD;
+		} else if (userTypeString.equalsIgnoreCase("METAFORA_USER")) {
 		    userType = UserType.METAFORA_USER;
-		} else if (userTypeString.equals("RECOMMENDING_WIZARD")) {
-	        userType = UserType.RECOMMENDING_WIZARD;
-		} else if (userTypeString.equals("TEACHER")) {
-			userType = UserType.MESSAGING_WIZARD;
-		} else userType = UserType.STANDARD_WIZARD;
+		} else if (userTypeString.equalsIgnoreCase("RECOMMENDING_WIZARD")) {
+		    userType = UserType.RECOMMENDING_WIZARD;
+		} else userType = UserType.MESSAGING_WIZARD;
 			
-		if (messageTypeString == null || messageTypeString.equals("PEER")) {
+		if (messageTypeString == null) {
+		    messageType = MessageType.EXTERNAL;
+		} else if (messageTypeString.equalsIgnoreCase("PEER")) {
 		    messageType = MessageType.PEER;
 		} else messageType = MessageType.EXTERNAL;
 		
-		//xmppServeType should be null if receiver is not included, so that default is used
-		if (receiver != null){
-			if (MetaforaStrings.RECEIVER_METAFORA.equalsIgnoreCase(receiver)){
-				xmppServerType = XmppServerType.DEPLOY;
-			}
-			else if (MetaforaStrings.RECEIVER_METAFORA_TEST.equalsIgnoreCase(receiver)){
-				xmppServerType = XmppServerType.TEST;
-			}
-			else {
-				Log.warn("[UrlParameterConfig.contsructor] Unknown receiver, feedback messages will likely be ignored by recipient for receiver - " + receiver);
-			}
-		}
-		
-		
 		receiver = (receiver == null) ? MetaforaStrings.RECEIVER_METAFORA_TEST : receiver;
+
+		if (MetaforaStrings.RECEIVER_METAFORA.equalsIgnoreCase(receiver)){
+		    xmppServerType = XmppServerType.DEPLOY;
+		} else if (MetaforaStrings.RECEIVER_METAFORA_TEST.equalsIgnoreCase(receiver)){
+		    xmppServerType = XmppServerType.TEST;
+		} else {
+		    //setting this to null (for now) if receiver is not one of the known Metafora ones
+		    xmppServerType = null; 
+		    String msg = "Unknown receiver, feedback messages will likely be ignored by recipient for receiver - " + receiver;
+		    Log.warn("[UrlParameterConfig.contsructor] " + msg);
+		    Window.alert(msg);
+		} 		
+		
 		locale = (locale == null) ? "he" : locale;
-		testServer = (testServerStr == null) ? false : Boolean.parseBoolean(testServerStr); 
+		testServer = (testServerStr == null) ? true : Boolean.parseBoolean(testServerStr); 
 		monitoring = (monitoringStr == null) ? false : Boolean.parseBoolean(monitoringStr); 
 				
-
 		Log.info("URL Params: User-" + username + " : mainConfig-" + configID + " : receiver-" + receiver + " : locale-" + locale + " : userType-" + userType + " : receiverIDs-" + receiverIDs);
 	}
 

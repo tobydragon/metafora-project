@@ -60,9 +60,8 @@ public class SuggestedMessagesView extends VerticalPanel {
 		
 		sectionLabel.setWidth("300px");
 		
-    		//If not wizard nor recommender add 'Get Recommendations' button
-		if ( UrlParameterConfig.getInstance().getUserType() != UserType.RECOMMENDING_WIZARD
-		  && UrlParameterConfig.getInstance().getUserType() != UserType.STANDARD_WIZARD) {    	
+    		//If not recommender add 'Get Recommendations' button
+		if ( UrlParameterConfig.getInstance().getUserType() != UserType.RECOMMENDING_WIZARD) {
         		Button receiveRecommendationsButton = new Button(messagesBundle.GetRecommendationsButton());
         		receiveRecommendationsButton.addClickHandler(new ClickHandler() {
         			@Override

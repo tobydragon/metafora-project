@@ -77,7 +77,6 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 
 		
 		//section label
-		String receiver = UrlParameterConfig.getInstance().getReceiver();
 		
 		HorizontalPanel labelAndSendButtonPanel = new HorizontalPanel();
 		labelAndSendButtonPanel.setWidth(sectionWidth + "px");
