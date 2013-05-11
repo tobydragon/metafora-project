@@ -55,5 +55,8 @@ public class MetaforaStrings {
 	
 	public static final String PEER_MESSAGE_FILE_NAME_START = "peer-messages_";
 	public static final String EXTERNAL_MESSAGE_FILE_NAME_START = "external-messages_";
+	public static final String NO_INTERRUPTION = "NO_INTERRUPTION";
+	public static final String LOW_INTERRUPTION = "LOW_INTERRUPTION";
+	public static final String HIGH_INTERRUPTION = "HIGH_INTERRUPTION";
 	
 }
