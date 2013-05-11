@@ -1,11 +1,13 @@
-#Launching the feedback (aka messaging) tool
+= Launching the feedback (aka messaging) tool =
 
 = Introduction =
 
 The feedback tool can be launched in three different modes. 
 
-A. As a tool for *peer messaging* (or even simple reflection)
+A. As a tool for *peer messaging* (or even simple group reflection without sending the messages to anyone)
+
 B. As a tool with which one can send "external" feedback (either in their role as teacher or wizard simulating the system)   
+
 C. As a tool for sending recommendations to users of the messaging tool (for either A or B above)
 
 Its functionality is generally configured by appending different parameters to the end of URL to tailor it to your specific needs. URL parameters are in the form of a 'key' and a 'value' after a question-mark (?) in the url. As below:
@@ -57,8 +59,7 @@ receiverIDs=Sam|Ben|Alice
 == `receiver` == 
 
 Determines which server is used for the messages to be sent and received. 
-Choose between METAFORA or METAFORA_TEST 
-*Without this parameter feedback messages will be ignored and if the same will happen if the receiver is not one of the above too*. Example:
+Choose between METAFORA or METAFORA_TEST (the default is the METAFORA_TEST)
 
 {{{
 receiver=METAFORA
