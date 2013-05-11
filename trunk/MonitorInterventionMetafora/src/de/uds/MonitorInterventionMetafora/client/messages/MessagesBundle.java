@@ -24,6 +24,7 @@ public interface MessagesBundle extends Constants {
     String All(); 
     String None(); 
     String Edit(); 
-    String Send(); 
+    String Send();
+    String Sent();
     
 }
