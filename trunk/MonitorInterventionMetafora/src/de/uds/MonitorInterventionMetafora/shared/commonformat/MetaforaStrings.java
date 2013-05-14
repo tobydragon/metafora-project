@@ -59,4 +59,7 @@ public class MetaforaStrings {
 	public static final String LOW_INTERRUPTION = "LOW_INTERRUPTION";
 	public static final String HIGH_INTERRUPTION = "HIGH_INTERRUPTION";
 	
+	public static final String ANAYLSIS_MANAGER = "ANAYLSIS_MANAGER";
+
+	
 }

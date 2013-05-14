@@ -1,9 +1,9 @@
 package de.uds.MonitorInterventionMetafora.shared.datamodels.attributes;
 
-public enum NotificationType {
+public enum BehaviorType {
 	NOWORK, NEW_IDEA_NOT_DISCUSSED;
 	
-	public static NotificationType getFromString(String str){
+	public static BehaviorType getFromString(String str){
 		try {
 			return valueOf(str);
 		}

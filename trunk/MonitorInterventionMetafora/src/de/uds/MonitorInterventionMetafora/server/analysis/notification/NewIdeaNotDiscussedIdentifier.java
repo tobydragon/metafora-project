@@ -9,14 +9,14 @@ import java.util.Vector;
 import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.NotificationType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.RuleRelation;
 
-public class NewIdeaNotDiscussedNotification  extends  Notification {	
+public class NewIdeaNotDiscussedIdentifier  implements  BehaviorIdentifier {	
 	Logger log = Logger.getLogger(this.getClass());
 	
 	private static final long serialVersionUID = -8109458748846339834L;
@@ -24,19 +24,19 @@ public class NewIdeaNotDiscussedNotification  extends  Notification {
 	ActionFilter newIdeaFilter;
 	ActionFilter discussionFilter;
 	
-	public NewIdeaNotDiscussedNotification(){
+	public NewIdeaNotDiscussedIdentifier(){
 		this (null);
 		
 	}
 	
-	public NewIdeaNotDiscussedNotification(ActionFilter filter){
-//		this.filter = filter;
-		type = NotificationType.NEW_IDEA_NOT_DISCUSSED;
+	public NewIdeaNotDiscussedIdentifier(ActionFilter filter){
 		buildFilters();
 	}
 
 	@Override
-	public boolean shouldFireNotification(final List<CfAction> cfActions) {
+	public List<BehaviorInstance> identifyBehaviors ( List<CfAction> cfActions) {
+		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
+		
 		List<CfAction> newIdeas = newIdeaFilter.getFilteredList(cfActions);
 		List<CfAction> discussion = discussionFilter.getFilteredList(cfActions);
 		
@@ -47,16 +47,16 @@ public class NewIdeaNotDiscussedNotification  extends  Notification {
 			
 			List <ActionPropertyRule> afterRules = new Vector<ActionPropertyRule>();
 			afterRules.add (new ActionPropertyRule("time", Long.toString(lastIdea.getTime()), PropertyLocation.ACTION, OperationType.IS_AFTER));
-			ActionFilter afterFilter = new ActionFilter("Time after", false, afterRules);
+			ActionFilter afterFilter = new ActionFilter("Time after", true, afterRules);
 			
 			//and there has been no discussion afterwards
 			if ( ! (afterFilter.getFilteredList(discussion).size() > 0) ){
 				log.debug("[shouldFireNotification] new idea found, but no discussion, firing");
-				return true;
+				identifiedBehaviors.add(new BehaviorInstance(BehaviorType.NEW_IDEA_NOT_DISCUSSED, new Vector<String>()));
 			}
 			log.debug("[shouldFireNotification] new idea and discussion found");
 		}
-		return false;
+		return identifiedBehaviors;
 	}
 	
 	public void buildFilters(){

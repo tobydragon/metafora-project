@@ -10,6 +10,7 @@ import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerTyp
 
 public class MonitorController {
 	
+	CfAgentCommunicationManager analysisChannelManager;
 	MonitorModel monitorModel;
 	HistoryRequester historyRequestor;
 	
@@ -20,8 +21,8 @@ public class MonitorController {
 		
 		HistoryRequester historyRequester = new HistoryRequester(monitorModel);
 		
-		CfAgentCommunicationManager analysisManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.analysis, xmppServerType);				
-		analysisManager.register(monitorListener);
+		analysisChannelManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.analysis, xmppServerType);				
+		analysisChannelManager.register(monitorListener);
 		
 		historyRequester.sendHistoryRequest(communicationMethodType, historyStartTime, xmppServerType);
 	}
@@ -32,6 +33,10 @@ public class MonitorController {
 	
 	public List<CfAction> getActionList(){
 		return monitorModel.getActionList();
+	}
+	
+	public CfAgentCommunicationManager getAnalysisChannelManager(){
+		return analysisChannelManager;
 	}
 
 }

@@ -40,7 +40,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	ServerInstance mainServer; 
 	ServerInstance testServer;
 	
-	AnalysisManager analysisManager;
+//	AnalysisManager analysisManager;
 	private boolean isConfigurationUpdated = false;
 
 	public MainServer() {

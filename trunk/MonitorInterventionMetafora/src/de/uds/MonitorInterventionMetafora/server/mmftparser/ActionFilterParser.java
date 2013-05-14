@@ -15,7 +15,7 @@ public class ActionFilterParser {
 	public static XmlFragment toXml(ActionFilter actionFilter){
 		XmlFragment xmlFragment= new XmlFragment(ServerFormatStrings.FILTER);
 	    xmlFragment.setAttribute(ServerFormatStrings.NAME, actionFilter.getName());
-	    xmlFragment.setAttribute(ServerFormatStrings.EDITABLE, "true");
+	    xmlFragment.setAttribute(ServerFormatStrings.SERVER_SIDE_FILTER, "true");
 	
 	    for(ActionPropertyRule rule: actionFilter.getActionPropertyRules()){
 	    	xmlFragment.addContent(ActionPropertyRuleParser.toXml(rule));
@@ -26,7 +26,7 @@ public class ActionFilterParser {
 	public static ActionFilter fromXml(XmlFragment filterFragment){
 		
 		String filterName=filterFragment.getAttributeValue(ServerFormatStrings.NAME);
-		boolean editable = Boolean.getBoolean(filterFragment.getAttributeValue(ServerFormatStrings.EDITABLE));
+		boolean serverSideFilter = Boolean.getBoolean(filterFragment.getAttributeValue(ServerFormatStrings.SERVER_SIDE_FILTER));
 		String type = filterFragment.getAttributeValue(ServerFormatStrings.Type);
 		String color = filterFragment.getAttributeValue(ServerFormatStrings.COLOR);
 		
@@ -41,7 +41,7 @@ public class ActionFilterParser {
 				Log.warn("[ActionFilter.fromXml] Invalid property rule read from xml, ignoring: " + actionPropertyRule.toString());
 			}
 		}
-		ActionFilter actionFilter=new ActionFilter(filterName, editable, type, color, actionPropertyRules, RuleRelation.AND);
+		ActionFilter actionFilter=new ActionFilter(filterName, serverSideFilter, type, color, actionPropertyRules, RuleRelation.AND);
 		return actionFilter;
 	}
 	

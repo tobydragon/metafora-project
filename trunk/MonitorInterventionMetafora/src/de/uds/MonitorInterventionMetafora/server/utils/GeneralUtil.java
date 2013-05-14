@@ -4,12 +4,16 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
+
+import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.InitServlet;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
 
 public class GeneralUtil {
+	
+	private static Logger log = Logger.getLogger(GeneralUtil.class);
 	
 	private static final long MAX_LAG_MESSAGE_MILLIS = 2000000;
 
@@ -46,5 +50,15 @@ public class GeneralUtil {
 		return dateFormat.format(date);
 	}
 	
+	public static String readFileToString(String filename){
+		try {
+			String text = new Scanner( new File(filename) ).useDelimiter("\\A").next();
+			return text;
+		}
+		catch (Exception e){
+			log.error("[GeneralUtil.readFileToString] error: " + ErrorUtil.getStackTrace(e));
+			return null;
+		}
+	}
 	
 }

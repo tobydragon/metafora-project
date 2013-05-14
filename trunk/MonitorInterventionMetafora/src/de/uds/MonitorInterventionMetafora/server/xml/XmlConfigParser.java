@@ -1,21 +1,10 @@
 package de.uds.MonitorInterventionMetafora.server.xml;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
-
-import com.allen_sauer.gwt.log.client.Log;
-import de.uds.MonitorInterventionMetafora.server.analysis.notification.NoWorkNotification;
-import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
 import de.uds.MonitorInterventionMetafora.server.mmftparser.ActionFilterParser;
 import de.uds.MonitorInterventionMetafora.server.mmftparser.MmftConfigurationParser;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.NotificationType;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
-import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.utils.ServerFormatStrings;
 
 public class XmlConfigParser {
