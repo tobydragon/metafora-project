@@ -4,14 +4,12 @@ import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.InfoConfig;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-public class ClientFeedbackDataModelUpdater {// implements RequestUpdateCallBack{
+public class ClientFeedbackDataModelUpdater {
 
 	private ClientFeedbackDataModel feedbackModel;
-//	private SuggestedMessagesController suggestedMessagesController;
 	
-	public ClientFeedbackDataModelUpdater(ClientFeedbackDataModel feedbackModel /*, SuggestedMessagesController controller*/) {
+	public ClientFeedbackDataModelUpdater(ClientFeedbackDataModel feedbackModel) {
 		this.feedbackModel = feedbackModel;
-//		this.suggestedMessagesController = controller;
 	}
 	
 	public void refreshSuggestedMessages(String username) {

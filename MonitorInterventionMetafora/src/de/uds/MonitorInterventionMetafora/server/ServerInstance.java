@@ -23,12 +23,13 @@ public class ServerInstance {
 	AnalysisController analysisController;
 		
 	public ServerInstance(CfCommunicationMethodType communicationMethodType, XmppServerType xmppServerType, boolean monitoringOn, String startTime ){
+		feedbackController = new FeedbackController(communicationMethodType, xmppServerType);
+		
 		if (monitoringOn){
 			monitorController = new MonitorController(communicationMethodType, startTime, xmppServerType);
-			analysisController = new AnalysisController(monitorController);
+			analysisController = new AnalysisController(monitorController, feedbackController );
 		}
 		
-		feedbackController = new FeedbackController(communicationMethodType, xmppServerType);
 	}
 	
 	public String requestSuggestedMessages(String username) {

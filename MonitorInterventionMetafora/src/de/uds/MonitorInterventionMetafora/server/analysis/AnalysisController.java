@@ -5,8 +5,10 @@ import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.notification.NewIdeaNotDiscussedNotification;
-import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
+import de.uds.MonitorInterventionMetafora.server.analysis.notification.BehaviorInstance;
+import de.uds.MonitorInterventionMetafora.server.analysis.notification.NewIdeaNotDiscussedIdentifier;
+import de.uds.MonitorInterventionMetafora.server.analysis.notification.BehaviorIdentifier;
+import de.uds.MonitorInterventionMetafora.server.feedback.FeedbackController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
@@ -17,16 +19,18 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRu
 public class AnalysisController {
 	Logger log = Logger.getLogger(this.getClass());
 	
-	List<Notification> notifications;
+	List<BehaviorIdentifier> behaviorIdentifiers;
 	
 	MonitorController monitorController;
+	ReasonedInterventionController reasonedInterventionController;
 	
-	public AnalysisController(MonitorController monitorController){
+	public AnalysisController(MonitorController monitorController, FeedbackController feedbackController){
 		this.monitorController = monitorController;
 		
-		notifications = new Vector<Notification>();
-		notifications.add(new NewIdeaNotDiscussedNotification());
+		behaviorIdentifiers = new Vector<BehaviorIdentifier>();
+		behaviorIdentifiers.add(new NewIdeaNotDiscussedIdentifier());
 		
+		reasonedInterventionController = new ReasonedInterventionController(feedbackController, monitorController.getAnalysisChannelManager());
 	}
 	
 	public void analyzeGroup(String groupName){
@@ -39,11 +43,14 @@ public class AnalysisController {
 		
 		log.info("[analyzeGroup] actions found for group: " + groupActions.size());
 		
-		for (Notification notification : notifications){
-			if (notification.shouldFireNotification(groupActions)){
-				log.info("[AnalysisController.analyzeGroup] notification found: \n" + notification.createNotificationCfAction());
-			}
+		
+		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
+		for (BehaviorIdentifier identifier : behaviorIdentifiers){
+			identifiedBehaviors.addAll(identifier.identifyBehaviors(groupActions));
 		}
+		log.info("[AnalysisController.analyzeGroup] "+ identifiedBehaviors.size() +" behaviors identified : \n" + identifiedBehaviors);
+
+		reasonedInterventionController.sendInterventions(identifiedBehaviors);
 	}
 	
 

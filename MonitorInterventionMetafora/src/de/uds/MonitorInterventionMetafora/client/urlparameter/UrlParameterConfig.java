@@ -4,18 +4,14 @@ import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.Window;
 
-import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.MessageType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
+import de.uds.MonitorInterventionMetafora.shared.messages.Locale;
+import de.uds.MonitorInterventionMetafora.shared.messages.MessageType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class UrlParameterConfig {
 	
-        public enum MessageType {
-            PEER, EXTERNAL
-        }
-
-    
         public enum UserType {
             METAFORA_USER, RECOMMENDING_WIZARD, MESSAGING_WIZARD
         }
@@ -26,7 +22,7 @@ public class UrlParameterConfig {
 	private String receiverIDs;
 	private String password;
 	private String configID;
-	private String locale;
+	private Locale locale;
 	private String receiver;
 	private MessageType messageType;
 	private UserType userType;
@@ -47,12 +43,13 @@ public class UrlParameterConfig {
 		//Determines which server is used for the messages to be sent and received
 		//actually what gets added to the tool
 		receiver = getAndDecodeUrlParam("receiver");
-		locale = getAndDecodeUrlParam("locale");
 		//Used really for determining if things are logged
 		String testServerStr = getAndDecodeUrlParam("testServer");
 		String monitoringStr = getAndDecodeUrlParam("monitoring");
 		String userTypeString = getAndDecodeUrlParam("userType");
 		String messageTypeString = getAndDecodeUrlParam("messageType");
+		String localeStr =  getAndDecodeUrlParam("locale");
+
 
 		if (userTypeString == null) { 
 		    userType = UserType.MESSAGING_WIZARD;
@@ -64,9 +61,19 @@ public class UrlParameterConfig {
 			
 		if (messageTypeString == null) {
 		    messageType = MessageType.EXTERNAL;
-		} else if (messageTypeString.equalsIgnoreCase("PEER")) {
+		} else if (messageTypeString.equalsIgnoreCase("PEER") || userType == UserType.METAFORA_USER) {
 		    messageType = MessageType.PEER;
 		} else messageType = MessageType.EXTERNAL;
+		
+		locale = Locale.en;
+		if (localeStr != null){
+			try {
+				locale = Locale.valueOf(localeStr);
+			}
+			catch (Exception e){
+				Log.warn("[UrlParameterConfig.constructor: unknown locale:"+ localeStr +", using default lacale: " + locale);
+			}
+		}
 		
 		receiver = (receiver == null) ? MetaforaStrings.RECEIVER_METAFORA_TEST : receiver;
 
@@ -82,7 +89,6 @@ public class UrlParameterConfig {
 		    Window.alert(msg);
 		} 		
 		
-		locale = (locale == null) ? "he" : locale;
 		testServer = (testServerStr == null) ? true : Boolean.parseBoolean(testServerStr); 
 		monitoring = (monitoringStr == null) ? false : Boolean.parseBoolean(monitoringStr); 
 				
@@ -135,7 +141,7 @@ public class UrlParameterConfig {
 		return null;
 	}
 
-	public String getLocale() {
+	public Locale getLocale() {
 		return locale;
 	}
 

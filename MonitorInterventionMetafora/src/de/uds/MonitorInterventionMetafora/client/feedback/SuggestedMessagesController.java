@@ -80,7 +80,6 @@ public class SuggestedMessagesController {
 	}
 
 	public void changeMessageStyle(String categoryName, int i, boolean isHighlight) {
-		// TODO Auto-generated method stub
 		SuggestionCategory category = suggestedMessagesModel.getSuggestionCategory(categoryName);
 		if (category != null)
 			category.getSuggestedMessage(i).setHighlight(isHighlight);

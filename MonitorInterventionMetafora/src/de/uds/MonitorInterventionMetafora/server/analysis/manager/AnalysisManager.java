@@ -5,20 +5,12 @@ import java.util.List;
 import java.util.Vector;
 
 
-import de.uds.MonitorInterventionMetafora.server.analysis.notification.NoWorkNotification;
-import de.uds.MonitorInterventionMetafora.server.analysis.notification.Notification;
+import de.uds.MonitorInterventionMetafora.server.analysis.notification.BehaviorIdentifier;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.server.mmftparser.ActionFilterParser;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
-import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.NotificationType;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.IndicatorFilter;
-import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
-import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.utils.ServerFormatStrings;
 
 
@@ -82,9 +74,10 @@ public class AnalysisManager {
 		}
 	}
 	
-	List<Notification>  getNotifications(){
-		XmlFragment configParser=new XmlFragment(notificationsSourceFile);
-		return Notification.createNotificationsFromFilters(ActionFilterParser.listFromXml(configParser.accessChild(ServerFormatStrings.FILTERS)));
+	List<BehaviorIdentifier>  getNotifications(){
+		return null;
+//		XmlFragment configParser=new XmlFragment(notificationsSourceFile);
+//		return BehaviorIdentifier.createNotificationsFromFilters(ActionFilterParser.listFromXml(configParser.accessChild(ServerFormatStrings.FILTERS)));
 	}
 
 }

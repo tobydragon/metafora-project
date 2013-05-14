@@ -17,11 +17,10 @@ public class ActionFilter implements Serializable{
 	private static final long serialVersionUID = 6017681413593886575L;
 	private String name;
 	
-	private boolean editable;
 	List<ActionPropertyRule> actionPropertyRules;
 	private FilterViewModel filterRules;
 	
-//	private boolean isServerFilter;
+	private boolean isServerFilter;
 	
 	private RuleRelation ruleRelation;
 	
@@ -30,17 +29,16 @@ public class ActionFilter implements Serializable{
 	private String color;
 	
 	
-	public ActionFilter(String name, boolean editable, List<ActionPropertyRule> actionPropertyRules ){
-		this (name, editable, null, null, actionPropertyRules, RuleRelation.AND);	
+	public ActionFilter(String name, boolean serverFilter, List<ActionPropertyRule> actionPropertyRules ){
+		this (name, serverFilter, null, null, actionPropertyRules, RuleRelation.AND);	
 	}
 	
-	public ActionFilter(String name, boolean editable, String type, String color, List<ActionPropertyRule> actionPropertyRules, RuleRelation ruleRelation ){
+	public ActionFilter(String name, boolean serverFilter, String type, String color, List<ActionPropertyRule> actionPropertyRules, RuleRelation ruleRelation ){
 		setName(name);
-		setEditable(editable);
+		setServerFilter(serverFilter);
 		setType(type);
 		setColor(color);
 		
-//		isServerFilter=false;
 		this.actionPropertyRules=new Vector<ActionPropertyRule>();
 		filterRules = new FilterViewModel();
 		
@@ -72,9 +70,9 @@ public class ActionFilter implements Serializable{
 
 	public void addFilterRule(ActionPropertyRule filterRule){
 		actionPropertyRules.add(filterRule);
-//		if(!isServerFilter){
+		if(!isServerFilter){
 			filterRules.add(new FilterGridRow(filterRule));
-//		}
+		}
 	}
 	
 	public List<CfAction> getFilteredList(List<CfAction> listToFilter){
@@ -88,35 +86,35 @@ public class ActionFilter implements Serializable{
 	}
 	
 	public boolean filterIncludesAction(CfAction action){
-//		if(isServerFilter){
-		if (ruleRelation == RuleRelation.AND){	
-			for (ActionPropertyRule rule : actionPropertyRules){
-				if (! rule.ruleIncludesAction(action)){
+		if(isServerFilter){
+			if (ruleRelation == RuleRelation.AND){	
+				for (ActionPropertyRule rule : actionPropertyRules){
+					if (! rule.ruleIncludesAction(action)){
+						return false;
+					}
+				}
+				return true;
+			}
+			
+			else {
+				for (ActionPropertyRule rule : actionPropertyRules){
+					if (rule.ruleIncludesAction(action)){
+						return true;
+					}
+				}
+				return false;
+			}
+		}
+		
+		//TODO: Get rid of this tragedy of coding...
+		else {
+			for (FilterGridRow rule : filterRules.getRange(0, filterRules.getCount()-1)){
+				if (!rule.getActionPropertyRule().ruleIncludesAction(action)){
 					return false;
 				}
 			}
 			return true;
-		}
-		
-		else {
-			for (ActionPropertyRule rule : actionPropertyRules){
-				if (rule.ruleIncludesAction(action)){
-					return true;
-				}
-			}
-			return false;
-		}
-//		}
-//		
-//		//TODO:  What is this????
-//		else {
-//			for (FilterGridRow rule : filterRules.getRange(0, filterRules.getCount()-1)){
-//				if (!rule.getActionPropertyRule().ruleIncludesAction(action)){
-//					return false;
-//				}
-//			}
-//			return true;
-//		}		
+		}		
 	}
 	
 	public List<ActionPropertyRule>  getActionPropertyRules(){	
@@ -126,14 +124,7 @@ public class ActionFilter implements Serializable{
 	public FilterViewModel  getFilterStore(){
 		return filterRules;
 	}
-	
-	public void setEditable(boolean editable){
-		this.editable=editable;
-	}
-	
-	public boolean getEditable(){
-		return editable;
-	}
+
 	public void setName(String name){
 		this.name=name;
 	}
@@ -141,5 +132,15 @@ public class ActionFilter implements Serializable{
 	public String getName(){
 		return name;
 	}
+
+	public boolean isServerFilter() {
+		return isServerFilter;
+	}
+
+	public void setServerFilter(boolean isServerFilter) {
+		this.isServerFilter = isServerFilter;
+	}
+	
+	
 
 }

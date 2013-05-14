@@ -1,37 +1,26 @@
 package de.uds.MonitorInterventionMetafora.client.feedback;
 
-import java.util.Date;
-
-import com.allen_sauer.gwt.log.client.Log;
-import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.RequestBuilder;
-import com.google.gwt.http.client.RequestCallback;
-import com.google.gwt.http.client.RequestException;
-import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
-import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.MessageType;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
+import de.uds.MonitorInterventionMetafora.shared.messages.Locale;
+import de.uds.MonitorInterventionMetafora.shared.messages.MessageFileHandler;
+import de.uds.MonitorInterventionMetafora.shared.messages.MessageType;
+import de.uds.MonitorInterventionMetafora.shared.messages.MessagesTextReceiver;
 
-public class FeedbackPanelContainer extends VerticalPanel {
+public class FeedbackPanelContainer extends VerticalPanel implements MessagesTextReceiver{
 	private de.uds.MonitorInterventionMetafora.client.feedback.Outbox outbox;
 	private SuggestedMessagesView templatePool;
 	static private FeedbackPanelContainer INSTANCE;
 
-	public static String[] userIDsArray = {"Alan", "Mary", "David"};
+	public static String[] userIDsArray = {"Alan", "Mary", "David"};	
 	
-	// models
 	private ClientFeedbackDataModel feedbackModel;
-	
-	// controllers
 	private ClientFeedbackDataModelUpdater updater;
-//	ClientFeedbackController controller;
-	
 	CommunicationServiceAsync monitoringViewServiceServlet;
 	
 	public FeedbackPanelContainer(CommunicationServiceAsync monitoringViewServiceServlet) {
@@ -39,7 +28,6 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		this.monitoringViewServiceServlet = monitoringViewServiceServlet;
 		
 		feedbackModel = new ClientFeedbackDataModel(monitoringViewServiceServlet);
-//		controller = new ClientFeedbackController();
 		updater = new ClientFeedbackDataModelUpdater(feedbackModel);
 		
 		//TOODO: this is awful and only a shortcut now
@@ -47,48 +35,13 @@ public class FeedbackPanelContainer extends VerticalPanel {
 		if ((configUserIDs != null) && (configUserIDs != "")) {
 		    userIDsArray= parseStringToArray(configUserIDs);
 		}
-		//ds
 
 		outbox = new Outbox(updater);
 		this.add(outbox);
 		this.setSpacing(5);
 		
-		Date date = new Date();
-		String locale = UrlParameterConfig.getInstance().getLocale();
-		
-		String URL = "resources/feedback/" + getMessageFileNameStart() + locale + ".xml?nocache=" + date.getTime();
-		Log.info("[constructor] feedback panel URL: "+ URL);
-		RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET,URL);
-
-		try {
-			requestBuilder.sendRequest(null, new RequestCallback() {
-				public void onError(Request request, Throwable exception) {
-					requestFailed(exception);
-				}
-
-				public void onResponseReceived(Request request, Response response) {
-					SuggestedMessagesModel suggestedMessagesModel = SuggestedMessagesModel.fromXML(response.getText());
-					SuggestedMessagesController suggestedMessagesController = new SuggestedMessagesController(suggestedMessagesModel);
-					templatePool = new SuggestedMessagesView(suggestedMessagesModel, suggestedMessagesController, updater);
-					suggestedMessagesController.setView(templatePool);
-					insert(templatePool, 0);
-					outbox.setSuggestedMessagesController(suggestedMessagesController);
-				}
-			});
-		} catch (RequestException ex) {
-			requestFailed(ex);
-		}
-	}
-
-	public String getMessageFileNameStart(){
-		String messageFileStart = MetaforaStrings.EXTERNAL_MESSAGE_FILE_NAME_START;
-		//metafora user  all hosted in metafora get peer messages for sure
-		//other types depend on param
-		if (UrlParameterConfig.getInstance().getUserType() == UserType.METAFORA_USER ||
-		    UrlParameterConfig.getInstance().getMessageType() == MessageType.PEER) {
-			messageFileStart = MetaforaStrings.PEER_MESSAGE_FILE_NAME_START;
-		} 
-		return messageFileStart;
+		MessageFileHandler messageFileHandler = new MessageFileHandler(this, UrlParameterConfig.getInstance().getMessageType(), UrlParameterConfig.getInstance().getLocale());
+		messageFileHandler.requestStringFromFile();
 	}
 	
 	/**
@@ -100,7 +53,18 @@ public class FeedbackPanelContainer extends VerticalPanel {
 	    return listOfStrings.split(delimiter);	    
 	}
 	
-	private void requestFailed(Throwable exception) {
+	@Override
+	public void newMessagesTextReceived(MessageType messageType, Locale locale, String text) {
+		SuggestedMessagesModel suggestedMessagesModel = SuggestedMessagesModel.fromXML(text);
+		SuggestedMessagesController suggestedMessagesController = new SuggestedMessagesController(suggestedMessagesModel);
+		templatePool = new SuggestedMessagesView(suggestedMessagesModel, suggestedMessagesController, updater);
+		suggestedMessagesController.setView(templatePool);
+		insert(templatePool, 0);
+		outbox.setSuggestedMessagesController(suggestedMessagesController);
+	}
+	
+	@Override
+	public void newMessagesTextFailed(MessageType messageType, Locale locale, Throwable exception) {
 		Window.alert("Failed to send the message: " + exception.getMessage());
 	}
 
@@ -119,5 +83,7 @@ public class FeedbackPanelContainer extends VerticalPanel {
 	public static SuggestedMessagesView getTemplatePool() {
 		return INSTANCE.templatePool;
 	}
+
+
 	
 }
