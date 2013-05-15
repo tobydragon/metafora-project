@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.shared.messages;
+package de.uds.MonitorInterventionMetafora.shared.suggestedmessages;
 
 import java.util.Date;
 
@@ -11,13 +11,13 @@ import com.google.gwt.http.client.Response;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 
-public class MessageFileHandler implements RequestCallback{
+public class SuggestedMessagesFileHandler implements RequestCallback{
 	
-	private MessagesTextReceiver receiver;
+	private SuggestedMessagesFileTextReceiver receiver;
 	MessageType messageType;
 	Locale locale;
 	
-	public MessageFileHandler(MessagesTextReceiver receiver, MessageType messageType, Locale locale){
+	public SuggestedMessagesFileHandler(SuggestedMessagesFileTextReceiver receiver, MessageType messageType, Locale locale){
 		this.receiver = receiver;
 		this.messageType = messageType;
 		this.locale = locale;

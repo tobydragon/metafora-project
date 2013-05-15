@@ -16,6 +16,7 @@ import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionPars
 import de.uds.MonitorInterventionMetafora.server.feedback.FeedbackController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorModel;
+import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
@@ -40,7 +41,6 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	ServerInstance mainServer; 
 	ServerInstance testServer;
 	
-//	AnalysisManager analysisManager;
 	private boolean isConfigurationUpdated = false;
 
 	public MainServer() {
@@ -78,18 +78,13 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	}
 	
 	@Override
-	public String sendLogAction(CfAction logAction) {
-		//System.out.println("LOG_ACTION_START");
+	public void logAction(CfAction logAction) {
 		String actionString=CfActionParser.toXml(logAction).toString();
-		//System.out.println(actionString);
 		try {
 			toLogFile(actionString);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("[logAction] problem writing log: " + ErrorUtil.getStackTrace(e));
 		}
-		System.out.println("LOG_ACTION_END");
-		return null;
 	}
 
 	@Override
@@ -145,12 +140,11 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	
 	@Override
 	public String requestSuggestedMessages(String username) {
-		logger.info("[requestSuggestedMessages]  for user: " + username );
 		return requestSuggestedMessages(generalConfiguration.getDefaultXmppServer(), username);
 	}
 	
 	public String requestSuggestedMessages(XmppServerType xmppServerType, String username) {
-		logger.info("[requestSuggestedMessages]  for user: " + username );
+		logger.info("[requestSuggestedMessages]  for user: " + username + "- Server: " + xmppServerType);
 		if (xmppServerType == XmppServerType.DEPLOY){
 			 return mainServer.requestSuggestedMessages(username);
 		}
@@ -160,9 +154,8 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	}
 
 	@Override
-	public CfAction sendAction(String _user, CfAction cfAction) {
+	public void sendAction(String _user, CfAction cfAction) {
 		sendAction(generalConfiguration.getDefaultXmppServer(), _user, cfAction);
-		return null;
 	}
 	
 	@Override
@@ -182,6 +175,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		return requestUpdate(generalConfiguration.getDefaultXmppServer(), cfAction);
 	}
 	
+	@Override
 	public List<CfAction> requestUpdate(XmppServerType xmppServerType, CfAction cfAction) {
 		logger.info("[requestUpdate]  requesting update is revieced  by the server");
 		if (xmppServerType == XmppServerType.DEPLOY){
@@ -197,6 +191,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		requestAnalysis(generalConfiguration.getDefaultXmppServer(), groupId);
 	}
 	
+	@Override
 	public void requestAnalysis(XmppServerType xmppServerType, String groupId) {
 		logger.info("[requesAnalysis]  requesting analysis for group ID:" + groupId);
 		if (xmppServerType == XmppServerType.DEPLOY){
@@ -207,17 +202,4 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		}
 	}
 
-
-
-	void sendUpdateRequest(CfAction action) {	}
-
-	@Override
-	public CfAction sendNotificationToAgents(CfAction cfAction) {
-
-		AnalysisManager.getAnalysisManagerInstance().sendToAllAgents(
-				"Notification", cfAction);
-
-		System.out.println("Notifications are sent to the agents!!");
-		return new CfAction();
-	}
 }

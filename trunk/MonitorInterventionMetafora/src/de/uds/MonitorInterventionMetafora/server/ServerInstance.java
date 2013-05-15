@@ -33,7 +33,7 @@ public class ServerInstance {
 	}
 	
 	public String requestSuggestedMessages(String username) {
-		logger.info("[requestSuggestedMessages]  for user: " + username );
+		logger.debug("[requestSuggestedMessages]  for user: " + username );
 		return feedbackController.requestSuggestedMessages(username);
 
 	}

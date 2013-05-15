@@ -13,10 +13,10 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMet
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
-import de.uds.MonitorInterventionMetafora.shared.messages.Locale;
-import de.uds.MonitorInterventionMetafora.shared.messages.MessageFileHandler;
-import de.uds.MonitorInterventionMetafora.shared.messages.MessageType;
-import de.uds.MonitorInterventionMetafora.shared.messages.MessagesTextReceiver;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesFileHandler;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.MessageType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesFileTextReceiver;
 
 public class FeedbackController implements CfCommunicationListener {
 	Logger logger = Logger.getLogger(this.getClass());
@@ -34,7 +34,7 @@ public class FeedbackController implements CfCommunicationListener {
 	public void	initializeDefaultMessageModel(){
 		for (MessageType messageType : MessageType.values()){
 			for (Locale locale : Locale.values()){
-				String path = GeneralUtil.getRealPath(MessageFileHandler.getPartialFilepath(messageType, locale));
+				String path = GeneralUtil.getRealPath(SuggestedMessagesFileHandler.getPartialFilepath(messageType, locale));
 				String fileContents = GeneralUtil.readFileToString(path);
 				feedbackModel.updateDefaultMessagesModel(messageType, locale, fileContents);
 			}

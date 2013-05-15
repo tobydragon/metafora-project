@@ -16,8 +16,10 @@ import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataVie
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.TabbedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModelType;
@@ -29,7 +31,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 
 	Image loadingImage;
 	
-	private CommunicationServiceAsync monitoringViewServiceServlet;
+	private CommunicationServiceAsync commServiceServlet;
 	//Views
 	UpdaterToolbar updaterToolbar;
 	FilterListPanel flp;
@@ -45,7 +47,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 		
 	public MonitorViewPanel(CommunicationServiceAsync monitoringViewServiceServlet){
 
-		this.monitoringViewServiceServlet=monitoringViewServiceServlet;
+		this.commServiceServlet=monitoringViewServiceServlet;
 		actionPropertyRuleCreator = ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.GROUPING);
 		ActionPropertyRuleSelectorModel filterPropertyRuleSelector = ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.FILTER);
 		monitorModel = new ClientMonitorDataModel(actionPropertyRuleCreator, filterPropertyRuleSelector,monitoringViewServiceServlet);
@@ -70,10 +72,15 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 	 	 CfActionType _cfActionType=new CfActionType();
 	 	 _cfActionType.setType("START_FILE_INPUT");
 	 	 startupMessage.setCfActionType(_cfActionType);
-	 	 Log.info("[sendStartupMessage] start by requesting update from Client");
-	 	Log.debug("Update Request is sent");
-	 	 monitoringViewServiceServlet.requestUpdate(startupMessage,this);
-	 	 // ServerCommunication.getInstance().processAction(startupMessage,this);	
+	 	 Log.info("[sendStartupMessage] initial update request from client");
+	 	 
+	 	 XmppServerType xmppServerType = UrlParameterConfig.getInstance().getXmppServerType();
+	 	 if (xmppServerType != null){
+	 		commServiceServlet.requestUpdate(xmppServerType, startupMessage, this);
+	 	 }
+	 	 else {
+	 		 commServiceServlet.requestUpdate(startupMessage,this);
+	 	 }
 	}
 
 	@Override
@@ -93,7 +100,7 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 		
 	
 		VerticalPanel panel=new VerticalPanel();
-		flp=new FilterListPanel(monitorModel, controller,monitoringViewServiceServlet);
+		flp=new FilterListPanel(monitorModel, controller,commServiceServlet);
 		//enableResizeListener(flp.getFilterGridPanel());
 		panel.add(flp);
 		

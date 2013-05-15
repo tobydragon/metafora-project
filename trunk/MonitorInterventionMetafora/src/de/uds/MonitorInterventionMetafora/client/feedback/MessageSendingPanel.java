@@ -10,7 +10,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
-import com.google.gwt.user.client.ui.ComplexPanel;
 import com.google.gwt.user.client.ui.DecoratedPopupPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -21,9 +20,9 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
-import de.uds.MonitorInterventionMetafora.client.communication.ServerCommunication;
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.CfActionCallBack;
+import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.NoActionResponse;
+import de.uds.MonitorInterventionMetafora.client.display.DisplayUtil;
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
@@ -37,9 +36,11 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesModel;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
-public class Outbox extends VerticalPanel implements CfActionCallBack {
+public class MessageSendingPanel extends VerticalPanel {
     
     
     	private static String HIGH_LABEL = "High";
@@ -64,35 +65,27 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 	public VerticalPanel recipientNamesColumn;
 	//private boolean recipientsSelectionButtonSetToAll=true;
 	private String TOOL_NAME = "FEEDBACK_CLIENT";
-	private ClientFeedbackDataModelUpdater feedbackDataModelUpdater;
 	private SuggestedMessagesController suggestedMessagesController;
+	private CommunicationServiceAsync commServiceServlet;
 	
 	
-	public Outbox(/*ComplexPanel parent, */ClientFeedbackDataModelUpdater updater)
-	{
-		this.feedbackDataModelUpdater = updater;
+	public MessageSendingPanel(CommunicationServiceAsync commServiceServlet) {
+		this.commServiceServlet = commServiceServlet;
 		
-//		final ScrollPanel scrollPanel = new ScrollPanel();
 		vPanel = new VerticalPanel();
 		hPanel = new HorizontalPanel();
 		ScrollPanel scrollPanel = new ScrollPanel();
 		scrollPanel.setHeight(PANEL_HEIGHT +"px");
 		scrollPanel.setAlwaysShowScrollBars(false);
-
 		
 		//section label
-		
 		HorizontalPanel labelAndSendButtonPanel = new HorizontalPanel();
 		labelAndSendButtonPanel.setWidth(sectionWidth + "px");
-
-		
 		final Label sectionLabel = new Label(messagesBundle.EditInstructions());
 		sectionLabel.setStyleName("sectionLabel");
 		labelAndSendButtonPanel.setSpacing(5);
 		
 		UserType userType = UrlParameterConfig.getInstance().getUserType();
-
-
 
 		//send options
 		sendOptionsRow = new VerticalPanel();
@@ -108,7 +101,6 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 			objectIdsTextBox.setText("");
 			objectIdsTextBox.selectAll();
 			objectIdsRow.add(objectIdsTextBox);
-//			this.add(objectIdsRow);
 			hPanel.add(objectIdsRow);
 		}
 		
@@ -121,7 +113,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		recipientNamesColumn = new VerticalPanel();
 		userGroupColumn.add(recipientNamesColumn);
 		
-		createCheckBoxes(FeedbackPanelContainer.userIDsArray);
+		createCheckBoxes(MessagesPanel.userIDsArray);
 
 		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.MESSAGING_WIZARD)
 		   || UrlParameterConfig.getInstance().getUserType().equals(UserType.RECOMMENDING_WIZARD)) {
@@ -190,17 +182,16 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		}
 		//end of if wizard 
 		sendOptionsRow.add(userGroupColumn);
-		
-		VerticalPanel buttonsVPanel = new VerticalPanel();
-		
+				
 		if (userType.equals(UserType.RECOMMENDING_WIZARD)) {
-			Button sendRecommendationsButton = new Button("Send recommendations");
+			Button sendRecommendationsButton = new Button(messagesBundle.SendSuggestedMessages());
 			sendRecommendationsButton.addClickHandler(new ClickHandler() {
 				@Override
 				public void onClick(ClickEvent event) {
 					if (suggestedMessagesController != null) {
 						String suggestions = SuggestedMessagesModel.toXML(suggestedMessagesController.getSuggestedMessagesModel());
 						suggestedMessagesController.sendSuggestedMessages(suggestions);
+						DisplayUtil.postNotificationMessage(messagesBundle.SuggestedMessagesSent());
 					}
 				}
 			});
@@ -221,7 +212,7 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		}
 
 		
-		//vertical panel has first the send button and the labelÊ
+		//vertical panel has first the send button and the labelï¿½
 		vPanel.add(labelAndSendButtonPanel);
 
 		//then the horizontal panel has the checkboxes to send
@@ -284,17 +275,6 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 	public TextArea getMessageTextArea()
 	{
 		return messageTextArea;
-	}
-	
-	@Override
-	public void onFailure(Throwable caught) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void onSuccess(CfAction result) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	private void editRecipientNames(String recepientNames) {
@@ -394,7 +374,6 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		//this shouldn't be needed but jic
 		if (receiver == null || receiver.equals("")) {
 			receiver = MetaforaStrings.RECEIVER_METAFORA_TEST;
-
 		}
 		
 		CfContent myContent = new CfContent();
@@ -402,10 +381,10 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL,TOOL_NAME));
  	 	feedbackMessage.setCfContent(myContent);
 
-	 	processAction(feedbackMessage);
+	 	sendActionToServer(feedbackMessage);
 	 	if(messageTextArea.getText().length()>0)
 	 	{
-	 		FeedbackPanelContainer.getTemplatePool().addMessageToHistory(messageTextArea.getText());
+	 		MessagesPanel.getTemplatePool().addMessageToHistory(messageTextArea.getText());
 	 	}
 	
 		UserLog userActionLog = new UserLog();
@@ -423,10 +402,13 @@ public class Outbox extends VerticalPanel implements CfActionCallBack {
 	if (objectIdsTextBox != null) objectIdsTextBox.setText("");
 	}
 	
-	public void processAction(CfAction cfAction) {
-		ServerCommunication.getInstance().sendAction("FeedbackClient", cfAction, this);	
-		if (UrlParameterConfig.getInstance().getXmppServerType() != null){
-			ServerCommunication.getInstance().sendAction(UrlParameterConfig.getInstance().getXmppServerType(), "FeedbackClient", cfAction, new NoActionResponse());	
+	public void sendActionToServer(CfAction cfAction) {
+		XmppServerType xmppServerType = UrlParameterConfig.getInstance().getXmppServerType();
+		if (xmppServerType != null){
+			commServiceServlet.sendAction(xmppServerType, TOOL_NAME,cfAction, new NoActionResponse());
+		}
+		else {
+			commServiceServlet.sendAction(TOOL_NAME,cfAction, new NoActionResponse());
 		}
 	}
 	

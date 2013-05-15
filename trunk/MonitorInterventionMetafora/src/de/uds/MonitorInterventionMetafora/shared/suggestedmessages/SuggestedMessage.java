@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.feedback;
+package de.uds.MonitorInterventionMetafora.shared.suggestedmessages;
 
 public class SuggestedMessage {
 	private String text;

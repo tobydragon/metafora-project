@@ -1,6 +1,6 @@
-package de.uds.MonitorInterventionMetafora.shared.messages;
+package de.uds.MonitorInterventionMetafora.shared.suggestedmessages;
 
-public interface MessagesTextReceiver {
+public interface SuggestedMessagesFileTextReceiver {
 	
 	void newMessagesTextReceived(MessageType messageType, Locale locale, String text);
 

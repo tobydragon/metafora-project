@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.client.feedback;
+package de.uds.MonitorInterventionMetafora.shared.suggestedmessages;
 
 import java.util.List;
 import java.util.Vector;
@@ -11,14 +11,15 @@ import com.google.gwt.xml.client.NodeList;
 import com.google.gwt.xml.client.XMLParser;
 
 
+
 public class SuggestedMessagesModel {
-	private List<SuggestionCategory> suggestionCategories;
+	private List<SuggestedMessagesCategory> suggestionCategories;
 	
 	public SuggestedMessagesModel() {
-		this.suggestionCategories = new Vector<SuggestionCategory>();
+		this.suggestionCategories = new Vector<SuggestedMessagesCategory>();
 	}
 	
-	public void addCategory(SuggestionCategory category) {
+	public void addCategory(SuggestedMessagesCategory category) {
 		suggestionCategories.add(category);
 	}
 	
@@ -30,7 +31,7 @@ public class SuggestedMessagesModel {
 	public static String toXML(SuggestedMessagesModel model) {
 		StringBuffer b = new StringBuffer("<?xml version=\"1.0\" encoding=\"US-ASCII\"?>");		
 		b.append("<messages>\n");
-		for (SuggestionCategory category : model.getSuggestionCategories()) {
+		for (SuggestedMessagesCategory category : model.getSuggestionCategories()) {
 			String categoryHighlight = category.isHighlight() ? " highlight=\"true\" " : "";
 			b.append("<set id=\"" +category.getName()+ "\""+ categoryHighlight +">\n");
 			for (SuggestedMessage message : category.getSuggestedMessages()) {
@@ -59,7 +60,7 @@ public class SuggestedMessagesModel {
 			Element setOfMessages = (Element) sets.item(iset);
 			NamedNodeMap categoryAttributes = setOfMessages.getAttributes();
 			String categoryName = categoryAttributes.getNamedItem("id").getNodeValue();
-			SuggestionCategory suggestionCategory = new SuggestionCategory(categoryName);
+			SuggestedMessagesCategory suggestionCategory = new SuggestedMessagesCategory(categoryName);
 
 			Node highlightItem = categoryAttributes.getNamedItem("highlight");
 			if (highlightItem != null && highlightItem.getNodeValue().equalsIgnoreCase("true")) 
@@ -94,20 +95,20 @@ public class SuggestedMessagesModel {
 	// GETTERS & SETTERS
 	//
 	
-	public SuggestionCategory getSuggestionCategory(int index) {
+	public SuggestedMessagesCategory getSuggestionCategory(int index) {
 		return suggestionCategories.get(index);
 	}
 	
-	public List<SuggestionCategory> getSuggestionCategories() {
+	public List<SuggestedMessagesCategory> getSuggestionCategories() {
 		return suggestionCategories;
 	}
 	
-	public void setSuggestionCategories(List<SuggestionCategory> suggestionCategories) {
+	public void setSuggestionCategories(List<SuggestedMessagesCategory> suggestionCategories) {
 		this.suggestionCategories = suggestionCategories;
 	}
 
-	public SuggestionCategory getSuggestionCategory(String categoryName) {
-		for (SuggestionCategory category : suggestionCategories) {
+	public SuggestedMessagesCategory getSuggestionCategory(String categoryName) {
+		for (SuggestedMessagesCategory category : suggestionCategories) {
 			if (category.getName().equals(categoryName))
 				return category;
 		}

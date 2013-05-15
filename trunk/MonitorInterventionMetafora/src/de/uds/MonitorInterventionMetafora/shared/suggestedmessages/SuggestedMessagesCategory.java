@@ -1,14 +1,15 @@
-package de.uds.MonitorInterventionMetafora.client.feedback;
+package de.uds.MonitorInterventionMetafora.shared.suggestedmessages;
 
 import java.util.List;
 import java.util.Vector;
 
-public class SuggestionCategory {
+
+public class SuggestedMessagesCategory {
 	private String name;
 	private boolean highlight;
 	private List<SuggestedMessage> messages;
 	
-	public SuggestionCategory(String name) {
+	public SuggestedMessagesCategory(String name) {
 		this.name = name;
 		this.messages= new Vector<SuggestedMessage>();
 	}

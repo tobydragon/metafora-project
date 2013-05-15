@@ -15,8 +15,8 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
-import de.uds.MonitorInterventionMetafora.shared.messages.Locale;
-import de.uds.MonitorInterventionMetafora.shared.messages.MessageType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.MessageType;
 
 public class ReasonedInterventionController {
 	
