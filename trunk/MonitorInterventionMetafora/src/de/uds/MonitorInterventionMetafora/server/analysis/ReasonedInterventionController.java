@@ -3,9 +3,10 @@ package de.uds.MonitorInterventionMetafora.server.analysis;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.notification.BehaviorInstance;
+import messages.MessagesController;
+
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorInstance;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
-import de.uds.MonitorInterventionMetafora.server.feedback.FeedbackController;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -20,11 +21,11 @@ import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.MessageType;
 
 public class ReasonedInterventionController {
 	
-	FeedbackController feedbackController;
+	MessagesController feedbackController;
 	CfAgentCommunicationManager analysisChannelManager;
 		
 	
-	public ReasonedInterventionController(FeedbackController feedbackController, CfAgentCommunicationManager analysisChannelManagaer) {
+	public ReasonedInterventionController(MessagesController feedbackController, CfAgentCommunicationManager analysisChannelManagaer) {
 		this.feedbackController = feedbackController;
 		this.analysisChannelManager = analysisChannelManagaer;
 	}

@@ -29,13 +29,9 @@
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  
  */
-package de.uds.MonitorInterventionMetafora.server.analysis.tagging;
+package de.uds.MonitorInterventionMetafora.server.analysis.text;
+import java.util.StringTokenizer;
 
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
-
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 
@@ -43,93 +39,59 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
  *
  * @author rohitk
  */
-public class TagProperty {
+public class WordCountProperty {
 
-	private Map<String, List<String>> tags;
-	private String taggedText="";
+	private int wordCount=0;
+	private String text="";
    
-    public TagProperty(String taggedText) {
+    public WordCountProperty(String text) {
     
-    	this.taggedText=taggedText;
+    	this.text=text;
+    	wordCount=processText();
     }
 
-  
+    int processText(){
+    	 int count=0;
+         StringTokenizer stk=new StringTokenizer(text," ");
+         while(stk.hasMoreTokens()){
+             String token=stk.nextToken();
+             count++;
+         }
+return count;
+    }
     
-
-    public void addTag(String a, List<String> ps) {
-        if (tags == null) {
-            tags = new Hashtable<String, List<String>>();
-        }
-        tags.put(a.trim(), ps);
-    }
-
-    public void removeTag(String a) {
-        if (tags != null) {
-            tags.remove(a);
-        }
-    }
-
-    public String getTags() {
-        String ret = "";
-        if (tags != null) {
-            String[] keys = tags.keySet().toArray(new String[0]);
-            for (int i = 0; i < keys.length; i++) {
-                if (i != 0) {
-                    ret += ",";
-                }
-                ret += keys[i];
-            }
-        }
-
-        return ret;
-    }
-
-    
-    public String getTaggedText() {
+    public String getText() {
     	
     	
-    	return taggedText;
+    	return text;
     }
    
-    
-    public String[] checkTag(String a) {
-        if (tags != null) {
-            List<String> ps;
-            if ((ps = tags.get(a)) != null) {
-                return ps.toArray(new String[0]);
-            } else {
-                return null;
-            }
-        }
-        return null;
+    public int getWordCount(){
+    	
+    	return wordCount;
     }
-
-
     
+
     public CfProperty toCfProperty(){
     	
     	CfProperty property=new CfProperty();
-    	property.setId(taggedText);
+    	property.setId(text);
+    
     	
-    	property.setName(MonitorConstants.TAGS);
-    	property.setValue(getTags());
-    	
+    	property.setName(MonitorConstants.WORD_COUNT);
+    	property.setValue(Integer.toString(wordCount));
     	return property;
     }
     
- public CfProperty toEmptyCfProperty(){
+  public CfProperty toEmptyCfProperty(){
     	
     	CfProperty property=new CfProperty();
     	property.setId(MonitorConstants.BLANK_PROPERTY_LABEL);
+
     	
-    	property.setName(MonitorConstants.TAGS);
-    	property.setValue(MonitorConstants.BLANK_PROPERTY_LABEL);
+    	property.setName(MonitorConstants.WORD_COUNT);
+    	property.setValue("0");
     	return property;
     }
-    
-    @Override
-    public String toString() {
-   return getTags();
-    	
-    }
+   
 }
