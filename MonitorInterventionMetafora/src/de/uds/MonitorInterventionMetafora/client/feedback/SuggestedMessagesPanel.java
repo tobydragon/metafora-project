@@ -21,31 +21,31 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.uds.MonitorInterventionMetafora.client.messages.MessagesBundle;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessage;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesModel;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesCategory;
 
 
-public class SuggestedMessagesView extends VerticalPanel {
+public class SuggestedMessagesPanel extends VerticalPanel {
     
-    	// MESSAGE BUNDLE 
-    	public static MessagesBundle messagesBundle = GWT.create(MessagesBundle.class);
-
+    // MESSAGE BUNDLE 
+    public static MessagesBundle messagesBundle = GWT.create(MessagesBundle.class);
 
 	// CONSTANSTS
 	private int PANEL_HEIGHT = 360;
 	
 	private TabBar tabBar;
-	private ArrayList<TabWidget> tabWidgets;
-	private HistoryTabWidget messageHistory;
+	private ArrayList<SuggestedMessageButtonsTabWidget> tabWidgets;
+	private SentMessagesTabWidget messageHistory;
 	private VerticalPanel xmlVPanel;
 	private String tabTitle = "";
 	private SuggestedMessagesController controller;
 	private SuggestedMessagesModel suggestedMessagesModel; 
-	private ClientFeedbackDataModelUpdater updater;
 	
-	public SuggestedMessagesView(/*ComplexPanel parent, */final SuggestedMessagesModel model, SuggestedMessagesController controller, final ClientFeedbackDataModelUpdater updater) {
+	public SuggestedMessagesPanel(final SuggestedMessagesModel model, SuggestedMessagesController controller) {
 		this.controller = controller;
 		controller.setView(this);
 		this.suggestedMessagesModel = model;
-		this.updater = updater;
 		
 		this.setBorderWidth(1);
 
@@ -60,20 +60,20 @@ public class SuggestedMessagesView extends VerticalPanel {
 		
 		sectionLabel.setWidth("300px");
 		
-    		//If not recommender add 'Get Recommendations' button
+    	//If not recommender add 'Get Recommendations' button
 		if ( UrlParameterConfig.getInstance().getUserType() != UserType.RECOMMENDING_WIZARD) {
-        		Button receiveRecommendationsButton = new Button(messagesBundle.GetRecommendationsButton());
-        		receiveRecommendationsButton.addClickHandler(new ClickHandler() {
-        			@Override
-        			public void onClick(ClickEvent event) {
-        				String currentUserId = UrlParameterConfig.getInstance().getUsername();
-        				updater.refreshSuggestedMessages(currentUserId);
-        			}
-        
-        		});
-        		
-        		panel.add(receiveRecommendationsButton);
-    		}	
+    		Button receiveRecommendationsButton = new Button(messagesBundle.GetRecommendationsButton());
+    		receiveRecommendationsButton.addClickHandler(new ClickHandler() {
+    			@Override
+    			public void onClick(ClickEvent event) {
+    				String currentUserId = UrlParameterConfig.getInstance().getUsername();
+    				SuggestedMessagesPanel.this.controller.refreshSuggestedMessages(currentUserId);
+    			}
+    
+    		});
+    		
+    		panel.add(receiveRecommendationsButton);
+		}	
 		this.add(panel);
 		
 		tabBar = new TabBar();
@@ -84,7 +84,7 @@ public class SuggestedMessagesView extends VerticalPanel {
 		
 		// Maybe there are suggested messages waiting for the user already
 		String currentUserId = UrlParameterConfig.getInstance().getUsername();
-		updater.refreshSuggestedMessages(currentUserId);
+		controller.refreshSuggestedMessages(currentUserId);
 
 		final ScrollPanel scrollPanel = new ScrollPanel();
 		scrollPanel.setHeight(PANEL_HEIGHT +"px");
@@ -99,7 +99,7 @@ public class SuggestedMessagesView extends VerticalPanel {
 					HTML html = new HTML(tabBar.getTabHTML(event.getSelectedItem()));
 					tabTitle = html.getText();
 					
-					SuggestionCategory suggestionCategory = suggestedMessagesModel.getSuggestionCategory(tabTitle);
+					SuggestedMessagesCategory suggestionCategory = suggestedMessagesModel.getSuggestionCategory(tabTitle);
 					if (suggestionCategory != null) {
 						if (suggestionCategory.isHighlight()) {
 							HTML newHtml = new HTML(tabTitle);
@@ -139,7 +139,7 @@ public class SuggestedMessagesView extends VerticalPanel {
 	public void populateTabs(SuggestedMessagesModel model) {
 		setModel(model);
 		// create new list of tab widgets
-		tabWidgets = new ArrayList<TabWidget>();
+		tabWidgets = new ArrayList<SuggestedMessageButtonsTabWidget>();
 
 		
 		int selectedTab = tabBar == null ? 0 : tabBar.getSelectedTab();
@@ -155,10 +155,10 @@ public class SuggestedMessagesView extends VerticalPanel {
 
 		// get suggested messages categories
 		boolean isetZero = false;
-		for (SuggestionCategory suggestionCategory : model.getSuggestionCategories()) {
+		for (SuggestedMessagesCategory suggestionCategory : model.getSuggestionCategories()) {
 			String tabTitle = suggestionCategory.getName();
 			
-			TabWidget tabWidget = new TabWidget(tabTitle);
+			SuggestedMessageButtonsTabWidget tabWidget = new SuggestedMessageButtonsTabWidget(tabTitle);
 			tabWidget.setController(controller);
 			tabWidgets.add(tabWidget);
 						
@@ -184,7 +184,7 @@ public class SuggestedMessagesView extends VerticalPanel {
 
 		// create tab for message history
 		String sentMessagesTitle = messagesBundle.Sent();
-		messageHistory = new HistoryTabWidget(sentMessagesTitle);
+		messageHistory = new SentMessagesTabWidget(sentMessagesTitle);
 		tabWidgets.add(messageHistory);
 		tabBar.insertTab(sentMessagesTitle, tabBar.getTabCount());
 
@@ -237,14 +237,6 @@ public class SuggestedMessagesView extends VerticalPanel {
 		messageHistory.addSuggestedMessageRow(new SuggestedMessage(messageToStudent), tabTitle);
 		messageHistory.updateXmlCodeArea();
 	};
-
-	public void setUpdater(SuggestedMessagesController controller) {
-		this.controller = controller;
-	}
-	
-	public SuggestedMessagesController getController() {
-		return controller;
-	}
 
 	public void setModel(SuggestedMessagesModel suggestedMessagesModel) {
 		this.suggestedMessagesModel = suggestedMessagesModel;

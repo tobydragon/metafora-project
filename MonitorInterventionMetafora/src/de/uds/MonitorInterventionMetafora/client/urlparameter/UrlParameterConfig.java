@@ -6,8 +6,8 @@ import com.google.gwt.user.client.Window;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
-import de.uds.MonitorInterventionMetafora.shared.messages.Locale;
-import de.uds.MonitorInterventionMetafora.shared.messages.MessageType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.MessageType;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class UrlParameterConfig {
@@ -59,11 +59,18 @@ public class UrlParameterConfig {
 		    userType = UserType.RECOMMENDING_WIZARD;
 		} else userType = UserType.MESSAGING_WIZARD;
 			
-		if (messageTypeString == null) {
-		    messageType = MessageType.EXTERNAL;
-		} else if (messageTypeString.equalsIgnoreCase("PEER") || userType == UserType.METAFORA_USER) {
+		if (messageTypeString == null ){
+			if (userType == UserType.METAFORA_USER) {
+				messageType = MessageType.PEER;
+			}
+			else {
+				messageType = MessageType.EXTERNAL;
+			}
+		} else if (messageTypeString.equalsIgnoreCase("PEER") ) {
 		    messageType = MessageType.PEER;
-		} else messageType = MessageType.EXTERNAL;
+		} else {
+			messageType = MessageType.EXTERNAL;
+		}
 		
 		locale = Locale.en;
 		if (localeStr != null){
@@ -84,7 +91,7 @@ public class UrlParameterConfig {
 		} else {
 		    //setting this to null (for now) if receiver is not one of the known Metafora ones
 		    xmppServerType = null; 
-		    String msg = "Unknown receiver, feedback messages will likely be ignored by recipient for receiver - " + receiver;
+		    String msg = "Unknown receiver, feedback messages go to default XMPP server, but will likely be ignored by recipient for receiver - " + receiver;
 		    Log.warn("[UrlParameterConfig.contsructor] " + msg);
 		    Window.alert(msg);
 		} 		

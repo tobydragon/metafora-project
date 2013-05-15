@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import de.uds.MonitorInterventionMetafora.shared.messages.Locale;
-import de.uds.MonitorInterventionMetafora.shared.messages.MessageType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.MessageType;
 
 public class FeedbackModel implements Runnable {
 	Logger logger = Logger.getLogger(this.getClass());
@@ -25,7 +25,7 @@ public class FeedbackModel implements Runnable {
 	}
 
 	public synchronized String getSuggestedMessages(String username) {
-		logger.info("Save suggested messages for user: " + username);
+		logger.debug("[getSuggestedMessages] for user: " + username);
 		return suggestedMessagesModel.get(username);
 	}
 

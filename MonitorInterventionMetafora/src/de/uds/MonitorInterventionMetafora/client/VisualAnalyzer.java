@@ -26,7 +26,7 @@ import com.google.gwt.visualization.client.visualizations.corechart.PieChart;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationService;
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
-import de.uds.MonitorInterventionMetafora.client.feedback.FeedbackPanelContainer;
+import de.uds.MonitorInterventionMetafora.client.feedback.MessagesPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.MonitorViewPanel;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 //migen specific tools commented out for now
@@ -58,7 +58,7 @@ class VisualAnalyzer implements EntryPoint {
 	    	 else {
 	    		 _mainPanel=new MainContainerTabPanel(500);
 	    	 }
-	    	 FeedbackPanelContainer _feedbackPanelContainer = new  FeedbackPanelContainer(commServiceServlet);
+	    	 MessagesPanel _feedbackPanelContainer = new  MessagesPanel(commServiceServlet);
 	    	 _mainPanel.addTab(messagesBundle.ToolLabel(), _feedbackPanelContainer,false);
 	    	  
 	    	 RootPanel.get().add(_mainPanel);

@@ -2,6 +2,7 @@ package de.uds.MonitorInterventionMetafora.client.communication;
 
 import java.util.List;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -17,26 +18,29 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 public interface CommunicationService extends RemoteService {
 
 	//answered by serverInstance
-	CfAction sendAction(String _user, CfAction cfAction);
+	void sendAction(String _user, CfAction cfAction);
 	void sendAction (XmppServerType serverType, String user, CfAction action);
 	
 	List<CfAction> requestUpdate(CfAction _lastcfAction);
+	List<CfAction> requestUpdate(XmppServerType xmppServerType, CfAction _lastcfAction);
+	
+	void requestAnalysis(String groupId);
+	void requestAnalysis(XmppServerType xmppServerType, String groupId);
 	
 	String requestSuggestedMessages(String username);
+	String requestSuggestedMessages(XmppServerType xmppServerType, String username);
+
 	
 	
 	//answered by MainServer
 	Configuration requestConfiguration();
 
-	String sendLogAction(CfAction logAction);
+	void logAction(CfAction logAction);
 
 	boolean saveNewFilter(boolean isMainFilters, ActionFilter filter);
 
 	String removeNewFilter(String filterName);
-
-	CfAction sendNotificationToAgents(CfAction cfAction);
 	
 	Configuration requestMainConfiguration();
 
-	void requestAnalysis(String groupId);
 }

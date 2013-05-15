@@ -21,8 +21,9 @@ import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessage;
 
-public class TabWidget {
+public class SuggestedMessageButtonsTabWidget {
 	// CONSTANTS
 	private int SUGGESTED_MESSAGE_BUTTON_WIDTH = 350;
 	
@@ -37,7 +38,7 @@ public class TabWidget {
 	// Controller
 	protected SuggestedMessagesController controller;
 	
-	public TabWidget(String title) {
+	public SuggestedMessageButtonsTabWidget(String title) {
 		this.title = title;
 		mainVPanel = new VerticalPanel();
 		mainVPanel.setSpacing(3);
@@ -176,7 +177,7 @@ public class TabWidget {
 		b.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				FeedbackPanelContainer.getMessageTextArea().setText(message.getText());
+				MessagesPanel.getMessageTextArea().setText(message.getText());
 				UserLog userActionLog = new UserLog();
 				userActionLog.setComponentType(ComponentType.FEEDBACK_TEMPLATE_POOL);
 				userActionLog.setDescription("Text selection for feedback: Feedback_Type=" + tabTitle + "," + "Text=" + message.getText());

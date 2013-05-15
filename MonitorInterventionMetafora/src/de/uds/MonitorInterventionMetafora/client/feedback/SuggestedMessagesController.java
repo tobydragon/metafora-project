@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.allen_sauer.gwt.log.client.Log;
 
+import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
+import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestSuggestedMessagesCallback;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
@@ -12,21 +14,25 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessage;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesModel;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesCategory;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class SuggestedMessagesController {
-	private SuggestedMessagesView suggestedMessagesView;
+	private SuggestedMessagesPanel suggestedMessagesView;
 	private SuggestedMessagesModel suggestedMessagesModel;
-//	private ClientFeedbackDataModelUpdater feedbackUpdater;
 	
-	public SuggestedMessagesController(/*SuggestedMessagesView view, */SuggestedMessagesModel messagesModel /*, ClientFeedbackDataModelUpdater updater*/) {
-//		this.suggestedMessagesView = view;
+	private CommunicationServiceAsync commServiceServlet;
+	
+	public SuggestedMessagesController(SuggestedMessagesModel messagesModel, CommunicationServiceAsync commServiceServlet) {
 		this.setSuggestedMessagesModel(messagesModel);
-//		this.feedbackUpdater = updater;
+		this.commServiceServlet = commServiceServlet;
 	}
 
 	public void sendSuggestedMessages(String XML) {
-		Outbox outbox = FeedbackPanelContainer.getInstance().getOutbox();
+		MessageSendingPanel outbox = MessagesPanel.getInstance().getOutbox();
 		
 		// Create cfAction
 		CfActionType cfActionType = new CfActionType();
@@ -58,16 +64,16 @@ public class SuggestedMessagesController {
  	 	cfObject.addProperty(new CfProperty("TEXT", outbox.getMessageTextArea().getText()));
  	 	cfAction.addObject(cfObject);
 		
-		outbox.processAction(cfAction);
+		outbox.sendActionToServer(cfAction);
 		outbox.getMessageTextArea().setText("");
 		
 	}
 
-	public SuggestedMessagesView getView() {
+	public SuggestedMessagesPanel getView() {
 		return suggestedMessagesView;
 	}
 	
-	public void setView(SuggestedMessagesView view) {
+	public void setView(SuggestedMessagesPanel view) {
 		this.suggestedMessagesView = view;
 	}
 	
@@ -80,7 +86,7 @@ public class SuggestedMessagesController {
 	}
 
 	public void changeMessageStyle(String categoryName, int i, boolean isHighlight) {
-		SuggestionCategory category = suggestedMessagesModel.getSuggestionCategory(categoryName);
+		SuggestedMessagesCategory category = suggestedMessagesModel.getSuggestionCategory(categoryName);
 		if (category != null)
 			category.getSuggestedMessage(i).setHighlight(isHighlight);
 		else
@@ -93,7 +99,7 @@ public class SuggestedMessagesController {
 
 	
 	public void addNewMessage(String categoryName, String messageText) {
-		SuggestionCategory category = suggestedMessagesModel.getSuggestionCategory(categoryName);
+		SuggestedMessagesCategory category = suggestedMessagesModel.getSuggestionCategory(categoryName);
 		if (category != null)
 			category.addMessage(new SuggestedMessage(messageText));
 	}
@@ -103,15 +109,25 @@ public class SuggestedMessagesController {
 	}
 
 	public void removeMessage(String categoryName, int messageIndex) {
-		SuggestionCategory category = suggestedMessagesModel.getSuggestionCategory(categoryName);
+		SuggestedMessagesCategory category = suggestedMessagesModel.getSuggestionCategory(categoryName);
 		if (category != null)
 			category.removeMessage(messageIndex);
 	}
 
 	public void highlightCategory(String categoryName, boolean isHighlight) {
-		SuggestionCategory category = suggestedMessagesModel.getSuggestionCategory(categoryName);
+		SuggestedMessagesCategory category = suggestedMessagesModel.getSuggestionCategory(categoryName);
 		if (category != null)
 			category.setHighlight(isHighlight);
+	}
+	
+	public void refreshSuggestedMessages(String username) {
+		XmppServerType xmppServerType = UrlParameterConfig.getInstance().getXmppServerType();
+		if (xmppServerType != null){
+			commServiceServlet.requestSuggestedMessages(xmppServerType, username, new RequestSuggestedMessagesCallback());
+		}
+		else {
+			commServiceServlet.requestSuggestedMessages(username, new RequestSuggestedMessagesCallback());
+		}
 	}
 	
 }

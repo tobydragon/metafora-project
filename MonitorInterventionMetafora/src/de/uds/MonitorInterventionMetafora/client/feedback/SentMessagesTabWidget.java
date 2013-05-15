@@ -7,11 +7,11 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.ToggleButton;
 
-public class HistoryTabWidget extends TabWidget {
+public class SentMessagesTabWidget extends SuggestedMessageButtonsTabWidget {
 	private TextArea xmlCodeArea;
 	private ToggleButton xmlToggleButton;
 
-	public HistoryTabWidget(String title) {
+	public SentMessagesTabWidget(String title) {
 		super(title);
 		xmlCodeArea = new TextArea();
 		xmlCodeArea.setWidth("480px");

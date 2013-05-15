@@ -27,4 +27,12 @@ public interface MessagesBundle extends Constants {
     String Send();
     String Sent();
     
+    String Notification();
+    
+    String NewSuggestedMessages();
+    String NoSuggestedMessages();
+    
+    String SuggestedMessagesSent();
+    String SendSuggestedMessages();
+    
 }

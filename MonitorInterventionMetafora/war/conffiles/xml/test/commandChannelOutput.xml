@@ -81,6 +81,35 @@
         </properties>
       </content>
     </action>
+    <action time="1368264998495">
+      <actiontype type="FEEDBACK" classification="create" succeed="UNKNOWN" logged="false" />
+      <user id="Alan" role="receiver" />
+      <user id="Mary" role="receiver" />
+      <user id="David" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value=" כדאי שנשתף את המודלים שלנו, ונשווה ביניהם " />
+          <property name="INTERRUPTION_TYPE" value="High" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368565620967">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <content>
+        <description><![CDATA[Possible NEW_IDEA_NOT_DISCUSSED detected.]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
   </actions>
 </interactiondata>
 

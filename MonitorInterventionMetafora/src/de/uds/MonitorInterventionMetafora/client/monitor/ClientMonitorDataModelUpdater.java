@@ -8,7 +8,9 @@ import com.google.gwt.user.client.Timer;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.NoActionResponse;
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 
 public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdateCallBack{
 
@@ -57,7 +59,13 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 	
 	public void getUpdate(){
 		Log.debug("Step 1: Update Request sent to server");
-		clientDataModel.getServiceServlet().requestUpdate(clientDataModel.getLastAction(),this);
+		XmppServerType xmppServerType = UrlParameterConfig.getInstance().getXmppServerType();
+		if (xmppServerType != null){
+			clientDataModel.getServiceServlet().requestUpdate(xmppServerType, clientDataModel.getLastAction(),this);
+	 	 }
+	 	 else {
+	 		clientDataModel.getServiceServlet().requestUpdate(clientDataModel.getLastAction(),this);
+	 	 }
 	}
 
 	@Override
@@ -70,7 +78,13 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 	}
 
 	public void analyzeGroup(String groupId) {
-		clientDataModel.getServiceServlet().requestAnalysis(groupId, new NoActionResponse());
+		XmppServerType xmppServerType = UrlParameterConfig.getInstance().getXmppServerType();
+	 	 if (xmppServerType != null){
+	 		clientDataModel.getServiceServlet().requestAnalysis(xmppServerType, groupId, new NoActionResponse());
+	 	 }
+	 	 else {
+	 		clientDataModel.getServiceServlet().requestAnalysis(groupId, new NoActionResponse());
+	 	 }
 	}
 	
 }
