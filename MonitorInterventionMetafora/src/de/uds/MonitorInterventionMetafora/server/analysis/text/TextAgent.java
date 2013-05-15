@@ -29,7 +29,7 @@
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  
  */
-package de.uds.MonitorInterventionMetafora.server.analysis.tagging;
+package de.uds.MonitorInterventionMetafora.server.analysis.text;
 
 
 import java.io.BufferedReader;

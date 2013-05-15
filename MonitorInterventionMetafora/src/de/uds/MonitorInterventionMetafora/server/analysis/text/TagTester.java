@@ -1,6 +1,5 @@
-package de.uds.MonitorInterventionMetafora.server.analysis.tagging;
+package de.uds.MonitorInterventionMetafora.server.analysis.text;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.manager.TextManager;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;

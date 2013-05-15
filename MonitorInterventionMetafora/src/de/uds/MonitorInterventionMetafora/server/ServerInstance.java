@@ -3,11 +3,11 @@ package de.uds.MonitorInterventionMetafora.server;
 import java.util.List;
 import java.util.Vector;
 
+import messages.MessagesController;
+
 import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.AnalysisController;
-import de.uds.MonitorInterventionMetafora.server.analysis.manager.AnalysisManager;
-import de.uds.MonitorInterventionMetafora.server.feedback.FeedbackController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
@@ -16,14 +16,14 @@ import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerTyp
 public class ServerInstance {
 	Logger logger = Logger.getLogger(this.getClass());
 	
-	FeedbackController feedbackController;
+	MessagesController feedbackController;
 	
 	MonitorController monitorController;
 	//Analysis requires a Monitor
 	AnalysisController analysisController;
 		
 	public ServerInstance(CfCommunicationMethodType communicationMethodType, XmppServerType xmppServerType, boolean monitoringOn, String startTime ){
-		feedbackController = new FeedbackController(communicationMethodType, xmppServerType);
+		feedbackController = new MessagesController(communicationMethodType, xmppServerType);
 		
 		if (monitoringOn){
 			monitorController = new MonitorController(communicationMethodType, startTime, xmppServerType);
@@ -38,9 +38,8 @@ public class ServerInstance {
 
 	}
 	
-	public CfAction sendAction(String _user, CfAction cfAction) {
+	public void sendAction(String _user, CfAction cfAction) {
 		feedbackController.sendAction(_user, cfAction);
-		return null;
 	}
 
 	
@@ -53,16 +52,6 @@ public class ServerInstance {
 			logger.warn("[requestUpdate]  requesting update is revieced by a server set to not monitor");
 			return new Vector<CfAction>();
 		}
-	}
-
-
-	public CfAction sendNotificationToAgents(CfAction cfAction) {
-
-		AnalysisManager.getAnalysisManagerInstance().sendToAllAgents(
-				"Notification", cfAction);
-
-		System.out.println("Notifications are sent to the agents!!");
-		return new CfAction();
 	}
 
 	public void requestAnalysis(String groupId) {

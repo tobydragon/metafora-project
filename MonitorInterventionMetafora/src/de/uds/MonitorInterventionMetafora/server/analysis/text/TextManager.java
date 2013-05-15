@@ -1,4 +1,4 @@
-package de.uds.MonitorInterventionMetafora.server.analysis.manager;
+package de.uds.MonitorInterventionMetafora.server.analysis.text;
 
 import java.util.Collection;
 import java.util.List;
@@ -9,7 +9,6 @@ import java.util.Vector;
 
 import org.hamcrest.core.IsAnything;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.tagging.TextAgent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
@@ -24,52 +23,41 @@ public class TextManager {
 		agent=new TextAgent();
 	}
 	
-public TextManager(boolean addWordCount){
+	public TextManager(boolean addWordCount){
 		this.addWordCount=addWordCount;
 		agent=new TextAgent(addWordCount);
 	}
 
 
-	public CfAction tagAction(CfAction action){
-	
-		return processActionCfAction(action);
-	}
-	
-	CfAction processActionCfAction(CfAction action){
+	public CfAction tagAction(CfAction action){		
 		
 		String contenttextToTag=getTextfromPropertyList(getContentPropertiesToTag(action));
+		boolean taggedAlready = false;
+		
 		if(contenttextToTag!=null && contenttextToTag!=""){
-			
+			taggedAlready = true;
 			action.getCfContent().addProperty(agent.tag(contenttextToTag).toCfProperty());
-			if(addWordCount)
-			{
+			if(addWordCount){
 				action.getCfContent().addProperty(agent.getWordCount(contenttextToTag).toCfProperty());
 			}
 		}
-		
-		
 		String objecttextToTag=getTextfromPropertyList(getObjectPropertiesToTag(action));
 		if(objecttextToTag!=null && objecttextToTag!=""){
-			
+			taggedAlready = true;
 			action.getCfObjects().get(0).addProperty(agent.tag(objecttextToTag).toCfProperty());
-			if(addWordCount)
-			{
+			if(addWordCount){
 				action.getCfObjects().get(0).addProperty(agent.getWordCount(objecttextToTag).toCfProperty());
 			}
 		}
-		else {
-			
-			if(action.getCfObjects().size()>0){
+
+		if(action.getCfObjects().size()>0 && !taggedAlready){
 			action.getCfObjects().get(0).addProperty(agent.tag("").toEmptyCfProperty());
-			if(addWordCount)
-			{
+			if(addWordCount){
 				action.getCfObjects().get(0).addProperty(agent.getWordCount("").toEmptyCfProperty());
 			}
-			}
 		}
-		
+
 		return action;
-		
 	}
 	
 	private List<CfProperty> getObjectPropertiesToTag(CfAction action){

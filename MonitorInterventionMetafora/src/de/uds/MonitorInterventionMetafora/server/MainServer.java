@@ -11,11 +11,7 @@ import org.apache.log4j.Logger;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationService;
-import de.uds.MonitorInterventionMetafora.server.analysis.manager.AnalysisManager;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
-import de.uds.MonitorInterventionMetafora.server.feedback.FeedbackController;
-import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
-import de.uds.MonitorInterventionMetafora.server.monitor.MonitorModel;
 import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;

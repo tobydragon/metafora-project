@@ -3,12 +3,13 @@ package de.uds.MonitorInterventionMetafora.server.analysis;
 import java.util.List;
 import java.util.Vector;
 
+import messages.MessagesController;
+
 import org.apache.log4j.Logger;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.notification.BehaviorInstance;
-import de.uds.MonitorInterventionMetafora.server.analysis.notification.NewIdeaNotDiscussedIdentifier;
-import de.uds.MonitorInterventionMetafora.server.analysis.notification.BehaviorIdentifier;
-import de.uds.MonitorInterventionMetafora.server.feedback.FeedbackController;
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorIdentifier;
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorInstance;
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.NewIdeaNotDiscussedIdentifier;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
@@ -24,7 +25,7 @@ public class AnalysisController {
 	MonitorController monitorController;
 	ReasonedInterventionController reasonedInterventionController;
 	
-	public AnalysisController(MonitorController monitorController, FeedbackController feedbackController){
+	public AnalysisController(MonitorController monitorController, MessagesController feedbackController){
 		this.monitorController = monitorController;
 		
 		behaviorIdentifiers = new Vector<BehaviorIdentifier>();
