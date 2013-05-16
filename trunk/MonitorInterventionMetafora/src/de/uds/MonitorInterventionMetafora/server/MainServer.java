@@ -20,6 +20,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMet
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
 /**
  * The server side implementation of the RPC service.
@@ -183,18 +184,18 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	}
 
 	@Override
-	public void requestAnalysis(String groupId) {
-		requestAnalysis(generalConfiguration.getDefaultXmppServer(), groupId);
+	public void requestAnalysis(String groupId, Locale locale) {
+		requestAnalysis(generalConfiguration.getDefaultXmppServer(), groupId, locale);
 	}
 	
 	@Override
-	public void requestAnalysis(XmppServerType xmppServerType, String groupId) {
+	public void requestAnalysis(XmppServerType xmppServerType, String groupId, Locale locale) {
 		logger.info("[requesAnalysis]  requesting analysis for group ID:" + groupId);
 		if (xmppServerType == XmppServerType.DEPLOY){
-			 mainServer.requestAnalysis(groupId);
+			 mainServer.requestAnalysis(groupId, locale);
 		}
 		else {
-			 testServer.requestAnalysis(groupId);
+			 testServer.requestAnalysis(groupId, locale);
 		}
 	}
 

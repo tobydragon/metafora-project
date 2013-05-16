@@ -1,12 +1,14 @@
 package de.uds.MonitorInterventionMetafora.server.analysis;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import messages.MessagesController;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorInstance;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
+import de.uds.MonitorInterventionMetafora.server.mmftparser.SuggestedMessagesModelParserForServer;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -17,25 +19,27 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatString
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.InterventionCreator;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.MessageType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesModel;
 
 public class ReasonedInterventionController {
 	
-	MessagesController feedbackController;
+	MessagesController messagesController;
 	CfAgentCommunicationManager analysisChannelManager;
 		
 	
 	public ReasonedInterventionController(MessagesController feedbackController, CfAgentCommunicationManager analysisChannelManagaer) {
-		this.feedbackController = feedbackController;
+		this.messagesController = feedbackController;
 		this.analysisChannelManager = analysisChannelManagaer;
 	}
 
 	//	method that takes list of notifications, and decides whether to send suggestion, landmark, or message
-	public void sendInterventions(List<BehaviorInstance> behaviorsIdentified){
+	public void sendInterventions(List<BehaviorInstance> behaviorsIdentified, Locale locale){
 		for (BehaviorInstance behaviorInstance : behaviorsIdentified){
 			sendLandmarkForBehavior(behaviorInstance);
 		}
-		sendSuggestionsForAllBehaviors(behaviorsIdentified);
+		sendSuggestionsForAllBehaviors(behaviorsIdentified, locale);
 	}
 	
 	public void sendLandmarkForBehavior(BehaviorInstance behaviorInstance){
@@ -52,14 +56,19 @@ public class ReasonedInterventionController {
 		}
 		
 		CfAction cfAction = new CfAction(System.currentTimeMillis(), cfActionType, users, new ArrayList<CfObject>(),content);	
-		feedbackController.sendAction(MetaforaStrings.ANAYLSIS_MANAGER, cfAction);
+		messagesController.sendAction(MetaforaStrings.ANAYLSIS_MANAGER, cfAction);
 	}
 	
-	public void sendSuggestionsForAllBehaviors(List<BehaviorInstance> behaviorsIdentified){
-		String englishPeer = feedbackController.getDefaultMessages(Locale.en, MessageType.PEER);
-		String englishExternal = feedbackController.getDefaultMessages(Locale.en, MessageType.EXTERNAL);
-		
-		String hePeer = feedbackController.getDefaultMessages(Locale.he, MessageType.PEER);
+	public void sendSuggestionsForAllBehaviors(List<BehaviorInstance> behaviorsIdentified, Locale locale){
+		SuggestedMessagesModel peerMessageModel = messagesController.getCopyOfDefaultMessages(locale, MessageType.PEER);
+		for (BehaviorInstance behaviorInstance : behaviorsIdentified){
+			peerMessageModel.highlightMessagesForBehaviorType(behaviorInstance.getBehaviorType());
+		}
+		//TODO: get users
+		CfAction intervention = InterventionCreator.createSendSuggestedMessages(Arrays.asList("Bob"), SuggestedMessagesModelParserForServer.toXml(peerMessageModel).toString());
+		if( intervention != null){
+			messagesController.sendAction(null, intervention);
+		}
 	}
 	
 //	public 

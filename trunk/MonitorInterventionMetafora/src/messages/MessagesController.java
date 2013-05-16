@@ -7,7 +7,9 @@ import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunic
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
+import de.uds.MonitorInterventionMetafora.server.mmftparser.SuggestedMessagesModelParserForServer;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
+import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
@@ -17,16 +19,17 @@ import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesFileHandler;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.MessageType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesFileTextReceiver;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesModel;
 
 public class MessagesController implements CfCommunicationListener {
 	Logger logger = Logger.getLogger(this.getClass());
 	
 	CfAgentCommunicationManager commandChannelCommunicationManager;
-	SuggestedMessagesModel suggestedMessagesModel;
+	SuggestedMessages4AllUsersModel suggestedMessagesModel;
 	
 	public MessagesController(CfCommunicationMethodType communicationMethodType, XmppServerType xmppServerType){
 		commandChannelCommunicationManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.command, xmppServerType);
-		suggestedMessagesModel = new SuggestedMessagesModel();
+		suggestedMessagesModel = new SuggestedMessages4AllUsersModel();
 		commandChannelCommunicationManager.register(this);
 		initializeDefaultMessageModel();
 	}
@@ -35,8 +38,12 @@ public class MessagesController implements CfCommunicationListener {
 		for (MessageType messageType : MessageType.values()){
 			for (Locale locale : Locale.values()){
 				String path = GeneralUtil.getRealPath(SuggestedMessagesFileHandler.getPartialFilepath(messageType, locale));
-				String fileContents = GeneralUtil.readFileToString(path);
-				suggestedMessagesModel.updateDefaultMessagesModel(messageType, locale, fileContents);
+				logger.info("[initializeDefaultMessageModel] reading model from path: " + path);
+				XmlFragment messagesFragment = XmlFragment.getFragmentFromLocalFile(path);
+				if (messagesFragment != null){
+					SuggestedMessagesModel defaultMessagesModel = SuggestedMessagesModelParserForServer.fromXml(messagesFragment);
+					suggestedMessagesModel.updateDefaultMessagesModel(messageType, locale, defaultMessagesModel);
+				}
 			}
 		}
 	}
@@ -45,12 +52,12 @@ public class MessagesController implements CfCommunicationListener {
 		return suggestedMessagesModel.getSuggestedMessages(username);
 	}
 	
-	public String getDefaultMessages(Locale locale, MessageType messageType){
-		return suggestedMessagesModel.getDefaultMessages(messageType, locale);
+	public SuggestedMessagesModel getCopyOfDefaultMessages(Locale locale, MessageType messageType){
+		return suggestedMessagesModel.getCopyOfDefaultMessages(messageType, locale);
 	}
 	
 	public void sendAction(String _user, CfAction cfAction) {
-		logger.debug("action = \n" + CfActionParser.toXml(cfAction));
+		logger.debug("[sendAction] Sending Message = \n" + CfActionParser.toXml(cfAction));
 		commandChannelCommunicationManager.sendMessage(cfAction);
 	}	
 	

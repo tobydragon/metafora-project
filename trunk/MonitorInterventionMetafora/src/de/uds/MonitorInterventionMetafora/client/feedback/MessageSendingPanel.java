@@ -64,7 +64,6 @@ public class MessageSendingPanel extends VerticalPanel {
 	public int sectionWidth = 400;
 	public VerticalPanel recipientNamesColumn;
 	//private boolean recipientsSelectionButtonSetToAll=true;
-	private String TOOL_NAME = "FEEDBACK_CLIENT";
 	private SuggestedMessagesController suggestedMessagesController;
 	private CommunicationServiceAsync commServiceServlet;
 	
@@ -184,18 +183,7 @@ public class MessageSendingPanel extends VerticalPanel {
 		sendOptionsRow.add(userGroupColumn);
 				
 		if (userType.equals(UserType.RECOMMENDING_WIZARD)) {
-			Button sendRecommendationsButton = new Button(messagesBundle.SendSuggestedMessages());
-			sendRecommendationsButton.addClickHandler(new ClickHandler() {
-				@Override
-				public void onClick(ClickEvent event) {
-					if (suggestedMessagesController != null) {
-						String suggestions = SuggestedMessagesModel.toXML(suggestedMessagesController.getSuggestedMessagesModel());
-						suggestedMessagesController.sendSuggestedMessages(suggestions);
-						DisplayUtil.postNotificationMessage(messagesBundle.SuggestedMessagesSent());
-					}
-				}
-			});
-			labelAndSendButtonPanel.add(sendRecommendationsButton);
+			labelAndSendButtonPanel.add(createSendSugesstionsButton());
 		} else {
 			//send button
 			final Button sendButton = new Button(messagesBundle.Send());
@@ -239,6 +227,20 @@ public class MessageSendingPanel extends VerticalPanel {
 		this.add(scrollPanel);
 	}
 	
+	private Button createSendSugesstionsButton(){
+		Button sendRecommendationsButton = new Button(messagesBundle.SendSuggestedMessages());
+		sendRecommendationsButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				if (suggestedMessagesController != null) {
+					String suggestions = SuggestedMessagesModelParserForClient.toXML(suggestedMessagesController.getSuggestedMessagesModel());
+					suggestedMessagesController.sendSuggestedMessages(suggestions);
+					DisplayUtil.postNotificationMessage(messagesBundle.SuggestedMessagesSent());
+				}
+			}
+		});
+		return sendRecommendationsButton;
+	}
 
 	private void addInterruptionLevels() {
 		
@@ -378,7 +380,7 @@ public class MessageSendingPanel extends VerticalPanel {
 		
 		CfContent myContent = new CfContent();
 		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_RECEIVING_TOOL,receiver));
-		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL,TOOL_NAME));
+		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL, MetaforaStrings.MONITOR_AND_MESSAGE_TOOL_NAME));
  	 	feedbackMessage.setCfContent(myContent);
 
 	 	sendActionToServer(feedbackMessage);
@@ -405,10 +407,10 @@ public class MessageSendingPanel extends VerticalPanel {
 	public void sendActionToServer(CfAction cfAction) {
 		XmppServerType xmppServerType = UrlParameterConfig.getInstance().getXmppServerType();
 		if (xmppServerType != null){
-			commServiceServlet.sendAction(xmppServerType, TOOL_NAME,cfAction, new NoActionResponse());
+			commServiceServlet.sendAction(xmppServerType, MetaforaStrings.MONITOR_AND_MESSAGE_TOOL_NAME,cfAction, new NoActionResponse());
 		}
 		else {
-			commServiceServlet.sendAction(TOOL_NAME,cfAction, new NoActionResponse());
+			commServiceServlet.sendAction(MetaforaStrings.MONITOR_AND_MESSAGE_TOOL_NAME,cfAction, new NoActionResponse());
 		}
 	}
 	

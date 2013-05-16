@@ -1,117 +1,74 @@
 package de.uds.MonitorInterventionMetafora.shared.suggestedmessages;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.xml.client.Document;
 import com.google.gwt.xml.client.Element;
-import com.google.gwt.xml.client.NamedNodeMap;
-import com.google.gwt.xml.client.Node;
 import com.google.gwt.xml.client.NodeList;
 import com.google.gwt.xml.client.XMLParser;
+
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
 
 
 
 public class SuggestedMessagesModel {
-	private List<SuggestedMessagesCategory> suggestionCategories;
+	private List<SuggestedMessagesCategory> suggestedMessagesCategories;
+	private Map<L2L2category, SuggestedMessagesCategory> categoryMap;
+	private Map<BehaviorType, List<SuggestedMessage>> behavior2messageMap;
 	
 	public SuggestedMessagesModel() {
-		this.suggestionCategories = new Vector<SuggestedMessagesCategory>();
+		this.suggestedMessagesCategories = new Vector<SuggestedMessagesCategory>();
+		this.categoryMap = new HashMap<L2L2category, SuggestedMessagesCategory>();
+		this.behavior2messageMap = new HashMap<BehaviorType, List<SuggestedMessage>>();
 	}
 	
 	public void addCategory(SuggestedMessagesCategory category) {
-		suggestionCategories.add(category);
-	}
-	
-
-	//
-	// STATIC
-	//
-	
-	public static String toXML(SuggestedMessagesModel model) {
-		StringBuffer b = new StringBuffer("<?xml version=\"1.0\" encoding=\"US-ASCII\"?>");		
-		b.append("<messages>\n");
-		for (SuggestedMessagesCategory category : model.getSuggestionCategories()) {
-			String categoryHighlight = category.isHighlight() ? " highlight=\"true\" " : "";
-			b.append("<set id=\"" +category.getName()+ "\""+ categoryHighlight +">\n");
-			for (SuggestedMessage message : category.getSuggestedMessages()) {
-				String attribute = message.isHighlight() ? " highlight=\"true\"" : "";
-				b.append("<message" +attribute+ ">");
-				b.append(message.getText());
-				b.append("</message>\n");
-			}
-			b.append("</set>\n");
-		}
-		b.append("</messages>");
+		suggestedMessagesCategories.add(category);
 		
-		return b.toString();
-	}
-	
-	public static SuggestedMessagesModel fromXML(String XML) {
-		SuggestedMessagesModel model = new SuggestedMessagesModel();
-		
-		Document xmlDocument = XMLParser.parse(XML);
-		Element docElement = xmlDocument.getDocumentElement();
-		XMLParser.removeWhitespace(docElement);
-		
-		// get the elements called <sets>
-		NodeList sets = docElement.getElementsByTagName("set");
-		for (int iset = 0; iset < sets.getLength(); iset++) {
-			Element setOfMessages = (Element) sets.item(iset);
-			NamedNodeMap categoryAttributes = setOfMessages.getAttributes();
-			String categoryName = categoryAttributes.getNamedItem("id").getNodeValue();
-			SuggestedMessagesCategory suggestionCategory = new SuggestedMessagesCategory(categoryName);
-
-			Node highlightItem = categoryAttributes.getNamedItem("highlight");
-			if (highlightItem != null && highlightItem.getNodeValue().equalsIgnoreCase("true")) 
-				suggestionCategory.setHighlight(true);
-			
-			// check here if there are more sets
-			NodeList messages = setOfMessages.getElementsByTagName("message");
-			for (int imessage = 0; imessage < messages.getLength(); imessage++) {
-				
-				Node messageItem = messages.item(imessage);
-				String msgText = messageItem.getFirstChild().getNodeValue();
-				boolean isHighlight = false;
-				if (messageItem.hasAttributes()) {
-					NamedNodeMap msgAttributes = messageItem.getAttributes();
-					for (int iattribute = 0; iattribute < msgAttributes.getLength(); iattribute++) {
-						Node msgAttribute = msgAttributes.item(iattribute);
-						if (msgAttribute.getNodeName().equals("highlight") && msgAttribute.getNodeValue().equalsIgnoreCase("true")) {
-							isHighlight = true;
-						}
-					}
+		//track in maps for lookup efficiency
+		categoryMap.put(category.getL2l2category(), category);
+		for (SuggestedMessage suggestedMessage : category.getSuggestedMessages()){
+			BehaviorType behaviorType = suggestedMessage.getBehaviorType();
+			if (behaviorType != null){
+				List<SuggestedMessage> suggestedMessages = behavior2messageMap.get(behaviorType);
+				if (suggestedMessages == null){
+					suggestedMessages = new Vector<SuggestedMessage>();
+					behavior2messageMap.put(behaviorType, suggestedMessages);
 				}
-				SuggestedMessage suggestedMessage = new SuggestedMessage(msgText, isHighlight); 
-				suggestionCategory.addMessage(suggestedMessage);
+				suggestedMessages.add(suggestedMessage);
 			}
-			model.addCategory(suggestionCategory);
 		}
-		
-		return model;
 	}
-
-	//
-	// GETTERS & SETTERS
-	//
+		
 	
+	// GETTERS & SETTERS
 	public SuggestedMessagesCategory getSuggestionCategory(int index) {
-		return suggestionCategories.get(index);
+		return suggestedMessagesCategories.get(index);
 	}
 	
 	public List<SuggestedMessagesCategory> getSuggestionCategories() {
-		return suggestionCategories;
-	}
-	
-	public void setSuggestionCategories(List<SuggestedMessagesCategory> suggestionCategories) {
-		this.suggestionCategories = suggestionCategories;
+		return suggestedMessagesCategories;
 	}
 
 	public SuggestedMessagesCategory getSuggestionCategory(String categoryName) {
-		for (SuggestedMessagesCategory category : suggestionCategories) {
+		for (SuggestedMessagesCategory category : suggestedMessagesCategories) {
 			if (category.getName().equals(categoryName))
 				return category;
 		}
 		return null;
+	}
+
+	public void highlightMessagesForBehaviorType(BehaviorType behaviorType) {
+		List<SuggestedMessage> messagesToHighlight = behavior2messageMap.get(behaviorType);
+		if (messagesToHighlight != null){
+			for (SuggestedMessage message : messagesToHighlight){
+				message.setHighlight(true);
+			}
+		}
+		//TODO: make link from message to category, highlight category too
 	}
 }

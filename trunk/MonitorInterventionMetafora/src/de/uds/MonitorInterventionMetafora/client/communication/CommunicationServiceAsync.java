@@ -8,6 +8,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
 
 /**
@@ -26,8 +27,8 @@ public interface CommunicationServiceAsync {
 	void requestUpdate(CfAction _lastcfAction, AsyncCallback<List<CfAction>> callback);
 	void requestUpdate(XmppServerType xmppServerType, CfAction _lastcfAction, AsyncCallback<List<CfAction>> callback);
 
-	void requestAnalysis(String groupId, AsyncCallback<Void> callback);
-	void requestAnalysis(XmppServerType xmppServerType, String groupId, AsyncCallback<Void> callback);
+	void requestAnalysis(String groupId, Locale locale, AsyncCallback<Void> callback);
+	void requestAnalysis(XmppServerType xmppServerType, String groupId, Locale locale, AsyncCallback<Void> callback);
 	
 	//requests for MainServer
 	void requestConfiguration(AsyncCallback<Configuration> callback);

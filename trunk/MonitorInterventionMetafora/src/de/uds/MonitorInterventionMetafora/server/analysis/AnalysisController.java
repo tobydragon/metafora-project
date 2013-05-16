@@ -16,6 +16,7 @@ import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.Operation
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
 public class AnalysisController {
 	Logger log = Logger.getLogger(this.getClass());
@@ -34,7 +35,7 @@ public class AnalysisController {
 		reasonedInterventionController = new ReasonedInterventionController(feedbackController, monitorController.getAnalysisChannelManager());
 	}
 	
-	public void analyzeGroup(String groupName){
+	public void analyzeGroup(String groupName, Locale locale){
 		List<ActionPropertyRule> groupRules1 = new Vector<ActionPropertyRule>();
 		groupRules1.add(new ActionPropertyRule("GROUP_ID", groupName, PropertyLocation.OBJECT, OperationType.EQUALS));
 		ActionFilter groupFilter1 = new ActionFilter("GroupFilter", true, groupRules1);
@@ -51,7 +52,7 @@ public class AnalysisController {
 		}
 		log.info("[AnalysisController.analyzeGroup] "+ identifiedBehaviors.size() +" behaviors identified : \n" + identifiedBehaviors);
 
-		reasonedInterventionController.sendInterventions(identifiedBehaviors);
+		reasonedInterventionController.sendInterventions(identifiedBehaviors, locale);
 	}
 	
 

@@ -10,6 +10,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
 /**
  * The client side stub for the RPC service.
@@ -24,8 +25,8 @@ public interface CommunicationService extends RemoteService {
 	List<CfAction> requestUpdate(CfAction _lastcfAction);
 	List<CfAction> requestUpdate(XmppServerType xmppServerType, CfAction _lastcfAction);
 	
-	void requestAnalysis(String groupId);
-	void requestAnalysis(XmppServerType xmppServerType, String groupId);
+	void requestAnalysis(String groupId, Locale locale);
+	void requestAnalysis(XmppServerType xmppServerType, String groupId, Locale locale);
 	
 	String requestSuggestedMessages(String username);
 	String requestSuggestedMessages(XmppServerType xmppServerType, String username);

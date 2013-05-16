@@ -38,7 +38,6 @@ public class SuggestedMessagesController {
 		CfActionType cfActionType = new CfActionType();
 		cfActionType.setType(MetaforaStrings.ACTION_TYPE_SUGGESTED_MESSAGES_STRING);
 		cfActionType.setClassification("create");
-		cfActionType.setSucceed(MetaforaStrings.ACTION_TYPE_SUCCEEDED_UNKNOWN_STRING);
 		cfActionType.setLogged("false");
 
 		CfAction cfAction = new CfAction(GWTUtils.getTimeStamp(), cfActionType);
@@ -91,7 +90,6 @@ public class SuggestedMessagesController {
 			category.getSuggestedMessage(i).setHighlight(isHighlight);
 		else
 			System.err.println("SuggestedMessagesController.changeMessageStyle(): category is null");
-//		suggestedMessagesView.populateTabs(suggestedMessagesModel);
 		
 		String isBoldStr = (isHighlight) ? "" : " not"; 
 		Log.info("Message: " +category.getSuggestedMessage(i).getText()+ " in category: "+ categoryName+ " is" + isBoldStr + " bold now");
