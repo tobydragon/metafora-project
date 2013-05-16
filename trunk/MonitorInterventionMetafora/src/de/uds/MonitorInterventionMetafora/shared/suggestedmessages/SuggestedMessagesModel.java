@@ -71,4 +71,9 @@ public class SuggestedMessagesModel {
 		}
 		//TODO: make link from message to category, highlight category too
 	}
+	
+	public List<SuggestedMessage> getSuggestedMessagesForBehaviorType(BehaviorType behaviorType){
+		return behavior2messageMap.get(behaviorType);
+	}
+	
 }

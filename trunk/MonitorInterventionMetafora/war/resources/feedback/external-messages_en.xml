@@ -2,7 +2,7 @@
 <messages> 
 <set id="Distributed Leadership" l2l2tag="DISTRIBUTED_LEADERSHIP">
 <message>Propose a new idea to help you explore a different direction</message>
-<message>You need to see how new ideas are relevant and helpful to your current work</message>
+<message behaviortag="NEW_IDEA_NOT_DISCUSSED">You need to see how new ideas are relevant and helpful to your current work</message>
 <message>How could you improve your plan? Look at the group planning map together</message>
 <message>Assign tasks to help you split the work equally.</message>
 <message>Has everyone contributed in planning the work?</message>

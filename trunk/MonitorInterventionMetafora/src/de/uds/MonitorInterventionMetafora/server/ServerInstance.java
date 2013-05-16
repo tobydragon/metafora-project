@@ -28,7 +28,7 @@ public class ServerInstance {
 		
 		if (monitoringOn){
 			monitorController = new MonitorController(communicationMethodType, startTime, xmppServerType);
-			analysisController = new AnalysisController(monitorController, feedbackController );
+			analysisController = new AnalysisController(monitorController, feedbackController, xmppServerType );
 		}
 		
 	}

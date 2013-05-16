@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.server.analysis;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Vector;
 
 import messages.MessagesController;
 
@@ -18,30 +19,52 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.InterventionCreator;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.MessageType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessage;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesModel;
 
 public class ReasonedInterventionController {
 	
 	MessagesController messagesController;
 	CfAgentCommunicationManager analysisChannelManager;
+	XmppServerType xmppServerType;
 		
 	
-	public ReasonedInterventionController(MessagesController feedbackController, CfAgentCommunicationManager analysisChannelManagaer) {
+	public ReasonedInterventionController(MessagesController feedbackController, CfAgentCommunicationManager analysisChannelManagaer, XmppServerType xmppServerType) {
 		this.messagesController = feedbackController;
 		this.analysisChannelManager = analysisChannelManagaer;
+		this.xmppServerType = xmppServerType;
 	}
 
-	//	method that takes list of notifications, and decides whether to send suggestion, landmark, or message
+	//	method that takes list of notifications, and decides whether to send suggestions, landmarks, and messages
 	public void sendInterventions(List<BehaviorInstance> behaviorsIdentified, Locale locale){
 		for (BehaviorInstance behaviorInstance : behaviorsIdentified){
 			sendLandmarkForBehavior(behaviorInstance);
 		}
+
 		sendSuggestionsForAllBehaviors(behaviorsIdentified, locale);
+		
+		setDirectMessagesForBehaviors(behaviorsIdentified, locale);
+		BehaviorInstance instanceForDirectFeedback = chooseOneForDirectFeedback(behaviorsIdentified);
+		SuggestedMessage message = instanceForDirectFeedback.getBestSuggestedMessage();
+		if (instanceForDirectFeedback != null && message != null){
+			messagesController.sendAction(null, InterventionCreator.createDirectMessage(xmppServerType.toString(), instanceForDirectFeedback.getUsernames(), "HIGH", message.getText(), null));
+		}
 	}
 	
+
+	private BehaviorInstance chooseOneForDirectFeedback(List<BehaviorInstance> behaviorsIdentified) {
+		//TODO: do something smarter than just the first one
+		int index = behaviorsIdentified.size()-1;
+		if (index >= 0){
+			return behaviorsIdentified.get(0);
+		}
+		return null;
+	}
+
 	public void sendLandmarkForBehavior(BehaviorInstance behaviorInstance){
 		CfContent content=new CfContent("Possible " + behaviorInstance.getBehaviorType() + " detected.");
 
@@ -71,33 +94,11 @@ public class ReasonedInterventionController {
 		}
 	}
 	
-//	public 
-	
-//	method to send message to control
-//	public CfAction createNotificationCfAction() {	
-//		CfContent content=new CfContent(getDescriptionString());
-//
-//		content.addProperty(new CfProperty(CommonFormatStrings.INDICATOR_TYPE, CommonFormatStrings.ACTIVITY));
-//		content.addProperty(new CfProperty(CommonFormatStrings.TOOL, CommonFormatStrings.VISAULIZER_ANALYZER));
-//		content.addProperty(new CfProperty(CommonFormatStrings.ANALYSIS_TYPE, CommonFormatStrings.NOTIFICATION));
-////		String color = filter.getColor();
-////		if(color!=null && color!=""){
-////			content.addProperty(new CfProperty(CommonFormatStrings.COLOR,color));
-////		}
-//
-//		final CfActionType cfActionType = new CfActionType(CommonFormatStrings.LANDMARK, 
-//				CommonFormatStrings.OTHER, CommonFormatStrings.TRUE);
-//		
-//		final CfUser _user=new CfUser("NotificationManager", "Manager");
-//		final List<CfUser> _users=new ArrayList<CfUser>();
-//		_users.add(_user);
-//		
-//		return new CfAction(System.currentTimeMillis(), cfActionType,_users, new ArrayList<CfObject>(),content);	
-//	}
-	
-//	method to send suggestions to control
-	
-	public String messageLookup(BehaviorType behaviorType){
-		return behaviorType.toString();
+	public void setDirectMessagesForBehaviors(List<BehaviorInstance> behaviorInstances, Locale locale){
+		//TODO: No need to make a new model each time, could be referencing same model to copy messages
+		SuggestedMessagesModel externalMessageModel = messagesController.getCopyOfDefaultMessages(locale, MessageType.EXTERNAL);
+		for (BehaviorInstance behaviorInstance : behaviorInstances){
+			behaviorInstance.addSuggestedMessages(externalMessageModel.getSuggestedMessagesForBehaviorType(behaviorInstance.getBehaviorType()));
+		}
 	}
 }
