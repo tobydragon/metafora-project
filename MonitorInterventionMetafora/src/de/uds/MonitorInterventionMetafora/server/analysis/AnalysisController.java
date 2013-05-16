@@ -14,6 +14,7 @@ import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
+import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
@@ -26,13 +27,13 @@ public class AnalysisController {
 	MonitorController monitorController;
 	ReasonedInterventionController reasonedInterventionController;
 	
-	public AnalysisController(MonitorController monitorController, MessagesController feedbackController){
+	public AnalysisController(MonitorController monitorController, MessagesController feedbackController, XmppServerType xmppServerType){
 		this.monitorController = monitorController;
 		
 		behaviorIdentifiers = new Vector<BehaviorIdentifier>();
 		behaviorIdentifiers.add(new NewIdeaNotDiscussedIdentifier());
 		
-		reasonedInterventionController = new ReasonedInterventionController(feedbackController, monitorController.getAnalysisChannelManager());
+		reasonedInterventionController = new ReasonedInterventionController(feedbackController, monitorController.getAnalysisChannelManager(), xmppServerType);
 	}
 	
 	public void analyzeGroup(String groupName, Locale locale){
