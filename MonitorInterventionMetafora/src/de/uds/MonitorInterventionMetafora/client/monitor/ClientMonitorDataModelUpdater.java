@@ -11,6 +11,7 @@ import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitor
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
 public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdateCallBack{
 
@@ -79,11 +80,13 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 
 	public void analyzeGroup(String groupId) {
 		XmppServerType xmppServerType = UrlParameterConfig.getInstance().getXmppServerType();
+		Locale locale = UrlParameterConfig.getInstance().getLocale();
+		
 	 	 if (xmppServerType != null){
-	 		clientDataModel.getServiceServlet().requestAnalysis(xmppServerType, groupId, new NoActionResponse());
+	 		clientDataModel.getServiceServlet().requestAnalysis(xmppServerType, groupId, locale, new NoActionResponse());
 	 	 }
 	 	 else {
-	 		clientDataModel.getServiceServlet().requestAnalysis(groupId, new NoActionResponse());
+	 		clientDataModel.getServiceServlet().requestAnalysis(groupId, locale, new NoActionResponse());
 	 	 }
 	}
 	

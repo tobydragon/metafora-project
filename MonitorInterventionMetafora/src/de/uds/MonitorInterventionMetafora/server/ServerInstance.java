@@ -12,6 +12,7 @@ import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
 public class ServerInstance {
 	Logger logger = Logger.getLogger(this.getClass());
@@ -54,9 +55,9 @@ public class ServerInstance {
 		}
 	}
 
-	public void requestAnalysis(String groupId) {
+	public void requestAnalysis(String groupId, Locale locale) {
 		if (analysisController != null){
-			analysisController.analyzeGroup(groupId);
+			analysisController.analyzeGroup(groupId, locale);
 		}
 	}
 

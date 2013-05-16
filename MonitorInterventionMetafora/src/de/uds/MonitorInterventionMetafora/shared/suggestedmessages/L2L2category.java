@@ -1,12 +1,12 @@
-package de.uds.MonitorInterventionMetafora.shared.datamodels.attributes;
+package de.uds.MonitorInterventionMetafora.shared.suggestedmessages;
 
 import com.allen_sauer.gwt.log.client.Log;
 
-public enum BehaviorType {
-	NOWORK, NEW_IDEA_NOT_DISCUSSED;
-	
+public enum L2L2category {
+	DISTRIBUTED_LEADERSHIP, MUTUAL_ENGAGEMENT, PEER_FEEDBACK, REFLECTION;
+
 	//catch errors and return null, for use when null is acceptable
-	public static BehaviorType getFromString(String str){
+	public static L2L2category getFromString(String str){
 		try {
 			return valueOf(str);
 		}
@@ -17,5 +17,4 @@ public enum BehaviorType {
 			return null;
 		}
 	}
-
 }

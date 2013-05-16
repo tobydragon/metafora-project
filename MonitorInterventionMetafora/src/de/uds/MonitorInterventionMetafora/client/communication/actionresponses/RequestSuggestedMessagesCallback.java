@@ -6,6 +6,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.uds.MonitorInterventionMetafora.client.display.DisplayUtil;
 import de.uds.MonitorInterventionMetafora.client.feedback.MessagesPanel;
+import de.uds.MonitorInterventionMetafora.client.feedback.SuggestedMessagesModelParserForClient;
 import de.uds.MonitorInterventionMetafora.client.messages.MessagesBundle;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesModel;
 
@@ -15,8 +16,13 @@ public class RequestSuggestedMessagesCallback implements AsyncCallback<String>{
 	public void onSuccess(String result) {
 		Log.info("RequestSuggestedMessagesCallback - Success");
 		if (result != null && !result.equals("")) {
-			MessagesPanel.getTemplatePool().populateTabs(SuggestedMessagesModel.fromXML(result));
-			DisplayUtil.postNotificationMessage(messagesBundle.NewSuggestedMessages());
+			SuggestedMessagesModel suggestedMessagesModel = SuggestedMessagesModelParserForClient.fromXML(result);
+			if (suggestedMessagesModel != null){
+				MessagesPanel.getTemplatePool().populateTabs(suggestedMessagesModel);
+				DisplayUtil.postNotificationMessage(messagesBundle.NewSuggestedMessages());
+			}
+			Log.error("RequestSuggestedMessagesCallback - Bad XML");
+			DisplayUtil.postNotificationMessage(messagesBundle.NoSuggestedMessages() + ": Error retrieving");
 		}
 		else {
 			DisplayUtil.postNotificationMessage(messagesBundle.NoSuggestedMessages());

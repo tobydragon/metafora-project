@@ -5,6 +5,8 @@ public class MetaforaStrings {
 	public static final String METAFORA_USER_ID_STRING = "metafora-platform";
 	public static final String LASAD_AGENT_USER_ID_STRING = "LASAD_AGENT";
 	public static final String MONITOR_USER_ID_STRING = "monitor";
+	public static final String MONITOR_AND_MESSAGE_TOOL_NAME = "FEEDBACK_CLIENT";
+
 
 	
 	
@@ -60,6 +62,17 @@ public class MetaforaStrings {
 	public static final String HIGH_INTERRUPTION = "HIGH_INTERRUPTION";
 	
 	public static final String ANAYLSIS_MANAGER = "ANAYLSIS_MANAGER";
+	
+	//for SuggestedMessagesXml
+	public static final String BEHAVIOR_TAG = "behaviortag";
+	public static final String HIGHLIGHT = "highlight";
+	public static final String SUGGESTED_MESSAGE = "message";
+	public static final String SUGGESTED_MESSAGE_CATEGORY = "set";
+	public static final String L2L2_TAG = "l2l2tag";
+	public static final String CATEGORY_LABEL = "id";
+	public static final String SUGGESTED_MESSAGES = "messages";
+
+
 
 	
 }

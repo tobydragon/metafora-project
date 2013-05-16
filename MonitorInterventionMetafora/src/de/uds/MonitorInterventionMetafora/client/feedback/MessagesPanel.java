@@ -54,7 +54,7 @@ public class MessagesPanel extends VerticalPanel implements SuggestedMessagesFil
 	@Override
 	public void newMessagesTextReceived(MessageType messageType, Locale locale, String text) {
 		//TODO: this shouldn't build a new controller and model each time, it should just refresh model through a controller method
-		SuggestedMessagesModel suggestedMessagesModel = SuggestedMessagesModel.fromXML(text);
+		SuggestedMessagesModel suggestedMessagesModel = SuggestedMessagesModelParserForClient.fromXML(text);
 		SuggestedMessagesController suggestedMessagesController = new SuggestedMessagesController(suggestedMessagesModel, commServiceServlet);
 		templatePool = new SuggestedMessagesPanel(suggestedMessagesModel, suggestedMessagesController);
 		suggestedMessagesController.setView(templatePool);

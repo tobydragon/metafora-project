@@ -192,7 +192,7 @@ public class SuggestedMessagesPanel extends VerticalPanel {
 		tabBar.addTab("XML");
 
 		final TextArea textArea = new TextArea();
-		textArea.setText(SuggestedMessagesModel.toXML(model));
+		textArea.setText(SuggestedMessagesModelParserForClient.toXML(model));
 		textArea.setSize("95%", "450px");
 		
 
@@ -201,7 +201,7 @@ public class SuggestedMessagesPanel extends VerticalPanel {
 		repopulateButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				populateTabs(SuggestedMessagesModel.fromXML(textArea.getText()));
+				populateTabs(SuggestedMessagesModelParserForClient.fromXML(textArea.getText()));
 			}
 		});
 		

@@ -211,4 +211,8 @@ public class  XmlFragment {
 		
 	}
 	
+	public String getText(){
+		return element.getText();
+	}
+	
 }

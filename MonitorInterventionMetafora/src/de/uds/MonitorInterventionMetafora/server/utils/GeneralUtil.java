@@ -30,11 +30,16 @@ public class GeneralUtil {
 	}
 	
 	public static String getStartOfString(String wholeString) {
-		String start = wholeString.replaceAll("\n", "");
-		 if (start.length() > 30){
-			 start = start.substring(0,29);
-		 }
-		 return start;
+		if (wholeString != null){
+			String start = wholeString.replaceAll("\n", "");
+			 if (start.length() > 50){
+				 start = start.substring(0,49);
+			 }
+			 return start;
+		}
+		else {
+			return null;
+		}
 	}
 	
 	public static String getRealPath(String string){
