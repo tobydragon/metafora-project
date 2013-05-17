@@ -32,6 +32,7 @@ public class MetaforaStrings {
 	public static final String PROPERTY_TYPE_REQUEST_ID_STRING = "REQUEST_ID";
 	public static final String PROPERTY_TYPE_FILE_URL_STRING = "URL";
 	public static final String PROPERTY_VALUE_MESSAGE_STRING = "MESSAGE";
+	public static final String PROPERTY_TYPE_GROUP_ID_STRING = "GROUP_ID";
 
 
 	public static final String PROPERTY_TYPE_ELEMENT_TYPE_STRING = "ELEMENT_TYPE";

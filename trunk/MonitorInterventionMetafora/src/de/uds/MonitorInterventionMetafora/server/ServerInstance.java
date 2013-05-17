@@ -12,6 +12,7 @@ import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
+import de.uds.MonitorInterventionMetafora.shared.monitor.UpdateResponse;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
 public class ServerInstance {
@@ -44,14 +45,17 @@ public class ServerInstance {
 	}
 
 	
-	public List<CfAction> requestUpdate(CfAction cfAction) {
+	public UpdateResponse requestUpdate(CfAction cfAction) {
 		if (monitorController != null){
 			logger.info("[requestUpdate]  requesting update is received  by the server");
-			return monitorController.requestUpdate(cfAction);
+			List<CfAction> actionUpdates = monitorController.requestUpdate(cfAction);
+			List<String> involvedGroups = AnalysisController.getInvolvedGroups(actionUpdates);
+			
+			return new UpdateResponse(actionUpdates, involvedGroups);
 		}
 		else {
-			logger.warn("[requestUpdate]  requesting update is revieced by a server set to not monitor");
-			return new Vector<CfAction>();
+			logger.warn("[requestUpdate]  requesting update is recieved by a server set to not monitor");
+			return new UpdateResponse();
 		}
 	}
 

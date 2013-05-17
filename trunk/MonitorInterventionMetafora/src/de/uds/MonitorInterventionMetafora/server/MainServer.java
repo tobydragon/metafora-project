@@ -19,6 +19,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
+import de.uds.MonitorInterventionMetafora.shared.monitor.UpdateResponse;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
@@ -167,13 +168,13 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 
 
 	@Override
-	public List<CfAction> requestUpdate(CfAction cfAction) {
+	public UpdateResponse requestUpdate(CfAction cfAction) {
 		logger.info("[requestUpdate]  requesting update is revieced  by the server");
 		return requestUpdate(generalConfiguration.getDefaultXmppServer(), cfAction);
 	}
 	
 	@Override
-	public List<CfAction> requestUpdate(XmppServerType xmppServerType, CfAction cfAction) {
+	public UpdateResponse requestUpdate(XmppServerType xmppServerType, CfAction cfAction) {
 		logger.info("[requestUpdate]  requesting update is revieced  by the server");
 		if (xmppServerType == XmppServerType.DEPLOY){
 			 return mainServer.requestUpdate(cfAction);

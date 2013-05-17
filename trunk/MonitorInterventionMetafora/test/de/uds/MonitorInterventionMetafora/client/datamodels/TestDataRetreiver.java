@@ -3,8 +3,9 @@ package de.uds.MonitorInterventionMetafora.client.datamodels;
 import java.util.List;
 import java.util.Vector;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
+
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -12,7 +13,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 
-public class TestDataRetreiver implements RequestUpdateCallBack{
+public class TestDataRetreiver implements AsyncCallback<List<CfAction>>{
 
 //	ClientMonitorDataModel model;
 	List<CfAction> actions;

@@ -39,7 +39,7 @@ public class ReasonedInterventionController {
 		this.xmppServerType = xmppServerType;
 	}
 
-	//	method that takes list of notifications, and decides whether to send suggestions, landmarks, and messages
+	//	method that	 decides whether to send suggestions, landmarks, and messages
 	public void sendInterventions(List<BehaviorInstance> behaviorsIdentified, Locale locale){
 		for (BehaviorInstance behaviorInstance : behaviorsIdentified){
 			sendLandmarkForBehavior(behaviorInstance);

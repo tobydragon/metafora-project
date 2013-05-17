@@ -1,19 +1,18 @@
 package de.uds.MonitorInterventionMetafora.client.monitor;
 
-import java.util.List;
-
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.NoActionResponse;
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
+import de.uds.MonitorInterventionMetafora.shared.monitor.UpdateResponse;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
-public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdateCallBack{
+public class ClientMonitorDataModelUpdater extends Timer implements AsyncCallback<UpdateResponse>{
 
 	private ClientMonitorDataModel clientDataModel;
 	private ClientMonitorController controller;
@@ -25,7 +24,7 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 		
 	}
 	
-	public void receiveUpdate(List<CfAction> actions){
+	public void receiveUpdate(UpdateResponse actions){
 		clientDataModel.addData(actions);
 		Log.debug("Step 4: Data has been added to model");
 		controller.refreshViews();
@@ -46,26 +45,25 @@ public class ClientMonitorDataModelUpdater extends Timer implements RequestUpdat
 	}
 
 	@Override
-	public void onSuccess(List<CfAction> actions) {
-		
-		Log.info("Step 3: Update Response is recieved from the model.Action Size:"+actions.size());
-		if(actions!=null && actions.size() > 0){
-			receiveUpdate(actions);
-			Log.debug("Step 6: Everything updated.");
-		}
-		else{
-			Log.debug("No Actions returned to update");
-		}
+	public void onSuccess(UpdateResponse updateResponse) {
+		Log.info("Step 3: Update Response is recieved from the model.");
+		receiveUpdate(updateResponse);
+		Log.debug("Step 6: Update Complete.");
 	}
 	
 	public void getUpdate(){
 		Log.debug("Step 1: Update Request sent to server");
+		getActionsAfterThisAction(clientDataModel.getLastAction(), this);
+	}
+	
+	public void getActionsAfterThisAction(CfAction thisAction, AsyncCallback<UpdateResponse> callback){
+		Log.debug("Step 1: Update Request sent to server");
 		XmppServerType xmppServerType = UrlParameterConfig.getInstance().getXmppServerType();
 		if (xmppServerType != null){
-			clientDataModel.getServiceServlet().requestUpdate(xmppServerType, clientDataModel.getLastAction(),this);
+			clientDataModel.getServiceServlet().requestUpdate(xmppServerType, thisAction, callback);
 	 	 }
 	 	 else {
-	 		clientDataModel.getServiceServlet().requestUpdate(clientDataModel.getLastAction(),this);
+	 		clientDataModel.getServiceServlet().requestUpdate(clientDataModel.getLastAction(), callback);
 	 	 }
 	}
 
