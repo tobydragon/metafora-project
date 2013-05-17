@@ -34,7 +34,7 @@ public class NewIdeaNotDiscussedIdentifier  implements  BehaviorIdentifier {
 	}
 
 	@Override
-	public List<BehaviorInstance> identifyBehaviors ( List<CfAction> cfActions) {
+	public List<BehaviorInstance> identifyBehaviors ( List<CfAction> cfActions, List<String> involvedUsers) {
 		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
 		
 		List<CfAction> newIdeas = newIdeaFilter.getFilteredList(cfActions);
@@ -52,7 +52,7 @@ public class NewIdeaNotDiscussedIdentifier  implements  BehaviorIdentifier {
 			//and there has been no discussion afterwards
 			if ( ! (afterFilter.getFilteredList(discussion).size() > 0) ){
 				log.debug("[shouldFireNotification] new idea found, but no discussion, firing");
-				identifiedBehaviors.add(new BehaviorInstance(BehaviorType.NEW_IDEA_NOT_DISCUSSED, new Vector<String>()));
+				identifiedBehaviors.add(new BehaviorInstance(BehaviorType.NEW_IDEA_NOT_DISCUSSED, involvedUsers));
 			}
 			log.debug("[shouldFireNotification] new idea and discussion found");
 		}

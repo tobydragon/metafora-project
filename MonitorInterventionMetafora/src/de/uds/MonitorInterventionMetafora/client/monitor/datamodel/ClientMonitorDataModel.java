@@ -18,6 +18,7 @@ import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.CfAction
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
+import de.uds.MonitorInterventionMetafora.shared.monitor.UpdateResponse;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
@@ -136,7 +137,8 @@ public class ClientMonitorDataModel{
     	Logger.getLoggerInstance().log(userActionLog);
 	}
 	
-	public void addData(List<CfAction> actions){
+	public void addData(UpdateResponse updateResponse){
+		List<CfAction> actions = updateResponse.getActions();
 		tableViewModel.removeAll();
 		Log.debug("Adding new actions to the List was started");
 		if(actions!=null&&actions.size()>0){
@@ -150,6 +152,11 @@ public class ClientMonitorDataModel{
 			addFilteredData(allActions);
 		}
 		Log.debug("Adding new actions to the main List and  filtered List was completed");
+		List<String> associatedGroups = updateResponse.getAssociatedGroups();
+		if (associatedGroups != null && associatedGroups.size()>0){
+			Log.info("[ClientMonitorDataModelUpdater.onSuccess] new group IDs: " + updateResponse.getAssociatedGroups());
+			//TODO: update some internal list of groupIds, adding new (unique) groups to the beginning of the list
+		}
 	}
 
 	//Creates table for each rule, where each row will represent one value for each rule

@@ -6,20 +6,19 @@ import com.allen_sauer.gwt.log.client.Log;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Image;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
-import de.uds.MonitorInterventionMetafora.client.communication.actionresponses.RequestUpdateCallBack;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.TabbedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
-import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
-import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
+import de.uds.MonitorInterventionMetafora.shared.monitor.UpdateResponse;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModelType;
@@ -27,7 +26,7 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.StandardRuleBuil
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 
-public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallBack{
+public class MonitorViewPanel extends ContentPanel implements AsyncCallback<UpdateResponse>{
 
 	Image loadingImage;
 	
@@ -66,21 +65,15 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 	}
 	
 	private void sendStartupMessage() {
+		//create an initial message 
 		CfAction startupMessage=new CfAction();
 	 	 startupMessage.setTime(GWTUtils.getTimeStamp());
-	 	  
 	 	 CfActionType _cfActionType=new CfActionType();
 	 	 _cfActionType.setType("START_FILE_INPUT");
 	 	 startupMessage.setCfActionType(_cfActionType);
-	 	 Log.info("[sendStartupMessage] initial update request from client");
 	 	 
-	 	 XmppServerType xmppServerType = UrlParameterConfig.getInstance().getXmppServerType();
-	 	 if (xmppServerType != null){
-	 		commServiceServlet.requestUpdate(xmppServerType, startupMessage, this);
-	 	 }
-	 	 else {
-	 		 commServiceServlet.requestUpdate(startupMessage,this);
-	 	 }
+	 	 Log.info("[sendStartupMessage] initial update request from client");
+	 	 updater.getActionsAfterThisAction(startupMessage, this);
 	}
 
 	@Override
@@ -89,14 +82,16 @@ public class MonitorViewPanel extends ContentPanel implements RequestUpdateCallB
 	}
 
 	@Override
-	public void onSuccess(List<CfAction> actionList) {
-		
+	public void onSuccess(UpdateResponse updateResponse) {
+		List <CfAction> actionList = updateResponse.getActions();
 		Log.debug("Update Response recieved, Action Size: "+actionList.size());
 		if(actionList!=null){
-		 	 System.out.println("INFO\t\t[MonitorPanelContainer.onSuccess] Adding actions count=" + actionList.size());
-			monitorModel.addData(actionList);
+		 	 Log.info("[MonitorPanelContainer.onSuccess] First actions count = " + actionList.size());
+			monitorModel.addData(updateResponse);
 		}
 		
+		//TODO: create groupID drop-down panel and populate
+		Log.info("[MonitorPanelContainer.onSuccess] Starting group IDs: " + updateResponse.getAssociatedGroups());
 		
 	
 		VerticalPanel panel=new VerticalPanel();

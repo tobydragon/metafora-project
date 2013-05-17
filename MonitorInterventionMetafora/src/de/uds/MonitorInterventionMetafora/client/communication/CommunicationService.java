@@ -9,6 +9,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
+import de.uds.MonitorInterventionMetafora.shared.monitor.UpdateResponse;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
@@ -22,8 +23,8 @@ public interface CommunicationService extends RemoteService {
 	void sendAction(String _user, CfAction cfAction);
 	void sendAction (XmppServerType serverType, String user, CfAction action);
 	
-	List<CfAction> requestUpdate(CfAction _lastcfAction);
-	List<CfAction> requestUpdate(XmppServerType xmppServerType, CfAction _lastcfAction);
+	UpdateResponse requestUpdate(CfAction _lastcfAction);
+	UpdateResponse requestUpdate(XmppServerType xmppServerType, CfAction _lastcfAction);
 	
 	void requestAnalysis(String groupId, Locale locale);
 	void requestAnalysis(XmppServerType xmppServerType, String groupId, Locale locale);

@@ -7,6 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
+import de.uds.MonitorInterventionMetafora.shared.monitor.UpdateResponse;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
@@ -24,8 +25,8 @@ public interface CommunicationServiceAsync {
 	void requestSuggestedMessages(String username, AsyncCallback<String> callback);
 	void requestSuggestedMessages(XmppServerType xmppServerType, String username, AsyncCallback<String> callback);
 	
-	void requestUpdate(CfAction _lastcfAction, AsyncCallback<List<CfAction>> callback);
-	void requestUpdate(XmppServerType xmppServerType, CfAction _lastcfAction, AsyncCallback<List<CfAction>> callback);
+	void requestUpdate(CfAction _lastcfAction, AsyncCallback<UpdateResponse> callback);
+	void requestUpdate(XmppServerType xmppServerType, CfAction _lastcfAction, AsyncCallback<UpdateResponse> callback);
 
 	void requestAnalysis(String groupId, Locale locale, AsyncCallback<Void> callback);
 	void requestAnalysis(XmppServerType xmppServerType, String groupId, Locale locale, AsyncCallback<Void> callback);

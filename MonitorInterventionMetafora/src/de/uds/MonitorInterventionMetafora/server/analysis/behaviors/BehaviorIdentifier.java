@@ -8,5 +8,5 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 
 public interface BehaviorIdentifier  {
 
-	List<BehaviorInstance> identifyBehaviors(List<CfAction> actionsToConsider);	
+	List<BehaviorInstance> identifyBehaviors(List<CfAction> actionsToConsider, List<String> involvedUsers);	
 }
