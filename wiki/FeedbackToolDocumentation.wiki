@@ -82,7 +82,10 @@ locale=gr
 == `monitoring` == 
 
 By default this is `false` and if set to `true` it determines whether it loads the monitoring tool. The monitoring tool needs additional parameters described in this page LaunchingMonitoringTool
- 
+
+== 'complexDataViews' ==
+
+By default this is 'false'. Never has an effect unless 'monitoring' is also set to 'true'. This determines whether the tool calculates and displays pie and bar graphs for the indicators, which could cause performance problems.
 
 = Summary == 
 
