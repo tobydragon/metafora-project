@@ -33,21 +33,6 @@ public class GroupingChooserToolbar extends ToolBar{
 		comboType = new ActionPropertyComboBox(ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.GROUPING));
 		comboType.addSelectionChangedListener(comboListener);
 	    
-	   /* Button retriveBtn=new Button("Re-Group");
-	    retriveBtn.setShadow(true);
-//	    retriveBtn.setWidth("65px");
-//	    retriveBtn.setHeight("29px");
-	    
-	    retriveBtn.addSelectionListener(new SelectionListener<ButtonEvent>() {  
-	        @Override  
-	        public void componentSelected(ButtonEvent ce) {  
-	        	if(selectedProperty!=null){
-        			parentViewPanel.changeGroupingProperty(selectedProperty);
-	        	}
-	        }  
-	      });  */
-
-	    
 	    Button retriveBtn=new Button("",new SelectionListener<ButtonEvent>() {
 			@Override
 			public void componentSelected(ButtonEvent ce) {
@@ -59,7 +44,6 @@ public class GroupingChooserToolbar extends ToolBar{
 	    
 	    
 	    retriveBtn.setIcon(Resources.ICONS.refresh());
-	    //retriveBtn.setBorders(true);
 	    retriveBtn.setShadow(true);
 	    
 	    
@@ -76,11 +60,6 @@ public class GroupingChooserToolbar extends ToolBar{
         	selectedProperty = se.getSelectedItem().getActionPropertyRule();   
     	}
      };
-
-//	public void refresh() {
-//		comboType.clearSelections();
-//		layout();
-//	}
 	
 	public ActionPropertyRule getSelectedProperty(){
 		return selectedProperty;

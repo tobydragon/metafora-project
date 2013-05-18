@@ -55,6 +55,7 @@ public class MonitorViewPanel extends ContentPanel implements AsyncCallback<Upda
 		updater = new ClientMonitorDataModelUpdater(monitorModel, controller);
 
 		updaterToolbar = new UpdaterToolbar(updater,monitorModel,controller,monitoringViewServiceServlet);
+		controller.setUpdaterToolbar(updaterToolbar);
 		updaterToolbar.setAutoRefresh(false);
 		this.setTopComponent(updaterToolbar);
 		this.setHeaderVisible(false);

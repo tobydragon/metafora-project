@@ -48,10 +48,13 @@ public class ReasonedInterventionController {
 		sendSuggestionsForAllBehaviors(behaviorsIdentified, locale);
 		
 		setDirectMessagesForBehaviors(behaviorsIdentified, locale);
+		
 		BehaviorInstance instanceForDirectFeedback = chooseOneForDirectFeedback(behaviorsIdentified);
-		SuggestedMessage message = instanceForDirectFeedback.getBestSuggestedMessage();
-		if (instanceForDirectFeedback != null && message != null){
-			messagesController.sendAction(null, InterventionCreator.createDirectMessage(xmppServerType.toString(), instanceForDirectFeedback.getUsernames(), "HIGH", message.getText(), null));
+		if (instanceForDirectFeedback != null) {
+			SuggestedMessage message = instanceForDirectFeedback.getBestSuggestedMessage();
+			if (instanceForDirectFeedback != null && message != null){
+				messagesController.sendAction(null, InterventionCreator.createDirectMessage(xmppServerType.toString(), instanceForDirectFeedback.getUsernames(), "HIGH", message.getText(), null));
+			}
 		}
 	}
 	

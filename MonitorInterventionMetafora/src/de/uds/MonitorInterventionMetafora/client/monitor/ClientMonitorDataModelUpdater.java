@@ -27,7 +27,7 @@ public class ClientMonitorDataModelUpdater extends Timer implements AsyncCallbac
 	public void receiveUpdate(UpdateResponse actions){
 		clientDataModel.addData(actions);
 		Log.debug("Step 4: Data has been added to model");
-		controller.refreshViews();
+		controller.refreshViews(actions.getAssociatedGroups());
 		Log.debug("Step 5: views updated");
 	}
 

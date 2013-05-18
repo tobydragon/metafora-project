@@ -1,5 +1,6 @@
 package de.uds.MonitorInterventionMetafora.client.monitor;
 
+import java.util.List;
 import java.util.Vector;
 
 import com.allen_sauer.gwt.log.client.Log;
@@ -35,12 +36,16 @@ public class ClientMonitorController {
 	private Listener<StoreEvent<FilterGridRow>> storeRemoveListener;
 	private boolean onlyRefreshTable=false;
 	
+	private UpdaterToolbar updaterToolbar;
+	
 	public ClientMonitorController(ClientMonitorDataModel actionModel){
 		this.dataModel = actionModel;
-		
 		dataViewPanels = new Vector<GroupedDataViewPanel>();
 	}
 	
+	public void setUpdaterToolbar(UpdaterToolbar updaterToolbar){
+		this.updaterToolbar = updaterToolbar;
+	}
 	
 	public void addFilterModelListeners(ListStore<FilterGridRow> filterGridStore){
 		
@@ -138,12 +143,19 @@ public class ClientMonitorController {
 		dataViewPanels.add(panel);
 	}
 	
-	public void refreshViews() {
+	public void refreshViews(List<String> groups) {
 		Log.debug("Refreshing View is started");
 		for (GroupedDataViewPanel panel : dataViewPanels){
 			panel.refresh();
 			
 			Log.debug(panel.getDataViewType()+" is refreshed");
+		}
+		
+		if (updaterToolbar != null){
+			updaterToolbar.updateView(groups);
+		}
+		else {
+			Log.error("[ClientMonitorController.refreshViews] no UPdateToolbar present");
 		}
 		Log.debug("Refreshing View is completed");
 	}
@@ -156,7 +168,7 @@ public class ClientMonitorController {
 			refreshTableView();
 		}
 		else{
-        refreshViews();
+        refreshViews(null);
 			}
 		}
 	
