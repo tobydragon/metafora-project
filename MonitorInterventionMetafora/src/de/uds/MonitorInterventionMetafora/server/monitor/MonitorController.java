@@ -14,7 +14,7 @@ public class MonitorController {
 	MonitorModel monitorModel;
 	HistoryRequester historyRequestor;
 	
-	public MonitorController(CfCommunicationMethodType communicationMethodType, String historyStartTime, XmppServerType xmppServerType) {
+	public MonitorController(CfCommunicationMethodType communicationMethodType, String historyStartTime, XmppServerType xmppServerType, String historyFilepath) {
 		
 		monitorModel = new MonitorModel();
 		LabellingListener monitorListener = new LabellingListener(monitorModel);
@@ -24,7 +24,7 @@ public class MonitorController {
 		analysisChannelManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.analysis, xmppServerType);				
 		analysisChannelManager.register(monitorListener);
 		
-		historyRequester.sendHistoryRequest(communicationMethodType, historyStartTime, xmppServerType);
+		historyRequester.sendHistoryRequest(communicationMethodType, historyStartTime, xmppServerType, historyFilepath);
 	}
 
 	public List<CfAction> requestUpdate(CfAction cfAction) {
