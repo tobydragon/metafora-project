@@ -43,13 +43,16 @@ public class MonitorViewPanel extends ContentPanel implements AsyncCallback<Upda
 	//controllers
 	ClientMonitorDataModelUpdater updater;
 	ClientMonitorController controller;
+	
+	private boolean complexDataViews;
 		
-	public MonitorViewPanel(CommunicationServiceAsync monitoringViewServiceServlet){
-
+	public MonitorViewPanel(boolean complexDataViews, CommunicationServiceAsync monitoringViewServiceServlet){
+		this.complexDataViews = complexDataViews;
 		this.commServiceServlet=monitoringViewServiceServlet;
 		actionPropertyRuleCreator = ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.GROUPING);
 		ActionPropertyRuleSelectorModel filterPropertyRuleSelector = ActionPropertyRuleSelectorModel.getActionPropertyRuleSelectorModel(ActionPropertyRuleSelectorModelType.FILTER);
-		monitorModel = new ClientMonitorDataModel(actionPropertyRuleCreator, filterPropertyRuleSelector,monitoringViewServiceServlet);
+		
+		monitorModel = new ClientMonitorDataModel(complexDataViews, actionPropertyRuleCreator, filterPropertyRuleSelector,monitoringViewServiceServlet);
 		controller = new ClientMonitorController(monitorModel);
 
 		updater = new ClientMonitorDataModelUpdater(monitorModel, controller);
@@ -91,16 +94,14 @@ public class MonitorViewPanel extends ContentPanel implements AsyncCallback<Upda
 			monitorModel.addData(updateResponse);
 		}
 		
-		//TODO: create groupID drop-down panel and populate
 		Log.info("[MonitorPanelContainer.onSuccess] Starting group IDs: " + updateResponse.getAssociatedGroups());
-		
-	
+			
 		VerticalPanel panel=new VerticalPanel();
 		flp=new FilterListPanel(monitorModel, controller,commServiceServlet);
 		//enableResizeListener(flp.getFilterGridPanel());
 		panel.add(flp);
 		
-		createTabbedDataViewsPanel(actionPropertyRuleCreator,flp.getFilterGrid().getfilterSelectorToolBar().getFilterSelectorComboBox(),flp);
+		createDataViewsPanel( actionPropertyRuleCreator,flp.getFilterGrid().getfilterSelectorToolBar().getFilterSelectorComboBox(),flp);
 		panel.add(tabbedDataViewPanel);
 		
 		panel.setHeight(600);
@@ -113,27 +114,30 @@ public class MonitorViewPanel extends ContentPanel implements AsyncCallback<Upda
 	}
 	
 
-	private void createTabbedDataViewsPanel(ActionPropertyRuleSelectorModel actionPropertyRuleCreator,SimpleComboBox<String> filterGroupCombo,
+	private void createDataViewsPanel(ActionPropertyRuleSelectorModel actionPropertyRuleCreator,SimpleComboBox<String> filterGroupCombo,
 			FilterListPanel filterPanel){
-		tabbedDataViewPanel=new TabbedDataViewPanel();
 		
 		ActionPropertyRule defaultGrouping = StandardRuleBuilder.getDefaultGroupingRule();
+		
+		tabbedDataViewPanel=new TabbedDataViewPanel();
 		
 		GroupedDataViewPanel tableWithChooser = new GroupedDataViewPanel(DataViewPanelType.TABLE, monitorModel, controller, defaultGrouping, filterGroupCombo,filterPanel,tabbedDataViewPanel);
 		addDataView("tableViewTab", "Table View", tableWithChooser);
 		
-		GroupedDataViewPanel pieChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.PIE_CHART, monitorModel, controller, defaultGrouping,filterGroupCombo,filterPanel,tabbedDataViewPanel);
-		addDataView("pieChartViewTab", "Pie Chart View", pieChartWithChooser);
+		if (complexDataViews){			
+			GroupedDataViewPanel pieChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.PIE_CHART, monitorModel, controller, defaultGrouping,filterGroupCombo,filterPanel,tabbedDataViewPanel);
+			addDataView("pieChartViewTab", "Pie Chart View", pieChartWithChooser);
+	
+			GroupedDataViewPanel barChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.BAR_CHART, monitorModel, controller, defaultGrouping, filterGroupCombo,filterPanel,tabbedDataViewPanel);
+			addDataView("barChartViewTab", "Bar Chart View", barChartWithChooser);
+		}
 
-		GroupedDataViewPanel barChartWithChooser = new GroupedDataViewPanel(DataViewPanelType.BAR_CHART, monitorModel, controller, defaultGrouping, filterGroupCombo,filterPanel,tabbedDataViewPanel);
-		addDataView("barChartViewTab", "Bar Chart View", barChartWithChooser);
-		
-		
 	}
 	
 	private void addDataView(String id, String name, GroupedDataViewPanel panel){
-		 tabbedDataViewPanel.addTab(id, name, panel,false);
-		 controller.addDataView(panel);
+		tabbedDataViewPanel.addTab(id, name, panel,false);
+		controller.addDataView(panel); 
+
 	}
 	
 	private void setLoadingImage(){
