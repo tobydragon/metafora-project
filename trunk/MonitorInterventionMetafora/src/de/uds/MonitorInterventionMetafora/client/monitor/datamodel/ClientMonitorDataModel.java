@@ -37,6 +37,7 @@ public class ClientMonitorDataModel{
 	private List<CfActionGridRow> tableRows;
 	
 	
+	
 
 	private CommunicationServiceAsync monitoringViewServiceServlet;
 	

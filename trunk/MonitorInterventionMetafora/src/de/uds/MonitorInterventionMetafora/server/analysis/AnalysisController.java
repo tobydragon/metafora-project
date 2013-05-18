@@ -52,8 +52,9 @@ public class AnalysisController {
 			identifiedBehaviors.addAll(identifier.identifyBehaviors(groupActions, involvedUsers));
 		}
 		log.info("[AnalysisController.analyzeGroup] "+ identifiedBehaviors.size() +" behaviors identified : \n" + identifiedBehaviors);
-
-		reasonedInterventionController.sendInterventions(identifiedBehaviors, locale);
+		if (identifiedBehaviors.size() > 0){
+			reasonedInterventionController.sendInterventions(identifiedBehaviors, locale);
+		}
 	}
 	
 	public static List<CfAction> getGroupActions(String groupName, List<CfAction> actions){

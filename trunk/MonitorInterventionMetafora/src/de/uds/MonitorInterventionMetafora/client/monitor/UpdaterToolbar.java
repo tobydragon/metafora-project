@@ -1,33 +1,31 @@
 package de.uds.MonitorInterventionMetafora.client.monitor;
 
+import java.util.List;
+
+import com.allen_sauer.gwt.log.client.Log;
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
-import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
-import com.extjs.gxt.ui.client.event.SelectionChangedListener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
-import com.extjs.gxt.ui.client.store.ListStore;
-import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
-import com.extjs.gxt.ui.client.widget.form.ComboBox;
+import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
+import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
+import com.extjs.gxt.ui.client.widget.form.SimpleComboValue;
+import com.extjs.gxt.ui.client.widget.toolbar.SeparatorToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Timer;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
+import de.uds.MonitorInterventionMetafora.client.display.DisplayUtil;
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyComboBoxItemModel;
-import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
-import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
-import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModel;
-import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRuleSelectorModelType;
 
 public class UpdaterToolbar extends ToolBar{
 	 
@@ -35,7 +33,9 @@ public class UpdaterToolbar extends ToolBar{
 	private Button refreshButton;
 	private Button analyzeButton;
 	private Button configurationButton;
-	private ConfigurationPanel cofigurationPanel;
+	private ConfigurationPanel configurationPanel;
+	
+	SimpleComboBox<String> groupIdChooser;
 	
 	final ClientMonitorDataModelUpdater updater;
 
@@ -45,13 +45,12 @@ public class UpdaterToolbar extends ToolBar{
 		autoRefresh = new CheckBox();
 	    autoRefresh.setBoxLabel("Auto Refresh");
 		autoRefresh.setValue(false);
-		cofigurationPanel=new ConfigurationPanel(_maintenance,controller,serverlet);
+		configurationPanel= new ConfigurationPanel(_maintenance,controller,serverlet);
 		
 		autoRefresh.addListener(Events.Change, 
 			new Listener<BaseEvent>() {
 	        	public void handleEvent(BaseEvent be) {
 	        		if (autoRefresh.getValue()) {
-	        			
 	        			
 	        			UserLog userActionLog=new UserLog();
 	                	userActionLog.setComponentType(ComponentType.UPDATER_TOOLBAR);
@@ -97,6 +96,12 @@ public class UpdaterToolbar extends ToolBar{
 	        }  
 	      });
 		
+		groupIdChooser = new SimpleComboBox<String>();
+		groupIdChooser.setEditable(false);
+		groupIdChooser.setTriggerAction(TriggerAction.ALL);
+		
+		
+		
 		
 		analyzeButton = new Button(); 
 		analyzeButton.setToolTip("Analyze");
@@ -104,8 +109,23 @@ public class UpdaterToolbar extends ToolBar{
 		analyzeButton.addSelectionListener(new SelectionListener<ButtonEvent>() {  
 	        @Override  
 	        public void componentSelected(ButtonEvent ce) {  
-	        	System.out.println("Analyze clicked");
-	        	UpdaterToolbar.this.updater.analyzeGroup( UrlParameterConfig.getInstance().getGroupId());
+	        	Log.info("UpdaterToolbar: Analyze button clicked");
+	        	SimpleComboValue<String> value = UpdaterToolbar.this.groupIdChooser.getValue();
+	        	if (value != null && value.getValue() != null &&  value.getValue() != ""){
+		        	Log.debug("[UpdaterToolbar.analyzeButton] Updating with chosen groupId: " +  value.getValue());
+	        		UpdaterToolbar.this.updater.analyzeGroup( value.getValue());
+	        	}
+	        	else {
+	        		String defaultGroupId = UrlParameterConfig.getInstance().getGroupId();
+		        	if (defaultGroupId != null && defaultGroupId != ""){
+		        		Log.debug("[UpdaterToolbar.analyzeButton] Updating with default groupId: " + defaultGroupId);
+		        		UpdaterToolbar.this.updater.analyzeGroup(defaultGroupId);
+		        	}
+		        	else {
+		        		Log.warn("[UpdaterToolbar.analyzeButton] No action taken, no group selected to analyze");
+		        		DisplayUtil.postNotificationMessage("No analysis done, you must select a group to analyze");
+		        	}
+	        	}
 	        }  
 	      });
 		
@@ -116,7 +136,7 @@ public class UpdaterToolbar extends ToolBar{
 		configurationButton.addSelectionListener(new SelectionListener<ButtonEvent>() {  
 	        @Override  
 	        public void componentSelected(ButtonEvent ce) {  
-	        	cofigurationPanel.show();
+	        	configurationPanel.show();
 	        }  
 	      });  
 
@@ -124,13 +144,25 @@ public class UpdaterToolbar extends ToolBar{
 	    this.setWidth(600);
 	    this.add(autoRefresh);
 	    this.add(refreshButton);
+	    
+	    this.add(new SeparatorToolItem());
+	    this.add(groupIdChooser);
 	    this.add(analyzeButton);
+	    
+	    this.add(new SeparatorToolItem());
 	    this.add(configurationButton);
 	    
 	}
 	
 	public void setAutoRefresh(boolean setting){
 		autoRefresh.setValue(setting);
+	}
+
+	public void updateView(List<String> groups) {
+		if (groups != null){
+			groupIdChooser.add(groups);
+		}
+		
 	}
 
 }
