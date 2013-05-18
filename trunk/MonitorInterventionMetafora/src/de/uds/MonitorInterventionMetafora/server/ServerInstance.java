@@ -24,11 +24,11 @@ public class ServerInstance {
 	//Analysis requires a Monitor
 	AnalysisController analysisController;
 		
-	public ServerInstance(CfCommunicationMethodType communicationMethodType, XmppServerType xmppServerType, boolean monitoringOn, String startTime ){
+	public ServerInstance(CfCommunicationMethodType communicationMethodType, XmppServerType xmppServerType, boolean monitoringOn, String startTime,  String historyFilepath ){
 		feedbackController = new MessagesController(communicationMethodType, xmppServerType);
 		
 		if (monitoringOn){
-			monitorController = new MonitorController(communicationMethodType, startTime, xmppServerType);
+			monitorController = new MonitorController(communicationMethodType, startTime, xmppServerType, historyFilepath);
 			analysisController = new AnalysisController(monitorController, feedbackController, xmppServerType );
 		}
 		

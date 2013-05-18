@@ -36,6 +36,15 @@ public class HistoryRequester implements CfCommunicationListener{
 		this.model = model;
 	}
 	
+	public void sendHistoryRequest(CfCommunicationMethodType communicationMethodType, String currentTimeMillis, XmppServerType xmppServerType, String historyStartFilepath){
+		//send extra history also loaded from a file
+		if (historyStartFilepath != null){
+			loadHistoryFromLocalFile(historyStartFilepath);
+		}
+		//then send normal history
+		sendHistoryRequest(communicationMethodType, currentTimeMillis, xmppServerType);
+	}
+	
 	public void sendHistoryRequest(CfCommunicationMethodType communicationMethodType, String currentTimeMillis, XmppServerType xmppServerType){
 		if (communicationMethodType == CfCommunicationMethodType.xmpp){
 			CfAgentCommunicationManager command = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.command, xmppServerType);
@@ -43,11 +52,12 @@ public class HistoryRequester implements CfCommunicationListener{
 			sendXmppHistoryRequest(command, currentTimeMillis);
 		}
 		else if (communicationMethodType == CfCommunicationMethodType.file){
-			sendFileHistoryRequest(CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.analysis, xmppServerType));
+			CfAgentCommunicationManager manager= CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.analysis, xmppServerType);
+			manager.sendMessage(buildLocalFileHistoryRequest());	
 		}
 	}
 
-	private void sendFileHistoryRequest(CfAgentCommunicationManager communicationManager) {
+	private CfAction buildLocalFileHistoryRequest(){
 		CfAction _action=new CfAction();
 	 	  _action.setTime(GWTUtils.getTimeStamp());
 	 	  
@@ -57,11 +67,9 @@ public class HistoryRequester implements CfCommunicationListener{
 	 	_cfActionType.setSucceed("true");
 	 	_cfActionType.setLogged("true");
 	 	_action.setCfActionType(_cfActionType);
-	 	
-	 	communicationManager.sendMessage(_action);
-		
+	 	return _action;
 	}
-
+	
 	private void sendXmppHistoryRequest(CfAgentCommunicationManager communicationManager, String currentStartTimeMillis) {
 		// TODO: Need to be able to "shut off" command channel listening, only listen when request is sent
 		logger.info("[sendXmppHistoryRequest] start time=" + currentStartTimeMillis);
@@ -157,12 +165,11 @@ public class HistoryRequester implements CfCommunicationListener{
 		}
 	}
 	
-	//TODO: make this work like the other fileRequest...
 	private void loadHistoryFromLocalFile(String historyUrl) {
 		logger.info("[loadHistoryFromLocalFile] URL="+historyUrl);
 		if (historyUrl != null && model != null){
 			LabellingListener myListener = new LabellingListener(model);
-			SimpleCfFileCommunicationBridge historyBridge = new SimpleCfFileCommunicationBridge(historyUrl, "", CfFileLocation.REMOTE);
+			SimpleCfFileCommunicationBridge historyBridge = new SimpleCfFileCommunicationBridge(historyUrl, "", CfFileLocation.LOCAL);
 			historyBridge.registerListener(myListener);
 			historyBridge.sendMessages();
 		}

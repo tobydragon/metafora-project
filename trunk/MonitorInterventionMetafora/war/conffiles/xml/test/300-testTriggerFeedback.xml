@@ -24,7 +24,7 @@
 			</properties>
 		</content>
 	</action>
- 	<!-- 
+
 	<action time="1367839459355">
 		<actiontype type="INDICATOR" classification="CREATE" logged="false"/>
 		<user id="Toby135" role="ORIGINATOR"/>
@@ -51,6 +51,33 @@
 			</properties>
 		</content>
 	</action>
+	
+	
+	
+	
+	<action time="1367836984391">
+		<actiontype classification="modify" logged="true" type="LANDMARK"/>
+		<user id="Toby135" ip="ISNOGOODHOME1367838500277-1005037405" role="originator"/>
+		<object id="analysisWork_node_0" type="&lt;object&gt;&lt;node id=&quot;analysisWork_node_0&quot;&gt;&lt;graphics&gt;&lt;scalefactor value=&quot;50&quot;/&gt;&lt;bordercolor value=&quot;#FFFF00&quot;/&gt;&lt;position x=&quot;336&quot; y=&quot;171&quot;/&gt;&lt;/graphics&gt;&lt;properties&gt;&lt;pictureurl value=&quot;http://metaforaserver.ku.de/images/resources/lasad.svg&quot;/&gt;&lt;tool value=&quot;/lasadMapCreator2/&quot;/&gt;&lt;categorie value=&quot;resources&quot;/&gt;&lt;name value=&quot;Discussion&quot;/&gt;&lt;/properties&gt;&lt;/node&gt;&lt;/object&gt;">
+			<properties>
+				<property name="SENDING_TOOL" value="PLANNING_TOOL"/>
+				<property name="GROUP_ID" value="300-test"/>
+				<property name="TOKEN" value="ISNOGOODHOME1367838500277-1005037405"/>
+				<property name="MAP_NAME" value="analysisWork"/>
+			</properties>
+		</object>
+		<content>
+			<description><![CDATA[Toby135 started "Discussion" card analysisWork_node_0.]]></description>
+			<properties>
+				<property name="SENDING_TOOL" value="PLANNING_TOOL"/>
+				<property name="CHALLENGE_ID" value="9"/>
+				<property name="CHALLENGE_NAME" value="The bouncing cannon ball"/>
+				<property name="ACTIVITY_TYPE" value="MODIFY_STATE_STARTED"/>
+			</properties>
+		</content>
+	</action>
+	
+	
 	<action time="1367837838577">
 		<actiontype classification="other" logged="true" type="INDICATOR"/>
 		<user id="Toby135" role="originator"/>
@@ -58,7 +85,7 @@
 			<properties>
 				<property name="SENDING_TOOL" value="METAFORA"/>
 				<property name="TEXT" value="message with some text"/>
-				<property name="GROUP_ID" value="100-test"/>
+				<property name="GROUP_ID" value="200-test"/>
 			</properties>
 		</object>
 		<content>

@@ -82,7 +82,7 @@ public class ReasonedInterventionController {
 		}
 		
 		CfAction cfAction = new CfAction(System.currentTimeMillis(), cfActionType, users, new ArrayList<CfObject>(),content);	
-		messagesController.sendAction(MetaforaStrings.ANAYLSIS_MANAGER, cfAction);
+		analysisChannelManager.sendMessage(cfAction);
 	}
 	
 	public void sendSuggestionsForAllBehaviors(List<BehaviorInstance> behaviorsIdentified, Locale locale){

@@ -35,7 +35,7 @@ public class SimpleCfFileCommunicationBridge implements CfCommunicationBridge{
 		channelNameOut = outputFilename;
 		
 		xmlIn = getOrCreateFragment(channelNameIn, fileLocation);
-		if (fileLocation != CfFileLocation.REMOTE){
+		if (fileLocation != CfFileLocation.REMOTE && outputFilename != null){
 			xmlOut = getOrCreateFragment(channelNameOut, fileLocation);
 		}
 	}

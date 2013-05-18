@@ -32,6 +32,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 
 	static String generalConfigFile = "conffiles/toolconf/configuration.xml";
 	static String mainFiltersFile = "conffiles/toolconf/mainfilters.xml";
+	static String startupDataFile = "conffiles/xml/test/300-testTriggerFeedback.xml";
 	static String logDir="useractionlogs/";
 	private Configuration generalConfiguration;
 	private XmlConfigParser configuratinParser;
@@ -47,8 +48,10 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		generalConfiguration = readConfiguration(false);
 
 		CfCommunicationMethodType communicationMethodType = generalConfiguration.getDataSouceType();
-		mainServer = new ServerInstance(communicationMethodType, XmppServerType.DEPLOY, generalConfiguration.isDeployServerMonitoring(), generalConfiguration.getHistoryStartTime() );
-		testServer = new ServerInstance(communicationMethodType, XmppServerType.TEST, generalConfiguration.isTestServerMonitoring(), generalConfiguration.getHistoryStartTime() );		
+		mainServer = new ServerInstance(communicationMethodType, XmppServerType.DEPLOY, generalConfiguration.isDeployServerMonitoring(),
+				generalConfiguration.getHistoryStartTime(), null );
+		testServer = new ServerInstance(communicationMethodType, XmppServerType.TEST, generalConfiguration.isTestServerMonitoring(), 
+				generalConfiguration.getHistoryStartTime(), GeneralUtil.getRealPath(startupDataFile));		
 		
 	}
 
