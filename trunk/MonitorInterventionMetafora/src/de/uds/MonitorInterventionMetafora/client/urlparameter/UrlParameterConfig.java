@@ -28,9 +28,12 @@ public class UrlParameterConfig {
 	private UserType userType;
 	private boolean testServer;
 	private boolean monitoring;
+	private boolean complexDataViews;
+
 	//The Metafora XMPP server type (by default is the test)
 	private XmppServerType xmppServerType = XmppServerType.TEST;
 	private static UrlParameterConfig singletonInstance;
+	
 	
 
 	private UrlParameterConfig() {
@@ -46,10 +49,10 @@ public class UrlParameterConfig {
 		//Used really for determining if things are logged
 		String testServerStr = getAndDecodeUrlParam("testServer");
 		String monitoringStr = getAndDecodeUrlParam("monitoring");
+		String comeplexDataViewsString = getAndDecodeUrlParam("complexDataViews");
 		String userTypeString = getAndDecodeUrlParam("userType");
 		String messageTypeString = getAndDecodeUrlParam("messageType");
 		String localeStr =  getAndDecodeUrlParam("locale");
-
 
 		if (userTypeString == null) { 
 		    userType = UserType.MESSAGING_WIZARD;
@@ -97,7 +100,9 @@ public class UrlParameterConfig {
 		} 		
 		
 		testServer = (testServerStr == null) ? true : Boolean.parseBoolean(testServerStr); 
-		monitoring = (monitoringStr == null) ? false : Boolean.parseBoolean(monitoringStr); 
+		monitoring = (monitoringStr == null) ? false : Boolean.parseBoolean(monitoringStr);
+		complexDataViews = (comeplexDataViewsString == null) ? false : Boolean.parseBoolean(comeplexDataViewsString); 
+
 				
 		Log.info("URL Params: User-" + username + " : mainConfig-" + configID + " : receiver-" + receiver + " : locale-" + locale + " : userType-" + userType + " : receiverIDs-" + receiverIDs);
 	}
@@ -175,6 +180,11 @@ public class UrlParameterConfig {
 
 	public MessageType getMessageType() {
 	    return messageType;
+	}
+
+
+	public boolean isComplexDataViews() {
+		return complexDataViews;
 	}
 	
 	

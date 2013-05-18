@@ -16,6 +16,7 @@ import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.table.CfActionGridRow;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
+import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.monitor.UpdateResponse;
@@ -48,7 +49,7 @@ public class ClientMonitorDataModel{
 	//for aggregated data views (charts so far), a mapping of IndicatorPropertyTables, which each tracking the different values and each indicator for an AcionPropertyRule
 	private Map<String, ActionPropertyValueGroupingTableModel> rule2ValueGroupingTableMap;
 	
-	public ClientMonitorDataModel(ActionPropertyRuleSelectorModel groupingSelectorModel,ActionPropertyRuleSelectorModel filterSelectorModel,CommunicationServiceAsync monitoringViewServiceServlet){
+	public ClientMonitorDataModel(boolean complexDataModels, ActionPropertyRuleSelectorModel groupingSelectorModel,ActionPropertyRuleSelectorModel filterSelectorModel,CommunicationServiceAsync monitoringViewServiceServlet){
 		
 		this.groupingSelectorModel = groupingSelectorModel;
 		this.filterSelectorModel=filterSelectorModel;
@@ -59,13 +60,20 @@ public class ClientMonitorDataModel{
 		mainActionFilter=new ActionFilter();
 		tableViewModel = new GroupingStore<CfActionGridRow>();
 		
+		//if we want the complexDataModels, set this initially, and it will always be reset, otherwise it will always be null and ignored
+		if(complexDataModels){
+			rule2ValueGroupingTableMap = createIndicatorPropertyTableMap();
+		}
+		
 		clearFilteredData();
 	}
 	
 	public void clearFilteredData(){
 		filteredActions = new Vector<CfAction>();	
 		tableViewModel.removeAll();
-		rule2ValueGroupingTableMap = createIndicatorPropertyTableMap();	
+		if (rule2ValueGroupingTableMap != null){
+			rule2ValueGroupingTableMap = createIndicatorPropertyTableMap();
+		}
 	}
 	
 	List<CfAction> applyMainFilter(List<CfAction> actionsToFilter){
@@ -122,8 +130,11 @@ public class ClientMonitorDataModel{
 		}
 		Log.debug("[addFilteredData] Filtering completed: Now adding actions to the tableview");
 		tableViewModel.add(tableRows);
-		for (ActionPropertyValueGroupingTableModel indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
-			indicatorPropertyTable.addActions(filteredActions);
+		
+		if (rule2ValueGroupingTableMap != null){
+			for (ActionPropertyValueGroupingTableModel indicatorPropertyTable : rule2ValueGroupingTableMap.values()){
+				indicatorPropertyTable.addActions(filteredActions);
+			}
 		}
 		Log.debug("Applying user filter is completed");
 
@@ -172,23 +183,23 @@ public class ClientMonitorDataModel{
 	}
 	
 	public DataTable getDataTable(ActionPropertyRule propertyToGroupBy){
-		ActionPropertyValueGroupingTableModel table = rule2ValueGroupingTableMap.get(propertyToGroupBy.getKey());
-		if (table != null){
-			return table.getDataTable();
+		if (rule2ValueGroupingTableMap != null){
+			ActionPropertyValueGroupingTableModel table = rule2ValueGroupingTableMap.get(propertyToGroupBy.getKey());
+			if (table != null){
+				return table.getDataTable();
+			}
 		}
-		else {
-			return null;
-		}
+		return null;
 	}
 
 	public int getMaxValue(ActionPropertyRule propertyToGroupBy){
-		ActionPropertyValueGroupingTableModel table = rule2ValueGroupingTableMap.get(propertyToGroupBy.getKey());
-		if (table != null){
-			return table.getMaxValue();
+		if (rule2ValueGroupingTableMap != null){
+			ActionPropertyValueGroupingTableModel table = rule2ValueGroupingTableMap.get(propertyToGroupBy.getKey());
+			if (table != null){
+				return table.getMaxValue();
+			}
 		}
-		else {
-			return 0;
-		}
+		return 0;
 	}
 	
 	public List<CfAction> getFilteredActions(){

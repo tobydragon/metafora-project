@@ -47,13 +47,14 @@ class VisualAnalyzer implements EntryPoint {
 
 	    	 MainContainerTabPanel _mainPanel;
 
+	    	 
 	    	 if (UrlParameterConfig.getInstance().getMonitoring()) {
 	    		 _mainPanel=new MainContainerTabPanel(1000);
-	    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel(commServiceServlet);
-	    	  //migen specific tools commented out for now
-	    	  //TeacherTools _migenContainer=new TeacherTools(monitoringViewServiceServlet);
-	    	  //_mainPanel.addTab("Migen", _migenContainer,false);
-	    	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
+		    	  MonitorViewPanel _monitoringContainer=new MonitorViewPanel(UrlParameterConfig.getInstance().isComplexDataViews(), commServiceServlet);
+		    	  //migen specific tools commented out for now
+		    	  //TeacherTools _migenContainer=new TeacherTools(monitoringViewServiceServlet);
+		    	  //_mainPanel.addTab("Migen", _migenContainer,false);
+		    	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
 	    	 } 
 	    	 else {
 	    		 _mainPanel=new MainContainerTabPanel(500);
