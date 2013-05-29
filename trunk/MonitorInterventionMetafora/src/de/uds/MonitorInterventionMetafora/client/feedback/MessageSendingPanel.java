@@ -360,6 +360,7 @@ public class MessageSendingPanel extends VerticalPanel {
  	 	
  	 	cfObject.addProperty(new CfProperty("INTERRUPTION_TYPE", getSelectedIntteruptionType()));
  	 	cfObject.addProperty(new CfProperty("TEXT", messageTextArea.getText()));
+ 	 	cfObject.addProperty(new CfProperty("GROUP_ID",UrlParameterConfig.getInstance().getGroupId()));
  	 	feedbackMessage.addObject(cfObject);
 
  	 	if (UrlParameterConfig.getInstance().getUserType().equals(UserType.RECOMMENDING_WIZARD)) {
