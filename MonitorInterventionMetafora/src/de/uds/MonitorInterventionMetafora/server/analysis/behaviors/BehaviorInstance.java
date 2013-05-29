@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import org.apache.commons.lang.Validate;
 
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessage;
 
@@ -15,8 +16,9 @@ public class BehaviorInstance {
 	List<String> usernames;
 	List<SuggestedMessage> suggestedMessages;
 	SuggestedMessage bestSuggestedMessage;
+	List <CfProperty> behaviorInstanceProperties;
 	
-	public BehaviorInstance(BehaviorType behaviorType, List<String> usernames) {
+	public BehaviorInstance(BehaviorType behaviorType, List<String> usernames, List<CfProperty> behaviorInstanceProperties) {
 		this.behaviorType = behaviorType;
 		this.usernames = usernames;
 		suggestedMessages = new Vector<SuggestedMessage>();
@@ -57,6 +59,10 @@ public class BehaviorInstance {
 	
 	public SuggestedMessage getBestSuggestedMessage(){
 		return bestSuggestedMessage;
+	}
+
+	public List<CfProperty> getProperties(){
+		return behaviorInstanceProperties;
 	}
 	
 }

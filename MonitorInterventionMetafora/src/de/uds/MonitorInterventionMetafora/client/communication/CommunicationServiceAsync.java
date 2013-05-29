@@ -18,10 +18,13 @@ import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 public interface CommunicationServiceAsync {
 
 	
-	// requests for ServerInstances, all should have counterparts that don't specify a server, and so use default
-	void sendAction (String _user, CfAction cfAction, AsyncCallback<Void> callback);
-	void sendAction (XmppServerType serverType, String user, CfAction action, AsyncCallback<Void> callback);
-
+	// requests for ServerInstance should have counterparts that don't specify a server, and so use default
+	void sendMessage (CfAction cfAction, AsyncCallback<Void> callback);
+	void sendMessage (XmppServerType serverType, CfAction action, AsyncCallback<Void> callback);
+	
+	void sendSuggestedMessages (CfAction cfAction, AsyncCallback<Void> callback);
+	void sendSuggestedMessages (XmppServerType serverType, CfAction action, AsyncCallback<Void> callback);
+	
 	void requestSuggestedMessages(String username, AsyncCallback<String> callback);
 	void requestSuggestedMessages(XmppServerType xmppServerType, String username, AsyncCallback<String> callback);
 	

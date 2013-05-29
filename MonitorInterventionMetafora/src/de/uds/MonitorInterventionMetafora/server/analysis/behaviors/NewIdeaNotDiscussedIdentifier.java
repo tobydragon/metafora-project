@@ -9,6 +9,7 @@ import java.util.Vector;
 import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
@@ -34,7 +35,7 @@ public class NewIdeaNotDiscussedIdentifier  implements  BehaviorIdentifier {
 	}
 
 	@Override
-	public List<BehaviorInstance> identifyBehaviors ( List<CfAction> cfActions, List<String> involvedUsers) {
+	public List<BehaviorInstance> identifyBehaviors ( List<CfAction> cfActions, List<String> involvedUsers, List<CfProperty> groupProperties) {
 		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
 		
 		List<CfAction> newIdeas = newIdeaFilter.getFilteredList(cfActions);
@@ -52,7 +53,7 @@ public class NewIdeaNotDiscussedIdentifier  implements  BehaviorIdentifier {
 			//and there has been no discussion afterwards
 			if ( ! (afterFilter.getFilteredList(discussion).size() > 0) ){
 				log.debug("[shouldFireNotification] new idea found, but no discussion, firing");
-				identifiedBehaviors.add(new BehaviorInstance(BehaviorType.NEW_IDEA_NOT_DISCUSSED, involvedUsers));
+				identifiedBehaviors.add(new BehaviorInstance(BehaviorType.NEW_IDEA_NOT_DISCUSSED, involvedUsers, groupProperties));
 			}
 			log.debug("[shouldFireNotification] new idea and discussion found");
 		}

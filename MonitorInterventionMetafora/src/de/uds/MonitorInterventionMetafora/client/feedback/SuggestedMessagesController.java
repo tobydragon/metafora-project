@@ -63,7 +63,7 @@ public class SuggestedMessagesController {
  	 	cfObject.addProperty(new CfProperty("TEXT", outbox.getMessageTextArea().getText()));
  	 	cfAction.addObject(cfObject);
 		
-		outbox.sendActionToServer(cfAction);
+		outbox.sendSuggestedMessageToServer(cfAction);
 		outbox.getMessageTextArea().setText("");
 		
 	}

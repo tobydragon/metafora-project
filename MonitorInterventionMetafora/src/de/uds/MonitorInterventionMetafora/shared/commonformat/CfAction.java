@@ -86,7 +86,19 @@ public class CfAction implements Serializable, Comparable<CfAction>{
 		return null;
 	}
 
-
+	public String getListofUsersAsStringWithRole(String role){
+		String list = "";
+		for (CfUser user : cfUsers){
+			if (user.getrole().equalsIgnoreCase(role)){
+				list = list + user.getid() + ", ";
+			}
+		}
+		if (list.endsWith(", ")){
+			list = list.substring(0, list.length()-2);
+		}
+		return list;
+	}
+	
 
 	public List<CfObject> getCfObjects() {
 		return cfObjects;

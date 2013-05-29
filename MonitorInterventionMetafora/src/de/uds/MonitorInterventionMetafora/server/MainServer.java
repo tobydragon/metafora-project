@@ -155,20 +155,35 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	}
 
 	@Override
-	public void sendAction(String _user, CfAction cfAction) {
-		sendAction(generalConfiguration.getDefaultXmppServer(), _user, cfAction);
+	public void sendMessage( CfAction cfAction) {
+		sendMessage(generalConfiguration.getDefaultXmppServer(), cfAction);
 	}
 	
 	@Override
-	public void sendAction(XmppServerType serverType, String user, CfAction action) {
+	public void sendMessage(XmppServerType serverType, CfAction action) {
 		if (serverType == XmppServerType.DEPLOY){
-			mainServer.sendAction(user, action);
+			mainServer.sendMessage(action);
 		}
 		else {
-			testServer.sendAction(user, action);
+			testServer.sendMessage(action);
 		}
 	}
-
+	
+	@Override
+	public void sendSuggestedMessages( CfAction cfAction) {
+		sendMessage(generalConfiguration.getDefaultXmppServer(), cfAction);
+	}
+	
+	@Override
+	public void sendSuggestedMessages(XmppServerType serverType, CfAction action) {
+		if (serverType == XmppServerType.DEPLOY){
+			mainServer.sendSuggestedMessages(action);
+		}
+		else {
+			testServer.sendSuggestedMessages(action);
+		}
+	}
+	
 
 	@Override
 	public UpdateResponse requestUpdate(CfAction cfAction) {

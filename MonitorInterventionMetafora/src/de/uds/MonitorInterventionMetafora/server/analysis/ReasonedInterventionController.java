@@ -53,7 +53,7 @@ public class ReasonedInterventionController {
 		if (instanceForDirectFeedback != null) {
 			SuggestedMessage message = instanceForDirectFeedback.getBestSuggestedMessage();
 			if (instanceForDirectFeedback != null && message != null){
-				messagesController.sendAction(null, InterventionCreator.createDirectMessage(xmppServerType.toString(), instanceForDirectFeedback.getUsernames(), "HIGH", message.getText(), null));
+				messagesController.sendMessage( InterventionCreator.createDirectMessage(xmppServerType.toString(), instanceForDirectFeedback.getUsernames(), "HIGH", message.getText(), null));
 			}
 		}
 	}
@@ -69,19 +69,9 @@ public class ReasonedInterventionController {
 	}
 
 	public void sendLandmarkForBehavior(BehaviorInstance behaviorInstance){
-		CfContent content=new CfContent("Possible " + behaviorInstance.getBehaviorType() + " detected.");
+		String description = "Possible " + behaviorInstance.getBehaviorType() + " detected.";
 
-		content.addProperty(new CfProperty(CommonFormatStrings.INDICATOR_TYPE, CommonFormatStrings.ACTIVITY));
-		content.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL, MetaforaStrings.ANAYLSIS_MANAGER));
-		
-		CfActionType cfActionType = new CfActionType(CommonFormatStrings.LANDMARK, CommonFormatStrings.OTHER, CommonFormatStrings.TRUE);
-		
-		final List<CfUser> users=new ArrayList<CfUser>();
-		for (String username: behaviorInstance.getUsernames()){
-			users.add(new CfUser(username, "originator"));
-		}
-		
-		CfAction cfAction = new CfAction(System.currentTimeMillis(), cfActionType, users, new ArrayList<CfObject>(),content);	
+		CfAction cfAction = InterventionCreator.createLandmark(behaviorInstance.getUsernames(), description, behaviorInstance.getProperties());
 		analysisChannelManager.sendMessage(cfAction);
 	}
 	
@@ -93,7 +83,7 @@ public class ReasonedInterventionController {
 		//TODO: get users
 		CfAction intervention = InterventionCreator.createSendSuggestedMessages(Arrays.asList("Bob"), SuggestedMessagesModelParserForServer.toXml(peerMessageModel).toString());
 		if( intervention != null){
-			messagesController.sendAction(null, intervention);
+			messagesController.sendSuggestedMessages(intervention);
 		}
 	}
 	

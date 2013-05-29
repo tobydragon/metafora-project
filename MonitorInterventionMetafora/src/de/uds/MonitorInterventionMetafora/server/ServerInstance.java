@@ -8,6 +8,8 @@ import messages.MessagesController;
 import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.AnalysisController;
+import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
+import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
@@ -18,32 +20,35 @@ import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 public class ServerInstance {
 	Logger logger = Logger.getLogger(this.getClass());
 	
-	MessagesController feedbackController;
+	MessagesController messagesController;
 	
 	MonitorController monitorController;
 	//Analysis requires a Monitor
 	AnalysisController analysisController;
+	
 		
 	public ServerInstance(CfCommunicationMethodType communicationMethodType, XmppServerType xmppServerType, boolean monitoringOn, String startTime,  String historyFilepath ){
-		feedbackController = new MessagesController(communicationMethodType, xmppServerType);
+		messagesController = new MessagesController(communicationMethodType, xmppServerType);
 		
 		if (monitoringOn){
 			monitorController = new MonitorController(communicationMethodType, startTime, xmppServerType, historyFilepath);
-			analysisController = new AnalysisController(monitorController, feedbackController, xmppServerType );
+			analysisController = new AnalysisController(monitorController, messagesController, xmppServerType );
 		}
-		
 	}
 	
 	public String requestSuggestedMessages(String username) {
 		logger.debug("[requestSuggestedMessages]  for user: " + username );
-		return feedbackController.requestSuggestedMessages(username);
+		return messagesController.requestSuggestedMessages(username);
 
 	}
 	
-	public void sendAction(String _user, CfAction cfAction) {
-		feedbackController.sendAction(_user, cfAction);
+	public void sendMessage( CfAction cfAction) {
+		messagesController.sendMessage(cfAction);
 	}
 
+	public void sendSuggestedMessages( CfAction cfAction) {
+		messagesController.sendSuggestedMessages(cfAction);
+	}
 	
 	public UpdateResponse requestUpdate(CfAction cfAction) {
 		if (monitorController != null){
