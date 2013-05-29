@@ -1,22 +1,19 @@
 package de.uds.MonitorInterventionMetafora.shared.suggestedmessages;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import com.allen_sauer.gwt.log.client.Log;
 
-import de.uds.MonitorInterventionMetafora.client.feedback.MessagesPanel;
-import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
-import de.uds.MonitorInterventionMetafora.client.logger.Logger;
-import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
-import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
-import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
-import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
+import de.uds.MonitorInterventionMetafora.server.analysis.AnalysisController;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
@@ -83,6 +80,42 @@ public class InterventionCreator {
 
 	 	return feedbackMessage;
 		
+	}
+	
+	public static CfAction createLandmark(List<String> usernames, String description, List<CfProperty> properties){
+		CfContent content=new CfContent(description);
+		for (CfProperty property : properties){
+			content.addProperty(property);
+		}
+
+		content.addProperty(new CfProperty(CommonFormatStrings.INDICATOR_TYPE, CommonFormatStrings.ACTIVITY));
+		content.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL, MetaforaStrings.ANAYLSIS_MANAGER));
+		
+		CfActionType cfActionType = new CfActionType(CommonFormatStrings.LANDMARK, CommonFormatStrings.OTHER, CommonFormatStrings.TRUE);
+		
+		final List<CfUser> users=new ArrayList<CfUser>();
+		for (String username: usernames){
+			users.add(new CfUser(username, "originator"));
+		}
+		
+		
+		CfAction cfAction = new CfAction(System.currentTimeMillis(), cfActionType, users, new ArrayList<CfObject>(),content);
+		return cfAction;
+	}
+	
+	public static CfAction createLandmarkForOutgoingMessage (CfAction message){
+		List<String> usernames = new Vector<String>();
+		String senderString = message.getListofUsersAsStringWithRole("sender");
+		String receiverString = message.getListofUsersAsStringWithRole("receiver");
+		String text = message.getCfObjects().get(0).getPropertyValue("TEXT");
+		for (CfUser user : message.getCfUsers()){
+			usernames.add(user.getid());
+		}
+		String description = senderString + " sent message: \"" + text + "\" to " + receiverString;
+		
+		List<CfAction> actions = new Vector<CfAction>();
+		actions.add(message);
+		return createLandmark(usernames, description, AnalysisController.getPropertiesFromActions(actions) );
 	}
 
 }

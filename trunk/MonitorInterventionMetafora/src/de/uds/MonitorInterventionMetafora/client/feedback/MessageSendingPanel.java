@@ -384,7 +384,9 @@ public class MessageSendingPanel extends VerticalPanel {
 		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL, MetaforaStrings.MONITOR_AND_MESSAGE_TOOL_NAME));
  	 	feedbackMessage.setCfContent(myContent);
 
-	 	sendActionToServer(feedbackMessage);
+	 	sendMessageToServer(feedbackMessage);
+	 	
+	 	
 	 	if(messageTextArea.getText().length()>0)
 	 	{
 	 		MessagesPanel.getTemplatePool().addMessageToHistory(messageTextArea.getText());
@@ -401,17 +403,31 @@ public class MessageSendingPanel extends VerticalPanel {
     	Logger.getLoggerInstance().log(userActionLog);
 		
     	messageTextArea.setText("");
-	//check if objectIdsTextBox has been created because if user type is different it will not be there
-	if (objectIdsTextBox != null) objectIdsTextBox.setText("");
+		//check if objectIdsTextBox has been created because if user type is different it will not be there
+		if (objectIdsTextBox != null) {
+			objectIdsTextBox.setText("");
+		}
 	}
 	
-	public void sendActionToServer(CfAction cfAction) {
+	
+	public void sendMessageToServer(CfAction cfAction) {
 		XmppServerType xmppServerType = UrlParameterConfig.getInstance().getXmppServerType();
 		if (xmppServerType != null){
-			commServiceServlet.sendAction(xmppServerType, MetaforaStrings.MONITOR_AND_MESSAGE_TOOL_NAME,cfAction, new NoActionResponse());
+			commServiceServlet.sendMessage(xmppServerType, cfAction, new NoActionResponse());
 		}
 		else {
-			commServiceServlet.sendAction(MetaforaStrings.MONITOR_AND_MESSAGE_TOOL_NAME,cfAction, new NoActionResponse());
+			commServiceServlet.sendMessage(cfAction, new NoActionResponse());
+		}
+	}
+	
+	
+	public void sendSuggestedMessageToServer(CfAction cfAction) {
+		XmppServerType xmppServerType = UrlParameterConfig.getInstance().getXmppServerType();
+		if (xmppServerType != null){
+			commServiceServlet.sendSuggestedMessages(xmppServerType, cfAction, new NoActionResponse());
+		}
+		else {
+			commServiceServlet.sendSuggestedMessages(cfAction, new NoActionResponse());
 		}
 	}
 	

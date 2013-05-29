@@ -1,8 +1,5 @@
 package de.uds.MonitorInterventionMetafora.client.communication;
 
-import java.util.List;
-
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -20,8 +17,11 @@ import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 public interface CommunicationService extends RemoteService {
 
 	//answered by serverInstance
-	void sendAction(String _user, CfAction cfAction);
-	void sendAction (XmppServerType serverType, String user, CfAction action);
+	void sendMessage (CfAction cfAction);
+	void sendMessage (XmppServerType serverType, CfAction action);
+	
+	void sendSuggestedMessages (CfAction cfAction);
+	void sendSuggestedMessages (XmppServerType serverType, CfAction action);
 	
 	UpdateResponse requestUpdate(CfAction _lastcfAction);
 	UpdateResponse requestUpdate(XmppServerType xmppServerType, CfAction _lastcfAction);

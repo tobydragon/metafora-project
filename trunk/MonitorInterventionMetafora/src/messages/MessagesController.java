@@ -15,6 +15,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMet
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.InterventionCreator;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesFileHandler;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.MessageType;
@@ -27,11 +28,18 @@ public class MessagesController implements CfCommunicationListener {
 	CfAgentCommunicationManager commandChannelCommunicationManager;
 	SuggestedMessages4AllUsersModel suggestedMessagesModel;
 	
+	//purely to send landmarks when messages are sent
+	CfAgentCommunicationManager analysisChannelManager;
+
+	
 	public MessagesController(CfCommunicationMethodType communicationMethodType, XmppServerType xmppServerType){
 		commandChannelCommunicationManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.command, xmppServerType);
 		suggestedMessagesModel = new SuggestedMessages4AllUsersModel();
 		commandChannelCommunicationManager.register(this);
 		initializeDefaultMessageModel();
+		
+		//purely to send landmarks when messages are sent
+		analysisChannelManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.analysis, xmppServerType);				
 	}
 		
 	public void	initializeDefaultMessageModel(){
@@ -56,8 +64,20 @@ public class MessagesController implements CfCommunicationListener {
 		return suggestedMessagesModel.getCopyOfDefaultMessages(messageType, locale);
 	}
 	
-	public void sendAction(String _user, CfAction cfAction) {
-		logger.debug("[sendAction] Sending Message = \n" + CfActionParser.toXml(cfAction));
+	public void sendMessage( CfAction cfAction){
+		//Sending a message creates a landmark
+		CfAction landmark = InterventionCreator.createLandmarkForOutgoingMessage(cfAction);
+		logger.debug("[sendMessage] Sending Landmark = \n" + CfActionParser.toXml(landmark));
+		analysisChannelManager.sendMessage(landmark);
+		sendAction(cfAction);
+	}
+	
+	public void sendSuggestedMessages( CfAction cfAction){
+		sendAction(cfAction);
+	}
+	
+	private void sendAction( CfAction cfAction) {
+		logger.debug("[sendAction] Sending Action = \n" + CfActionParser.toXml(cfAction));
 		commandChannelCommunicationManager.sendMessage(cfAction);
 	}	
 	

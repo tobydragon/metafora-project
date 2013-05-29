@@ -1,5 +1,6 @@
 package de.uds.MonitorInterventionMetafora.server.analysis;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -13,6 +14,7 @@ import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.NewIdeaNotDi
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
@@ -27,6 +29,8 @@ public class AnalysisController {
 	Logger log = Logger.getLogger(this.getClass());
 	
 	List<BehaviorIdentifier> behaviorIdentifiers;
+	
+	public static List<String> PROPERTIES_TO_RETRIEVE = Arrays.asList("GROUP_ID", "CHALLENGE_ID", "CHALLENGE_NAME"); 
 	
 	MonitorController monitorController;
 	ReasonedInterventionController reasonedInterventionController;
@@ -45,11 +49,13 @@ public class AnalysisController {
 		log.info("[analyzeGroup] number of actions found for group: " + groupActions.size());
 		List<String> involvedUsers = getOriginatingUsernames(groupActions);
 		log.info("[analyzeGroup] users found for group: " + involvedUsers);
-		
+		List<CfProperty> groupProperties = getPropertiesFromActions(groupActions);
+		log.info("[analyzeGroup] properties found for group: " + groupProperties);
+
 		
 		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
 		for (BehaviorIdentifier identifier : behaviorIdentifiers){
-			identifiedBehaviors.addAll(identifier.identifyBehaviors(groupActions, involvedUsers));
+			identifiedBehaviors.addAll(identifier.identifyBehaviors(groupActions, involvedUsers, groupProperties));
 		}
 		log.info("[AnalysisController.analyzeGroup] "+ identifiedBehaviors.size() +" behaviors identified : \n" + identifiedBehaviors);
 		if (identifiedBehaviors.size() > 0){
@@ -74,6 +80,22 @@ public class AnalysisController {
 			}
 		}
 		return usernames;
+	}
+	
+	public static List<CfProperty> getPropertiesFromActions(List<CfAction> actions) {
+		//Assumes properties are the same for all actions in list, does not check
+		List <CfProperty> properties = new Vector<CfProperty>();
+		
+		for (String propertyName : PROPERTIES_TO_RETRIEVE){
+			for (CfAction action : actions) {
+				String value = action.getCfContent().getPropertyValue(propertyName);
+				if (value != null){
+					properties.add(new CfProperty(propertyName, value));
+					break;
+				}
+			}
+		}
+		return properties;
 	}
 
 	public static List<String> getInvolvedGroups(List<CfAction> actions) {
