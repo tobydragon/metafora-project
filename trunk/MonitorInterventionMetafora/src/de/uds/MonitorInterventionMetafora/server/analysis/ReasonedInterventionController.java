@@ -53,7 +53,7 @@ public class ReasonedInterventionController {
 		if (instanceForDirectFeedback != null) {
 			SuggestedMessage message = instanceForDirectFeedback.getBestSuggestedMessage();
 			if (instanceForDirectFeedback != null && message != null){
-				messagesController.sendMessage( InterventionCreator.createDirectMessage(xmppServerType.toString(), instanceForDirectFeedback.getUsernames(), "HIGH", message.getText(), null));
+				messagesController.sendMessage( InterventionCreator.createDirectMessage(xmppServerType.toString(), instanceForDirectFeedback.getUsernames(), null, "HIGH", message.getText(), null));
 			}
 		}
 	}

@@ -43,7 +43,7 @@ public class InterventionCreator {
 		return cfAction;
 	}
 	
-	public static CfAction createDirectMessage(String receiver, List<String> userIds, String interruptionType, String message, List<String> objectIds){
+	public static CfAction createDirectMessage(String receiver, List<String> userIds, String groupId, String interruptionType, String message, List<String> objectIds){
 		CfAction feedbackMessage=new CfAction();
 	 	feedbackMessage.setTime(GWTUtils.getTimeStamp());
 	 	  
@@ -58,8 +58,7 @@ public class InterventionCreator {
  	 		feedbackMessage.addUser(new CfUser(userId, "receiver"));
  	 	}
  	 	
- 	 	//TODO: what happens with IDs? And do they matter? 
- 	 	//Can we uniquely auto-increment them? Perhaps use that java UUID library? 
+ 	 	//IDs don't seem to matter. 
  	 	CfObject cfObject = new CfObject("0", MetaforaStrings.PROPERTY_VALUE_MESSAGE_STRING);
  	 	
  	 	cfObject.addProperty(new CfProperty("INTERRUPTION_TYPE", interruptionType));
@@ -76,7 +75,8 @@ public class InterventionCreator {
 		CfContent myContent = new CfContent();
 		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_RECEIVING_TOOL,receiver));
 		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL, MetaforaStrings.MONITOR_AND_MESSAGE_TOOL_NAME));
- 	 	feedbackMessage.setCfContent(myContent);
+		myContent.addProperty(new CfProperty("GROUP_ID",groupId));
+		feedbackMessage.setCfContent(myContent);
 
 	 	return feedbackMessage;
 		
