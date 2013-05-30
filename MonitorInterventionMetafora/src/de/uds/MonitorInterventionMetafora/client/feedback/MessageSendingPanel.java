@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.client.feedback;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import de.uds.MonitorInterventionMetafora.client.messages.MessagesBundle;
@@ -30,15 +31,9 @@ import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
-import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesModel;
-import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.InterventionCreator;
 
 public class MessageSendingPanel extends VerticalPanel {
     
@@ -68,7 +63,7 @@ public class MessageSendingPanel extends VerticalPanel {
 	private CommunicationServiceAsync commServiceServlet;
 	
 	
-	public MessageSendingPanel(CommunicationServiceAsync commServiceServlet) {
+	public MessageSendingPanel(CommunicationServiceAsync commServiceServlet, String[] userIDsArray) {
 		this.commServiceServlet = commServiceServlet;
 		
 		vPanel = new VerticalPanel();
@@ -112,8 +107,7 @@ public class MessageSendingPanel extends VerticalPanel {
 		recipientNamesColumn = new VerticalPanel();
 		userGroupColumn.add(recipientNamesColumn);
 		
-		createCheckBoxes(MessagesPanel.userIDsArray);
-
+		
 		if (UrlParameterConfig.getInstance().getUserType().equals(UserType.MESSAGING_WIZARD)
 		   || UrlParameterConfig.getInstance().getUserType().equals(UserType.RECOMMENDING_WIZARD)) {
 
@@ -178,9 +172,14 @@ public class MessageSendingPanel extends VerticalPanel {
 			}
 		});
 		allNone.add(editStudentsButton);
+		} //end of if that checks if that's the wizard interface
+		
+		//if we have a groupId then we don't need buttons
+		if (UrlParameterConfig.getInstance().getGroupId() == null) {
+		    createCheckBoxes(userIDsArray);
+		    sendOptionsRow.add(userGroupColumn);
 		}
-		//end of if wizard 
-		sendOptionsRow.add(userGroupColumn);
+
 				
 		if (userType.equals(UserType.RECOMMENDING_WIZARD)) {
 			labelAndSendButtonPanel.add(createSendSugesstionsButton());
@@ -336,77 +335,45 @@ public class MessageSendingPanel extends VerticalPanel {
 	}
 	
 	private void sendMessageToServer() {
-		CfAction feedbackMessage=new CfAction();
-	 	feedbackMessage.setTime(GWTUtils.getTimeStamp());
-	 	  
-		 CfActionType _cfActionType=new CfActionType();
-	 	 _cfActionType.setType("FEEDBACK");
-	 	_cfActionType.setClassification("create");
-	 	_cfActionType.setSucceed("UNKNOWN");
-	 	//abusing testServer parameter to set logged or not
-	 	//as of email with KP and TD "Metafora | updated XML for feedback messages"
-	 	String testServer = UrlParameterConfig.getInstance().getTestServer() + "";
-	 	_cfActionType.setLogged(testServer);
-	 	 	
- 	 	feedbackMessage.setCfActionType(_cfActionType);
-
- 	 	for (String userId : getSelectedRecipients()) {
- 	 		feedbackMessage.addUser(new CfUser(userId, "receiver"));
- 	 	}
- 	 	
- 	 	//TODO: what happens with IDs? And do they matter? 
- 	 	//Can we uniquely auto-increment them? Perhaps use that java UUID library? 
- 	 	CfObject cfObject = new CfObject("0", MetaforaStrings.PROPERTY_VALUE_MESSAGE_STRING);
- 	 	
- 	 	cfObject.addProperty(new CfProperty("INTERRUPTION_TYPE", getSelectedIntteruptionType()));
- 	 	cfObject.addProperty(new CfProperty("TEXT", messageTextArea.getText()));
- 	 	cfObject.addProperty(new CfProperty("GROUP_ID",UrlParameterConfig.getInstance().getGroupId()));
- 	 	feedbackMessage.addObject(cfObject);
-
- 	 	if (UrlParameterConfig.getInstance().getUserType().equals(UserType.RECOMMENDING_WIZARD)) {
+	    
+	    	List<String> objectIds = null;
+	    	
+	    	if (UrlParameterConfig.getInstance().getUserType().equals(UserType.RECOMMENDING_WIZARD)) {
  	 		String objectIdsString = objectIdsTextBox.getText();
  	 		String[] split = objectIdsString.replaceAll("\\D*", " ").replaceAll("\\s+", ",").split(",");
- 	 		for (String id : split) {
- 	 			if (!"".equals(id))
- 	 				feedbackMessage.addObject(new CfObject(id, MetaforaStrings.REFERABLE_OBJECT_STRING));
- 	 		}
+ 	 		objectIds = Arrays.asList(split);
  	 	}
  	 	
- 	 	
-		String receiver = UrlParameterConfig.getInstance().getReceiver();
+	    	String receiver = UrlParameterConfig.getInstance().getReceiver();
 		//this shouldn't be needed but jic
 		if (receiver == null || receiver.equals("")) {
 			receiver = MetaforaStrings.RECEIVER_METAFORA_TEST;
 		}
 		
-		CfContent myContent = new CfContent();
-		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_RECEIVING_TOOL,receiver));
-		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL, MetaforaStrings.MONITOR_AND_MESSAGE_TOOL_NAME));
- 	 	feedbackMessage.setCfContent(myContent);
+ 	 	CfAction feedbackMessage = InterventionCreator.createDirectMessage(receiver, getSelectedRecipients(), UrlParameterConfig.getInstance().getGroupId(), getSelectedIntteruptionType(), messageTextArea.getText(), objectIds);
 
 	 	sendMessageToServer(feedbackMessage);
-	 	
-	 	
+	 		 	
 	 	if(messageTextArea.getText().length()>0)
 	 	{
 	 		MessagesPanel.getTemplatePool().addMessageToHistory(messageTextArea.getText());
 	 	}
 	
-		UserLog userActionLog = new UserLog();
-    	userActionLog.setComponentType(ComponentType.FEEDBACK_OUTBOX);
-    	//userActionLog.setDescription("Wizard sent feedback to the students:"+usernames+", Message: "+messageTextArea.getValue());
-    	userActionLog.setUserActionType(UserActionType.SEND_FEEDBACK);
-     	userActionLog.setTriggeredBy(ComponentType.FEEDBACK_OUTBOX);
-     	//userActionLog.addProperty("USER_NAMES", usernames);
-     	userActionLog.addProperty("TEXT", messageTextArea.getText());
-     	userActionLog.addProperty("INTERUPTION_TYPE", getSelectedIntteruptionType());
-    	Logger.getLoggerInstance().log(userActionLog);
-		
-    	messageTextArea.setText("");
-		//check if objectIdsTextBox has been created because if user type is different it will not be there
-		if (objectIdsTextBox != null) {
-			objectIdsTextBox.setText("");
-		}
+    		UserLog userActionLog = new UserLog();
+        	userActionLog.setComponentType(ComponentType.FEEDBACK_OUTBOX);
+        	//userActionLog.setDescription("Wizard sent feedback to the students:"+usernames+", Message: "+messageTextArea.getValue());
+        	userActionLog.setUserActionType(UserActionType.SEND_FEEDBACK);
+         	userActionLog.setTriggeredBy(ComponentType.FEEDBACK_OUTBOX);
+         	//userActionLog.addProperty("USER_NAMES", usernames);
+         	userActionLog.addProperty("TEXT", messageTextArea.getText());
+         	userActionLog.addProperty("INTERUPTION_TYPE", getSelectedIntteruptionType());
+        	Logger.getLoggerInstance().log(userActionLog);
+    		
+        	messageTextArea.setText("");
+    		//check if objectIdsTextBox has been created because if user type is different it will not be there
+    		if (objectIdsTextBox != null) {
+    			objectIdsTextBox.setText("");
+    		}
 	}
 	
 	

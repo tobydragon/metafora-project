@@ -18,7 +18,7 @@ public class MessagesPanel extends VerticalPanel implements SuggestedMessagesFil
 	private SuggestedMessagesPanel templatePool;
 	static private MessagesPanel INSTANCE;
 
-	public static String[] userIDsArray = {"Alan", "Mary", "David"};	
+	private static String[] userIDsArray = {"Alan", "Mary", "David"};	
 	
 	CommunicationServiceAsync commServiceServlet;
 	
@@ -28,13 +28,12 @@ public class MessagesPanel extends VerticalPanel implements SuggestedMessagesFil
 		
 //		updater = new ClientFeedbackDataModelUpdater(monitoringViewServiceServlet);
 		
-		//TOODO: this is awful and only a shortcut now
 		String configUserIDs = UrlParameterConfig.getInstance().getReceiverIDs();
 		if ((configUserIDs != null) && (configUserIDs != "")) {
 		    userIDsArray= parseStringToArray(configUserIDs);
 		}
 
-		outbox = new MessageSendingPanel(commServiceServlet);
+		outbox = new MessageSendingPanel(commServiceServlet, userIDsArray);
 		this.add(outbox);
 		this.setSpacing(5);
 		
