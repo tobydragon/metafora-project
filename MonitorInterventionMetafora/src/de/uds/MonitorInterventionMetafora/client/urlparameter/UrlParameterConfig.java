@@ -1,5 +1,8 @@
 package de.uds.MonitorInterventionMetafora.client.urlparameter;
 
+import java.util.List;
+import java.util.Vector;
+
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.Window;
@@ -29,6 +32,8 @@ public class UrlParameterConfig {
 	private boolean testServer;
 	private boolean monitoring;
 	private boolean complexDataViews;
+	
+	private List<String> loggedInUsers;
 
 	//The Metafora XMPP server type (by default is the test)
 	private XmppServerType xmppServerType = XmppServerType.METAFORA_TEST;
@@ -37,8 +42,21 @@ public class UrlParameterConfig {
 	
 
 	private UrlParameterConfig() {
-		
+		loggedInUsers = new Vector<String>();
 		username = getAndDecodeUrlParam("user");
+		if (username != null){
+			loggedInUsers.add(username);
+		}
+		for (int i=1; i<10; i++){
+			String nextUsername = getAndDecodeUrlParam( ("otherUser"+i) );
+			if (nextUsername != null){
+				loggedInUsers.add(nextUsername);
+			}
+			else {
+				break;
+			}
+		}
+		
 		groupId = getAndDecodeUrlParam("groupId");
 		receiverIDs = getAndDecodeUrlParam("receiverIDs");
 		password = getAndDecodeUrlParam("pw");
@@ -185,6 +203,11 @@ public class UrlParameterConfig {
 
 	public boolean isComplexDataViews() {
 		return complexDataViews;
+	}
+
+
+	public List<String> getLoggedInUsers() {
+		return loggedInUsers;
 	}
 	
 	

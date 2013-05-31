@@ -5,8 +5,8 @@
     <!-- Either the "xmpp" (to read live) or "file" (to read from "war/xml/test/analysisChannelInput.xml") -->
     <data-source-type>xmpp</data-source-type>
     
-    <!-- Either "DEPLOY" or "TEST" -->
-    <default-xmpp-server>TEST</default-xmpp-server>
+    <!-- Either "METAFORA" or "METAFORA_TEST" -->
+    <default-xmpp-server>METAFORA_TEST</default-xmpp-server>
     
     <!-- Either "true" or "false" -->
     <test-server-monitoring>false</test-server-monitoring>

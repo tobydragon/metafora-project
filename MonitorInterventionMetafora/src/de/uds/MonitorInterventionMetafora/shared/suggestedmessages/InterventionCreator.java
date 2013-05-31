@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.shared.suggestedmessages;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -43,7 +44,7 @@ public class InterventionCreator {
 		return cfAction;
 	}
 	
-	public static CfAction createDirectMessage(String receiver, List<String> userIds, String groupId, String interruptionType, String message, List<String> objectIds){
+	public static CfAction createDirectMessage(String receivingTool, List<String> sendingUsers, List<String> receivingUserIds, String groupId, String interruptionType, String message, List<String> objectIds){
 		CfAction feedbackMessage=new CfAction();
 	 	feedbackMessage.setTime(GWTUtils.getTimeStamp());
 	 	  
@@ -54,7 +55,11 @@ public class InterventionCreator {
 	 	 	
  	 	feedbackMessage.setCfActionType(cfActionType);
 
- 	 	for (String userId : userIds) {
+ 	 	for (String senderUser : sendingUsers){
+ 	 		feedbackMessage.addUser(new CfUser(senderUser, "sender"));
+ 	 	}
+ 	 	
+ 	 	for (String userId : receivingUserIds) {
  	 		feedbackMessage.addUser(new CfUser(userId, "receiver"));
  	 	}
  	 	
@@ -73,7 +78,7 @@ public class InterventionCreator {
  	 	}
 		
 		CfContent myContent = new CfContent();
-		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_RECEIVING_TOOL,receiver));
+		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_RECEIVING_TOOL,receivingTool));
 		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL, MetaforaStrings.MONITOR_AND_MESSAGE_TOOL_NAME));
 		if (groupId != null){
 			myContent.addProperty(new CfProperty("GROUP_ID",groupId));	
@@ -110,6 +115,12 @@ public class InterventionCreator {
 		String senderString = message.getListofUsersAsStringWithRole("sender");
 		String receiverString = message.getListofUsersAsStringWithRole("receiver");
 		String text = message.getCfObjects().get(0).getPropertyValue("TEXT");
+		
+		if (receiverString == null || receiverString.length()<1){
+			String groupId = message.getCfContent().getPropertyValue("GROUP_ID");
+			receiverString = "group " + groupId;
+		}
+		
 		for (CfUser user : message.getCfUsers()){
 			usernames.add(user.getid());
 		}
@@ -128,7 +139,7 @@ public class InterventionCreator {
 				usernames.add(user.getid());
 			}
 			String message = "New Tips available in Messaging Tool";
-			return createDirectMessage(receiver, usernames, null, "LOW_INTERRUPTION", message, null);
+			return createDirectMessage(receiver, Arrays.asList("System"), usernames, null, "LOW_INTERRUPTION", message, null);
 		}
 		Log.error("[createNewSuggestedMessagesNotification] Send Suggested messages with no users.");
 		return null;
