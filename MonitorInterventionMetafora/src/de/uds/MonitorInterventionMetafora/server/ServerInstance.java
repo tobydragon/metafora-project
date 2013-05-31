@@ -11,6 +11,7 @@ import de.uds.MonitorInterventionMetafora.server.analysis.AnalysisController;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
+import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
@@ -54,7 +55,7 @@ public class ServerInstance {
 		if (monitorController != null){
 			logger.info("[requestUpdate]  requesting update is received  by the server");
 			List<CfAction> actionUpdates = monitorController.requestUpdate(cfAction);
-			List<String> involvedGroups = AnalysisController.getInvolvedGroups(actionUpdates);
+			List<String> involvedGroups = AnalysisActions.getInvolvedGroups(actionUpdates);
 			
 			return new UpdateResponse(actionUpdates, involvedGroups);
 		}

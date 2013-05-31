@@ -6,7 +6,7 @@ import java.util.Vector;
 
 import com.allen_sauer.gwt.log.client.Log;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.AnalysisController;
+import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -75,7 +75,9 @@ public class InterventionCreator {
 		CfContent myContent = new CfContent();
 		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_RECEIVING_TOOL,receiver));
 		myContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL, MetaforaStrings.MONITOR_AND_MESSAGE_TOOL_NAME));
-		myContent.addProperty(new CfProperty("GROUP_ID",groupId));
+		if (groupId != null){
+			myContent.addProperty(new CfProperty("GROUP_ID",groupId));	
+		}
 		feedbackMessage.setCfContent(myContent);
 
 	 	return feedbackMessage;
@@ -115,7 +117,21 @@ public class InterventionCreator {
 		
 		List<CfAction> actions = new Vector<CfAction>();
 		actions.add(message);
-		return createLandmark(usernames, description, AnalysisController.getPropertiesFromActions(actions) );
+		return createLandmark(usernames, description, AnalysisActions.getPropertiesFromActions(actions) );
+	}
+
+	public static CfAction createNewSuggestedMessagesNotification(String receiver, CfAction cfAction) {
+		List<CfUser> cfUsers = cfAction.getCfUsers();
+		if (cfUsers != null && cfUsers.size() > 0){
+			List<String> usernames = new Vector<String>();
+			for (CfUser user : cfUsers){
+				usernames.add(user.getid());
+			}
+			String message = "New Tips available in Messaging Tool";
+			return createDirectMessage(receiver, usernames, null, "LOW_INTERRUPTION", message, null);
+		}
+		Log.error("[createNewSuggestedMessagesNotification] Send Suggested messages with no users.");
+		return null;
 	}
 
 }

@@ -22,7 +22,7 @@ public class CfCommunicationTest extends TestCase {
 	
 	public void testFileInput(){
 		CfCommunicationListenerTest mytest = new CfCommunicationListenerTest();
-		CfAgentCommunicationManager manager = CfAgentCommunicationManager.getInstance(CfCommunicationMethodType.file, CommunicationChannelType.analysis, XmppServerType.TEST);
+		CfAgentCommunicationManager manager = CfAgentCommunicationManager.getInstance(CfCommunicationMethodType.file, CommunicationChannelType.analysis, XmppServerType.METAFORA_TEST);
 		manager.register(mytest);
 		manager.sendMessage(new CfAction(0, new CfActionType("START_FILE_INPUT", null, null)));
 	}

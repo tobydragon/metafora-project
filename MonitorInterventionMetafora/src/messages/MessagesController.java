@@ -30,9 +30,12 @@ public class MessagesController implements CfCommunicationListener {
 	
 	//purely to send landmarks when messages are sent
 	CfAgentCommunicationManager analysisChannelManager;
+	
+	XmppServerType xmppServerType;
 
 	
 	public MessagesController(CfCommunicationMethodType communicationMethodType, XmppServerType xmppServerType){
+		this.xmppServerType = xmppServerType;
 		commandChannelCommunicationManager = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.command, xmppServerType);
 		suggestedMessagesModel = new SuggestedMessages4AllUsersModel();
 		commandChannelCommunicationManager.register(this);
@@ -72,8 +75,14 @@ public class MessagesController implements CfCommunicationListener {
 		sendAction(cfAction);
 	}
 	
-	public void sendSuggestedMessages( CfAction cfAction){
+	public void sendSuggestedMessages(CfAction cfAction){
 		sendAction(cfAction);
+		//Send low interruption message to tell user that tips are available
+		CfAction notificationMessage = InterventionCreator.createNewSuggestedMessagesNotification(xmppServerType.toString(), cfAction);
+		if (notificationMessage != null){
+			logger.debug("[sendSuggestedMessages] Sending Notification Message = \n" + CfActionParser.toXml(notificationMessage));
+			sendAction (notificationMessage);
+		}
 	}
 	
 	private void sendAction( CfAction cfAction) {

@@ -1,6 +1,5 @@
 package de.uds.MonitorInterventionMetafora.server.analysis;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -12,17 +11,10 @@ import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorIden
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorInstance;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.NewIdeaNotDiscussedIdentifier;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
+import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
-import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
-import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
 public class AnalysisController {
@@ -30,7 +22,6 @@ public class AnalysisController {
 	
 	List<BehaviorIdentifier> behaviorIdentifiers;
 	
-	public static List<String> PROPERTIES_TO_RETRIEVE = Arrays.asList("GROUP_ID", "CHALLENGE_ID", "CHALLENGE_NAME"); 
 	
 	MonitorController monitorController;
 	ReasonedInterventionController reasonedInterventionController;
@@ -45,11 +36,11 @@ public class AnalysisController {
 	}
 	
 	public void analyzeGroup(String groupName, Locale locale){
-		List <CfAction> groupActions = getGroupActions(groupName, monitorController.getActionList());
+		List <CfAction> groupActions = AnalysisActions.getGroupActions(groupName, monitorController.getActionList());
 		log.info("[analyzeGroup] number of actions found for group: " + groupActions.size());
-		List<String> involvedUsers = getOriginatingUsernames(groupActions);
+		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(groupActions);
 		log.info("[analyzeGroup] users found for group: " + involvedUsers);
-		List<CfProperty> groupProperties = getPropertiesFromActions(groupActions);
+		List<CfProperty> groupProperties = AnalysisActions.getPropertiesFromActions(groupActions);
 		log.info("[analyzeGroup] properties found for group: " + groupProperties);
 
 		
@@ -62,65 +53,4 @@ public class AnalysisController {
 			reasonedInterventionController.sendInterventions(identifiedBehaviors, locale);
 		}
 	}
-	
-	public static List<CfAction> getGroupActions(String groupName, List<CfAction> actions){
-		List<ActionPropertyRule> groupRules1 =new Vector<ActionPropertyRule>();
-		groupRules1.add(new ActionPropertyRule("GROUP_ID", groupName, PropertyLocation.OBJECT, OperationType.EQUALS));
-		ActionFilter groupFilter1 = new ActionFilter("GroupFilter", true, groupRules1);
-		return groupFilter1.getFilteredList(actions);
-	}
-	
-	public static List<String> getOriginatingUsernames(List<CfAction> actions) {
-		List<String> usernames = new Vector<String>();
-		for (CfAction action : actions){
-			for (CfUser user : action.getCfUsers()){
-				if (MetaforaStrings.USER_ROLE_ORIGINATOR_STRING.equalsIgnoreCase(user.getrole())){
-					usernames.add(user.getid());
-				}
-			}
-		}
-		return usernames;
-	}
-	
-	public static List<CfProperty> getPropertiesFromActions(List<CfAction> actions) {
-		//Assumes properties are the same for all actions in list, does not check
-		List <CfProperty> properties = new Vector<CfProperty>();
-		
-		for (String propertyName : PROPERTIES_TO_RETRIEVE){
-			for (CfAction action : actions) {
-				String value = action.getCfContent().getPropertyValue(propertyName);
-				if (value != null){
-					properties.add(new CfProperty(propertyName, value));
-					break;
-				}
-			}
-		}
-		return properties;
-	}
-
-	public static List<String> getInvolvedGroups(List<CfAction> actions) {
-		List<String> groups = new Vector<String>();
-		
-		for (CfAction action : actions){
-			if (action.getCfContent() != null){
-				String groupName = action.getCfContent().getPropertyValue(MetaforaStrings.PROPERTY_TYPE_GROUP_ID_STRING);
-				if (groupName != null){
-					if (! groups.contains(groupName)){
-						groups.add(groupName);
-					}
-				}
-			}
-			for (CfObject object : action.getCfObjects()){
-				String groupName = object.getPropertyValue(MetaforaStrings.PROPERTY_TYPE_GROUP_ID_STRING);
-				if (groupName != null){
-					if (! groups.contains(groupName)){
-						groups.add(groupName);
-					}
-				}
-			}
-		}
-		return groups;
-	}
-	
-
 }
