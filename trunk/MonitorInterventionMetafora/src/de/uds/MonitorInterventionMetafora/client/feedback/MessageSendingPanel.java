@@ -350,7 +350,9 @@ public class MessageSendingPanel extends VerticalPanel {
 			receiver = MetaforaStrings.RECEIVER_METAFORA_TEST;
 		}
 		
- 	 	CfAction feedbackMessage = InterventionCreator.createDirectMessage(receiver, getSelectedRecipients(), UrlParameterConfig.getInstance().getGroupId(), getSelectedIntteruptionType(), messageTextArea.getText(), objectIds);
+		List<String> sendingUsers = UrlParameterConfig.getInstance().getLoggedInUsers();
+		
+ 	 	CfAction feedbackMessage = InterventionCreator.createDirectMessage(receiver, sendingUsers, getSelectedRecipients(), UrlParameterConfig.getInstance().getGroupId(), getSelectedIntteruptionType(), messageTextArea.getText(), objectIds);
 
 	 	sendMessageToServer(feedbackMessage);
 	 		 	
