@@ -31,7 +31,7 @@ public class UrlParameterConfig {
 	private boolean complexDataViews;
 
 	//The Metafora XMPP server type (by default is the test)
-	private XmppServerType xmppServerType = XmppServerType.TEST;
+	private XmppServerType xmppServerType = XmppServerType.METAFORA_TEST;
 	private static UrlParameterConfig singletonInstance;
 	
 	
@@ -88,9 +88,9 @@ public class UrlParameterConfig {
 		receiver = (receiver == null) ? MetaforaStrings.RECEIVER_METAFORA_TEST : receiver;
 
 		if (MetaforaStrings.RECEIVER_METAFORA.equalsIgnoreCase(receiver)){
-		    xmppServerType = XmppServerType.DEPLOY;
+		    xmppServerType = XmppServerType.METAFORA;
 		} else if (MetaforaStrings.RECEIVER_METAFORA_TEST.equalsIgnoreCase(receiver)){
-		    xmppServerType = XmppServerType.TEST;
+		    xmppServerType = XmppServerType.METAFORA_TEST;
 		} else {
 		    //setting this to null (for now) if receiver is not one of the known Metafora ones
 		    xmppServerType = null; 

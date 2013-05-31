@@ -91,28 +91,28 @@ public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMes
 		
 		String connectionName;
 		if (type == CommunicationChannelType.command){
-			xmppServerType = XmppServerType.DEPLOY;
+			xmppServerType = XmppServerType.METAFORA;
 			XMPPBridgeCurrent.setServer(server);	
 			connectionName = commandConnectionName;
 		}
 		else if (type == CommunicationChannelType.analysis){
-			xmppServerType = XmppServerType.DEPLOY;
+			xmppServerType = XmppServerType.METAFORA;
 			XMPPBridgeCurrent.setServer(server);	
 			connectionName = analysisConnectionName;
 		} 
 		else if (type == CommunicationChannelType.testAnalysis){
-			xmppServerType = XmppServerType.TEST;
+			xmppServerType = XmppServerType.METAFORA_TEST;
 			XMPPBridgeCurrent.setServer(testServer);	
 			connectionName = testAnalysisConnectionName;
 		} 
 		else if (type == CommunicationChannelType.testCommand){
-			xmppServerType = XmppServerType.TEST;
+			xmppServerType = XmppServerType.METAFORA_TEST;
 			XMPPBridgeCurrent.setServer(testServer);	
 			connectionName = testCommandConnectionName;
 		} 
 		else {
 			logger.error("[constructor]Uknown connectionType");
-			xmppServerType = XmppServerType.TEST;
+			xmppServerType = XmppServerType.METAFORA_TEST;
 			connectionName = "";
 		}
 
@@ -137,7 +137,7 @@ public class CfXmppCommunicationBridge implements CfCommunicationBridge, XMPPMes
 
 	@Override
 	public void sendAction(CfAction actionToSend) {
-		if (xmppServerType == XmppServerType.DEPLOY){
+		if (xmppServerType == XmppServerType.METAFORA){
 			XMPPBridgeCurrent.setServer(server);	
 		}
 		else {

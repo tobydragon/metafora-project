@@ -48,9 +48,9 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		generalConfiguration = readConfiguration(false);
 
 		CfCommunicationMethodType communicationMethodType = generalConfiguration.getDataSouceType();
-		mainServer = new ServerInstance(communicationMethodType, XmppServerType.DEPLOY, generalConfiguration.isDeployServerMonitoring(),
+		mainServer = new ServerInstance(communicationMethodType, XmppServerType.METAFORA, generalConfiguration.isDeployServerMonitoring(),
 				generalConfiguration.getHistoryStartTime(), null );
-		testServer = new ServerInstance(communicationMethodType, XmppServerType.TEST, generalConfiguration.isTestServerMonitoring(), 
+		testServer = new ServerInstance(communicationMethodType, XmppServerType.METAFORA_TEST, generalConfiguration.isTestServerMonitoring(), 
 				generalConfiguration.getHistoryStartTime(), GeneralUtil.getRealPath(startupDataFile));		
 		
 	}
@@ -146,7 +146,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	
 	public String requestSuggestedMessages(XmppServerType xmppServerType, String username) {
 		logger.info("[requestSuggestedMessages]  for user: " + username + "- Server: " + xmppServerType);
-		if (xmppServerType == XmppServerType.DEPLOY){
+		if (xmppServerType == XmppServerType.METAFORA){
 			 return mainServer.requestSuggestedMessages(username);
 		}
 		else {
@@ -161,7 +161,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	
 	@Override
 	public void sendMessage(XmppServerType serverType, CfAction action) {
-		if (serverType == XmppServerType.DEPLOY){
+		if (serverType == XmppServerType.METAFORA){
 			mainServer.sendMessage(action);
 		}
 		else {
@@ -176,7 +176,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	
 	@Override
 	public void sendSuggestedMessages(XmppServerType serverType, CfAction action) {
-		if (serverType == XmppServerType.DEPLOY){
+		if (serverType == XmppServerType.METAFORA){
 			mainServer.sendSuggestedMessages(action);
 		}
 		else {
@@ -194,7 +194,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	@Override
 	public UpdateResponse requestUpdate(XmppServerType xmppServerType, CfAction cfAction) {
 		logger.info("[requestUpdate]  requesting update is revieced  by the server");
-		if (xmppServerType == XmppServerType.DEPLOY){
+		if (xmppServerType == XmppServerType.METAFORA){
 			 return mainServer.requestUpdate(cfAction);
 		}
 		else {
@@ -210,7 +210,7 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	@Override
 	public void requestAnalysis(XmppServerType xmppServerType, String groupId, Locale locale) {
 		logger.info("[requesAnalysis]  requesting analysis for group ID:" + groupId);
-		if (xmppServerType == XmppServerType.DEPLOY){
+		if (xmppServerType == XmppServerType.METAFORA){
 			 mainServer.requestAnalysis(groupId, locale);
 		}
 		else {

@@ -26,7 +26,7 @@ public class CfAgentCommunicationManager implements CfCommunicationListener{
 	public static CfAgentCommunicationManager getInstance(CfCommunicationMethodType methodType, CommunicationChannelType channelType, XmppServerType xmppServerType){
 		
 		//convert requests to appropriate server info
-		if (xmppServerType == XmppServerType.TEST){
+		if (xmppServerType == XmppServerType.METAFORA_TEST){
 			if (channelType == CommunicationChannelType.command){
 				channelType = CommunicationChannelType.testCommand;
 			}
@@ -50,7 +50,7 @@ public class CfAgentCommunicationManager implements CfCommunicationListener{
 	
 	//default to xmpp
 	public static CfAgentCommunicationManager getInstance(CommunicationChannelType channelType){
-		return getInstance(CfCommunicationMethodType.xmpp, channelType, XmppServerType.TEST);
+		return getInstance(CfCommunicationMethodType.xmpp, channelType, XmppServerType.METAFORA_TEST);
 	}
 
 	
