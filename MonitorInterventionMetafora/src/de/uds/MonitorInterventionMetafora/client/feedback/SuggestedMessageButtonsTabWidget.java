@@ -163,13 +163,6 @@ public class SuggestedMessageButtonsTabWidget {
 		
 		String msgText = message.getText();
 		
-		// playing with gXt buttons, instead of gWt. GXT buttons take less space, but do not show all of the text
-		// if text is too long on the button
-//		com.extjs.gxt.ui.client.widget.button.Button b = new com.extjs.gxt.ui.client.widget.button.Button();
-//		b.setWidth(SUGGESTED_MESSAGE_BUTTON_WIDTH+"px");
-//		b.setAutoHeight(true);
-//		b.setText(msgText);
-		
 		Button b = new Button(msgText);
 		if (message.isHighlight()) 
 			b.addStyleDependentName("highlight");
@@ -177,7 +170,7 @@ public class SuggestedMessageButtonsTabWidget {
 		b.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				MessagesPanel.getMessageTextArea().setText(message.getText());
+				MessagesPanel.suggestedMessageSelected(message);
 				UserLog userActionLog = new UserLog();
 				userActionLog.setComponentType(ComponentType.FEEDBACK_TEMPLATE_POOL);
 				userActionLog.setDescription("Text selection for feedback: Feedback_Type=" + tabTitle + "," + "Text=" + message.getText());

@@ -5,13 +5,16 @@ import com.google.gwt.xml.client.NamedNodeMap;
 import com.google.gwt.xml.client.Node;
 
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.L2L2category;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessage;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesCategory;
 
 public class SuggestedMessageParserForClient {
 	
-	public static SuggestedMessage fromXmlNode(Node messageItem){
+	public static SuggestedMessage fromXmlNode(Node messageItem, SuggestedMessagesCategory suggestedMessagesCategory){
 		String msgText = messageItem.getFirstChild().getNodeValue();
 		boolean isHighlight = false;
+		BehaviorType behaviorType = null;
 		if (messageItem.hasAttributes()) {
 			NamedNodeMap msgAttributes = messageItem.getAttributes();
 			for (int iattribute = 0; iattribute < msgAttributes.getLength(); iattribute++) {
@@ -21,8 +24,7 @@ public class SuggestedMessageParserForClient {
 				}
 				else if (msgAttribute.getNodeName().equals("behaviortag")){
 					try {
-						BehaviorType behaviorType = BehaviorType.valueOf(msgAttribute.getNodeValue());
-						 return new SuggestedMessage(msgText, isHighlight, behaviorType);
+						behaviorType = BehaviorType.valueOf(msgAttribute.getNodeValue());
 					}
 					catch(Exception e){
 						Log.warn("[SuggestedMessage.fromXmlNode] ignoring uknown behavior tag : "+ msgAttribute.getNodeValue());
@@ -30,7 +32,8 @@ public class SuggestedMessageParserForClient {
 				}
 			}
 		}
-		return new SuggestedMessage(msgText, isHighlight, null);
+		return new SuggestedMessage(msgText, isHighlight, behaviorType, suggestedMessagesCategory);
+
 	}
 	
 	public static String toXml(SuggestedMessage message){

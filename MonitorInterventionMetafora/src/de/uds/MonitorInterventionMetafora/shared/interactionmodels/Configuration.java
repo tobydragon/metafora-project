@@ -28,7 +28,7 @@ public class Configuration implements Serializable{
 	Map<String, ActionFilter> filters;
 	
 	public Configuration(){
-		this("No Name", "file", "CURRENT", "TEST", "false", "false", new Vector<ActionFilter>());
+		this("No Name", "file", "CURRENT", "METAFORA_TEST", "false", "false", new Vector<ActionFilter>());
 	}
 	
 	public Configuration(String name, String communicationMethodType, String historyStartTime, String defaultServer, String testServerMonitoring, String deployServerMonitoring, List<ActionFilter> filters){

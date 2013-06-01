@@ -87,15 +87,18 @@ public class MonitorViewPanel extends ContentPanel implements AsyncCallback<Upda
 
 	@Override
 	public void onSuccess(UpdateResponse updateResponse) {
-		List <CfAction> actionList = updateResponse.getActions();
-		Log.debug("Update Response recieved, Action Size: "+actionList.size());
-		if(actionList!=null){
-		 	 Log.info("[MonitorPanelContainer.onSuccess] First actions count = " + actionList.size());
-			monitorModel.addData(updateResponse);
+		if (updateResponse != null && updateResponse.getActions() != null){
+			List <CfAction> actionList = updateResponse.getActions();
+			Log.debug("Update Response recieved, Action Size: "+actionList.size());
+			if(actionList!=null){
+			 	 Log.info("[MonitorPanelContainer.onSuccess] First actions count = " + actionList.size());
+				monitorModel.addData(updateResponse);
+			}
 		}
-		
-		Log.info("[MonitorPanelContainer.onSuccess] Starting group IDs: " + updateResponse.getAssociatedGroups());
-			
+		else {
+			Log.warn("[onSuccess] updateResponse or list null: " + updateResponse);
+		}
+		Log.info("[MonitorPanelContainer.onSuccess] Starting group IDs: " + updateResponse.getAssociatedGroups());	
 		VerticalPanel panel=new VerticalPanel();
 		flp=new FilterListPanel(monitorModel, controller,commServiceServlet);
 		//enableResizeListener(flp.getFilterGridPanel());

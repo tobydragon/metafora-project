@@ -6,16 +6,16 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
-import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessage;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesFileHandler;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.MessageType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesFileTextReceiver;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesModel;
 
 public class MessagesPanel extends VerticalPanel implements SuggestedMessagesFileTextReceiver{
-	private de.uds.MonitorInterventionMetafora.client.feedback.MessageSendingPanel outbox;
-	private SuggestedMessagesPanel templatePool;
+	private MessageSendingPanel messageSendingPanel;
+	private SuggestedMessagesPanel suggestedMessagesPanel;
 	static private MessagesPanel INSTANCE;
 
 	private static String[] userIDsArray = {"Alan", "Mary", "David"};	
@@ -33,8 +33,8 @@ public class MessagesPanel extends VerticalPanel implements SuggestedMessagesFil
 		    userIDsArray= parseStringToArray(configUserIDs);
 		}
 
-		outbox = new MessageSendingPanel(commServiceServlet, userIDsArray);
-		this.add(outbox);
+		messageSendingPanel = new MessageSendingPanel(commServiceServlet, userIDsArray);
+		this.add(messageSendingPanel);
 		this.setSpacing(5);
 		
 		SuggestedMessagesFileHandler messageFileHandler = new SuggestedMessagesFileHandler(this, UrlParameterConfig.getInstance().getMessageType(), UrlParameterConfig.getInstance().getLocale());
@@ -55,10 +55,10 @@ public class MessagesPanel extends VerticalPanel implements SuggestedMessagesFil
 		//TODO: this shouldn't build a new controller and model each time, it should just refresh model through a controller method
 		SuggestedMessagesModel suggestedMessagesModel = SuggestedMessagesModelParserForClient.fromXML(text);
 		SuggestedMessagesController suggestedMessagesController = new SuggestedMessagesController(suggestedMessagesModel, commServiceServlet);
-		templatePool = new SuggestedMessagesPanel(suggestedMessagesModel, suggestedMessagesController);
-		suggestedMessagesController.setView(templatePool);
-		insert(templatePool, 0);
-		outbox.setSuggestedMessagesController(suggestedMessagesController);
+		suggestedMessagesPanel = new SuggestedMessagesPanel(suggestedMessagesModel, suggestedMessagesController);
+		suggestedMessagesController.setView(suggestedMessagesPanel);
+		insert(suggestedMessagesPanel, 0);
+		messageSendingPanel.setSuggestedMessagesController(suggestedMessagesController);
 	}
 	
 	@Override
@@ -70,16 +70,20 @@ public class MessagesPanel extends VerticalPanel implements SuggestedMessagesFil
 		return INSTANCE;
 	}
 
-	public static TextArea getMessageTextArea() {
-		return INSTANCE.outbox.getMessageTextArea();
+//	public static TextArea getMessageTextArea() {
+//		return INSTANCE.messageSendingPanel.getMessageTextArea();
+//	}
+	
+	public static void suggestedMessageSelected(SuggestedMessage message){
+		INSTANCE.messageSendingPanel.suggestedMessageSelected(message);
 	}
 	
 	public static MessageSendingPanel getOutbox() {
-		return INSTANCE.outbox;
+		return INSTANCE.messageSendingPanel;
 	}
 	
 	public static SuggestedMessagesPanel getTemplatePool() {
-		return INSTANCE.templatePool;
+		return INSTANCE.suggestedMessagesPanel;
 	}
 
 

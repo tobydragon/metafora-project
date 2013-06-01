@@ -6,6 +6,7 @@ import java.util.List;
 
 import de.uds.MonitorInterventionMetafora.client.messages.MessagesBundle;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -34,6 +35,8 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.InterventionCreator;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.L2L2category;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessage;
 
 public class MessageSendingPanel extends VerticalPanel {
     
@@ -62,6 +65,7 @@ public class MessageSendingPanel extends VerticalPanel {
 	private SuggestedMessagesController suggestedMessagesController;
 	private CommunicationServiceAsync commServiceServlet;
 	
+	private SuggestedMessage lastSelectedMessage;
 	
 	public MessageSendingPanel(CommunicationServiceAsync commServiceServlet, String[] userIDsArray) {
 		this.commServiceServlet = commServiceServlet;
@@ -273,9 +277,14 @@ public class MessageSendingPanel extends VerticalPanel {
 			
 		}
 	}
-	public TextArea getMessageTextArea()
-	{
-		return messageTextArea;
+//	public TextArea getMessageTextArea()
+//	{
+//		return messageTextArea;
+//	}
+	
+	public void suggestedMessageSelected(SuggestedMessage message){
+		lastSelectedMessage = message;
+		messageTextArea.setText(message.getText());
 	}
 	
 	private void editRecipientNames(String recepientNames) {
@@ -323,11 +332,9 @@ public class MessageSendingPanel extends VerticalPanel {
 	
 	public List<String> getSelectedRecipients() {
 		List<String> selectedRecipients = new ArrayList<String>();
-		for(int i=0; i<recipientNamesColumn.getWidgetCount(); i++)
-		{
+		for(int i=0; i<recipientNamesColumn.getWidgetCount(); i++) {
 			CheckBox cb = (CheckBox) recipientNamesColumn.getWidget(i);
 			if (cb.getValue()) {
-				//usernames = usernames + cb.getText() + "|";
 				selectedRecipients.add(cb.getText());
 			}
 		}
@@ -335,47 +342,47 @@ public class MessageSendingPanel extends VerticalPanel {
 	}
 	
 	private void sendMessageToServer() {
-	    
-	    	List<String> objectIds = null;
-	    	
+		if(messageTextArea.getText().length()>0) {
+	    	String receivingTool = UrlParameterConfig.getInstance().getReceiver();
+	    	//this shouldn't be needed
+			if (receivingTool == null || receivingTool.equals("")) {
+				receivingTool = MetaforaStrings.RECEIVER_METAFORA_TEST;
+			}
+			
+			List<String> sendingUsers = UrlParameterConfig.getInstance().getLoggedInUsers();
+			
+			List<String> objectIds = null;	
 	    	if (UrlParameterConfig.getInstance().getUserType().equals(UserType.RECOMMENDING_WIZARD)) {
- 	 		String objectIdsString = objectIdsTextBox.getText();
- 	 		String[] split = objectIdsString.replaceAll("\\D*", " ").replaceAll("\\s+", ",").split(",");
- 	 		objectIds = Arrays.asList(split);
- 	 	}
- 	 	
-	    	String receiver = UrlParameterConfig.getInstance().getReceiver();
-		//this shouldn't be needed but jic
-		if (receiver == null || receiver.equals("")) {
-			receiver = MetaforaStrings.RECEIVER_METAFORA_TEST;
-		}
-		
-		List<String> sendingUsers = UrlParameterConfig.getInstance().getLoggedInUsers();
-		
- 	 	CfAction feedbackMessage = InterventionCreator.createDirectMessage(receiver, sendingUsers, getSelectedRecipients(), UrlParameterConfig.getInstance().getGroupId(), getSelectedIntteruptionType(), messageTextArea.getText(), objectIds);
-
-	 	sendMessageToServer(feedbackMessage);
+	 	 		String objectIdsString = objectIdsTextBox.getText();
+	 	 		String[] split = objectIdsString.replaceAll("\\D*", " ").replaceAll("\\s+", ",").split(",");
+	 	 		objectIds = Arrays.asList(split);
+	 	 	}
+	    	
+	    	L2L2category l2l2category = null;
+	    	if (lastSelectedMessage != null){
+	    		l2l2category = lastSelectedMessage.getL2L2Category();
+	    	}
+	 	 	CfAction feedbackMessage = InterventionCreator.createDirectMessage(receivingTool, sendingUsers, getSelectedRecipients(), UrlParameterConfig.getInstance().getGroupId(), getSelectedIntteruptionType(), messageTextArea.getText(), l2l2category, objectIds);
+	 	 	sendMessageToServer(feedbackMessage);
 	 		 	
-	 	if(messageTextArea.getText().length()>0)
-	 	{
 	 		MessagesPanel.getTemplatePool().addMessageToHistory(messageTextArea.getText());
-	 	}
-	
-    		UserLog userActionLog = new UserLog();
-        	userActionLog.setComponentType(ComponentType.FEEDBACK_OUTBOX);
-        	//userActionLog.setDescription("Wizard sent feedback to the students:"+usernames+", Message: "+messageTextArea.getValue());
-        	userActionLog.setUserActionType(UserActionType.SEND_FEEDBACK);
-         	userActionLog.setTriggeredBy(ComponentType.FEEDBACK_OUTBOX);
-         	//userActionLog.addProperty("USER_NAMES", usernames);
-         	userActionLog.addProperty("TEXT", messageTextArea.getText());
-         	userActionLog.addProperty("INTERUPTION_TYPE", getSelectedIntteruptionType());
-        	Logger.getLoggerInstance().log(userActionLog);
-    		
-        	messageTextArea.setText("");
+	 		messageTextArea.setText("");
     		//check if objectIdsTextBox has been created because if user type is different it will not be there
     		if (objectIdsTextBox != null) {
     			objectIdsTextBox.setText("");
     		}
+	 		
+    		UserLog userActionLog = new UserLog();
+        	userActionLog.setComponentType(ComponentType.FEEDBACK_OUTBOX);
+        	userActionLog.setUserActionType(UserActionType.SEND_FEEDBACK);
+         	userActionLog.setTriggeredBy(ComponentType.FEEDBACK_OUTBOX);
+         	userActionLog.addProperty("TEXT", messageTextArea.getText());
+         	userActionLog.addProperty("INTERUPTION_TYPE", getSelectedIntteruptionType());
+        	Logger.getLoggerInstance().log(userActionLog);	
+		}
+		else {
+			Log.info("[sendMessageToServer] no text in message box to send");
+		}
 	}
 	
 	

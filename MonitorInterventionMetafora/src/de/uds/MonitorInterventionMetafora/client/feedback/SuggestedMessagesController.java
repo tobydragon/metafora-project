@@ -32,7 +32,7 @@ public class SuggestedMessagesController {
 	}
 
 	public void sendSuggestedMessages(String XML) {
-		MessageSendingPanel outbox = MessagesPanel.getInstance().getOutbox();
+		MessageSendingPanel outbox = MessagesPanel.getOutbox();
 		
 		// Create cfAction
 		CfActionType cfActionType = new CfActionType();
@@ -60,12 +60,9 @@ public class SuggestedMessagesController {
 		
 		CfObject cfObject = new CfObject("0", MetaforaStrings.PROPERTY_VALUE_MESSAGE_STRING);
  	 	cfObject.addProperty(new CfProperty("INTERRUPTION_TYPE", outbox.getSelectedIntteruptionType()));
- 	 	cfObject.addProperty(new CfProperty("TEXT", outbox.getMessageTextArea().getText()));
  	 	cfAction.addObject(cfObject);
 		
-		outbox.sendSuggestedMessageToServer(cfAction);
-		outbox.getMessageTextArea().setText("");
-		
+		outbox.sendSuggestedMessageToServer(cfAction);		
 	}
 
 	public SuggestedMessagesPanel getView() {
