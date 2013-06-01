@@ -6,6 +6,7 @@ import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessage;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesCategory;
 
 public class SuggestedMessageParserForServer {
 	
@@ -22,7 +23,7 @@ public class SuggestedMessageParserForServer {
 		return xmlFragment;
 	}
 	
-	public static SuggestedMessage fromXml(XmlFragment xmlFragment){
+	public static SuggestedMessage fromXml(XmlFragment xmlFragment, SuggestedMessagesCategory parentCategory){
 		boolean highlight = false;
 		String highlighttag =  xmlFragment.getAttributeValue(MetaforaStrings.HIGHLIGHT);
 		if (highlighttag != null && "true".equalsIgnoreCase(highlighttag)){
@@ -35,7 +36,7 @@ public class SuggestedMessageParserForServer {
 		String text = xmlFragment.getText();
 		
 		if (text != null){
-			return new SuggestedMessage(text, highlight, behaviorType);
+			return new SuggestedMessage(text, highlight, behaviorType, parentCategory);
 		}
 		else {
 			Log.warn("Ignoring SuggestedMessage, no text found for: " + xmlFragment.toString());

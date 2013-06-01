@@ -44,7 +44,7 @@ public class SuggestedMessagesCategoryParserForServer {
 		if (label != null){
 			SuggestedMessagesCategory category = new SuggestedMessagesCategory(label, highlight, l2l2category);
 			for (XmlFragment messageFragment : xmlFragment.getChildren(MetaforaStrings.SUGGESTED_MESSAGE)){
-				SuggestedMessage suggestedMessage = SuggestedMessageParserForServer.fromXml(messageFragment);
+				SuggestedMessage suggestedMessage = SuggestedMessageParserForServer.fromXml(messageFragment, category);
 				if (suggestedMessage != null){
 					category.addMessage(suggestedMessage);
 				}

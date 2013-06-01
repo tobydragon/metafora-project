@@ -35,7 +35,7 @@ public class SuggestedMessagesCategoryParserForClient {
 		NodeList messages = setOfMessages.getElementsByTagName("message");
 		for (int imessage = 0; imessage < messages.getLength(); imessage++) {
 			Node messageItem = messages.item(imessage); 
-			suggestionCategory.addMessage(SuggestedMessageParserForClient.fromXmlNode(messageItem));
+			suggestionCategory.addMessage(SuggestedMessageParserForClient.fromXmlNode(messageItem, suggestionCategory));
 		}
 		return suggestionCategory;
 	}

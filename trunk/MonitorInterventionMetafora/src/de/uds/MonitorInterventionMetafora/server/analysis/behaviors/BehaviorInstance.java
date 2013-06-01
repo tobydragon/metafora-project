@@ -22,6 +22,7 @@ public class BehaviorInstance {
 		this.behaviorType = behaviorType;
 		this.usernames = usernames;
 		suggestedMessages = new Vector<SuggestedMessage>();
+		this.behaviorInstanceProperties = behaviorInstanceProperties;
 	}
 
 	@Override

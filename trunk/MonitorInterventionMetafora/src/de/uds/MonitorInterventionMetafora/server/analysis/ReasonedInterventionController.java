@@ -1,24 +1,13 @@
 package de.uds.MonitorInterventionMetafora.server.analysis;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Vector;
-
 import messages.MessagesController;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorInstance;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.mmftparser.SuggestedMessagesModelParserForServer;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.InterventionCreator;
@@ -53,7 +42,7 @@ public class ReasonedInterventionController {
 		if (instanceForDirectFeedback != null) {
 			SuggestedMessage message = instanceForDirectFeedback.getBestSuggestedMessage();
 			if (instanceForDirectFeedback != null && message != null){
-				messagesController.sendMessage( InterventionCreator.createDirectMessage(xmppServerType.toString(), Arrays.asList("System"),  instanceForDirectFeedback.getUsernames(), null, "HIGH", message.getText(), null));
+				messagesController.sendMessage( InterventionCreator.createDirectMessage(xmppServerType.toString(), Arrays.asList("System"),  instanceForDirectFeedback.getUsernames(), null, "HIGH", message.getText(), message.getL2L2Category(),  null));
 			}
 		}
 	}
