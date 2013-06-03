@@ -32,6 +32,7 @@ import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig.UserType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.InterventionCreator;
@@ -362,7 +363,10 @@ public class MessageSendingPanel extends VerticalPanel {
 	    	if (lastSelectedMessage != null){
 	    		l2l2category = lastSelectedMessage.getL2L2Category();
 	    	}
-	 	 	CfAction feedbackMessage = InterventionCreator.createDirectMessage(receivingTool, sendingUsers, getSelectedRecipients(), UrlParameterConfig.getInstance().getGroupId(), getSelectedIntteruptionType(), messageTextArea.getText(), l2l2category, objectIds);
+	 	 		    	
+	    	CfAction feedbackMessage = InterventionCreator.createDirectMessage(receivingTool, sendingUsers, getSelectedRecipients(), 
+	    			UrlParameterConfig.getInstance().getGroupId(), getSelectedIntteruptionType(), messageTextArea.getText(), 
+	    			l2l2category, objectIds, UrlParameterConfig.getInstance().getChallengeId(), UrlParameterConfig.getInstance().getChallengeName());
 	 	 	sendMessageToServer(feedbackMessage);
 	 		 	
 	 		MessagesPanel.getTemplatePool().addMessageToHistory(messageTextArea.getText());

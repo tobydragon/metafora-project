@@ -44,7 +44,9 @@ public class InterventionCreator {
 		return cfAction;
 	}
 	
-	public static CfAction createDirectMessage(String receivingTool, List<String> sendingUsers, List<String> receivingUserIds, String groupId, String interruptionType, String message, L2L2category l2l2category, List<String> objectIds){
+	public static CfAction createDirectMessage(String receivingTool, List<String> sendingUsers, List<String> receivingUserIds,
+												String groupId, String interruptionType, String message, L2L2category l2l2category,
+												List<String> objectIds, String challengeId, String challengeName){
 		CfAction feedbackMessage=new CfAction();
 	 	feedbackMessage.setTime(GWTUtils.getTimeStamp());
 	 	  
@@ -89,10 +91,20 @@ public class InterventionCreator {
 		}
 		feedbackMessage.setCfContent(myContent);
 
+		if (challengeName != null){
+			myContent.addProperty(new CfProperty("CHALLENGE_NAME", challengeName));
+		}
+		feedbackMessage.setCfContent(myContent);
+		
+		if (challengeId != null){
+			myContent.addProperty(new CfProperty("CHALLENGE_ID", challengeId));
+		}
+		feedbackMessage.setCfContent(myContent);
+		
 	 	return feedbackMessage;	
 	}
 	
-	public static CfAction createLandmark(List<String> usernames, String description, List<CfProperty> properties){
+	public static CfAction createLandmark(List<String> usernames, String description, List<CfProperty> properties, CfObject object){
 		CfContent content=new CfContent(description);
 		for (CfProperty property : properties){
 			content.addProperty(property);
@@ -111,6 +123,10 @@ public class InterventionCreator {
 		
 		
 		CfAction cfAction = new CfAction(System.currentTimeMillis(), cfActionType, users, new ArrayList<CfObject>(),content);
+		
+		if (object != null){
+			cfAction.addObject(object);
+		}
 		return cfAction;
 	}
 	
@@ -130,6 +146,7 @@ public class InterventionCreator {
 		for (CfUser user : message.getCfUsers()){
 			usernames.add(user.getid());
 		}
+		
 		String description = senderString + " sent message: \"" + text + "\" to " + receiverString;
 		
 		List<CfAction> actions = new Vector<CfAction>();
@@ -141,7 +158,7 @@ public class InterventionCreator {
 			properties.add(new CfProperty("L2L2_TAG", l2l2Tag));
 		}
 		
-		return createLandmark(usernames, description,  properties);
+		return createLandmark(usernames, description,  properties, message.getCfObjects().get(0));
 	}
 
 	public static CfAction createNewSuggestedMessagesNotification(String receiver, CfAction cfAction) {
@@ -152,7 +169,7 @@ public class InterventionCreator {
 				usernames.add(user.getid());
 			}
 			String message = "New Tips available in Messaging Tool";
-			return createDirectMessage(receiver, Arrays.asList("System"), usernames, null, "LOW_INTERRUPTION", message, null, null);
+			return createDirectMessage(receiver, Arrays.asList("System"), usernames, null, "LOW_INTERRUPTION", message, null, null, null, null);
 		}
 		Log.error("[createNewSuggestedMessagesNotification] Send Suggested messages with no users.");
 		return null;
