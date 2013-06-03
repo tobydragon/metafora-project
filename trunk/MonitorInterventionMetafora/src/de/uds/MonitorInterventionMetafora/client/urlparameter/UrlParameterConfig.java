@@ -21,6 +21,8 @@ public class UrlParameterConfig {
 
 	private String username;
 	private String groupId;
+	private String challengeName;
+	private String challangeId;
 	
 	private String receiverIDs;
 	private String password;
@@ -59,6 +61,10 @@ public class UrlParameterConfig {
 		
 		groupId = getAndDecodeUrlParam("groupId");
 		receiverIDs = getAndDecodeUrlParam("receiverIDs");
+		challangeId = getAndDecodeUrlParam("challengeId");
+		challengeName = getAndDecodeUrlParam("challengeName");
+		
+		
 		password = getAndDecodeUrlParam("pw");
 		configID = getAndDecodeUrlParam("config");
 		//Determines which server is used for the messages to be sent and received
@@ -209,6 +215,18 @@ public class UrlParameterConfig {
 	public List<String> getLoggedInUsers() {
 		return loggedInUsers;
 	}
+
+
+	public String getChallengeId() {
+		return challangeId;
+	}
+
+
+	public String getChallengeName() {
+		return challengeName;
+	}
+	
+	
 	
 	
 	

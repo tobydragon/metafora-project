@@ -66,4 +66,13 @@ public class BehaviorInstance {
 		return behaviorInstanceProperties;
 	}
 	
+	public String getPropertyValue(String propertyName){
+		for (CfProperty cfProperty : behaviorInstanceProperties){
+			if (propertyName.equalsIgnoreCase(cfProperty.getName())){
+				return cfProperty.getValue();
+			}
+		}
+		return null;
+	}
+	
 }

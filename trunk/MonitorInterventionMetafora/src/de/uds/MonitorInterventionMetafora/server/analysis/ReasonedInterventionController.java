@@ -42,7 +42,9 @@ public class ReasonedInterventionController {
 		if (instanceForDirectFeedback != null) {
 			SuggestedMessage message = instanceForDirectFeedback.getBestSuggestedMessage();
 			if (instanceForDirectFeedback != null && message != null){
-				messagesController.sendMessage( InterventionCreator.createDirectMessage(xmppServerType.toString(), Arrays.asList("System"),  instanceForDirectFeedback.getUsernames(), null, "HIGH", message.getText(), message.getL2L2Category(),  null));
+				messagesController.sendMessage( InterventionCreator.createDirectMessage(xmppServerType.toString(), Arrays.asList("System"), 
+						instanceForDirectFeedback.getUsernames(), null, "HIGH", message.getText(), message.getL2L2Category(),  null,
+						instanceForDirectFeedback.getPropertyValue("CHALLENGE_ID"), instanceForDirectFeedback.getPropertyValue("CHALLENGE_NAME")));
 			}
 		}
 	}
@@ -60,7 +62,7 @@ public class ReasonedInterventionController {
 	public void sendLandmarkForBehavior(BehaviorInstance behaviorInstance){
 		String description = "Possible " + behaviorInstance.getBehaviorType() + " detected.";
 
-		CfAction cfAction = InterventionCreator.createLandmark(behaviorInstance.getUsernames(), description, behaviorInstance.getProperties());
+		CfAction cfAction = InterventionCreator.createLandmark(behaviorInstance.getUsernames(), description, behaviorInstance.getProperties(), null);
 		analysisChannelManager.sendMessage(cfAction);
 	}
 	
