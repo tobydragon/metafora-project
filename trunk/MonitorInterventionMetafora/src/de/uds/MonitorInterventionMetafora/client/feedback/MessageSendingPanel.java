@@ -62,7 +62,6 @@ public class MessageSendingPanel extends VerticalPanel {
 	public RadioButton sendModeRadioButtonResponse;
 	public int sectionWidth = 400;
 	public VerticalPanel recipientNamesColumn;
-	//private boolean recipientsSelectionButtonSetToAll=true;
 	private SuggestedMessagesController suggestedMessagesController;
 	private CommunicationServiceAsync commServiceServlet;
 	
@@ -179,8 +178,8 @@ public class MessageSendingPanel extends VerticalPanel {
 		allNone.add(editStudentsButton);
 		} //end of if that checks if that's the wizard interface
 		
-		//if we have a groupId then we don't need buttons
-		if (UrlParameterConfig.getInstance().getGroupId() == null) {
+		//if there are users, list them
+		if (userIDsArray != null && userIDsArray.length > 0){
 		    createCheckBoxes(userIDsArray);
 		    sendOptionsRow.add(userGroupColumn);
 		}
@@ -273,7 +272,7 @@ public class MessageSendingPanel extends VerticalPanel {
 		{
 			final String userName = userNames[i];
 			CheckBox chbox = new CheckBox(userName,true);
-			chbox.setValue(true);
+			chbox.setValue(false);
 			recipientNamesColumn.add(chbox);
 			
 		}

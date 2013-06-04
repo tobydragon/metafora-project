@@ -18,7 +18,7 @@ public class MessagesPanel extends VerticalPanel implements SuggestedMessagesFil
 	private SuggestedMessagesPanel suggestedMessagesPanel;
 	static private MessagesPanel INSTANCE;
 
-	private static String[] userIDsArray = {"Alan", "Mary", "David"};	
+	private static String[] userIDsArray = {};	
 	
 	CommunicationServiceAsync commServiceServlet;
 	

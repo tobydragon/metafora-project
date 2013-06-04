@@ -8,6 +8,7 @@ import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorInst
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.mmftparser.SuggestedMessagesModelParserForServer;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.InterventionCreator;
@@ -43,7 +44,7 @@ public class ReasonedInterventionController {
 			SuggestedMessage message = instanceForDirectFeedback.getBestSuggestedMessage();
 			if (instanceForDirectFeedback != null && message != null){
 				messagesController.sendMessage( InterventionCreator.createDirectMessage(xmppServerType.toString(), Arrays.asList("System"), 
-						instanceForDirectFeedback.getUsernames(), null, "HIGH", message.getText(), message.getL2L2Category(),  null,
+						instanceForDirectFeedback.getUsernames(), null, MetaforaStrings.HIGH_INTERRUPTION, message.getText(), message.getL2L2Category(),  null,
 						instanceForDirectFeedback.getPropertyValue("CHALLENGE_ID"), instanceForDirectFeedback.getPropertyValue("CHALLENGE_NAME")));
 			}
 		}

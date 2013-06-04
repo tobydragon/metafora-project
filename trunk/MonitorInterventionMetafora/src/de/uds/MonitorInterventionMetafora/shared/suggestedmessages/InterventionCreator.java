@@ -169,7 +169,7 @@ public class InterventionCreator {
 				usernames.add(user.getid());
 			}
 			String message = "New Tips available in Messaging Tool";
-			return createDirectMessage(receiver, Arrays.asList("System"), usernames, null, "LOW_INTERRUPTION", message, null, null, null, null);
+			return createDirectMessage(receiver, Arrays.asList("System"), usernames, null, MetaforaStrings.LOW_INTERRUPTION, message, null, null, null, null);
 		}
 		Log.error("[createNewSuggestedMessagesNotification] Send Suggested messages with no users.");
 		return null;
