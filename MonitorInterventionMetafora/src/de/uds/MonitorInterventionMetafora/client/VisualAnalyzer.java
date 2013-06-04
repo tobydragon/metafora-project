@@ -57,7 +57,7 @@ class VisualAnalyzer implements EntryPoint {
 		    	  _mainPanel.addTab("Monitoring", _monitoringContainer,false);
 	    	 } 
 	    	 else {
-	    		 _mainPanel=new MainContainerTabPanel(500);
+	    		 _mainPanel=new MainContainerTabPanel(530);
 	    	 }
 	    	 MessagesPanel _feedbackPanelContainer = new  MessagesPanel(commServiceServlet);
 	    	 _mainPanel.addTab(messagesBundle.ToolLabel(), _feedbackPanelContainer,false);
