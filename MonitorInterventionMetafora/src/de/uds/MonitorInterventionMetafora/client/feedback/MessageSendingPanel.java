@@ -277,10 +277,6 @@ public class MessageSendingPanel extends VerticalPanel {
 			
 		}
 	}
-//	public TextArea getMessageTextArea()
-//	{
-//		return messageTextArea;
-//	}
 	
 	public void suggestedMessageSelected(SuggestedMessage message){
 		lastSelectedMessage = message;
@@ -341,6 +337,13 @@ public class MessageSendingPanel extends VerticalPanel {
 		return selectedRecipients;
 	}
 	
+	public void clearRecipientSelections() {
+		for(int i=0; i<recipientNamesColumn.getWidgetCount(); i++) {
+			CheckBox cb = (CheckBox) recipientNamesColumn.getWidget(i);
+			cb.setValue(false);
+		}
+	}
+	
 	private void sendMessageToServer() {
 		if(messageTextArea.getText().length()>0) {
 	    	String receivingTool = UrlParameterConfig.getInstance().getReceiver();
@@ -359,17 +362,26 @@ public class MessageSendingPanel extends VerticalPanel {
 	 	 	}
 	    	
 	    	L2L2category l2l2category = null;
+	    	boolean fromHighlightedMessage = false;
 	    	if (lastSelectedMessage != null){
 	    		l2l2category = lastSelectedMessage.getL2L2Category();
+	    		fromHighlightedMessage = lastSelectedMessage.isHighlight();
 	    	}
 	 	 		    	
 	    	CfAction feedbackMessage = InterventionCreator.createDirectMessage(receivingTool, sendingUsers, getSelectedRecipients(), 
 	    			UrlParameterConfig.getInstance().getGroupId(), getSelectedIntteruptionType(), messageTextArea.getText(), 
-	    			l2l2category, objectIds, UrlParameterConfig.getInstance().getChallengeId(), UrlParameterConfig.getInstance().getChallengeName());
+	    			l2l2category, objectIds, UrlParameterConfig.getInstance().getChallengeId(), UrlParameterConfig.getInstance().getChallengeName(),
+	    			fromHighlightedMessage);
 	 	 	sendMessageToServer(feedbackMessage);
-	 		 	
+	 		
+	 	 	
+	 	 	//clear all message stuff
 	 		MessagesPanel.getTemplatePool().addMessageToHistory(messageTextArea.getText());
 	 		messageTextArea.setText("");
+	 		lastSelectedMessage = null;
+	 		clearRecipientSelections();
+	 		
+	 		
     		//check if objectIdsTextBox has been created because if user type is different it will not be there
     		if (objectIdsTextBox != null) {
     			objectIdsTextBox.setText("");

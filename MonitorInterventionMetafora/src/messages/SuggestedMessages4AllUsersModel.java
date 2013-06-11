@@ -26,6 +26,10 @@ public class SuggestedMessages4AllUsersModel {
 	public synchronized void updateSuggestedMessages(String username, String messagesXml) {
 		suggestedMessages2user.put(username, messagesXml);
 	}
+	
+	public synchronized void clearAllSuggestedMessages(){
+		suggestedMessages2user.clear();
+	}
 
 	public synchronized String getSuggestedMessages(String username) {
 		logger.debug("[getSuggestedMessages] for user: " + username);
@@ -49,7 +53,8 @@ public class SuggestedMessages4AllUsersModel {
 	public SuggestedMessagesModel getCopyOfDefaultMessages(MessageType messageType, Locale locale){
 		Map <MessageType, SuggestedMessagesModel> type2messages = defaultMessagesModel.get(locale);
 		if (type2messages != null){
-			return type2messages.get(messageType);
+			SuggestedMessagesModel defaultModel = type2messages.get(messageType);
+			return new SuggestedMessagesModel(defaultModel);
 		}
 		return null;
 	}

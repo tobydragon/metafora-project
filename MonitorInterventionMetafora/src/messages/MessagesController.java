@@ -95,10 +95,17 @@ public class MessagesController implements CfCommunicationListener {
 		logger.info("");
 		if (action.getCfActionType().getType().equals(MetaforaStrings.ACTION_TYPE_SUGGESTED_MESSAGES_STRING)) {
 			String messagesXml = action.getCfContent().getDescription();
+			if (MetaforaStrings.CLEAR_ALL_SUGGESTED_MESSAGES.equalsIgnoreCase(messagesXml)){
+				suggestedMessagesModel.clearAllSuggestedMessages();
+			}
 			for (CfUser cfUser : action.getUsersWithRole("receiver")) {
 				suggestedMessagesModel.updateSuggestedMessages(cfUser.getid(), messagesXml);
 			}
 		}
+	}
+
+	public void requestClearAllSuggestedMessages() {
+		sendAction(InterventionCreator.createClearAllSuggestedMessages());
 	}
 	
 }

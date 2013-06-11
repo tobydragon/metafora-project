@@ -71,5 +71,10 @@ public class ServerInstance {
 		}
 	}
 
+	public void requestClearAllRecommendations() {
+		messagesController.requestClearAllSuggestedMessages();
+		
+	}
+
 
 }

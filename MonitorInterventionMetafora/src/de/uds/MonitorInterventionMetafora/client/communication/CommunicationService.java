@@ -1,5 +1,6 @@
 package de.uds.MonitorInterventionMetafora.client.communication;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -32,7 +33,8 @@ public interface CommunicationService extends RemoteService {
 	String requestSuggestedMessages(String username);
 	String requestSuggestedMessages(XmppServerType xmppServerType, String username);
 
-	
+	void requestClearAllAnalysis();
+	void requestClearAllAnalysis(XmppServerType xmppServerType);
 	
 	//answered by MainServer
 	Configuration requestConfiguration();

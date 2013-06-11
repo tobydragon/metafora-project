@@ -13,19 +13,29 @@ import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMess
 public class RequestSuggestedMessagesCallback implements AsyncCallback<String>{
 	public static MessagesBundle messagesBundle = GWT.create(MessagesBundle.class);
 	
+	private MessagesPanel messagesPanel;
+	
+	public RequestSuggestedMessagesCallback(MessagesPanel messagesPanel){
+		this.messagesPanel = messagesPanel;
+	}
+	
 	public void onSuccess(String result) {
-		Log.info("RequestSuggestedMessagesCallback - Success");
+		Log.info("[RequestSuggestedMessagesCallback.onSuccess]");
 		if (result != null && !result.equals("")) {
 			SuggestedMessagesModel suggestedMessagesModel = SuggestedMessagesModelParserForClient.fromXML(result);
 			if (suggestedMessagesModel != null){
 				MessagesPanel.getTemplatePool().populateTabs(suggestedMessagesModel);
 				DisplayUtil.postNotificationMessage(messagesBundle.NewSuggestedMessages());
 			}
-			Log.error("RequestSuggestedMessagesCallback - Bad XML");
-			DisplayUtil.postNotificationMessage(messagesBundle.NoSuggestedMessages() + ": Error retrieving");
+			else {
+				Log.error("RequestSuggestedMessagesCallback - Bad XML: " + result);
+				DisplayUtil.postNotificationMessage(messagesBundle.NoSuggestedMessages() + ": Error retrieving");
+			}
 		}
 		else {
 			DisplayUtil.postNotificationMessage(messagesBundle.NoSuggestedMessages());
+			//TODO: make the messages refresh with defaults when nothing is available
+//			messagesPanel.loadFreshSuggestedMessageFromFile();
 		}
 	}
 	

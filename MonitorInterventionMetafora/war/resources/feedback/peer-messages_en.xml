@@ -5,11 +5,11 @@
 <message behaviortag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
 <message> How could we improve our plan? Let's look at the group planning map together</message>
 <message>Let's assign tasks to help us split the work equally. </message>
-<message>Has everyone contributed in planning the work?</message>
+<message behaviortag="MEMBER_NOT_PLANNING">Has everyone contributed in planning the work?</message>
 </set>
 <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
-<message>Has everyone done the work they said they would do?</message>
-<message>Has everyone contributed to the discussion?</message>
+<message behaviortag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
+<message behaviortag="MEMBER_NOT_DISCUSSING">Has everyone contributed to the discussion?</message>
 <message>I/We need some help with ...</message>
 <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
 <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
@@ -23,8 +23,8 @@
 <message>Let's evaluate each other's solution to see how general they are</message>
 </set>
 <set id="Reflection" l2l2tag="REFLECTION">
-<message>Let's revise our plan. Does it match our work so far?</message>
-<message>Let's reflect on our work so far using the attitude/role cards</message>
+<message >Let's revise our plan. Does it match our work so far?</message>
+<message behaviortag="NOT_USING_ATTITUDES_OR_ROLES">Let's reflect on our work so far using the attitude/role cards</message>
 <message>Let's consider what we need to do to work better as a team.</message>
 <message>Let's consider our best/worse moment as team so far.</message>
  </set>

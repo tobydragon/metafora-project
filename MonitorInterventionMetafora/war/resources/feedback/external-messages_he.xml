@@ -2,14 +2,14 @@
 <messages> 
 <set id="מובילים ביחד">
 <message>בואו נציע רעיון חדש שיעזור לנו לחקור כיוון אחר </message>
-<message>אנחנו צריכים לראות איך הרעיונות החדשים מתאימים ועוזרים לעבודה הנוכחית שלנו</message>
+<message behaviortag="NEW_IDEA_NOT_DISCUSSED">אנחנו צריכים לראות איך הרעיונות החדשים מתאימים ועוזרים לעבודה הנוכחית שלנו</message>
 <message>כיצד ,תוכלו לשפר את התכנית שלכם? בדקו על תכנית העבודה שלכם בכלי התכנון</message>
 <message>בהאם חילקתם את העבודה בינכם בצורה שווה?</message>
-<message>חשוב שתשוו בין המודלים שלכם</message>
+<message behaviortag="MEMBER_NOT_PLANNING">חשוב שתשוו בין המודלים שלכם</message>
 </set>
 <set id="מחלקים את העבודה">
-<message>האם עסדתם בהתאם לתכנון?</message>
-<message>האם כולם תרמו לדיון?</message>
+<message behaviortag="MEMBER_NOT_PLANNING">האם עסדתם בהתאם לתכנון?</message>
+<message behaviortag="MEMBER_NOT_DISCUSSING">האם כולם תרמו לדיון?</message>
 <message>צריך עזרה עם...</message>
 <message>Yנראה שאתם לא מסכימים אחד עם השני, האם ניסיתם להבין אחד את השני?</message>
 <message>אם אינכם מסכימים אולי כדאי שתבדקו פעם נוספת את העמדות והגישות שלכם.</message>
@@ -24,7 +24,7 @@
 </set>
 <set id="רפלקציה">
 <message>כדאי שתעריכו את התכנית שלכם, האם הביצוע בפועל תואם את התכנית?</message>
-<message>כדאי שתשתמשו בכרטיס הרפלקציה כדי להתבונן על מה שעשיתם.</message>
+<message behaviortag="NOT_USING_ATTITUDES_OR_ROLES">כדאי שתשתמשו בכרטיס הרפלקציה כדי להתבונן על מה שעשיתם.</message>
 <message>כדאי שתקחו בחשבון את מה שאתם צריכים לעשות כדי לשפר את עבודת הצוות שלכם.</message>
 <message>כדאי שתעריכו את הרגע הטוב\רע ביותר כקבוצה, עד כה.</message>
  </set>

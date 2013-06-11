@@ -7,6 +7,7 @@ import messages.MessagesController;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorInstance;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.mmftparser.SuggestedMessagesModelParserForServer;
+import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
@@ -30,24 +31,24 @@ public class ReasonedInterventionController {
 	}
 
 	//	method that	 decides whether to send suggestions, landmarks, and messages
-	public void sendInterventions(List<BehaviorInstance> behaviorsIdentified, Locale locale){
+	public void sendInterventions(List<BehaviorInstance> behaviorsIdentified, List<String> involovedUsers, Locale locale){
 		for (BehaviorInstance behaviorInstance : behaviorsIdentified){
 			sendLandmarkForBehavior(behaviorInstance);
 		}
 
-		sendSuggestionsForAllBehaviors(behaviorsIdentified, locale);
-		
-		setDirectMessagesForBehaviors(behaviorsIdentified, locale);
-		
-		BehaviorInstance instanceForDirectFeedback = chooseOneForDirectFeedback(behaviorsIdentified);
-		if (instanceForDirectFeedback != null) {
-			SuggestedMessage message = instanceForDirectFeedback.getBestSuggestedMessage();
-			if (instanceForDirectFeedback != null && message != null){
-				messagesController.sendMessage( InterventionCreator.createDirectMessage(xmppServerType.toString(), Arrays.asList("System"), 
-						instanceForDirectFeedback.getUsernames(), null, MetaforaStrings.HIGH_INTERRUPTION, message.getText(), message.getL2L2Category(),  null,
-						instanceForDirectFeedback.getPropertyValue("CHALLENGE_ID"), instanceForDirectFeedback.getPropertyValue("CHALLENGE_NAME")));
-			}
-		}
+		sendSuggestionsForAllBehaviors(behaviorsIdentified,involovedUsers, locale);
+//		
+//		setDirectMessagesForBehaviors(behaviorsIdentified, locale);
+//		
+//		BehaviorInstance instanceForDirectFeedback = chooseOneForDirectFeedback(behaviorsIdentified);
+//		if (instanceForDirectFeedback != null) {
+//			SuggestedMessage message = instanceForDirectFeedback.getBestSuggestedMessage();
+//			if (instanceForDirectFeedback != null && message != null){
+//				messagesController.sendMessage( InterventionCreator.createDirectMessage(xmppServerType.toString(), Arrays.asList("System"), 
+//						instanceForDirectFeedback.getUsernames(), null, MetaforaStrings.HIGH_INTERRUPTION, message.getText(), message.getL2L2Category(),  null,
+//						instanceForDirectFeedback.getPropertyValue("CHALLENGE_ID"), instanceForDirectFeedback.getPropertyValue("CHALLENGE_NAME"), false));
+//			}
+//		}
 	}
 	
 
@@ -61,25 +62,25 @@ public class ReasonedInterventionController {
 	}
 
 	public void sendLandmarkForBehavior(BehaviorInstance behaviorInstance){
-		String description = "Possible " + behaviorInstance.getBehaviorType() + " detected.";
+		String description = "Possible " + behaviorInstance.getBehaviorType() + " detected involving user(s):" + behaviorInstance.getUsernames();
 
 		CfAction cfAction = InterventionCreator.createLandmark(behaviorInstance.getUsernames(), description, behaviorInstance.getProperties(), null);
 		analysisChannelManager.sendMessage(cfAction);
 	}
 	
-	public void sendSuggestionsForAllBehaviors(List<BehaviorInstance> behaviorsIdentified, Locale locale){
+	public void sendSuggestionsForAllBehaviors(List<BehaviorInstance> behaviorsIdentified, List<String> involvedUsers, Locale locale){
 		SuggestedMessagesModel peerMessageModel = messagesController.getCopyOfDefaultMessages(locale, MessageType.PEER);
 		for (BehaviorInstance behaviorInstance : behaviorsIdentified){
 			peerMessageModel.highlightMessagesForBehaviorType(behaviorInstance.getBehaviorType());
 		}
-		//TODO: get users
-		CfAction intervention = InterventionCreator.createSendSuggestedMessages(Arrays.asList("Bob"), SuggestedMessagesModelParserForServer.toXml(peerMessageModel).toString());
+		
+		CfAction intervention = InterventionCreator.createSendSuggestedMessages(involvedUsers, SuggestedMessagesModelParserForServer.toXml(peerMessageModel).toString());
 		if( intervention != null){
 			messagesController.sendSuggestedMessages(intervention);
 		}
 	}
 	
-	public void setDirectMessagesForBehaviors(List<BehaviorInstance> behaviorInstances, Locale locale){
+	private void setDirectMessagesForBehaviors(List<BehaviorInstance> behaviorInstances, Locale locale){
 		//TODO: No need to make a new model each time, could be referencing same model to copy messages
 		SuggestedMessagesModel externalMessageModel = messagesController.getCopyOfDefaultMessages(locale, MessageType.EXTERNAL);
 		for (BehaviorInstance behaviorInstance : behaviorInstances){

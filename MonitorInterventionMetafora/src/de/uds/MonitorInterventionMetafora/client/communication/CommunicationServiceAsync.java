@@ -1,7 +1,5 @@
 package de.uds.MonitorInterventionMetafora.client.communication;
 
-import java.util.List;
-
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
@@ -33,6 +31,10 @@ public interface CommunicationServiceAsync {
 
 	void requestAnalysis(String groupId, Locale locale, AsyncCallback<Void> callback);
 	void requestAnalysis(XmppServerType xmppServerType, String groupId, Locale locale, AsyncCallback<Void> callback);
+	
+	void requestClearAllAnalysis(AsyncCallback<Void> callback);
+	void requestClearAllAnalysis(XmppServerType xmppServerType, AsyncCallback<Void> callback);
+	
 	
 	//requests for MainServer
 	void requestConfiguration(AsyncCallback<Configuration> callback);

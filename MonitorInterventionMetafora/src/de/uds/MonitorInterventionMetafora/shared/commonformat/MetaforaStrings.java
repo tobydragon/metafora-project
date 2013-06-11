@@ -72,6 +72,7 @@ public class MetaforaStrings {
 	public static final String L2L2_TAG = "l2l2tag";
 	public static final String CATEGORY_LABEL = "id";
 	public static final String SUGGESTED_MESSAGES = "messages";
+	public static final String CLEAR_ALL_SUGGESTED_MESSAGES = "CLEAR_ALL_SUGGESTED_MESSAGES";
 
 
 

@@ -32,6 +32,7 @@ public class UpdaterToolbar extends ToolBar{
 	private CheckBox autoRefresh;
 	private Button refreshButton;
 	private Button analyzeButton;
+	private Button clearAnalysisButton;
 	private Button configurationButton;
 	private ConfigurationPanel configurationPanel;
 	
@@ -106,6 +107,7 @@ public class UpdaterToolbar extends ToolBar{
 		analyzeButton = new Button(); 
 		analyzeButton.setToolTip("Analyze");
 		analyzeButton.setText("Analyze");
+		analyzeButton.setBorders(true);
 		analyzeButton.addSelectionListener(new SelectionListener<ButtonEvent>() {  
 	        @Override  
 	        public void componentSelected(ButtonEvent ce) {  
@@ -129,6 +131,19 @@ public class UpdaterToolbar extends ToolBar{
 	        }  
 	      });
 		
+		clearAnalysisButton = new Button(); 
+		clearAnalysisButton.setBorders(true);
+		clearAnalysisButton.setToolTip("Clear All Tips");
+		clearAnalysisButton.setText("Clear All Tips");
+		clearAnalysisButton.addSelectionListener(new SelectionListener<ButtonEvent>() {  
+	        @Override  
+	        public void componentSelected(ButtonEvent ce) {  
+	        	Log.info("UpdaterToolbar: Clear Analysis button clicked");
+        		UpdaterToolbar.this.updater.clearAllAnalysis();
+        		DisplayUtil.postNotificationMessage("All Tips for all users cleared");
+	        }  
+	      });
+		
 		configurationButton = new Button(); 
 		configurationButton.setToolTip("Configuration");
 		configurationButton.setIcon(Resources.ICONS.configuration());
@@ -148,6 +163,7 @@ public class UpdaterToolbar extends ToolBar{
 	    this.add(new SeparatorToolItem());
 	    this.add(groupIdChooser);
 	    this.add(analyzeButton);
+	    this.add(clearAnalysisButton);
 	    
 	    this.add(new SeparatorToolItem());
 	    this.add(configurationButton);

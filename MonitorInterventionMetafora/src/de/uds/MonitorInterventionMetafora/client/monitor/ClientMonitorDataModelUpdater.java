@@ -88,4 +88,14 @@ public class ClientMonitorDataModelUpdater extends Timer implements AsyncCallbac
 	 	 }
 	}
 	
+	public void clearAllAnalysis() {
+		XmppServerType xmppServerType = UrlParameterConfig.getInstance().getXmppServerType();
+		
+	 	 if (xmppServerType != null){
+	 		clientDataModel.getServiceServlet().requestClearAllAnalysis(xmppServerType, new NoActionResponse() );
+	 	 }
+	 	 else {
+	 		clientDataModel.getServiceServlet().requestClearAllAnalysis(new NoActionResponse());
+	 	 }
+	}
 }

@@ -61,7 +61,6 @@ public class CfActionGridRow extends BaseModel {
 		try {
 			setGridItemPropertyMultipleValues(StandardRuleType.USER_ID);
 			
-//			set(MonitorConstants.ACTION_TYPE_LABEL, indicator.getCfActionType().getType());
 			setGridItemPropertySingleValue(StandardRuleType.ACTION_CLASSIFICATION);
 		    setGridItemPropertySingleValue(StandardRuleType.DESCRIPTION);
 		    setGridItemPropertySingleValue(StandardRuleType.SENDING_TOOL);
@@ -71,9 +70,6 @@ public class CfActionGridRow extends BaseModel {
 		    setGridItemPropertySingleValue(StandardRuleType.TAGS);
 		    setGridItemPropertySingleValue(StandardRuleType.WORD_COUNT);
 		    setGridItemPropertySingleValue(StandardRuleType.TIME);
-			    
-		   // set(MonitorConstants.ACTION_TIME_LABEL, DateTimeFormat.getFormat("HH:mm:ss '@' dd'/'MM").format (new Date(indicator.getTime())) );
-
 		}
 		catch (Exception e){
 			logger.error("[setGridItemProperties] missing attributes, row not added for indicator: " +indicator.toString());
@@ -90,91 +86,4 @@ public class CfActionGridRow extends BaseModel {
 	public CfAction getIndicator() {
 		return indicator;
 	}
-
-	
-	
-//	public String getIndicatorType(){
-//		
-//		String value=get(MonitorConstants.INDICATOR_TYPE_LABEL);
-//		if(value==null)
-//			value="";
-//	return value;
-//			
-//	}
-//	
-//	public String getChallengeName(){
-//		
-//		String value=get(MonitorConstants.CHALLENGE_NAME_LABEL);
-//		if(value==null)
-//			value="";
-//	return value;
-//			
-//	}
-//	
-//	
-//	
-//	
-//	
-//	public String getTime(){
-//		
-//		String value=get(MonitorConstants.ACTION_TIME_LABEL);
-//		if(value==null)
-//			value="";
-//	return value;
-//			
-//	}
-//	
-//	public String getTool(){
-//		
-//		String value=get(MonitorConstants.TOOL_LABEL);
-//		if(value==null)
-//			value="";
-//	return value;
-//			
-//	}
-//	public String getWordCount(){
-//		
-//		String value=get(MonitorConstants.WORD_COUNT_LABEL);
-//		if(value==null)
-//			value="";
-//	return value;
-//			
-//	}
-//	public String getDescription(){
-//		
-//		String value=get(MonitorConstants.DESCRIPTION_LABEL);
-//		if(value==null)
-//			value="";
-//	return value;
-//		
-//	}
-//	public String getClassification(){
-//		String value=get(MonitorConstants.ACTION_CLASSIFICATION_LABEL);
-//		if(value==null)
-//			value="";
-//	return value;
-//	}
-//	public String getActionType(){
-//		
-//		String value= get(MonitorConstants.ACTION_TYPE_LABEL);
-//		if(value==null)
-//			value="";
-//	return value;
-//	}
-//	public String getUsers(){
-//		
-//		String value= get(MonitorConstants.USER_ID_LABEL);
-//		if(value==null)
-//			value="";
-//	return value;
-//	
-//	}
-//	public String getTags(){
-//		if(indicator.getCfObjects().size()>0){
-//		if(indicator.getCfObjects().get(0)!=null){
-//		    return indicator.getCfObjects().get(0).getProperty(MonitorConstants.TAGS).getValue();
-//		}
-//		}
-//		return "";
-//	}
 }

@@ -54,7 +54,7 @@ public class  XmlFragment {
 		
 	}
 	
-	public static XmlFragment getFragmentFromRemoteFile(String urlString) {
+	public static synchronized XmlFragment getFragmentFromRemoteFile(String urlString) {
 		try {
 			URL url = new URL(urlString);
 			InputStream is = url.openStream();

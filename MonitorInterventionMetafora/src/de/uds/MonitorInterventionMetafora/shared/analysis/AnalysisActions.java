@@ -70,7 +70,9 @@ public class AnalysisActions {
 		for (CfAction action : actions){
 			for (CfUser user : action.getCfUsers()){
 				if (MetaforaStrings.USER_ROLE_ORIGINATOR_STRING.equalsIgnoreCase(user.getrole())){
-					usernames.add(user.getid());
+					if ( ! usernames.contains(user.getid()) ){
+						usernames.add(user.getid());
+					}
 				}
 			}
 		}

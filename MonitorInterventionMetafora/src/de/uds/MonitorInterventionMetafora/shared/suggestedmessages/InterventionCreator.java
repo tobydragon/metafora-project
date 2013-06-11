@@ -20,6 +20,22 @@ import de.uds.MonitorInterventionMetafora.shared.utils.GWTUtils;
 
 public class InterventionCreator {
 	
+	public static CfAction createClearAllSuggestedMessages(){
+		CfActionType cfActionType = new CfActionType();
+		cfActionType.setType(MetaforaStrings.ACTION_TYPE_SUGGESTED_MESSAGES_STRING);
+		cfActionType.setClassification("delete");
+		cfActionType.setLogged("true");
+
+		CfAction cfAction = new CfAction(GWTUtils.getTimeStamp(), cfActionType);
+		
+		CfContent cfContent = new CfContent(MetaforaStrings.CLEAR_ALL_SUGGESTED_MESSAGES);
+		cfContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_RECEIVING_TOOL, MetaforaStrings.MONITOR_AND_MESSAGE_TOOL_NAME));
+		cfContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL, MetaforaStrings.MONITOR_AND_MESSAGE_TOOL_NAME));
+		cfAction.setCfContent(cfContent);
+		
+		return cfAction;
+	}
+	
 	public static CfAction createSendSuggestedMessages(List <String> userIds, String XML){
 		CfActionType cfActionType = new CfActionType();
 		cfActionType.setType(MetaforaStrings.ACTION_TYPE_SUGGESTED_MESSAGES_STRING);
@@ -46,7 +62,7 @@ public class InterventionCreator {
 	
 	public static CfAction createDirectMessage(String receivingTool, List<String> sendingUsers, List<String> receivingUserIds,
 												String groupId, String interruptionType, String message, L2L2category l2l2category,
-												List<String> objectIds, String challengeId, String challengeName){
+												List<String> objectIds, String challengeId, String challengeName, boolean fromHighlightedMessage){
 		CfAction feedbackMessage=new CfAction();
 	 	feedbackMessage.setTime(GWTUtils.getTimeStamp());
 	 	  
@@ -89,13 +105,12 @@ public class InterventionCreator {
 		if (l2l2category != null){
 			myContent.addProperty(new CfProperty("L2L2_TAG", l2l2category.toString()));
 		}
-		feedbackMessage.setCfContent(myContent);
-
+		if (fromHighlightedMessage){
+			myContent.addProperty(new CfProperty("FROM_HIGHLIGHTED_MESSAGE", "true"));
+		}
 		if (challengeName != null){
 			myContent.addProperty(new CfProperty("CHALLENGE_NAME", challengeName));
-		}
-		feedbackMessage.setCfContent(myContent);
-		
+		}		
 		if (challengeId != null){
 			myContent.addProperty(new CfProperty("CHALLENGE_ID", challengeId));
 		}
@@ -169,7 +184,7 @@ public class InterventionCreator {
 				usernames.add(user.getid());
 			}
 			String message = "New Tips available in Messaging Tool";
-			return createDirectMessage(receiver, Arrays.asList("System"), usernames, null, MetaforaStrings.LOW_INTERRUPTION, message, null, null, null, null);
+			return createDirectMessage(receiver, Arrays.asList("System"), usernames, null, MetaforaStrings.LOW_INTERRUPTION, message, null, null, null, null, false);
 		}
 		Log.error("[createNewSuggestedMessagesNotification] Send Suggested messages with no users.");
 		return null;

@@ -37,6 +37,10 @@ public class MessagesPanel extends VerticalPanel implements SuggestedMessagesFil
 		this.add(messageSendingPanel);
 		this.setSpacing(5);
 		
+		loadFreshSuggestedMessageFromFile();
+	}
+	
+	public void loadFreshSuggestedMessageFromFile(){
 		SuggestedMessagesFileHandler messageFileHandler = new SuggestedMessagesFileHandler(this, UrlParameterConfig.getInstance().getMessageType(), UrlParameterConfig.getInstance().getLocale());
 		messageFileHandler.requestStringFromFile();
 	}
@@ -54,7 +58,11 @@ public class MessagesPanel extends VerticalPanel implements SuggestedMessagesFil
 	public void newMessagesTextReceived(MessageType messageType, Locale locale, String text) {
 		//TODO: this shouldn't build a new controller and model each time, it should just refresh model through a controller method
 		SuggestedMessagesModel suggestedMessagesModel = SuggestedMessagesModelParserForClient.fromXML(text);
-		SuggestedMessagesController suggestedMessagesController = new SuggestedMessagesController(suggestedMessagesModel, commServiceServlet);
+		SuggestedMessagesController suggestedMessagesController = new SuggestedMessagesController(suggestedMessagesModel, commServiceServlet, this);
+		
+		if (suggestedMessagesPanel != null){
+			remove(suggestedMessagesPanel);
+		}
 		suggestedMessagesPanel = new SuggestedMessagesPanel(suggestedMessagesModel, suggestedMessagesController);
 		suggestedMessagesController.setView(suggestedMessagesPanel);
 		insert(suggestedMessagesPanel, 0);
