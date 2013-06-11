@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <messages> 
 <set id="Distributed Leadership" l2l2tag="DISTRIBUTED_LEADERSHIP">
-<message>Propose a new idea to help you explore a different direction</message>
+<message >Propose a new idea to help you explore a different direction</message>
 <message behaviortag="NEW_IDEA_NOT_DISCUSSED">You need to see how new ideas are relevant and helpful to your current work</message>
 <message>How could you improve your plan? Look at the group planning map together</message>
 <message>Assign tasks to help you split the work equally.</message>
-<message>Has everyone contributed in planning the work?</message>
+<message behaviortag="MEMBER_NOT_PLANNING">Has everyone contributed in planning the work?</message>
 </set>
 <set id="Mutual engagement" l2l2tag="MUTUAL_ENGAGEMENT">
-<message>Has everyone done the work they said they would do?</message>
-<message>Has everyone contributed to the discussion?</message>
+<message behaviortag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
+<message behaviortag="MEMBER_NOT_DISCUSSING" >Has everyone contributed to the discussion?</message>
 <message>If you need some help with your work make sure you ask first the rest of the group</message>
 <message>You seem to disagree. Have you all tried to understand each other's point of view and opinions?</message>
 <message>When you disagree it may be time to redefine your group goals/attitudes/roles.</message>
@@ -24,7 +24,7 @@
 </set>
 <set id="Reflection" l2l2tag="REFLECTION">
 <message>Revise your plan. Does it match your work so far?</message>
-<message>Use the attitude/role cards to reflect on your work so far.</message>
+<message behaviortag="NOT_USING_ATTITUDES_OR_ROLES">Use the attitude/role cards to reflect on your work so far.</message>
 <message>Consider what you need to do to work better as a team.</message>
 <message>Consider your best/worse moment as team so far.</message>
  </set>

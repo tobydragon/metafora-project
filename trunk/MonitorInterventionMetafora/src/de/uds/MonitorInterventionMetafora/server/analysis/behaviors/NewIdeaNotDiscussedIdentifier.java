@@ -26,14 +26,10 @@ public class NewIdeaNotDiscussedIdentifier  implements  BehaviorIdentifier {
 	ActionFilter discussionFilter;
 	
 	public NewIdeaNotDiscussedIdentifier(){
-		this (null);
-		
+		newIdeaFilter = BehaviorFilters.createNewIdeaFilter();
+		discussionFilter = BehaviorFilters.createDiscussionFilter();
 	}
 	
-	public NewIdeaNotDiscussedIdentifier(ActionFilter filter){
-		buildFilters();
-	}
-
 	@Override
 	public List<BehaviorInstance> identifyBehaviors ( List<CfAction> cfActions, List<String> involvedUsers, List<CfProperty> groupProperties) {
 		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
@@ -61,13 +57,7 @@ public class NewIdeaNotDiscussedIdentifier  implements  BehaviorIdentifier {
 	}
 	
 	public void buildFilters(){
-		List<ActionPropertyRule> newIdeaRules = new Vector<ActionPropertyRule>();
-		newIdeaRules.add(new ActionPropertyRule("ACTIVITY_TYPE", "MODIFY_STATE_STARTED", PropertyLocation.CONTENT, OperationType.EQUALS));
-		newIdeaFilter = new ActionFilter("NEW_IDEA", true, newIdeaRules);
 		
-		List<ActionPropertyRule> sharedRules = new Vector<ActionPropertyRule>();
-		sharedRules.add(new ActionPropertyRule("SENDING_TOOL", "LASAD", PropertyLocation.CONTENT, OperationType.CONTAINS));
-		sharedRules.add(new ActionPropertyRule("ACTIVITY_TYPE", "CHAT_MESSAGE", PropertyLocation.CONTENT, OperationType.EQUALS));
-		discussionFilter = new ActionFilter("Discussion", true, null, null, sharedRules, RuleRelation.OR);
+		
 	}
 }

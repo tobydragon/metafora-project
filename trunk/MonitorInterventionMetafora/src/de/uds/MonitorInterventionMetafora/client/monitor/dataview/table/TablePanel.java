@@ -250,7 +250,7 @@ public class TablePanel extends DataViewPanel {
 				StandardRuleType.TIME.toString(), 50);
 		time.setWidth(80);
 		// time.setRenderer(getbackgroundColorRenderer());
-		time.setRenderer(getDateTimeRenderer());
+		time.setRenderer(new TimeDateCellRenderer());
 
 		ColumnConfig tags = new ColumnConfig(StandardRuleType.TAGS.toString(),
 				StandardRuleType.TAGS.toString(), 50);
@@ -289,24 +289,22 @@ public class TablePanel extends DataViewPanel {
 	 * 
 	 * @return
 	 */
-	private GridCellRenderer getDateTimeRenderer() {
-		GridCellRenderer<CfActionGridRow> ColoredGrid = new GridCellRenderer<CfActionGridRow>() {
-			@Override
-			public String render(CfActionGridRow model, String property,
-					ColumnData _config, int rowIndex, int colIndex,
-					ListStore<CfActionGridRow> store, Grid<CfActionGridRow> grid) {
-
-				String valueOfCell = model.getGridItemPropertySingleValue(StandardRuleType.TIME);
-				String rendered = DateTimeFormat.getFormat(
-						PredefinedFormat.DATE_FULL).format(
-						new Date(new Long(valueOfCell)));
-
-				return rendered;
-			}
-		};
-
-		return ColoredGrid;
-	}
+//	private GridCellRenderer getDateTimeRenderer() {
+//		GridCellRenderer<CfActionGridRow> ColoredGrid = new GridCellRenderer<CfActionGridRow>() {
+//			@Override
+//			public String render(CfActionGridRow model, String property,
+//					ColumnData _config, int rowIndex, int colIndex,
+//					ListStore<CfActionGridRow> store, Grid<CfActionGridRow> grid) {
+//
+//				String valueOfCell = model.getGridItemPropertySingleValue(StandardRuleType.TIME);
+//				String rendered = DateTimeFormat.getFormat("HH:mm:ss '@' dd'/'MM").format (new Date(new Long(valueOfCell)));
+//
+//				return rendered;
+//			}
+//		};
+//
+//		return ColoredGrid;
+//	}
 
 	GridCellRenderer<CfActionGridRow> getbackgroundColorRenderer() {
 

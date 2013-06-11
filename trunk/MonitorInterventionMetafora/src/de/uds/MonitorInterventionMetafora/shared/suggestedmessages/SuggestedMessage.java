@@ -19,6 +19,10 @@ public class SuggestedMessage {
 		this.parentCategory = parentCategory;
 	}
 	
+	public SuggestedMessage(SuggestedMessage message, SuggestedMessagesCategory newParentCategory) {
+		this(message.getText(), message.isHighlight(), message.getBehaviorType(), newParentCategory);
+	}
+
 	// GETTERS & SETTERS
 	public String getText() {
 		return text;
@@ -45,6 +49,12 @@ public class SuggestedMessage {
 			return parentCategory.getL2l2category();
 		}
 		return null;
+	}
+	
+	public void setParentCategoryHighlight(boolean highlight){
+		if (parentCategory != null){
+			parentCategory.setHighlight(highlight);
+		}
 	}
 	
 	

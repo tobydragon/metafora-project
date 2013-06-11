@@ -218,4 +218,21 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		}
 	}
 
+	@Override
+	public void requestClearAllAnalysis() {
+		requestClearAllAnalysis(generalConfiguration.getDefaultXmppServer());		
+	}
+
+	@Override
+	public void requestClearAllAnalysis(XmppServerType xmppServerType) {
+		logger.info("[requesAnalysis]  Clearing all analysis.");
+		if (xmppServerType == XmppServerType.METAFORA){
+			 mainServer.requestClearAllRecommendations();
+		}
+		else {
+			 testServer.requestClearAllRecommendations();
+		}
+		
+	}
+
 }

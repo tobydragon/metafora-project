@@ -27,7 +27,12 @@ public class SuggestedMessagesCategory {
 		this.messages= new Vector<SuggestedMessage>();
 	}
 
-
+	public SuggestedMessagesCategory(SuggestedMessagesCategory category) {
+		this(category.getName(), category.isHighlight(), category.getL2l2category());
+		for (SuggestedMessage message : category.getSuggestedMessages()){
+			addMessage(new SuggestedMessage(message, this));
+		}
+	}
 
 	public void addMessage(SuggestedMessage message) {
 		messages.add(message);

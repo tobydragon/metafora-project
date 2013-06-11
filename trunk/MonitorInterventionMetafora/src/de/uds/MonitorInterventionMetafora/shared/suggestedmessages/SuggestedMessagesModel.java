@@ -26,6 +26,13 @@ public class SuggestedMessagesModel {
 		this.behavior2messageMap = new HashMap<BehaviorType, List<SuggestedMessage>>();
 	}
 	
+	public SuggestedMessagesModel(SuggestedMessagesModel defaultModel) {
+		this();
+		for (SuggestedMessagesCategory category : defaultModel.getSuggestionCategories()){
+			addCategory(new SuggestedMessagesCategory(category));
+		}
+	}
+
 	public void addCategory(SuggestedMessagesCategory category) {
 		suggestedMessagesCategories.add(category);
 		
@@ -67,9 +74,9 @@ public class SuggestedMessagesModel {
 		if (messagesToHighlight != null){
 			for (SuggestedMessage message : messagesToHighlight){
 				message.setHighlight(true);
+				message.setParentCategoryHighlight(true);
 			}
 		}
-		//TODO: make link from message to category, highlight category too
 	}
 	
 	public List<SuggestedMessage> getSuggestedMessagesForBehaviorType(BehaviorType behaviorType){

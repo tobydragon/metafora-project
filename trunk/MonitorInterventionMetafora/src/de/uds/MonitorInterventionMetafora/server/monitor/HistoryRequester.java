@@ -15,6 +15,7 @@ import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
@@ -140,14 +141,18 @@ public class HistoryRequester implements CfCommunicationListener{
 	private boolean actionIsMyType(CfAction action){
 		
 		if (GeneralUtil.isTimeRecent(action.getTime())){
-			for (CfUser user : action.getUsersWithRole(MetaforaStrings.USER_ROLE_RECEIVER_STRING)){
-				if (user.getid().equalsIgnoreCase("visualizer")){
-					if (action.getCfActionType().getType().equalsIgnoreCase("REQUEST_ANALYSIS_ANSWER")){
-						return true;
+			List<CfObject> objects = action.getCfObjects();
+			if (objects != null & objects.size() > 0){
+				CfObject object = objects.get(0);
+				if (object != null){
+					String receivingTool = object.getPropertyValue(MetaforaStrings.PROPERTY_NAME_RECEIVING_TOOL);
+					if ("VISUALIZER".equalsIgnoreCase(receivingTool)){
+						if (action.getCfActionType().getType().equalsIgnoreCase("REQUEST_ANALYSIS_ANSWER")){
+							return true;
+						}
 					}
 				}
 			}
-			return false;
 		}
 		return false;
 	}

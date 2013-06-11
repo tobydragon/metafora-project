@@ -9,7 +9,10 @@ import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorInstance;
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.MemberNotDiscussing;
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.MembersPlanning;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.NewIdeaNotDiscussedIdentifier;
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.UsingAttitudesAndRoles;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
@@ -31,6 +34,9 @@ public class AnalysisController {
 		
 		behaviorIdentifiers = new Vector<BehaviorIdentifier>();
 		behaviorIdentifiers.add(new NewIdeaNotDiscussedIdentifier());
+		behaviorIdentifiers.add(new MembersPlanning());
+		behaviorIdentifiers.add(new MemberNotDiscussing());
+		behaviorIdentifiers.add(new UsingAttitudesAndRoles());
 		
 		reasonedInterventionController = new ReasonedInterventionController(feedbackController, monitorController.getAnalysisChannelManager(), xmppServerType);
 	}
@@ -50,7 +56,7 @@ public class AnalysisController {
 		}
 		log.info("[AnalysisController.analyzeGroup] "+ identifiedBehaviors.size() +" behaviors identified : \n" + identifiedBehaviors);
 		if (identifiedBehaviors.size() > 0){
-			reasonedInterventionController.sendInterventions(identifiedBehaviors, locale);
+			reasonedInterventionController.sendInterventions(identifiedBehaviors, involvedUsers, locale);
 		}
 	}
 }
