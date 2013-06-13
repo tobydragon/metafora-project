@@ -14,8 +14,13 @@ import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.UpdateResponse;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
 public class ServerInstance {
@@ -55,9 +60,12 @@ public class ServerInstance {
 		if (monitorController != null){
 			logger.info("[requestUpdate]  requesting update is received  by the server");
 			List<CfAction> actionUpdates = monitorController.requestUpdate(cfAction);
+			logger.info("[requestUpdate] " + actionUpdates.size() + " actions retrieved, start checking groups");
 			List<String> involvedGroups = AnalysisActions.getInvolvedGroups(actionUpdates);
-			
-			return new UpdateResponse(actionUpdates, involvedGroups);
+			List<CfAction> filteredActions = getOverallActionFilter().getFilteredList(actionUpdates);
+			logger.info("[requestUpdate] " +involvedGroups.size() + " groups found, "+ filteredActions.size()+" filterd actions being sent as Response");
+
+			return new UpdateResponse(filteredActions, involvedGroups);
 		}
 		else {
 			logger.warn("[requestUpdate]  requesting update is recieved by a server set to not monitor");
@@ -74,6 +82,14 @@ public class ServerInstance {
 	public void requestClearAllRecommendations() {
 		messagesController.requestClearAllSuggestedMessages();
 		
+	}
+	
+	private ActionFilter getOverallActionFilter(){
+		List <ActionPropertyRule> afterRules = new Vector<ActionPropertyRule>();
+//		afterRules.add (new ActionPropertyRule("type", "LANDMARK", PropertyLocation.ACTION_TYPE, OperationType.EQUALS));
+		afterRules.add (new ActionPropertyRule("SENDING_TOOL", MetaforaStrings.ANAYLSIS_MANAGER, PropertyLocation.CONTENT, OperationType.EQUALS));
+		ActionFilter afterFilter = new ActionFilter("Landmarks", true, afterRules);
+		return afterFilter; 
 	}
 
 

@@ -30,6 +30,7 @@ public class MonitorModel implements Runnable {
 	}
 
 	public synchronized List<CfAction> requestUpdate(CfAction cfAction){
+		logger.debug("[requestUpdate] total actions present in model:" + cfActions.size());
 		if(cfAction!=null){
 			if (cfAction.getTime()>System.currentTimeMillis()){
 				logger.error("[requestUpdate] bad action time, newer than current time for action\n" + cfAction);
