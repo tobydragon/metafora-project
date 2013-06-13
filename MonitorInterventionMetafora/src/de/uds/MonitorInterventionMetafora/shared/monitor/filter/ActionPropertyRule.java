@@ -213,6 +213,12 @@ public class ActionPropertyRule  implements Serializable{
 				else if (propertyName.equalsIgnoreCase("ACTIVITY_TYPE")){
 					actionValues.add(action.getCfContent().getPropertyValue("ACTIVITY_TYPE"));
 				}
+				else if (propertyName.equalsIgnoreCase("TAGS")){
+					actionValues.add(action.getCfContent().getPropertyValue("TAGS"));
+				}
+				else if (propertyName.equalsIgnoreCase("WORD_COUNT")){
+					actionValues.add(action.getCfContent().getPropertyValue("WORD_COUNT"));
+				}
 				else {
 					Log.warn("ObjectPropertyName not recognized: " + propertyName );
 				}
