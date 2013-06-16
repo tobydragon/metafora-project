@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages> 
+<set id="Distributed Leadership" l2l2tag="DISTRIBUTED_LEADERSHIP">
+<message>Προτείνετε μια εντελώς νέα ιδέα για εξερευνήσετε μία καινούρια πλευρά του θέματος.</message>
+<message behaviortag="NEW_IDEA_NOT_DISCUSSED">Χρειάζεται να δείτε πώς οι νέες ιδέες σχετίζονται με αυτό που κάνετε.</message>
+<message>Πώς μπορείτε να βελτιώσετε το σχέδιο δράσης σας; Ξαναδείτε τι έχετε κάνει ως ομάδα</message>
+<message>Αναθέστε καθήκοντα στον καθένα για να μοιραστείτε εξίσου τη δουλειά σας.</message>
+<message>Συνέβαλαν όλοι στο σχέδιο δράσης της ομάδας;</message>
+</set>
+<set id="Mutual engagement" l2l2tag="MUTUAL_ENGAGEMENT">
+<message>Έκανε ο καθένας τη δουλειά που συμφώνησε να κάνει;</message>
+<message>Συνεισφέρατε όλοι στη συζήτηση;</message>
+<message>If you need some help with your work make sure you ask first the rest of the group</message>
+<message>Φαίνεται ότι διαφωνείτε. Έχετε όλοι προσπαθήσει να καταλάβετε τι λέει η άλλη πλευρά;</message>
+<message>Όταν διαφωνείτε μπορεί να είναι ώρα να αλλάξετε στάση ή ρολους ή στόχους</message>
+<message>Όταν διαφωνείτε μπορεί να θέλετε να ζητήσετε βοήθεια από κάποιον άλλο.</message>
+<message>Συζητήστε γιατί διαφωνείτε εξηγώντας πρώτα τι είναι δύσκολο σε αυτό που προσπαθείτε να κάνετε.</message>
+</set>
+<set id="Peer Feedback" l2l2tag="PEER_FEEDBACK">
+<message>Κάποιος πρέπει να δει τη δουλειά της ομάδας ... και να προσφέρει 	constructive feedback</message>
+<message>Μοιραστείτε αυτό που έχετε φτιάξει με τη δουλειά άλλων για να τα συγκρίνετε.</message>
+<message>Αξιολογήστε τη λύση των άλλων αφότου ξανασκεφτείτε τι έχετε να κάνετε.</message>
+<message>Αξιολογήστε τη λύση των άλλων για να δείτε πόσο γενική είναι.</message>
+</set>
+<set id="Reflection" l2l2tag="REFLECTION">
+<message>Aναθεωρήστε το σχέδιο δράσης σας: ταιριάζει με τη δουλειά που έχετε κάνει μέχρι τώρα;</message>
+<message>Χρησιμοποιείστε τις κάρτες ρόλου ή στάσης για να αναθεωρήσετε τη δουλειά σας μέχρι τώρα.</message>
+<message>Σκεφτείτε τι πρέπει να κάνετε για να λειτουργήσετε καλύτερα ως ομάδα.</message>
+<message>Εξετάστε τη χειρότερη/καλύτερη στιγμή σας ως ομάδα. Τι μαθαίνετε απ’ αυτό;</message>
+ </set>
+</messages>
