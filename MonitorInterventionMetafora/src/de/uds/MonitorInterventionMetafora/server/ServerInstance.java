@@ -3,7 +3,6 @@ package de.uds.MonitorInterventionMetafora.server;
 import java.util.List;
 import java.util.Vector;
 
-import messages.MessagesController;
 
 import org.apache.log4j.Logger;
 
@@ -12,6 +11,7 @@ import de.uds.MonitorInterventionMetafora.server.analysis.AnalyzingListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
+import de.uds.MonitorInterventionMetafora.server.messages.MessagesController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorModel;
 import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;

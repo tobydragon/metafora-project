@@ -3,7 +3,6 @@ package de.uds.MonitorInterventionMetafora.server.analysis;
 import java.util.List;
 import java.util.Vector;
 
-import messages.MessagesController;
 
 import org.apache.log4j.Logger;
 
@@ -13,6 +12,7 @@ import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.MemberNotDis
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.MembersPlanning;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.NewIdeaNotDiscussedIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.UsingAttitudesAndRoles;
+import de.uds.MonitorInterventionMetafora.server.messages.MessagesController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
