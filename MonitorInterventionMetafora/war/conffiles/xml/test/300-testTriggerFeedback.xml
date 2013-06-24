@@ -84,7 +84,7 @@
 		<object id="Toby135's chat message" type="CHAT_MESSAGE">
 			<properties>
 				<property name="SENDING_TOOL" value="METAFORA"/>
-				<property name="TEXT" value="message with some text"/>
+				<property name="TEXT" value=" help me jerk"/>
 				<property name="GROUP_ID" value="200-test"/>
 			</properties>
 		</object>

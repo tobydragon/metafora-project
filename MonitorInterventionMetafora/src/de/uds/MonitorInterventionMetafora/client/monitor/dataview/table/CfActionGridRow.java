@@ -67,7 +67,6 @@ public class CfActionGridRow extends BaseModel {
 		    setGridItemPropertySingleValue(StandardRuleType.CHALLENGE_NAME);
 		    setGridItemPropertySingleValue(StandardRuleType.INDICATOR_TYPE);
 		    setGridItemPropertySingleValue(StandardRuleType.TAGS);
-		    setGridItemPropertySingleValue(StandardRuleType.TAGS);
 		    setGridItemPropertySingleValue(StandardRuleType.WORD_COUNT);
 		    setGridItemPropertySingleValue(StandardRuleType.TIME);
 		}

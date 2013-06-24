@@ -21,8 +21,8 @@ public class StandardRuleBuilder {
 		ALL_RULES.put(StandardRuleType.INDICATOR_TYPE, new ActionPropertyRule(PropertyLocation.CONTENT, "INDICATOR_TYPE", StandardRuleType.INDICATOR_TYPE.toString()));
 		ALL_RULES.put(StandardRuleType.CHALLENGE_NAME, new ActionPropertyRule(PropertyLocation.CONTENT, "CHALLENGE_NAME", StandardRuleType.CHALLENGE_NAME.toString()));
 		ALL_RULES.put(StandardRuleType.GROUP_ID, new ActionPropertyRule(PropertyLocation.CONTENT, "GROUP_ID", StandardRuleType.GROUP_ID.toString()));
-		ALL_RULES.put(StandardRuleType.TAGS, new ActionPropertyRule(PropertyLocation.CONTENT, "TAGS", StandardRuleType.TAGS.toString()));
-		ALL_RULES.put(StandardRuleType.WORD_COUNT, new ActionPropertyRule(PropertyLocation.CONTENT, "WORD_COUNT", StandardRuleType.WORD_COUNT.toString()));
+		ALL_RULES.put(StandardRuleType.TAGS, new ActionPropertyRule(PropertyLocation.OBJECT, "TAGS", StandardRuleType.TAGS.toString()));
+		ALL_RULES.put(StandardRuleType.WORD_COUNT, new ActionPropertyRule(PropertyLocation.OBJECT, "WORD_COUNT", StandardRuleType.WORD_COUNT.toString()));
 
 	}
 				

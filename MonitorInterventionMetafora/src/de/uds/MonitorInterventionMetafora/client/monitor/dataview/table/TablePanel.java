@@ -316,7 +316,7 @@ public class TablePanel extends DataViewPanel {
 					ListStore<CfActionGridRow> store, Grid<CfActionGridRow> grid) {
 
 				String valueOfCell = "";
-				valueOfCell = model.getGridItemPropertySingleValue(StandardRuleType.TAGS);
+				valueOfCell = model.getGridItemPropertyMultipleValues(StandardRuleType.TAGS);
 
 				if (valueOfCell != null) {
 					if (valueOfCell.toLowerCase().contains("abuse")) {
