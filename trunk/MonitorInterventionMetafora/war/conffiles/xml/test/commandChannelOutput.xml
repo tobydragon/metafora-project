@@ -110,6 +110,961 @@
         </properties>
       </content>
     </action>
+    <action time="1368698858936">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <content>
+        <description><![CDATA[Possible NEW_IDEA_NOT_DISCUSSED detected.]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368698859034">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message highlight="true" l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368699327451">
+      <actiontype type="FEEDBACK" classification="create" succeed="UNKNOWN" logged="true" />
+      <user id="Alan" role="receiver" />
+      <user id="David" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="You need to see how new ideas are relevant and helpful to your current work" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368707016749">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <content>
+        <description><![CDATA[Possible NEW_IDEA_NOT_DISCUSSED detected.]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368707016875">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message highlight="true" l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368707298557">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <content>
+        <description><![CDATA[Possible NEW_IDEA_NOT_DISCUSSED detected.]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368707298603">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message highlight="true" l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368707557738">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <content>
+        <description><![CDATA[Possible NEW_IDEA_NOT_DISCUSSED detected.]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368707557751">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message highlight="true" l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368707942068">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <content>
+        <description><![CDATA[Possible NEW_IDEA_NOT_DISCUSSED detected.]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368707942081">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message highlight="true" l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368708445650">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <content>
+        <description><![CDATA[Possible NEW_IDEA_NOT_DISCUSSED detected.]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368708445663">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message highlight="true" l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368708564765">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <content>
+        <description><![CDATA[Possible NEW_IDEA_NOT_DISCUSSED detected.]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368708564780">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message highlight="true" l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368708564813">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="You need to see how new ideas are relevant and helpful to your current work" />
+          <property name="INTERRUPTION_TYPE" value="HIGH" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368708618086">
+      <actiontype type="FEEDBACK" classification="create" succeed="UNKNOWN" logged="true" />
+      <user id="Alan" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="You should share and compare your models." />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368871878755">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368872027787">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368872174106">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368872276292">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368872313831">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368872350103">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368873041840">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Toby135" role="originator" />
+      <content>
+        <description><![CDATA[Possible NEW_IDEA_NOT_DISCUSSED detected.]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368873041868">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message highlight="true" l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368873041889">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="Toby135" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="You need to see how new ideas are relevant and helpful to your current work" />
+          <property name="INTERRUPTION_TYPE" value="HIGH" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368873333854">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Toby135" role="originator" />
+      <content>
+        <description><![CDATA[Possible NEW_IDEA_NOT_DISCUSSED detected.]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368873333897">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message highlight="true" l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368873333918">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="Toby135" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="You need to see how new ideas are relevant and helpful to your current work" />
+          <property name="INTERRUPTION_TYPE" value="HIGH" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368874608762">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Toby135" role="originator" />
+      <content>
+        <description><![CDATA[Possible NEW_IDEA_NOT_DISCUSSED detected.]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368874608823">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message highlight="true" l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368874608862">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="Toby135" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="You need to see how new ideas are relevant and helpful to your current work" />
+          <property name="INTERRUPTION_TYPE" value="HIGH" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368877104035">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Toby135" role="originator" />
+      <content>
+        <description><![CDATA[Possible NEW_IDEA_NOT_DISCUSSED detected.]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368877104155">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Bob" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message highlight="true" l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message>Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message>Has everyone done the work they said they would do?</message>
+    <message>Has everyone contributed to the discussion?</message>
+    <message>I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message>Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1368877104180">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="Toby135" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="You need to see how new ideas are relevant and helpful to your current work" />
+          <property name="INTERRUPTION_TYPE" value="HIGH" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372074852754">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="HIGH_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372074858901">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="HIGH_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
   </actions>
 </interactiondata>
 

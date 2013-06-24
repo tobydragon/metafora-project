@@ -6,11 +6,11 @@
     <data-source-type>xmpp</data-source-type>
     
     <!-- Either "METAFORA" or "METAFORA_TEST" -->
-    <default-xmpp-server>METAFORA_TEST</default-xmpp-server>
+    <default-xmpp-server>METAFORA</default-xmpp-server>
     
     <!-- Either "true" or "false" -->
-    <test-server-monitoring>false</test-server-monitoring>
-    <deploy-server-monitoring>false</deploy-server-monitoring>
+    <test-server-monitoring>true</test-server-monitoring>
+    <deploy-server-monitoring>true</deploy-server-monitoring>
     
     <!-- Either the "CURRENT_TIME", or the millisecond time of start of history (e.g. "1335798839000") -->
     <HISTORY_START_TIME>CURRENT_TIME</HISTORY_START_TIME>

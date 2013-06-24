@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interactiondata>
+  <actions>
+    <action time="1372074852754">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="HIGH_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372074858902">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="HIGH_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+  </actions>
+</interactiondata>
+
