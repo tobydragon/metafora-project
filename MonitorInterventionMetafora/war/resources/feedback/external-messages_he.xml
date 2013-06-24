@@ -10,7 +10,7 @@
 <set id="מחלקים את העבודה" l2l2tag="MUTUAL_ENGAGEMENT">
 <message behaviortag="MEMBER_NOT_PLANNING">האם עסדתם בהתאם לתכנון?</message>
 <message behaviortag="MEMBER_NOT_DISCUSSING">האם כולם תרמו לדיון?</message>
-<message>צריך עזרה עם...</message>
+<message behaviortag="STRUGGLE_NOT_DISCUSSED">צריך עזרה עם...</message>
 <message>Yנראה שאתם לא מסכימים אחד עם השני, האם ניסיתם להבין אחד את השני?</message>
 <message>אם אינכם מסכימים אולי כדאי שתבדקו פעם נוספת את העמדות והגישות שלכם.</message>
 <message>אם אינכם מסכימים, אולי כדאי שתבקשו עזרה?</message>

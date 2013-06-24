@@ -10,7 +10,7 @@
 <set id="Συμμετέχουμε όλοι" l2l2tag="MUTUAL_ENGAGEMENT">
 <message behaviortag="MEMBER_NOT_PLANNING">Κάναμε όλοι τη δουλειά που είπαμε;</message>
 <message behaviortag="MEMBER_NOT_DISCUSSING">Συνεισφέραμε όλοι στη συζήτηση;</message>
-<message>Χρειαζόμαστε βοήθεια με ... </message>
+<message behaviortag="STRUGGLE_NOT_DISCUSSED">Χρειαζόμαστε βοήθεια με ... </message>
 <message>Φαίνεται ότι διαφωνούμε. Έχουμε όλοι προσπαθήσει να καταλάβουμε τι λέει η άλλη πλευρά;</message>
 <message>Φαίνεται ότι διαφωνούμε. Ας αλλάξουμε στάση, ή ρολους ή στόχους (ας κάνουμε κάτι άλλο και επιστρέφουμε σε αυτό το θέμα).</message>
 <message>Φαίνεται ότι διαφωνούμε. Ας ζητήσουμε βοήθεια από κάποιον άλλο. </message>

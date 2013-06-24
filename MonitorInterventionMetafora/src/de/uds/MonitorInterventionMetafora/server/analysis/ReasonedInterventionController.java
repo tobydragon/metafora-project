@@ -1,20 +1,16 @@
 package de.uds.MonitorInterventionMetafora.server.analysis;
 
-import java.util.Arrays;
 import java.util.List;
 import messages.MessagesController;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorInstance;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.mmftparser.SuggestedMessagesModelParserForServer;
-import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.InterventionCreator;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.MessageType;
-import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessage;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesModel;
 
 public class ReasonedInterventionController {
@@ -37,28 +33,6 @@ public class ReasonedInterventionController {
 		}
 
 		sendSuggestionsForAllBehaviors(behaviorsIdentified,involovedUsers, locale);
-//		
-//		setDirectMessagesForBehaviors(behaviorsIdentified, locale);
-//		
-//		BehaviorInstance instanceForDirectFeedback = chooseOneForDirectFeedback(behaviorsIdentified);
-//		if (instanceForDirectFeedback != null) {
-//			SuggestedMessage message = instanceForDirectFeedback.getBestSuggestedMessage();
-//			if (instanceForDirectFeedback != null && message != null){
-//				messagesController.sendMessage( InterventionCreator.createDirectMessage(xmppServerType.toString(), Arrays.asList("System"), 
-//						instanceForDirectFeedback.getUsernames(), null, MetaforaStrings.HIGH_INTERRUPTION, message.getText(), message.getL2L2Category(),  null,
-//						instanceForDirectFeedback.getPropertyValue("CHALLENGE_ID"), instanceForDirectFeedback.getPropertyValue("CHALLENGE_NAME"), false));
-//			}
-//		}
-	}
-	
-
-	private BehaviorInstance chooseOneForDirectFeedback(List<BehaviorInstance> behaviorsIdentified) {
-		//TODO: do something smarter than just the first one
-		int index = behaviorsIdentified.size()-1;
-		if (index >= 0){
-			return behaviorsIdentified.get(0);
-		}
-		return null;
 	}
 
 	public void sendLandmarkForBehavior(BehaviorInstance behaviorInstance){
@@ -80,11 +54,4 @@ public class ReasonedInterventionController {
 		}
 	}
 	
-	private void setDirectMessagesForBehaviors(List<BehaviorInstance> behaviorInstances, Locale locale){
-		//TODO: No need to make a new model each time, could be referencing same model to copy messages
-		SuggestedMessagesModel externalMessageModel = messagesController.getCopyOfDefaultMessages(locale, MessageType.EXTERNAL);
-		for (BehaviorInstance behaviorInstance : behaviorInstances){
-			behaviorInstance.addSuggestedMessages(externalMessageModel.getSuggestedMessagesForBehaviorType(behaviorInstance.getBehaviorType()));
-		}
-	}
 }

@@ -18,6 +18,7 @@ import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
+import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.InterventionCreator;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
 public class AnalysisController {
@@ -28,9 +29,11 @@ public class AnalysisController {
 	
 	MonitorController monitorController;
 	ReasonedInterventionController reasonedInterventionController;
+	MessagesController commandController;
 	
 	public AnalysisController(MonitorController monitorController, MessagesController feedbackController, XmppServerType xmppServerType){
 		this.monitorController = monitorController;
+		this.commandController = feedbackController;
 		
 		behaviorIdentifiers = new Vector<BehaviorIdentifier>();
 		behaviorIdentifiers.add(new NewIdeaNotDiscussedIdentifier());
@@ -49,6 +52,8 @@ public class AnalysisController {
 		List<CfProperty> groupProperties = AnalysisActions.getPropertiesFromActions(groupActions);
 		log.info("[analyzeGroup] properties found for group: " + groupProperties);
 
+		commandController.sendActionToChannel(InterventionCreator.buildSendAnalyisRequestMessage(involvedUsers, groupName, groupProperties));
+		//TODO: should probably have a wait for some responses, maybe 30 seconds?
 		
 		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
 		for (BehaviorIdentifier identifier : behaviorIdentifiers){

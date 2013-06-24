@@ -8,9 +8,12 @@ import messages.MessagesController;
 import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.AnalysisController;
+import de.uds.MonitorInterventionMetafora.server.analysis.AnalyzingListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
+import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
+import de.uds.MonitorInterventionMetafora.server.monitor.MonitorModel;
 import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
@@ -37,7 +40,10 @@ public class ServerInstance {
 		messagesController = new MessagesController(communicationMethodType, xmppServerType);
 		
 		if (monitoringOn){
-			monitorController = new MonitorController(communicationMethodType, startTime, xmppServerType, historyFilepath);
+			MonitorModel monitorModel = new MonitorModel();
+			CfCommunicationListener monitorListener = new AnalyzingListener(monitorModel, messagesController);
+
+			monitorController = new MonitorController(monitorModel, monitorListener, communicationMethodType, startTime, xmppServerType, historyFilepath);
 			analysisController = new AnalysisController(monitorController, messagesController, xmppServerType );
 		}
 	}
@@ -63,7 +69,7 @@ public class ServerInstance {
 			logger.info("[requestUpdate] " + actionUpdates.size() + " actions retrieved, start checking groups");
 			List<String> involvedGroups = AnalysisActions.getInvolvedGroups(actionUpdates);
 			List<CfAction> filteredActions = getOverallActionFilter().getFilteredList(actionUpdates);
-			logger.info("[requestUpdate] " +involvedGroups.size() + " groups found, "+ filteredActions.size()+" filterd actions being sent as Response");
+			logger.info("[requestUpdate] " +involvedGroups.size() + " groups found, "+ filteredActions.size()+" filtered actions being sent as Response");
 
 			return new UpdateResponse(filteredActions, involvedGroups);
 		}
@@ -87,7 +93,7 @@ public class ServerInstance {
 	private ActionFilter getOverallActionFilter(){
 		List <ActionPropertyRule> afterRules = new Vector<ActionPropertyRule>();
 //		afterRules.add (new ActionPropertyRule("type", "LANDMARK", PropertyLocation.ACTION_TYPE, OperationType.EQUALS));
-		afterRules.add (new ActionPropertyRule("SENDING_TOOL", MetaforaStrings.ANAYLSIS_MANAGER, PropertyLocation.CONTENT, OperationType.EQUALS));
+//		afterRules.add (new ActionPropertyRule("SENDING_TOOL", MetaforaStrings.ANAYLSIS_MANAGER, PropertyLocation.CONTENT, OperationType.EQUALS));
 		ActionFilter afterFilter = new ActionFilter("Landmarks", true, afterRules);
 		return afterFilter; 
 	}

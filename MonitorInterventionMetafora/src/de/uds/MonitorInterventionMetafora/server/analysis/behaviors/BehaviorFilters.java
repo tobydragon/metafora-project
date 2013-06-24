@@ -3,6 +3,8 @@ package de.uds.MonitorInterventionMetafora.server.analysis.behaviors;
 import java.util.List;
 import java.util.Vector;
 
+import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
@@ -44,6 +46,13 @@ public class BehaviorFilters {
 		List<ActionPropertyRule> newIdeaRules = new Vector<ActionPropertyRule>();
 		newIdeaRules.add(new ActionPropertyRule("ACTIVITY_TYPE", "MODIFY_STATE_STARTED", PropertyLocation.CONTENT, OperationType.EQUALS));
 		ActionFilter newIdeaFilter = new ActionFilter("NEW_IDEA", true, newIdeaRules);
+		return newIdeaFilter;
+	}
+	
+	public static ActionFilter createStruggleFilter(){
+		List<ActionPropertyRule> newIdeaRules = new Vector<ActionPropertyRule>();
+		newIdeaRules.add(new ActionPropertyRule(MetaforaStrings.PROPERTY_NAME_BEHAVIOR_TYPE, BehaviorType.STRUGGLE.toString(), PropertyLocation.CONTENT, OperationType.EQUALS));
+		ActionFilter newIdeaFilter = new ActionFilter("STRUGGLE", true, newIdeaRules);
 		return newIdeaFilter;
 	}
 }

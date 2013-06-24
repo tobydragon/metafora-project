@@ -17,16 +17,18 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.RuleRelation;
 
-public class NewIdeaNotDiscussedIdentifier  implements  BehaviorIdentifier {	
+public class StruggleNotDiscussedIdentifier  implements  BehaviorIdentifier {	
 	Logger log = Logger.getLogger(this.getClass());
 	
 	private static final long serialVersionUID = -8109458748846339834L;
 
-	ActionFilter newIdeaFilter;
+	public long delayTime = 120000;
+	
+	ActionFilter struggleFilter;
 	ActionFilter discussionFilter;
 	
-	public NewIdeaNotDiscussedIdentifier(){
-		newIdeaFilter = BehaviorFilters.createNewIdeaFilter();
+	public StruggleNotDiscussedIdentifier(){
+		struggleFilter = BehaviorFilters.createStruggleFilter();
 		discussionFilter = BehaviorFilters.createDiscussionFilter();
 	}
 	
@@ -34,32 +36,27 @@ public class NewIdeaNotDiscussedIdentifier  implements  BehaviorIdentifier {
 	public List<BehaviorInstance> identifyBehaviors ( List<CfAction> cfActions, List<String> involvedUsers, List<CfProperty> groupProperties) {
 		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
 		
-		List<CfAction> newIdeas = newIdeaFilter.getFilteredList(cfActions);
+		List<CfAction> struggle = struggleFilter.getFilteredList(cfActions);
 		List<CfAction> discussion = discussionFilter.getFilteredList(cfActions);
 		
 		//if there has been a new idea in the group
-		if (!newIdeas.isEmpty()){
-			log.debug("[shouldFireNotification] new ideas found");
-			CfAction lastIdea = newIdeas.get(newIdeas.size()-1);
+		if (!struggle.isEmpty()){
+			log.debug("[shouldFireNotification] struggle found");
+			CfAction lastStruggle = struggle.get(struggle.size()-1);
 			
 			List <ActionPropertyRule> afterRules = new Vector<ActionPropertyRule>();
-			afterRules.add (new ActionPropertyRule("time", Long.toString(lastIdea.getTime()), PropertyLocation.ACTION, OperationType.IS_AFTER));
+			afterRules.add (new ActionPropertyRule("time", Long.toString(lastStruggle.getTime()-delayTime), PropertyLocation.ACTION, OperationType.IS_AFTER));
 			ActionFilter afterFilter = new ActionFilter("Time after", true, afterRules);
 			
 			//and there has been no discussion afterwards
 			if ( ! (afterFilter.getFilteredList(discussion).size() > 0) ){
-				log.debug("[shouldFireNotification] new idea found, but no discussion, firing");
-				identifiedBehaviors.add(new BehaviorInstance(BehaviorType.NEW_IDEA_NOT_DISCUSSED, involvedUsers, groupProperties));
+				log.debug("[shouldFireNotification] Struggle found, but no discussion, creating BehaviorInstance");
+				identifiedBehaviors.add(new BehaviorInstance(BehaviorType.STRUGGLE_NOT_DISCUSSED, involvedUsers, groupProperties));
 			}
 			else {
-				log.debug("[shouldFireNotification] new idea and discussion found");
+				log.debug("[shouldFireNotification] Struggle and discussion found");
 			}
 		}
 		return identifiedBehaviors;
-	}
-	
-	public void buildFilters(){
-		
-		
 	}
 }

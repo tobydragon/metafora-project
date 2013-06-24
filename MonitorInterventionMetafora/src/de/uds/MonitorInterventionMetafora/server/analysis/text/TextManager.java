@@ -29,7 +29,7 @@ public class TextManager {
 	}
 
 
-	public CfAction tagAction(CfAction action){		
+	public void tagAction(CfAction action){		
 		
 		String contenttextToTag=getTextfromPropertyList(getContentPropertiesToTag(action));
 		boolean taggedAlready = false;
@@ -56,8 +56,6 @@ public class TextManager {
 				action.getCfObjects().get(0).addProperty(agent.getWordCount("").toEmptyCfProperty());
 			}
 		}
-
-		return action;
 	}
 	
 	private List<CfProperty> getObjectPropertiesToTag(CfAction action){

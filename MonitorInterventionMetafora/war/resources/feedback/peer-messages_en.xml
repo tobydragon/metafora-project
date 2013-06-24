@@ -10,7 +10,7 @@
 <set id="Share Work" l2l2tag="MUTUAL_ENGAGEMENT">
 <message behaviortag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
 <message behaviortag="MEMBER_NOT_DISCUSSING">Has everyone contributed to the discussion?</message>
-<message>I/We need some help with ...</message>
+<message behaviortag="STRUGGLE_NOT_DISCUSSED">I/We need some help with ...</message>
 <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
 <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
 <message>We seem to disagree. Lets ask for help from a third party.</message>

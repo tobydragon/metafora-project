@@ -2,7 +2,9 @@ package de.uds.MonitorInterventionMetafora.server.monitor;
 
 import java.util.List;
 
+import de.uds.MonitorInterventionMetafora.server.analysis.AnalyzingListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
+import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
@@ -14,10 +16,9 @@ public class MonitorController {
 	MonitorModel monitorModel;
 	HistoryRequester historyRequestor;
 	
-	public MonitorController(CfCommunicationMethodType communicationMethodType, String historyStartTime, XmppServerType xmppServerType, String historyFilepath) {
+	public MonitorController(MonitorModel model, CfCommunicationListener monitorListener, CfCommunicationMethodType communicationMethodType, String historyStartTime, XmppServerType xmppServerType, String historyFilepath) {
 		
-		monitorModel = new MonitorModel();
-		LabellingListener monitorListener = new LabellingListener(monitorModel);
+		this.monitorModel = model;
 		
 		HistoryRequester historyRequester = new HistoryRequester(monitorModel);
 		
