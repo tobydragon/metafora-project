@@ -5,12 +5,13 @@
 	<test-server>metafora.ku-eichstaett.de</test-server>
 
 	
-	<!-- 
+	
 	<command-agent-connection>visualizer-command-deploy-unknown</command-agent-connection>
 	<analysis-agent-connection>visualizer-analysis-deploy-unknown</analysis-agent-connection>
 	
 	<test-command-agent-connection>visualizer-command-test-unknown</test-command-agent-connection>
 	<test-analysis-agent-connection>visualizer-analysis-test-unknown</test-analysis-agent-connection>
+	 <!-- 
 	 -->
 	 
 	  <!--
@@ -30,7 +31,7 @@
 	<test-command-agent-connection>visualizer-command-test</test-command-agent-connection>
 	<test-analysis-agent-connection>visualizer-analysis-test</test-analysis-agent-connection>
 
- 	-->
+ 	
 
 
 
@@ -40,5 +41,5 @@
 	
 	<test-command-agent-connection>visualizer-command-test-toby</test-command-agent-connection>
 	<test-analysis-agent-connection>visualizer-analysis-test-toby</test-analysis-agent-connection>
-	
+	-->
 </xmpp-settings>
