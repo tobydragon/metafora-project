@@ -18,6 +18,8 @@ public class MetaforaStrings {
 	public static final String ACTION_TYPE_UPDATE_ELEMENT_STRING = "UPDATE_ELEMENT";
 	public static final String ACTION_TYPE_DISPLAY_STATE_URL_STRING = "DISPLAY_STATE_URL";
 	public static final String ACTION_TYPE_SUGGESTED_MESSAGES_STRING = "SUGGESTED_MESSAGES";
+	public static final String ACTION_TYPE_REQUEST_ANALYSIS_STRING = "REQUEST_ANALYSIS";
+
 	
 	//property types
 	public static final String PROPERTY_TYPE_MAP_ID_STRING = "MAP_ID";
@@ -52,6 +54,8 @@ public class MetaforaStrings {
 	
 	public static final String PROPERTY_NAME_RECEIVING_TOOL = "RECEIVING_TOOL";
 	public static final String PROPERTY_NAME_SENDING_TOOL = "SENDING_TOOL";
+	public static final String PROPERTY_NAME_BEHAVIOR_TYPE = "BEHAVIOR_TYPE";
+
 	
 	public static final String RECEIVER_METAFORA = "METAFORA";
 	public static final String RECEIVER_METAFORA_TEST = "METAFORA_TEST";

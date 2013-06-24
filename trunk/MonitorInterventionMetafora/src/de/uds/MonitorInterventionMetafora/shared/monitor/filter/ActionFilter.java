@@ -2,6 +2,7 @@ package de.uds.MonitorInterventionMetafora.shared.monitor.filter;
 
 import java.io.Serializable;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -28,6 +29,10 @@ public class ActionFilter implements Serializable{
 	private String type;
 	private String color;
 	
+	
+	public ActionFilter(List<ActionPropertyRule> actionPropertyRules){
+		this(null, true, actionPropertyRules);
+	}
 	
 	public ActionFilter(String name, boolean serverFilter, List<ActionPropertyRule> actionPropertyRules ){
 		this (name, serverFilter, null, null, actionPropertyRules, RuleRelation.AND);	
@@ -87,22 +92,27 @@ public class ActionFilter implements Serializable{
 	
 	public boolean filterIncludesAction(CfAction action){
 		if(isServerFilter){
-			if (ruleRelation == RuleRelation.AND){	
-				for (ActionPropertyRule rule : actionPropertyRules){
-					if (! rule.ruleIncludesAction(action)){
-						return false;
+			if (actionPropertyRules.size() > 0){
+				if (ruleRelation == RuleRelation.AND){	
+					for (ActionPropertyRule rule : actionPropertyRules){
+						if (! rule.ruleIncludesAction(action)){
+							return false;
+						}
 					}
+					return true;
 				}
-				return true;
+				
+				else {
+					for (ActionPropertyRule rule : actionPropertyRules){
+						if (rule.ruleIncludesAction(action)){
+							return true;
+						}
+					}
+					return false;
+				}
 			}
-			
 			else {
-				for (ActionPropertyRule rule : actionPropertyRules){
-					if (rule.ruleIncludesAction(action)){
-						return true;
-					}
-				}
-				return false;
+				return true;
 			}
 		}
 		

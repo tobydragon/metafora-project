@@ -72,20 +72,20 @@ public class MessagesController implements CfCommunicationListener {
 		CfAction landmark = InterventionCreator.createLandmarkForOutgoingMessage(cfAction);
 		logger.debug("[sendMessage] Sending Landmark = \n" + CfActionParser.toXml(landmark));
 		analysisChannelManager.sendMessage(landmark);
-		sendAction(cfAction);
+		sendActionToChannel(cfAction);
 	}
 	
 	public void sendSuggestedMessages(CfAction cfAction){
-		sendAction(cfAction);
+		sendActionToChannel(cfAction);
 		//Send low interruption message to tell user that tips are available
 		CfAction notificationMessage = InterventionCreator.createNewSuggestedMessagesNotification(xmppServerType.toString(), cfAction);
 		if (notificationMessage != null){
 			logger.debug("[sendSuggestedMessages] Sending Notification Message = \n" + CfActionParser.toXml(notificationMessage));
-			sendAction (notificationMessage);
+			sendActionToChannel (notificationMessage);
 		}
 	}
 	
-	private void sendAction( CfAction cfAction) {
+	public void sendActionToChannel( CfAction cfAction) {
 		logger.debug("[sendAction] Sending Action = \n" + CfActionParser.toXml(cfAction));
 		commandChannelCommunicationManager.sendMessage(cfAction);
 	}	
@@ -105,7 +105,11 @@ public class MessagesController implements CfCommunicationListener {
 	}
 
 	public void requestClearAllSuggestedMessages() {
-		sendAction(InterventionCreator.createClearAllSuggestedMessages());
+		sendActionToChannel(InterventionCreator.createClearAllSuggestedMessages());
+	}
+
+	public XmppServerType getXmppServerType() {
+		return xmppServerType;
 	}
 	
 }

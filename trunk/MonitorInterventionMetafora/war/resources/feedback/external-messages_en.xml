@@ -10,7 +10,7 @@
 <set id="Mutual engagement" l2l2tag="MUTUAL_ENGAGEMENT">
 <message behaviortag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
 <message behaviortag="MEMBER_NOT_DISCUSSING" >Has everyone contributed to the discussion?</message>
-<message>If you need some help with your work make sure you ask first the rest of the group</message>
+<message behaviortag="STRUGGLE_NOT_DISCUSSED">If you need some help with your work make sure you ask first the rest of the group</message>
 <message>You seem to disagree. Have you all tried to understand each other's point of view and opinions?</message>
 <message>When you disagree it may be time to redefine your group goals/attitudes/roles.</message>
 <message>When you disagree you may want to ask for help from a third party.</message>
@@ -19,13 +19,13 @@
 <set id="Peer Feedback" l2l2tag="PEER_FEEDBACK">
 <message>Someone should look at the work of group ...  and offer some constructive feedback</message>
 <message>You should share and compare your models.</message>
-<message>Evaluate each other's solution by first revisiting the task</message>
-<message>Evaluate each other's solution to see how general they are</message>
+<message behaviortag="POSSIBLE_SOLUTION_INCOMPLETE_DISCUSSION">Evaluate each other's solution by first revisiting the task</message>
+<message behaviortag="PERCEIVED_SOLUTION_NO_DISCUSSION">Evaluate each other's solution to see how general they are</message>
 </set>
 <set id="Reflection" l2l2tag="REFLECTION">
 <message>Revise your plan. Does it match your work so far?</message>
 <message behaviortag="NOT_USING_ATTITUDES_OR_ROLES">Use the attitude/role cards to reflect on your work so far.</message>
 <message>Consider what you need to do to work better as a team.</message>
-<message>Consider your best/worse moment as team so far.</message>
+<message behaviortag="POSITIVE_AND_NEGATIVE_LANDMARKS">Consider your best/worse moment as team so far.</message>
  </set>
 </messages>

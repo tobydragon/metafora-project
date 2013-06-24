@@ -71,12 +71,12 @@ public class ActionPropertyRule  implements Serializable{
 		this.displayText = displayName;
 	}
   
-  public ActionPropertyRule(String _entityName, String _value,PropertyLocation _type,OperationType _operationtype) {
+  public ActionPropertyRule(String propertyName, String valueToFilterBy, PropertyLocation propertyLocation, OperationType operationtype) {
    
-	  propertyName=_entityName;
-	  valueToFilterBy=_value;
-	  propertyLocation=_type;
-	 operationtype=_operationtype;
+	  this.propertyName=propertyName;
+	  this.valueToFilterBy=valueToFilterBy;
+	  this.propertyLocation=propertyLocation;
+	  this.operationtype=operationtype;
 	  
   }
   
@@ -199,30 +199,53 @@ public class ActionPropertyRule  implements Serializable{
 				break;
 				
 			case CONTENT:
-				if (propertyName.equalsIgnoreCase("SENDING_TOOL")){
-					actionValues.add(action.getCfContent().getPropertyValue("SENDING_TOOL"));
-				} else if (propertyName.equalsIgnoreCase("INDICATOR_TYPE")){
-					actionValues.add(action.getCfContent().getPropertyValue("INDICATOR_TYPE"));
-				} else if (propertyName.equalsIgnoreCase("CHALLENGE_NAME")){
-					actionValues.add(action.getCfContent().getPropertyValue("CHALLENGE_NAME"));
-				} else if (propertyName.equalsIgnoreCase("GROUP_ID")){
-					actionValues.add(action.getCfContent().getPropertyValue("GROUP_ID"));
-				} else if (propertyName.equalsIgnoreCase("description")){
+				//cases for child elements, attributes, or special properties 
+				if (propertyName.equalsIgnoreCase("description")){
 					actionValues.add(action.getCfContent().getDescription());
 				}
-				else if (propertyName.equalsIgnoreCase("ACTIVITY_TYPE")){
-					actionValues.add(action.getCfContent().getPropertyValue("ACTIVITY_TYPE"));
+				else if (propertyName.equalsIgnoreCase(MonitorConstants.TAGS)){	
+					 String [] tags=action.getCfContent().getPropertyValue(MonitorConstants.TAGS).split(",");
+					 for(String tag:tags){
+						 actionValues.add(tag);
+					 }
 				}
-				else if (propertyName.equalsIgnoreCase("TAGS")){
-					actionValues.add(action.getCfContent().getPropertyValue("TAGS"));
-				}
-				else if (propertyName.equalsIgnoreCase("WORD_COUNT")){
-					actionValues.add(action.getCfContent().getPropertyValue("WORD_COUNT"));
-				}
+				//otherwise just look for normal string property
 				else {
-					Log.warn("ObjectPropertyName not recognized: " + propertyName );
+					String value = action.getCfContent().getPropertyValue(propertyName);
+					if (value != null){
+						actionValues.add(value);
+					}
+					//don't want to warn everytime we look for a missing property because we do it all the time
+//					else {
+////						Log.warn("[getActionValue] content property name not recognized: " + propertyName );
+//					}
 				}
 				break;
+				
+//				if (propertyName.equalsIgnoreCase("SENDING_TOOL")){
+//					actionValues.add(action.getCfContent().getPropertyValue("SENDING_TOOL"));
+//				} else if (propertyName.equalsIgnoreCase("INDICATOR_TYPE")){
+//					actionValues.add(action.getCfContent().getPropertyValue("INDICATOR_TYPE"));
+//				} else if (propertyName.equalsIgnoreCase("CHALLENGE_NAME")){
+//					actionValues.add(action.getCfContent().getPropertyValue("CHALLENGE_NAME"));
+//				} else if (propertyName.equalsIgnoreCase("GROUP_ID")){
+//					actionValues.add(action.getCfContent().getPropertyValue("GROUP_ID"));
+//				} else if (propertyName.equalsIgnoreCase("description")){
+//					actionValues.add(action.getCfContent().getDescription());
+//				}
+//				else if (propertyName.equalsIgnoreCase("ACTIVITY_TYPE")){
+//					actionValues.add(action.getCfContent().getPropertyValue("ACTIVITY_TYPE"));
+//				}
+//				else if (propertyName.equalsIgnoreCase("TAGS")){
+//					actionValues.add(action.getCfContent().getPropertyValue("TAGS"));
+//				}
+//				else if (propertyName.equalsIgnoreCase("WORD_COUNT")){
+//					actionValues.add(action.getCfContent().getPropertyValue("WORD_COUNT"));
+//				}
+//				else {
+//					Log.warn("ObjectPropertyName not recognized: " + propertyName );
+//				}
+//				break;
 			case ACTION:
 				if (propertyName.equalsIgnoreCase("time")){
 					actionValues.add(Long.toString(action.getTime()));

@@ -3,15 +3,19 @@ package de.uds.MonitorInterventionMetafora.server.monitor;
 import de.uds.MonitorInterventionMetafora.server.analysis.text.TextManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 
 
 //This class receives each action and adds appropriate labels to allow analysis work
 public class LabellingListener implements CfCommunicationListener{
 
-	private MonitorModel model;
+	protected MonitorModel model;
 	private TextManager taggingManager;
 	
-	//TODO add labels for PERCEIVED_SOLUTION, POSSIBLE_SOLUTION, POSSIBLE_STRUGGLE
+	//TODO add labels for PERCEIVED_SOLUTION, POSSIBLE_SOLUTION, STRUGGLE
 	
 	public LabellingListener(MonitorModel monitorModel){
 		this.model = monitorModel;
@@ -20,7 +24,15 @@ public class LabellingListener implements CfCommunicationListener{
 	
 	//synchronized because it can be registered to more than one manager, and so calls should be synchronized
 	public synchronized void processCfAction(String user, CfAction action) {
-		model.addAction(taggingManager.tagAction(action));
+		taggingManager.tagAction(action);
+		labelStruggle(action);
+		model.addAction(action);
+	}
+
+	private void labelStruggle(CfAction action) {
+		if (LabellingFilters.createStruggleLabelFilter().filterIncludesAction(action)){
+			action.getCfContent().addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_BEHAVIOR_TYPE, BehaviorType.STRUGGLE.toString()));
+		}
 	}
 
 }

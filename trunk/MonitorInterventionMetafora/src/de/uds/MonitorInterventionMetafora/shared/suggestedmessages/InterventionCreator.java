@@ -189,5 +189,25 @@ public class InterventionCreator {
 		Log.error("[createNewSuggestedMessagesNotification] Send Suggested messages with no users.");
 		return null;
 	}
+	
+	public static CfAction buildSendAnalyisRequestMessage(List<String> userIds, String groupName, List<CfProperty> groupProperties){
+		
+		CfActionType cfActionType = new CfActionType(MetaforaStrings.ACTION_TYPE_REQUEST_ANALYSIS_STRING, MetaforaStrings.CLASSIFICATION_OTHER_STRING, "false");
+		CfAction cfAction = new CfAction(System.currentTimeMillis(), cfActionType);
+		
+		for (String userId : userIds){
+			cfAction.addUser(new CfUser(userId, MetaforaStrings.USER_ROLE_ORIGINATOR_STRING));
+		}
+		CfContent cfContent = new CfContent("Analysis Request");
+		cfContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_SENDING_TOOL, MetaforaStrings.ANAYLSIS_MANAGER));
+		cfContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_TYPE_GROUP_ID_STRING, groupName));
+		for (CfProperty property : groupProperties){
+			cfContent.addProperty(property);
+		}
+//		cfContent.addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_RECEIVING_TOOL, receivingTool));
+		cfAction.setCfContent(cfContent);
+		
+		return cfAction;
+	}
 
 }
