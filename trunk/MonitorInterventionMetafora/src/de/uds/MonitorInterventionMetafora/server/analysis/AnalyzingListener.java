@@ -6,12 +6,12 @@ import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
-import messages.MessagesController;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorFilters;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorInstance;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.StruggleNotDiscussedIdentifier;
+import de.uds.MonitorInterventionMetafora.server.messages.MessagesController;
 import de.uds.MonitorInterventionMetafora.server.monitor.LabellingListener;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorModel;
 import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;

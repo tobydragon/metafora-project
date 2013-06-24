@@ -1,4 +1,4 @@
-package messages;
+package de.uds.MonitorInterventionMetafora.server.messages;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,5 @@
-package messages;
+package de.uds.MonitorInterventionMetafora.server.messages;
+
 
 import org.apache.log4j.Logger;
 
