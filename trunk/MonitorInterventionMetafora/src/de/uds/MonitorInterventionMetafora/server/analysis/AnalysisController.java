@@ -11,6 +11,7 @@ import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorInst
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.MemberNotDiscussing;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.MembersPlanning;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.NewIdeaNotDiscussedIdentifier;
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerceivedSolutionSharingIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.UsingAttitudesAndRoles;
 import de.uds.MonitorInterventionMetafora.server.messages.MessagesController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
@@ -40,6 +41,7 @@ public class AnalysisController {
 		behaviorIdentifiers.add(new MembersPlanning());
 		behaviorIdentifiers.add(new MemberNotDiscussing());
 		behaviorIdentifiers.add(new UsingAttitudesAndRoles());
+		behaviorIdentifiers.add(new PerceivedSolutionSharingIdentifier());
 		
 		reasonedInterventionController = new ReasonedInterventionController(feedbackController, monitorController.getAnalysisChannelManager(), xmppServerType);
 	}

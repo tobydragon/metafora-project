@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.client.monitor.filter;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
@@ -363,18 +364,23 @@ public class FilterSelectorToolBar extends ToolBar implements RequestConfigurati
 
 	@Override
 	public void onSuccess(Configuration result) {
-		filterSets = new HashMap<String, ActionFilter>();
-		filterSets = result.getActionFilters();
-		renderToolBar();
-		if (isMainFilterSet) {
-			String mainConfig = UrlParameterConfig.getInstance().getConfig();
-			if (mainConfig != null) {
-				filterGroupCombo.setSimpleValue(mainConfig);
-				model.applyMainFilter();
-				model.updateFilteredList();
-				controller.filtersUpdated();
-				applyMainFilterBtn.setEnabled(false);
+		if (result != null){
+			filterSets = new HashMap<String, ActionFilter>();
+			filterSets = result.getActionFilters();
+			renderToolBar();
+			if (isMainFilterSet) {
+				String mainConfig = UrlParameterConfig.getInstance().getConfig();
+				if (mainConfig != null) {
+					filterGroupCombo.setSimpleValue(mainConfig);
+					model.applyMainFilter();
+					model.updateFilteredList();
+					controller.filtersUpdated();
+					applyMainFilterBtn.setEnabled(false);
+				}
 			}
+		}
+		else {
+			Log.warn("[onSuccess] null result returned");
 		}
 
 	}

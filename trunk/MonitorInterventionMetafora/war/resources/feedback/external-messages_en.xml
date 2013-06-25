@@ -18,9 +18,9 @@
 </set>
 <set id="Peer Feedback" l2l2tag="PEER_FEEDBACK">
 <message>Someone should look at the work of group ...  and offer some constructive feedback</message>
-<message>You should share and compare your models.</message>
-<message behaviortag="POSSIBLE_SOLUTION_INCOMPLETE_DISCUSSION">Evaluate each other's solution by first revisiting the task</message>
-<message behaviortag="PERCEIVED_SOLUTION_NO_DISCUSSION">Evaluate each other's solution to see how general they are</message>
+<message behaviortag="SHARES_NOT_VIEWED">You should share and compare your models.</message>
+<message >Evaluate each other's solution by first revisiting the task</message>
+<message behaviortag="PERCEIVED_SOLUTION_NOT_SHARED">Evaluate each other's solution to see how general they are</message>
 </set>
 <set id="Reflection" l2l2tag="REFLECTION">
 <message>Revise your plan. Does it match your work so far?</message>

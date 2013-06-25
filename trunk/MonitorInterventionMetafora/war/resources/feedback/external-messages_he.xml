@@ -18,9 +18,9 @@
 </set>
 <set id="משוב ידידותי" l2l2tag="PEER_FEEDBACK">
 <message>יתכן שאתם צריכים עזרה בהגדרת הבעייה.</message>
-<message>כדאי שתשוו בין המודלים שלכם</message>
+<message behaviortag="SHARES_NOT_VIEWED">כדאי שתשוו בין המודלים שלכם</message>
 <message>חשוב שתעריכו את הפתרונות שלכם תוך בחינה חוזרת של הבעייה</message>
-<message>כדאי שתעריכו את  הפתרונות שלכם גם כדי לראות עד כמה הם כלליים</message>
+<message behaviortag="PERCEIVED_SOLUTION_NOT_SHARED">כדאי שתעריכו את  הפתרונות שלכם גם כדי לראות עד כמה הם כלליים</message>
 </set>
 <set id="רפלקציה" l2l2tag="REFLECTION">
 <message>כדאי שתעריכו את התכנית שלכם, האם הביצוע בפועל תואם את התכנית?</message>
