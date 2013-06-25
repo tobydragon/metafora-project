@@ -18,5 +18,22 @@ public class LabellingFilters {
 		return discussionFilter;
 		
 	}
+	
+	public static ActionFilter createPerceivedSolutionLabelFilter(){
+		List<ActionPropertyRule> rules = new Vector<ActionPropertyRule>();
+		rules.add(new ActionPropertyRule("value", "true", PropertyLocation.CONTENT, OperationType.EQUALS));
+		rules.add(new ActionPropertyRule("ANALYSIS_TYPE", "ApparentSolutionVerifier", PropertyLocation.CONTENT, OperationType.CONTAINS));
+		ActionFilter discussionFilter = new ActionFilter("Discussion", true, rules);
+		return discussionFilter;
+		
+	}
+	
+	public static ActionFilter createViewOthersObjectsLabelFilter(){
+		List<ActionPropertyRule> rules = new Vector<ActionPropertyRule>();
+		rules.add(new ActionPropertyRule("type", "My Microworld,Help Request", PropertyLocation.OBJECT, OperationType.IS_ONE_OF));
+		ActionFilter discussionFilter = new ActionFilter("ObjectShare", true, rules);
+		return discussionFilter;
+		
+	}
 
 }

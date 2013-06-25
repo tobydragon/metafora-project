@@ -26,7 +26,19 @@ public class LabellingListener implements CfCommunicationListener{
 	public synchronized void processCfAction(String user, CfAction action) {
 		taggingManager.tagAction(action);
 		labelStruggle(action);
+		labelViewingOthersObjects(action);
+		labelPerceivedSolution(action);
 		model.addAction(action);
+	}
+
+	private void labelViewingOthersObjects(CfAction action) {
+		if (LabellingFilters.createViewOthersObjectsLabelFilter().filterIncludesAction(action)){
+			String viewer = action.getListofUsersAsStringWithRole(MetaforaStrings.USER_ROLE_ORIGINATOR_STRING);
+			String creator = action.getCfObjects().get(0).getPropertyValue("CREATOR");
+			if ( !(viewer.equalsIgnoreCase(creator)) ){
+				action.getCfContent().addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_BEHAVIOR_TYPE, BehaviorType.VIEWING_OTHERS_OBJECTS.toString()));
+			}
+		}
 	}
 
 	private void labelStruggle(CfAction action) {
@@ -34,5 +46,12 @@ public class LabellingListener implements CfCommunicationListener{
 			action.getCfContent().addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_BEHAVIOR_TYPE, BehaviorType.STRUGGLE.toString()));
 		}
 	}
+	
+	private void labelPerceivedSolution(CfAction action) {
+		if (LabellingFilters.createPerceivedSolutionLabelFilter().filterIncludesAction(action)){
+			action.getCfContent().addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_BEHAVIOR_TYPE, BehaviorType.PERCEIVED_SOLUTION.toString()));
+		}
+	}
+
 
 }

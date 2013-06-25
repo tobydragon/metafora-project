@@ -28,7 +28,7 @@ public class StruggleNotDiscussedIdentifier  implements  BehaviorIdentifier {
 	ActionFilter discussionFilter;
 	
 	public StruggleNotDiscussedIdentifier(){
-		struggleFilter = BehaviorFilters.createStruggleFilter();
+		struggleFilter = BehaviorFilters.createBehaviorFilter(BehaviorType.STRUGGLE);
 		discussionFilter = BehaviorFilters.createDiscussionFilter();
 	}
 	
@@ -44,9 +44,7 @@ public class StruggleNotDiscussedIdentifier  implements  BehaviorIdentifier {
 			log.debug("[shouldFireNotification] struggle found");
 			CfAction lastStruggle = struggle.get(struggle.size()-1);
 			
-			List <ActionPropertyRule> afterRules = new Vector<ActionPropertyRule>();
-			afterRules.add (new ActionPropertyRule("time", Long.toString(lastStruggle.getTime()-delayTime), PropertyLocation.ACTION, OperationType.IS_AFTER));
-			ActionFilter afterFilter = new ActionFilter("Time after", true, afterRules);
+			ActionFilter afterFilter = BehaviorFilters.createActionsAfterFilter(lastStruggle.getTime());
 			
 			//and there has been no discussion afterwards
 			if ( ! (afterFilter.getFilteredList(discussion).size() > 0) ){

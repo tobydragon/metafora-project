@@ -18,9 +18,9 @@
 </set>
 <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
 <message>We would like some help in identifying what the problem is with...</message>
-<message>We should share our models and compare them.</message>
+<message behaviortag="SHARES_NOT_VIEWED">We should share our models and compare them.</message>
 <message>Let's evaluate each other's solution by first revisiting the task</message>
-<message>Let's evaluate each other's solution to see how general they are</message>
+<message behaviortag="PERCEIVED_SOLUTION_NOT_SHARED">Let's evaluate each other's solution to see how general they are</message>
 </set>
 <set id="Reflection" l2l2tag="REFLECTION">
 <message >Let's revise our plan. Does it match our work so far?</message>

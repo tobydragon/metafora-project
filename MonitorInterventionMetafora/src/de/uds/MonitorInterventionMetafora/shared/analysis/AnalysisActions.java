@@ -13,6 +13,7 @@ import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.Operation
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
+import de.uds.MonitorInterventionMetafora.shared.monitor.filter.RuleRelation;
 
 public class AnalysisActions {
 	public static List<String> PROPERTIES_TO_RETRIEVE = Arrays.asList("GROUP_ID", "CHALLENGE_ID", "CHALLENGE_NAME"); 
@@ -61,7 +62,8 @@ public class AnalysisActions {
 	public static List<CfAction> getGroupActions(String groupName, List<CfAction> actions){
 		List<ActionPropertyRule> groupRules1 =new Vector<ActionPropertyRule>();
 		groupRules1.add(new ActionPropertyRule("GROUP_ID", groupName, PropertyLocation.OBJECT, OperationType.EQUALS));
-		ActionFilter groupFilter1 = new ActionFilter("GroupFilter", true, groupRules1);
+		groupRules1.add(new ActionPropertyRule("GROUP_ID", groupName, PropertyLocation.CONTENT, OperationType.EQUALS));
+		ActionFilter groupFilter1 = new ActionFilter("GroupFilter", true, null, null, groupRules1, RuleRelation.OR);
 		return groupFilter1.getFilteredList(actions);
 	}
 	

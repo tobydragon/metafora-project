@@ -18,6 +18,7 @@ import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
+import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
@@ -48,7 +49,7 @@ public class AnalyzingListener extends LabellingListener{
 	}
 
 	private void checkEventDrivenResponses(CfAction action) {
-		if (BehaviorFilters.createStruggleFilter().filterIncludesAction(action)){
+		if (BehaviorFilters.createBehaviorFilter(BehaviorType.STRUGGLE).filterIncludesAction(action)){
 			logger.info("[checkEventCrivenResponses] Struggle identified, checking for discussion");
 			BehaviorIdentifier behaviorIdentifier = new StruggleNotDiscussedIdentifier();
 			
