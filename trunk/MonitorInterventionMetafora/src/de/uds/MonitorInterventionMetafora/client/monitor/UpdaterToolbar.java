@@ -176,6 +176,7 @@ public class UpdaterToolbar extends ToolBar{
 
 	public void updateView(List<String> groups) {
 		if (groups != null){
+			groupIdChooser.removeAll();
 			groupIdChooser.add(groups);
 		}
 		

@@ -3,7 +3,7 @@
 <set id="Lead Together" l2l2tag="DISTRIBUTED_LEADERSHIP">
 <message>Let's propose a new idea to helps us explore a different direction</message>
 <message behaviortag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
-<message> How could we improve our plan? Let's look at the group planning map together</message>
+<message behaviortag="DIVERGENCE_WITHOUT_CONVERGENCE"> How could we improve our plan? Let's look at the group planning map together</message>
 <message>Let's assign tasks to help us split the work equally. </message>
 <message behaviortag="MEMBER_NOT_PLANNING">Has everyone contributed in planning the work?</message>
 </set>
@@ -18,14 +18,15 @@
 </set>
 <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
 <message>We would like some help in identifying what the problem is with...</message>
-<message behaviortag="SHARES_NOT_VIEWED">We should share our models and compare them.</message>
+<message >We should share our models and compare them.</message>
 <message>Let's evaluate each other's solution by first revisiting the task</message>
 <message behaviortag="PERCEIVED_SOLUTION_NOT_SHARED">Let's evaluate each other's solution to see how general they are</message>
+<message behaviortag="SHARES_NOT_VIEWED">We should give feedback when someone shares their work</message>
 </set>
 <set id="Reflection" l2l2tag="REFLECTION">
 <message >Let's revise our plan. Does it match our work so far?</message>
 <message behaviortag="NOT_USING_ATTITUDES_OR_ROLES">Let's reflect on our work so far using the attitude/role cards</message>
-<message>Let's consider what we need to do to work better as a team.</message>
+<message behaviortag="DIVERGENCE_WITHOUT_CONVERGENCE">Let's consider what we need to do to work better as a team.</message>
 <message>Let's consider our best/worse moment as team so far.</message>
  </set>
 </messages>

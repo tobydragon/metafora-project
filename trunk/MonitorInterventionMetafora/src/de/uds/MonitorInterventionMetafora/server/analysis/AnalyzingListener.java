@@ -51,6 +51,7 @@ public class AnalyzingListener extends LabellingListener{
 	private void checkEventDrivenResponses(CfAction action) {
 		if (BehaviorFilters.createBehaviorFilter(BehaviorType.STRUGGLE).filterIncludesAction(action)){
 			logger.info("[checkEventCrivenResponses] Struggle identified, checking for discussion");
+			
 			BehaviorIdentifier behaviorIdentifier = new StruggleNotDiscussedIdentifier();
 			
 			List<String> users = AnalysisActions.getOriginatingUsernames(Arrays.asList(action));
@@ -80,8 +81,8 @@ public class AnalyzingListener extends LabellingListener{
 			setDirectMessagesForBehaviors(instanceForDirectFeedback, locale);
 			SuggestedMessage message = instanceForDirectFeedback.getBestSuggestedMessage();
 			if (message != null){
-				messagesController.sendMessage( InterventionCreator.createDirectMessage(messagesController.getXmppServerType().toString(), Arrays.asList("System"), 
-						instanceForDirectFeedback.getUsernames(), null, MetaforaStrings.HIGH_INTERRUPTION, message.getText(), message.getL2L2Category(),  null,
+				messagesController.sendMessage( InterventionCreator.createDirectMessage(messagesController.getXmppServerType().toString(), Arrays.asList(MetaforaStrings.ANAYLSIS_SYSTEM_USER), 
+						instanceForDirectFeedback.getUsernames(), null, MetaforaStrings.LOW_INTERRUPTION, message.getText(), message.getL2L2Category(),  null,
 						instanceForDirectFeedback.getPropertyValue("CHALLENGE_ID"), instanceForDirectFeedback.getPropertyValue("CHALLENGE_NAME"), false));
 			}
 		}

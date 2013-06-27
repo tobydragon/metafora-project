@@ -1065,6 +1065,1352 @@
         </properties>
       </content>
     </action>
+    <action time="1372149074794">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="HIGH_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372149114078">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372149114100">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Manolis" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" highlight="true" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" highlight="true" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_DISCUSSING">Has everyone contributed to the discussion?</message>
+    <message l2l2tag="STRUGGLE_NOT_DISCUSSED">I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" highlight="true" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message highlight="true" l2l2tag="NOT_USING_ATTITUDES_OR_ROLES">Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372149114109">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="New Tips available in Messaging Tool" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372149709391">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372149709476">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Manolis" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" highlight="true" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" highlight="true" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_DISCUSSING">Has everyone contributed to the discussion?</message>
+    <message l2l2tag="STRUGGLE_NOT_DISCUSSED">I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" highlight="true" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message highlight="true" l2l2tag="NOT_USING_ATTITUDES_OR_ROLES">Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372149709494">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="New Tips available in Messaging Tool" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150418937">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150419025">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Manolis" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" highlight="true" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" highlight="true" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_DISCUSSING">Has everyone contributed to the discussion?</message>
+    <message l2l2tag="STRUGGLE_NOT_DISCUSSED">I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" highlight="true" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message highlight="true" l2l2tag="NOT_USING_ATTITUDES_OR_ROLES">Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150419036">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="New Tips available in Messaging Tool" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150798077">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150798148">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Manolis" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" highlight="true" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" highlight="true" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_DISCUSSING">Has everyone contributed to the discussion?</message>
+    <message l2l2tag="STRUGGLE_NOT_DISCUSSED">I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" highlight="true" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message highlight="true" l2l2tag="NOT_USING_ATTITUDES_OR_ROLES">Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150798158">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="New Tips available in Messaging Tool" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150957793">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151231941">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Manolis" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" highlight="true" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" highlight="true" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_DISCUSSING">Has everyone contributed to the discussion?</message>
+    <message l2l2tag="STRUGGLE_NOT_DISCUSSED">I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" highlight="true" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message highlight="true" l2l2tag="NOT_USING_ATTITUDES_OR_ROLES">Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151231955">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="New Tips available in Messaging Tool" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151251250">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151260141">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Manolis" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" highlight="true" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" highlight="true" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
+    <message l2l2tag="MEMBER_NOT_DISCUSSING">Has everyone contributed to the discussion?</message>
+    <message l2l2tag="STRUGGLE_NOT_DISCUSSED">I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" highlight="true" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message highlight="true" l2l2tag="NOT_USING_ATTITUDES_OR_ROLES">Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151260146">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="New Tips available in Messaging Tool" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151356943">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151358212">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Manolis" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" highlight="true" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" highlight="true" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
+    <message l2l2tag="MEMBER_NOT_DISCUSSING">Has everyone contributed to the discussion?</message>
+    <message l2l2tag="STRUGGLE_NOT_DISCUSSED">I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" highlight="true" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message highlight="true" l2l2tag="NOT_USING_ATTITUDES_OR_ROLES">Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151358218">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="New Tips available in Messaging Tool" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151569622">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="Manolis" role="originator" />
+      <user id="Toby36" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151571103">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Manolis" role="receiver" />
+      <user id="Toby36" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" highlight="true" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" highlight="true" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
+    <message l2l2tag="MEMBER_NOT_DISCUSSING">Has everyone contributed to the discussion?</message>
+    <message l2l2tag="STRUGGLE_NOT_DISCUSSED">I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" highlight="true" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message highlight="true" l2l2tag="NOT_USING_ATTITUDES_OR_ROLES">Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151571127">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <user id="Toby36" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="New Tips available in Messaging Tool" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151650955">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="Manolis" role="originator" />
+      <user id="Toby36" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151875426">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="Manolis" role="originator" />
+      <user id="Toby36" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151884819">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Manolis" role="receiver" />
+      <user id="Toby36" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" highlight="true" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message>How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" highlight="true" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
+    <message l2l2tag="MEMBER_NOT_DISCUSSING">Has everyone contributed to the discussion?</message>
+    <message l2l2tag="STRUGGLE_NOT_DISCUSSED">I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message>Let's evaluate each other's solution to see how general they are</message>
+  </set>
+  <set id="Reflection" highlight="true" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message highlight="true" l2l2tag="NOT_USING_ATTITUDES_OR_ROLES">Let's reflect on our work so far using the attitude/role cards</message>
+    <message>Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151884833">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <user id="Toby36" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="New Tips available in Messaging Tool" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372318968657">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372318968848">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372318970170">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372318970185">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372319763041">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372319767336">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372319770091">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372319773216">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372320534415">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372320535227">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372320822927">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372320823546">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372321593433">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372321594230">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372322374137">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372322376241">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372332674226">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372332674728">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335359493">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335359864">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335667761">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335668332">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335714483">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="Manolis" role="originator" />
+      <user id="Toby36" role="originator" />
+      <user id="LKL1" role="originator" />
+      <user id="Alice" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335714588">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Manolis" role="receiver" />
+      <user id="Toby36" role="receiver" />
+      <user id="LKL1" role="receiver" />
+      <user id="Alice" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" highlight="true" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message l2l2tag="DIVERGENCE_WITHOUT_CONVERGENCE">How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" highlight="true" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_DISCUSSING">Has everyone contributed to the discussion?</message>
+    <message l2l2tag="STRUGGLE_NOT_DISCUSSED">I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message l2l2tag="PERCEIVED_SOLUTION_NOT_SHARED">Let's evaluate each other's solution to see how general they are</message>
+    <message l2l2tag="SHARES_NOT_VIEWED">We should give feedback when someone shares their work</message>
+  </set>
+  <set id="Reflection" highlight="true" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message highlight="true" l2l2tag="NOT_USING_ATTITUDES_OR_ROLES">Let's reflect on our work so far using the attitude/role cards</message>
+    <message l2l2tag="DIVERGENCE_WITHOUT_CONVERGENCE">Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335714602">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <user id="Toby36" role="receiver" />
+      <user id="LKL1" role="receiver" />
+      <user id="Alice" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="New Tips available in Messaging Tool" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341481070">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341482182">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341523078">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="Manolis" role="originator" />
+      <user id="Toby36" role="originator" />
+      <user id="LKL1" role="originator" />
+      <user id="Alice" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341523251">
+      <actiontype type="SUGGESTED_MESSAGES" classification="create" logged="true" />
+      <user id="Manolis" role="receiver" />
+      <user id="Toby36" role="receiver" />
+      <user id="LKL1" role="receiver" />
+      <user id="Alice" role="receiver" />
+      <content>
+        <description><![CDATA[<messages>
+  <set id="Lead Together" highlight="true" l2l2tag="DISTRIBUTED_LEADERSHIP">
+    <message>Let's propose a new idea to helps us explore a different direction</message>
+    <message l2l2tag="NEW_IDEA_NOT_DISCUSSED">We need to see how the new ideas are relevant and helpful to our current work</message>
+    <message highlight="true" l2l2tag="DIVERGENCE_WITHOUT_CONVERGENCE">How could we improve our plan? Let's look at the group planning map together</message>
+    <message>Let's assign tasks to help us split the work equally.</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone contributed in planning the work?</message>
+  </set>
+  <set id="Share Work" highlight="true" l2l2tag="MUTUAL_ENGAGEMENT">
+    <message highlight="true" l2l2tag="MEMBER_NOT_PLANNING">Has everyone done the work they said they would do?</message>
+    <message highlight="true" l2l2tag="MEMBER_NOT_DISCUSSING">Has everyone contributed to the discussion?</message>
+    <message l2l2tag="STRUGGLE_NOT_DISCUSSED">I/We need some help with ...</message>
+    <message>We seem to disagree. Have we all tried to understand each other's point of view and opinions?</message>
+    <message>We seem to disagree. Lets redefine our group goals/attitudes/roles.</message>
+    <message>We seem to disagree. Lets ask for help from a third party.</message>
+    <message>Lets discuss why we disagree in LASAD explaining first what is tricky in our task.</message>
+  </set>
+  <set id="Friendly Feedback" l2l2tag="PEER_FEEDBACK">
+    <message>We would like some help in identifying what the problem is with...</message>
+    <message>We should share our models and compare them.</message>
+    <message>Let's evaluate each other's solution by first revisiting the task</message>
+    <message l2l2tag="PERCEIVED_SOLUTION_NOT_SHARED">Let's evaluate each other's solution to see how general they are</message>
+    <message l2l2tag="SHARES_NOT_VIEWED">We should give feedback when someone shares their work</message>
+  </set>
+  <set id="Reflection" highlight="true" l2l2tag="REFLECTION">
+    <message>Let's revise our plan. Does it match our work so far?</message>
+    <message highlight="true" l2l2tag="NOT_USING_ATTITUDES_OR_ROLES">Let's reflect on our work so far using the attitude/role cards</message>
+    <message highlight="true" l2l2tag="DIVERGENCE_WITHOUT_CONVERGENCE">Let's consider what we need to do to work better as a team.</message>
+    <message>Let's consider our best/worse moment as team so far.</message>
+  </set>
+</messages>]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341523274">
+      <actiontype type="FEEDBACK" classification="create" logged="true" />
+      <user id="System" role="sender" />
+      <user id="Manolis" role="receiver" />
+      <user id="Toby36" role="receiver" />
+      <user id="LKL1" role="receiver" />
+      <user id="Alice" role="receiver" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="New Tips available in Messaging Tool" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description />
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="METAFORA_TEST" />
+        </properties>
+      </content>
+    </action>
   </actions>
 </interactiondata>
 

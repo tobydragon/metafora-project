@@ -72,8 +72,11 @@ public class AnalysisActions {
 		for (CfAction action : actions){
 			for (CfUser user : action.getCfUsers()){
 				if (MetaforaStrings.USER_ROLE_ORIGINATOR_STRING.equalsIgnoreCase(user.getrole())){
-					if ( ! usernames.contains(user.getid()) ){
-						usernames.add(user.getid());
+					//ignore "system" user that sends messages to users
+					if ( ! user.getid().equals(MetaforaStrings.ANAYLSIS_SYSTEM_USER)){
+						if ( ! usernames.contains(user.getid()) ){
+							usernames.add(user.getid());
+						}
 					}
 				}
 			}

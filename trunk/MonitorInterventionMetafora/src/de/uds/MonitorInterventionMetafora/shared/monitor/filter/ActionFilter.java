@@ -50,6 +50,7 @@ public class ActionFilter implements Serializable{
 		for (ActionPropertyRule rule : actionPropertyRules){
 			addFilterRule(rule);
 		}
+		this.ruleRelation = ruleRelation;
 		
 	}
 	
