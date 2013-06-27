@@ -27,7 +27,7 @@ public class PerceivedSolutionSharingIdentifier  implements  BehaviorIdentifier 
 	
 	public PerceivedSolutionSharingIdentifier(){
 		perceivedSolutionFilter = BehaviorFilters.createBehaviorFilter(BehaviorType.PERCEIVED_SOLUTION);
-		sharedFilter = BehaviorFilters.createSharedSolutionFilter();
+		sharedFilter = BehaviorFilters.createBehaviorFilter(BehaviorType.SHARE_OBJECT);
 	}
 	
 	@Override
@@ -37,7 +37,7 @@ public class PerceivedSolutionSharingIdentifier  implements  BehaviorIdentifier 
 		List<CfAction> perceivedSolutions = perceivedSolutionFilter.getFilteredList(cfActions);
 		List<CfAction> sharedObjects = sharedFilter.getFilteredList(cfActions);
 		
-		//if there has been a new idea in the group
+		//if there has been a perceived solution in the group
 		if (!perceivedSolutions.isEmpty()){
 			log.debug("[shouldFireNotification] Perceived Solutions found");
 			CfAction firstSolution = perceivedSolutions.get(0);

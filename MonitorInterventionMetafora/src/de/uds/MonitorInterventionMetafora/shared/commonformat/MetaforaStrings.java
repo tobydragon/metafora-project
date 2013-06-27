@@ -67,6 +67,8 @@ public class MetaforaStrings {
 	public static final String HIGH_INTERRUPTION = "HIGH_INTERRUPTION";
 	
 	public static final String ANAYLSIS_MANAGER = "ANAYLSIS_MANAGER";
+	public static final String ANAYLSIS_SYSTEM_USER = "System";
+
 	
 	//for SuggestedMessagesXml
 	public static final String BEHAVIOR_TAG = "behaviortag";
@@ -77,6 +79,7 @@ public class MetaforaStrings {
 	public static final String CATEGORY_LABEL = "id";
 	public static final String SUGGESTED_MESSAGES = "messages";
 	public static final String CLEAR_ALL_SUGGESTED_MESSAGES = "CLEAR_ALL_SUGGESTED_MESSAGES";
+	public static final String ALL_GROUPS = "All Groups";
 
 
 

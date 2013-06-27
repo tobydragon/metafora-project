@@ -52,7 +52,7 @@ public class BehaviorFilters {
 	public static ActionFilter createBehaviorFilter(BehaviorType behaviorType){
 		List<ActionPropertyRule> newIdeaRules = new Vector<ActionPropertyRule>();
 		newIdeaRules.add(new ActionPropertyRule(MetaforaStrings.PROPERTY_NAME_BEHAVIOR_TYPE, behaviorType.toString(), PropertyLocation.CONTENT, OperationType.EQUALS));
-		ActionFilter newIdeaFilter = new ActionFilter("STRUGGLE", true, newIdeaRules);
+		ActionFilter newIdeaFilter = new ActionFilter(behaviorType.toString()+ "_FILTER", true, newIdeaRules);
 		return newIdeaFilter;
 	}
 	
@@ -63,10 +63,10 @@ public class BehaviorFilters {
 		return afterFilter;
 	}
 	
-	public static ActionFilter createSharedSolutionFilter(){
-		List<ActionPropertyRule> rules = new Vector<ActionPropertyRule>();
-		rules.add(new ActionPropertyRule("type", "My Microworld,Help Request", PropertyLocation.OBJECT, OperationType.IS_ONE_OF));
-		ActionFilter newIdeaFilter = new ActionFilter("ComparedSolution", true, rules);
-		return newIdeaFilter;
-	}
+//	public static ActionFilter createSharedSolutionFilter(){
+//		List<ActionPropertyRule> newIdeaRules = new Vector<ActionPropertyRule>();
+//		newIdeaRules.add(new ActionPropertyRule(MetaforaStrings.PROPERTY_NAME_BEHAVIOR_TYPE, behaviorType.toString(), PropertyLocation.CONTENT, OperationType.EQUALS));
+//		ActionFilter newIdeaFilter = new ActionFilter("STRUGGLE", true, newIdeaRules);
+//		return newIdeaFilter;
+//	}
 }

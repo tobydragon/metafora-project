@@ -1,14 +1,438 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interactiondata>
   <actions>
-    <action time="1372074852754">
+    <action time="1372149709463">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372149709464">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_DISCUSSING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372149709466">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible NOT_USING_ATTITUDES_OR_ROLES detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372149709468">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible PERCEIVED_SOLUTION_NOT_SHARED detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150419009">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150419014">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_DISCUSSING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150419017">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible NOT_USING_ATTITUDES_OR_ROLES detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150419020">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible PERCEIVED_SOLUTION_NOT_SHARED detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150798132">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150798136">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_DISCUSSING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150798140">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible NOT_USING_ATTITUDES_OR_ROLES detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372150798143">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible PERCEIVED_SOLUTION_NOT_SHARED detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151231890">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151231923">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_DISCUSSING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151231927">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible NOT_USING_ATTITUDES_OR_ROLES detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151231931">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible PERCEIVED_SOLUTION_NOT_SHARED detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151260135">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151260137">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible NOT_USING_ATTITUDES_OR_ROLES detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151260138">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible PERCEIVED_SOLUTION_SHARED_AND_VIEWED detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151358204">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151358207">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible NOT_USING_ATTITUDES_OR_ROLES detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151358208">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible SHARES_NOT_VIEWED detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151571079">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151571083">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Toby36" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Toby36]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151571087">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <user id="Toby36" role="originator" />
+      <content>
+        <description><![CDATA[Possible NOT_USING_ATTITUDES_OR_ROLES detected involving user(s):[Manolis, Toby36]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151571091">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <user id="Toby36" role="originator" />
+      <content>
+        <description><![CDATA[Possible SHARES_NOT_VIEWED detected involving user(s):[Manolis, Toby36]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151884794">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151884798">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Toby36" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Toby36]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151884803">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <user id="Toby36" role="originator" />
+      <content>
+        <description><![CDATA[Possible NOT_USING_ATTITUDES_OR_ROLES detected involving user(s):[Manolis, Toby36]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372151884810">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <user id="Toby36" role="originator" />
+      <content>
+        <description><![CDATA[Possible PERCEIVED_SOLUTION_SHARED_AND_VIEWED detected involving user(s):[Manolis, Toby36]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372318968657">
       <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
       <user id="System" role="originator" />
       <user id="Manolis" role="originator" />
       <object id="0" type="MESSAGE">
         <properties>
           <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
-          <property name="INTERRUPTION_TYPE" value="HIGH_INTERRUPTION" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
         </properties>
       </object>
       <content>
@@ -22,14 +446,14 @@
         </properties>
       </content>
     </action>
-    <action time="1372074858902">
+    <action time="1372318968848">
       <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
       <user id="System" role="originator" />
       <user id="Manolis" role="originator" />
       <object id="0" type="MESSAGE">
         <properties>
           <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
-          <property name="INTERRUPTION_TYPE" value="HIGH_INTERRUPTION" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
         </properties>
       </object>
       <content>
@@ -38,6 +462,721 @@
           <property name="INDICATOR_TYPE" value="activity" />
           <property name="CHALLENGE_ID" value="2" />
           <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372318970170">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372318970185">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372319763041">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372319767336">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372319770091">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372319773216">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372320534415">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372320535227">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372320822928">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372320823546">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372321593433">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372321594230">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372322374137">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372322376241">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372332674226">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372332674728">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335359493">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335359864">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335667761">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335668332">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335714497">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335714505">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Toby36" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Toby36]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335714514">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="LKL1" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[LKL1]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335714522">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Alice" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Alice]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335714536">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_DISCUSSING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335714543">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Alice" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_DISCUSSING detected involving user(s):[Alice]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335714563">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <user id="Toby36" role="originator" />
+      <user id="LKL1" role="originator" />
+      <user id="Alice" role="originator" />
+      <content>
+        <description><![CDATA[Possible NOT_USING_ATTITUDES_OR_ROLES detected involving user(s):[Manolis, Toby36, LKL1, Alice]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372335714577">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <user id="Toby36" role="originator" />
+      <user id="LKL1" role="originator" />
+      <user id="Alice" role="originator" />
+      <content>
+        <description><![CDATA[Possible PERCEIVED_SOLUTION_SHARED_AND_VIEWED detected involving user(s):[Manolis, Toby36, LKL1, Alice]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341481070">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341482182">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="System" role="originator" />
+      <user id="Manolis" role="originator" />
+      <object id="0" type="MESSAGE">
+        <properties>
+          <property name="TEXT" value="If you need some help with your work make sure you ask first the rest of the group" />
+          <property name="INTERRUPTION_TYPE" value="LOW_INTERRUPTION" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[System sent message: "If you need some help with your work make sure you ask first the rest of the group" to Manolis]]></description>
+        <properties>
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341523094">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341523103">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Toby36" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Toby36]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341523119">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="LKL1" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[LKL1]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341523132">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Alice" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_PLANNING detected involving user(s):[Alice]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341523145">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_DISCUSSING detected involving user(s):[Manolis]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341523168">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Alice" role="originator" />
+      <content>
+        <description><![CDATA[Possible MEMBER_NOT_DISCUSSING detected involving user(s):[Alice]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341523179">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <user id="Toby36" role="originator" />
+      <user id="LKL1" role="originator" />
+      <user id="Alice" role="originator" />
+      <content>
+        <description><![CDATA[Possible NOT_USING_ATTITUDES_OR_ROLES detected involving user(s):[Manolis, Toby36, LKL1, Alice]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341523188">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <user id="Toby36" role="originator" />
+      <user id="LKL1" role="originator" />
+      <user id="Alice" role="originator" />
+      <content>
+        <description><![CDATA[Possible PERCEIVED_SOLUTION_SHARED_AND_VIEWED detected involving user(s):[Manolis, Toby36, LKL1, Alice]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
+          <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+        </properties>
+      </content>
+    </action>
+    <action time="1372341523238">
+      <actiontype type="LANDMARK" classification="OTHER" succeed="TRUE" />
+      <user id="Manolis" role="originator" />
+      <user id="Toby36" role="originator" />
+      <user id="LKL1" role="originator" />
+      <user id="Alice" role="originator" />
+      <content>
+        <description><![CDATA[Possible DIVERGENCE_WITHOUT_CONVERGENCE detected involving user(s):[Manolis, Toby36, LKL1, Alice]]]></description>
+        <properties>
+          <property name="GROUP_ID" value="Grupo2BM2" />
+          <property name="INDICATOR_TYPE" value="activity" />
+          <property name="CHALLENGE_ID" value="2" />
           <property name="CHALLENGE_NAME" value="eXpresser Train Tracks" />
           <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
         </properties>

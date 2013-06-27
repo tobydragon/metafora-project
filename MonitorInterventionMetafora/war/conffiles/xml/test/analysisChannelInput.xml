@@ -3,9 +3,35 @@
 <!-- New document created with EditiX at Mon May 06 12:45:36 CEST 2013 -->
 <interactiondata id="1347339165624">
 <actions>
-
-<!-- 
-<action time="1367837839577">
+<action time="1372315608885">
+		<actiontype classification="OTHER" logged="true" type="indicator"/>
+		<user id="Manolis" ip="ISNOGOODHOME1372314897671-532921844" role="originator"/>
+		<object id="0" type="expresser-model-and-rules">
+			<properties>
+				<property name="FEEDBACK_STRATEGY_ID" value="999"/>
+				<property name="GROUP_ID" value="1-AnalysisTest"/>
+				<property name="CHALLENGE_ID" value="2"/>
+				<property name="CHALLENGE_NAME" value="eXpresser Train Tracks"/>
+				<property name="VIEW_URL" value="http://web-expresser.appspot.com/?metafora=1&amp;collaborate=1&amp;logging=0&amp;indicatorposting=1&amp;ptNodeId=1-AnalysisTest_node_4&amp;ptMap=1-AnalysisTest&amp;locale=en&amp;token=ISNOGOODHOME1372314897671-532921844&amp;user=Manolis&amp;pw=e7c5c1a784c278ba179abc862cff3545&amp;pwEncrypted=true&amp;groupId=1-AnalysisTest&amp;challengeId=2&amp;challengeName=eXpresser%20Train%20Tracks&amp;testServer=true&amp;time=1372315604141863096&amp;rulesThumbnail=1&amp;thumbnail=150x90"/>
+				<property name="REFERENCE_URL" value="http://web-expresser.appspot.com/?metafora=1&amp;collaborate=1&amp;logging=0&amp;indicatorposting=1&amp;originalPtNodeId=1-AnalysisTest_node_4&amp;originalPtMap=1-AnalysisTest&amp;locale=en&amp;groupId=1-AnalysisTest&amp;originalChallengeId=2&amp;originalChallengeName=eXpresser%20Train%20Tracks&amp;versionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F1-AnalysisTest%2F1-AnalysisTest_node_4-test.xml%3Ftime%3D1372315604141863096"/>
+			</properties>
+		</object>
+		<content>
+			<description><![CDATA[No feedback]]></description>
+			<properties>
+				<property name="SENDING_TOOL" value="EXPRESSER"/>
+				<property name="RECEIVING_TOOL" value="METAFORA_TEST"/>
+				<property name="INDICATOR_TYPE" value="activity"/>
+				<property name="FEEDBACK_STRATEGY_ID" value="999"/>
+				<property name="GROUP_ID" value="1-AnalysisTest"/>
+				<property name="CHALLENGE_ID" value="2"/>
+				<property name="CHALLENGE_NAME" value="eXpresser Train Tracks"/>
+				<property name="ANALYSIS_TYPE" value="FeedbackGenerated"/>
+			</properties>
+		</content>
+	</action>
+	
+	<action time="1367837839577">
 	<actiontype classification="OTHER" logged="true" type="indicator"/>
 	<user id="Manolis" ip="ISNOGOODHOME1371879011189-1964679823" role="originator"/>
 	<object id="0" type="expresser-model-and-rules">
@@ -31,10 +57,79 @@
 			<property name="ANALYSIS_TYPE" value="FeedbackGenerated"/>
 		</properties>
 	</content>
-</action> -->
+	</action>
+	
+	<action time="1372315608787">
+		<actiontype classification="OTHER" logged="true" type="indicator"/>
+		<user id="Manolis" ip="ISNOGOODHOME1372314897671-532921844" role="originator"/>
+		<object id="0" type="expresser-model-and-rules">
+			<properties>
+				<property name="value" value="false"/>
+				<property name="GROUP_ID" value="1-AnalysisTest"/>
+				<property name="CHALLENGE_ID" value="2"/>
+				<property name="CHALLENGE_NAME" value="eXpresser Train Tracks"/>
+				<property name="VIEW_URL" value="http://web-expresser.appspot.com/?metafora=1&amp;collaborate=1&amp;logging=0&amp;indicatorposting=1&amp;ptNodeId=1-AnalysisTest_node_4&amp;ptMap=1-AnalysisTest&amp;locale=en&amp;token=ISNOGOODHOME1372314897671-532921844&amp;user=Manolis&amp;pw=e7c5c1a784c278ba179abc862cff3545&amp;pwEncrypted=true&amp;groupId=1-AnalysisTest&amp;challengeId=2&amp;challengeName=eXpresser%20Train%20Tracks&amp;testServer=true&amp;time=1372315604141863096&amp;rulesThumbnail=1&amp;thumbnail=150x90"/>
+				<property name="REFERENCE_URL" value="http://web-expresser.appspot.com/?metafora=1&amp;collaborate=1&amp;logging=0&amp;indicatorposting=1&amp;originalPtNodeId=1-AnalysisTest_node_4&amp;originalPtMap=1-AnalysisTest&amp;locale=en&amp;groupId=1-AnalysisTest&amp;originalChallengeId=2&amp;originalChallengeName=eXpresser%20Train%20Tracks&amp;versionQuery=1&amp;copy=http%3A%2F%2Fweb-expresser.appspot.com%2Fp%2F1-AnalysisTest%2F1-AnalysisTest_node_4-test.xml%3Ftime%3D1372315604141863096"/>
+			</properties>
+		</object>
+		<content>
+			<description><![CDATA[Correct number of Tiles on 'How many tiles?' detected]]></description>
+			<properties>
+				<property name="SENDING_TOOL" value="EXPRESSER"/>
+				<property name="RECEIVING_TOOL" value="METAFORA_TEST"/>
+				<property name="INDICATOR_TYPE" value="activity"/>
+				<property name="value" value="false"/>
+				<property name="GROUP_ID" value="1-AnalysisTest"/>
+				<property name="CHALLENGE_ID" value="2"/>
+				<property name="CHALLENGE_NAME" value="eXpresser Train Tracks"/>
+				<property name="ANALYSIS_TYPE" value="CorrectGeneralModelAllocationVerifier"/>
+			</properties>
+		</content>
+	</action>
+	
+	<action time="1372317163022">
+		<actiontype type="LANDMARK" classification="CREATE" logged="false"/>
+		<user id="LKL1" role="ORIGINATOR"/>
+		<object id="4275" type="My Microworld">
+			<properties>
+				<property name="OBJECT_HOME_TOOL" value="LASAD"/>
+				<property name="POS-Y" value="130"/>
+				<property name="CREATOR" value="LKL1"/>
+				<property name="POS-X" value="120"/>
+				<property name="MAP-ID" value="179"/>
+			</properties>
+		</object>
+		<content>
+			<description><![CDATA[LKL1 has created box 3 of type My Microworld]]></description>
+			<properties>
+				<property name="INDICATOR_TYPE" value="ACTIVITY"/>
+				<property name="SENDING_TOOL" value="LASAD"/>
+			</properties>
+		</content>
+	</action>
+	
+	<action time="1372317163022">
+		<actiontype type="LANDMARK" classification="CREATE" logged="false"/>
+		<user id="LKL1" role="ORIGINATOR"/>
+		<object id="4275" type="My Microworld">
+			<properties>
+				<property name="OBJECT_HOME_TOOL" value="LASAD"/>
+				<property name="POS-Y" value="130"/>
+				<property name="CREATOR" value="LKL1"/>
+				<property name="POS-X" value="120"/>
+				<property name="MAP-ID" value="179"/>
+			</properties>
+		</object>
+		<content>
+			<description><![CDATA[LKL1 has created box 3 of type Comment]]></description>
+			<properties>
+				<property name="INDICATOR_TYPE" value="ACTIVITY"/>
+				<property name="SENDING_TOOL" value="LASAD"/>
+			</properties>
+		</content>
+	</action>
 
-
- <action time="1367837839577">
+<action time="1367837839577">
 	<actiontype classification="OTHER" logged="true" type="indicator"/>
 	<user id="Manolis" ip="ISNOGOODHOME1371879011189-1964679823" role="originator"/>
 	<object id="0" type="expresser-model-and-rules">
@@ -60,59 +155,7 @@
 		</properties>
 	</content>
 </action>
- 
 
-<!-- 
-<action time="1367837849577">
-  <actiontype type="INDICATOR" classification="CREATE" logged="false" />
-  <user id="Manolis" role="ORIGINATOR" />
-  <object id="4246" type="My Microworld">
-    <properties>
-      <property name="OBJECT_HOME_TOOL" value="LASAD" />
-      <property name="POS-Y" value="79" />
-      <property name="CREATOR" value="Toby" />
-      <property name="POS-X" value="103" />
-      <property name="MAP-ID" value="6" />
-    </properties>
-  </object>
-  <content>
-    <description><![CDATA[Manolis has created box 8 of type My Microworld]]></description>
-    <properties>
-      <property name="INDICATOR_TYPE" value="ACTIVITY" />
-      <property name="SENDING_TOOL" value="LASAD" />
-      <property name="GROUP_ID" value="Grupo2BM2"/>
-		<property name="CHALLENGE_ID" value="2"/>
-		<property name="CHALLENGE_NAME" value="eXpresser Train Tracks"/>
-    </properties>
-  </content>
-</action>
- -->
- 
-<action time="1367837850577">
-  <actiontype type="INDICATOR" classification="CREATE" logged="false" />
-  <user id="Manolis" role="ORIGINATOR" />
-  <object id="4252" type="Help Request">
-    <properties>
-      <property name="OBJECT_HOME_TOOL" value="LASAD" />
-      <property name="POS-Y" value="364" />
-      <property name="CREATOR" value="Manolis" />
-      <property name="POS-X" value="107" />
-      <property name="MAP-ID" value="6" />
-    </properties>
-  </object>
-  <content>
-    <description><![CDATA[Manolis has created box 9 of type Help Request]]></description>
-    <properties>
-      <property name="INDICATOR_TYPE" value="ACTIVITY" />
-      <property name="SENDING_TOOL" value="LASAD" />
-      <property name="GROUP_ID" value="Grupo2BM2"/>
-			<property name="CHALLENGE_ID" value="2"/>
-			<property name="CHALLENGE_NAME" value="eXpresser Train Tracks"/>
-    </properties>
-  </content>
-</action>
- 
- 
 <action time="1367837851577">
   <actiontype type="INDICATOR" classification="MODIFY" logged="false" />
   <user id="Toby36" role="ORIGINATOR" />
@@ -136,6 +179,57 @@
     </properties>
   </content>
 </action>
+
+<action time="1369167294362">
+  <actiontype classification="other" logged="false" type="LANDMARK"/>
+  <user id="Alice" role="originator"/>
+  <object id="2" type="SPLIT">
+    <properties>
+      <property name="TOOL" value="PLANNING_TOOL"/>
+      <property name="MAPNAME" value="Piep3"/>
+      <property name="Message" value="Split or join was caused by a user."/>
+      <property name="NODE" value="node_0"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[Typed split in map Piep3 at node node_0 caused by Alice.]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="PLANNING_TOOL"/>
+      <property name="SENDING_TOOL" value="PLATO_TEST"/>
+      <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT"/>
+      <property name="GROUP_ID" value="Metafora"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Demo Challenge"/>
+    </properties>
+  </content>
+</action>
+
+<!-- <action time="1369167364004">
+  <actiontype classification="other" logged="false" type="LANDMARK"/>
+  <user id="Alice" role="originator"/>
+  <object id="2" type="JOIN">
+    <properties>
+      <property name="TOOL" value="PLANNING_TOOL"/>
+      <property name="MAPNAME" value="Piep3"/>
+      <property name="Message" value="Split or join was caused by a user."/>
+      <property name="NODE" value="node_3"/>
+    </properties>
+  </object>
+  <content>
+    <description><![CDATA[General join in map Piep3 at node node_3 caused by Alice.]]></description>
+    <properties>
+      <property name="INDICATOR_TYPE" value="activity"/>
+      <property name="TOOL" value="PLANNING_TOOL"/>
+      <property name="SENDING_TOOL" value="PLATO_TEST"/>
+      <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT"/>
+      <property name="GROUP_ID" value="Metafora"/>
+      <property name="CHALLENGE_ID" value="1"/>
+      <property name="CHALLENGE_NAME" value="Demo Challenge"/>
+    </properties>
+  </content>
+</action> 
+ -->
 
 </actions>
 </interactiondata>

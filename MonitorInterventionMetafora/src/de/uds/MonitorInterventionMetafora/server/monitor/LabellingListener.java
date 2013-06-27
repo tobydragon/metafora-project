@@ -26,9 +26,21 @@ public class LabellingListener implements CfCommunicationListener{
 	public synchronized void processCfAction(String user, CfAction action) {
 		taggingManager.tagAction(action);
 		labelStruggle(action);
+		labelConvergenceAndDivergence(action);
+		labelShareObject(action);
 		labelViewingOthersObjects(action);
 		labelPerceivedSolution(action);
 		model.addAction(action);
+	}
+
+	private void labelConvergenceAndDivergence(CfAction action) {
+		if (LabellingFilters.createConvergenceObjectsToLabelFilter().filterIncludesAction(action)){
+			action.getCfContent().addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_BEHAVIOR_TYPE, BehaviorType.CONVERGENCE.toString()));
+		}
+		if (LabellingFilters.createDivergenceObjectsToLabelFilter().filterIncludesAction(action)){
+			action.getCfContent().addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_BEHAVIOR_TYPE, BehaviorType.DIVERGENCE.toString()));
+		}
+		
 	}
 
 	private void labelViewingOthersObjects(CfAction action) {
@@ -44,6 +56,12 @@ public class LabellingListener implements CfCommunicationListener{
 	private void labelStruggle(CfAction action) {
 		if (LabellingFilters.createStruggleLabelFilter().filterIncludesAction(action)){
 			action.getCfContent().addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_BEHAVIOR_TYPE, BehaviorType.STRUGGLE.toString()));
+		}
+	}
+	
+	private void labelShareObject(CfAction action) {
+		if (LabellingFilters.createShareObjectsLabelFilter().filterIncludesAction(action)){
+			action.getCfContent().addProperty(new CfProperty(MetaforaStrings.PROPERTY_NAME_BEHAVIOR_TYPE, BehaviorType.SHARE_OBJECT.toString()));
 		}
 	}
 	

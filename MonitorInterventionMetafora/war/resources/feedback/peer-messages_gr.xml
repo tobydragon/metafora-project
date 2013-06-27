@@ -3,7 +3,7 @@
 <set id="Κοινή ευθύνη"  l2l2tag="DISTRIBUTED_LEADERSHIP">
 <message>Χρειαζόμαστε μία εντελώς νέα ιδέα για εξερευνήσουμε μία καινούρια πλευρά του θέματος.</message>
 <message behaviortag="NEW_IDEA_NOT_DISCUSSED">Χρειάζεται να δούμε και να εξηγήσουμε πώς οι νέες ιδέες σχετίζονται με αυτό που κάνουμε.</message>
-<message>Πώς μπορούμε να βελτιώσουμε το σχέδιο δράσης μας; Ας ξαναδούμε τι έχουμε κάνει ως ομάδα.</message>
+<message behaviortag="DIVERGENCE_WITHOUT_CONVERGENCE">Πώς μπορούμε να βελτιώσουμε το σχέδιο δράσης μας; Ας ξαναδούμε τι έχουμε κάνει ως ομάδα.</message>
 <message>Ας αναθέσουμε καθήκοντα στον καθένα μας ξεχωριστά για να μοιράσουμε εξίσου τη δουλειά μας.</message>
 <message behaviortag="MEMBER_NOT_PLANNING">Συνέβαλαν όλοι στο σχέδιο δράσης της ομάδας;</message>
 </set>
@@ -18,14 +18,15 @@
 </set>
 <set id="Ζητάμε γνώμες" l2l2tag="PEER_FEEDBACK">
 <message>Θα θέλαμε βοήθεια για να καταλάβουμε ποιο είναι το πρόβλημα.</message>
-<message behaviortag="SHARES_NOT_VIEWED">Ας μοιραστούμε αυτό που έχουμε φτιάξει με τη δουλειά άλλων για να τα συγκρίνουμε.</message>
+<message >Ας μοιραστούμε αυτό που έχουμε φτιάξει με τη δουλειά άλλων για να τα συγκρίνουμε.</message>
 <message>Ας αξιολογήσουμε τη λύση των άλλων αφού πρώτα ξανασκεφτούμε το ερώτημά τους.</message>
 <message behaviortag="PERCEIVED_SOLUTION_NOT_SHARED">Ας αξιολογήσουμε τη λύση των άλλων σχετικά με το αν περιγράφει τον κανόνα ή μία συγκεκριμένη περίπτωση.</message>
+<message behaviortag="SHARES_NOT_VIEWED">We should give feedback when someone shares their work</message>
 </set>
 <set id="Αναθεώρηση" l2l2tag="REFLECTION">
 <message>Ας αναθεωρήσουμε το σχέδιο δράσης μας: ταιριάζει με τη δουλειά που έχουμε κάνει μέχρι τώρα;</message>
 <message behaviortag="NOT_USING_ATTITUDES_OR_ROLES">Ας σκεφτούμε τη δουλειά μας μέχρι τώρα σε σχέση με τη στάση μας και τους ρόλους που έχουμε αναλάβει. Μήπως χρειάζεται αναθεώρηση και το σχέδιο δράσης;</message>
-<message>Ας εξετάσουμε τη χειρότερη /καλύτερη στιγμή μας ως ομάδα. Τι μαθαίνουμε απ’ αυτό;</message>
+<message behaviortag="DIVERGENCE_WITHOUT_CONVERGENCE">Ας εξετάσουμε τη χειρότερη /καλύτερη στιγμή μας ως ομάδα. Τι μαθαίνουμε απ’ αυτό;</message>
 <message>Ας σκεφτούμε τι πρέπει να κάνουμε για να λειτουργήσουμε καλύτερα ως ομάδα.</message>
 </set>
 </messages>

@@ -70,6 +70,8 @@ public class ServerInstance {
 			List<String> involvedGroups = AnalysisActions.getInvolvedGroups(actionUpdates);
 			List<CfAction> filteredActions = getOverallActionFilter().getFilteredList(actionUpdates);
 			logger.info("[requestUpdate] " +involvedGroups.size() + " groups found, "+ filteredActions.size()+" filtered actions being sent as Response");
+			//adding ALL_GROUPS to list
+			involvedGroups.add(MetaforaStrings.ALL_GROUPS);
 
 			return new UpdateResponse(filteredActions, involvedGroups);
 		}

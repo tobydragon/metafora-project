@@ -3,7 +3,7 @@
 <set id="Κοινή ευθύνη" l2l2tag="DISTRIBUTED_LEADERSHIP">
 <message>Προτείνετε μια εντελώς νέα ιδέα για εξερευνήσετε μία καινούρια πλευρά του θέματος.</message>
 <message behaviortag="NEW_IDEA_NOT_DISCUSSED">Χρειάζεται να δείτε πώς οι νέες ιδέες σχετίζονται με αυτό που κάνετε.</message>
-<message>Πώς μπορείτε να βελτιώσετε το σχέδιο δράσης σας; Ξαναδείτε τι έχετε κάνει ως ομάδα</message>
+<message behaviortag="DIVERGENCE_WITHOUT_CONVERGENCE">Πώς μπορείτε να βελτιώσετε το σχέδιο δράσης σας; Ξαναδείτε τι έχετε κάνει ως ομάδα</message>
 <message>Αναθέστε καθήκοντα στον καθένα για να μοιραστείτε εξίσου τη δουλειά σας.</message>
 <message behaviortag="MEMBER_NOT_PLANNING">Συνέβαλαν όλοι στο σχέδιο δράσης της ομάδας;</message>
 </set>
@@ -18,14 +18,15 @@
 </set>
 <set id="Ζητάμε γνώμες" l2l2tag="PEER_FEEDBACK">
 <message>Κάποιος πρέπει να δει τη δουλειά της ομάδας ... και να δώσει ανατροφοδότηση που θα τους βοηθήσει να προχωρήσουν.</message>
-<message behaviortag="SHARES_NOT_VIEWED">Μοιραστείτε αυτό που έχετε φτιάξει με τη δουλειά άλλων για να τα συγκρίνετε.</message>
+<message >Μοιραστείτε αυτό που έχετε φτιάξει με τη δουλειά άλλων για να τα συγκρίνετε.</message>
 <message>Αξιολογήστε τη λύση των άλλων αφότου ξανασκεφτείτε τι έχετε να κάνετε.</message>
 <message behaviortag="PERCEIVED_SOLUTION_NOT_SHARED">Αξιολογήστε τη λύση των άλλων για να δείτε πόσο γενική είναι.</message>
+<message behaviortag="SHARES_NOT_VIEWED">You should give feedback when someone shares their work</message>
 </set>
 <set id="Αναθεώρηση" l2l2tag="REFLECTION">
 <message>Aναθεωρήστε το σχέδιο δράσης σας: ταιριάζει με τη δουλειά που έχετε κάνει μέχρι τώρα;</message>
 <message behaviortag="NOT_USING_ATTITUDES_OR_ROLES">Χρησιμοποιείστε τις κάρτες ρόλου ή στάσης για να αναθεωρήσετε τη δουλειά σας μέχρι τώρα.</message>
-<message>Σκεφτείτε τι πρέπει να κάνετε για να λειτουργήσετε καλύτερα ως ομάδα.</message>
+<message behaviortag="DIVERGENCE_WITHOUT_CONVERGENCE">Σκεφτείτε τι πρέπει να κάνετε για να λειτουργήσετε καλύτερα ως ομάδα.</message>
 <message>Εξετάστε τη χειρότερη/καλύτερη στιγμή σας ως ομάδα. Τι μαθαίνετε απ’ αυτό;</message>
  </set>
 </messages>

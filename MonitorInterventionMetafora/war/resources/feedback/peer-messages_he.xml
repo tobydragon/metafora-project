@@ -3,7 +3,7 @@
 <set id="מובילים ביחד" l2l2tag="DISTRIBUTED_LEADERSHIP">
 <message>בואו נציע רעיון חדש שיעזור לנו לחקור כיוון אחר</message>
 <message behaviortag="NEW_IDEA_NOT_DISCUSSED">אנחנו צריכים לראות איך הרעיונות החדשים מתאימים ועוזרים לעבודה הנוכחית שלנו</message>
-<message> כיצד נוכל לשפר את התכנית שלנו? בואו נסתכל על תכנית העבודה שלנו בכלי התכנון </message>
+<message behaviortag="DIVERGENCE_WITHOUT_CONVERGENCE"> כיצד נוכל לשפר את התכנית שלנו? בואו נסתכל על תכנית העבודה שלנו בכלי התכנון </message>
 <message> בואו נחלק משימות כדי להתחלק בעבודה באופן שווה </message>
 <message behaviortag="MEMBER_NOT_PLANNING"> כדאי שנשתף את המודלים שלנו, ונשווה ביניהם </message>
 </set>
@@ -18,14 +18,15 @@
 </set>
 <set id="משוב ידידותי" l2l2tag="PEER_FEEDBACK">
 <message>היינו רוצים קצת עזרה בהגדרה של מהי הבעיה... </message>
-<message behaviortag="SHARES_NOT_VIEWED">כדאי שנשוווה את המודלים שלנו. </message>
+<message >כדאי שנשוווה את המודלים שלנו. </message>
 <message>בואו נעריך את הפתרונות, אחד של השני, על ידי קריאה נוספת של הבעיה </message>
 <message behaviortag="PERCEIVED_SOLUTION_NOT_SHARED">בואו נעריך את הפתרונות, אחד של השני,כדי לראות עד כמה הם כלליים </message>
+<message behaviortag="SHARES_NOT_VIEWED">We should give feedback when someone shares their work</message>
 </set>
 <set id="רפלקציה" l2l2tag="REFLECTION">
 <message>?בואו נערוך מחדש את התכנית שלנו. האם קיימת התאמה בין התכנית לביצוע בפועל</message>
 <message behaviortag="NOT_USING_ATTITUDES_OR_ROLES">בואו נעשה רפלקציה על עבודתנו בעזרת כרטיסי הגישות</message>
-<message>בואו ניקח בחשבון את מה שעלינו לעשות על מנת לשפר את העבודה הקבוצתית שלנו. </message>
+<message behaviortag="DIVERGENCE_WITHOUT_CONVERGENCE">בואו ניקח בחשבון את מה שעלינו לעשות על מנת לשפר את העבודה הקבוצתית שלנו. </message>
 <message>בוא נעריך את הרגע הטוב\רע ביותר כקבוצה, עד כה. </message>
  </set>
 </messages>

@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorInstance;
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.DivergenceConvergenceIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.MemberNotDiscussing;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.MembersPlanning;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.NewIdeaNotDiscussedIdentifier;
@@ -18,6 +19,7 @@ import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.InterventionCreator;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
@@ -42,12 +44,20 @@ public class AnalysisController {
 		behaviorIdentifiers.add(new MemberNotDiscussing());
 		behaviorIdentifiers.add(new UsingAttitudesAndRoles());
 		behaviorIdentifiers.add(new PerceivedSolutionSharingIdentifier());
+		behaviorIdentifiers.add(new DivergenceConvergenceIdentifier());
 		
 		reasonedInterventionController = new ReasonedInterventionController(feedbackController, monitorController.getAnalysisChannelManager(), xmppServerType);
 	}
 	
 	public void analyzeGroup(String groupName, Locale locale){
-		List <CfAction> groupActions = AnalysisActions.getGroupActions(groupName, monitorController.getActionList());
+		List <CfAction> groupActions = null;
+		//if all groups, analyze everything together
+		if (groupName.equalsIgnoreCase(MetaforaStrings.ALL_GROUPS)){
+			groupActions =monitorController.getActionList();
+		}
+		else {
+			groupActions = AnalysisActions.getGroupActions(groupName, monitorController.getActionList());
+		}
 		log.info("[analyzeGroup] number of actions found for group: " + groupActions.size());
 		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(groupActions);
 		log.info("[analyzeGroup] users found for group: " + involvedUsers);
