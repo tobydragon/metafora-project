@@ -9,7 +9,7 @@ This description should help you to check out and compile the development projek
 
   * First you need a current eclipse version (we use *eclipse 3.4* for java). 
 
-  * After setting up eclipse to your preferences install the *gwt plugin for eclipse* (see http://code.google.com/intl/de-DE/webtoolkit/usingeclipse.html ). Now you should be able to build gwt projects. This can be tested by creating a new project (File → New... → Web Application Project). After creating the project run gwt compile project. If there are no errors your gwt plugin should be installed fine.
+  * After setting up eclipse to your preferences install the *gwt plugin for eclipse* (see http://www.gwtproject.org/usingeclipse.html ). Now you should be able to build gwt projects. This can be tested by creating a new project (File → New... → Web Application Project). After creating the project run gwt compile project. If there are no errors your gwt plugin should be installed fine.
 
   * Now you should install the *subclipse plugin* to be able to check out code from google code. If you have another subversion plugin for eclipse this should also work fine. For install instructions for subclipse see http://subclipse.tigris.org/servlets/ProjectProcess?pageID=p4wYuA .
 
