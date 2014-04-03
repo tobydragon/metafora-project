@@ -1,11 +1,9 @@
 package de.uds.MonitorInterventionMetafora.server.mmftparser;
 
 import com.allen_sauer.gwt.log.client.Log;
-import com.sun.net.ssl.internal.ssl.SSLContextImpl;
 
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.L2L2category;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessage;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesCategory;

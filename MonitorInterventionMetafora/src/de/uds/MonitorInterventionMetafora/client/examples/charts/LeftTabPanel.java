@@ -76,8 +76,11 @@ public class LeftTabPanel extends Composite {
   }
 
   public void add(final WidgetProvider cog, String title) {
-    cogs.put(title, cog);
-    TreeItem item = new TreeItem(title);
+	 cogs.put(title, cog);
+	//TODO: changed this, might have broke it..
+	TreeItem item = new TreeItem();
+    item.setTitle(title);
+    item.setText(title);
     leftTree.addItem(item);
   }
 

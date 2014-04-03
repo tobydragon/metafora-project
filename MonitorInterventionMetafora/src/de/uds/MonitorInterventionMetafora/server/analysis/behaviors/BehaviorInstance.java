@@ -3,7 +3,6 @@ package de.uds.MonitorInterventionMetafora.server.analysis.behaviors;
 import java.util.List;
 import java.util.Vector;
 
-import org.apache.commons.lang.Validate;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
