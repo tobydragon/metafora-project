@@ -68,8 +68,6 @@ public class CfActionParser {
 		return new CfAction (time, cfActionType, cfUsers, cfObjects);
 	}
 	
-	public static CfAction getTestableInstance(){
-		return CfActionParser.fromXml(XmlFragment.getFragmentFromLocalFile("resources/xml/CfCreateUser.xml"));
-	}
+	
 	
 }

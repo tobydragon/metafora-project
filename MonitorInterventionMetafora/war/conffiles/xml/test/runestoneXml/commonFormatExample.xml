@@ -1,0 +1,52 @@
+<interactiondata>
+  <actions>
+	<action time="1367837851577">
+	  <actiontype type="INDICATOR" classification="MODIFY" logged="false" />
+	  <user id="Toby36" role="ORIGINATOR" />
+	  <object id="4252" type="Help Request">
+	    <properties>
+	      <property name="OBJECT_HOME_TOOL" value="LASAD" />
+	      <property name="POS-Y" value="364" />
+	      <property name="CREATOR" value="Manolis" />
+	      <property name="POS-X" value="107" />
+	      <property name="MAP-ID" value="6" />
+	    </properties>
+	  </object>
+	  <content>
+	    <description><![CDATA[Toby36 visited a refereable object from box 9 of type Help RequestURL: http://google.com]]></description>
+	    <properties>
+	      <property name="INDICATOR_TYPE" value="ACTIVITY" />
+	      <property name="SENDING_TOOL" value="LASAD" />
+	      <property name="GROUP_ID" value="Grupo2BM2"/>
+				<property name="CHALLENGE_ID" value="2"/>
+				<property name="CHALLENGE_NAME" value="eXpresser Train Tracks"/>
+	    </properties>
+	  </content>
+	</action>
+	
+	<action time="1369167294362">
+	  <actiontype classification="other" logged="false" type="LANDMARK"/>
+	  <user id="Alice" role="originator"/>
+	  <object id="2" type="SPLIT">
+	    <properties>
+	      <property name="TOOL" value="PLANNING_TOOL"/>
+	      <property name="MAPNAME" value="Piep3"/>
+	      <property name="Message" value="Split or join was caused by a user."/>
+	      <property name="NODE" value="node_0"/>
+	    </properties>
+	  </object>
+	  <content>
+	    <description><![CDATA[Typed split in map Piep3 at node node_0 caused by Alice.]]></description>
+	    <properties>
+	      <property name="INDICATOR_TYPE" value="activity"/>
+	      <property name="TOOL" value="PLANNING_TOOL"/>
+	      <property name="SENDING_TOOL" value="PLATO_TEST"/>
+	      <property name="L2L2_TAG" value="MUTUAL_ENGAGEMENT"/>
+	      <property name="GROUP_ID" value="Metafora"/>
+	      <property name="CHALLENGE_ID" value="1"/>
+	      <property name="CHALLENGE_NAME" value="Demo Challenge"/>
+	    </properties>
+	  </content>
+	</action>
+  </actions>
+</interactiondata>
