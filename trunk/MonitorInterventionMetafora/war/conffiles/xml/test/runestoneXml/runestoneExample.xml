@@ -1,0 +1,121 @@
+<rows>
+  <row>
+    <timestamp>2014-01-29 19:22:12</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_2</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:22:05</timestamp>    
+    <act>edit</act>    
+    <div_id>ch03_2</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:21:50</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_2</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:21:45</timestamp>    
+    <act>edit</act>    
+    <div_id>ch03_2</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:21:36</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_2</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:21:28</timestamp>    
+    <act>edit</act>    
+    <div_id>ch03_2</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:20:41</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_2</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:20:35</timestamp>    
+    <act>edit</act>    
+    <div_id>ch03_2</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:19:36</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_2</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:19:17</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_2</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:18:51</timestamp>    
+    <act>yes</act>    
+    <div_id>3_3</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:18:29</timestamp>    
+    <act>yes</act>    
+    <div_id>3_2</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:18:25</timestamp>    
+    <act>0_0-1_0-2_0-4_0-3_0</act>    
+    <div_id>3_2</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:17:58</timestamp>    
+    <act>0_0-2_0-1_0</act>    
+    <div_id>3_1</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:17:53</timestamp>    
+    <act>yes</act>    
+    <div_id>3_1</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:17:35</timestamp>    
+    <act>answer:c:correct</act>    
+    <div_id>test_question3_1_0</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-01-29 19:16:43</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_1</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+</rows>
