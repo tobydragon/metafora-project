@@ -124,7 +124,7 @@ public class UrlParameterConfig {
 		} 		
 		
 		testServer = (testServerStr == null) ? true : Boolean.parseBoolean(testServerStr); 
-		monitoring = (monitoringStr == null) ? false : Boolean.parseBoolean(monitoringStr);
+		monitoring = (monitoringStr == null) ? true : Boolean.parseBoolean(monitoringStr);
 		complexDataViews = (comeplexDataViewsString == null) ? false : Boolean.parseBoolean(comeplexDataViewsString); 
 
 				
