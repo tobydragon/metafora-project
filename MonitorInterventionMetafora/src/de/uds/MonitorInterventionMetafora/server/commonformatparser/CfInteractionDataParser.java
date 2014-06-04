@@ -9,6 +9,7 @@ import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 
 
 
@@ -31,6 +32,17 @@ public class CfInteractionDataParser {
 		XmlFragment actionsFragment = xmlFragment.cloneChild(CommonFormatStrings.ACTIONS_STRING);
 		for (XmlFragment cfActionElement : actionsFragment.getChildren(CommonFormatStrings.ACTION_STRING)){
 			cfActions.add(CfActionParser.fromXml(cfActionElement));
+		}
+		
+		return new CfInteractionData(cfActions);
+	}
+	
+	public static CfInteractionData fromRunestoneXml(XmlFragment xmlFragment){
+		List<CfAction> cfActions = new ArrayList<CfAction>();
+		
+		XmlFragment actionsFragment = xmlFragment.cloneChild(RunestoneStrings.ROWS_STRING);
+		for (XmlFragment cfActionElement : actionsFragment.getChildren(RunestoneStrings.ROW_STRING)){
+			cfActions.add(CfActionParser.fromRunsetoneXml(cfActionElement));
 		}
 		
 		return new CfInteractionData(cfActions);

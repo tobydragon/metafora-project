@@ -67,6 +67,34 @@ public class CfActionParser {
 		
 		return new CfAction (time, cfActionType, cfUsers, cfObjects);
 	}
+
+	public static CfAction fromRunsetoneXml(XmlFragment xmlFragment) {
+		//TODO: get each element from rusnestone xml and create a CfAction object
+		
+		//String timeStr = xmlFragment.getAttributeValue(CommonFormatStrings.TIME_STRING);
+		//long time = CommonFormatUtil.getTime(timeStr);
+		//TODO: get the time from the <timestamp> child
+		long time = 0;
+		CfActionType cfActionType = CfActionTypeParser.fromXml(xmlFragment.cloneChild(CommonFormatStrings.ACTION_TYPE_STRING));
+		
+		List<CfUser> cfUsers = new ArrayList<CfUser>();
+		for (XmlFragment cfUserElement : xmlFragment.getChildren(CommonFormatStrings.USER_STRING)){
+			cfUsers.add(CfUserParser.fromXml(cfUserElement));
+		}
+		
+		List<CfObject> cfObjects = new ArrayList<CfObject>();
+		for (XmlFragment cfObjectElement : xmlFragment.getChildren(CommonFormatStrings.OBJECT_STRING)){
+			cfObjects.add(CfObjectParser.fromXml(cfObjectElement));
+		}
+		
+		XmlFragment cfContentElement = xmlFragment.cloneChild(CommonFormatStrings.CONTENT_STRING);
+		if (cfContentElement != null){
+			CfContent cfContent = CfContentParser.fromXml(cfContentElement);
+			return new CfAction (time, cfActionType, cfUsers, cfObjects, cfContent);
+		}
+		
+		return new CfAction (time, cfActionType, cfUsers, cfObjects);
+	}
 	
 	
 	
