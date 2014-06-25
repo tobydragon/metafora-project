@@ -4,6 +4,7 @@ import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlUtil;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 
 
 
@@ -38,4 +39,53 @@ public class CfPropertyParser {
 		}
 	}
 
+	public static CfProperty fromRunestoneXmlObject(XmlFragment xmlFragment) {
+		String name = "ACT";
+		String value = xmlFragment.getChildValue(RunestoneStrings.ACT_STRING);
+		return new CfProperty (name, value);
+	}
+
+	
+	public static CfProperty fromRunestoneXmlContent(XmlFragment xmlFragment) {
+		String event = xmlFragment.getChildValue(RunestoneStrings.EVENT_STRING);
+		String act = xmlFragment.getChildValue(RunestoneStrings.ACT_STRING);
+		
+		if (event.equalsIgnoreCase("parsons")){
+			if(act.equalsIgnoreCase("yes")){
+				String name = "Correct";
+				String value = "TRUE";
+				return new CfProperty(name, value);
+			} 
+			else{
+				String name = "Correct";
+				String value = "FALSE";
+				return new CfProperty(name, value);
+			}		
+		}
+		
+		if(event.equalsIgnoreCase("mChoice")){
+			if(act.startsWith("answer")== true){
+				if(act.endsWith("no") == true){
+					String name = "Correct";
+					String value = "FALSE";
+					return new CfProperty(name, value);
+				}
+				else if (act.endsWith("correct") == true){
+					String name = "Correct";
+					String value = "TRUE";
+					return new CfProperty(name, value);
+					}
+				else{
+					return null;
+				}
+			}
+			else{
+				return null;
+			}
+		}
+			
+		else{
+			return null;
+		}
+	}
 }

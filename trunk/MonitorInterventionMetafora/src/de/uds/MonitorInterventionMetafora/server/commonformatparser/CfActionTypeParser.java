@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.server.commonformatparser;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 
 /*
 import de.uds.commonformat.CfActionType;
@@ -31,6 +32,19 @@ public class CfActionTypeParser {
 		String succeeded = xmlFragment.getAttributeValue(CommonFormatStrings.SUCCEED_STRING);
 		String logged = xmlFragment.getAttributeValue(CommonFormatStrings.SUCCEED_STRING);
 		
+		return new CfActionType (type, classification, succeeded, logged);
+	}
+
+	public static CfActionType fromRunestoneXml(XmlFragment xmlFragment) {
+		String act = xmlFragment.getChildValue(RunestoneStrings.ACT_STRING);
+		String type = "ACTIVITY";
+		String classification = "OTHER";
+		if (act.equalsIgnoreCase("edit")){
+			classification = "MODIFY";	
+		}
+		String  succeeded = "false";
+		String logged = "false";
+	
 		return new CfActionType (type, classification, succeeded, logged);
 	}
 

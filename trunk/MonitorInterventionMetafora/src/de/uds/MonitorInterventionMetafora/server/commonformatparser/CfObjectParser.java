@@ -7,6 +7,7 @@ import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 
 /*
 import de.uds.commonformat.CfObject;
@@ -42,6 +43,19 @@ public class CfObjectParser {
 			}
 		}
 		return new CfObject(id, type, cfProperties);	
+	}
+
+	public static CfObject fromRunestoneXml(XmlFragment xmlFragment) {
+		String id = xmlFragment.getChildValue(RunestoneStrings.DIV_ID_STRING);
+		String type = xmlFragment.getChildValue(RunestoneStrings.EVENT_STRING);
+		
+		Map<String, CfProperty> cfProperties = new HashMap<String, CfProperty>();
+		CfProperty cfProperty = CfPropertyParser.fromRunestoneXmlObject(xmlFragment);
+		if (cfProperty != null){
+			cfProperties.put(cfProperty.getName(), cfProperty);
+		}
+		
+		return new CfObject (id, type, cfProperties);
 	}
 
 }

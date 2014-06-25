@@ -118,4 +118,32 @@
     <event>activecode</event>    
     <sid>tdragon@ithaca.edu</sid>
   </row>
+  <row>
+    <timestamp>2014-01-29 19:15:35</timestamp>    
+    <act>answer:d:no</act>    
+    <div_id>test_question3_1_0</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2014-06-11 19:36:42</timestamp>    
+    <act>ParseError: bad input on line 2</act>    
+    <div_id>ch02_18</div_id>    
+    <event>ac_error</event>    
+    <sid>cwormsl2</sid>
+  </row>
+  <row>
+    <timestamp>2014-06-11 19:36:34</timestamp>    
+    <act>back</act>    
+    <div_id>ch02_19_codelens</div_id>    
+    <event>codelens</event>    
+    <sid>cwormsl2</sid>
+  </row>
+  <row>
+    <timestamp>2014-06-11 19:36:24</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/WormsleyTest/SimplePythonData/simpledata.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsl2</sid>
+  </row>
 </rows>

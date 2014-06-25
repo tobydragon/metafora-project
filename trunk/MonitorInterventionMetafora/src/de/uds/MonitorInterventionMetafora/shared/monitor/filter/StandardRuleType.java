@@ -13,6 +13,7 @@ public enum StandardRuleType {
 	TAGS("Keyword Tags"),
 	WORD_COUNT("Word Count"),
 	
+	
 	;
 	
 	private String label;
