@@ -32,6 +32,6 @@ public class StandardRuleBuilder {
 	}
 	
 	public static ActionPropertyRule getDefaultGroupingRule(){
-		return ALL_RULES.get(StandardRuleType.SENDING_TOOL).clone();
+		return ALL_RULES.get(StandardRuleType.USER_ID).clone();
 	}
 }

@@ -8,8 +8,10 @@ import org.apache.commons.logging.LogFactory;
 
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 
 /*
 import de.uds.commonformat.CfContent;
@@ -55,6 +57,23 @@ public class CfContentParser {
 			logger.warn("[fromXml] no properties fragment found for content with description - " + description);
 		}
 		return new CfContent(description, cfProperties);	
+	}
+
+	public static CfContent fromRunestoneXml(XmlFragment xmlFragment) {
+		String sid = xmlFragment.getChildValue(RunestoneStrings.SID_STRING);
+		String event = xmlFragment.getChildValue(RunestoneStrings.EVENT_STRING);
+		String div_id = xmlFragment.getChildValue(RunestoneStrings.DIV_ID_STRING);
+		String act = xmlFragment.getChildValue(RunestoneStrings.ACT_STRING);
+		
+		String description = sid + " used " + event +" " + div_id + ", their action was " + act;
+		
+		Map<String, CfProperty> cfProperties = new HashMap<String, CfProperty>();
+		CfProperty cfProperty = CfPropertyParser.fromRunestoneXmlContent(xmlFragment);
+		if (cfProperty != null){
+			cfProperties.put(cfProperty.getName(), cfProperty);
+			
+		}	
+		return new CfContent(description, cfProperties);
 	}
 	
 

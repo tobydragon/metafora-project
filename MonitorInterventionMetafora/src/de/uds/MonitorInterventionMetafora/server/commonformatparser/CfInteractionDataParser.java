@@ -44,8 +44,8 @@ public class CfInteractionDataParser {
 	public static CfInteractionData fromRunestoneXml(XmlFragment xmlFragment){
 		List<CfAction> cfActions = new ArrayList<CfAction>();
 		
-		XmlFragment actionsFragment = xmlFragment.cloneChild(RunestoneStrings.ROWS_STRING);
-		for (XmlFragment cfActionElement : actionsFragment.getChildren(RunestoneStrings.ROW_STRING)){
+		
+		for (XmlFragment cfActionElement : xmlFragment.getChildren(RunestoneStrings.ROW_STRING)){
 			cfActions.add(CfActionParser.fromRunsetoneXml(cfActionElement));
 		}
 		
@@ -59,15 +59,22 @@ public class CfInteractionDataParser {
 	public static void main(String []args){
 		CfInteractionData testActions = getTestableInstance();
 		
-		logger.info(testActions.toString());
-		logger.info(CfInteractionDataParser.toXml(testActions));
+		//logger.info(testActions.toString());
+		//logger.info(CfInteractionDataParser.toXml(testActions));
 		
 		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/runestoneXml/runestoneExample.xml");
 		logger.info(runestoneFrag.toString());
+		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
+		logger.info(CfInteractionDataParser.toXml(testCf));
+		
+		
+		
+		
+		
+		
 		
 		String ts = (runestoneFrag.getChildren("row").get(0).getChildValue("timestamp"));
 	
-		
 		//converts a time stamp to epoch
 		DateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //not sure if to use HH (0-23) or kk (1-24)
 		try{
@@ -76,9 +83,9 @@ public class CfInteractionDataParser {
 		long date3 = dateForm.parse("2014-06-13 3:42:32").getTime();
 		
 		
-		System.out.println("Epoch time of 2014-01-29 19:22:12: " + (date1/1000)); //divide by 1000 to convert to seconds
-		System.out.println("Epoch time of 2014-01-29 19:22:05: " + (date2/1000));
-		System.out.println("Epoch time of 2014-06-13 3:42:32: " + (date3/1000));
+		System.out.println("Epoch time of 2014-01-29 19:22:12: " + (date1)); //divide by 1000 to convert to seconds
+		System.out.println("Epoch time of 2014-01-29 19:22:05: " + (date2));
+		System.out.println("Epoch time of 2014-06-13 3:42:32: " + (date3));
 		}
 		catch (ParseException e){
 			;

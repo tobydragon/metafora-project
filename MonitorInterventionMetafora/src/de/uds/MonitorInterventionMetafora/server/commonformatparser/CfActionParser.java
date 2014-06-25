@@ -1,5 +1,8 @@
 package de.uds.MonitorInterventionMetafora.server.commonformatparser;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 /*
@@ -13,6 +16,9 @@ import de.uds.commonformat.CommonFormatUtil;
 import de.uds.xml.XmlFragment;
 import de.uds.xml.XmlFragmentInterface;*/
 
+
+
+
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
@@ -21,6 +27,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfObject;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatUtil;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 
 
 public class CfActionParser {
@@ -69,27 +76,30 @@ public class CfActionParser {
 	}
 
 	public static CfAction fromRunsetoneXml(XmlFragment xmlFragment) {
-		//TODO: get each element from rusnestone xml and create a CfAction object
+		//TODO: get each element from rusnestone xml and create a CfAction object		
 		
-		//String timeStr = xmlFragment.getAttributeValue(CommonFormatStrings.TIME_STRING);
-		//long time = CommonFormatUtil.getTime(timeStr);
-		//TODO: get the time from the <timestamp> child
+		String timestampStr = xmlFragment.getChildValue(RunestoneStrings.TIMESTAMP_STRING);
+		DateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		long time = 0;
-		CfActionType cfActionType = CfActionTypeParser.fromXml(xmlFragment.cloneChild(CommonFormatStrings.ACTION_TYPE_STRING));
 		
-		List<CfUser> cfUsers = new ArrayList<CfUser>();
-		for (XmlFragment cfUserElement : xmlFragment.getChildren(CommonFormatStrings.USER_STRING)){
-			cfUsers.add(CfUserParser.fromXml(cfUserElement));
+		try{
+		time = dateForm.parse(timestampStr).getTime();
 		}
+		catch (ParseException e){
+			System.out.println("Parse exception, could not get time" + e);
 		
-		List<CfObject> cfObjects = new ArrayList<CfObject>();
-		for (XmlFragment cfObjectElement : xmlFragment.getChildren(CommonFormatStrings.OBJECT_STRING)){
-			cfObjects.add(CfObjectParser.fromXml(cfObjectElement));
 		}
+	
+		CfActionType cfActionType = CfActionTypeParser.fromRunestoneXml(xmlFragment);
+				
+		List<CfUser> cfUsers = new ArrayList<CfUser>();		
+		cfUsers.add(CfUserParser.fromRunestoneXml(xmlFragment));
 		
-		XmlFragment cfContentElement = xmlFragment.cloneChild(CommonFormatStrings.CONTENT_STRING);
-		if (cfContentElement != null){
-			CfContent cfContent = CfContentParser.fromXml(cfContentElement);
+		List <CfObject> cfObjects = new ArrayList<CfObject>();
+		cfObjects.add(CfObjectParser.fromRunestoneXml(xmlFragment));
+		
+		CfContent cfContent = CfContentParser.fromRunestoneXml(xmlFragment);
+		if (cfContent != null){
 			return new CfAction (time, cfActionType, cfUsers, cfObjects, cfContent);
 		}
 		

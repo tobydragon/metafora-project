@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.server.commonformatparser;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfUser;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 
 //import de.uds.commonformat.CfUser;
 //import de.uds.commonformat.CommonFormatStrings;
@@ -25,5 +26,15 @@ public class CfUserParser {
 		String role = xmlFragment.getAttributeValue(CommonFormatStrings.ROLE_STRING);
 		return new CfUser(id, role);
 	}
+
+	public static CfUser fromRunestoneXml(XmlFragment xmlFragment) {
+		String id = xmlFragment.getChildValue(RunestoneStrings.SID_STRING);
+		String role = "ORIGINATOR";
+		return new CfUser(id, role);
+	}
+	
+	
+	
+	
 
 }
