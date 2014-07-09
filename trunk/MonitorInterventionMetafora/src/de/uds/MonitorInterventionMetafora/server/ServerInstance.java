@@ -92,6 +92,16 @@ public class ServerInstance {
 		
 	}
 	
+	public String requestDataFromFile(String testString){
+		System.out.println("ServerInstance " + testString);
+		
+		String returnString =  monitorController.requestDataFromFile(testString);
+		System.out.println("ServerInstance " + returnString);
+		return returnString;
+		
+	}
+	
+	
 	private ActionFilter getOverallActionFilter(){
 		List <ActionPropertyRule> afterRules = new Vector<ActionPropertyRule>();
 //		afterRules.add (new ActionPropertyRule("type", "LANDMARK", PropertyLocation.ACTION_TYPE, OperationType.EQUALS));
@@ -99,6 +109,9 @@ public class ServerInstance {
 		ActionFilter afterFilter = new ActionFilter("Landmarks", true, afterRules);
 		return afterFilter; 
 	}
+	
+	
+	
 
 
 }

@@ -76,6 +76,9 @@ public class ActionPropertyRuleSelectorModel {
 		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.CHALLENGE_NAME));
 		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.GROUP_ID));
 		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.TAGS));
+		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.CORRECT));
+		
+		
 		
 		return newGroupings;
 	}

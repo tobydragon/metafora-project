@@ -152,6 +152,7 @@ public class TablePanel extends DataViewPanel {
 		flexTable.setText(0, 7, StandardRuleType.TIME.toString());
 		// flexTable.setText(0,8, "Challenge");
 		flexTable.setText(0, 9, StandardRuleType.INDICATOR_TYPE.toString());
+		flexTable.setText(0, 10, StandardRuleType.CORRECT.toString());
 
 		int rowindex = 0;
 		for (int i = 0; i < actions.size(); i++) {
@@ -169,7 +170,7 @@ public class TablePanel extends DataViewPanel {
 			flexTable.setText(rowindex, 7, row.getGridItemPropertySingleValue(StandardRuleType.TIME));
 			// flexTable.setText(rowindex,8, row.getChallengeName());
 			flexTable.setText(rowindex, 9, row.getGridItemPropertySingleValue(StandardRuleType.INDICATOR_TYPE));
-
+			flexTable.setText(rowindex, 10, row.getGridItemPropertySingleValue(StandardRuleType.CORRECT));
 		}
 
 		return flexTable;
@@ -229,44 +230,46 @@ public class TablePanel extends DataViewPanel {
 		ColumnConfig username = new ColumnConfig(StandardRuleType.USER_ID.toString(), StandardRuleType.USER_ID.toString(), 50);
 		username.setWidth(50);
 		// username.setRenderer(getbackgroundColorRenderer());
+		
+		//TODO: Figure out which width is correct 
 
 		ColumnConfig actionClassfication = new ColumnConfig(
 				StandardRuleType.ACTION_CLASSIFICATION.toString(),
 				StandardRuleType.ACTION_CLASSIFICATION.toString(), 50);
-		actionClassfication.setWidth(50);
 		actionClassfication.setAlignment(HorizontalAlignment.CENTER);
 
 		ColumnConfig description = new ColumnConfig(
 				StandardRuleType.DESCRIPTION.toString(),
-				StandardRuleType.DESCRIPTION.toString(), 50);
-		description.setWidth(250);
+				StandardRuleType.DESCRIPTION.toString(), 250);
 
 		ColumnConfig tool = new ColumnConfig(StandardRuleType.SENDING_TOOL.toString(),
 				StandardRuleType.SENDING_TOOL.toString(), 50);
-		tool.setWidth(50);
-
+		
 		ColumnConfig time = new ColumnConfig(
 				StandardRuleType.TIME.toString(),
-				StandardRuleType.TIME.toString(), 50);
-		time.setWidth(80);
+				StandardRuleType.TIME.toString(), 80);
 		// time.setRenderer(getbackgroundColorRenderer());
 		time.setRenderer(new TimeDateCellRenderer());
-
+		
 		ColumnConfig tags = new ColumnConfig(StandardRuleType.TAGS.toString(),
 				StandardRuleType.TAGS.toString(), 50);
-		tags.setWidth(50);
 		tags.setRenderer(getbackgroundColorRenderer());
 
 		ColumnConfig wordcount = new ColumnConfig(
 				StandardRuleType.WORD_COUNT.toString(),
-				StandardRuleType.WORD_COUNT.toString(), 30);
-		wordcount.setWidth(50);
+				StandardRuleType.WORD_COUNT.toString(), 50);
 
 		ColumnConfig indicatorType = new ColumnConfig(
 				StandardRuleType.INDICATOR_TYPE.toString(),
-				StandardRuleType.INDICATOR_TYPE.toString(), 50);
-		indicatorType.setWidth(75);
+				StandardRuleType.INDICATOR_TYPE.toString(), 75);
 		// indicatorType.setRenderer(getbackgroundColorRenderer());
+		
+		ColumnConfig correct = new ColumnConfig(
+				StandardRuleType.CORRECT.toString(),
+				StandardRuleType.CORRECT.toString(), 50);
+		
+		
+				
 
 		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
 		config.add(username);
@@ -279,6 +282,8 @@ public class TablePanel extends DataViewPanel {
 		config.add(time);
 		// config.add(challengeName);
 		config.add(indicatorType);
+		config.add(correct);
+		
 
 		return new ColumnModel(config);
 	}
@@ -373,34 +378,34 @@ public class TablePanel extends DataViewPanel {
 
 	}
 
-	CfActionGridRow getTableHeaders() {
-
-		CfAction action = new CfAction();
-		action.getCfUsers().add(new CfUser(StandardRuleType.USER_ID.toString(), StandardRuleType.USER_ID.toString()));
-		action.setCfActionType(new CfActionType(
-				StandardRuleType.ACTION_TYPE.toString(),
-				StandardRuleType.ACTION_CLASSIFICATION.toString(), "false"));
-		action.setCfContent(new CfContent(StandardRuleType.DESCRIPTION.toString()));
-		action.getCfContent().addProperty(new CfProperty(StandardRuleType.SENDING_TOOL.toString(), StandardRuleType.SENDING_TOOL.toString()));
-		action.getCfContent().addProperty(
-				new CfProperty(StandardRuleType.CHALLENGE_NAME.toString(), StandardRuleType.CHALLENGE_NAME.toString()));
-		action.getCfContent().addProperty(
-				new CfProperty(StandardRuleType.INDICATOR_TYPE.toString(),
-						StandardRuleType.INDICATOR_TYPE.toString()));
-		action.addObject(new CfObject("Object", "Object"));
-		action.getCfObjects()
-				.get(0)
-				.addProperty(
-						new CfProperty(StandardRuleType.TAGS.toString(),
-								StandardRuleType.TAGS.toString()));
-		action.getCfObjects()
-				.get(0)
-				.addProperty(
-						new CfProperty(StandardRuleType.WORD_COUNT.toString(),
-								StandardRuleType.WORD_COUNT.toString()));
-		action.setTime(0);
-		CfActionGridRow headers = new CfActionGridRow(action);
-
-		return headers;
-	}
+//	CfActionGridRow getTableHeaders() {
+//
+//		CfAction action = new CfAction();
+//		action.getCfUsers().add(new CfUser(StandardRuleType.USER_ID.toString(), StandardRuleType.USER_ID.toString()));
+//		action.setCfActionType(new CfActionType(
+//				StandardRuleType.ACTION_TYPE.toString(),
+//				StandardRuleType.ACTION_CLASSIFICATION.toString(), "false"));
+//		action.setCfContent(new CfContent(StandardRuleType.DESCRIPTION.toString()));
+//		action.getCfContent().addProperty(new CfProperty(StandardRuleType.SENDING_TOOL.toString(), StandardRuleType.SENDING_TOOL.toString()));
+//		action.getCfContent().addProperty(
+//				new CfProperty(StandardRuleType.CHALLENGE_NAME.toString(), StandardRuleType.CHALLENGE_NAME.toString()));
+//		action.getCfContent().addProperty(
+//				new CfProperty(StandardRuleType.INDICATOR_TYPE.toString(),
+//						StandardRuleType.INDICATOR_TYPE.toString()));
+//		action.addObject(new CfObject("Object", "Object"));
+//		action.getCfObjects()
+//				.get(0)
+//				.addProperty(
+//						new CfProperty(StandardRuleType.TAGS.toString(),
+//								StandardRuleType.TAGS.toString()));
+//		action.getCfObjects()
+//				.get(0)
+//				.addProperty(
+//						new CfProperty(StandardRuleType.WORD_COUNT.toString(),
+//								StandardRuleType.WORD_COUNT.toString()));
+//		action.setTime(0);
+//		CfActionGridRow headers = new CfActionGridRow(action);
+//
+//		return headers;
+//	}
 }

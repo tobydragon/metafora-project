@@ -40,4 +40,14 @@ public class MonitorController {
 		return analysisChannelManager;
 	}
 
+	public String requestDataFromFile(String testString) {
+		System.out.println("MonitorController " + testString);
+		
+		String returnString = monitorModel.requestDataFromFile(testString);
+		System.out.println("MonitorController " + returnString);
+		return returnString;
+		
+		
+	}
+
 }
