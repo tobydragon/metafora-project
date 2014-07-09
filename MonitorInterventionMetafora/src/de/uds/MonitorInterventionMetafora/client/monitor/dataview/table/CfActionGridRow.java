@@ -69,6 +69,7 @@ public class CfActionGridRow extends BaseModel {
 		    setGridItemPropertySingleValue(StandardRuleType.TAGS);
 		    setGridItemPropertySingleValue(StandardRuleType.WORD_COUNT);
 		    setGridItemPropertySingleValue(StandardRuleType.TIME);
+		    setGridItemPropertySingleValue(StandardRuleType.CORRECT);
 		}
 		catch (Exception e){
 			logger.error("[setGridItemProperties] missing attributes, row not added for indicator: " +indicator.toString());

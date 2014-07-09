@@ -19,6 +19,7 @@ public class RequestSuggestedMessagesCallback implements AsyncCallback<String>{
 		this.messagesPanel = messagesPanel;
 	}
 	
+	//Going to have something like this for new button 
 	public void onSuccess(String result) {
 		Log.info("[RequestSuggestedMessagesCallback.onSuccess]");
 		if (result != null && !result.equals("")) {

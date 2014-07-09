@@ -23,7 +23,9 @@ public class StandardRuleBuilder {
 		ALL_RULES.put(StandardRuleType.GROUP_ID, new ActionPropertyRule(PropertyLocation.CONTENT, "GROUP_ID", StandardRuleType.GROUP_ID.toString()));
 		ALL_RULES.put(StandardRuleType.TAGS, new ActionPropertyRule(PropertyLocation.OBJECT, "TAGS", StandardRuleType.TAGS.toString()));
 		ALL_RULES.put(StandardRuleType.WORD_COUNT, new ActionPropertyRule(PropertyLocation.OBJECT, "WORD_COUNT", StandardRuleType.WORD_COUNT.toString()));
-
+		ALL_RULES.put(StandardRuleType.CORRECT, new ActionPropertyRule(PropertyLocation.CONTENT, "Correct", StandardRuleType.CORRECT.toString()));
+		
+		
 	}
 				
 		

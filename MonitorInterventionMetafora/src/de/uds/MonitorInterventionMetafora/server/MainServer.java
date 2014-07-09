@@ -234,5 +234,13 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		}
 		
 	}
-
+	
+	public void requestDataFromFile(String testString){
+		 
+		System.out.println("MainServer " + testString);
+		String returnString = mainServer.requestDataFromFile(testString);
+		System.out.println("MainServer " + returnString);
+		
+	}
+	
 }

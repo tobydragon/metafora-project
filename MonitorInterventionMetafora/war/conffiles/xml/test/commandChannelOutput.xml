@@ -2495,6 +2495,26 @@
         </properties>
       </content>
     </action>
+    <action time="1404316604143">
+      <actiontype type="SUGGESTED_MESSAGES" classification="delete" logged="true" />
+      <content>
+        <description><![CDATA[CLEAR_ALL_SUGGESTED_MESSAGES]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
+    <action time="1404784998049">
+      <actiontype type="SUGGESTED_MESSAGES" classification="delete" logged="true" />
+      <content>
+        <description><![CDATA[CLEAR_ALL_SUGGESTED_MESSAGES]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="FEEDBACK_CLIENT" />
+          <property name="RECEIVING_TOOL" value="FEEDBACK_CLIENT" />
+        </properties>
+      </content>
+    </action>
   </actions>
 </interactiondata>
 

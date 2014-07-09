@@ -125,7 +125,7 @@ public class UrlParameterConfig {
 		
 		testServer = (testServerStr == null) ? true : Boolean.parseBoolean(testServerStr); 
 		monitoring = (monitoringStr == null) ? true : Boolean.parseBoolean(monitoringStr);
-		complexDataViews = (comeplexDataViewsString == null) ? false : Boolean.parseBoolean(comeplexDataViewsString); 
+		complexDataViews = (comeplexDataViewsString == null) ? true : Boolean.parseBoolean(comeplexDataViewsString); 
 
 				
 		Log.info("URL Params: User-" + username + " : mainConfig-" + configID + " : receiver-" + receiver + " : locale-" + locale + " : userType-" + userType + " : receiverIDs-" + receiverIDs);

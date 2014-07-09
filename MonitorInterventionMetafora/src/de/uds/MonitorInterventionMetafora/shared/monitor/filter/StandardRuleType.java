@@ -12,6 +12,8 @@ public enum StandardRuleType {
 	GROUP_ID("Group Name"),
 	TAGS("Keyword Tags"),
 	WORD_COUNT("Word Count"),
+	CORRECT("Correct"), 
+	
 	
 	
 	;

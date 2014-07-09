@@ -26,6 +26,7 @@ public interface CommunicationServiceAsync {
 	void requestSuggestedMessages(String username, AsyncCallback<String> callback);
 	void requestSuggestedMessages(XmppServerType xmppServerType, String username, AsyncCallback<String> callback);
 	
+	//going to have something similar for new call requestDataFromFile
 	void requestUpdate(CfAction _lastcfAction, AsyncCallback<UpdateResponse> callback);
 	void requestUpdate(XmppServerType xmppServerType, CfAction _lastcfAction, AsyncCallback<UpdateResponse> callback);
 
@@ -35,6 +36,8 @@ public interface CommunicationServiceAsync {
 	void requestClearAllAnalysis(AsyncCallback<Void> callback);
 	void requestClearAllAnalysis(XmppServerType xmppServerType, AsyncCallback<Void> callback);
 	
+	void requestDataFromFile(String testString, AsyncCallback<Void> callback);
+		
 	
 	//requests for MainServer
 	void requestConfiguration(AsyncCallback<Configuration> callback);

@@ -35,6 +35,7 @@ public class UpdaterToolbar extends ToolBar{
 	private Button clearAnalysisButton;
 	private Button configurationButton;
 	private ConfigurationPanel configurationPanel;
+	private Button uploadFromFile; 
 	
 	SimpleComboBox<String> groupIdChooser;
 	
@@ -83,6 +84,7 @@ public class UpdaterToolbar extends ToolBar{
 	        public void componentSelected(ButtonEvent ce) {  
 	        	System.out.println("refreshClicked");
 	        	
+	        	//This prevents users from clicking the button multiple times while it loads
 	        	//only enable the button every few seconds
 	        	Timer t = new Timer() {
 	        	      public void run() {
@@ -90,6 +92,7 @@ public class UpdaterToolbar extends ToolBar{
 	        	      }
 	        	};
 	        	t.schedule(5000);
+	        	
 	        	
 	        	UpdaterToolbar.this.updater.getUpdate();
 	        	refreshButton.setEnabled(false);
@@ -153,8 +156,34 @@ public class UpdaterToolbar extends ToolBar{
 	        public void componentSelected(ButtonEvent ce) {  
 	        	configurationPanel.show();
 	        }  
-	      });  
-
+	      });  		
+		
+		//TODO: Add new button to upload data from a file
+		
+		uploadFromFile = new Button();
+		uploadFromFile.setToolTip("Upload");
+		uploadFromFile.setText("Upload");
+		uploadFromFile.setBorders(true);
+		uploadFromFile.addSelectionListener(new SelectionListener<ButtonEvent>(){
+			
+			public void componentSelected(ButtonEvent ce){
+				System.out.println("Upload Clicked");
+				
+				Timer t = new Timer() {
+	        	      public void run() {
+	        	    	  refreshButton.setEnabled(true);
+	        	      }
+	        	};
+	        	t.schedule(5000);
+	        	
+	        	UpdaterToolbar.this.updater.getDataFromFile();
+	        	refreshButton.setEnabled(false);
+	        	
+			}
+			
+		});
+		
+		
 
 	    this.setWidth(600);
 	    this.add(autoRefresh);
@@ -167,6 +196,7 @@ public class UpdaterToolbar extends ToolBar{
 	    
 	    this.add(new SeparatorToolItem());
 	    this.add(configurationButton);
+	    this.add(uploadFromFile);
 	    
 	}
 	
