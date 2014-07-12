@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,11 +13,15 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationService;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
+import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfInteractionDataParser;
 import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
+import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.Configuration;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.UpdateResponse;
@@ -235,11 +240,19 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		
 	}
 	
-	public void requestDataFromFile(String testString){
-		 
+	public UpdateResponse requestDataFromFile(String testString){
+		
+		XmlFragment xmlFrag = XmlFragment.getFragmentFromLocalFile("conffiles/xml/test/runestoneXml/runestoneExample.xml");
+		
+		List<CfAction> cfActions = new ArrayList<CfAction>();
+		for (XmlFragment cfActionElement : xmlFrag.getChildren(RunestoneStrings.ROW_STRING)){
+			cfActions.add(CfActionParser.fromRunsetoneXml(cfActionElement));
+		}
+				 
 		System.out.println("MainServer " + testString);
 		String returnString = mainServer.requestDataFromFile(testString);
 		System.out.println("MainServer " + returnString);
+		return new UpdateResponse(cfActions, null);
 		
 	}
 	

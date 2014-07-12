@@ -63,7 +63,7 @@ public class ClientMonitorDataModelUpdater extends Timer implements AsyncCallbac
 			clientDataModel.getServiceServlet().requestUpdate(xmppServerType, thisAction, callback);
 	 	 }
 	 	 else {
-	 		 //going to have this for getting data, use the same callback
+	 		 //going to have this for getting data from file, use the same callback
 	 		clientDataModel.getServiceServlet().requestUpdate(clientDataModel.getLastAction(), callback);
 	 	 }
 	}
@@ -103,7 +103,7 @@ public class ClientMonitorDataModelUpdater extends Timer implements AsyncCallbac
 	public void getDataFromFile() {
 		System.out.println("Request sent from getDataFromFile");
 		String testString = "test";
-		clientDataModel.getServiceServlet().requestDataFromFile(testString, new NoActionResponse());
+		clientDataModel.getServiceServlet().requestDataFromFile(testString, this);
 		
 	}
 	
