@@ -202,6 +202,14 @@ public class ClientMonitorDataModel{
 		return 0;
 	}
 	
+	
+	//Removes all data from table when new data is being added to replace it
+	public void removeData(){
+		allActions.clear();
+	}
+	
+	
+	
 	public List<CfAction> getFilteredActions(){
 		return filteredActions;
 	}
