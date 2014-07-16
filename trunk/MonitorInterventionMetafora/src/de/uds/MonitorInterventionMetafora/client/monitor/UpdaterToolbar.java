@@ -2,6 +2,8 @@ package de.uds.MonitorInterventionMetafora.client.monitor;
 
 import java.util.List;
 
+
+
 import com.allen_sauer.gwt.log.client.Log;
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
@@ -11,11 +13,14 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
+import com.extjs.gxt.ui.client.widget.form.Radio;
+import com.extjs.gxt.ui.client.widget.form.RadioGroup;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboValue;
 import com.extjs.gxt.ui.client.widget.toolbar.SeparatorToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Timer;
+
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.display.DisplayUtil;
@@ -36,6 +41,11 @@ public class UpdaterToolbar extends ToolBar{
 	private Button configurationButton;
 	private ConfigurationPanel configurationPanel;
 	private Button uploadFromFile; 
+	private Radio localUpdateRadioButton;
+	private Radio serverUpdateRadioButton;
+	private RadioGroup radioGroup;
+	private Button updateButton;
+
 	
 	SimpleComboBox<String> groupIdChooser;
 	
@@ -158,7 +168,6 @@ public class UpdaterToolbar extends ToolBar{
 	        }  
 	      });  		
 		
-		//TODO: Add new button to upload data from a file
 		
 		uploadFromFile = new Button();
 		uploadFromFile.setToolTip("Upload");
@@ -171,23 +180,71 @@ public class UpdaterToolbar extends ToolBar{
 				
 				Timer t = new Timer() {
 	        	      public void run() {
-	        	    	  refreshButton.setEnabled(true);
+	        	    	  uploadFromFile.setEnabled(true);
 	        	      }
 	        	};
 	        	t.schedule(5000);
-	        	
+	        		        	
 	        	UpdaterToolbar.this.updater.getDataFromFile();
-	        	refreshButton.setEnabled(false);
+	        	uploadFromFile.setEnabled(false);
 	        	
-			}
-			
+			}			
 		});
 		
 		
-
-	    this.setWidth(600);
-	    this.add(autoRefresh);
-	    this.add(refreshButton);
+		
+		localUpdateRadioButton= new Radio();
+		localUpdateRadioButton.setBoxLabel("Local File");
+		localUpdateRadioButton.setValue(true);
+		
+		serverUpdateRadioButton = new Radio();
+		serverUpdateRadioButton.setBoxLabel("Server");
+		
+		radioGroup = new RadioGroup();
+		//radioGroup.setFieldLabel("Upload data from: ");
+		radioGroup.add(localUpdateRadioButton);
+		radioGroup.add(serverUpdateRadioButton);
+		
+		updateButton = new Button();
+		updateButton.setText("Update Data From: ");
+		updateButton.setBorders(true);
+		updateButton.addSelectionListener(new SelectionListener<ButtonEvent>(){
+			
+			public void componentSelected(ButtonEvent ce){
+				
+				boolean flag = UpdaterToolbar.this.localUpdateRadioButton.getValue();
+				if (flag == true){
+					System.out.println("Update button clicked with local radio button selected");
+				
+					Timer t = new Timer() {
+		        	      public void run() {
+		        	    	  updateButton.setEnabled(true);
+		        	      }
+		        	};
+		        	t.schedule(5000);
+		        
+		        	UpdaterToolbar.this.updater.getDataFromFile();
+		        	updateButton.setEnabled(false);
+				}
+				else{
+					System.out.println("Update button clicked with server radio button selected");
+					
+					Timer t = new Timer() {
+		        	      public void run() {
+		        	    	  updateButton.setEnabled(true);
+		        	      }
+		        	};
+		        	t.schedule(5000);
+		        	
+		        	UpdaterToolbar.this.updater.getUpdate();
+		        	updateButton.setEnabled(false);
+				}	
+			}	
+		});
+		
+	    this.setWidth(600);	    
+	    //this.add(autoRefresh);
+	    //this.add(refreshButton);
 	    
 	    this.add(new SeparatorToolItem());
 	    this.add(groupIdChooser);
@@ -196,8 +253,13 @@ public class UpdaterToolbar extends ToolBar{
 	    
 	    this.add(new SeparatorToolItem());
 	    this.add(configurationButton);
-	    this.add(uploadFromFile);
+	   // this.add(uploadFromFile);
 	    
+	    this.add(new SeparatorToolItem());
+	    this.add(updateButton);
+	    this.add(radioGroup);
+	    
+	  
 	}
 	
 	public void setAutoRefresh(boolean setting){
