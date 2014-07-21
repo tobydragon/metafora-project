@@ -2,7 +2,6 @@ package de.uds.MonitorInterventionMetafora.server.monitor;
 
 import java.util.List;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.AnalyzingListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
@@ -38,16 +37,6 @@ public class MonitorController {
 	
 	public CfAgentCommunicationManager getAnalysisChannelManager(){
 		return analysisChannelManager;
-	}
-
-	public String requestDataFromFile(String testString) {
-		System.out.println("MonitorController " + testString);
-		
-		String returnString = monitorModel.requestDataFromFile(testString);
-		System.out.println("MonitorController " + returnString);
-		return returnString;
-		
-		
 	}
 
 }

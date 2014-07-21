@@ -100,11 +100,9 @@ public class ClientMonitorDataModelUpdater extends Timer implements AsyncCallbac
 	 	 }
 	}
 
-	public void getDataFromFile() {
-		System.out.println("Request sent from getDataFromFile");
-		String testString = "test";
+	public void getDataFromFile(String filename) {
 		clientDataModel.removeData();
-		clientDataModel.getServiceServlet().requestDataFromFile(testString, this);
+		clientDataModel.getServiceServlet().requestDataFromFile(filename, this);
 		
 	}
 	
