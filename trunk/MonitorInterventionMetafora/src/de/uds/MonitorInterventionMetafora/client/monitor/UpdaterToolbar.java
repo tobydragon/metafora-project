@@ -2,161 +2,44 @@ package de.uds.MonitorInterventionMetafora.client.monitor;
 
 import java.util.List;
 
-import com.allen_sauer.gwt.log.client.Log;
-import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
-import com.extjs.gxt.ui.client.event.Events;
-import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.form.CheckBox;
-import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
-import com.extjs.gxt.ui.client.widget.form.Radio;
-import com.extjs.gxt.ui.client.widget.form.RadioGroup;
-import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
-import com.extjs.gxt.ui.client.widget.form.SimpleComboValue;
+import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.SeparatorToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.google.gwt.user.client.Timer;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
-import de.uds.MonitorInterventionMetafora.client.display.DisplayUtil;
-import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
-import de.uds.MonitorInterventionMetafora.client.logger.Logger;
-import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
-import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
-import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 
 public class UpdaterToolbar extends ToolBar{
-	 
-	private CheckBox autoRefresh;
-	private Button refreshButton;
-	private Button analyzeButton;
-	private Button clearAnalysisButton;
+	
+	DataUpdateButtonGroup updateButtons;
+	AnalysisControlsButtonGroup analysisButtons;
+	
 	private Button configurationButton;
 	private PopupWindow configurationWindow;
-	private Button uploadFromFile; 
-	private Radio localUpdateRadioButton;
-	private Radio serverUpdateRadioButton;
-	private RadioGroup radioGroup;
-	private Button updateButton;
-	private PopupWindow uploadWindow;
-	
-	SimpleComboBox<String> groupIdChooser;
 	
 	final ClientMonitorDataModelUpdater updater;
 
 	public UpdaterToolbar(ClientMonitorDataModelUpdater updater,final ClientMonitorDataModel _maintenance, final ClientMonitorController controller, final CommunicationServiceAsync serverlet){
 		this.updater = updater;
 		
-		autoRefresh = new CheckBox();
-	    autoRefresh.setBoxLabel("Auto Refresh");
-		autoRefresh.setValue(false);
-		FilterListPanel configPanel=new FilterListPanel(_maintenance, controller, serverlet, true);
+		this.setWidth(600);
+		updateButtons = new DataUpdateButtonGroup(updater);
+		add(updateButtons);
+		
+		add(new SeparatorToolItem());
+		
+		analysisButtons = new AnalysisControlsButtonGroup(updater);
+	    add(analysisButtons);
+
+	    add(new FillToolItem());
+	 
+	    FilterListPanel configPanel=new FilterListPanel(_maintenance, controller, serverlet, true);
 		configurationWindow= new PopupWindow(configPanel);
-		UploadFormPanel uploadPanel = new UploadFormPanel(updater);
-		uploadWindow = new PopupWindow(uploadPanel, 100, 200);
-		
-		autoRefresh.addListener(Events.Change, 
-			new Listener<BaseEvent>() {
-	        	public void handleEvent(BaseEvent be) {
-	        		if (autoRefresh.getValue()) {
-	        			
-	        			UserLog userActionLog=new UserLog();
-	                	userActionLog.setComponentType(ComponentType.UPDATER_TOOLBAR);
-	                	userActionLog.setDescription("Auto Refresh is enabled!");
-	                	userActionLog.setTriggeredBy(ComponentType.UPDATER_TOOLBAR);
-	                	userActionLog.setUserActionType(UserActionType.AUTO_REFRESH_ENABLED);
-	                	Logger.getLoggerInstance().log(userActionLog);
-	        			
-	        			UpdaterToolbar.this.updater.startUpdates();
-	        		}
-	        		else {
-	        			
-	        			UserLog userActionLog=new UserLog();
-	                	userActionLog.setComponentType(ComponentType.UPDATER_TOOLBAR);
-	                	userActionLog.setDescription("Auto Refresh is disabled!");
-	                	userActionLog.setTriggeredBy(ComponentType.UPDATER_TOOLBAR);
-	                	userActionLog.setUserActionType(UserActionType.AUTO_REFRESH_DISABLED);
-	                	Logger.getLoggerInstance().log(userActionLog);
-	        			UpdaterToolbar.this.updater.stopUpdates();
-	        		}
-	        	}
-			});
-		
-		refreshButton = new Button(); 
-		refreshButton.setToolTip("Refresh");
-		refreshButton.setIcon(Resources.ICONS.refresh());
-		refreshButton.addSelectionListener(new SelectionListener<ButtonEvent>() {  
-	        @Override  
-	        public void componentSelected(ButtonEvent ce) {  
-	        	System.out.println("refreshClicked");
-	        	
-	        	//This prevents users from clicking the button multiple times while it loads
-	        	//only enable the button every few seconds
-	        	Timer t = new Timer() {
-	        	      public void run() {
-	        	    	  refreshButton.setEnabled(true);
-	        	      }
-	        	};
-	        	t.schedule(5000);
-	        	
-	        	
-	        	UpdaterToolbar.this.updater.getUpdate();
-	        	refreshButton.setEnabled(false);
-	        	
-	        }  
-	      });
-		
-		groupIdChooser = new SimpleComboBox<String>();
-		groupIdChooser.setEditable(false);
-		groupIdChooser.setTriggerAction(TriggerAction.ALL);
-		
-		
-		
-		
-		analyzeButton = new Button(); 
-		analyzeButton.setToolTip("Analyze");
-		analyzeButton.setText("Analyze");
-		analyzeButton.setBorders(true);
-		analyzeButton.addSelectionListener(new SelectionListener<ButtonEvent>() {  
-	        @Override  
-	        public void componentSelected(ButtonEvent ce) {  
-	        	Log.info("UpdaterToolbar: Analyze button clicked");
-	        	SimpleComboValue<String> value = UpdaterToolbar.this.groupIdChooser.getValue();
-	        	if (value != null && value.getValue() != null &&  value.getValue() != ""){
-		        	Log.debug("[UpdaterToolbar.analyzeButton] Updating with chosen groupId: " +  value.getValue());
-	        		UpdaterToolbar.this.updater.analyzeGroup( value.getValue());
-	        	}
-	        	else {
-	        		String defaultGroupId = UrlParameterConfig.getInstance().getGroupId();
-		        	if (defaultGroupId != null && defaultGroupId != ""){
-		        		Log.debug("[UpdaterToolbar.analyzeButton] Updating with default groupId: " + defaultGroupId);
-		        		UpdaterToolbar.this.updater.analyzeGroup(defaultGroupId);
-		        	}
-		        	else {
-		        		Log.warn("[UpdaterToolbar.analyzeButton] No action taken, no group selected to analyze");
-		        		DisplayUtil.postNotificationMessage("No analysis done, you must select a group to analyze");
-		        	}
-	        	}
-	        }  
-	      });
-		
-		clearAnalysisButton = new Button(); 
-		clearAnalysisButton.setBorders(true);
-		clearAnalysisButton.setToolTip("Clear All Tips");
-		clearAnalysisButton.setText("Clear All Tips");
-		clearAnalysisButton.addSelectionListener(new SelectionListener<ButtonEvent>() {  
-	        @Override  
-	        public void componentSelected(ButtonEvent ce) {  
-	        	Log.info("UpdaterToolbar: Clear Analysis button clicked");
-        		UpdaterToolbar.this.updater.clearAllAnalysis();
-        		DisplayUtil.postNotificationMessage("All Tips for all users cleared");
-	        }  
-	      });
 		
 		configurationButton = new Button(); 
 		configurationButton.setToolTip("Configuration");
@@ -167,80 +50,12 @@ public class UpdaterToolbar extends ToolBar{
 	        public void componentSelected(ButtonEvent ce) {  
 	        	configurationWindow.show();
 	        }  
-	      });  		
-		
-		
-		
-		localUpdateRadioButton= new Radio();
-		localUpdateRadioButton.setBoxLabel("Local File");
-		localUpdateRadioButton.setValue(true);
-		
-		serverUpdateRadioButton = new Radio();
-		serverUpdateRadioButton.setBoxLabel("Server");
-		
-		radioGroup = new RadioGroup();
-		//radioGroup.setFieldLabel("Upload data from: ");
-		radioGroup.add(localUpdateRadioButton);
-		radioGroup.add(serverUpdateRadioButton);
-		
-		updateButton = new Button();
-		updateButton.setText("Update Data From: ");
-		updateButton.setBorders(true);
-		updateButton.addSelectionListener(new SelectionListener<ButtonEvent>(){
-			
-			public void componentSelected(ButtonEvent ce){
-				
-				boolean flag = UpdaterToolbar.this.localUpdateRadioButton.getValue();
-				//if getting data from file
-				if (flag == true){
-					uploadWindow.show();
-				}
-				else{
-					System.out.println("Update button clicked with server radio button selected");
-					
-					Timer t = new Timer() {
-		        	      public void run() {
-		        	    	  updateButton.setEnabled(true);
-		        	      }
-		        	};
-		        	t.schedule(5000);
-		        	
-		        	UpdaterToolbar.this.updater.getUpdate();
-		        	updateButton.setEnabled(false);
-				}	
-			}	
-		});
-		
-	    this.setWidth(600);	    
-	    //this.add(autoRefresh);
-	    //this.add(refreshButton);
-	    
-	    this.add(new SeparatorToolItem());
-	    this.add(groupIdChooser);
-	    this.add(analyzeButton);
-	    this.add(clearAnalysisButton);
-	    
-	    this.add(new SeparatorToolItem());
-	    this.add(configurationButton);
-	   // this.add(uploadFromFile);
-	    
-	    this.add(new SeparatorToolItem());
-	    this.add(updateButton);
-	    this.add(radioGroup);
-	    
-	  
-	}
-	
-	public void setAutoRefresh(boolean setting){
-		autoRefresh.setValue(setting);
+	    }); 
+		add(configurationButton);
 	}
 
 	public void updateView(List<String> groups) {
-		if (groups != null){
-			groupIdChooser.removeAll();
-			groupIdChooser.add(groups);
-		}
+		analysisButtons.updateView(groups);
 		
 	}
-
 }
