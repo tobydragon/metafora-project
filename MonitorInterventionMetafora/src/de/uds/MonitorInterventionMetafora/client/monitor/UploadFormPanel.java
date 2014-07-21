@@ -32,9 +32,9 @@ public class UploadFormPanel extends FormPanel{
 		 VerticalPanel panel = new VerticalPanel();
 		 setWidget(panel);
 		 
-		 final TextBox tb = new TextBox();
-		 tb.setName("textBoxFormElement");
-		 panel.add(tb);
+//		 final TextBox tb = new TextBox();
+//		 tb.setName("textBoxFormElement");
+//		 panel.add(tb);
 		 
 		// Create a FileUpload widget.
 		 FileUpload upload = new FileUpload();
@@ -53,11 +53,11 @@ public class UploadFormPanel extends FormPanel{
 		     public void onSubmit(SubmitEvent event) {
 		         // This event is fired just before the form is submitted. We can
 		         // take this opportunity to perform validation.
-		    	 System.out.println(UPLOAD_ACTION_URL);
-		    	 if (tb.getText().length() == 0) {
-		             Window.alert("The text box must not be empty");
-		             event.cancel();
-		         }
+		    	 Log.info("Submitting form to:" + UPLOAD_ACTION_URL);
+//		    	 if (tb.getText().length() == 0) {
+//		             Window.alert("The text box must not be empty");
+//		             event.cancel();
+//		         }
 		     }
 		 });
 		 

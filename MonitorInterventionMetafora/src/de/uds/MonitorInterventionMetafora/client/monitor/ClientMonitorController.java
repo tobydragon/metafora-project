@@ -185,37 +185,19 @@ public class ClientMonitorController {
 	
 	
 	
-//	 ------------------------ Code that should be moved  to filter class ---------------------------//
+//	 ------------------------ TODO: Code that should be moved  to filter class ---------------------------//
 
 	public void addRule(ActionPropertyRule newFilterEntity){		
 		String _key= newFilterEntity.getKey();
 		if(!isInFilterList(_key) && !newFilterEntity.getValue().equalsIgnoreCase("")){
 	        FilterGridRow  _newRow = new FilterGridRow(newFilterEntity); 
 	        dataModel.getFilterGridViewModel().insert(_newRow, 0);  
-	       //* _grid.startEditing(_grid.getStore().indexOf(_newRow), 0); 
-	       //* _filterCombo.clearSelections();
-	       
-	       
-	        //TODO: make a new way to set the tabs back to table tab
-//	        TabPanel tabPanel = getMultiModelTabPanel();
-//	        TabItem tabItem= getTableViewTabItem();	
-//	        tabPanel.setTabIndex(0);
-//	        tabPanel.repaint();
-//	        tabPanel.setLayoutData(new FitLayout());
-//	        tabPanel.setSelection(tabItem);
-	        
-//	        filtersUpdated();
-//		    MessageBox.info("Message","Filter is added to the list!", null);
-	        
-	        
    	    }
         else {	
         	MessageBox.info("Message","Selected Filter is<ul><li> already in  the filter list</li></ul>", null);
         }
 	}
-	
-	
-	
+
 	boolean isInFilterList(String _key){
 		 for (int i = 0; i < dataModel.getFilterGridViewModel().getCount(); i++) {
 			 FilterGridRow _item =	 dataModel.getFilterGridViewModel().getAt(i);
@@ -228,34 +210,4 @@ public class ClientMonitorController {
 		 return false;
 	 }
 	
-	 
-//	 ------------------------ Code that should be removed ---------------------------//
-		
-	
-	
-	
-	/*
-public DataViewPanel getView(String id){
-		
-		return (DataViewPanel)ComponentManager.get().get(id);
-	}
-
-
-	public SimpleComboBox<String> getFilterListComboBox(){
-		
-		return (SimpleComboBox<String>) ComponentManager.get().get("_filterGroupCombo");
-	}
-	
-	public ComboBox<OperationsComboBoxModel> getOperationsComboBox(){
-		
-		return (ComboBox<OperationsComboBoxModel>) ComponentManager.get().get("_operationComboBox");
-		
-	}
-		
-	
-	public TextField<String> getFilterEntityValueTextField(){
-		
-		return (TextField<String>) ComponentManager.get().get("entityValueText");
-	}
-*/
 }

@@ -16,7 +16,6 @@ public class PopupWindow  extends Window  {
 	      this.setWidth(width);
 	      this.setHeight(height);
 	      this.setPagePosition(12,15);
-	      
 //	      w.setExpanded(true);
 //	     w.setCollapsible(false);
 	}
