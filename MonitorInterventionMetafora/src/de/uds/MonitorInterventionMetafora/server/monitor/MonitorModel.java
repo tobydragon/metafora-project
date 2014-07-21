@@ -71,12 +71,6 @@ public class MonitorModel implements Runnable {
 		return false;
 	}
 	
-	public String requestDataFromFile(String testString){
-		System.out.println("MonitorModel " + testString);
-		String finalString = "return string";		
-		return finalString;
-	}
-	
 	
 
 	@Override

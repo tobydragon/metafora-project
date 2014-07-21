@@ -2,8 +2,6 @@ package de.uds.MonitorInterventionMetafora.client.monitor;
 
 import java.util.List;
 
-
-
 import com.allen_sauer.gwt.log.client.Log;
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
@@ -21,7 +19,6 @@ import com.extjs.gxt.ui.client.widget.toolbar.SeparatorToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Timer;
 
-
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.display.DisplayUtil;
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
@@ -29,6 +26,7 @@ import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
+import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterListPanel;
 import de.uds.MonitorInterventionMetafora.client.resources.Resources;
 import de.uds.MonitorInterventionMetafora.client.urlparameter.UrlParameterConfig;
 
@@ -39,13 +37,13 @@ public class UpdaterToolbar extends ToolBar{
 	private Button analyzeButton;
 	private Button clearAnalysisButton;
 	private Button configurationButton;
-	private ConfigurationPanel configurationPanel;
+	private PopupWindow configurationWindow;
 	private Button uploadFromFile; 
 	private Radio localUpdateRadioButton;
 	private Radio serverUpdateRadioButton;
 	private RadioGroup radioGroup;
 	private Button updateButton;
-
+	private PopupWindow uploadWindow;
 	
 	SimpleComboBox<String> groupIdChooser;
 	
@@ -57,7 +55,10 @@ public class UpdaterToolbar extends ToolBar{
 		autoRefresh = new CheckBox();
 	    autoRefresh.setBoxLabel("Auto Refresh");
 		autoRefresh.setValue(false);
-		configurationPanel= new ConfigurationPanel(_maintenance,controller,serverlet);
+		FilterListPanel configPanel=new FilterListPanel(_maintenance, controller, serverlet, true);
+		configurationWindow= new PopupWindow(configPanel);
+		UploadFormPanel uploadPanel = new UploadFormPanel(updater);
+		uploadWindow = new PopupWindow(uploadPanel, 100, 200);
 		
 		autoRefresh.addListener(Events.Change, 
 			new Listener<BaseEvent>() {
@@ -164,32 +165,9 @@ public class UpdaterToolbar extends ToolBar{
 		configurationButton.addSelectionListener(new SelectionListener<ButtonEvent>() {  
 	        @Override  
 	        public void componentSelected(ButtonEvent ce) {  
-	        	configurationPanel.show();
+	        	configurationWindow.show();
 	        }  
 	      });  		
-		
-		
-		uploadFromFile = new Button();
-		uploadFromFile.setToolTip("Upload");
-		uploadFromFile.setText("Upload");
-		uploadFromFile.setBorders(true);
-		uploadFromFile.addSelectionListener(new SelectionListener<ButtonEvent>(){
-			
-			public void componentSelected(ButtonEvent ce){
-				System.out.println("Upload Clicked");
-				
-				Timer t = new Timer() {
-	        	      public void run() {
-	        	    	  uploadFromFile.setEnabled(true);
-	        	      }
-	        	};
-	        	t.schedule(5000);
-	        		        	
-	        	UpdaterToolbar.this.updater.getDataFromFile();
-	        	uploadFromFile.setEnabled(false);
-	        	
-			}			
-		});
 		
 		
 		
@@ -213,18 +191,9 @@ public class UpdaterToolbar extends ToolBar{
 			public void componentSelected(ButtonEvent ce){
 				
 				boolean flag = UpdaterToolbar.this.localUpdateRadioButton.getValue();
+				//if getting data from file
 				if (flag == true){
-					System.out.println("Update button clicked with local radio button selected");
-				
-					Timer t = new Timer() {
-		        	      public void run() {
-		        	    	  updateButton.setEnabled(true);
-		        	      }
-		        	};
-		        	t.schedule(5000);
-		        
-		        	UpdaterToolbar.this.updater.getDataFromFile();
-		        	updateButton.setEnabled(false);
+					uploadWindow.show();
 				}
 				else{
 					System.out.println("Update button clicked with server radio button selected");

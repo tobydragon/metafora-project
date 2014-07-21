@@ -8,9 +8,7 @@ import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.AnalysisController;
 import de.uds.MonitorInterventionMetafora.server.analysis.AnalyzingListener;
-import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
-import de.uds.MonitorInterventionMetafora.server.cfcommunication.CommunicationChannelType;
 import de.uds.MonitorInterventionMetafora.server.messages.MessagesController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorModel;
@@ -18,8 +16,6 @@ import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.UpdateResponse;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
@@ -89,15 +85,6 @@ public class ServerInstance {
 
 	public void requestClearAllRecommendations() {
 		messagesController.requestClearAllSuggestedMessages();
-		
-	}
-	
-	public String requestDataFromFile(String testString){
-		System.out.println("ServerInstance " + testString);
-		
-		String returnString =  monitorController.requestDataFromFile(testString);
-		System.out.println("ServerInstance " + returnString);
-		return returnString;
 		
 	}
 	

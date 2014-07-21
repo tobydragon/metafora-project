@@ -240,18 +240,16 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		
 	}
 	
-	public UpdateResponse requestDataFromFile(String testString){
-		
-		XmlFragment xmlFrag = XmlFragment.getFragmentFromLocalFile("conffiles/xml/test/runestoneXml/runestoneExample.xml");
+	public UpdateResponse requestDataFromFile(String filename){
+		String path = GeneralUtil.getRealPath("upload/"+filename);
+		XmlFragment xmlFrag = XmlFragment.getFragmentFromLocalFile(path);
 		
 		List<CfAction> cfActions = new ArrayList<CfAction>();
 		for (XmlFragment cfActionElement : xmlFrag.getChildren(RunestoneStrings.ROW_STRING)){
 			cfActions.add(CfActionParser.fromRunsetoneXml(cfActionElement));
 		}
-				 
-		System.out.println("MainServer " + testString);
-		String returnString = mainServer.requestDataFromFile(testString);
-		System.out.println("MainServer " + returnString);
+		logger.info("requestDataFromFile:\t\t read " +cfActions.size() + " indicators from "+ path);		 
+		//TODO: of we want to update the server model with this input, here would be the place to do it.
 		return new UpdateResponse(cfActions, null);
 		
 	}

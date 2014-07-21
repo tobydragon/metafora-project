@@ -21,27 +21,34 @@
     <servlet-name>greetServlet</servlet-name>
     <servlet-class>de.uds.MonitorInterventionMetafora.server.MainServer</servlet-class>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>greetServlet</servlet-name>
     <url-pattern>/MonitorInterventionMetafora/greet</url-pattern>
   </servlet-mapping>
 
-<servlet>
-                <servlet-name>gwtTableToExcelServlet</servlet-name>
-                <servlet-class>com.googlecode.gwtTableToExcel.server.TableToExcelServlet</servlet-class>
-                 <init-param>
-                <param-name>encoding</param-name>
-                <param-value>UTF-8</param-value>
-        </init-param>
-                
-        </servlet>
-
-        <servlet-mapping>
-                <servlet-name>gwtTableToExcelServlet</servlet-name>
-                <url-pattern>/MonitorInterventionMetafora/excel</url-pattern>
-        </servlet-mapping>
+	<servlet>
+        <servlet-name>gwtTableToExcelServlet</servlet-name>
+        <servlet-class>com.googlecode.gwtTableToExcel.server.TableToExcelServlet</servlet-class>
+        <init-param>
+        	<param-name>encoding</param-name>
+        	<param-value>UTF-8</param-value>
+		</init-param>
+        
+	</servlet>
+	<servlet-mapping>
+	        <servlet-name>gwtTableToExcelServlet</servlet-name>
+	        <url-pattern>/MonitorInterventionMetafora/excel</url-pattern>
+	</servlet-mapping>
   
+  <servlet>
+    <servlet-name>uploadServlet</servlet-name>
+    <servlet-class>de.uds.MonitorInterventionMetafora.server.FileUploadServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>uploadServlet</servlet-name>
+    <url-pattern>/MonitorInterventionMetafora/upload</url-pattern>
+  </servlet-mapping>
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>Visualizer.html</welcome-file>
