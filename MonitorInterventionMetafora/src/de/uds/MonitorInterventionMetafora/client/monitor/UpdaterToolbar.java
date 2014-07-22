@@ -4,10 +4,12 @@ import java.util.List;
 
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.widget.Window;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.SeparatorToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
+import com.google.gwt.user.client.ui.Widget;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationServiceAsync;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
@@ -20,7 +22,7 @@ public class UpdaterToolbar extends ToolBar{
 	AnalysisControlsButtonGroup analysisButtons;
 	
 	private Button configurationButton;
-	private PopupWindow configurationWindow;
+	private Window configurationWindow;
 	
 	final ClientMonitorDataModelUpdater updater;
 
@@ -39,7 +41,7 @@ public class UpdaterToolbar extends ToolBar{
 	    add(new FillToolItem());
 	 
 	    FilterListPanel configPanel=new FilterListPanel(_maintenance, controller, serverlet, true);
-		configurationWindow= new PopupWindow(configPanel);
+		configurationWindow= buildPopUpWindow(configPanel);
 		
 		configurationButton = new Button(); 
 		configurationButton.setToolTip("Configuration");
@@ -56,6 +58,18 @@ public class UpdaterToolbar extends ToolBar{
 
 	public void updateView(List<String> groups) {
 		analysisButtons.updateView(groups);
+	}
+	
+	private static Window buildPopUpWindow(Widget w){
 		
+		//might be necessary to set on the FilterListPanel...
+//		.setExpanded(true);
+//	    .setCollapsible(false);
+		Window window = new Window();
+		window.add(w);
+		window.setWidth(1000);
+		window.setHeight(405);
+		window.setPagePosition(12,15);
+		return window;
 	}
 }
