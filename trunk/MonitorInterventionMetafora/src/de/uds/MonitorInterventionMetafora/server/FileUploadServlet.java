@@ -61,6 +61,7 @@ public class FileUploadServlet extends HttpServlet {
                    if (fileName != null) {
                        fileName = FilenameUtils.getName(fileName);
                    }
+                   fileName = System.currentTimeMillis()+fileName;
 
                    File uploadedFile = new File(UPLOAD_DIRECTORY, fileName);
                    if (uploadedFile.createNewFile()) {
@@ -68,7 +69,7 @@ public class FileUploadServlet extends HttpServlet {
                        resp.setStatus(HttpServletResponse.SC_CREATED);
                        resp.getWriter().print(uploadedFile.getName());
                        resp.flushBuffer();
-                   } else
+                   } else   
                        throw new IOException("The file already exists in repository.");
                }
            } catch (Exception e) {

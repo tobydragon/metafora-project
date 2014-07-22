@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.client.monitor;
 import com.allen_sauer.gwt.log.client.Log;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.widget.Window;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ButtonGroup;
 import com.extjs.gxt.ui.client.widget.form.Radio;
@@ -17,7 +18,7 @@ public class DataUpdateButtonGroup extends ButtonGroup{
 	private RadioGroup radioGroup;
 	private Button updateButton;
 	
-	private PopupWindow uploadWindow;
+	private Window uploadWindow;
 	
 //	private CheckBox autoRefresh;
 //	private Button refreshButton;
@@ -41,8 +42,8 @@ public class DataUpdateButtonGroup extends ButtonGroup{
 		radioGroup.add(serverUpdateRadioButton);
 		this.add(radioGroup);
 		
-		UploadFormPanel uploadPanel = new UploadFormPanel(controller);
-		uploadWindow = new PopupWindow(uploadPanel, 150, 100);
+		
+		uploadWindow = buildUploadWindow(controller);
 		
 		updateButton.addSelectionListener(new SelectionListener<ButtonEvent>(){
 			public void componentSelected(ButtonEvent ce){
@@ -68,6 +69,21 @@ public class DataUpdateButtonGroup extends ButtonGroup{
 		
 		
 		
+	}
+	
+	private static Window buildUploadWindow(ClientMonitorDataModelUpdater controller){
+		UploadFormPanel uploadPanel = new UploadFormPanel(controller);
+		
+		Window window = new Window();
+		window.add(uploadPanel);
+		window.setWidth(150);
+		window.setHeight(100);
+		window.setPagePosition(12,15);
+		window.setModal(true);
+		
+		//So uploadPanel can close its window when submitted
+		uploadPanel.setContainingWindow(window);
+		return window;
 	}
 	
 	//commented out until auto refresh is needed
