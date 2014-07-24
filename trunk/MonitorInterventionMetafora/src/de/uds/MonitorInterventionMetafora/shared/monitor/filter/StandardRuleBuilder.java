@@ -18,13 +18,13 @@ public class StandardRuleBuilder {
 		ALL_RULES.put(StandardRuleType.USER_ID, new ActionPropertyRule(PropertyLocation.USER, "id", StandardRuleType.USER_ID.toString()));
 		ALL_RULES.put(StandardRuleType.DESCRIPTION, new ActionPropertyRule(PropertyLocation.CONTENT, "description", StandardRuleType.DESCRIPTION.toString()));
 		ALL_RULES.put(StandardRuleType.SENDING_TOOL, new ActionPropertyRule(PropertyLocation.CONTENT, "SENDING_TOOL", StandardRuleType.SENDING_TOOL.toString()));
-		ALL_RULES.put(StandardRuleType.INDICATOR_TYPE, new ActionPropertyRule(PropertyLocation.CONTENT, "INDICATOR_TYPE", StandardRuleType.INDICATOR_TYPE.toString()));
+		//ALL_RULES.put(StandardRuleType.INDICATOR_TYPE, new ActionPropertyRule(PropertyLocation.CONTENT, "INDICATOR_TYPE", StandardRuleType.INDICATOR_TYPE.toString()));
 		ALL_RULES.put(StandardRuleType.CHALLENGE_NAME, new ActionPropertyRule(PropertyLocation.CONTENT, "CHALLENGE_NAME", StandardRuleType.CHALLENGE_NAME.toString()));
 		ALL_RULES.put(StandardRuleType.GROUP_ID, new ActionPropertyRule(PropertyLocation.CONTENT, "GROUP_ID", StandardRuleType.GROUP_ID.toString()));
 		ALL_RULES.put(StandardRuleType.TAGS, new ActionPropertyRule(PropertyLocation.OBJECT, "TAGS", StandardRuleType.TAGS.toString()));
 		ALL_RULES.put(StandardRuleType.WORD_COUNT, new ActionPropertyRule(PropertyLocation.OBJECT, "WORD_COUNT", StandardRuleType.WORD_COUNT.toString()));
 		ALL_RULES.put(StandardRuleType.CORRECT, new ActionPropertyRule(PropertyLocation.CONTENT, "Correct", StandardRuleType.CORRECT.toString()));
-		
+		ALL_RULES.put(StandardRuleType.OBJECT_ID, new ActionPropertyRule(PropertyLocation.OBJECT, "id", StandardRuleType.OBJECT_ID.toString()));
 		
 	}
 				

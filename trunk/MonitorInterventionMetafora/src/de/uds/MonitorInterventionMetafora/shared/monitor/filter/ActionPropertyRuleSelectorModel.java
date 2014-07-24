@@ -6,8 +6,6 @@ import java.util.Vector;
 import com.extjs.gxt.ui.client.store.ListStore;
 
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.PropertyComboBoxItemModel;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
-import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 
 public class ActionPropertyRuleSelectorModel {
 	
@@ -72,11 +70,12 @@ public class ActionPropertyRuleSelectorModel {
 		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.ACTION_TYPE));
 		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.USER_ID));
 		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.SENDING_TOOL));
-		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.INDICATOR_TYPE));
+		//newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.INDICATOR_TYPE));
 		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.CHALLENGE_NAME));
 		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.GROUP_ID));
 		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.TAGS));
 		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.CORRECT));
+		newGroupings.add(StandardRuleBuilder.buildStandardRule(StandardRuleType.OBJECT_ID));
 		
 		
 		
