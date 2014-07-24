@@ -3,7 +3,6 @@ package de.uds.MonitorInterventionMetafora.client.monitor.dataview.table;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.Style.SortDir;
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
@@ -58,7 +57,7 @@ public class TablePanel extends DataViewPanel {
 				columnModel);
 		tableView.setView(getGridView(columnModel));
 		tableView.setWidth(950);
-
+		
 		tableView.getStore().sort(StandardRuleType.TIME.toString(), SortDir.DESC);
 
 		this.setHeight(560);
@@ -135,15 +134,16 @@ public class TablePanel extends DataViewPanel {
 
 		flexTable.setText(0, 0, StandardRuleType.USER_ID.toString());
 		// flexTable.setText(0,1, "Action Type");
-		flexTable.setText(0, 2, StandardRuleType.ACTION_CLASSIFICATION.toString());
-		flexTable.setText(0, 3, StandardRuleType.DESCRIPTION.toString());
-		flexTable.setText(0, 4, StandardRuleType.TAGS.toString());
-		flexTable.setText(0, 5, StandardRuleType.WORD_COUNT.toString());
-		flexTable.setText(0, 6, StandardRuleType.SENDING_TOOL.toString());
-		flexTable.setText(0, 7, StandardRuleType.TIME.toString());
-		// flexTable.setText(0,8, "Challenge");
-		flexTable.setText(0, 9, StandardRuleType.INDICATOR_TYPE.toString());
-		flexTable.setText(0, 10, StandardRuleType.CORRECT.toString());
+		flexTable.setText(0, 2, StandardRuleType.DESCRIPTION.toString());
+		flexTable.setText(0, 3, StandardRuleType.TAGS.toString());
+		flexTable.setText(0, 4, StandardRuleType.WORD_COUNT.toString());
+		flexTable.setText(0, 5, StandardRuleType.TIME.toString());
+		// flexTable.setText(0,6, "Challenge");
+		//flexTable.setText(0, 7, StandardRuleType.INDICATOR_TYPE.toString());
+		flexTable.setText(0, 8, StandardRuleType.CORRECT.toString());
+		flexTable.setText(0, 9, StandardRuleType.OBJECT_ID.toString());
+		flexTable.setText(0,10,StandardRuleType.ACTION_TYPE.toString());
+		
 
 		int rowindex = 0;
 		for (int i = 0; i < actions.size(); i++) {
@@ -153,15 +153,15 @@ public class TablePanel extends DataViewPanel {
 
 			flexTable.setText(rowindex, 0, row.getGridItemPropertySingleValue(StandardRuleType.USER_ID));
 			// flexTable.setText(rowindex,1, row.getActionType());
-			flexTable.setText(rowindex, 2, row.getGridItemPropertySingleValue(StandardRuleType.ACTION_CLASSIFICATION));
-			flexTable.setText(rowindex, 3, row.getGridItemPropertySingleValue(StandardRuleType.DESCRIPTION));
-			flexTable.setText(rowindex, 4, row.getGridItemPropertySingleValue(StandardRuleType.TAGS));
-			flexTable.setText(rowindex, 5, row.getGridItemPropertySingleValue(StandardRuleType.WORD_COUNT));
-			flexTable.setText(rowindex, 6, row.getGridItemPropertySingleValue(StandardRuleType.SENDING_TOOL));
-			flexTable.setText(rowindex, 7, row.getGridItemPropertySingleValue(StandardRuleType.TIME));
-			// flexTable.setText(rowindex,8, row.getChallengeName());
-			flexTable.setText(rowindex, 9, row.getGridItemPropertySingleValue(StandardRuleType.INDICATOR_TYPE));
-			flexTable.setText(rowindex, 10, row.getGridItemPropertySingleValue(StandardRuleType.CORRECT));
+			flexTable.setText(rowindex, 2, row.getGridItemPropertySingleValue(StandardRuleType.DESCRIPTION));
+			flexTable.setText(rowindex, 3, row.getGridItemPropertySingleValue(StandardRuleType.TAGS));
+			flexTable.setText(rowindex, 4, row.getGridItemPropertySingleValue(StandardRuleType.WORD_COUNT));
+			flexTable.setText(rowindex, 5, row.getGridItemPropertySingleValue(StandardRuleType.TIME));
+			// flexTable.setText(rowindex,6, row.getChallengeName());
+			//flexTable.setText(rowindex, 7, row.getGridItemPropertySingleValue(StandardRuleType.INDICATOR_TYPE));
+			flexTable.setText(rowindex, 8, row.getGridItemPropertySingleValue(StandardRuleType.CORRECT));
+			flexTable.setText(rowindex, 9, row.getGridItemPropertySingleValue(StandardRuleType.OBJECT_ID));
+			flexTable.setText(rowindex, 10, row.getGridItemPropertySingleValue(StandardRuleType.ACTION_TYPE));
 		}
 
 		return flexTable;
@@ -221,21 +221,12 @@ public class TablePanel extends DataViewPanel {
 		ColumnConfig username = new ColumnConfig(StandardRuleType.USER_ID.toString(), StandardRuleType.USER_ID.toString(), 50);
 		username.setWidth(50);
 		// username.setRenderer(getbackgroundColorRenderer());
-		
-		//TODO: Figure out which width is correct 
-
-		ColumnConfig actionClassfication = new ColumnConfig(
-				StandardRuleType.ACTION_CLASSIFICATION.toString(),
-				StandardRuleType.ACTION_CLASSIFICATION.toString(), 50);
-		actionClassfication.setAlignment(HorizontalAlignment.CENTER);
+		 
 
 		ColumnConfig description = new ColumnConfig(
 				StandardRuleType.DESCRIPTION.toString(),
 				StandardRuleType.DESCRIPTION.toString(), 250);
 
-		ColumnConfig tool = new ColumnConfig(StandardRuleType.SENDING_TOOL.toString(),
-				StandardRuleType.SENDING_TOOL.toString(), 50);
-		
 		ColumnConfig time = new ColumnConfig(
 				StandardRuleType.TIME.toString(),
 				StandardRuleType.TIME.toString(), 80);
@@ -250,30 +241,40 @@ public class TablePanel extends DataViewPanel {
 				StandardRuleType.WORD_COUNT.toString(),
 				StandardRuleType.WORD_COUNT.toString(), 50);
 
-		ColumnConfig indicatorType = new ColumnConfig(
-				StandardRuleType.INDICATOR_TYPE.toString(),
-				StandardRuleType.INDICATOR_TYPE.toString(), 75);
+//		ColumnConfig indicatorType = new ColumnConfig(
+//				StandardRuleType.INDICATOR_TYPE.toString(),
+//				StandardRuleType.INDICATOR_TYPE.toString(), 75);
 		// indicatorType.setRenderer(getbackgroundColorRenderer());
 		
 		ColumnConfig correct = new ColumnConfig(
 				StandardRuleType.CORRECT.toString(),
 				StandardRuleType.CORRECT.toString(), 50);
 		
+		ColumnConfig objectId = new ColumnConfig(
+				StandardRuleType.OBJECT_ID.toString(),
+				StandardRuleType.OBJECT_ID.toString(), 80);
+		
+		ColumnConfig actionType = new ColumnConfig(
+				StandardRuleType.ACTION_TYPE.toString(),
+				StandardRuleType.ACTION_TYPE.toString(),50);
+		
 		
 				
 
 		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
+		
 		config.add(username);
-		config.add(actionClassfication);
 		// config.add(classification);
 		config.add(description);
 		config.add(tags);
 		config.add(wordcount);
-		config.add(tool);
 		config.add(time);
 		// config.add(challengeName);
-		config.add(indicatorType);
+		//config.add(indicatorType);
 		config.add(correct);
+		config.add(objectId);
+		config.add(actionType);
+		
 		
 
 		return new ColumnModel(config);

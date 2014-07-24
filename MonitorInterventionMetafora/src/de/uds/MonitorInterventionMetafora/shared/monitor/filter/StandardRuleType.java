@@ -7,13 +7,15 @@ public enum StandardRuleType {
 	USER_ID("Users"),
 	DESCRIPTION("Description"),
 	SENDING_TOOL("Tool"),
-	INDICATOR_TYPE("Indicator Type"),
+	//INDICATOR_TYPE("Indicator Type"),
 	CHALLENGE_NAME("Challenge Name"),
 	GROUP_ID("Group Name"),
 	TAGS("Keyword Tags"),
 	WORD_COUNT("Word Count"),
 	CORRECT("Correct"), 
+	OBJECT_ID("Object ID"),
 	
+		
 	
 	
 	;

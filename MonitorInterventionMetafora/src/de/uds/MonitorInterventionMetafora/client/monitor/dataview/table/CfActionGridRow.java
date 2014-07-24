@@ -7,7 +7,6 @@ import com.extjs.gxt.ui.client.data.BaseModel;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.PropertyLocation;
 import de.uds.MonitorInterventionMetafora.shared.monitor.MonitorConstants;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionPropertyRule;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.StandardRuleBuilder;
@@ -61,15 +60,16 @@ public class CfActionGridRow extends BaseModel {
 		try {
 			setGridItemPropertyMultipleValues(StandardRuleType.USER_ID);
 			
-			setGridItemPropertySingleValue(StandardRuleType.ACTION_CLASSIFICATION);
 		    setGridItemPropertySingleValue(StandardRuleType.DESCRIPTION);
-		    setGridItemPropertySingleValue(StandardRuleType.SENDING_TOOL);
 		    setGridItemPropertySingleValue(StandardRuleType.CHALLENGE_NAME);
-		    setGridItemPropertySingleValue(StandardRuleType.INDICATOR_TYPE);
+		   // setGridItemPropertySingleValue(StandardRuleType.INDICATOR_TYPE);
 		    setGridItemPropertySingleValue(StandardRuleType.TAGS);
 		    setGridItemPropertySingleValue(StandardRuleType.WORD_COUNT);
 		    setGridItemPropertySingleValue(StandardRuleType.TIME);
 		    setGridItemPropertySingleValue(StandardRuleType.CORRECT);
+		    setGridItemPropertySingleValue(StandardRuleType.OBJECT_ID);
+		    setGridItemPropertySingleValue(StandardRuleType.ACTION_TYPE);
+		    
 		}
 		catch (Exception e){
 			logger.error("[setGridItemProperties] missing attributes, row not added for indicator: " +indicator.toString());
