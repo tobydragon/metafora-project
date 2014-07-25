@@ -1,0 +1,144 @@
+<interactiondata>
+  <actions>
+    <action time = "">
+      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <user id = "tdragon@ithaca.edu" role = "ORIGINATOR" />
+	  <object id = "3_3" type = "parsons">
+	   <properties>
+	     <property name = "TIME_SPENT" value = "0" />
+		 <property name = "IS_EVER_CORRECT" value = "TRUE" />
+ 		 <property name = "TIMES_FALSE" value = "0" />
+	   </properties>
+	 </object>
+	 <content>
+       <description><![CDATA[tdragon@ithaca.edu spent 0 secs on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+	   <properties>
+	     <property name "FALSE_ENTRIES" value = "" />
+	   </properties>
+	 </content>
+    </action> 
+    <action time = "">
+      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <user id = "tdragon@ithaca.edu" role = "ORIGINATOR" />
+	  <object id = "3_2" type = "parsons">
+	   <properties>
+	     <property name = "TIME_SPENT" value = "4" />
+		 <property name = "IS_EVER_CORRECT" value = "TRUE" />
+ 		 <property name = "TIMES_FALSE" value = "1" />
+	   </properties>
+	 </object>
+	 <content>
+       <description><![CDATA[tdragon@ithaca.edu spent 4 secs on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+	   <properties>
+	     <property name "FALSE_ENTRIES" value = "0_0-1_0-2_0-4_0-3_0" />
+	   </properties>
+	 </content>
+    </action>
+    <action time = "">
+      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <user id = "tdragon@ithaca.edu" role = "ORIGINATOR" />
+	  <object id = "3_1" type = "parsons">
+	   <properties>
+	     <property name = "TIME_SPENT" value = "5" />
+		 <property name = "IS_EVER_CORRECT" value = "TRUE" />
+ 		 <property name = "TIMES_FALSE" value = "1" />
+	   </properties>
+	 </object>
+	 <content>
+       <description><![CDATA[tdragon@ithaca.edu spent 5 secs on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+	   <properties>
+		 <property name "FALSE_ENTRIES" value = "0_0-2_0-1_0"/>
+	   </properties>
+	 </content>
+    </action>
+    <action time = "">
+      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <user id = "tdragon@ithaca.edu" role = "ORIGINATOR" />
+	  <object id = "test_question3_1_0" type = "mChoice">
+	   <properties>
+	     <property name = "TIME_SPENT" value = "120" />
+		 <property name = "IS_EVER_CORRECT" value = "TRUE" />
+ 		 <property name = "TIMES_FALSE" value = "1" />
+	   </properties>
+	 </object>
+	 <content>
+       <description><![CDATA[tdragon@ithaca.edu spent 120 secs on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+	   <properties>
+		 <property name "FALSE_ENTRIES" value = "d" />
+	   </properties>
+	 </content>
+    </action> 
+    <action time = "">
+      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <user id = "cwormsl2" role = "ORIGINATOR" />
+	  <object id = "question1_1_2" type = "mChoice">
+	   <properties>
+	     <property name = "TIME_SPENT" value = 19" />
+		 <property name = "IS_EVER_CORRECT" value = "FALSE" />
+ 		 <property name = "TIMES_FALSE" value = "3" />
+	   </properties>
+	 </object>
+	 <content>
+       <description><![CDATA[cwormsl2 spent 19 secs on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+	   <properties>
+		 <property name "FALSE_ENTRIES" value = "d/c/a" />
+	   </properties>
+	 </content>
+    </action> 
+    <action time = "">
+      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <user id = "cwormsl2" role = "ORIGINATOR" />
+	  <object id = "question1_2_1" type = "mChoice">
+	   <properties>
+	     <property name = "TIME_SPENT" value = 31" />
+		 <property name = "IS_EVER_CORRECT" value = "TRUE" />
+ 		 <property name = "TIMES_FALSE" value = "2" />
+	   </properties>
+	 </object>
+	 <content>
+	   <description><![CDATA[cwormsl2 spent 31 secs on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+	   <properties>
+		 <property name "FALSE_ENTRIES" value = "b/c" />
+	   </properties>
+	 </content>
+    </action>
+    <action time = "">
+      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <user id = "cwormsl2" role = "ORIGINATOR" />
+	  <object id = "question1_3_1" type = "mChoice">
+	   <properties>
+	     <property name = "TIME_SPENT" value = 309" />
+		 <property name = "IS_EVER_CORRECT" value = "TRUE" />
+ 		 <property name = "TIMES_FALSE" value = "3" />
+	   </properties>
+	 </object>
+	 <content>
+       <description><![CDATA[cwormsl2 spent 309 secs on question1_1_2 and answered incorrectly 3 time(s), before answering correct]]></description>
+	   <properties>
+		 <property name "FALSE_ENTRIES" value = "d/a,c/a,c,d" />
+	   </properties>
+	 </content>
+    </action>
+    <action time = "">
+      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <user id = "cwormsl2" role = "ORIGINATOR" />
+	  <object id = "question2_10_3" type = "parsons">
+	   <properties>
+	     <property name = "TIME_SPENT" value = 202" />
+		 <property name = "IS_EVER_CORRECT" value = "FALSE" />
+ 		 <property name = "TIMES_FALSE" value = "3" />
+	   </properties>
+	 </object>
+	 <content>
+       <description><![CDATA[cwormsl2 spent 202 secs on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+	   <properties>
+		 <property name "FALSE_ENTRIES" value = "0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0 />
+	   </properties>
+	 </content>
+    </action>
+  </actions>
+</interactiondata>
+
+
+
+
