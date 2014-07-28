@@ -3,11 +3,12 @@ package de.uds.MonitorInterventionMetafora.server;
 import java.util.List;
 import java.util.Vector;
 
-
 import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.AnalysisController;
 import de.uds.MonitorInterventionMetafora.server.analysis.AnalyzingListener;
+import de.uds.MonitorInterventionMetafora.server.analysis.MetaforaAnalysisController;
+import de.uds.MonitorInterventionMetafora.server.analysis.RunestoneAnalysisController;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfCommunicationListener;
 import de.uds.MonitorInterventionMetafora.server.messages.MessagesController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
@@ -40,7 +41,10 @@ public class ServerInstance {
 			CfCommunicationListener monitorListener = new AnalyzingListener(monitorModel, messagesController);
 
 			monitorController = new MonitorController(monitorModel, monitorListener, communicationMethodType, startTime, xmppServerType, historyFilepath);
-			analysisController = new AnalysisController(monitorController, messagesController, xmppServerType );
+			
+			//TODO:@Caitlin push choice of analysis type into server settings
+			//analysisController = new MetaforaAnalysisController(monitorController, messagesController, xmppServerType );
+			analysisController = new RunestoneAnalysisController(monitorController, messagesController, xmppServerType );
 		}
 	}
 	
