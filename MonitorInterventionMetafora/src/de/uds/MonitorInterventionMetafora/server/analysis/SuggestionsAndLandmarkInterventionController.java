@@ -13,20 +13,20 @@ import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.InterventionC
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.MessageType;
 import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.SuggestedMessagesModel;
 
-public class ReasonedInterventionController {
+public class SuggestionsAndLandmarkInterventionController implements InterventionController{
 	
 	MessagesController messagesController;
 	CfAgentCommunicationManager analysisChannelManager;
 	XmppServerType xmppServerType;
 		
 	
-	public ReasonedInterventionController(MessagesController feedbackController, CfAgentCommunicationManager analysisChannelManagaer, XmppServerType xmppServerType) {
+	public SuggestionsAndLandmarkInterventionController(MessagesController feedbackController, CfAgentCommunicationManager analysisChannelManagaer, XmppServerType xmppServerType) {
 		this.messagesController = feedbackController;
 		this.analysisChannelManager = analysisChannelManagaer;
 		this.xmppServerType = xmppServerType;
 	}
 
-	//	method that	 decides whether to send suggestions, landmarks, and messages
+	@Override
 	public void sendInterventions(List<BehaviorInstance> behaviorsIdentified, List<String> involovedUsers, Locale locale){
 		for (BehaviorInstance behaviorInstance : behaviorsIdentified){
 			sendLandmarkForBehavior(behaviorInstance);
