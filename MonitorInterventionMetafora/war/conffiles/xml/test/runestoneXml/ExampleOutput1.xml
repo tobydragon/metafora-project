@@ -1,7 +1,7 @@
 <interactiondata>
   <actions>
     <action time = "">
-      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <actiontype type = "OBJECT_SUMMARY" classification = "INDICATOR" />
       <user id = "tdragon@ithaca.edu" role = "ORIGINATOR" />
 	  <object id = "3_3" type = "parsons">
 	   <properties>
@@ -11,14 +11,14 @@
 	   </properties>
 	 </object>
 	 <content>
-       <description><![CDATA[tdragon@ithaca.edu spent 0 secs on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+       <description><![CDATA[tdragon@ithaca.edu spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
 	   <properties>
-	     <property name "FALSE_ENTRIES" value = "" />
+	     <property name = "FALSE_ENTRIES" value = "" />
 	   </properties>
 	 </content>
     </action> 
     <action time = "">
-      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <actiontype type = "OBJECT_SUMMARY" classification = "INDICATOR" />
       <user id = "tdragon@ithaca.edu" role = "ORIGINATOR" />
 	  <object id = "3_2" type = "parsons">
 	   <properties>
@@ -28,14 +28,14 @@
 	   </properties>
 	 </object>
 	 <content>
-       <description><![CDATA[tdragon@ithaca.edu spent 4 secs on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+       <description><![CDATA[tdragon@ithaca.edu spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
 	   <properties>
-	     <property name "FALSE_ENTRIES" value = "0_0-1_0-2_0-4_0-3_0" />
+	     <property name = "FALSE_ENTRIES" value = "0_0-1_0-2_0-4_0-3_0" />
 	   </properties>
 	 </content>
     </action>
     <action time = "">
-      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <actiontype type = "OBJECT_SUMMARY" classification = "INDICATOR" />
       <user id = "tdragon@ithaca.edu" role = "ORIGINATOR" />
 	  <object id = "3_1" type = "parsons">
 	   <properties>
@@ -45,14 +45,14 @@
 	   </properties>
 	 </object>
 	 <content>
-       <description><![CDATA[tdragon@ithaca.edu spent 5 secs on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+       <description><![CDATA[tdragon@ithaca.edu spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
 	   <properties>
-		 <property name "FALSE_ENTRIES" value = "0_0-2_0-1_0"/>
+		 <property name = "FALSE_ENTRIES" value = "0_0-2_0-1_0"/>
 	   </properties>
 	 </content>
     </action>
     <action time = "">
-      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <actiontype type = "OBJECT_SUMMARY" classification = "INDICATOR" />
       <user id = "tdragon@ithaca.edu" role = "ORIGINATOR" />
 	  <object id = "test_question3_1_0" type = "mChoice">
 	   <properties>
@@ -62,14 +62,14 @@
 	   </properties>
 	 </object>
 	 <content>
-       <description><![CDATA[tdragon@ithaca.edu spent 120 secs on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+       <description><![CDATA[tdragon@ithaca.edu spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
 	   <properties>
-		 <property name "FALSE_ENTRIES" value = "d" />
+		 <property name = "FALSE_ENTRIES" value = "d" />
 	   </properties>
 	 </content>
     </action> 
     <action time = "">
-      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <actiontype type = "OBEJCT_SUMMARY" classification = "INDICATOR" />
       <user id = "cwormsl2" role = "ORIGINATOR" />
 	  <object id = "question1_1_2" type = "mChoice">
 	   <properties>
@@ -79,14 +79,14 @@
 	   </properties>
 	 </object>
 	 <content>
-       <description><![CDATA[cwormsl2 spent 19 secs on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+       <description><![CDATA[cwormsl2 spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
 	   <properties>
-		 <property name "FALSE_ENTRIES" value = "d/c/a" />
+		 <property name = "FALSE_ENTRIES" value = "d/c/a" />
 	   </properties>
 	 </content>
     </action> 
     <action time = "">
-      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <actiontype type = "OBJECT_SUMMARY" classification = "INDICATOR" />
       <user id = "cwormsl2" role = "ORIGINATOR" />
 	  <object id = "question1_2_1" type = "mChoice">
 	   <properties>
@@ -96,14 +96,14 @@
 	   </properties>
 	 </object>
 	 <content>
-	   <description><![CDATA[cwormsl2 spent 31 secs on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+	   <description><![CDATA[cwormsl2 spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
 	   <properties>
-		 <property name "FALSE_ENTRIES" value = "b/c" />
+		 <property name = "FALSE_ENTRIES" value = "b/c" />
 	   </properties>
 	 </content>
     </action>
     <action time = "">
-      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <actiontype type = "OBJECT_SUMMARY" classification = "INDICATOR" />
       <user id = "cwormsl2" role = "ORIGINATOR" />
 	  <object id = "question1_3_1" type = "mChoice">
 	   <properties>
@@ -113,14 +113,14 @@
 	   </properties>
 	 </object>
 	 <content>
-       <description><![CDATA[cwormsl2 spent 309 secs on question1_1_2 and answered incorrectly 3 time(s), before answering correct]]></description>
+       <description><![CDATA[cwormsl2 spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
 	   <properties>
-		 <property name "FALSE_ENTRIES" value = "d/a,c/a,c,d" />
+		 <property name = "FALSE_ENTRIES" value = "d/a,c/a,c,d" />
 	   </properties>
 	 </content>
     </action>
     <action time = "">
-      <actiontype type = "QUESTION SUMMARY" classification = "INDICATOR" />
+      <actiontype type = "OBJECT_SUMMARY" classification = "INDICATOR" />
       <user id = "cwormsl2" role = "ORIGINATOR" />
 	  <object id = "question2_10_3" type = "parsons">
 	   <properties>
@@ -130,9 +130,9 @@
 	   </properties>
 	 </object>
 	 <content>
-       <description><![CDATA[cwormsl2 spent 202 secs on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+       <description><![CDATA[cwormsl2 spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
 	   <properties>
-		 <property name "FALSE_ENTRIES" value = "0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0 />
+		 <property name = "FALSE_ENTRIES" value = "0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0 />
 	   </properties>
 	 </content>
     </action>

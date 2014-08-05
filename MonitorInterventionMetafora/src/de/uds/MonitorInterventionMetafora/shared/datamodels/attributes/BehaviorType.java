@@ -3,6 +3,11 @@ package de.uds.MonitorInterventionMetafora.shared.datamodels.attributes;
 import com.allen_sauer.gwt.log.client.Log;
 
 public enum BehaviorType {
+		
+	
+	
+	//Runestone
+	OBJECT_SUMMARY (0),
 	
 	//DL
 	STRUGGLE(-1),

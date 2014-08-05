@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.server.analysis.behaviors;
 import java.util.List;
 import java.util.Vector;
 
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.OperationType;
@@ -62,6 +63,21 @@ public class BehaviorFilters {
 		ActionFilter afterFilter = new ActionFilter("Time after", true, afterRules);
 		return afterFilter;
 	}
+	
+	public static ActionFilter createUserFilter(String userToFilterBy){
+		List<ActionPropertyRule> newUserRules = new Vector<ActionPropertyRule>();
+		newUserRules.add(new ActionPropertyRule(CommonFormatStrings.ID_STRING, userToFilterBy, PropertyLocation.USER, OperationType.EQUALS));
+		ActionFilter userFilter = new ActionFilter("User", true, newUserRules);
+		return userFilter;
+	}
+	
+	public static ActionFilter createObjectIdFilter(String idToFilterBy){
+		List<ActionPropertyRule> newObjectIdRules = new Vector<ActionPropertyRule>();
+		newObjectIdRules.add(new ActionPropertyRule(CommonFormatStrings.ID_STRING, idToFilterBy, PropertyLocation.OBJECT, OperationType.EQUALS));
+		ActionFilter objectIdFilter = new ActionFilter("Object Id", true, newObjectIdRules);
+		return objectIdFilter;
+	}
+	
 	
 //	public static ActionFilter createSharedSolutionFilter(){
 //		List<ActionPropertyRule> newIdeaRules = new Vector<ActionPropertyRule>();
