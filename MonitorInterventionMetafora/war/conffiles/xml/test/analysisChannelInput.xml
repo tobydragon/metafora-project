@@ -302,7 +302,111 @@
           <property name="Correct" value="FALSE" />
         </properties>
       </content>
-    </action> 
+    </action>
+    <action time="1402007093000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="ACT" value="fwd" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used codelens firstexample, their action was fwd]]></description>
+        <properties />
+      </content>
+    </action>
+    <action time="1402007172000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="ACT" value="back" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used codelens firstexample, their action was back]]></description>
+        <properties />
+      </content>
+    </action>
+    <action time="1402007211000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="ACT" value="last" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used codelens firstexample, their action was last]]></description>
+        <properties />
+      </content>
+    </action>
+    <action time="1402007253000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="ACT" value="first" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used codelens firstexample, their action was first]]></description>
+        <properties />
+      </content>
+    </action>
+    <action time="1402008727000">
+      <actiontype type="ACTIVITY" classification="MODIFY" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="ACT" value="edit" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used activecode ch07_update1, their action was edit]]></description>
+        <properties />
+      </content>
+    </action>
+    <action time="1402008727000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="ch07_update1" type="ac_error">
+        <properties>
+          <property name="ACT" value="NameError: name 'pri' is not defined on line 2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used ac_error ch07_update1, their action was NameError: name 'pri' is not defined on line 2]]></description>
+        <properties />
+      </content>
+    </action>
+    <action time="1402008742000">
+      <actiontype type="ACTIVITY" classification="MODIFY" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="ACT" value="edit" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used activecode ch07_update1, their action was edit]]></description>
+        <properties />
+      </content>
+    </action>
+    <action time="1402008742000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="ACT" value="run" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used activecode ch07_update1, their action was run]]></description>
+        <properties />
+      </content>
+    </action>
   </actions>
 </interactiondata>
 

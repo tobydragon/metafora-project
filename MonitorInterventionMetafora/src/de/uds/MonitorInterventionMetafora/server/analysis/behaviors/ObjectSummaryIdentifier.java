@@ -4,8 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
+import com.google.gwt.dev.jjs.CorrelationFactory;
+
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 
@@ -20,6 +24,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		
 		//TODO @Caitlin: this is where we get all the actions (actions to consider) and you return a list of BehaviorInstances, one for each object (problem)
 		//create instance for each student each problem
+		
 		
 		
 		List<String> objectIds = new Vector<String>();
@@ -55,13 +60,15 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 					String falseEntries = "";
 					String type = "";
 					
+					
 						//goes through each entry for each objectId for each user
 						for (CfAction action : actionsFilteredByObjectId){
 							
 							long currentTime = action.getTime();
-							String correctField = action.getCfContent().getPropertyValue("Correct");
+							String correctField = action.getCfContent().getPropertyValue(RunestoneStrings.CORRECT_STRING);
 							String act = action.getCfObjects().get(0).getPropertyValue("ACT");
 							type = action.getCfObjects().get(0).getType();
+							
 							
 							if(currentTime < startTime){
 								startTime = currentTime;
@@ -71,15 +78,17 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 							}
 							
 							
-							if (correctField.equalsIgnoreCase("true")){
+							if(correctField == null){
 								isCorrect = true;
 							}
-							
+							else if (correctField.equalsIgnoreCase("true")){
+								isCorrect = true;
+							}
 							else if(correctField.equalsIgnoreCase("false")){
 								numberTimesFalse++;
 								
 								//gets the multiple choice input without the extra characters
-								if(action.getCfObjects().get(0).getType().equalsIgnoreCase("mChoice")){
+								if(action.getCfObjects().get(0).getType().equalsIgnoreCase(RunestoneStrings.MCHOICE_STRING)){
 									int startIndex = act.indexOf(":");
 									startIndex = startIndex + 1;
 									int endIndex = act.indexOf(":", (startIndex));	
@@ -90,17 +99,19 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 									falseEntries = falseEntries + "/" + act;
 								}
 							}
-							}
+							
+							
+						}
 						
 						long totalTime = (endTime - startTime) / 1000;
 										
 						List <CfProperty >instanceProperties = new Vector<CfProperty>();
-						instanceProperties.add(new CfProperty("TIME_SPENT", String.valueOf(totalTime)));
-						instanceProperties.add(new CfProperty("IS_EVER_CORRECT", String.valueOf(isCorrect)));
-						instanceProperties.add(new CfProperty("TIMES_FALSE", String.valueOf(numberTimesFalse)));
-						instanceProperties.add(new CfProperty("FALSE_ENTRIES", falseEntries));
-						instanceProperties.add(new CfProperty("OBJECT_ID", objectId));
-						instanceProperties.add(new CfProperty("TYPE", type));
+						instanceProperties.add(new CfProperty(RunestoneStrings.TIME_SPENT_STRING, String.valueOf(totalTime)));
+						instanceProperties.add(new CfProperty(RunestoneStrings.IS_EVER_CORRECT_STRING,String.valueOf(isCorrect)));
+						instanceProperties.add(new CfProperty(RunestoneStrings.TIMES_FALSE_STRING, String.valueOf(numberTimesFalse)));
+						instanceProperties.add(new CfProperty(RunestoneStrings.FALSE_ENTRIES_STRING, falseEntries));
+						instanceProperties.add(new CfProperty(RunestoneStrings.OBJECT_ID_STRING, objectId));
+						instanceProperties.add(new CfProperty(RunestoneStrings.TYPE_STRING, type));
 						
 						List <String> userList = new Vector<String>();
 						userList.add(user);
@@ -110,6 +121,8 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 					}
 				}
 		}
+		
+		
 	
 		return identifiedBehaviors;
 	}
