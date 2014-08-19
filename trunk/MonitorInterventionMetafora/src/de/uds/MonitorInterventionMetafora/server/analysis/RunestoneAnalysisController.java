@@ -18,7 +18,7 @@ public class RunestoneAnalysisController extends AnalysisController{
 
 	@Override
 	protected InterventionController createInterventionController(MessagesController feedbackController,CfAgentCommunicationManager analysisChannelManager,XmppServerType xmppServerType) {
-		return new RunestoneInterventionController();
+		return new RunestoneInterventionController(analysisChannelManager);
 	}
 
 	@Override

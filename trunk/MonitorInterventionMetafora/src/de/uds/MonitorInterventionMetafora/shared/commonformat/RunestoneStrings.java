@@ -11,6 +11,21 @@ public class RunestoneStrings {
 	public static final String EVENT_STRING = "event";
 	
 	
+	public static final String MCHOICE_STRING = "mChoice";
+	public static final String CORRECT_STRING = "Correct";
+
+	public static final String TIME_SPENT_STRING = "TIME_SPENT";
+	public static final String IS_EVER_CORRECT_STRING = "IS_EVER_CORRECT";
+	public static final String TIMES_FALSE_STRING = "TIMES_FALSE";
+	public static final String FALSE_ENTRIES_STRING = "FALSE_ENTRIES";
+	public static final String OBJECT_ID_STRING = "OBJECT_ID";
+	public static final String INDICATOR_STRING = "INDICATOR";
+	public static final String ORIGINATOR_STRING = "ORIGINATOR";
+	public static final String TYPE_STRING = "TYPE";
+	
+ 
+	
+	
 	
 
 }
