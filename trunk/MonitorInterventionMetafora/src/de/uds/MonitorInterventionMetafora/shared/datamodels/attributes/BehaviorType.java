@@ -7,7 +7,9 @@ public enum BehaviorType {
 	
 	
 	//Runestone
-	OBJECT_SUMMARY (0),
+	PER_USER_PER_OBJECT_SUMMARY (0),
+	PER_USER_ALL_OBJECTS_SUMMARY(0),
+	ALL_USERS_PER_OBJECT_SUMMARY(0),
 	
 	//DL
 	STRUGGLE(-1),

@@ -23,9 +23,13 @@ public class RunestoneStrings {
 	public static final String ORIGINATOR_STRING = "ORIGINATOR";
 	public static final String TYPE_STRING = "TYPE";
 	
- 
-	
-	
+	public static final String TOTAL_ATTEMPTED_STRING = "TOTAL_ATTEMPTED";
+	public static final String TOTAL_NUMBER_CORRECT_STRING = "TOTAL_NUMBER_CORRECT";
+	public static final String TOTAL_CORRECT_ANSWERS_STRING = "TOTAL_CORRECT_ANSWERS";
+	public static final String TOTAL_NUMBER_INCORRECT_STRING = "TOTAL_NUMBER_INCORRECT";
+	public static final String TOTAL_INCORRECT_ANSWERS_STRING = "TOTAL_INCORRECT_ANSWERS";
+	public static final String TOTAL_NUMBER_OTHERS_STRING = "TOTAL_NUMBER_OTHERS";
+	public static final String TOTAL_TIME_SPENT_STRING = "TOTAL_TIME_SPENT";
 	
 
 }
