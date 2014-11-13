@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
+import org.apache.log4j.Logger;
+
 import com.google.gwt.dev.jjs.CorrelationFactory;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
@@ -14,6 +16,7 @@ import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorT
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 
 public class ObjectSummaryIdentifier implements BehaviorIdentifier{
+	Logger log = Logger.getLogger(this.getClass());
 	
 	ActionFilter userFilter;
 	ActionFilter objectIdFilter;
@@ -21,7 +24,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 	@Override
 	public List<BehaviorInstance> identifyBehaviors(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties) {
 		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
-		
+		List<PerUserPerProblemSummary> perUserPerProblemSummaries = new Vector<PerUserPerProblemSummary>();
 		//TODO @Caitlin: this is where we get all the actions (actions to consider) and you return a list of BehaviorInstances, one for each object (problem)
 		//create instance for each student each problem
 		
@@ -104,29 +107,112 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 						}
 						
 						long totalTime = (endTime - startTime) / 1000;
-										
-						List <CfProperty >instanceProperties = new Vector<CfProperty>();
-						instanceProperties.add(new CfProperty(RunestoneStrings.TIME_SPENT_STRING, String.valueOf(totalTime)));
-						instanceProperties.add(new CfProperty(RunestoneStrings.IS_EVER_CORRECT_STRING,String.valueOf(isCorrect)));
-						instanceProperties.add(new CfProperty(RunestoneStrings.TIMES_FALSE_STRING, String.valueOf(numberTimesFalse)));
-						instanceProperties.add(new CfProperty(RunestoneStrings.FALSE_ENTRIES_STRING, falseEntries));
-						instanceProperties.add(new CfProperty(RunestoneStrings.OBJECT_ID_STRING, objectId));
-						instanceProperties.add(new CfProperty(RunestoneStrings.TYPE_STRING, type));
 						
-						List <String> userList = new Vector<String>();
-						userList.add(user);
+						PerUserPerProblemSummary summary = new PerUserPerProblemSummary(user, totalTime, isCorrect, numberTimesFalse, falseEntries, objectId, type);
+						perUserPerProblemSummaries.add(summary);
 						
-						BehaviorInstance instance = new BehaviorInstance(BehaviorType.OBJECT_SUMMARY, userList, instanceProperties);
-						identifiedBehaviors.add(instance);
+						identifiedBehaviors.add(summary.buildBehaviorInstance());
 					}
 				}
 		}
 		
+		List <BehaviorInstance> perUserSummary = buildPerUserAllObjectsSummaries(perUserPerProblemSummaries);
 		
-	
+		identifiedBehaviors.addAll(perUserSummary);
+		
 		return identifiedBehaviors;
 	}
+	
+	private List <BehaviorInstance> buildPerUserAllObjectsSummaries(List<PerUserPerProblemSummary> perUserPerProblemSummaries){
+		List<BehaviorInstance> userBehaviors = new Vector<BehaviorInstance>();
+		List<PerUserAllProblemsSummary> perUserAllProblemsSummaries = new Vector<PerUserAllProblemsSummary>();
+		
+		PerUserAllProblemsSummary firstSummary = createNewUserAllProblemsSummary(perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getUser());
+		
+		//adds summary to list
+		perUserAllProblemsSummaries.add(firstSummary);
+		
+		//go through the behavior list
+		for(int i=1; i<perUserPerProblemSummaries.size(); i++){
+			
+			//get the per user per problem summary
+			PerUserPerProblemSummary summary = perUserPerProblemSummaries.get(i);
+			
+			//get the user name from the per user per problem summary
+			String oldUser = summary.getUser();
+			
+			for(int j=0; j < perUserAllProblemsSummaries.size(); j++){
+				//get the user name from the per user all problems summary
+				String newUser = perUserAllProblemsSummaries.get(j).getUser();
+				
+				//see if that user has already been added to the list
+				if(oldUser.equals(newUser)){
+					//add the information to already made newUser
+					
+					//update total attempted
+					perUserAllProblemsSummaries.get(j).addTotalAttempted();
+					
+					//update total correct, correct string, total incorrect, and incorrect string
+					perUserAllProblemsSummaries.get(j).addCorrectOrIncorrect(summary.isCorrect(), summary.getObjectId());
+					
+					//update total time
+					perUserAllProblemsSummaries.get(j).addTotalTime(summary.getTime());
+					
+					//break out of j loop
+					break;
+				}else{
+					if(j == (perUserAllProblemsSummaries.size()-1)){
+						//add a newUser to the perUserAllProblemsSummaries
+						
+						PerUserAllProblemsSummary newSummary = createNewUserAllProblemsSummary(summary, oldUser);
+						
+						//adds summary to list
+						perUserAllProblemsSummaries.add(newSummary);
+						
+					}
+				}
+			}
+			
+		}
+		
+		log.debug(perUserAllProblemsSummaries);
+		for(PerUserAllProblemsSummary newSummary: perUserAllProblemsSummaries){
+			//makes summary a behavior instance
+			userBehaviors.add(newSummary.buildBehaviorInstance());
+		}
+		
+		return userBehaviors;
+	}
+
+	private PerUserAllProblemsSummary createNewUserAllProblemsSummary(PerUserPerProblemSummary summary, String oldUser){
+		//add a newUser to the perUserAllProblemsSummaries
+		
+		//if the first one is correct or not
+		int numCorrect;
+		int numIncorrect;
+		String correctID;
+		String incorrectID;
+		if(summary.isCorrect() == true){
+			numCorrect = 1;
+			numIncorrect = 0;
+			correctID = summary.getObjectId();
+			incorrectID = "";
+		}else{
+			numCorrect = 0;
+			numIncorrect = 1;
+			correctID = "";
+			incorrectID = summary.getObjectId();
+		}
+		
+		//makes a new summary
+		PerUserAllProblemsSummary newSummary = new PerUserAllProblemsSummary(oldUser, 1, numCorrect, correctID, numIncorrect, 
+				incorrectID, 0, summary.getTime());
+		
+		return newSummary;
+
+	}
 }
+
 	
 
 
