@@ -117,10 +117,104 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		}
 		
 		List <BehaviorInstance> perUserSummary = buildPerUserAllObjectsSummaries(perUserPerProblemSummaries);
-		
 		identifiedBehaviors.addAll(perUserSummary);
 		
+		List <BehaviorInstance> perObjectSummary = buildAllUsersPerObjectSummaries(perUserPerProblemSummaries);
+		identifiedBehaviors.addAll(perObjectSummary);
+		
 		return identifiedBehaviors;
+	}
+	
+	private List <BehaviorInstance> buildAllUsersPerObjectSummaries(List<PerUserPerProblemSummary> perUserPerProblemSummaries){
+		List<BehaviorInstance> userBehaviors = new Vector<BehaviorInstance>();
+		List<AllUsersPerProblemSummary> allUsersPerProblemSummaries = new Vector<AllUsersPerProblemSummary>();
+
+		AllUsersPerProblemSummary firstSummary = createNewObjectAllUsersSummary(perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getUser());
+		
+		//adds summary to list
+		allUsersPerProblemSummaries.add(firstSummary);
+		
+		//go through the behavior list
+		for(int i=1; i<perUserPerProblemSummaries.size(); i++){
+			
+			//get the per user per problem summary
+			PerUserPerProblemSummary summary = perUserPerProblemSummaries.get(i);
+			
+			//get the object ID from the per user per problem summary
+			String oldID = summary.getObjectId();
+			
+			boolean addedSummary = false;
+			int j = 0;
+			
+			while(j<allUsersPerProblemSummaries.size() && !addedSummary){
+			
+				//get the object ID from the per user all problems summary
+				String newID = allUsersPerProblemSummaries.get(j).getObjectID();
+				
+				//see if that ID has already been added to the list
+				if(oldID.equals(newID)){
+					
+					//update user list
+					allUsersPerProblemSummaries.get(j).addInfo(summary);
+					
+					addedSummary = true;
+				}
+			
+				j++;
+			}
+			
+			if(addedSummary == false){
+				//add a new ID to the allUsersPerProblemSummaries
+						
+				AllUsersPerProblemSummary newSummary = createNewObjectAllUsersSummary(summary, oldID);
+						
+				//adds summary to list
+				allUsersPerProblemSummaries.add(newSummary);
+			}
+			
+		}
+		
+		log.debug(allUsersPerProblemSummaries);
+		for(AllUsersPerProblemSummary newSummary: allUsersPerProblemSummaries){
+			//makes summary a behavior instance
+			userBehaviors.add(newSummary.buildBehaviorInstance());
+		}
+		
+		return userBehaviors;
+	}
+	
+	private AllUsersPerProblemSummary createNewObjectAllUsersSummary(PerUserPerProblemSummary summary, String objectID){
+		//add a new question to the allUsersPerProblemSummaries
+		
+		List <String> userList = new Vector<String>();
+		String user = summary.getUser();
+		userList.add(user);
+		
+		int numCorrect = 0;
+		String correctUsers = "";
+		int numBoth = 0;
+		String bothUsers = "";
+		int numIncorrect = 0;
+		String incorrectUsers = "";
+		
+		if (summary.isCorrect() == false){
+			numIncorrect = 1;
+			incorrectUsers = user + "/";
+		}else{
+			if (summary.getNumberTimesFalse() == 0){
+				numCorrect = 1;
+				correctUsers = user + "/";
+			}else{
+				numBoth = 1;
+				bothUsers = user + "/";
+			}
+		}
+		
+		//makes a new summary
+		AllUsersPerProblemSummary newSummary = new AllUsersPerProblemSummary(objectID, userList, 1, numCorrect, correctUsers, numBoth, bothUsers, numIncorrect, incorrectUsers);
+		
+		return newSummary;
+
 	}
 	
 	private List <BehaviorInstance> buildPerUserAllObjectsSummaries(List<PerUserPerProblemSummary> perUserPerProblemSummaries){
@@ -140,8 +234,10 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 			
 			//get the user name from the per user per problem summary
 			String oldUser = summary.getUser();
+			boolean addedSummary = false;
+			int j = 0;
 			
-			for(int j=0; j < perUserAllProblemsSummaries.size(); j++){
+			while(j<perUserAllProblemsSummaries.size() && !addedSummary){
 				//get the user name from the per user all problems summary
 				String newUser = perUserAllProblemsSummaries.get(j).getUser();
 				
@@ -158,19 +254,20 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 					//update total time
 					perUserAllProblemsSummaries.get(j).addTotalTime(summary.getTime());
 					
-					//break out of j loop
-					break;
-				}else{
-					if(j == (perUserAllProblemsSummaries.size()-1)){
-						//add a newUser to the perUserAllProblemsSummaries
-						
-						PerUserAllProblemsSummary newSummary = createNewUserAllProblemsSummary(summary, oldUser);
-						
-						//adds summary to list
-						perUserAllProblemsSummaries.add(newSummary);
-						
-					}
+					addedSummary = true;
 				}
+			
+				j++;
+			}
+			if (addedSummary == false){
+					
+				//add a newUser to the perUserAllProblemsSummaries
+						
+				PerUserAllProblemsSummary newSummary = createNewUserAllProblemsSummary(summary, oldUser);
+						
+				//adds summary to list
+				perUserAllProblemsSummaries.add(newSummary);
+						
 			}
 			
 		}

@@ -54,6 +54,10 @@ public class RunestoneInterventionController implements InterventionController{
 				actions.add(buildPerUserAllObjectsSummaryCFAction(behaviorInstance));
 			}
 			
+			else if(behaviorInstance.getBehaviorType() == BehaviorType.ALL_USERS_PER_OBJECT_SUMMARY){
+				actions.add(buildAllUsersPerObjectSummaryCFAction(behaviorInstance));
+			}
+			
 			else{
 				log.warn("Behavior type not recognized");
 			}
@@ -68,6 +72,41 @@ public class RunestoneInterventionController implements InterventionController{
 			
 			
 			
+	}
+	
+	private CfAction buildAllUsersPerObjectSummaryCFAction(BehaviorInstance behaviorInstance) {
+		// TODO Auto-generated method stub
+		long time = System.currentTimeMillis();
+		
+		CfActionType cfActionType = new CfActionType(behaviorInstance.getBehaviorType().toString(), RunestoneStrings.INDICATOR_STRING, null, null);
+		
+		List<CfUser> cfUsers = new ArrayList<CfUser>();
+		cfUsers.add(new CfUser(behaviorInstance.getUsernames().toString(),RunestoneStrings.ORIGINATOR_STRING));
+		
+		List<CfObject> cfObjects = new ArrayList<CfObject>();
+		
+		String user = behaviorInstance.getUsernames().toString();
+		String objectId = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.OBJECT_ID_STRING));
+		String totalAttempted = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_ATTEMPTED_STRING));
+		String numCorrect = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_CORRECT_STRING));
+		String correctUsers = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_CORRECT_USERS_STRING));
+		String numIncorrect = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_INCORRECT_STRING));
+		String incorrectUsers = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_INCORRECT_USERS_STRING));
+		String numBoth = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_BOTH_STRING));
+		String bothUsers = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_BOTH_USERS_STRING));
+				
+		String description = objectId + " was attempted by " + totalAttempted + " different user(s).  There were "
+				+ numCorrect + " only correct responses, " + numBoth + " first incorrect then correct responses, and "+ numIncorrect + " only incorrect responses."; 
+		
+		Map<String, CfProperty> cfPropertiesContent = new HashMap<String, CfProperty>();
+		for (CfProperty prop : behaviorInstance.getProperties()){
+			cfPropertiesContent.put(prop.getName(), prop);
+		}
+		CfContent cfContent = new CfContent(description, cfPropertiesContent);
+		
+		CfAction cfAction = new CfAction (time, cfActionType, cfUsers, cfObjects, cfContent);
+		
+		return cfAction;
 	}
 
 	private CfAction buildPerUserAllObjectsSummaryCFAction(
@@ -98,8 +137,7 @@ public class RunestoneInterventionController implements InterventionController{
 		String totalTime = behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_TIME_SPENT_STRING);
 				
 		String description = user + " spent " + totalTime + " seconds on " + totalAttempted + " questions.  There were "
-				+ numCorrect + " correct responses for questions " + correctQuestions + " and " + numIncorrect + "incorrect responses"
-						+ " for questions " + incorrectQuestions + " and " + numOthers + " other questions."; 
+				+ numCorrect + " correct responses and " + numIncorrect + " incorrect responses"; 
 		
 		Map<String, CfProperty> cfPropertiesContent = new HashMap<String, CfProperty>();
 		for (CfProperty prop : behaviorInstance.getProperties()){
