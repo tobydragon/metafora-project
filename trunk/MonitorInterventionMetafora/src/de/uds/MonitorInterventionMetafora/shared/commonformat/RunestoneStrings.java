@@ -31,5 +31,8 @@ public class RunestoneStrings {
 	public static final String TOTAL_NUMBER_OTHERS_STRING = "TOTAL_NUMBER_OTHERS";
 	public static final String TOTAL_TIME_SPENT_STRING = "TOTAL_TIME_SPENT";
 	
-
+	public static final String TOTAL_CORRECT_USERS_STRING = "TOTAL_CORRECT_USERS";
+	public static final String TOTAL_NUMBER_BOTH_STRING = "TOTAL_NUMBER_BOTH";
+	public static final String TOTAL_BOTH_USERS_STRING = "TOTAL_BOTH_USERS";
+	public static final String TOTAL_INCORRECT_USERS_STRING = "TOTAL_INCORRECT_USERS";
 }

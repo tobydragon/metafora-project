@@ -1878,6 +1878,2684 @@
         </properties>
       </content>
     </action>
+    <action time="1412267768178">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="19" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/a/c/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412267768191">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="2" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="31" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/c/b" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412267768199">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="160" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 160 seconds on firstexample and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412267768208">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="309" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d/a,c/a,c,d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412267768215">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="15" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 15 seconds on ch07_update1 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412267768225">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="202" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412267768237">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="120" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412267768248">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="5" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412267768256">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="4" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412267768263">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412720548700">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="19" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/a/c/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412720548710">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="2" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="31" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/c/b" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412720548720">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="160" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 160 seconds on firstexample and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412720548730">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="309" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d/a,c/a,c,d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412720548741">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="15" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 15 seconds on ch07_update1 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412720548750">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="202" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412720548760">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="120" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412720548769">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="5" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412720548779">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="4" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412720548788">
+      <actiontype type="OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412966635797">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="19" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/a/c/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412966635812">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="2" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="31" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/c/b" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412966635821">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="160" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 160 seconds on firstexample and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412966635829">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="309" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d/a,c/a,c,d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412966635837">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="15" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 15 seconds on ch07_update1 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412966635845">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="202" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412966635852">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="120" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412966635865">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="5" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412966635875">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="4" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1412966635882">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414005249898">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="19" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/a/c/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414005249932">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="2" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="31" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/c/b" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414005249974">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="160" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 160 seconds on firstexample and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414005250014">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="309" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d/a,c/a,c,d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414005250064">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="15" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 15 seconds on ch07_update1 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414005250103">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="202" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414005250138">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="120" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414005250173">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="5" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414005250208">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="4" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414005250243">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414608312862">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="19" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/a/c/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414608312875">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="2" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="31" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/c/b" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414608312888">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="160" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 160 seconds on firstexample and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414608312896">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="309" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d/a,c/a,c,d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414608312905">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="15" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 15 seconds on ch07_update1 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414608312913">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="202" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414608312925">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="120" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414608312937">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="5" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414608312951">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="4" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414608312960">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414684576611">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="19" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/a/c/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414684576621">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="2" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="31" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/c/b" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414684576630">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="160" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 160 seconds on firstexample and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414684576640">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="309" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d/a,c/a,c,d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414684576649">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="15" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 15 seconds on ch07_update1 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414684576667">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="202" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414684576682">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="120" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414684576695">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="5" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414684576706">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="4" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414684576719">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686098045">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="19" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/a/c/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686098051">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="2" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="31" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/c/b" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686098057">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="160" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 160 seconds on firstexample and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686098062">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="309" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d/a,c/a,c,d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686098067">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="15" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 15 seconds on ch07_update1 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686098072">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="202" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686098077">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="120" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686098081">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="5" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686098088">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="4" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686098093">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686172266">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="19" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/a/c/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686172270">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="2" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="31" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/c/b" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686172275">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="160" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 160 seconds on firstexample and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686172280">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="309" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d/a,c/a,c,d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686172286">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="15" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 15 seconds on ch07_update1 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686172291">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="202" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686172295">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="120" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686172300">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="5" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686172306">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="4" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686172312">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686256408">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="19" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/a/c/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686256423">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="2" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="31" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/c/b" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686256437">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="160" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 160 seconds on firstexample and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686256448">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="309" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d/a,c/a,c,d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686256462">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="15" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 15 seconds on ch07_update1 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686256476">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="202" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686256487">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="120" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686256501">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="5" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686256513">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="4" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414686256524">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414687793450">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="19" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/a/c/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414687793473">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="2" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="31" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/c/b" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414687793485">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="160" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 160 seconds on firstexample and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414687793499">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="309" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d/a,c/a,c,d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414687793522">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="15" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 15 seconds on ch07_update1 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414687793541">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="202" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414687793561">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="120" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414687793575">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="5" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414687793587">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="4" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1414687793605">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1415901024266">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="19" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/a/c/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1415901024266">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="2" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="31" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/c/b" />
+        </properties>
+      </content>
+    </action>
+    <action time="1415901024266">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="160" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 160 seconds on firstexample and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1415901024266">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="309" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d/a,c/a,c,d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1415901024266">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="15" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 15 seconds on ch07_update1 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1415901024266">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="202" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1415901024266">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="120" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1415901024266">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="5" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1415901024266">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="4" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1415901024266">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1415901024266">
+      <actiontype type="PER_USER_ALL_OBJECTS_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[[cwormsl2] spent 736 seconds on 6 questions.  There were 4 correct responses for questions /question1_2_1/firstexample/question1_3_1/ch07_update1 and 2incorrect responses for questions question1_1_2/question2_10_3 and 0 other questions.]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_ANSWERS" value="/question1_2_1/firstexample/question1_3_1/ch07_update1" />
+          <property name="TOTAL_INCORRECT_ANSWERS" value="question1_1_2/question2_10_3" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="2" />
+          <property name="TOTAL_NUMBER_OTHERS" value="0" />
+          <property name="TOTAL_ATTEMPTED" value="6" />
+          <property name="TOTAL_TIME_SPENT" value="736" />
+          <property name="TOTAL_NUMBER_CORRECT" value="4" />
+        </properties>
+      </content>
+    </action>
+    <action time="1415901024266">
+      <actiontype type="PER_USER_ALL_OBJECTS_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 249 seconds on 5 questions.  There were 5 correct responses for questions test_question3_1_0/test_question3_1_0/3_1/3_2/3_3 and 0incorrect responses for questions  and 0 other questions.]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_ANSWERS" value="test_question3_1_0/test_question3_1_0/3_1/3_2/3_3" />
+          <property name="TOTAL_INCORRECT_ANSWERS" value="" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="0" />
+          <property name="TOTAL_NUMBER_OTHERS" value="0" />
+          <property name="TOTAL_ATTEMPTED" value="5" />
+          <property name="TOTAL_TIME_SPENT" value="249" />
+          <property name="TOTAL_NUMBER_CORRECT" value="5" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416439615823">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="19" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/a/c/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416439615823">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="2" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="31" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/c/b" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416439615823">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="160" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 160 seconds on firstexample and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416439615823">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="309" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d/a,c/a,c,d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416439615823">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="15" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 15 seconds on ch07_update1 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416439615823">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="202" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416439615823">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="120" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416439615823">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="5" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416439615823">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="4" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416439615823">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416439615823">
+      <actiontype type="PER_USER_ALL_OBJECTS_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[[cwormsl2] spent 736 seconds on 6 questions.  There were 4 correct responses for questions /question1_2_1/firstexample/question1_3_1/ch07_update1 and 2incorrect responses for questions question1_1_2/question2_10_3 and 0 other questions.]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_ANSWERS" value="/question1_2_1/firstexample/question1_3_1/ch07_update1" />
+          <property name="TOTAL_INCORRECT_ANSWERS" value="question1_1_2/question2_10_3" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="2" />
+          <property name="TOTAL_NUMBER_OTHERS" value="0" />
+          <property name="TOTAL_ATTEMPTED" value="6" />
+          <property name="TOTAL_TIME_SPENT" value="736" />
+          <property name="TOTAL_NUMBER_CORRECT" value="4" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416439615823">
+      <actiontype type="PER_USER_ALL_OBJECTS_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 249 seconds on 5 questions.  There were 5 correct responses for questions test_question3_1_0/test_question3_1_0/3_1/3_2/3_3 and 0incorrect responses for questions  and 0 other questions.]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_ANSWERS" value="test_question3_1_0/test_question3_1_0/3_1/3_2/3_3" />
+          <property name="TOTAL_INCORRECT_ANSWERS" value="" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="0" />
+          <property name="TOTAL_NUMBER_OTHERS" value="0" />
+          <property name="TOTAL_ATTEMPTED" value="5" />
+          <property name="TOTAL_TIME_SPENT" value="249" />
+          <property name="TOTAL_NUMBER_CORRECT" value="5" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416504880063">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="19" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/a/c/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416504880063">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="2" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="31" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/c/b" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416504880063">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="160" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 160 seconds on firstexample and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416504880063">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="309" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d/a,c/a,c,d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416504880063">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="15" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 15 seconds on ch07_update1 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416504880063">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="202" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416504880063">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="120" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416504880063">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="5" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416504880063">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="4" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416504880063">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416504880063">
+      <actiontype type="PER_USER_ALL_OBJECTS_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[[cwormsl2] spent 736 seconds on 6 questions.  There were 4 correct responses and 2 incorrect responses]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_ANSWERS" value="/question1_2_1/firstexample/question1_3_1/ch07_update1" />
+          <property name="TOTAL_INCORRECT_ANSWERS" value="question1_1_2/question2_10_3" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="2" />
+          <property name="TOTAL_NUMBER_OTHERS" value="0" />
+          <property name="TOTAL_ATTEMPTED" value="6" />
+          <property name="TOTAL_TIME_SPENT" value="736" />
+          <property name="TOTAL_NUMBER_CORRECT" value="4" />
+        </properties>
+      </content>
+    </action>
+    <action time="1416504880063">
+      <actiontype type="PER_USER_ALL_OBJECTS_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 129 seconds on 4 questions.  There were 4 correct responses and 0 incorrect responses]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_ANSWERS" value="test_question3_1_0/3_1/3_2/3_3" />
+          <property name="TOTAL_INCORRECT_ANSWERS" value="" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="0" />
+          <property name="TOTAL_NUMBER_OTHERS" value="0" />
+          <property name="TOTAL_ATTEMPTED" value="4" />
+          <property name="TOTAL_TIME_SPENT" value="129" />
+          <property name="TOTAL_NUMBER_CORRECT" value="4" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="19" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 19 seconds on question1_1_2 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/a/c/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="2" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="31" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 31 seconds on question1_2_1 and answered incorrectly 2 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/c/b" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="160" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 160 seconds on firstexample and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="309" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 309 seconds on question1_3_1 and answered incorrectly 3 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d/a,c/a,c,d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="15" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 15 seconds on ch07_update1 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="3" />
+          <property name="IS_EVER_CORRECT" value="false" />
+          <property name="TIME_SPENT" value="202" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[cwormsl2] spent 202 seconds on question2_10_3 and answered incorrectly 3 time(s), never answered correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0/0_0-2_0-1_0/2_0-0_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="120" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 120 seconds on test_question3_1_0 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/d" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="5" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 5 seconds on 3_1 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-2_0-1_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="1" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="4" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 4 seconds on 3_2 and answered incorrectly 1 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="/0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="PER_USER_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="TIMES_FALSE" value="0" />
+          <property name="IS_EVER_CORRECT" value="true" />
+          <property name="TIME_SPENT" value="0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 0 seconds on 3_3 and answered incorrectly 0 time(s), before answering correct]]></description>
+        <properties>
+          <property name="FALSE_ENTRIES" value="" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="PER_USER_ALL_OBJECTS_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[[cwormsl2] spent 736 seconds on 6 questions.  There were 4 correct responses and 2 incorrect responses]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_ANSWERS" value="/question1_2_1/firstexample/question1_3_1/ch07_update1" />
+          <property name="TOTAL_INCORRECT_ANSWERS" value="question1_1_2/question2_10_3" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="2" />
+          <property name="TOTAL_NUMBER_OTHERS" value="0" />
+          <property name="TOTAL_ATTEMPTED" value="6" />
+          <property name="TOTAL_TIME_SPENT" value="736" />
+          <property name="TOTAL_NUMBER_CORRECT" value="4" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="PER_USER_ALL_OBJECTS_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[[tdragon@ithaca.edu] spent 129 seconds on 4 questions.  There were 4 correct responses and 0 incorrect responses]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_ANSWERS" value="test_question3_1_0/3_1/3_2/3_3" />
+          <property name="TOTAL_INCORRECT_ANSWERS" value="" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="0" />
+          <property name="TOTAL_NUMBER_OTHERS" value="0" />
+          <property name="TOTAL_ATTEMPTED" value="4" />
+          <property name="TOTAL_TIME_SPENT" value="129" />
+          <property name="TOTAL_NUMBER_CORRECT" value="4" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="ALL_USERS_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[cwormsl2 was attempted 1 times by different users.  There were 0 only correct responses, 0 first incorrect then correct responses, and 1 only incorrect responses.]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="1" />
+          <property name="TOTAL_BOTH_USERS" value="" />
+          <property name="OBJECT_ID" value="cwormsl2" />
+          <property name="TOTAL_ATTEMPTED" value="1" />
+          <property name="TOTAL_INCORRECT_USERS" value="cwormsl2/" />
+          <property name="TOTAL_NUMBER_BOTH" value="0" />
+          <property name="TOTAL_NUMBER_CORRECT" value="0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="ALL_USERS_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[question1_2_1 was attempted 1 times by different users.  There were 0 only correct responses, 1 first incorrect then correct responses, and 0 only incorrect responses.]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="0" />
+          <property name="TOTAL_BOTH_USERS" value="cwormsl2/" />
+          <property name="OBJECT_ID" value="question1_2_1" />
+          <property name="TOTAL_ATTEMPTED" value="1" />
+          <property name="TOTAL_INCORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_BOTH" value="1" />
+          <property name="TOTAL_NUMBER_CORRECT" value="0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="ALL_USERS_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[firstexample was attempted 1 times by different users.  There were 1 only correct responses, 0 first incorrect then correct responses, and 0 only incorrect responses.]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_USERS" value="cwormsl2/" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="0" />
+          <property name="TOTAL_BOTH_USERS" value="" />
+          <property name="OBJECT_ID" value="firstexample" />
+          <property name="TOTAL_ATTEMPTED" value="1" />
+          <property name="TOTAL_INCORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_BOTH" value="0" />
+          <property name="TOTAL_NUMBER_CORRECT" value="1" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="ALL_USERS_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[question1_3_1 was attempted 1 times by different users.  There were 0 only correct responses, 1 first incorrect then correct responses, and 0 only incorrect responses.]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="0" />
+          <property name="TOTAL_BOTH_USERS" value="cwormsl2/" />
+          <property name="OBJECT_ID" value="question1_3_1" />
+          <property name="TOTAL_ATTEMPTED" value="1" />
+          <property name="TOTAL_INCORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_BOTH" value="1" />
+          <property name="TOTAL_NUMBER_CORRECT" value="0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="ALL_USERS_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[ch07_update1 was attempted 1 times by different users.  There were 1 only correct responses, 0 first incorrect then correct responses, and 0 only incorrect responses.]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_USERS" value="cwormsl2/" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="0" />
+          <property name="TOTAL_BOTH_USERS" value="" />
+          <property name="OBJECT_ID" value="ch07_update1" />
+          <property name="TOTAL_ATTEMPTED" value="1" />
+          <property name="TOTAL_INCORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_BOTH" value="0" />
+          <property name="TOTAL_NUMBER_CORRECT" value="1" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="ALL_USERS_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[cwormsl2]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[question2_10_3 was attempted 1 times by different users.  There were 0 only correct responses, 0 first incorrect then correct responses, and 1 only incorrect responses.]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="1" />
+          <property name="TOTAL_BOTH_USERS" value="" />
+          <property name="OBJECT_ID" value="question2_10_3" />
+          <property name="TOTAL_ATTEMPTED" value="1" />
+          <property name="TOTAL_INCORRECT_USERS" value="cwormsl2/" />
+          <property name="TOTAL_NUMBER_BOTH" value="0" />
+          <property name="TOTAL_NUMBER_CORRECT" value="0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="ALL_USERS_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[test_question3_1_0 was attempted 1 times by different users.  There were 0 only correct responses, 1 first incorrect then correct responses, and 0 only incorrect responses.]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="0" />
+          <property name="TOTAL_BOTH_USERS" value="tdragon@ithaca.edu/" />
+          <property name="OBJECT_ID" value="test_question3_1_0" />
+          <property name="TOTAL_ATTEMPTED" value="1" />
+          <property name="TOTAL_INCORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_BOTH" value="1" />
+          <property name="TOTAL_NUMBER_CORRECT" value="0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="ALL_USERS_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[3_1 was attempted 1 times by different users.  There were 0 only correct responses, 1 first incorrect then correct responses, and 0 only incorrect responses.]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="0" />
+          <property name="TOTAL_BOTH_USERS" value="tdragon@ithaca.edu/" />
+          <property name="OBJECT_ID" value="3_1" />
+          <property name="TOTAL_ATTEMPTED" value="1" />
+          <property name="TOTAL_INCORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_BOTH" value="1" />
+          <property name="TOTAL_NUMBER_CORRECT" value="0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="ALL_USERS_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[3_2 was attempted 1 times by different users.  There were 0 only correct responses, 1 first incorrect then correct responses, and 0 only incorrect responses.]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="0" />
+          <property name="TOTAL_BOTH_USERS" value="tdragon@ithaca.edu/" />
+          <property name="OBJECT_ID" value="3_2" />
+          <property name="TOTAL_ATTEMPTED" value="1" />
+          <property name="TOTAL_INCORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_BOTH" value="1" />
+          <property name="TOTAL_NUMBER_CORRECT" value="0" />
+        </properties>
+      </content>
+    </action>
+    <action time="1417713978202">
+      <actiontype type="ALL_USERS_PER_OBJECT_SUMMARY" classification="INDICATOR" />
+      <user id="[tdragon@ithaca.edu]" role="ORIGINATOR" />
+      <content>
+        <description><![CDATA[3_3 was attempted 1 times by different users.  There were 1 only correct responses, 0 first incorrect then correct responses, and 0 only incorrect responses.]]></description>
+        <properties>
+          <property name="TOTAL_CORRECT_USERS" value="tdragon@ithaca.edu/" />
+          <property name="TOTAL_NUMBER_INCORRECT" value="0" />
+          <property name="TOTAL_BOTH_USERS" value="" />
+          <property name="OBJECT_ID" value="3_3" />
+          <property name="TOTAL_ATTEMPTED" value="1" />
+          <property name="TOTAL_INCORRECT_USERS" value="" />
+          <property name="TOTAL_NUMBER_BOTH" value="0" />
+          <property name="TOTAL_NUMBER_CORRECT" value="1" />
+        </properties>
+      </content>
+    </action>
   </actions>
 </interactiondata>
 
