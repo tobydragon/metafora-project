@@ -129,7 +129,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		List<BehaviorInstance> userBehaviors = new Vector<BehaviorInstance>();
 		List<AllUsersPerProblemSummary> allUsersPerProblemSummaries = new Vector<AllUsersPerProblemSummary>();
 
-		AllUsersPerProblemSummary firstSummary = createNewObjectAllUsersSummary(perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getUser());
+		AllUsersPerProblemSummary firstSummary = createNewObjectAllUsersSummary(perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getObjectId());
 		
 		//adds summary to list
 		allUsersPerProblemSummaries.add(firstSummary);
