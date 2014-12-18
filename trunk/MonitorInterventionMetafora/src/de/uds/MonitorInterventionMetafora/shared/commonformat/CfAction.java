@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.shared.commonformat;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 public class CfAction implements Serializable, Comparable<CfAction>{
@@ -152,48 +153,18 @@ public class CfAction implements Serializable, Comparable<CfAction>{
 		return users;
 	}
 
-	//	public XmlFragment toXml(){
-//		XmlFragment xmlFragment= new XmlFragment(CommonFormatStrings.ACTION_STRING);
-//		xmlFragment.setAttribute(CommonFormatStrings.TIME_STRING, Long.toString(time));
-//		
-//		xmlFragment.addContent(cfActionType.toXml());
-//		for (CfUser cfUser : cfUsers){
-//			xmlFragment.addContent(cfUser.toXml());
-//		}
-//		for (CfObject cfObject : cfObjects){
-//			xmlFragment.addContent(cfObject.toXml());
-//		}
-//		
-//		if (cfContent != null){
-//			xmlFragment.addContent(cfContent.toXml());
-//		}
-//		return xmlFragment;	
-//	}
-//	
-//	public static CfAction fromXml(XmlFragmentInterface xmlFragment){
-//		String timeStr = xmlFragment.getAttributeValue(CommonFormatStrings.TIME_STRING);
-//		long time = CommonFormatUtil.getTime(timeStr);
-//		
-//		CfActionType cfActionType = CfActionType.fromXml(xmlFragment.cloneChild(CommonFormatStrings.ACTION_TYPE_STRING));
-//		
-//		List<CfUser> cfUsers = new ArrayList<CfUser>();
-//		for (XmlFragmentInterface cfUserElement : xmlFragment.getChildren(CommonFormatStrings.USER_STRING)){
-//			cfUsers.add(CfUser.fromXml(cfUserElement));
-//		}
-//		
-//		List<CfObject> cfObjects = new ArrayList<CfObject>();
-//		for (XmlFragmentInterface cfObjectElement : xmlFragment.getChildren(CommonFormatStrings.OBJECT_STRING)){
-//			cfObjects.add(CfObject.fromXml(cfObjectElement));
-//		}
-//		
-//		XmlFragmentInterface cfContentElement = xmlFragment.cloneChild(CommonFormatStrings.CONTENT_STRING);
-//		if (cfContentElement != null){
-//			CfContent cfContent = CfContent.fromXml(cfContentElement);
-//			return new CfAction (time, cfActionType, cfUsers, cfObjects, cfContent);
-//		}
-//		
-//		return new CfAction (time, cfActionType, cfUsers, cfObjects);
-//	}
-//	
+	public void replaceUserIds(Map<String, String> old2newId){
+		List <CfUser> users = getCfUsers();
+		for (CfUser user : users){
+			String newName = old2newId.get(user.getid());
+			if (newName != null){
+				cfContent.replaceStringInDescription(user.getid(), newName);
+				user.setid(newName);
+			}
+			else {
+				System.err.println("No new name for " + user.getid());
+			}
+		}
+	}
 	
 }
