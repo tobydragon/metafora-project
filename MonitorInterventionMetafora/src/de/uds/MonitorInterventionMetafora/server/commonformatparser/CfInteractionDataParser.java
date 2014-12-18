@@ -57,40 +57,18 @@ public class CfInteractionDataParser {
 	}
 	
 	public static void main(String []args){
-		CfInteractionData testActions = getTestableInstance();
+		//CfInteractionData testActions = getTestableInstance();
 		
 		//logger.info(testActions.toString());
 		//logger.info(CfInteractionDataParser.toXml(testActions));
 		
-		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/runestoneXml/runestoneExample.xml");
-		logger.info(runestoneFrag.toString());
+		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/runestoneXml/oneWeek.xml");
+		//logger.info(runestoneFrag.toString());
 		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
-		logger.info(CfInteractionDataParser.toXml(testCf));
-		
-		
-		
-		
-		
-		
-		
-		String ts = (runestoneFrag.getChildren("row").get(0).getChildValue("timestamp"));
-	
-		//converts a time stamp to epoch
-		DateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //not sure if to use HH (0-23) or kk (1-24)
-		try{
-		long date1 = dateForm.parse(ts).getTime();
-		long date2 = dateForm.parse("2014-01-29 19:22:05").getTime();
-		long date3 = dateForm.parse("2014-06-13 3:42:32").getTime();
-		
-		
-		System.out.println("Epoch time of 2014-01-29 19:22:12: " + (date1)); //divide by 1000 to convert to seconds
-		System.out.println("Epoch time of 2014-01-29 19:22:05: " + (date2));
-		System.out.println("Epoch time of 2014-06-13 3:42:32: " + (date3));
-		}
-		catch (ParseException e){
-			;
-		
-		}
+		testCf.replaceAllIds();
+		XmlFragment cfFrag = CfInteractionDataParser.toXml(testCf);
+		logger.info(cfFrag);
+		cfFrag.overwriteFile("war/conffiles/xml/test/runestoneXml/oneWeekCF.xml");
 	
 	}
 

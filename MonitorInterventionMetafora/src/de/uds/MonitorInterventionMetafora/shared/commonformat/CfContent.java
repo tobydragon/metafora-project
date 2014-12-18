@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gwt.i18n.client.LocalizableResource.Description;
+
 
 
 public class CfContent implements Serializable  {
@@ -15,7 +17,7 @@ public class CfContent implements Serializable  {
 	 */
 	private static final long serialVersionUID = 798674379182318122L;
 
-	private String descripiton;
+	private String description;
 	
 //	private long  _actionTime;
 	private Map<String, CfProperty> properties;
@@ -27,13 +29,13 @@ public class CfContent implements Serializable  {
 	
 	public CfContent(String description) {
 		super();
-		this.descripiton = description;
+		this.description = description;
 		this.properties = new HashMap<String, CfProperty>();
 	}
 	
 	public CfContent(String description, Map<String, CfProperty> properties) {
 		super();
-		this.descripiton = description;
+		this.description = description;
 		this.properties = properties;
 	}
 
@@ -48,12 +50,12 @@ public class CfContent implements Serializable  {
 //		return _actionTime;
 //	}
 	public String getDescription() {
-		return descripiton;
+		return description;
 	}
 
 
 	public void setDescription(String description) {
-		this.descripiton = description;
+		this.description = description;
 	}
 
 	public void addProperty(CfProperty property){
@@ -82,43 +84,15 @@ public class CfContent implements Serializable  {
 	
 	public String toString(){
 		String str= CommonFormatStrings.CONTENT_STRING + "\n" ;
-		str += "\t" + CommonFormatStrings.DESCRIPTION_STRING + " - " + descripiton +"\n";
+		str += "\t" + CommonFormatStrings.DESCRIPTION_STRING + " - " + description +"\n";
 		str += "\t" + CommonFormatStrings.PROPERTIES_STRING +  " - " + properties.toString();
 		return str;	
 	}
-	
-//	public XmlFragment toXml(){
-//		XmlFragment xmlFragment= new XmlFragment(CommonFormatStrings.CONTENT_STRING);
-//		
-//		XmlFragment descripitonFragment = new XmlFragment(CommonFormatStrings.DESCRIPTION_STRING);
-//		descripitonFragment.addCdataContent(descripiton);
-//		xmlFragment.addContent(descripitonFragment);
-//		
-//		XmlFragment propertyFragment = new XmlFragment(CommonFormatStrings.PROPERTIES_STRING);
-//		for (CfProperty objectProperty : properties.values()){
-//			propertyFragment.addContent(objectProperty.toXml());
-//		}
-//		xmlFragment.addContent(propertyFragment);
-//		return xmlFragment;	
-//	}
-//	
-//	public static CfContent fromXml(XmlFragmentInterface xmlFragment){
-//		String description = xmlFragment.getChildValue(CommonFormatStrings.DESCRIPTION_STRING);
-//		
-//		XmlFragmentInterface propertyFragment = xmlFragment.cloneChild(CommonFormatStrings.PROPERTIES_STRING);
-//		Map<String, CfProperty> cfProperties = new HashMap<String, CfProperty>();
-//		
-//		if (propertyFragment != null){
-//			for (XmlFragmentInterface cfPropertyElement : propertyFragment.getChildren(CommonFormatStrings.PROPERTY_STRING)){
-//				CfProperty cfProperty = CfProperty.fromXml(cfPropertyElement);
-//				cfProperties.put(cfProperty.getName(), cfProperty);
-//			}
-//		}
-//		else {
-//			logger.warn("[fromXml] no properties fragment found for content with description - " + description);
-//		}
-//		return new CfContent(description, cfProperties);	
-//	}
-//	
 
+	public void replaceStringInDescription(String oldName, String newName) {
+		
+		description = description.replaceAll(oldName, newName);
+		System.out.println("Old: " + oldName + "\tNew: " + newName + "\tDesc: " + description);
+	}
+	
 }

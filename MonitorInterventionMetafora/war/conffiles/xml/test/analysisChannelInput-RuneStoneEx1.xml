@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New document created with EditiX at Mon May 06 12:45:36 CEST 2013 -->
+<interactiondata>
+  <actions>
+    <action time="1391041131000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="tdragon@ithaca.edu" role="ORIGINATOR" />
+      <object id="3_3" type="parsons">
+        <properties>
+          <property name="ACT" value="yes" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[tdragon@ithaca.edu used parsons 3_3, their action was yes]]></description>
+        <properties>
+          <property name="Correct" value="TRUE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1391041109000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="tdragon@ithaca.edu" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="ACT" value="yes" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[tdragon@ithaca.edu used parsons 3_2, their action was yes]]></description>
+        <properties>
+          <property name="Correct" value="TRUE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1391041105000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="tdragon@ithaca.edu" role="ORIGINATOR" />
+      <object id="3_2" type="parsons">
+        <properties>
+          <property name="ACT" value="0_0-1_0-2_0-4_0-3_0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[tdragon@ithaca.edu used parsons 3_2, their action was 0_0-1_0-2_0-4_0-3_0]]></description>
+        <properties>
+          <property name="Correct" value="FALSE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1391041078000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="tdragon@ithaca.edu" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="ACT" value="0_0-2_0-1_0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[tdragon@ithaca.edu used parsons 3_1, their action was 0_0-2_0-1_0]]></description>
+        <properties>
+          <property name="Correct" value="FALSE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1391041073000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="tdragon@ithaca.edu" role="ORIGINATOR" />
+      <object id="3_1" type="parsons">
+        <properties>
+          <property name="ACT" value="yes" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[tdragon@ithaca.edu used parsons 3_1, their action was yes]]></description>
+        <properties>
+          <property name="Correct" value="TRUE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1391041055000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="tdragon@ithaca.edu" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="ACT" value="answer:c:correct" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[tdragon@ithaca.edu used mChoice test_question3_1_0, their action was answer:c:correct]]></description>
+        <properties>
+          <property name="Correct" value="TRUE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1391040935000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="tdragon@ithaca.edu" role="ORIGINATOR" />
+      <object id="test_question3_1_0" type="mChoice">
+        <properties>
+          <property name="ACT" value="answer:d:no" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[tdragon@ithaca.edu used mChoice test_question3_1_0, their action was answer:d:no]]></description>
+        <properties>
+          <property name="Correct" value="FALSE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1402005435000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="ACT" value="answer:d:no" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used mChoice question1_1_2, their action was answer:d:no]]></description>
+        <properties>
+          <property name="Correct" value="FALSE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1402005424000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="ACT" value="answer:c:no" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used mChoice question1_1_2, their action was answer:c:no]]></description>
+        <properties>
+          <property name="Correct" value="FALSE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1402005416000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="question1_1_2" type="mChoice">
+        <properties>
+          <property name="ACT" value="answer:a:no" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used mChoice question1_1_2, their action was answer:a:no]]></description>
+        <properties>
+          <property name="Correct" value="FALSE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1402006605000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="ACT" value="answer:a:correct" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used mChoice question1_2_1, their action was answer:a:correct]]></description>
+        <properties>
+          <property name="Correct" value="TRUE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1402006579000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="ACT" value="answer:b:no" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used mChoice question1_2_1, their action was answer:b:no]]></description>
+        <properties>
+          <property name="Correct" value="FALSE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1402006574000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="question1_2_1" type="mChoice">
+        <properties>
+          <property name="ACT" value="answer:c:no" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used mChoice question1_2_1, their action was answer:c:no]]></description>
+        <properties>
+          <property name="Correct" value="FALSE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1402007320000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="ACT" value="answer:d:no" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used mChoice question1_3_1, their action was answer:d:no]]></description>
+        <properties>
+          <property name="Correct" value="FALSE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1402007380000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="ACT" value="answer:a,c:no" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used mChoice question1_3_1, their action was answer:a,c:no]]></description>
+        <properties>
+          <property name="Correct" value="FALSE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1402007602000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="ACT" value="answer:a,c,d:no" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used mChoice question1_3_1, their action was answer:a,c,d:no]]></description>
+        <properties>
+          <property name="Correct" value="FALSE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1402007629000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="question1_3_1" type="mChoice">
+        <properties>
+          <property name="ACT" value="answer:a,b,c:correct" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used mChoice question1_3_1, their action was answer:a,b,c:correct]]></description>
+        <properties>
+          <property name="Correct" value="TRUE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1402009010000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="ACT" value="0_0-2_0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used parsons question2_10_3, their action was 0_0-2_0]]></description>
+        <properties>
+          <property name="Correct" value="FALSE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1402009169000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="ACT" value="0_0-2_0-1_0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used parsons question2_10_3, their action was 0_0-2_0-1_0]]></description>
+        <properties>
+          <property name="Correct" value="FALSE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1402009212000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="question2_10_3" type="parsons">
+        <properties>
+          <property name="ACT" value="2_0-0_0-1_0" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used parsons question2_10_3, their action was 2_0-0_0-1_0]]></description>
+        <properties>
+          <property name="Correct" value="FALSE" />
+        </properties>
+      </content>
+    </action>
+    <action time="1402007093000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="ACT" value="fwd" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used codelens firstexample, their action was fwd]]></description>
+        <properties />
+      </content>
+    </action>
+    <action time="1402007172000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="ACT" value="back" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used codelens firstexample, their action was back]]></description>
+        <properties />
+      </content>
+    </action>
+    <action time="1402007211000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="ACT" value="last" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used codelens firstexample, their action was last]]></description>
+        <properties />
+      </content>
+    </action>
+    <action time="1402007253000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="firstexample" type="codelens">
+        <properties>
+          <property name="ACT" value="first" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used codelens firstexample, their action was first]]></description>
+        <properties />
+      </content>
+    </action>
+    <action time="1402008727000">
+      <actiontype type="ACTIVITY" classification="MODIFY" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="ACT" value="edit" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used activecode ch07_update1, their action was edit]]></description>
+        <properties />
+      </content>
+    </action>
+    <action time="1402008727000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="ch07_update1" type="ac_error">
+        <properties>
+          <property name="ACT" value="NameError: name 'pri' is not defined on line 2" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used ac_error ch07_update1, their action was NameError: name 'pri' is not defined on line 2]]></description>
+        <properties />
+      </content>
+    </action>
+    <action time="1402008742000">
+      <actiontype type="ACTIVITY" classification="MODIFY" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="ACT" value="edit" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used activecode ch07_update1, their action was edit]]></description>
+        <properties />
+      </content>
+    </action>
+    <action time="1402008742000">
+      <actiontype type="ACTIVITY" classification="OTHER" succeed="false" logged="false" />
+      <user id="cwormsl2" role="ORIGINATOR" />
+      <object id="ch07_update1" type="activecode">
+        <properties>
+          <property name="ACT" value="run" />
+        </properties>
+      </object>
+      <content>
+        <description><![CDATA[cwormsl2 used activecode ch07_update1, their action was run]]></description>
+        <properties />
+      </content>
+    </action>
+  </actions>
+</interactiondata>
+
+
+
+

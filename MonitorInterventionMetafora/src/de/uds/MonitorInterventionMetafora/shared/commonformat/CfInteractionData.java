@@ -1,7 +1,10 @@
 package de.uds.MonitorInterventionMetafora.shared.commonformat;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 
 
 
@@ -29,26 +32,48 @@ public class CfInteractionData implements Serializable{
 		
 		cfActions=_cfActions;
 	}
+
+	private List<String> findAllUniqueUsers(){
+		List<String> uniqueUsers = new Vector<String>();
+		for (CfAction action : cfActions){
+			List <CfUser> users = action.getCfUsers();
+			for (CfUser user : users){
+				boolean needToAdd = true;
+				for (String existingUsers : uniqueUsers){
+					if (existingUsers.equals(user.getid())){
+						needToAdd = false;
+					}
+				}
+				if (needToAdd){
+					uniqueUsers.add(user.getid());
+				}
+			}
+		}
+		return uniqueUsers;
+	}
 	
-//	public XmlFragmentInterface toXml(){
-//		XmlFragmentInterface xmlFragment= new XmlFragment(CommonFormatStrings.INTERACTION_DATA_STRING);
-//		XmlFragment actionsFragment = new XmlFragment(CommonFormatStrings.ACTIONS_STRING);
-//		for (CfAction cfAction : cfActions){
-//			actionsFragment.addContent(cfAction.toXml());
-//		}
-//		xmlFragment.addContent(actionsFragment);
-//		return xmlFragment;
-//	}
-//	
-//	public static CfInteractionData fromXml(XmlFragmentInterface xmlFragment){
-//		List<CfAction> cfActions = new ArrayList<CfAction>();
-//		
-//		XmlFragmentInterface actionsFragment = xmlFragment.cloneChild(CommonFormatStrings.ACTIONS_STRING);
-//		for (XmlFragmentInterface cfActionElement : actionsFragment.getChildren(CommonFormatStrings.ACTION_STRING)){
-//			cfActions.add(CfAction.fromXml(cfActionElement));
-//		}
-//		
-//		return new CfInteractionData(cfActions);
-//	}
+	private void replaceAllIds(Map<String, String> old2newId){
+		for (CfAction action : cfActions){
+			action.replaceUserIds(old2newId);
+		}
+	}
+	
+	private Map <String, String> calcNewIds(List<String> oldIds){
+		String prefix = "student";
+		int countStart = 0;
+		Map <String, String> old2newId = new HashMap<String, String>();
+		for (String oldId : oldIds){
+			old2newId.put(oldId, prefix+countStart);
+			countStart++;
+		}
+		return old2newId;
+		
+	}
+	
+	public void replaceAllIds(){
+		List<String> ids = findAllUniqueUsers();
+		Map <String, String> old2newIds = calcNewIds(ids);
+		replaceAllIds(old2newIds);
+	}
 
 }
