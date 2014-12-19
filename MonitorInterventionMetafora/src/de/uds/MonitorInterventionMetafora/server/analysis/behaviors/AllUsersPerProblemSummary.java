@@ -11,6 +11,7 @@ public class AllUsersPerProblemSummary {
 	private String objectID;
 	private List <String> userList = new Vector<String>();
 	private int totalAttempted;
+	private boolean assessable;
 	private int numCorrect;
 	private String correctUsers;
 	private int numBoth;
@@ -18,12 +19,13 @@ public class AllUsersPerProblemSummary {
 	private int numIncorrect;
 	private String incorrectUsers;
 	
-	public AllUsersPerProblemSummary(String objectID, List<String> userList, int totalAttempted, int numCorrect, String correctUsers, int numBoth, String bothUsers,
+	public AllUsersPerProblemSummary(String objectID, List<String> userList, int totalAttempted, boolean assessable, int numCorrect, String correctUsers, int numBoth, String bothUsers,
 			int numIncorrect, String incorrectUsers) {
 		super();
 		this.objectID = objectID;
 		this.userList = userList;
 		this.totalAttempted = totalAttempted;
+		this.assessable = assessable;
 		this.numCorrect = numCorrect;
 		this.correctUsers = correctUsers;
 		this.numBoth = numBoth;
@@ -36,6 +38,7 @@ public class AllUsersPerProblemSummary {
 		List <CfProperty >instanceProperties = new Vector<CfProperty>();
 		instanceProperties.add(new CfProperty(RunestoneStrings.OBJECT_ID_STRING,String.valueOf(objectID)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_ATTEMPTED_STRING,String.valueOf(totalAttempted)));
+		instanceProperties.add(new CfProperty(RunestoneStrings.IS_ASSESSABLE_STRING,String.valueOf(assessable)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_NUMBER_CORRECT_STRING,String.valueOf(numCorrect)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_CORRECT_USERS_STRING,String.valueOf(correctUsers)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_NUMBER_BOTH_STRING,String.valueOf(numBoth)));
@@ -78,6 +81,10 @@ public class AllUsersPerProblemSummary {
 	
 	public int getTotalAttempted(){
 		return totalAttempted;
+	}
+	
+	public boolean getAssessable(){
+		return assessable;
 	}
 	
 	public int getNumCorrect(){

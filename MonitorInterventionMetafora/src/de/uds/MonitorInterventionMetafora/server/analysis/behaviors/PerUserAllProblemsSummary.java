@@ -10,6 +10,8 @@ import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorT
 public class PerUserAllProblemsSummary {
 	private String user;
 	private int totalAttempted;
+	private int numNotAssessable;
+	private String notAssessableQuestions;
 	private int numCorrect;
 	private String correctQuestions;
 	private int numIncorrect;
@@ -17,11 +19,13 @@ public class PerUserAllProblemsSummary {
 	private int numOthers;
 	private long totalTime;
 	
-	public PerUserAllProblemsSummary(String user, int totalAttempted, int numCorrect, String correctQuestions, int numIncorrect, 
+	public PerUserAllProblemsSummary(String user, int totalAttempted, int numNotAssessable, String notAssessableQuestions, int numCorrect, String correctQuestions, int numIncorrect, 
 			String incorrectQuestions, int numOthers, long totalTime) {
 		super();
 		this.user = user;
 		this.totalAttempted = totalAttempted;
+		this.numNotAssessable = numNotAssessable;
+		this.notAssessableQuestions = notAssessableQuestions;
 		this.numCorrect = numCorrect;
 		this.correctQuestions = correctQuestions;
 		this.numIncorrect = numIncorrect;
@@ -33,6 +37,8 @@ public class PerUserAllProblemsSummary {
 	public BehaviorInstance buildBehaviorInstance(){
 		List <CfProperty >instanceProperties = new Vector<CfProperty>();
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_ATTEMPTED_STRING,String.valueOf(totalAttempted)));
+		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_NUMBER_NOT_ASSESSABLE_STRING,String.valueOf(numNotAssessable)));
+		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_NOT_ASSESSABLE_ANSWERS_STRING, String.valueOf(notAssessableQuestions)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_NUMBER_CORRECT_STRING, String.valueOf(numCorrect)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_CORRECT_ANSWERS_STRING, String.valueOf(correctQuestions)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_NUMBER_INCORRECT_STRING, String.valueOf(numIncorrect)));
@@ -58,6 +64,14 @@ public class PerUserAllProblemsSummary {
 	public void addTotalAttempted(){
 		this.totalAttempted = totalAttempted + 1;
 	}
+	
+	public int getNumNotAssessable() {
+		return numNotAssessable;
+	}
+	
+	public String getNotAssessableQuestions(){
+		return notAssessableQuestions;
+	}
 
 	public int getNumCorrect() {
 		return numCorrect;
@@ -75,7 +89,11 @@ public class PerUserAllProblemsSummary {
 		return incorrectQuestions;
 	}
 	
-	public void addCorrectOrIncorrect(boolean attempt, String objectID) {
+	public void addQuestion(boolean attempt, boolean assessable, String objectID) {
+		if (assessable = false){
+			this.numNotAssessable = numNotAssessable + 1;
+			this.notAssessableQuestions = notAssessableQuestions + "/" + objectID;
+		}
 		if (attempt == true){
 			this.numCorrect = numCorrect + 1;
 			this.correctQuestions = correctQuestions + "/" + objectID;
