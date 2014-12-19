@@ -59,6 +59,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 					long startTime = actionsFilteredByObjectId.get(0).getTime();
 					long endTime = actionsFilteredByObjectId.get(0).getTime();
 					boolean isCorrect = false;
+					boolean assessable = true;
 					int numberTimesFalse = 0;
 					String falseEntries = "";
 					String type = "";
@@ -83,6 +84,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 							
 							if(correctField == null){
 								isCorrect = true;
+								assessable = false;
 							}
 							else if (correctField.equalsIgnoreCase("true")){
 								isCorrect = true;
@@ -108,7 +110,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 						
 						long totalTime = (endTime - startTime) / 1000;
 						
-						PerUserPerProblemSummary summary = new PerUserPerProblemSummary(user, totalTime, isCorrect, numberTimesFalse, falseEntries, objectId, type);
+						PerUserPerProblemSummary summary = new PerUserPerProblemSummary(user, totalTime, isCorrect, assessable, numberTimesFalse, falseEntries, objectId, type);
 						perUserPerProblemSummaries.add(summary);
 						
 						identifiedBehaviors.add(summary.buildBehaviorInstance());
@@ -211,7 +213,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		}
 		
 		//makes a new summary
-		AllUsersPerProblemSummary newSummary = new AllUsersPerProblemSummary(objectID, userList, 1, numCorrect, correctUsers, numBoth, bothUsers, numIncorrect, incorrectUsers);
+		AllUsersPerProblemSummary newSummary = new AllUsersPerProblemSummary(objectID, userList, 1, summary.getAssessable() ,numCorrect, correctUsers, numBoth, bothUsers, numIncorrect, incorrectUsers);
 		
 		return newSummary;
 
@@ -249,7 +251,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 					perUserAllProblemsSummaries.get(j).addTotalAttempted();
 					
 					//update total correct, correct string, total incorrect, and incorrect string
-					perUserAllProblemsSummaries.get(j).addCorrectOrIncorrect(summary.isCorrect(), summary.getObjectId());
+					perUserAllProblemsSummaries.get(j).addQuestion(summary.isCorrect(), summary.getAssessable(), summary.getObjectId());
 					
 					//update total time
 					perUserAllProblemsSummaries.get(j).addTotalTime(summary.getTime());
@@ -285,24 +287,26 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		//add a newUser to the perUserAllProblemsSummaries
 		
 		//if the first one is correct or not
-		int numCorrect;
-		int numIncorrect;
-		String correctID;
-		String incorrectID;
-		if(summary.isCorrect() == true){
+		int numNotAssessable = 0;
+		int numCorrect = 0;
+		int numIncorrect = 0;
+		String notAssessableID = "";
+		String correctID = "";
+		String incorrectID = "";
+		
+		if(summary.getAssessable() == false){
+			numNotAssessable = 1;
+			notAssessableID = summary.getObjectId() + "/";
+		}else if(summary.isCorrect() == true){
 			numCorrect = 1;
-			numIncorrect = 0;
-			correctID = summary.getObjectId();
-			incorrectID = "";
+			correctID = summary.getObjectId() + "/";
 		}else{
-			numCorrect = 0;
 			numIncorrect = 1;
-			correctID = "";
-			incorrectID = summary.getObjectId();
+			incorrectID = summary.getObjectId() + "/";
 		}
 		
 		//makes a new summary
-		PerUserAllProblemsSummary newSummary = new PerUserAllProblemsSummary(oldUser, 1, numCorrect, correctID, numIncorrect, 
+		PerUserAllProblemsSummary newSummary = new PerUserAllProblemsSummary(oldUser, 1, numNotAssessable, notAssessableID, numCorrect, correctID, numIncorrect, 
 				incorrectID, 0, summary.getTime());
 		
 		return newSummary;

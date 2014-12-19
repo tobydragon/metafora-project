@@ -16,6 +16,7 @@ public class RunestoneStrings {
 
 	public static final String TIME_SPENT_STRING = "TIME_SPENT";
 	public static final String IS_EVER_CORRECT_STRING = "IS_EVER_CORRECT";
+	public static final String IS_ASSESSABLE_STRING = "IS_ASSESSABLE";
 	public static final String TIMES_FALSE_STRING = "TIMES_FALSE";
 	public static final String FALSE_ENTRIES_STRING = "FALSE_ENTRIES";
 	public static final String OBJECT_ID_STRING = "OBJECT_ID";
@@ -24,6 +25,8 @@ public class RunestoneStrings {
 	public static final String TYPE_STRING = "TYPE";
 	
 	public static final String TOTAL_ATTEMPTED_STRING = "TOTAL_ATTEMPTED";
+	public static final String TOTAL_NUMBER_NOT_ASSESSABLE_STRING = "TOTAL_NUMBER_NOT_ASSESSABLE";
+	public static final String TOTAL_NOT_ASSESSABLE_ANSWERS_STRING = "TOTAL_NOT_ASSESSABLE_ANSWERS";
 	public static final String TOTAL_NUMBER_CORRECT_STRING = "TOTAL_NUMBER_CORRECT";
 	public static final String TOTAL_CORRECT_ANSWERS_STRING = "TOTAL_CORRECT_ANSWERS";
 	public static final String TOTAL_NUMBER_INCORRECT_STRING = "TOTAL_NUMBER_INCORRECT";

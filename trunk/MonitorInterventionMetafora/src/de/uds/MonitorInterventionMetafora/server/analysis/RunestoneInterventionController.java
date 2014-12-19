@@ -88,6 +88,7 @@ public class RunestoneInterventionController implements InterventionController{
 		String user = behaviorInstance.getUsernames().toString();
 		String objectId = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.OBJECT_ID_STRING));
 		String totalAttempted = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_ATTEMPTED_STRING));
+		String assessable = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.IS_ASSESSABLE_STRING));
 		String numCorrect = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_CORRECT_STRING));
 		String correctUsers = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_CORRECT_USERS_STRING));
 		String numIncorrect = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_INCORRECT_STRING));
@@ -129,6 +130,8 @@ public class RunestoneInterventionController implements InterventionController{
 		
 		String user = behaviorInstance.getUsernames().toString();
 		String totalAttempted = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_ATTEMPTED_STRING));
+		String numNotAssessable = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_NOT_ASSESSABLE_STRING));
+		String notAssessableQuestions = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NOT_ASSESSABLE_ANSWERS_STRING));
 		String numCorrect = behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_CORRECT_STRING);
 		String correctQuestions = behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_CORRECT_ANSWERS_STRING);
 		String numIncorrect = behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_INCORRECT_STRING);
@@ -137,7 +140,7 @@ public class RunestoneInterventionController implements InterventionController{
 		String totalTime = behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_TIME_SPENT_STRING);
 				
 		String description = user + " spent " + totalTime + " seconds on " + totalAttempted + " questions.  There were "
-				+ numCorrect + " correct responses and " + numIncorrect + " incorrect responses"; 
+				+ numCorrect + " correct responses, " + numIncorrect + " incorrect responses, and " + numNotAssessable + " not assessable questions."; 
 		
 		Map<String, CfProperty> cfPropertiesContent = new HashMap<String, CfProperty>();
 		for (CfProperty prop : behaviorInstance.getProperties()){
@@ -171,6 +174,7 @@ public class RunestoneInterventionController implements InterventionController{
 		String objectId = behaviorInstance.getPropertyValue(RunestoneStrings.OBJECT_ID_STRING);
 		String timesFalse = behaviorInstance.getPropertyValue(RunestoneStrings.TIMES_FALSE_STRING);
 		String isCorrect = behaviorInstance.getPropertyValue(RunestoneStrings.IS_EVER_CORRECT_STRING);
+		String assessable = behaviorInstance.getPropertyValue(RunestoneStrings.IS_ASSESSABLE_STRING);
 		
 		String description = user + " spent " + seconds + " seconds on " + objectId + " and answered incorrectly "
 				+ timesFalse + " time(s), "; 

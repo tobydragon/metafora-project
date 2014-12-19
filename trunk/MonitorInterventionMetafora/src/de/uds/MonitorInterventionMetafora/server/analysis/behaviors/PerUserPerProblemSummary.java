@@ -11,18 +11,20 @@ public class PerUserPerProblemSummary {
 	private String user;
 	private long time;
 	private boolean isCorrect;
+	private boolean assessable;
 	private int numberTimesFalse;
 	private String falseEntries;
 	private String objectId;
 	private String type;
 	
-	public PerUserPerProblemSummary(String user, long time, boolean isCorrect,
+	public PerUserPerProblemSummary(String user, long time, boolean isCorrect, boolean assessable,
 			int numberTimesFalse, String falseEntries, String objectId,
 			String type) {
 		super();
 		this.user = user;
 		this.time = time;
 		this.isCorrect = isCorrect;
+		this.assessable = assessable;
 		this.numberTimesFalse = numberTimesFalse;
 		this.falseEntries = falseEntries;
 		this.objectId = objectId;
@@ -33,6 +35,7 @@ public class PerUserPerProblemSummary {
 		List <CfProperty >instanceProperties = new Vector<CfProperty>();
 		instanceProperties.add(new CfProperty(RunestoneStrings.TIME_SPENT_STRING, String.valueOf(time)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.IS_EVER_CORRECT_STRING,String.valueOf(isCorrect)));
+		instanceProperties.add(new CfProperty(RunestoneStrings.IS_ASSESSABLE_STRING,String.valueOf(assessable)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TIMES_FALSE_STRING, String.valueOf(numberTimesFalse)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.FALSE_ENTRIES_STRING, falseEntries));
 		instanceProperties.add(new CfProperty(RunestoneStrings.OBJECT_ID_STRING, objectId));
@@ -59,6 +62,10 @@ public class PerUserPerProblemSummary {
 		return isCorrect;
 	}
 
+	public boolean getAssessable() {
+		return assessable;
+	}
+	
 	public int getNumberTimesFalse() {
 		return numberTimesFalse;
 	}
