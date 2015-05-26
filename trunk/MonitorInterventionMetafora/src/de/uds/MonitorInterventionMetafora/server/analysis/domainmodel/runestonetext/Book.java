@@ -22,7 +22,7 @@ public class Book {
 		}
 		List<String> chapters = getChapters(chapsAndSubs);
 		for(int i=0; i<chapters.size();i++){
-			chaps.add(newChapter(chapters.get(i),chapsAndSubs,subjects));
+			chaps.add(newChapter(chapters.get(i),chapsAndSubs,subjects, filePath));
 		}
 	}
 	//creates a string list of the chapters
@@ -51,7 +51,7 @@ public class Book {
 	
 	//creates a new chapter object
 	//takes the chapter title, the allChapterFile list, and list of chapters and returns a chapter object
-	public Chapter newChapter(String chap, List<String> fileList, List<String> allSubChap){
+	public Chapter newChapter(String chap, List<String> fileList, List<String> allSubChap, String filePath){
 		List<Integer> position = new ArrayList<Integer>();
 		List<String> subChap = new ArrayList<String>();
 		for (int i=0; i<fileList.size(); i++){
@@ -62,7 +62,7 @@ public class Book {
 		for (int i=0;i<position.size();i++){
 			subChap.add(allSubChap.get(position.get(i)));
 		}
-		return new Chapter(chap,subChap);
+		return new Chapter(chap,subChap, filePath);
 		
 	}
 	//gets a string list of all the lines of the allChapterFiles text file

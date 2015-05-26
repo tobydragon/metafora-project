@@ -14,7 +14,11 @@ public class Question {
 	//strips the line of the extra symbols
 	public String getQuestion(String line){
 		 String question = line.trim();
-		 question = question.replaceAll("[^a-zA-Z0-9]+", "");
+		 //question = question.replaceAll("[^a-zA-Z0-9]+", "");
+		 
+		 //the colon and the period were the only symbols that shouldn't be in the question title. Eliminate and replace those. 
+		 question = question.replace(":", "");
+		 question = question.replace(".",  "");
 		 return question;
 	}
 	public String toString(){
