@@ -2,10 +2,10 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestone
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 import java.util.*;
 
-public class SubChapter {
+
+public class SubChapter{
 	public String title;
 	private String fileName;
 	public String filePath;
@@ -16,6 +16,8 @@ public class SubChapter {
 	//constructor
 	//takes a title for the subchapter, and the chapter title
 	public SubChapter(String t, String title2, String path)throws FileNotFoundException{
+		//deletes the ".rst" from the SubChapter title
+		t = t.replace(".rst",  "");
 		this.title = t;
 		this.fileName = title2;
 		this.filePath = path;
@@ -28,7 +30,6 @@ public class SubChapter {
 
 	public String toString(){
 		String subAndQuestions = title;
-		subAndQuestions = subAndQuestions.replace(".rst",  "");
 		for (int i=0;i<Questions.size();i++){
 			subAndQuestions+="\n"+"\t\t\t"+Questions.get(i).toString();
 		}
@@ -43,7 +44,8 @@ public class SubChapter {
 	public void getQs (String sub, String chap, String path)throws FileNotFoundException{
 		chap = chap.trim();	
 		//takes the filepath passed down from BookTest and appends the necessary add ons to it
-		filePath = filePath+"source/"+chap+"/"+sub;
+		//need to add the ".rst" back in since it was deleted from the title
+		filePath = filePath+"source/"+chap+"/"+sub + ".rst";
 		Scanner findQs;
 		findQs = new Scanner(new File(filePath));
 			while (findQs.hasNextLine()==true){
@@ -56,4 +58,6 @@ public class SubChapter {
 			}
 		findQs.close();
 	}
+	
+	
 }
