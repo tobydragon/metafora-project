@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Book {
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
+
+public class Book implements Concept {
 	public String title;
 	public List<Chapter> chaps = new ArrayList<Chapter>();
 	
@@ -81,6 +83,10 @@ public class Book {
 			e.printStackTrace();
 		}
 		return chapsAndSubs;
+	}
+	
+	public String getConceptTitle(){
+		return title;
 	}
 
 }

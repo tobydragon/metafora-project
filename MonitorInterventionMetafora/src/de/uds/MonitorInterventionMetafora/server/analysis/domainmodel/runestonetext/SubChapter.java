@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
 
-public class SubChapter{
+
+public class SubChapter implements Concept{
 	public String title;
 	private String fileName;
 	public String filePath;
@@ -59,5 +61,7 @@ public class SubChapter{
 		findQs.close();
 	}
 	
-	
+	public String getConceptTitle(){
+		return title;
+	}
 }
