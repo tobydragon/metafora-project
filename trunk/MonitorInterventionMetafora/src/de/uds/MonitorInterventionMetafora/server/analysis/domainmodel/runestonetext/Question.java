@@ -1,6 +1,8 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext;
 
-public class Question {
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
+
+public class Question implements Concept{
 	private String type;
 	private String title;
 	
@@ -24,6 +26,10 @@ public class Question {
 	public String toString(){
 		String typeAndTitle = type +" "+title;
 		return typeAndTitle;
+	}
+	
+	public String getConceptTitle(){
+		return title;
 	}
 
 }

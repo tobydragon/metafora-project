@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.FileNotFoundException;
 
-public class Chapter {
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
+
+public class Chapter implements Concept{
 	public String title;
 	public List<SubChapter> subChapters;
 
@@ -29,6 +31,10 @@ public class Chapter {
 			subChaps += "\n"+"\t\t"+subChapters.get(i).toString();
 		}
 		return subChaps;
+	}
+	
+	public String getConceptTitle(){
+		return title;
 	}
 	
 }
