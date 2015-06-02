@@ -14,6 +14,7 @@ public class RunestoneStrings {
 	
 	
 	public static final String MCHOICE_STRING = QuestionType.MULT_CHOICE.getLogString();
+	public static final String PARSONS_STRING = QuestionType.DRAG_AND_DROP.getLogString();
 	public static final String CORRECT_STRING = "Correct";
 
 	public static final String TIME_SPENT_STRING = "TIME_SPENT";
