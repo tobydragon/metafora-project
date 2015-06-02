@@ -11,6 +11,7 @@ import java.util.List;
 public class ConceptGraph {
 	
 	ConceptNode root;
+	String stringToReturn = "";
 	
 	/*
 	 *Takes in a book, starts at the root, then goes through each level (chapters, sub chapters, questions) and creates
@@ -34,50 +35,35 @@ public class ConceptGraph {
 					ConceptNode quesNode = new ConceptNode(ques);
 					subChapNode.addChild(quesNode);
 				}
-				
 			}
 		}		
 	}
+		
 	
 	public String toString(){
-		return toString("");
+		return toString("\n", root);
 	}
 	
-	//First attempt at trying to print the graph
-	//Currently being used in order to see that each node is added correctly 
-	public String toString(String indent){
-		int rootChildrenSize;
-		int firstLevelChildrenSize;
-		int secondLevelChildrenSize;
+	
+	//Prints the concept graph using recursion 
+	public String toString(String indent, ConceptNode node){
 		
-		
-		System.out.println(indent + root.getConcept().getConceptTitle());
-		List<ConceptNode> rootChildren = root.getChildren();
-		rootChildrenSize = rootChildren.size();
-		//System.out.println(rootChildrenSize);
-			
-		for(ConceptNode child : rootChildren){
-			System.out.println(child.getConcept().getConceptTitle());
-			List<ConceptNode> tempList = child.getChildren();
-			firstLevelChildrenSize = tempList.size();
-			//System.out.println(firstLevelChildrenSize);
-			
-			for(ConceptNode child1 : tempList){
-				System.out.println(child1.getConcept().getConceptTitle());
-				List<ConceptNode> tempList1 = child1.getChildren();
-				secondLevelChildrenSize = tempList1.size();
-				//System.out.println(secondLevelChildrenSize);
-				
-				for (ConceptNode child2 : tempList1){
-					System.out.println(child2.getConcept().getConceptTitle());
-				}
+		//gets the children of the current node
+		List<ConceptNode> children = node.getChildren();
+		//appends the conceptTitle to the string 
+		stringToReturn = stringToReturn + indent + node.getConcept().getConceptTitle();
+
+		//goes through the children of the current node
+		for(ConceptNode child : children){
+			//if the current node has no children, return the string
+			if (child.getChildren() == null){
+				return stringToReturn;
 			}
-			
+			//if the current node does have children, make a recursive call with the child as the node
+			else{
+				toString(indent + "\t", child);	
+			}
 		}
-		
-		
-		
-		return "";
-	}
-	
+		return stringToReturn;
+	}	
 }
