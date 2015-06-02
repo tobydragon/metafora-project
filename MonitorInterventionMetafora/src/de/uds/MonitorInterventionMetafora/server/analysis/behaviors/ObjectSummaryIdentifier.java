@@ -1,18 +1,13 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.behaviors;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
-import com.google.gwt.dev.jjs.CorrelationFactory;
-
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
-import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 
 public class ObjectSummaryIdentifier implements BehaviorIdentifier{
@@ -56,13 +51,13 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 					
 					if (actionsFilteredByObjectId.size() > 0){
 					
-					long startTime = actionsFilteredByObjectId.get(0).getTime();
-					long endTime = actionsFilteredByObjectId.get(0).getTime();
-					boolean isCorrect = false;
-					boolean assessable = true;
-					int numberTimesFalse = 0;
-					String falseEntries = "";
-					String type = "";
+						long startTime = actionsFilteredByObjectId.get(0).getTime();
+						long endTime = actionsFilteredByObjectId.get(0).getTime();
+						boolean isCorrect = false;
+						boolean assessable = true;
+						int numberTimesFalse = 0;
+						String falseEntries = "";
+						String type = "";
 					
 					
 						//goes through each entry for each objectId for each user

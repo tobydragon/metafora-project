@@ -7,8 +7,8 @@ import java.io.FileNotFoundException;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
 
 public class Chapter implements Concept{
-	public String title;
-	public List<SubChapter> subChapters;
+	private String title;
+	private List<SubChapter> subChapters;
 
 	//constructor
 	//takes parameters of a title and list of subjects
@@ -35,6 +35,11 @@ public class Chapter implements Concept{
 	
 	public String getConceptTitle(){
 		return title;
+	}
+
+	public List<SubChapter> getSubChapters() {
+		// TODO Auto-generated method stub
+		return subChapters;
 	}
 	
 }

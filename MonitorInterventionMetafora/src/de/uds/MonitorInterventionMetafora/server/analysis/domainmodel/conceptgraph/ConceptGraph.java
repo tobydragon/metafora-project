@@ -10,51 +10,48 @@ import java.util.List;
 
 public class ConceptGraph {
 	
-	List<Chapter> chapters; 
-	List<SubChapter> subChaps;
-	List<Question> questions;
 	ConceptNode root;
-	
 	
 	/*
 	 *Takes in a book, starts at the root, then goes through each level (chapters, sub chapters, questions) and creates
 	 *a node for each concept, and adds it as a child.
 	 */
 	public ConceptGraph(Book b){
-	
 		root = new ConceptNode(b);
 	
-		chapters = b.chaps;
+		List<Chapter> chapters = b.getChapters();
 		for (Chapter chap : chapters){
 			ConceptNode chapNode = new ConceptNode(chap);
 			root.addChild(chapNode);
 			
-			subChaps = chap.subChapters;
+			List<SubChapter> subChaps = chap.getSubChapters();
 			for (SubChapter subChap : subChaps){
 				ConceptNode subChapNode = new ConceptNode(subChap);
 				chapNode.addChild(subChapNode);
 				
-				questions = subChap.Questions;
+				List<Question> questions = subChap.getQuestions();
 				for(Question ques : questions){
 					ConceptNode quesNode = new ConceptNode(ques);
 					subChapNode.addChild(quesNode);
 				}
 				
 			}
-		}
+		}		
+	}
 	
-				
+	public String toString(){
+		return toString("");
 	}
 	
 	//First attempt at trying to print the graph
 	//Currently being used in order to see that each node is added correctly 
-	public String toString(){
+	public String toString(String indent){
 		int rootChildrenSize;
 		int firstLevelChildrenSize;
 		int secondLevelChildrenSize;
 		
 		
-		
+		System.out.println(indent + root.getConcept().getConceptTitle());
 		List<ConceptNode> rootChildren = root.getChildren();
 		rootChildrenSize = rootChildren.size();
 		//System.out.println(rootChildrenSize);
