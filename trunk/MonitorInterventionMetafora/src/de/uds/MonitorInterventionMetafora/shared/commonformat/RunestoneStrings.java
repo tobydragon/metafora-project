@@ -1,5 +1,7 @@
 package de.uds.MonitorInterventionMetafora.shared.commonformat;
 
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.QuestionType;
+
 public class RunestoneStrings {
 
 	public static final String ROWS_STRING = "rows";
@@ -11,7 +13,7 @@ public class RunestoneStrings {
 	public static final String EVENT_STRING = "event";
 	
 	
-	public static final String MCHOICE_STRING = "mChoice";
+	public static final String MCHOICE_STRING = QuestionType.MULT_CHOICE.getLogString();
 	public static final String CORRECT_STRING = "Correct";
 
 	public static final String TIME_SPENT_STRING = "TIME_SPENT";

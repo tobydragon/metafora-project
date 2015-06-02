@@ -3,12 +3,12 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestone
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
 
 public class Question implements Concept{
-	private String type;
+	private QuestionType type;
 	private String title;
 	
 	//constructor
 	//takes in the line and the question type
-	public Question(String line, String type) {
+	public Question(String line, QuestionType type) {
 		this.type = type;
 		this.title = getQuestion(line);
 		

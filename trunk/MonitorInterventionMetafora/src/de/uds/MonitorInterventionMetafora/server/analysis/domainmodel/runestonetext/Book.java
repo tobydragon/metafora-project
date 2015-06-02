@@ -9,8 +9,8 @@ import java.util.Scanner;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
 
 public class Book implements Concept {
-	public String title;
-	public List<Chapter> chaps = new ArrayList<Chapter>();
+	private String title;
+	private List<Chapter> chaps = new ArrayList<Chapter>();
 	
 	//constructor
 	//takes a string that's the title and a file path as parameters
@@ -87,6 +87,10 @@ public class Book implements Concept {
 	
 	public String getConceptTitle(){
 		return title;
+	}
+	
+	public List<Chapter> getChapters(){
+		return chaps;
 	}
 
 }
