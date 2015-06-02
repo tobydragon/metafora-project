@@ -10,7 +10,7 @@ public class Question implements Concept{
 	//takes in the line and the question type
 	public Question(String line, QuestionType type) {
 		this.type = type;
-		this.title = getQuestion(line);
+		this.title = getQuestion(line).trim();
 		
 	}
 	//strips the line of the extra symbols
@@ -24,7 +24,7 @@ public class Question implements Concept{
 		 return question;
 	}
 	public String toString(){
-		String typeAndTitle = type +" "+title;
+		String typeAndTitle = type +" "+ title;
 		return typeAndTitle;
 	}
 	
