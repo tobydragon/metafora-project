@@ -50,7 +50,8 @@ public class CfPropertyParser {
 		String event = xmlFragment.getChildValue(RunestoneStrings.EVENT_STRING);
 		String act = xmlFragment.getChildValue(RunestoneStrings.ACT_STRING);
 		
-		if (event.equalsIgnoreCase("parsons")){
+		
+		if (event.equalsIgnoreCase(RunestoneStrings.PARSONS_STRING)){
 			if(act.equalsIgnoreCase("yes")){
 				String name = "Correct";
 				String value = "TRUE";
@@ -63,7 +64,8 @@ public class CfPropertyParser {
 			}		
 		}
 		
-		if(event.equalsIgnoreCase("mChoice")){
+		
+		if(event.equalsIgnoreCase(RunestoneStrings.MCHOICE_STRING)){
 			if(act.startsWith("answer")== true){
 				if(act.endsWith("no") == true){
 					String name = "Correct";
