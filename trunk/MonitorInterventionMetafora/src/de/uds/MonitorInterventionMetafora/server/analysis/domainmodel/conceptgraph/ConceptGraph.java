@@ -5,7 +5,6 @@ import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonet
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Question;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.SubChapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ConceptGraph {
