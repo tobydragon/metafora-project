@@ -192,13 +192,13 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 
 	@Override
 	public UpdateResponse requestUpdate(CfAction cfAction) {
-		logger.info("[requestUpdate]  requesting update is revieced  by the server");
+		logger.info("[requestUpdate]  requesting update is received  by the server");
 		return requestUpdate(generalConfiguration.getDefaultXmppServer(), cfAction);
 	}
 	
 	@Override
 	public UpdateResponse requestUpdate(XmppServerType xmppServerType, CfAction cfAction) {
-		logger.info("[requestUpdate]  requesting update is revieced  by the server");
+		logger.info("[requestUpdate]  requesting update is received  by the server");
 		if (xmppServerType == XmppServerType.METAFORA){
 			 return mainServer.requestUpdate(cfAction);
 		}

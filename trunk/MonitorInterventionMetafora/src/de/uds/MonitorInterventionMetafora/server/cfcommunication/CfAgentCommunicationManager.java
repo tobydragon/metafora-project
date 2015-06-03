@@ -10,7 +10,7 @@ import java.util.Vector;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-
+import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
@@ -52,7 +52,7 @@ public class CfAgentCommunicationManager implements CfCommunicationListener{
 	
 	//default to xmpp
 	public static CfAgentCommunicationManager getInstance(CommunicationChannelType channelType){
-		return getInstance(CfCommunicationMethodType.xmpp, channelType, XmppServerType.METAFORA_TEST);
+		return getInstance(CfCommunicationMethodType.XMPP, channelType, XmppServerType.METAFORA_TEST);
 	}
 
 	
@@ -61,20 +61,27 @@ public class CfAgentCommunicationManager implements CfCommunicationListener{
 	 
 	 
 	private Vector <CfCommunicationListener> allListeners;
-	
 	private CfCommunicationBridge cfCommnicationBridge;
-	
 	List<String> controllingUsers = new ArrayList<String>();
 	boolean ignoreOldMessages = true;
+	
+	public CfAgentCommunicationManager(MonitorController directController){
+		allListeners = new Vector<CfCommunicationListener>();
+		cfCommnicationBridge = new DirectCommunicationBridge(directController);
+		cfCommnicationBridge.registerListener(this);
+	}
 	
 	public CfAgentCommunicationManager(CfCommunicationMethodType methodType, CommunicationChannelType type){
 		allListeners = new Vector<CfCommunicationListener>();
 		
-		if (methodType == CfCommunicationMethodType.xmpp){
+		if (methodType == CfCommunicationMethodType.XMPP){
 			cfCommnicationBridge = new CfXmppCommunicationBridge(type);
 			cfCommnicationBridge.registerListener(this);
 		}
-		else if (methodType == CfCommunicationMethodType.file){
+		else {
+			if (methodType != CfCommunicationMethodType.FILE){
+				logger.error("Unknown CfCommunicationMethodType, defaulting to FILE");
+			}
 			cfCommnicationBridge = new MetaforaCfFileCommunicationBridge(type);
 			cfCommnicationBridge.registerListener(this);
 			ignoreOldMessages = false;

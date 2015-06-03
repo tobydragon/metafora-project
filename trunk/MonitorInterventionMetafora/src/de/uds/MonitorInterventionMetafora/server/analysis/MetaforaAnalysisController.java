@@ -21,7 +21,8 @@ public class MetaforaAnalysisController extends AnalysisController{
 		super(monitorController, feedbackController, xmppServerType); 
 	}
 	
-	protected InterventionController createInterventionController(MessagesController feedbackController, CfAgentCommunicationManager analysisChannelManager,  XmppServerType xmppServerType) {
+	protected InterventionController createInterventionController(MonitorController monitorController, MessagesController feedbackController,  XmppServerType xmppServerType) {
+		CfAgentCommunicationManager analysisChannelManager = monitorController.getAnalysisChannelManager();
 		return new SuggestionsAndLandmarkInterventionController(feedbackController, analysisChannelManager, xmppServerType);
 	}
 
