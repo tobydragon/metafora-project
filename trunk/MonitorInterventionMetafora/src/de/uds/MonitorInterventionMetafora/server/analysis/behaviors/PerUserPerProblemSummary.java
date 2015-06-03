@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.server.analysis.behaviors;
 import java.util.List;
 import java.util.Vector;
 
+import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
@@ -17,19 +18,68 @@ public class PerUserPerProblemSummary {
 	private String objectId;
 	private String type;
 	
-	public PerUserPerProblemSummary(String user, long time, boolean isCorrect, boolean assessable,
-			int numberTimesFalse, String falseEntries, String objectId,
-			String type) {
-		super();
-		this.user = user;
-		this.time = time;
-		this.isCorrect = isCorrect;
-		this.assessable = assessable;
-		this.numberTimesFalse = numberTimesFalse;
-		this.falseEntries = falseEntries;
-		this.objectId = objectId;
-		this.type = type;
+	
+	
+	public PerUserPerProblemSummary(List <CfAction> actionsFilteredByObjectId, String currentUser, String currentObjectId){
+		
+		this.user = currentUser;
+		this.objectId = currentObjectId;
+		long startTime = actionsFilteredByObjectId.get(0).getTime();
+		long endTime = actionsFilteredByObjectId.get(0).getTime();
+		isCorrect = false;
+		assessable = true;
+		numberTimesFalse = 0;
+		falseEntries = "";
+		type = "";
+	
+	
+		//goes through each entry for each objectId for each user
+		for (CfAction action : actionsFilteredByObjectId){
+			
+			long currentTime = action.getTime();
+			String correctField = action.getCfContent().getPropertyValue(RunestoneStrings.CORRECT_STRING);
+			String act = action.getCfObjects().get(0).getPropertyValue("ACT");
+			type = action.getCfObjects().get(0).getType();
+			
+			
+			if(currentTime < startTime){
+				startTime = currentTime;
+			}
+			else if (currentTime > endTime){
+				endTime = currentTime;
+			}
+			
+			
+			if(correctField == null){
+				isCorrect = true;
+				assessable = false;
+			}
+			else if (correctField.equalsIgnoreCase("true")){
+				isCorrect = true;
+			}
+			else if(correctField.equalsIgnoreCase("false")){
+				numberTimesFalse++;
+				
+				//gets the multiple choice input without the extra characters
+				if(action.getCfObjects().get(0).getType().equalsIgnoreCase(RunestoneStrings.MCHOICE_STRING)){
+					int startIndex = act.indexOf(":");
+					startIndex = startIndex + 1;
+					int endIndex = act.indexOf(":", (startIndex));	
+					String actSubstring = act.substring(startIndex, endIndex);
+					falseEntries = falseEntries + "/" + actSubstring;
+				}
+				else{
+					falseEntries = falseEntries + "/" + act;
+				}
+			}
+			
+			
+		}
+		
+		time = (endTime - startTime) / 1000;
+		
 	}
+	
 	
 	public BehaviorInstance buildBehaviorInstance(){
 		List <CfProperty >instanceProperties = new Vector<CfProperty>();
