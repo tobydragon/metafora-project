@@ -50,62 +50,9 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 					List<CfAction> actionsFilteredByObjectId = objectIdFilter.getFilteredList(actionsFilteredByUser);
 					
 					if (actionsFilteredByObjectId.size() > 0){
-					
-						long startTime = actionsFilteredByObjectId.get(0).getTime();
-						long endTime = actionsFilteredByObjectId.get(0).getTime();
-						boolean isCorrect = false;
-						boolean assessable = true;
-						int numberTimesFalse = 0;
-						String falseEntries = "";
-						String type = "";
-					
-					
-						//goes through each entry for each objectId for each user
-						for (CfAction action : actionsFilteredByObjectId){
-							
-							long currentTime = action.getTime();
-							String correctField = action.getCfContent().getPropertyValue(RunestoneStrings.CORRECT_STRING);
-							String act = action.getCfObjects().get(0).getPropertyValue("ACT");
-							type = action.getCfObjects().get(0).getType();
-							
-							
-							if(currentTime < startTime){
-								startTime = currentTime;
-							}
-							else if (currentTime > endTime){
-								endTime = currentTime;
-							}
-							
-							
-							if(correctField == null){
-								isCorrect = true;
-								assessable = false;
-							}
-							else if (correctField.equalsIgnoreCase("true")){
-								isCorrect = true;
-							}
-							else if(correctField.equalsIgnoreCase("false")){
-								numberTimesFalse++;
-								
-								//gets the multiple choice input without the extra characters
-								if(action.getCfObjects().get(0).getType().equalsIgnoreCase(RunestoneStrings.MCHOICE_STRING)){
-									int startIndex = act.indexOf(":");
-									startIndex = startIndex + 1;
-									int endIndex = act.indexOf(":", (startIndex));	
-									String actSubstring = act.substring(startIndex, endIndex);
-									falseEntries = falseEntries + "/" + actSubstring;
-								}
-								else{
-									falseEntries = falseEntries + "/" + act;
-								}
-							}
-							
-							
-						}
 						
-						long totalTime = (endTime - startTime) / 1000;
-						
-						PerUserPerProblemSummary summary = new PerUserPerProblemSummary(user, totalTime, isCorrect, assessable, numberTimesFalse, falseEntries, objectId, type);
+						PerUserPerProblemSummary summary = new PerUserPerProblemSummary(actionsFilteredByObjectId, user, objectId);
+					
 						perUserPerProblemSummaries.add(summary);
 						
 						identifiedBehaviors.add(summary.buildBehaviorInstance());
