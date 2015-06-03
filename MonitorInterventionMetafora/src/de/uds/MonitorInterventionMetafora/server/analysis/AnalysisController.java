@@ -1,18 +1,11 @@
 package de.uds.MonitorInterventionMetafora.server.analysis;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
-
 import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorInstance;
-import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.DivergenceConvergenceIdentifier;
-import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.MemberNotDiscussing;
-import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.MembersPlanning;
-import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.NewIdeaNotDiscussedIdentifier;
-import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerceivedSolutionSharingIdentifier;
-import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.UsingAttitudesAndRoles;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.messages.MessagesController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
@@ -51,21 +44,22 @@ public abstract class AnalysisController {
 		List <CfAction> groupActions = null;
 		//if all groups, analyze everything together
 		if (groupName.equalsIgnoreCase(MetaforaStrings.ALL_GROUPS)){
-			groupActions =monitorController.getActionList();
+			groupActions = monitorController.getActionList();
 		}
 		else {
 			groupActions = AnalysisActions.getGroupActions(groupName, monitorController.getActionList());
 		}
-		log.info("[analyzeGroup] number of actions found for group: " + groupActions.size());
 		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(groupActions);
-		log.info("[analyzeGroup] users found for group: " + involvedUsers);
 		List<CfProperty> groupProperties = AnalysisActions.getPropertiesFromActions(groupActions);
+		
+		log.info("[analyzeGroup] number of actions found for group: " + groupActions.size());
+		log.info("[analyzeGroup] users found for group: " + involvedUsers);
 		log.info("[analyzeGroup] properties found for group: " + groupProperties);
 
 		commandController.sendActionToChannel(InterventionCreator.buildSendAnalyisRequestMessage(involvedUsers, groupName, groupProperties));
 		//TODO: should probably have a wait for some responses, maybe 30 seconds?
 		
-		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
+		List<BehaviorInstance> identifiedBehaviors = new ArrayList<BehaviorInstance>();
 		for (BehaviorIdentifier identifier : behaviorIdentifiers){
 			identifiedBehaviors.addAll(identifier.identifyBehaviors(groupActions, involvedUsers, groupProperties));
 		}

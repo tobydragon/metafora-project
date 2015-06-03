@@ -19,6 +19,8 @@ import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerTyp
 public class CfAgentCommunicationManager implements CfCommunicationListener{
 	Log logger = LogFactory.getLog(CfAgentCommunicationManager.class);
 	
+	// A Matrix, can picture as a table with each comm method as a row, and each channel as a column
+	//for example, file input row contains the comm manager for both command and analysis channel
 	private static Map<CfCommunicationMethodType, Map<CommunicationChannelType, CfAgentCommunicationManager>> instanceMatrix = new Hashtable <CfCommunicationMethodType, Map<CommunicationChannelType, CfAgentCommunicationManager>>();	
 	
 	// We only maintain one instance of the communication manager, for each method and each channel.
@@ -91,13 +93,13 @@ public class CfAgentCommunicationManager implements CfCommunicationListener{
 		allListeners.remove(agent);
 	}
 	
-	//might have many connections, calls shoudl be synced
+	//might have many connections, calls should be synced
 	@Override
 	public synchronized void processCfAction(String user, CfAction action) {
 		processNewMessage(user, action);
 	}
 	
-	//might have many connections, calls shoudl be synced
+	//might have many connections, calls should be synced
 	public synchronized void sendMessage(CfAction actionToSend){
 			cfCommnicationBridge.sendAction(actionToSend);
 	}
