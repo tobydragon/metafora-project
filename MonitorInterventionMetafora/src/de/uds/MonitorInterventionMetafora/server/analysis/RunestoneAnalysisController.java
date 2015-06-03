@@ -6,6 +6,7 @@ import java.util.Vector;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.ObjectSummaryIdentifier;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
+import de.uds.MonitorInterventionMetafora.server.cfcommunication.DirectCommunicationBridge;
 import de.uds.MonitorInterventionMetafora.server.messages.MessagesController;
 import de.uds.MonitorInterventionMetafora.server.monitor.MonitorController;
 import de.uds.MonitorInterventionMetafora.shared.interactionmodels.XmppServerType;
@@ -17,7 +18,9 @@ public class RunestoneAnalysisController extends AnalysisController{
 	}
 
 	@Override
-	protected InterventionController createInterventionController(MessagesController feedbackController,CfAgentCommunicationManager analysisChannelManager,XmppServerType xmppServerType) {
+	protected InterventionController createInterventionController(MonitorController monitorController, MessagesController feedbackController,XmppServerType xmppServerType) {
+		//runestone will use a direct analysis controller for now...
+		CfAgentCommunicationManager analysisChannelManager = new CfAgentCommunicationManager(monitorController);
 		return new RunestoneInterventionController(analysisChannelManager);
 	}
 

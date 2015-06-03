@@ -45,7 +45,7 @@ public class CfMultiSessionCommunicationManager implements CfCommunicationListen
 	
 	//default to xmpp
 	public static CfMultiSessionCommunicationManager getInstance(CommunicationChannelType channelType){
-		return getInstance(CfCommunicationMethodType.xmpp, channelType);
+		return getInstance(CfCommunicationMethodType.XMPP, channelType);
 	}
 
 	
@@ -66,11 +66,11 @@ public class CfMultiSessionCommunicationManager implements CfCommunicationListen
 		//*session2agentMap = new HashMap<String, CfAgentInterface>();
 		//*managementAgent = null;
 		
-		if (methodType == CfCommunicationMethodType.xmpp){
+		if (methodType == CfCommunicationMethodType.XMPP){
 			cfCommnicationBridge = new CfXmppCommunicationBridge(type);
 			cfCommnicationBridge.registerListener(this);			
 		}
-		else if (methodType == CfCommunicationMethodType.file){
+		else if (methodType == CfCommunicationMethodType.FILE){
 			cfCommnicationBridge = new MetaforaCfFileCommunicationBridge(type);
 			cfCommnicationBridge.registerListener(this);
 		}

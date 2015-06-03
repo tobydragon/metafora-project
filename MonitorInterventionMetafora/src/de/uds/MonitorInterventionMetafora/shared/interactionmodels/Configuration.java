@@ -18,7 +18,7 @@ public class Configuration implements Serializable{
 	
 	String name="";
 	
-	CfCommunicationMethodType communicationMethodType = CfCommunicationMethodType.file;
+	CfCommunicationMethodType communicationMethodType = CfCommunicationMethodType.FILE;
 	XmppServerType defaultXmppServer = XmppServerType.METAFORA_TEST;
 	
 	boolean testServerMonitoring = true;

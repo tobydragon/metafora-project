@@ -38,5 +38,10 @@ public class MonitorController {
 	public CfAgentCommunicationManager getAnalysisChannelManager(){
 		return analysisChannelManager;
 	}
+	
+	public void addAction(CfAction action) {
+		monitorModel.addAction(action);
+	}
+	
 
 }

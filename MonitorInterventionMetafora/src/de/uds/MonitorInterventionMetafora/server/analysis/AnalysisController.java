@@ -33,10 +33,10 @@ public abstract class AnalysisController {
 		
 		behaviorIdentifiers = createIdentifiers();
 		
-		interventionController = createInterventionController(feedbackController, monitorController.getAnalysisChannelManager(), xmppServerType); 
+		interventionController = createInterventionController(monitorController, feedbackController, xmppServerType); 
 	}
 	
-	protected abstract InterventionController createInterventionController(MessagesController feedbackController, CfAgentCommunicationManager analysisChannelManager,  XmppServerType xmppServerType);
+	protected abstract InterventionController createInterventionController(MonitorController monitorController, MessagesController feedbackController,   XmppServerType xmppServerType);
 
 	protected abstract List<BehaviorIdentifier> createIdentifiers();
 	

@@ -47,12 +47,12 @@ public class HistoryRequester implements CfCommunicationListener{
 	}
 	
 	public void sendHistoryRequest(CfCommunicationMethodType communicationMethodType, String currentTimeMillis, XmppServerType xmppServerType){
-		if (communicationMethodType == CfCommunicationMethodType.xmpp){
+		if (communicationMethodType == CfCommunicationMethodType.XMPP){
 			CfAgentCommunicationManager command = CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.command, xmppServerType);
 			command.register(this);
 			sendXmppHistoryRequest(command, currentTimeMillis);
 		}
-		else if (communicationMethodType == CfCommunicationMethodType.file){
+		else if (communicationMethodType == CfCommunicationMethodType.FILE){
 			CfAgentCommunicationManager manager= CfAgentCommunicationManager.getInstance(communicationMethodType, CommunicationChannelType.analysis, xmppServerType);
 			manager.sendMessage(buildLocalFileHistoryRequest());	
 		}
