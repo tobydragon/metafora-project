@@ -36,6 +36,7 @@ public interface CommunicationServiceAsync {
 	void requestClearAllAnalysis(XmppServerType xmppServerType, AsyncCallback<Void> callback);
 	
 	void requestDataFromFile(String testString, AsyncCallback<UpdateResponse> callback);
+	void requestDataFromFile(XmppServerType xmppServerType, String testString, AsyncCallback<UpdateResponse> callback);
 		
 	
 	//requests for MainServer

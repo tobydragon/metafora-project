@@ -101,8 +101,16 @@ public class ClientMonitorDataModelUpdater extends Timer implements AsyncCallbac
 	}
 
 	public void getDataFromFile(String filename) {
+		Log.debug("Importing data, therefore clearing old data");
 		clientDataModel.removeData();
-		clientDataModel.getServiceServlet().requestDataFromFile(filename, this);
+		
+		XmppServerType xmppServerType = UrlParameterConfig.getInstance().getXmppServerType();
+		if (xmppServerType != null){
+			clientDataModel.getServiceServlet().requestDataFromFile(xmppServerType, filename, this);
+	 	 }
+	 	 else {
+	 		clientDataModel.getServiceServlet().requestDataFromFile(filename, this);
+	 	 }
 	}
 	
 	

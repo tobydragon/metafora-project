@@ -43,5 +43,11 @@ public class MonitorController {
 		monitorModel.addAction(action);
 	}
 	
+	public void replaceAllActions(List<CfAction> newActionList){
+		monitorModel.clearAllActions();
+		monitorModel.addActionList(newActionList);
+	}
+	
+	
 
 }
