@@ -65,10 +65,21 @@ public class BehaviorInstance {
 		return behaviorInstanceProperties;
 	}
 	
+	//get the property value based on the property's name 
 	public String getPropertyValue(String propertyName){
 		for (CfProperty cfProperty : behaviorInstanceProperties){
 			if (propertyName.equalsIgnoreCase(cfProperty.getName())){
 				return cfProperty.getValue();
+			}
+		}
+		return null;
+	}
+	
+	//get the CfPoperty based on the property's name
+	public CfProperty getProperty(String propertyName){
+		for (CfProperty cfProperty : behaviorInstanceProperties){
+			if (propertyName.equalsIgnoreCase(cfProperty.getName())){
+				return cfProperty;
 			}
 		}
 		return null;

@@ -26,4 +26,18 @@ public class ConceptNode {
 	public Concept getConcept(){
 		return concept;
 	}
+	
+	public String toString(){
+		return toString("\n");
+	}
+	
+	 public String toString(String indent){
+		 
+		 String stringToReturn = indent + getConcept().getConceptTitle();
+		 for (ConceptNode child :getChildren()){
+			 stringToReturn += child.toString(indent + "\t");
+		 }
+		 return stringToReturn;
+		 
+	 }
 }
