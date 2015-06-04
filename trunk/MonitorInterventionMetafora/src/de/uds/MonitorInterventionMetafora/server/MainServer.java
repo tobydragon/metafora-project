@@ -239,8 +239,11 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		}
 		
 	}
-	
 	public UpdateResponse requestDataFromFile(String filename){
+		return requestDataFromFile(generalConfiguration.getDefaultXmppServer(), filename);
+	}
+	
+	public UpdateResponse requestDataFromFile(XmppServerType xmppServerType, String filename){
 		String path = GeneralUtil.getRealPath("upload/"+filename);
 		XmlFragment xmlFrag = XmlFragment.getFragmentFromLocalFile(path);
 		
@@ -249,7 +252,14 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 			cfActions.add(CfActionParser.fromRunsetoneXml(cfActionElement));
 		}
 		logger.info("requestDataFromFile:\t\t read " +cfActions.size() + " indicators from "+ path);		 
-		//TODO: of we want to update the server model with this input, here would be the place to do it.
+		
+		if (xmppServerType == XmppServerType.METAFORA){
+			 mainServer.replaceAllMonitorActions(cfActions);
+		}
+		else {
+			 testServer.replaceAllMonitorActions(cfActions);
+		}
+		
 		return new UpdateResponse(cfActions, null);
 		
 	}

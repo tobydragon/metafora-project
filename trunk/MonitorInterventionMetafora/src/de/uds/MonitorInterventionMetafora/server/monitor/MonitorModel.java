@@ -20,6 +20,15 @@ public class MonitorModel implements Runnable {
 		return cfActions;
 	}
 	
+	public void clearAllActions(){
+		cfActions = new Vector<CfAction>();
+	}
+	
+	public void addActionList(List <CfAction>cfActionList){
+		cfActions.addAll(cfActionList);
+	}
+	
+	
 	public synchronized void addAction(CfAction action){
 		if (action.getTime() > System.currentTimeMillis()){
 			logger.error("[addAction] Bad timestamp [actionTime=" + action.getTime() +  ", realtime= "+ System.currentTimeMillis() + ", diff=" + (action.getTime() - System.currentTimeMillis()) + "], changing to current time for action:\n"+ action);

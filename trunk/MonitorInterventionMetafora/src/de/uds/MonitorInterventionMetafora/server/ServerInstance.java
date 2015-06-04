@@ -101,8 +101,9 @@ public class ServerInstance {
 		return afterFilter; 
 	}
 	
-	
-	
+	public void replaceAllMonitorActions(List<CfAction> newActionList){
+		monitorController.replaceAllActions(newActionList);
+	}
 
 
 }

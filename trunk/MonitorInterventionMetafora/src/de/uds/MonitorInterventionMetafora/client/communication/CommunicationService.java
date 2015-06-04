@@ -37,6 +37,7 @@ public interface CommunicationService extends RemoteService {
 	void requestClearAllAnalysis(XmppServerType xmppServerType);
 	
 	UpdateResponse requestDataFromFile(String testString);
+	UpdateResponse requestDataFromFile(XmppServerType xmppServerType, String testString);
 	
 	
 	//answered by MainServer
