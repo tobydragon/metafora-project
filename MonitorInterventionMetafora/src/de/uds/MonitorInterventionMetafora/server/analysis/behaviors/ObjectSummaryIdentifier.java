@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 
 public class ObjectSummaryIdentifier implements BehaviorIdentifier{
@@ -41,24 +40,26 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		for(String user : involvedUsers){
 			
 			userFilter = BehaviorFilters.createUserFilter(user);		
+			
+			//list of all the actions for the current user
 			List<CfAction> actionsFilteredByUser = userFilter.getFilteredList(actionsToConsider);
 			
 			    //goes through each objectId for each user
 				for(String objectId : objectIds){	
 					
 					objectIdFilter = BehaviorFilters.createObjectIdFilter(objectId);
+					
+					//list of all actions for the current user for the current objectId
 					List<CfAction> actionsFilteredByObjectId = objectIdFilter.getFilteredList(actionsFilteredByUser);
 					
+					//if there is at least one action in the list, create a PerUserPerObjectSummary 
 					if (actionsFilteredByObjectId.size() > 0){
-						
 						PerUserPerProblemSummary summary = new PerUserPerProblemSummary(actionsFilteredByObjectId, user, objectId);
-					
 						perUserPerProblemSummaries.add(summary);
-						
 						identifiedBehaviors.add(summary.buildBehaviorInstance());
 					}
 				}
-		}
+			}
 		
 		List <BehaviorInstance> perUserSummary = buildPerUserAllObjectsSummaries(perUserPerProblemSummaries);
 		identifiedBehaviors.addAll(perUserSummary);

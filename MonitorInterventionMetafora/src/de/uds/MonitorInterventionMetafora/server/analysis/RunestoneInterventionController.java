@@ -10,10 +10,6 @@ import org.apache.log4j.Logger;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorInstance;
 import de.uds.MonitorInterventionMetafora.server.cfcommunication.CfAgentCommunicationManager;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfInteractionDataParser;
-import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfObjectParser;
-import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfPropertyParser;
-import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfUserParser;
-import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfActionType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfContent;
@@ -162,10 +158,13 @@ public class RunestoneInterventionController implements InterventionController{
 		cfUsers.add(new CfUser(behaviorInstance.getUsernames().toString(),RunestoneStrings.ORIGINATOR_STRING));
 		
 		Map<String, CfProperty> cfPropertiesObject = new HashMap<String, CfProperty>();
-		cfPropertiesObject.put(behaviorInstance.getProperties().get(0).getName(), behaviorInstance.getProperties().get(0));
-		cfPropertiesObject.put(behaviorInstance.getProperties().get(1).getName(), behaviorInstance.getProperties().get(1));
-		cfPropertiesObject.put(behaviorInstance.getProperties().get(2).getName(), behaviorInstance.getProperties().get(2));
-	
+		
+		//get the CfProperties by name
+		cfPropertiesObject.put(RunestoneStrings.TIME_SPENT_STRING, behaviorInstance.getProperty(RunestoneStrings.TIME_SPENT_STRING));
+		cfPropertiesObject.put(RunestoneStrings.IS_EVER_CORRECT_STRING, behaviorInstance.getProperty(RunestoneStrings.IS_EVER_CORRECT_STRING));
+		cfPropertiesObject.put(RunestoneStrings.TIMES_FALSE_STRING, behaviorInstance.getProperty(RunestoneStrings.TIMES_FALSE_STRING));
+		cfPropertiesObject.put(RunestoneStrings.IS_ASSESSABLE_STRING, behaviorInstance.getProperty(RunestoneStrings.IS_ASSESSABLE_STRING));
+		
 		List<CfObject> cfObjects = new ArrayList<CfObject>();
 		cfObjects.add(new CfObject(behaviorInstance.getPropertyValue(RunestoneStrings.OBJECT_ID_STRING), behaviorInstance.getPropertyValue(CommonFormatStrings.TYPE_STRING), cfPropertiesObject));
 		
@@ -189,7 +188,10 @@ public class RunestoneInterventionController implements InterventionController{
 				
 		
 		Map<String, CfProperty> cfPropertiesContent = new HashMap<String, CfProperty>();
-		cfPropertiesContent.put(behaviorInstance.getProperties().get(3).getName(), behaviorInstance.getProperties().get(3));
+
+		//get the CfProperty by name
+		cfPropertiesContent.put(RunestoneStrings.FALSE_ENTRIES_STRING, behaviorInstance.getProperty(RunestoneStrings.FALSE_ENTRIES_STRING));
+		
 		CfContent cfContent = new CfContent(description, cfPropertiesContent);
 		
 		CfAction cfAction = new CfAction (time, cfActionType, cfUsers, cfObjects, cfContent);

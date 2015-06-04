@@ -46,29 +46,7 @@ public class ConceptGraph {
 		
 	
 	public String toString(){
-		return toString("\n", root);
+		return root.toString();
 	}
 	
-	
-	//Prints the concept graph using recursion 
-	public String toString(String indent, ConceptNode node){
-		
-		//gets the children of the current node
-		List<ConceptNode> children = node.getChildren();
-		//appends the conceptTitle to the string 
-		stringToReturn = stringToReturn + indent + node.getConcept().getConceptTitle();
-
-		//goes through the children of the current node
-		for(ConceptNode child : children){
-			//if the current node has no children, return the string
-			if (child.getChildren() == null){
-				return stringToReturn;
-			}
-			//if the current node does have children, make a recursive call with the child as the node
-			else{
-				toString(indent + "\t", child);	
-			}
-		}
-		return stringToReturn;
-	}	
 }
