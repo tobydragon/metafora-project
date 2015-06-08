@@ -19,20 +19,40 @@ public class PerUserAllProblemsSummary {
 	private int numOthers;
 	private long totalTime;
 	
-	public PerUserAllProblemsSummary(String user, int totalAttempted, int numNotAssessable, String notAssessableQuestions, int numCorrect, String correctQuestions, int numIncorrect, 
-			String incorrectQuestions, int numOthers, long totalTime) {
-		super();
-		this.user = user;
-		this.totalAttempted = totalAttempted;
-		this.numNotAssessable = numNotAssessable;
-		this.notAssessableQuestions = notAssessableQuestions;
-		this.numCorrect = numCorrect;
-		this.correctQuestions = correctQuestions;
-		this.numIncorrect = numIncorrect;
-		this.incorrectQuestions = incorrectQuestions;
-		this.numOthers = numOthers;
-		this.totalTime = totalTime;
+
+	
+
+	public PerUserAllProblemsSummary (PerUserPerProblemSummary summary, String oldUser){
+		
+		this.user = oldUser;
+		totalAttempted = 1;
+		numNotAssessable = 0;
+		notAssessableQuestions = "";
+		numCorrect = 0;
+		correctQuestions = "";
+		numIncorrect = 0;
+		incorrectQuestions = "";
+		numOthers = 0;
+		totalTime = summary.getTime();
+		
+		
+	//currently this is only updating the correct fields if the question is non assessable
+	//isCorrect is defaulted to true for non assessable questions	
+		if(summary.getAssessable() == false){
+			numNotAssessable = 1;
+			notAssessableQuestions = summary.getObjectId() + "/";
+		}else if(summary.isCorrect() == true){
+			numCorrect = 1;
+			correctQuestions = summary.getObjectId() + "/";
+		}else{
+			numIncorrect = 1;
+			incorrectQuestions = summary.getObjectId() + "/";
+		}
+		
+		
 	}
+	
+		
 	
 	public BehaviorInstance buildBehaviorInstance(){
 		List <CfProperty >instanceProperties = new Vector<CfProperty>();
@@ -90,11 +110,27 @@ public class PerUserAllProblemsSummary {
 	}
 	
 	public void addQuestion(boolean attempt, boolean assessable, String objectID) {
-		if (assessable = false){
+		
+		//this is updating the correct field regardless of whether the question is assessable or not 
+//		if (assessable == false){
+//			this.numNotAssessable = numNotAssessable + 1;
+//			this.notAssessableQuestions = notAssessableQuestions + "/" + objectID;
+//		}
+//		if (attempt == true){
+//			this.numCorrect = numCorrect + 1;
+//			this.correctQuestions = correctQuestions + "/" + objectID;
+//		}
+//		else if (attempt == false){
+//			this.numIncorrect = numIncorrect + 1;
+//			this.incorrectQuestions = incorrectQuestions + "/" + objectID;
+//		}
+		
+		
+		//this updates correct fields only if question is assessable 
+		if (assessable == false){
 			this.numNotAssessable = numNotAssessable + 1;
 			this.notAssessableQuestions = notAssessableQuestions + "/" + objectID;
-		}
-		if (attempt == true){
+		}else if (attempt == true){
 			this.numCorrect = numCorrect + 1;
 			this.correctQuestions = correctQuestions + "/" + objectID;
 		}

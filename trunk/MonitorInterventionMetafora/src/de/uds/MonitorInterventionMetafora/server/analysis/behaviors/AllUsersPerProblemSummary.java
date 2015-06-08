@@ -19,20 +19,41 @@ public class AllUsersPerProblemSummary {
 	private int numIncorrect;
 	private String incorrectUsers;
 	
-	public AllUsersPerProblemSummary(String objectID, List<String> userList, int totalAttempted, boolean assessable, int numCorrect, String correctUsers, int numBoth, String bothUsers,
-			int numIncorrect, String incorrectUsers) {
-		super();
+	
+	
+	public AllUsersPerProblemSummary(PerUserPerProblemSummary summary, String objectID){
+		
+		String user = summary.getUser();
+		userList.add(user);
+		
 		this.objectID = objectID;
-		this.userList = userList;
-		this.totalAttempted = totalAttempted;
-		this.assessable = assessable;
-		this.numCorrect = numCorrect;
-		this.correctUsers = correctUsers;
-		this.numBoth = numBoth;
-		this.bothUsers = bothUsers;
-		this.numIncorrect = numIncorrect;
-		this.incorrectUsers = incorrectUsers;
+		totalAttempted = 1;
+		this.assessable = summary.getAssessable();
+		numCorrect = 0;
+		correctUsers = "";
+		numBoth = 0;
+		bothUsers = "";
+		numIncorrect = 0;
+		incorrectUsers = "";
+		
+		//if question was answered false, update nuIncorrect and incorrectUsers
+		if (summary.isCorrect() == false){
+			numIncorrect = 1;
+			incorrectUsers = user + "/";
+		}else{
+			//if question was never answered false then update numCorrect and correctUsers
+			if (summary.getNumberTimesFalse() == 0){
+				numCorrect = 1;
+				correctUsers = user + "/";
+			}else{
+				//if answered false then correct update numBoth and bothUsers
+				numBoth = 1;
+				bothUsers = user + "/";
+			}
+		}
 	}
+	
+	
 	
 	public BehaviorInstance buildBehaviorInstance(){
 		List <CfProperty >instanceProperties = new Vector<CfProperty>();
