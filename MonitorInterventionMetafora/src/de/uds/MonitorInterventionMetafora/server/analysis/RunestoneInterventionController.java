@@ -38,6 +38,8 @@ public class RunestoneInterventionController implements InterventionController{
 		
 		
 		
+		
+		
 		List<CfAction> actions = new ArrayList<CfAction>();
 		
 		for(BehaviorInstance behaviorInstance : behaviorsIdentified){
@@ -160,8 +162,9 @@ public class RunestoneInterventionController implements InterventionController{
 		Map<String, CfProperty> cfPropertiesObject = new HashMap<String, CfProperty>();
 		
 		//get the CfProperties by name
-		cfPropertiesObject.put(RunestoneStrings.TIME_SPENT_STRING, behaviorInstance.getProperty(RunestoneStrings.TIME_SPENT_STRING));
 		cfPropertiesObject.put(RunestoneStrings.IS_EVER_CORRECT_STRING, behaviorInstance.getProperty(RunestoneStrings.IS_EVER_CORRECT_STRING));
+		cfPropertiesObject.put(RunestoneStrings.TIME_SPENT_STRING, behaviorInstance.getProperty(RunestoneStrings.TIME_SPENT_STRING));
+		
 		cfPropertiesObject.put(RunestoneStrings.TIMES_FALSE_STRING, behaviorInstance.getProperty(RunestoneStrings.TIMES_FALSE_STRING));
 		cfPropertiesObject.put(RunestoneStrings.IS_ASSESSABLE_STRING, behaviorInstance.getProperty(RunestoneStrings.IS_ASSESSABLE_STRING));
 		

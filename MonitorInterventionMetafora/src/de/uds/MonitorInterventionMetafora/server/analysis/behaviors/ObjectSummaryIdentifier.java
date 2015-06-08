@@ -74,7 +74,8 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		List<BehaviorInstance> userBehaviors = new Vector<BehaviorInstance>();
 		List<AllUsersPerProblemSummary> allUsersPerProblemSummaries = new Vector<AllUsersPerProblemSummary>();
 
-		AllUsersPerProblemSummary firstSummary = createNewObjectAllUsersSummary(perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getObjectId());
+		AllUsersPerProblemSummary firstSummary = new AllUsersPerProblemSummary(perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getObjectId());
+
 		
 		//adds summary to list
 		allUsersPerProblemSummaries.add(firstSummary);
@@ -87,32 +88,24 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 			
 			//get the object ID from the per user per problem summary
 			String oldID = summary.getObjectId();
-			
 			boolean addedSummary = false;
 			int j = 0;
 			
 			while(j<allUsersPerProblemSummaries.size() && !addedSummary){
-			
 				//get the object ID from the per user all problems summary
 				String newID = allUsersPerProblemSummaries.get(j).getObjectID();
-				
 				//see if that ID has already been added to the list
 				if(oldID.equals(newID)){
-					
 					//update user list
 					allUsersPerProblemSummaries.get(j).addInfo(summary);
-					
 					addedSummary = true;
 				}
-			
 				j++;
 			}
 			
 			if(addedSummary == false){
 				//add a new ID to the allUsersPerProblemSummaries
-						
-				AllUsersPerProblemSummary newSummary = createNewObjectAllUsersSummary(summary, oldID);
-						
+				AllUsersPerProblemSummary newSummary = new AllUsersPerProblemSummary(summary, oldID);
 				//adds summary to list
 				allUsersPerProblemSummaries.add(newSummary);
 			}
@@ -128,45 +121,13 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		return userBehaviors;
 	}
 	
-	private AllUsersPerProblemSummary createNewObjectAllUsersSummary(PerUserPerProblemSummary summary, String objectID){
-		//add a new question to the allUsersPerProblemSummaries
-		
-		List <String> userList = new Vector<String>();
-		String user = summary.getUser();
-		userList.add(user);
-		
-		int numCorrect = 0;
-		String correctUsers = "";
-		int numBoth = 0;
-		String bothUsers = "";
-		int numIncorrect = 0;
-		String incorrectUsers = "";
-		
-		if (summary.isCorrect() == false){
-			numIncorrect = 1;
-			incorrectUsers = user + "/";
-		}else{
-			if (summary.getNumberTimesFalse() == 0){
-				numCorrect = 1;
-				correctUsers = user + "/";
-			}else{
-				numBoth = 1;
-				bothUsers = user + "/";
-			}
-		}
-		
-		//makes a new summary
-		AllUsersPerProblemSummary newSummary = new AllUsersPerProblemSummary(objectID, userList, 1, summary.getAssessable() ,numCorrect, correctUsers, numBoth, bothUsers, numIncorrect, incorrectUsers);
-		
-		return newSummary;
-
-	}
 	
 	private List <BehaviorInstance> buildPerUserAllObjectsSummaries(List<PerUserPerProblemSummary> perUserPerProblemSummaries){
 		List<BehaviorInstance> userBehaviors = new Vector<BehaviorInstance>();
 		List<PerUserAllProblemsSummary> perUserAllProblemsSummaries = new Vector<PerUserAllProblemsSummary>();
 		
-		PerUserAllProblemsSummary firstSummary = createNewUserAllProblemsSummary(perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getUser());
+		PerUserAllProblemsSummary firstSummary = new PerUserAllProblemsSummary(perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getUser());
+		
 		
 		//adds summary to list
 		perUserAllProblemsSummaries.add(firstSummary);
@@ -208,7 +169,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 					
 				//add a newUser to the perUserAllProblemsSummaries
 						
-				PerUserAllProblemsSummary newSummary = createNewUserAllProblemsSummary(summary, oldUser);
+				PerUserAllProblemsSummary newSummary = new PerUserAllProblemsSummary(summary, oldUser);
 						
 				//adds summary to list
 				perUserAllProblemsSummaries.add(newSummary);
@@ -226,35 +187,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		return userBehaviors;
 	}
 
-	private PerUserAllProblemsSummary createNewUserAllProblemsSummary(PerUserPerProblemSummary summary, String oldUser){
-		//add a newUser to the perUserAllProblemsSummaries
-		
-		//if the first one is correct or not
-		int numNotAssessable = 0;
-		int numCorrect = 0;
-		int numIncorrect = 0;
-		String notAssessableID = "";
-		String correctID = "";
-		String incorrectID = "";
-		
-		if(summary.getAssessable() == false){
-			numNotAssessable = 1;
-			notAssessableID = summary.getObjectId() + "/";
-		}else if(summary.isCorrect() == true){
-			numCorrect = 1;
-			correctID = summary.getObjectId() + "/";
-		}else{
-			numIncorrect = 1;
-			incorrectID = summary.getObjectId() + "/";
-		}
-		
-		//makes a new summary
-		PerUserAllProblemsSummary newSummary = new PerUserAllProblemsSummary(oldUser, 1, numNotAssessable, notAssessableID, numCorrect, correctID, numIncorrect, 
-				incorrectID, 0, summary.getTime());
-		
-		return newSummary;
 
-	}
 }
 
 	
