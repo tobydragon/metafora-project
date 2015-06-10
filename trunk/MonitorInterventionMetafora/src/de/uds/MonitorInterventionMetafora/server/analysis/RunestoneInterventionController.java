@@ -36,170 +36,60 @@ public class RunestoneInterventionController implements InterventionController{
 	public void sendInterventions(List<BehaviorInstance> behaviorsIdentified, List<String> involvedUsers, Locale locale) {
 		//TODO: This is where we will create CfActions for each problem, from each BehaviorInstance that represents one problem and all it's details
 		
-		
-		
-		
-		
 		List<CfAction> actions = new ArrayList<CfAction>();
 		
+		//go through the behavior instances and create a CfAction for each 
 		for(BehaviorInstance behaviorInstance : behaviorsIdentified){
-			
-			if(behaviorInstance.getBehaviorType() == BehaviorType.PER_USER_PER_OBJECT_SUMMARY){
-				actions.add(buildPerUserPerObjectSummaryCFAction(behaviorInstance));
-			}
-			
-			else if(behaviorInstance.getBehaviorType() == BehaviorType.PER_USER_ALL_OBJECTS_SUMMARY){
-				actions.add(buildPerUserAllObjectsSummaryCFAction(behaviorInstance));
-			}
-			
-			else if(behaviorInstance.getBehaviorType() == BehaviorType.ALL_USERS_PER_OBJECT_SUMMARY){
-				actions.add(buildAllUsersPerObjectSummaryCFAction(behaviorInstance));
-			}
-			
-			else{
-				log.warn("Behavior type not recognized");
-			}
-		
-			
-		
+			actions.add(buildCFAction(behaviorInstance));		
 		}
+		
 		for(CfAction cfAction : actions){
 			analysisChannelManager.sendMessage(cfAction);
 		}
 		System.out.println(CfInteractionDataParser.toXml(new CfInteractionData(actions)));
-			
-			
-			
+	
+	}
+
+	
+	
+	
+	private CfAction buildCFAction(BehaviorInstance behaviorInstance) {
+		
+		long time = System.currentTimeMillis();
+		
+		CfActionType cfActionType = new CfActionType(behaviorInstance.getBehaviorType().toString(), RunestoneStrings.INDICATOR_STRING, null, null);
+		
+		List<CfUser> cfUsers = new ArrayList<CfUser>();
+		cfUsers.add(new CfUser(behaviorInstance.getUsernames().toString().replace("[", "").replace("]", ""),RunestoneStrings.ORIGINATOR_STRING));
+		
+		
+		//if the instance is a Per User Per Object then create a CfObject 
+		List<CfObject> cfObjects = new ArrayList<CfObject>();
+		if(behaviorInstance.getBehaviorType() == BehaviorType.PER_USER_PER_OBJECT_SUMMARY){
+			cfObjects.add(new CfObject(behaviorInstance.getPropertyValue(RunestoneStrings.OBJECT_ID_STRING), behaviorInstance.getPropertyValue(CommonFormatStrings.TYPE_STRING)));
+		}
+
+		
+		Map<String, CfProperty> cfPropertiesContent = new HashMap<String, CfProperty>();
+		String description = "";
+		
+		//if the property is the description save into variable instead of adding it as a content property 
+		for (CfProperty prop : behaviorInstance.getProperties()){
+			if(prop.getName().equalsIgnoreCase(RunestoneStrings.DESCRIPTION_STRING)){
+				description = prop.getValue();
+			}
+			//add all other properties as content properties
+			else{
+				cfPropertiesContent.put(prop.getName(), prop);
+			}
+				
+		}
+		// create CfContent with the description separate from the other properties 
+		CfContent cfContent = new CfContent(description, cfPropertiesContent);
+		
+		CfAction cfAction = new CfAction (time, cfActionType, cfUsers, cfObjects, cfContent);
+		
+		return cfAction;
 	}
 	
-	private CfAction buildAllUsersPerObjectSummaryCFAction(BehaviorInstance behaviorInstance) {
-		// TODO Auto-generated method stub
-		long time = System.currentTimeMillis();
-		
-		CfActionType cfActionType = new CfActionType(behaviorInstance.getBehaviorType().toString(), RunestoneStrings.INDICATOR_STRING, null, null);
-		
-		List<CfUser> cfUsers = new ArrayList<CfUser>();
-		cfUsers.add(new CfUser(behaviorInstance.getUsernames().toString(),RunestoneStrings.ORIGINATOR_STRING));
-		
-		List<CfObject> cfObjects = new ArrayList<CfObject>();
-		
-		String user = behaviorInstance.getUsernames().toString();
-		String objectId = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.OBJECT_ID_STRING));
-		String totalAttempted = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_ATTEMPTED_STRING));
-		String assessable = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.IS_ASSESSABLE_STRING));
-		String numCorrect = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_CORRECT_STRING));
-		String correctUsers = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_CORRECT_USERS_STRING));
-		String numIncorrect = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_INCORRECT_STRING));
-		String incorrectUsers = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_INCORRECT_USERS_STRING));
-		String numBoth = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_BOTH_STRING));
-		String bothUsers = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_BOTH_USERS_STRING));
-				
-		String description = objectId + " was attempted by " + totalAttempted + " different user(s).  There were "
-				+ numCorrect + " only correct responses, " + numBoth + " first incorrect then correct responses, and "+ numIncorrect + " only incorrect responses."; 
-		
-		Map<String, CfProperty> cfPropertiesContent = new HashMap<String, CfProperty>();
-		for (CfProperty prop : behaviorInstance.getProperties()){
-			cfPropertiesContent.put(prop.getName(), prop);
-		}
-		CfContent cfContent = new CfContent(description, cfPropertiesContent);
-		
-		CfAction cfAction = new CfAction (time, cfActionType, cfUsers, cfObjects, cfContent);
-		
-		return cfAction;
-	}
-
-	private CfAction buildPerUserAllObjectsSummaryCFAction(
-			BehaviorInstance behaviorInstance) {
-		// TODO Auto-generated method stub
-		long time = System.currentTimeMillis();
-		
-		CfActionType cfActionType = new CfActionType(behaviorInstance.getBehaviorType().toString(), RunestoneStrings.INDICATOR_STRING, null, null);
-		
-		List<CfUser> cfUsers = new ArrayList<CfUser>();
-		cfUsers.add(new CfUser(behaviorInstance.getUsernames().toString(),RunestoneStrings.ORIGINATOR_STRING));
-		
-		List<CfObject> cfObjects = new ArrayList<CfObject>();
-		//TODO: Do we need the separate question objects? for now, we just have the ids in a string property of the action
-//		Map<String, CfProperty> cfPropertiesObject = new HashMap<String, CfProperty>();
-//		cfPropertiesObject.put(behaviorInstance.getProperties().get(0).getName(), behaviorInstance.getProperties().get(0));
-//		cfPropertiesObject.put(behaviorInstance.getProperties().get(1).getName(), behaviorInstance.getProperties().get(1));
-//		cfPropertiesObject.put(behaviorInstance.getProperties().get(2).getName(), behaviorInstance.getProperties().get(2));
-//		cfObjects.add(new CfObject(behaviorInstance.getPropertyValue(RunestoneStrings.OBJECT_ID_STRING), behaviorInstance.getPropertyValue(CommonFormatStrings.TYPE_STRING), cfPropertiesObject));
-		
-		String user = behaviorInstance.getUsernames().toString();
-		String totalAttempted = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_ATTEMPTED_STRING));
-		String numNotAssessable = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_NOT_ASSESSABLE_STRING));
-		String notAssessableQuestions = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NOT_ASSESSABLE_ANSWERS_STRING));
-		String numCorrect = behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_CORRECT_STRING);
-		String correctQuestions = behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_CORRECT_ANSWERS_STRING);
-		String numIncorrect = behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_INCORRECT_STRING);
-		String incorrectQuestions = behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_INCORRECT_ANSWERS_STRING);
-		String numOthers = behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_NUMBER_OTHERS_STRING);
-		String totalTime = behaviorInstance.getPropertyValue(RunestoneStrings.TOTAL_TIME_SPENT_STRING);
-				
-		String description = user + " spent " + totalTime + " seconds on " + totalAttempted + " questions.  There were "
-				+ numCorrect + " correct responses, " + numIncorrect + " incorrect responses, and " + numNotAssessable + " not assessable questions."; 
-		
-		Map<String, CfProperty> cfPropertiesContent = new HashMap<String, CfProperty>();
-		for (CfProperty prop : behaviorInstance.getProperties()){
-			cfPropertiesContent.put(prop.getName(), prop);
-		}
-		CfContent cfContent = new CfContent(description, cfPropertiesContent);
-		
-		CfAction cfAction = new CfAction (time, cfActionType, cfUsers, cfObjects, cfContent);
-		
-		return cfAction;
-	}
-
-	private CfAction buildPerUserPerObjectSummaryCFAction(BehaviorInstance behaviorInstance) {
-		long time = System.currentTimeMillis();
-		
-		CfActionType cfActionType = new CfActionType(behaviorInstance.getBehaviorType().toString(), RunestoneStrings.INDICATOR_STRING, null, null);
-		
-		List<CfUser> cfUsers = new ArrayList<CfUser>();
-		cfUsers.add(new CfUser(behaviorInstance.getUsernames().toString(),RunestoneStrings.ORIGINATOR_STRING));
-		
-		Map<String, CfProperty> cfPropertiesObject = new HashMap<String, CfProperty>();
-		
-		//get the CfProperties by name
-		cfPropertiesObject.put(RunestoneStrings.IS_EVER_CORRECT_STRING, behaviorInstance.getProperty(RunestoneStrings.IS_EVER_CORRECT_STRING));
-		cfPropertiesObject.put(RunestoneStrings.TIME_SPENT_STRING, behaviorInstance.getProperty(RunestoneStrings.TIME_SPENT_STRING));
-		
-		cfPropertiesObject.put(RunestoneStrings.TIMES_FALSE_STRING, behaviorInstance.getProperty(RunestoneStrings.TIMES_FALSE_STRING));
-		cfPropertiesObject.put(RunestoneStrings.IS_ASSESSABLE_STRING, behaviorInstance.getProperty(RunestoneStrings.IS_ASSESSABLE_STRING));
-		
-		List<CfObject> cfObjects = new ArrayList<CfObject>();
-		cfObjects.add(new CfObject(behaviorInstance.getPropertyValue(RunestoneStrings.OBJECT_ID_STRING), behaviorInstance.getPropertyValue(CommonFormatStrings.TYPE_STRING), cfPropertiesObject));
-		
-		String user = behaviorInstance.getUsernames().toString();
-		String seconds = String.valueOf(behaviorInstance.getPropertyValue(RunestoneStrings.TIME_SPENT_STRING));
-		String objectId = behaviorInstance.getPropertyValue(RunestoneStrings.OBJECT_ID_STRING);
-		String timesFalse = behaviorInstance.getPropertyValue(RunestoneStrings.TIMES_FALSE_STRING);
-		String isCorrect = behaviorInstance.getPropertyValue(RunestoneStrings.IS_EVER_CORRECT_STRING);
-		String assessable = behaviorInstance.getPropertyValue(RunestoneStrings.IS_ASSESSABLE_STRING);
-		
-		String description = user + " spent " + seconds + " seconds on " + objectId + " and answered incorrectly "
-				+ timesFalse + " time(s), "; 
-		//description depends on whether the user answered the question correct
-		if(isCorrect.equalsIgnoreCase("true")){
-		
-			description = description + "before answering correct";
-		}
-		else{
-			description = description + "never answered correct";
-		}
-				
-		
-		Map<String, CfProperty> cfPropertiesContent = new HashMap<String, CfProperty>();
-
-		//get the CfProperty by name
-		cfPropertiesContent.put(RunestoneStrings.FALSE_ENTRIES_STRING, behaviorInstance.getProperty(RunestoneStrings.FALSE_ENTRIES_STRING));
-		
-		CfContent cfContent = new CfContent(description, cfPropertiesContent);
-		
-		CfAction cfAction = new CfAction (time, cfActionType, cfUsers, cfObjects, cfContent);
-		
-		return cfAction;
-	}
-
 }

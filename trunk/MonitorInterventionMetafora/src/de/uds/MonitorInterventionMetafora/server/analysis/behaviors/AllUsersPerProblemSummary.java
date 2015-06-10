@@ -18,6 +18,7 @@ public class AllUsersPerProblemSummary {
 	private String bothUsers;
 	private int numIncorrect;
 	private String incorrectUsers;
+	private String description;
 	
 	
 	
@@ -66,6 +67,7 @@ public class AllUsersPerProblemSummary {
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_BOTH_USERS_STRING,String.valueOf(bothUsers)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_NUMBER_INCORRECT_STRING,String.valueOf(numIncorrect)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_INCORRECT_USERS_STRING,String.valueOf(incorrectUsers)));
+		instanceProperties.add(new CfProperty(RunestoneStrings.DESCRIPTION_STRING, description));
 		
 		BehaviorInstance instance = new BehaviorInstance(BehaviorType.ALL_USERS_PER_OBJECT_SUMMARY, userList, instanceProperties);
 		return instance;
@@ -90,6 +92,12 @@ public class AllUsersPerProblemSummary {
 				this.bothUsers = bothUsers + user + "/";
 			}
 		}
+	}
+	
+	public void buildDescription(){
+		description = objectID + " was attempted by " + totalAttempted + " different user(s).  There were "
+				+ numCorrect + " only correct responses, " + numBoth + " first incorrect then correct responses, and "+ numIncorrect + " only incorrect responses."; 
+		
 	}
 	
 	public String getObjectID() {

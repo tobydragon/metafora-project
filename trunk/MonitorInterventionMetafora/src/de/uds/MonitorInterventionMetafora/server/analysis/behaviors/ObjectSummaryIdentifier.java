@@ -35,7 +35,6 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 				}
 		}
 		
-		
 		//goes through each user
 		for(String user : involvedUsers){
 			
@@ -76,7 +75,6 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 
 		AllUsersPerProblemSummary firstSummary = new AllUsersPerProblemSummary(perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getObjectId());
 
-		
 		//adds summary to list
 		allUsersPerProblemSummaries.add(firstSummary);
 		
@@ -115,6 +113,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		log.debug(allUsersPerProblemSummaries);
 		for(AllUsersPerProblemSummary newSummary: allUsersPerProblemSummaries){
 			//makes summary a behavior instance
+			newSummary.buildDescription();
 			userBehaviors.add(newSummary.buildBehaviorInstance());
 		}
 		
@@ -128,7 +127,6 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		
 		PerUserAllProblemsSummary firstSummary = new PerUserAllProblemsSummary(perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getUser());
 		
-		
 		//adds summary to list
 		perUserAllProblemsSummaries.add(firstSummary);
 		
@@ -137,7 +135,6 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 			
 			//get the per user per problem summary
 			PerUserPerProblemSummary summary = perUserPerProblemSummaries.get(i);
-			
 			//get the user name from the per user per problem summary
 			String oldUser = summary.getUser();
 			boolean addedSummary = false;
@@ -150,27 +147,16 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 				//see if that user has already been added to the list
 				if(oldUser.equals(newUser)){
 					//add the information to already made newUser
-					
-					//update total attempted
-					perUserAllProblemsSummaries.get(j).addTotalAttempted();
-					
-					//update total correct, correct string, total incorrect, and incorrect string
-					perUserAllProblemsSummaries.get(j).addQuestion(summary.isCorrect(), summary.getAssessable(), summary.getObjectId());
-					
-					//update total time
-					perUserAllProblemsSummaries.get(j).addTotalTime(summary.getTime());
-					
+					perUserAllProblemsSummaries.get(j).addInfo(summary);					
 					addedSummary = true;
 				}
 			
 				j++;
 			}
-			if (addedSummary == false){
-					
-				//add a newUser to the perUserAllProblemsSummaries
-						
-				PerUserAllProblemsSummary newSummary = new PerUserAllProblemsSummary(summary, oldUser);
-						
+			
+			if (addedSummary == false){	
+				//add a newUser to the perUserAllProblemsSummaries	
+				PerUserAllProblemsSummary newSummary = new PerUserAllProblemsSummary(summary, oldUser);	
 				//adds summary to list
 				perUserAllProblemsSummaries.add(newSummary);
 						
@@ -181,13 +167,12 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		log.debug(perUserAllProblemsSummaries);
 		for(PerUserAllProblemsSummary newSummary: perUserAllProblemsSummaries){
 			//makes summary a behavior instance
+			newSummary.buildDescription();
 			userBehaviors.add(newSummary.buildBehaviorInstance());
 		}
 		
 		return userBehaviors;
 	}
-
-
 }
 
 	
