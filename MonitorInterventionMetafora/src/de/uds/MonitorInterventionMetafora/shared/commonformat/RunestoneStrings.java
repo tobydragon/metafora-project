@@ -26,6 +26,7 @@ public class RunestoneStrings {
 	public static final String INDICATOR_STRING = "INDICATOR";
 	public static final String ORIGINATOR_STRING = "ORIGINATOR";
 	public static final String TYPE_STRING = "TYPE";
+	public static final String DESCRIPTION_STRING = "DESCRIPTION";
 	
 	public static final String TOTAL_ATTEMPTED_STRING = "TOTAL_ATTEMPTED";
 	public static final String TOTAL_NUMBER_NOT_ASSESSABLE_STRING = "TOTAL_NUMBER_NOT_ASSESSABLE";

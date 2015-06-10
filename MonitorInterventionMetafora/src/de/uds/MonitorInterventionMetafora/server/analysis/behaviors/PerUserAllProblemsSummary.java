@@ -18,6 +18,7 @@ public class PerUserAllProblemsSummary {
 	private String incorrectQuestions;
 	private int numOthers;
 	private long totalTime;
+	private String description;
 	
 
 	
@@ -49,7 +50,6 @@ public class PerUserAllProblemsSummary {
 			incorrectQuestions = summary.getObjectId() + "/";
 		}
 		
-		
 	}
 	
 		
@@ -65,6 +65,7 @@ public class PerUserAllProblemsSummary {
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_INCORRECT_ANSWERS_STRING, String.valueOf(incorrectQuestions)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_NUMBER_OTHERS_STRING, String.valueOf(numOthers)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_TIME_SPENT_STRING, String.valueOf(totalTime)));
+		instanceProperties.add(new CfProperty(RunestoneStrings.DESCRIPTION_STRING, description));
 		
 		List <String> userList = new Vector<String>();
 		userList.add(user);
@@ -79,10 +80,6 @@ public class PerUserAllProblemsSummary {
 
 	public int getTotalAttempted() {
 		return totalAttempted;
-	}
-	
-	public void addTotalAttempted(){
-		this.totalAttempted = totalAttempted + 1;
 	}
 	
 	public int getNumNotAssessable() {
@@ -109,36 +106,33 @@ public class PerUserAllProblemsSummary {
 		return incorrectQuestions;
 	}
 	
-	public void addQuestion(boolean attempt, boolean assessable, String objectID) {
+	
+	public void addInfo(PerUserPerProblemSummary summary){
+	
+		this.totalAttempted = totalAttempted + 1;
+		this.totalTime = totalTime + summary.getTime();
 		
-		//this is updating the correct field regardless of whether the question is assessable or not 
-//		if (assessable == false){
-//			this.numNotAssessable = numNotAssessable + 1;
-//			this.notAssessableQuestions = notAssessableQuestions + "/" + objectID;
-//		}
-//		if (attempt == true){
-//			this.numCorrect = numCorrect + 1;
-//			this.correctQuestions = correctQuestions + "/" + objectID;
-//		}
-//		else if (attempt == false){
-//			this.numIncorrect = numIncorrect + 1;
-//			this.incorrectQuestions = incorrectQuestions + "/" + objectID;
-//		}
-		
-		
-		//this updates correct fields only if question is assessable 
-		if (assessable == false){
+		//only update correct/incorrect fields if the question is assessable 
+		if (summary.getAssessable() == false){
 			this.numNotAssessable = numNotAssessable + 1;
-			this.notAssessableQuestions = notAssessableQuestions + "/" + objectID;
-		}else if (attempt == true){
+			this.notAssessableQuestions = notAssessableQuestions + "/" + summary.getObjectId();
+		}else if (summary.isCorrect() == true){
 			this.numCorrect = numCorrect + 1;
-			this.correctQuestions = correctQuestions + "/" + objectID;
+			this.correctQuestions = correctQuestions + "/" + summary.getObjectId();
 		}
-		else if (attempt == false){
+		else if (summary.isCorrect() == false){
 			this.numIncorrect = numIncorrect + 1;
-			this.incorrectQuestions = incorrectQuestions + "/" + objectID;
+			this.incorrectQuestions = incorrectQuestions + "/" + summary.getObjectId();
 		}
+
 	}
+
+	public void buildDescription(){
+		description = user + " spent " + totalTime + " seconds on " + totalAttempted + " questions.  There were "
+				+ numCorrect + " correct responses, " + numIncorrect + " incorrect responses, and " + numNotAssessable + " not assessable questions."; 
+			
+	}
+	
 	
 	public int getNumOthers(){
 		return numOthers;
@@ -146,10 +140,6 @@ public class PerUserAllProblemsSummary {
 	
 	public long getTotalTime() {
 		return totalTime;
-	}
-
-	public void addTotalTime(long time){
-		this.totalTime = totalTime + time;
 	}
 	
 	public String toString(){

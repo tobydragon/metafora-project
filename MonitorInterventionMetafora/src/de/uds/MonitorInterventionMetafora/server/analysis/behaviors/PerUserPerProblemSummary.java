@@ -17,7 +17,7 @@ public class PerUserPerProblemSummary {
 	private String falseEntries;
 	private String objectId;
 	private String type;
-	
+	private String description;
 	
 	
 	public PerUserPerProblemSummary(List <CfAction> actionsFilteredByObjectId, String currentUser, String currentObjectId){
@@ -36,7 +36,6 @@ public class PerUserPerProblemSummary {
 		assessable = true;
 		numberTimesFalse = 0;
 		falseEntries = "";
-		//type = "";
 	
 	
 		//goes through each entry for each objectId for each user
@@ -51,7 +50,9 @@ public class PerUserPerProblemSummary {
 				numberTimesFalse++;
 				constructFalseEntries(action);	
 			}
-		}		
+		}	
+		
+		buildDescription();
 	}
 	
 	
@@ -64,6 +65,7 @@ public class PerUserPerProblemSummary {
 		instanceProperties.add(new CfProperty(RunestoneStrings.FALSE_ENTRIES_STRING, falseEntries));
 		instanceProperties.add(new CfProperty(RunestoneStrings.OBJECT_ID_STRING, objectId));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TYPE_STRING, type));
+		instanceProperties.add(new CfProperty(RunestoneStrings.DESCRIPTION_STRING, description));
 		
 		List <String> userList = new Vector<String>();
 		userList.add(user);
@@ -139,6 +141,20 @@ public class PerUserPerProblemSummary {
 		//if it is not a multiple choice question the act does not need to be stripped, update falseEntries with the act string as is
 		else{
 			falseEntries = falseEntries + "/" + act;
+		}
+	}
+	
+	public void buildDescription(){
+		
+		description = user + " spent " + time + " seconds on " + objectId + " and answered incorrectly "
+				+ numberTimesFalse + " time(s), "; 
+		//description depends on whether the user answered the question correct
+		if(isCorrect == true){
+		
+			description = description + "before answering correct";
+		}
+		else{
+			description = description + "never answered correct";
 		}
 	}
 	
