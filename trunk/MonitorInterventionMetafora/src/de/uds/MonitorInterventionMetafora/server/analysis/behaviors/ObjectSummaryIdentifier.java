@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
+import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 
 public class ObjectSummaryIdentifier implements BehaviorIdentifier{
@@ -19,6 +20,8 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 	public List<BehaviorInstance> identifyBehaviors(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties) {
 		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
 		List<PerUserPerProblemSummary> perUserPerProblemSummaries = new Vector<PerUserPerProblemSummary>();
+		
+		
 		//TODO @Caitlin: this is where we get all the actions (actions to consider) and you return a list of BehaviorInstances, one for each object (problem)
 		//create instance for each student each problem
 		
@@ -51,14 +54,28 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 					//list of all actions for the current user for the current objectId
 					List<CfAction> actionsFilteredByObjectId = objectIdFilter.getFilteredList(actionsFilteredByUser);
 					
-					//if there is at least one action in the list, create a PerUserPerObjectSummary 
+					//if there is at least one action in the list, create a PerUserPerProblemSummary 
 					if (actionsFilteredByObjectId.size() > 0){
-						PerUserPerProblemSummary summary = new PerUserPerProblemSummary(actionsFilteredByObjectId, user, objectId);
+
+						
+						//get the first action in the list and check the correct field, if it is null then the question is non assessable
+						//only need to check the first entry as the list is filtered by objectId
+						//if non assessable then create a PerUserPerProblemSummary
+						PerUserPerProblemSummary summary;
+						if(actionsFilteredByObjectId.get(0).getCfContent().getPropertyValue(RunestoneStrings.CORRECT_STRING) == null){
+							summary =  new PerUserPerProblemSummary(actionsFilteredByObjectId, user, objectId){};
+						}
+						//if the field isn't null then it is assessable, so create an AssessablePerUserPerProblemSummary
+						else{
+							summary = new AssessablePerUserPerProblemSummary(actionsFilteredByObjectId, user, objectId);
+						}
+
 						perUserPerProblemSummaries.add(summary);
 						identifiedBehaviors.add(summary.buildBehaviorInstance());
+
 					}
 				}
-			}
+		}
 		
 		List <BehaviorInstance> perUserSummary = buildPerUserAllObjectsSummaries(perUserPerProblemSummaries);
 		identifiedBehaviors.addAll(perUserSummary);
@@ -69,11 +86,23 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		return identifiedBehaviors;
 	}
 	
+	
+
 	private List <BehaviorInstance> buildAllUsersPerObjectSummaries(List<PerUserPerProblemSummary> perUserPerProblemSummaries){
+		
 		List<BehaviorInstance> userBehaviors = new Vector<BehaviorInstance>();
 		List<AllUsersPerProblemSummary> allUsersPerProblemSummaries = new Vector<AllUsersPerProblemSummary>();
 
-		AllUsersPerProblemSummary firstSummary = new AllUsersPerProblemSummary(perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getObjectId());
+
+		AllUsersPerProblemSummary firstSummary;
+
+		//TODO: remove instance of call
+		//check the class name to determine if the summary is for an assessable question or not and then create the corresponding AllUsersPerProblemSummary
+		if(perUserPerProblemSummaries.get(0).getClass().getName().contains("AssessablePerUserPerProblemSummary")){
+			firstSummary = new AssessableAllUsersPerProblemSummary((AssessablePerUserPerProblemSummary)perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getObjectId());
+		}else{
+			firstSummary = new AllUsersPerProblemSummary(perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getObjectId());
+		}
 
 		//adds summary to list
 		allUsersPerProblemSummaries.add(firstSummary);
@@ -81,8 +110,10 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		//go through the behavior list
 		for(int i=1; i<perUserPerProblemSummaries.size(); i++){
 			
+			
 			//get the per user per problem summary
 			PerUserPerProblemSummary summary = perUserPerProblemSummaries.get(i);
+	
 			
 			//get the object ID from the per user per problem summary
 			String oldID = summary.getObjectId();
@@ -95,15 +126,34 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 				//see if that ID has already been added to the list
 				if(oldID.equals(newID)){
 					//update user list
-					allUsersPerProblemSummaries.get(j).addInfo(summary);
-					addedSummary = true;
+					
+					//TODO: remove instance of call 
+					//check the class name to determine if the summary is for an assessable question or not update with info from the new summary
+					if(allUsersPerProblemSummaries.get(j).getClass().getName().contains("AssessableAllUsersPerProblemSummary")){
+						AssessableAllUsersPerProblemSummary tempSummary = (AssessableAllUsersPerProblemSummary)allUsersPerProblemSummaries.get(j);
+						if(summary.getClass().getName().contains("AssessablePerUserPerProblemSummary")){
+							tempSummary.addInfo((AssessablePerUserPerProblemSummary)summary);
+						}
+						}else{
+							allUsersPerProblemSummaries.get(j).addInfo(summary);
+					}
+
+					addedSummary = true;					
 				}
 				j++;
 			}
 			
 			if(addedSummary == false){
-				//add a new ID to the allUsersPerProblemSummaries
-				AllUsersPerProblemSummary newSummary = new AllUsersPerProblemSummary(summary, oldID);
+				
+				AllUsersPerProblemSummary newSummary;
+				//TODO: remove instance of call
+				//check the class name to determine if the summary is for an assessable question or not and then create the corresponding AllUsersPerProblemSummary
+				if(summary.getClass().getName().contains("AssessablePerUserPerProblemSummary")){
+					newSummary = new AssessableAllUsersPerProblemSummary((AssessablePerUserPerProblemSummary)summary, oldID);
+				}else{
+					newSummary = new AllUsersPerProblemSummary(summary, oldID);
+				}
+				
 				//adds summary to list
 				allUsersPerProblemSummaries.add(newSummary);
 			}
@@ -113,20 +163,26 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		log.debug(allUsersPerProblemSummaries);
 		for(AllUsersPerProblemSummary newSummary: allUsersPerProblemSummaries){
 			//makes summary a behavior instance
-			newSummary.buildDescription();
 			userBehaviors.add(newSummary.buildBehaviorInstance());
 		}
 		
 		return userBehaviors;
-	}
-	
+	}	
 	
 	private List <BehaviorInstance> buildPerUserAllObjectsSummaries(List<PerUserPerProblemSummary> perUserPerProblemSummaries){
+		
 		List<BehaviorInstance> userBehaviors = new Vector<BehaviorInstance>();
 		List<PerUserAllProblemsSummary> perUserAllProblemsSummaries = new Vector<PerUserAllProblemsSummary>();
 		
-		PerUserAllProblemsSummary firstSummary = new PerUserAllProblemsSummary(perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getUser());
-		
+		PerUserAllProblemsSummary firstSummary;
+
+		//check the class name to determine if the summary is for an assessable question or not and call the corresponding constructor
+		if(perUserPerProblemSummaries.get(0).getClass().getName().contains("AssessablePerUserPerProblemSummary")){
+			firstSummary = new PerUserAllProblemsSummary((AssessablePerUserPerProblemSummary)perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getUser());
+		}else{
+			firstSummary = new PerUserAllProblemsSummary(perUserPerProblemSummaries.get(0), perUserPerProblemSummaries.get(0).getUser());
+		}
+
 		//adds summary to list
 		perUserAllProblemsSummaries.add(firstSummary);
 		
@@ -147,27 +203,41 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 				//see if that user has already been added to the list
 				if(oldUser.equals(newUser)){
 					//add the information to already made newUser
-					perUserAllProblemsSummaries.get(j).addInfo(summary);					
-					addedSummary = true;
+					
+					//TODO: remove instance of call
+					//check the class name to determine if the summary is for an assessable question or not then call the corresponding addInfo method
+					if(summary.getClass().getName().contains("AssessablePerUserPerProblemSummary")){
+						perUserAllProblemsSummaries.get(j).addInfo((AssessablePerUserPerProblemSummary)summary);					
+						addedSummary = true;
+					}else{
+						perUserAllProblemsSummaries.get(j).addInfo(summary);	
+						addedSummary = true;
+					}
 				}
 			
 				j++;
 			}
 			
-			if (addedSummary == false){	
-				//add a newUser to the perUserAllProblemsSummaries	
-				PerUserAllProblemsSummary newSummary = new PerUserAllProblemsSummary(summary, oldUser);	
+			//if the summary wasn't added to an existing summary, create a new summary 
+			if (addedSummary == false){		
+				
+				PerUserAllProblemsSummary newSummary;
+				//TODO: remove instance of call
+				//check the class name to determine if the summary is for an assessable question or not and then call the corresponding constructor
+				if(summary.getClass().getName().contains("AssessablePerUserPerProblemSummary")){
+					newSummary = new PerUserAllProblemsSummary((AssessablePerUserPerProblemSummary)summary, oldUser);	
+				}else{
+					newSummary = new PerUserAllProblemsSummary(summary, oldUser);	
+				}
+
 				//adds summary to list
-				perUserAllProblemsSummaries.add(newSummary);
-						
-			}
-			
+				perUserAllProblemsSummaries.add(newSummary);						
+			}	
 		}
 		
 		log.debug(perUserAllProblemsSummaries);
 		for(PerUserAllProblemsSummary newSummary: perUserAllProblemsSummaries){
 			//makes summary a behavior instance
-			newSummary.buildDescription();
 			userBehaviors.add(newSummary.buildBehaviorInstance());
 		}
 		

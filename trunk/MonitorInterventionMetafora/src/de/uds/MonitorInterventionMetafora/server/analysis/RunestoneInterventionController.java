@@ -60,8 +60,8 @@ public class RunestoneInterventionController implements InterventionController{
 		CfActionType cfActionType = new CfActionType(behaviorInstance.getBehaviorType().toString(), RunestoneStrings.INDICATOR_STRING, null, null);
 		
 		List<CfUser> cfUsers = new ArrayList<CfUser>();
+		//as getUsernames returns a list of users, need to strip the brackets from the list when converted to a string 
 		cfUsers.add(new CfUser(behaviorInstance.getUsernames().toString().replace("[", "").replace("]", ""),RunestoneStrings.ORIGINATOR_STRING));
-		
 		
 		//if the instance is a Per User Per Object then create a CfObject 
 		List<CfObject> cfObjects = new ArrayList<CfObject>();
