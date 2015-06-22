@@ -107,7 +107,7 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 		}
 	}
 	
-	public void buildDescription(){
+	private void buildDescription(){
 		
 		description = getUser() + " spent " + getTime() + " seconds on " + getObjectId() + " and answered incorrectly "
 				+ numberTimesFalse + " time(s), "; 
