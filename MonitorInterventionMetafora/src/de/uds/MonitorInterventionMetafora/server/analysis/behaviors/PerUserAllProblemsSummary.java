@@ -22,7 +22,7 @@ public class PerUserAllProblemsSummary {
 	
 
 	
-
+	//constructor to take in PerUserPerProblemSummary
 	public PerUserAllProblemsSummary (PerUserPerProblemSummary summary, String oldUser){
 		
 		this.user = oldUser;
@@ -37,8 +37,26 @@ public class PerUserAllProblemsSummary {
 		totalTime = summary.getTime();
 		
 		
-	//currently this is only updating the correct fields if the question is non assessable
-	//isCorrect is defaulted to true for non assessable questions	
+		if(summary.getAssessable() == false){
+			numNotAssessable = 1;
+			notAssessableQuestions = summary.getObjectId() + "/";
+		}		
+	}
+	
+	//constructor to take in AssessablePerUserPerProblemSummary
+	public PerUserAllProblemsSummary(AssessablePerUserPerProblemSummary summary, String oldUser){
+		this.user = oldUser;
+		totalAttempted = 1;
+		numNotAssessable = 0;
+		notAssessableQuestions = "";
+		numCorrect = 0;
+		correctQuestions = "";
+		numIncorrect = 0;
+		incorrectQuestions = "";
+		numOthers = 0;
+		totalTime = summary.getTime();
+		
+
 		if(summary.getAssessable() == false){
 			numNotAssessable = 1;
 			notAssessableQuestions = summary.getObjectId() + "/";
@@ -55,6 +73,8 @@ public class PerUserAllProblemsSummary {
 		
 	
 	public BehaviorInstance buildBehaviorInstance(){
+		buildDescription();
+		
 		List <CfProperty >instanceProperties = new Vector<CfProperty>();
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_ATTEMPTED_STRING,String.valueOf(totalAttempted)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TOTAL_NUMBER_NOT_ASSESSABLE_STRING,String.valueOf(numNotAssessable)));
@@ -112,11 +132,21 @@ public class PerUserAllProblemsSummary {
 		this.totalAttempted = totalAttempted + 1;
 		this.totalTime = totalTime + summary.getTime();
 		
-		//only update correct/incorrect fields if the question is assessable 
+
 		if (summary.getAssessable() == false){
 			this.numNotAssessable = numNotAssessable + 1;
 			this.notAssessableQuestions = notAssessableQuestions + "/" + summary.getObjectId();
-		}else if (summary.isCorrect() == true){
+		}
+
+	}
+
+	
+	public void addInfo(AssessablePerUserPerProblemSummary summary){
+		
+		this.totalAttempted = totalAttempted + 1;
+		this.totalTime = totalTime + summary.getTime();
+		
+		if (summary.isCorrect() == true){
 			this.numCorrect = numCorrect + 1;
 			this.correctQuestions = correctQuestions + "/" + summary.getObjectId();
 		}
@@ -126,8 +156,8 @@ public class PerUserAllProblemsSummary {
 		}
 
 	}
-
-	public void buildDescription(){
+	
+	private void buildDescription(){
 		description = user + " spent " + totalTime + " seconds on " + totalAttempted + " questions.  There were "
 				+ numCorrect + " correct responses, " + numIncorrect + " incorrect responses, and " + numNotAssessable + " not assessable questions."; 
 			
