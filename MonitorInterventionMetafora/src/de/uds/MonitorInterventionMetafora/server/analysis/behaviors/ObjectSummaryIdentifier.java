@@ -5,6 +5,10 @@ import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptGraph;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptNode;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
+import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
@@ -17,7 +21,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 	ActionFilter objectIdFilter;
 
 	@Override
-	public List<BehaviorInstance> identifyBehaviors(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties) {
+	public List<BehaviorInstance> identifyBehaviors(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties){
 		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
 		List<PerUserPerProblemSummary> perUserPerProblemSummaries = new Vector<PerUserPerProblemSummary>();
 		
@@ -75,7 +79,19 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 
 					}
 				}
-		}
+		}	
+		
+
+		//get the path of the book and then create a Book object
+		String bookPath = GeneralUtil.getRealPath("conffiles/domainfiles/thinkcspy/");
+		Book b = new Book("Interacitve Python", bookPath);
+		//create a ConceptGraph of the book and then call createConceptGraph in order to add the summaries to the graph
+		ConceptGraph graph = new ConceptGraph(b);
+		createConceptGraph(graph.getRoot(), perUserPerProblemSummaries);
+		System.out.println(graph);
+
+		
+		
 		
 		List <BehaviorInstance> perUserSummary = buildPerUserAllObjectsSummaries(perUserPerProblemSummaries);
 		identifiedBehaviors.addAll(perUserSummary);
@@ -243,9 +259,25 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		
 		return userBehaviors;
 	}
-}
-
 	
+	
+	
+	
+	
+	private void createConceptGraph(ConceptNode node, List<PerUserPerProblemSummary> summaries){
 
-
-
+		//go through each child of the node
+		for(ConceptNode child : node.getChildren()){
+			//go through each summary in the list passed in as a parameter
+			for(PerUserPerProblemSummary summary : summaries){	
+				//if the object Id for the concept and for the summary match then create node from the summary and add as a child
+				if(child.getConcept().getConceptTitle().equalsIgnoreCase(summary.getObjectId())){
+					ConceptNode summaryNode = new ConceptNode(summary);
+					child.addChild(summaryNode);
+				}
+			}
+			//recursively call the function with a child as the root
+			createConceptGraph(child, summaries);
+		}
+	}
+}
