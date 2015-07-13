@@ -7,8 +7,9 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
 
-public abstract class PerUserPerProblemSummary {
+public abstract class PerUserPerProblemSummary implements Concept{
 	private String user;
 	private long time;
 	private boolean assessable;
@@ -103,6 +104,13 @@ public abstract class PerUserPerProblemSummary {
 
 	public String getType() {
 		return type;
+	}
+	public String getConceptTitle(){
+		buildDescription();
+		return description;
+	}
+	public long getSummaryInfo(){
+		return time;
 	}
 
 }

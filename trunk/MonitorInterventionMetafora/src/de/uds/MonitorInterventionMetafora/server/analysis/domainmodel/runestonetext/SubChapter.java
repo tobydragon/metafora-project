@@ -59,4 +59,8 @@ public class SubChapter implements Concept{
 	public List<Question> getQuestions() {
 		return questions;
 	}
+	
+	public long getSummaryInfo(){
+		return 0;
+	}
 }

@@ -42,4 +42,8 @@ public class Chapter implements Concept{
 		return subChapters;
 	}
 	
+	public long getSummaryInfo(){
+		return 0;
+	}
+	
 }

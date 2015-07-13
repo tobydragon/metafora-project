@@ -1,5 +1,6 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph;
 
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Chapter;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Question;
@@ -18,6 +19,7 @@ public class ConceptGraph {
 	 */
 	public ConceptGraph(Book b){
 		root = new ConceptNode(b);
+		
 		
 		//get the list of chapters of the book
 		//create a new node for each chapter
@@ -43,10 +45,12 @@ public class ConceptGraph {
 			}
 		}		
 	}
-		
 	
 	public String toString(){
 		return root.toString();
+	}
+	public ConceptNode getRoot(){
+		return root;
 	}
 	
 }

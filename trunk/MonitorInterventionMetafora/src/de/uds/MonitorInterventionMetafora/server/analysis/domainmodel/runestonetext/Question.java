@@ -31,5 +31,9 @@ public class Question implements Concept{
 	public String getConceptTitle(){
 		return title;
 	}
+	
+	public long getSummaryInfo(){
+		return 0;
+	}
 
 }

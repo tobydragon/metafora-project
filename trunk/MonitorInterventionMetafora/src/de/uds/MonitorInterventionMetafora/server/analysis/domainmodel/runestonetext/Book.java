@@ -92,5 +92,9 @@ public class Book implements Concept {
 	public List<Chapter> getChapters(){
 		return chaps;
 	}
+	
+	public long getSummaryInfo(){
+		return 0;
+	}
 
 }
