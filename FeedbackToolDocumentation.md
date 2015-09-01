@@ -1,0 +1,111 @@
+# Launching the feedback (aka messaging) tool #
+
+# Introduction #
+
+The feedback tool can be launched in three different modes.
+
+A. As a tool for **peer messaging** (or even simple group reflection without sending the messages to anyone)
+
+B. As a tool with which one can send "external" feedback (either in their role as teacher or wizard simulating the system)
+
+C. As a tool for sending recommendations to users of the messaging tool (for either A or B above)
+
+Its functionality is generally configured by appending different parameters to the end of URL to tailor it to your specific needs. URL parameters are in the form of a 'key' and a 'value' after a question-mark (?) in the url. As below:
+
+```
+http://example.org/somewhere/?key1=value1&key2=value2&key3=value3
+```
+
+# Details #
+
+The following attributes are **required** for the correct operation of the tool (although for some default values exist)
+
+## `userType` ##
+
+The `userType` parameter determines the mode  as following
+
+| `userType=METAFORA_USER` | That's how the tool is launched within the METAFORA system.  Allows to send messages to a fixed list of users as determined by the `receiverIDs` (see below).  It also has the ability to receive recommendations. |
+|:-------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `userType=MESSAGING_WIZARD` | **This is the default**  That's for a teacher or wizard to send messages.  It allows changing the list of users (but also accepts an initial list with the the `receiverIDs` It can also receive recommendations (from the recommending wizard).  |
+| `userType=RECOMMENDING_WIZARD` |  Can send recommendations to the above. Doesn't received recommendations.                                                                                                                                          |
+
+## messageType ##
+
+To accompany the user type one may want to choose between what we refer to as 'peer' or 'external' messages.  The default generally is the EXTERNAL messages but METAFORA\_USER mode always gets the peer messages.
+
+| METAFORA\_USER | Peer messages |
+|:---------------|:--------------|
+| Other cases    | Choose PEER or EXTERNAL|
+
+Example
+
+`messageType=EXTERNAL'
+
+
+## `user` ##
+
+Determines the user of the tool. Used for knowing where to send recommendations. Example
+
+```
+user=Manolis
+```
+
+## `receiverIDs` ##
+
+A bar-separated list of possible receivers. Example:
+
+```
+receiverIDs=Sam|Ben|Alice
+```
+
+## `receiver` ##
+
+Determines which server is used for the messages to be sent and received.
+Choose between METAFORA or METAFORA\_TEST (the default is the METAFORA\_TEST)
+
+```
+receiver=METAFORA
+```
+
+## `locale` ##
+
+Determines the language of the UI and of the messages. Acceptable languages
+
+| English | en (default) |
+|:--------|:-------------|
+| Greek   | gr           |
+| Hebrew  | he           |
+
+Example
+
+```
+locale=gr
+```
+
+## `monitoring` ##
+
+By default this is `false` and if set to `true` it determines whether it loads the monitoring tool. The monitoring tool needs additional parameters described in this page LaunchingMonitoringTool
+
+## 'complexDataViews' ##
+
+By default this is 'false'. Never has an effect unless 'monitoring' is also set to 'true'. This determines whether the tool calculates and displays pie and bar graphs for the indicators, which could cause performance problems.
+
+# Summary #
+
+Below are the most commonly needed links (remember to modify the users and the server you are using)
+
+1. This is how the tool would look within METAFORA:
+
+http://web.lkldev.ioe.ac.uk/MonitorInterventionMetafora/?userType=METAFORA_USER&receiverIDs=Alice|Ben|Maria&user=Maria&receiver=METAFORA&locale=gr
+
+(e.g. Alice, Ben and Maria would be all the students in the group and Maria the one accessing it now)
+
+2. This is the recommender tool configured to send recommendations (peer messages) to the above user (Maria)
+
+http://web.lkldev.ioe.ac.uk/MonitorInterventionMetafora/?userType=RECOMMENDING_WIZARD&receiverIDs=Alice|Ben|Maria&user=Manolis&receiver=METAFORA&locale=gr&messageType=PEER
+
+(Note the user now is Manolis since he is sending the recommendations)
+
+
+
+
