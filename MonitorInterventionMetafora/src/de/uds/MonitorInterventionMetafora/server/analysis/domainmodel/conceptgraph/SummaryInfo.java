@@ -16,7 +16,7 @@ public class SummaryInfo {
 	public SummaryInfo(List<String> userList, long timeIn, List<String> objectIdList) {
 		
 		// TODO Auto-generated constructor stub
-	
+		// TESTING COMMIT
 
 		users = userList;
 		time = timeIn;
