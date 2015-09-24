@@ -35,7 +35,7 @@ public class ConceptNode {
 	//Currently printing with the time spent on all children gotten from calcSummaryInfo
 	public String toString(String indent){
 		 
-		String stringToReturn = indent + getConcept().getConceptTitle() + " " + calcSummaryInfo(); 
+		String stringToReturn = indent + getConcept().getConceptTitle() +  "\t" + calcSummaryInfo(); 
 		for (ConceptNode child :getChildren()){
 			stringToReturn += child.toString(indent + "\t");
 		}
@@ -43,11 +43,18 @@ public class ConceptNode {
 		 
 	}
 	
-	public long calcSummaryInfo(){
+	
+
+	//getting SummaryInfo objects from the Nodes and then combining into one SummaryInfo object
+	
+	public SummaryInfo calcSummaryInfo(){
 		
-		long summaryInfo = getConcept().getSummaryInfo();
+		//need to use the return object from the recursive call
+		SummaryInfo summaryInfo = getConcept().getSummaryInfo();
 		for (ConceptNode child :getChildren()){
-			summaryInfo += child.calcSummaryInfo();
+			SummaryInfo childSumInfo = child.calcSummaryInfo();
+			//include one update function in summaryinfo
+			summaryInfo.update(childSumInfo);			
 		}
 		return summaryInfo;
 	}

@@ -22,8 +22,8 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 		
 		//gets the time stamp of the first CfAction in the list and sets this as both the startTime and endTime 
 		//these will be compared with the time of the current action in calculateTime
-		long startTime = actionsFilteredByObjectId.get(0).getTime();
-		long endTime = actionsFilteredByObjectId.get(0).getTime();
+//		long startTime = actionsFilteredByObjectId.get(0).getTime();
+//		long endTime = actionsFilteredByObjectId.get(0).getTime();
 		
 		//sets the assessable properties to these initial values, they will be updated as needed 
 		isCorrect = false;
@@ -35,7 +35,7 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 		//goes through each entry for each objectId for each user
 		for (CfAction action : actionsFilteredByObjectId){	
 			
-			calculateTime(action, startTime, endTime);
+//			calculateTime(action, startTime, endTime);
 			determineisCorrect(action);
 			
 			if(isCorrect == false){
@@ -43,6 +43,7 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 				constructFalseEntries(action);	
 			}
 		}	
+		time = calculateTime(actionsFilteredByObjectId);
 	}
 	
 	

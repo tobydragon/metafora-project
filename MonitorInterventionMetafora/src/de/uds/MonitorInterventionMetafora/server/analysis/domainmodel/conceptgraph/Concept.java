@@ -3,6 +3,6 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 public interface Concept {
 	
 	public String getConceptTitle();
-	public long getSummaryInfo();
+	public SummaryInfo getSummaryInfo();
 
 }

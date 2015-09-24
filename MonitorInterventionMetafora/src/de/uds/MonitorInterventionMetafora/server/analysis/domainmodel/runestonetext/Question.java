@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
 public class Question implements Concept{
 	private QuestionType type;
@@ -32,8 +33,8 @@ public class Question implements Concept{
 		return title;
 	}
 	
-	public long getSummaryInfo(){
-		return 0;
+	public SummaryInfo getSummaryInfo(){
+		return new SummaryInfo();
 	}
 
 }

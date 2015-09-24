@@ -5,6 +5,7 @@ import java.util.List;
 import java.io.FileNotFoundException;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
 public class Chapter implements Concept{
 	private String title;
@@ -42,8 +43,8 @@ public class Chapter implements Concept{
 		return subChapters;
 	}
 	
-	public long getSummaryInfo(){
-		return 0;
+	public SummaryInfo getSummaryInfo(){
+		return new SummaryInfo();
 	}
 	
 }

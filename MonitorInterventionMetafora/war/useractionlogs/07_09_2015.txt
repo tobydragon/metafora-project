@@ -1,0 +1,505 @@
+<action time="1441635327886">
+  <actiontype type="LOG" classification="TAB_CHANGE" succeed="true" logged="true" />
+  <user id="1441635327886" role="1441635327886" />
+  <object id="MAIN_TAB_PANEL" type="MAIN_TAB_PANEL">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="MAIN_TAB_PANEL" type="MAIN_TAB_PANEL">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Monitoring Tab is activated in Main Tab Panel]]></description>
+    <properties />
+  </content>
+</action><action time="1441635348689">
+  <actiontype type="LOG" classification="STATUS_CHANGE" succeed="true" logged="true" />
+  <user id="1441635327886" role="1441635327886" />
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Filter Panel is collapsed.]]></description>
+    <properties />
+  </content>
+</action><action time="1441635348894">
+  <actiontype type="LOG" classification="TAB_CHANGE" succeed="true" logged="true" />
+  <user id="1441635327886" role="1441635327886" />
+  <object id="VIEW_TAB_PANEL" type="VIEW_TAB_PANEL">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="VIEW_TAB_PANEL" type="VIEW_TAB_PANEL">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Table View Tab is activated in Views Tab Panel]]></description>
+    <properties />
+  </content>
+</action><action time="1441635377965">
+  <actiontype type="LOG" classification="ACTION_FILTERING" succeed="true" logged="true" />
+  <user id="1441635327886" role="1441635327886" />
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties>
+      <property name="ACTIONS_COUNT" value="2937" />
+      <property name="FILTER_RULES" value="[]" />
+      <property name="FILTERED_ACTIONS_COUNT" value="2937" />
+    </properties>
+  </object>
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Actions are filtered by the rules: ,[]]]></description>
+    <properties />
+  </content>
+</action><action time="1441635465216">
+  <actiontype type="LOG" classification="TAB_CHANGE" succeed="true" logged="true" />
+  <user id="1441635465216" role="1441635465216" />
+  <object id="MAIN_TAB_PANEL" type="MAIN_TAB_PANEL">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="MAIN_TAB_PANEL" type="MAIN_TAB_PANEL">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Monitoring Tab is activated in Main Tab Panel]]></description>
+    <properties />
+  </content>
+</action><action time="1441635486495">
+  <actiontype type="LOG" classification="STATUS_CHANGE" succeed="true" logged="true" />
+  <user id="1441635465216" role="1441635465216" />
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Filter Panel is collapsed.]]></description>
+    <properties />
+  </content>
+</action><action time="1441635486640">
+  <actiontype type="LOG" classification="TAB_CHANGE" succeed="true" logged="true" />
+  <user id="1441635465216" role="1441635465216" />
+  <object id="VIEW_TAB_PANEL" type="VIEW_TAB_PANEL">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="VIEW_TAB_PANEL" type="VIEW_TAB_PANEL">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Table View Tab is activated in Views Tab Panel]]></description>
+    <properties />
+  </content>
+</action><action time="1441635495895">
+  <actiontype type="LOG" classification="ACTION_FILTERING" succeed="true" logged="true" />
+  <user id="1441635465216" role="1441635465216" />
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties>
+      <property name="ACTIONS_COUNT" value="2937" />
+      <property name="FILTER_RULES" value="[]" />
+      <property name="FILTERED_ACTIONS_COUNT" value="2937" />
+    </properties>
+  </object>
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Actions are filtered by the rules: ,[]]]></description>
+    <properties />
+  </content>
+</action><action time="1441635574043">
+  <actiontype type="LOG" classification="ACTION_FILTERING" succeed="true" logged="true" />
+  <user id="1441635465216" role="1441635465216" />
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties>
+      <property name="ACTIONS_COUNT" value="4110" />
+      <property name="FILTER_RULES" value="[]" />
+      <property name="FILTERED_ACTIONS_COUNT" value="4110" />
+    </properties>
+  </object>
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Actions are filtered by the rules: ,[]]]></description>
+    <properties />
+  </content>
+</action><action time="1441635623550">
+  <actiontype type="LOG" classification="TAB_CHANGE" succeed="true" logged="true" />
+  <user id="1441635623550" role="1441635623550" />
+  <object id="MAIN_TAB_PANEL" type="MAIN_TAB_PANEL">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="MAIN_TAB_PANEL" type="MAIN_TAB_PANEL">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Monitoring Tab is activated in Main Tab Panel]]></description>
+    <properties />
+  </content>
+</action><action time="1441635647136">
+  <actiontype type="LOG" classification="STATUS_CHANGE" succeed="true" logged="true" />
+  <user id="1441635623550" role="1441635623550" />
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Filter Panel is collapsed.]]></description>
+    <properties />
+  </content>
+</action><action time="1441635647280">
+  <actiontype type="LOG" classification="TAB_CHANGE" succeed="true" logged="true" />
+  <user id="1441635623550" role="1441635623550" />
+  <object id="VIEW_TAB_PANEL" type="VIEW_TAB_PANEL">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="VIEW_TAB_PANEL" type="VIEW_TAB_PANEL">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Table View Tab is activated in Views Tab Panel]]></description>
+    <properties />
+  </content>
+</action><action time="1441635670238">
+  <actiontype type="LOG" classification="ACTION_FILTERING" succeed="true" logged="true" />
+  <user id="1441635623550" role="1441635623550" />
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties>
+      <property name="ACTIONS_COUNT" value="2937" />
+      <property name="FILTER_RULES" value="[]" />
+      <property name="FILTERED_ACTIONS_COUNT" value="2937" />
+    </properties>
+  </object>
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Actions are filtered by the rules: ,[]]]></description>
+    <properties />
+  </content>
+</action><action time="1441635766960">
+  <actiontype type="LOG" classification="TAB_CHANGE" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="MAIN_TAB_PANEL" type="MAIN_TAB_PANEL">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="MAIN_TAB_PANEL" type="MAIN_TAB_PANEL">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Monitoring Tab is activated in Main Tab Panel]]></description>
+    <properties />
+  </content>
+</action><action time="1441635783226">
+  <actiontype type="LOG" classification="STATUS_CHANGE" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Filter Panel is collapsed.]]></description>
+    <properties />
+  </content>
+</action><action time="1441635783382">
+  <actiontype type="LOG" classification="TAB_CHANGE" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="VIEW_TAB_PANEL" type="VIEW_TAB_PANEL">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="VIEW_TAB_PANEL" type="VIEW_TAB_PANEL">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Table View Tab is activated in Views Tab Panel]]></description>
+    <properties />
+  </content>
+</action><action time="1441635796787">
+  <actiontype type="LOG" classification="ACTION_FILTERING" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties>
+      <property name="ACTIONS_COUNT" value="2937" />
+      <property name="FILTER_RULES" value="[]" />
+      <property name="FILTERED_ACTIONS_COUNT" value="2937" />
+    </properties>
+  </object>
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Actions are filtered by the rules: ,[]]]></description>
+    <properties />
+  </content>
+</action><action time="1441635856155">
+  <actiontype type="LOG" classification="STATUS_CHANGE" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Filter Panel is expanded.]]></description>
+    <properties />
+  </content>
+</action><action time="1441635868380">
+  <actiontype type="LOG" classification="ACTION_FILTERING" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties>
+      <property name="ACTIONS_COUNT" value="2937" />
+      <property name="FILTER_RULES" value="[id,CONTAINS,chmodule]" />
+      <property name="FILTERED_ACTIONS_COUNT" value="140" />
+    </properties>
+  </object>
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Actions are filtered by the rules: ,[Object ID CONTAINS chmodule,]]]></description>
+    <properties />
+  </content>
+</action><action time="1441635868394">
+  <actiontype type="LOG" classification="FILTER_ADDED" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="FILTER_MANAGEMENT_TOOLBAR" type="FILTER_MANAGEMENT_TOOLBAR">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[New Filter Rule is added to the filter.,[Property:Object ID,Operation Type::CONTAINS,Value:chmodule]]]></description>
+    <properties />
+  </content>
+</action><action time="1441635921695">
+  <actiontype type="LOG" classification="ACTION_FILTERING" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties>
+      <property name="ACTIONS_COUNT" value="2937" />
+      <property name="FILTER_RULES" value="[]" />
+      <property name="FILTERED_ACTIONS_COUNT" value="2937" />
+    </properties>
+  </object>
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Actions are filtered by the rules: ,[]]]></description>
+    <properties />
+  </content>
+</action><action time="1441635921713">
+  <actiontype type="LOG" classification="FILTER_REMOVED" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="FILTER_MANAGEMENT_TOOLBAR" type="FILTER_MANAGEMENT_TOOLBAR">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Filter Rule is removed from the filter.,[Property:Object ID,Operation Type::CONTAINS,Value:chmodule]]]></description>
+    <properties />
+  </content>
+</action><action time="1441635939309">
+  <actiontype type="LOG" classification="ACTION_FILTERING" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties>
+      <property name="ACTIONS_COUNT" value="2937" />
+      <property name="FILTER_RULES" value="[id,CONTAINS,chmodule_rand 79]" />
+      <property name="FILTERED_ACTIONS_COUNT" value="0" />
+    </properties>
+  </object>
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Actions are filtered by the rules: ,[Object ID CONTAINS chmodule_rand 79,]]]></description>
+    <properties />
+  </content>
+</action><action time="1441635939323">
+  <actiontype type="LOG" classification="FILTER_ADDED" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="FILTER_MANAGEMENT_TOOLBAR" type="FILTER_MANAGEMENT_TOOLBAR">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[New Filter Rule is added to the filter.,[Property:Object ID,Operation Type::CONTAINS,Value:chmodule_rand 79]]]></description>
+    <properties />
+  </content>
+</action><action time="1441635959605">
+  <actiontype type="LOG" classification="ACTION_FILTERING" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties>
+      <property name="ACTIONS_COUNT" value="2937" />
+      <property name="FILTER_RULES" value="[]" />
+      <property name="FILTERED_ACTIONS_COUNT" value="2937" />
+    </properties>
+  </object>
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Actions are filtered by the rules: ,[]]]></description>
+    <properties />
+  </content>
+</action><action time="1441635959623">
+  <actiontype type="LOG" classification="FILTER_REMOVED" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="FILTER_MANAGEMENT_TOOLBAR" type="FILTER_MANAGEMENT_TOOLBAR">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Filter Rule is removed from the filter.,[Property:Object ID,Operation Type::CONTAINS,Value:chmodule_rand 79]]]></description>
+    <properties />
+  </content>
+</action><action time="1441635994246">
+  <actiontype type="LOG" classification="ACTION_FILTERING" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties>
+      <property name="ACTIONS_COUNT" value="2937" />
+      <property name="FILTER_RULES" value="[id,EQUALS,chmodule_rand]" />
+      <property name="FILTERED_ACTIONS_COUNT" value="125" />
+    </properties>
+  </object>
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Actions are filtered by the rules: ,[Object ID EQUALS chmodule_rand,]]]></description>
+    <properties />
+  </content>
+</action><action time="1441635994262">
+  <actiontype type="LOG" classification="FILTER_ADDED" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="FILTER_MANAGEMENT_TOOLBAR" type="FILTER_MANAGEMENT_TOOLBAR">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[New Filter Rule is added to the filter.,[Property:Object ID,Operation Type::EQUALS,Value:chmodule_rand]]]></description>
+    <properties />
+  </content>
+</action><action time="1441636237877">
+  <actiontype type="LOG" classification="ACTION_FILTERING" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties>
+      <property name="ACTIONS_COUNT" value="2937" />
+      <property name="FILTER_RULES" value="[]" />
+      <property name="FILTERED_ACTIONS_COUNT" value="2937" />
+    </properties>
+  </object>
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Actions are filtered by the rules: ,[]]]></description>
+    <properties />
+  </content>
+</action><action time="1441636237898">
+  <actiontype type="LOG" classification="FILTER_REMOVED" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="FILTER_MANAGEMENT_TOOLBAR" type="FILTER_MANAGEMENT_TOOLBAR">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Filter Rule is removed from the filter.,[Property:Object ID,Operation Type::EQUALS,Value:chmodule_rand]]]></description>
+    <properties />
+  </content>
+</action><action time="1441636259535">
+  <actiontype type="LOG" classification="ACTION_FILTERING" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties>
+      <property name="ACTIONS_COUNT" value="2937" />
+      <property name="FILTER_RULES" value="[id,EQUALS,ch04_1]" />
+      <property name="FILTERED_ACTIONS_COUNT" value="22" />
+    </properties>
+  </object>
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Actions are filtered by the rules: ,[Object ID EQUALS ch04_1,]]]></description>
+    <properties />
+  </content>
+</action><action time="1441636259570">
+  <actiontype type="LOG" classification="FILTER_ADDED" succeed="true" logged="true" />
+  <user id="1441635766961" role="1441635766961" />
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="FILTER_MANAGEMENT_TOOLBAR" type="FILTER_MANAGEMENT_TOOLBAR">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[New Filter Rule is added to the filter.,[Property:Object ID,Operation Type::EQUALS,Value:ch04_1]]]></description>
+    <properties />
+  </content>
+</action>

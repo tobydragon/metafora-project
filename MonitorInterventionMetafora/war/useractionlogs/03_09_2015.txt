@@ -1,0 +1,63 @@
+<action time="1441306887566">
+  <actiontype type="LOG" classification="TAB_CHANGE" succeed="true" logged="true" />
+  <user id="1441306887567" role="1441306887567" />
+  <object id="MAIN_TAB_PANEL" type="MAIN_TAB_PANEL">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="MAIN_TAB_PANEL" type="MAIN_TAB_PANEL">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Monitoring Tab is activated in Main Tab Panel]]></description>
+    <properties />
+  </content>
+</action><action time="1441306911078">
+  <actiontype type="LOG" classification="STATUS_CHANGE" succeed="true" logged="true" />
+  <user id="1441306887567" role="1441306887567" />
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="FILTER_TABLE" type="FILTER_TABLE">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Filter Panel is collapsed.]]></description>
+    <properties />
+  </content>
+</action><action time="1441306911255">
+  <actiontype type="LOG" classification="TAB_CHANGE" succeed="true" logged="true" />
+  <user id="1441306887567" role="1441306887567" />
+  <object id="VIEW_TAB_PANEL" type="VIEW_TAB_PANEL">
+    <properties>
+      <property name="FILTER_RULES" value="[]" />
+    </properties>
+  </object>
+  <object id="VIEW_TAB_PANEL" type="VIEW_TAB_PANEL">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Table View Tab is activated in Views Tab Panel]]></description>
+    <properties />
+  </content>
+</action><action time="1441306955999">
+  <actiontype type="LOG" classification="ACTION_FILTERING" succeed="true" logged="true" />
+  <user id="1441306887567" role="1441306887567" />
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties>
+      <property name="ACTIONS_COUNT" value="2937" />
+      <property name="FILTER_RULES" value="[]" />
+      <property name="FILTERED_ACTIONS_COUNT" value="2937" />
+    </properties>
+  </object>
+  <object id="ACTION_FILTERER" type="ACTION_FILTERER">
+    <properties />
+  </object>
+  <content>
+    <description><![CDATA[Actions are filtered by the rules: ,[]]]></description>
+    <properties />
+  </content>
+</action>

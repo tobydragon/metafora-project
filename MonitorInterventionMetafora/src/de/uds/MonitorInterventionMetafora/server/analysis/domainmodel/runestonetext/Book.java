@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
 public class Book implements Concept {
 	private String title;
@@ -93,8 +94,8 @@ public class Book implements Concept {
 		return chaps;
 	}
 	
-	public long getSummaryInfo(){
-		return 0;
+	public SummaryInfo getSummaryInfo(){
+		return new SummaryInfo();
 	}
 
 }
