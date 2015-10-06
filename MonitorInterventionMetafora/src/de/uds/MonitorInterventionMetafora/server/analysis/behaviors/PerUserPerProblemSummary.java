@@ -12,10 +12,10 @@ import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgra
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
 public abstract class PerUserPerProblemSummary implements Concept{
-	private String user;
+	public String user;
 	public long time;
 	private boolean assessable;
-	private String objectId;
+	public String objectId;
 	private String type;
 	private String description;
 	private static long timeInterval = 30;
@@ -174,9 +174,11 @@ public abstract class PerUserPerProblemSummary implements Concept{
 		List <String> objectIds = new ArrayList<String> ();
 		objectIds.add(objectId);
 		
-		SummaryInfo info = new SummaryInfo(users, time, objectIds);
+		//sends in 0 for numAssesable and for timesFals
+		SummaryInfo info = new SummaryInfo(users, time, objectIds, 0, 0);
 		
 		return info;
 	}
 
+	
 }

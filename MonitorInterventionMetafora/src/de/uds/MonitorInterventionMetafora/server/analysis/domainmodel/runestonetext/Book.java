@@ -97,5 +97,6 @@ public class Book implements Concept {
 	public SummaryInfo getSummaryInfo(){
 		return new SummaryInfo();
 	}
+	
 
 }

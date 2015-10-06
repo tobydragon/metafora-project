@@ -1,9 +1,14 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.behaviors;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptGraph;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptNode;
@@ -89,7 +94,42 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		ConceptGraph graph = new ConceptGraph(b);
 		createConceptGraph(graph.getRoot(), perUserPerProblemSummaries);
 		System.out.println(graph);
-
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			String jsonString = mapper.writeValueAsString(graph);
+			System.out.println(jsonString);
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//currently this sends in the list of all the objectIds for which there exists a summary for - so any objectId that
+		//at least one student has submitted an action for
+		//this calls the searchGraph function for each id and if found it adds it to the found list and if not, then its added to the not found list
+		List<String> notFoundObjectIds = new Vector<String>();
+		List<String> foundObjectIds = new Vector<String>();
+		for(String currObjectId : objectIds){
+			boolean isFound = graph.getRoot().searchGraph(currObjectId);
+			if(isFound == false){
+				notFoundObjectIds.add(currObjectId);
+			}
+			else{
+				foundObjectIds.add(currObjectId);
+			}
+		}
+		
+		System.out.println("All object ids: " + objectIds.toString());
+		System.out.println();
+		System.out.println("Not found object Ids: " + notFoundObjectIds.toString());
+		System.out.println();
+		System.out.println("Found object ids: " + foundObjectIds.toString());
+		System.out.println();
 		
 		
 		

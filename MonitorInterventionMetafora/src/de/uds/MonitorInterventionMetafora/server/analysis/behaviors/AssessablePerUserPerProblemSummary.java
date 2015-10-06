@@ -1,8 +1,10 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.behaviors;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
@@ -138,4 +140,24 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 	public String getFalseEntries() {
 		return falseEntries;
 	}	
+	
+	public String getConceptTitle(){
+		buildDescription();
+		return description;
+	}
+	
+	public SummaryInfo getSummaryInfo(){
+		List <String> users = new ArrayList<String> ();
+		users.add(user);
+	
+		List <String> objectIds = new ArrayList<String> ();
+		objectIds.add(objectId);
+		
+		//since this is an assessable summary it should always send in 1 for numAssessable
+		int numAssessable = 1;
+		
+		SummaryInfo info = new SummaryInfo(users, time, objectIds, numAssessable, numberTimesFalse);
+		
+		return info;
+	}
 }

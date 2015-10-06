@@ -8,6 +8,7 @@ import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgra
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
 public class Chapter implements Concept{
+	
 	private String title;
 	private List<SubChapter> subChapters;
 

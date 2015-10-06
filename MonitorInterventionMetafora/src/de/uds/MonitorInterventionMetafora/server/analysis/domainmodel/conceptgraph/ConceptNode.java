@@ -58,4 +58,24 @@ public class ConceptNode {
 		}
 		return summaryInfo;
 	}
+	
+	
+	//searches for a certain objectId in the graph
+	//takes in the objectId to search for as a parameter
+	//returns true if found, and false otherwise
+	public boolean searchGraph(String objectIdToSearchFor){
+	
+		if(getConcept().getConceptTitle().contains(objectIdToSearchFor)){
+			return true;
+		 }
+		   
+		for(ConceptNode child : getChildren()){
+			boolean isTrue = child.searchGraph(objectIdToSearchFor);
+			if(isTrue == true){
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }
