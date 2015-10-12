@@ -6,12 +6,16 @@ import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonet
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Question;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.SubChapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ConceptGraph {
 	
 	ConceptNode root;
 	String stringToReturn = "";
+	List<ConceptNode> nodes;
+	List<ConceptLink> links;
+	
 	
 	/*
 	 *Takes in a book, starts at the root, then goes through each level (chapters, sub chapters, questions) and creates
@@ -19,6 +23,8 @@ public class ConceptGraph {
 	 */
 	public ConceptGraph(Book b){
 		root = new ConceptNode(b);
+		nodes = new ArrayList<ConceptNode>();
+		links = new ArrayList<ConceptLink>();
 		
 		
 		//get the list of chapters of the book
@@ -54,4 +60,27 @@ public class ConceptGraph {
 	}
 	
 	
+	//takes in a ConceptNode and creates an object to hold on to two lists - a list of nodes and a list of links
+	public NodeAndLinkLists buildNodeAndLinkLists(ConceptNode currNode){
+		
+		//checks to see if the current node is already in the list, if not it adds it
+		if(nodes.contains(currNode) == false){
+			nodes.add(currNode);
+		}
+		
+		//goes through each child of the current node and checks to see if there is a link already for that parent/child pair
+		//if not then it adds it
+		for(ConceptNode child : currNode.getChildren()){
+			ConceptLink linkToAdd = new ConceptLink (currNode, child);
+			if(links.contains(linkToAdd) == false){
+				links.add(linkToAdd);
+			}
+			//recursively calls the function again with the child as the current node
+			buildNodeAndLinkLists(child);
+		}
+		
+		//creates the LinksAndNodes object to hold on to both lists, then returns that object
+		NodeAndLinkLists finalLists = new NodeAndLinkLists(nodes, links);
+		return finalLists;
+	}	
 }

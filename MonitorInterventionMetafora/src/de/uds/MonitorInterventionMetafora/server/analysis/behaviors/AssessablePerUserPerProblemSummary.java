@@ -150,8 +150,10 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 		List <String> users = new ArrayList<String> ();
 		users.add(user);
 	
-		List <String> objectIds = new ArrayList<String> ();
+		List <String> objectIds = new ArrayList<String>();
 		objectIds.add(objectId);
+		
+		List<String> unansweredObjectIds = new ArrayList<String>();
 		
 		//since this is an assessable summary it should always send in 1 for numAssessable
 		int numAssessable = 1;

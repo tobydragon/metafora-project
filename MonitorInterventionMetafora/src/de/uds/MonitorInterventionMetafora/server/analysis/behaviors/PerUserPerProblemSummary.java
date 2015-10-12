@@ -174,6 +174,8 @@ public abstract class PerUserPerProblemSummary implements Concept{
 		List <String> objectIds = new ArrayList<String> ();
 		objectIds.add(objectId);
 		
+		List<String> unansweredObjectIds = new ArrayList<String>();
+		
 		//sends in 0 for numAssesable and for timesFals
 		SummaryInfo info = new SummaryInfo(users, time, objectIds, 0, 0);
 		

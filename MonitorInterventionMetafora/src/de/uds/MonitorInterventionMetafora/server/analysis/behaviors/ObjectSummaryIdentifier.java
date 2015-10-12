@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.behaviors;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Vector;
 
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptGraph;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptNode;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptLink;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.NodeAndLinkLists;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
@@ -95,10 +98,21 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		createConceptGraph(graph.getRoot(), perUserPerProblemSummaries);
 		System.out.println(graph);
 		
+
+		
+		
+		NodeAndLinkLists lists =  graph.buildNodeAndLinkLists(graph.getRoot());
+		
+				
+		
+		
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			String jsonString = mapper.writeValueAsString(graph);
+			String jsonString = mapper.writeValueAsString(lists);
 			System.out.println(jsonString);
+//			PrintWriter writer = new PrintWriter("nodesAndLinks.txt", "UTF-8");
+//			writer.println(jsonString);
+//			writer.close();
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -109,6 +123,11 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		
+		
+		
 		//currently this sends in the list of all the objectIds for which there exists a summary for - so any objectId that
 		//at least one student has submitted an action for
 		//this calls the searchGraph function for each id and if found it adds it to the found list and if not, then its added to the not found list
@@ -303,8 +322,8 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 	
 	
 	
-	
-	private void createConceptGraph(ConceptNode node, List<PerUserPerProblemSummary> summaries){
+	//rename to reflect purpose
+	private static void createConceptGraph(ConceptNode node, List<PerUserPerProblemSummary> summaries){
 
 		//go through each child of the node
 		for(ConceptNode child : node.getChildren()){
