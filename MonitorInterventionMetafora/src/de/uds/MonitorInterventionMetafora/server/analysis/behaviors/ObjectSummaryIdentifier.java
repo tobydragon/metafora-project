@@ -97,17 +97,15 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		ConceptGraph graph = new ConceptGraph(b);
 		createConceptGraph(graph.getRoot(), perUserPerProblemSummaries);
 		System.out.println(graph);
-		
 
-		
-		
 		NodeAndLinkLists lists =  graph.buildNodeAndLinkLists(graph.getRoot());
 		
-				
+		
 		
 		
 		ObjectMapper mapper = new ObjectMapper();
 		try {
+			
 			String jsonString = mapper.writeValueAsString(lists);
 			System.out.println(jsonString);
 //			PrintWriter writer = new PrintWriter("nodesAndLinks.txt", "UTF-8");

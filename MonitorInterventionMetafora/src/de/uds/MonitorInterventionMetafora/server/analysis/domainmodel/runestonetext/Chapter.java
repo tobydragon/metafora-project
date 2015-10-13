@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.FileNotFoundException;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
@@ -39,6 +41,7 @@ public class Chapter implements Concept{
 		return title;
 	}
 
+	@JsonIgnore
 	public List<SubChapter> getSubChapters() {
 		// TODO Auto-generated method stub
 		return subChapters;

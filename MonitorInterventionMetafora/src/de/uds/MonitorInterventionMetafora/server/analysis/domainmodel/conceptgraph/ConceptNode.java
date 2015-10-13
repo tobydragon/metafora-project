@@ -3,6 +3,8 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class ConceptNode {
 	
 	Concept concept;
@@ -19,6 +21,7 @@ public class ConceptNode {
 		children.add(child);
 	}
 	
+	@JsonIgnore
 	public List<ConceptNode> getChildren(){
 		return children;
 	}
@@ -51,10 +54,11 @@ public class ConceptNode {
 		
 		//need to use the return object from the recursive call
 		SummaryInfo summaryInfo = getConcept().getSummaryInfo();
-		for (ConceptNode child :getChildren()){
+		
+		for (ConceptNode child : getChildren()){
 			SummaryInfo childSumInfo = child.calcSummaryInfo();
 			//include one update function in summaryinfo
-			summaryInfo.update(childSumInfo);			
+			summaryInfo.update(child, childSumInfo);			
 		}
 		return summaryInfo;
 	}

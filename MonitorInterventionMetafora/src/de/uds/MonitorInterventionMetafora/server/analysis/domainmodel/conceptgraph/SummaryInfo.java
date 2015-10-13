@@ -11,7 +11,7 @@ public class SummaryInfo {
 	private List<String> users;
 	public long time;
 	private List<String> objectIds;
-//	private List<String> unansweredObjectIds;
+	private List<String> unansweredObjectIds;
 	
 	//represents the number of assessable questions that exist in that section of the graph
 	private int numAssessable;
@@ -29,10 +29,9 @@ public class SummaryInfo {
 		users = userList;
 		time = timeIn;
 		objectIds = objectIdList;
-//		unansweredObjectIds = unansweredObjectIdList;
+		unansweredObjectIds = new ArrayList<String>();
 		numAssessable = numAssessableIn;
 		totalTimesFalse = numTimesFalse;
-//		conceptType = conceptTypeIn;
 	}
 	
 	
@@ -41,21 +40,13 @@ public class SummaryInfo {
 		users = new ArrayList<String>();
 		time = 0;
 		objectIds = new ArrayList<String>();
+		unansweredObjectIds = new ArrayList<String>();
 		numAssessable = 0;
 		totalTimesFalse = 0;
 		
+		
 	}
 	
-//	public SummaryInfo(String conceptTypeIn){
-//		users = new ArrayList<String>();
-//		time = 0;
-//		objectIds = new ArrayList<String>();
-//		unansweredObjectIds = new ArrayList<String>();
-//		numAssessable = 0;
-//		totalTimesFalse = 0;
-//		conceptType = conceptTypeIn;
-//		
-//	}
 
 
 	public List<String> getUsers(){
@@ -67,9 +58,9 @@ public class SummaryInfo {
 	public List<String> getObjectIds(){
 		return objectIds;
 	}
-//	public List<String> getUnansweredObjectIds(){
-//		return unansweredObjectIds;
-//	}
+	public List<String> getUnansweredObjectIds(){
+		return unansweredObjectIds;
+	}
 	
 	public int getNumAssessable(){
 		return numAssessable;
@@ -78,7 +69,8 @@ public class SummaryInfo {
 		return totalTimesFalse;
 	}
 	
-	public void update (SummaryInfo currentSumInfo){
+
+	public void update (ConceptNode nodeIn, SummaryInfo currentSumInfo){
 
 		//this makes sure that there are no duplicates in the list
 		users.removeAll(currentSumInfo.getUsers());
@@ -88,12 +80,15 @@ public class SummaryInfo {
 		objectIds.addAll(currentSumInfo.getObjectIds());
 		
 		
-		//needs something that checks if it is a Question object and whether or not it has any children(summaires)
-			//no summaries means no student submissions
-
-		//unansweredObjectIds.removeAll(currentSumInfo.getUnansweredObjectIds());
-		//unansweredObjectIds.addAll(currentSumInfo.getUnansweredObjectIds());
+			
+		if(currentSumInfo.getObjectIds().size() == 0 && nodeIn.getChildren().isEmpty() == true){
+			if(nodeIn.getConcept().getClass().getName().contains("Question") == true){
+			unansweredObjectIds.add(nodeIn.getConcept().getConceptTitle());
+			}
+		}
 		
+		//unansweredObjectIds.removeAll(currentSumInfo.getObjectIds());
+		unansweredObjectIds.addAll(currentSumInfo.getObjectIds());
 		
 		time = time + currentSumInfo.getTime();		
 		numAssessable = numAssessable + currentSumInfo.getNumAssessable();
@@ -104,7 +99,7 @@ public class SummaryInfo {
 	public String toString(){
 		
 		String stringToReturn = " numAsses " + numAssessable + " False: " + totalTimesFalse + " Users: "
-				+ users.size() + " ObjectIds: " + objectIds.size() + " Time: " + time;
+				+ users.size() + " ObjectIds: " + objectIds.size() + " UnansweredObjectIds: " + unansweredObjectIds.size()+ " Time: " + time;
 		return stringToReturn;
 	}
 }

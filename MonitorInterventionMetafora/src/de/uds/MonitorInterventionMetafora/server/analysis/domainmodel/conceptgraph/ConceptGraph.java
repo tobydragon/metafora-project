@@ -15,7 +15,7 @@ public class ConceptGraph {
 	String stringToReturn = "";
 	List<ConceptNode> nodes;
 	List<ConceptLink> links;
-	
+
 	
 	/*
 	 *Takes in a book, starts at the root, then goes through each level (chapters, sub chapters, questions) and creates

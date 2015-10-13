@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
@@ -90,6 +92,7 @@ public class Book implements Concept {
 		return title;
 	}
 	
+	@JsonIgnore
 	public List<Chapter> getChapters(){
 		return chaps;
 	}

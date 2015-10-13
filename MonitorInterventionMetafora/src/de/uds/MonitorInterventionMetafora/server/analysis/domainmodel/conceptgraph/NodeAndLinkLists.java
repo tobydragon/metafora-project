@@ -28,8 +28,8 @@ public class NodeAndLinkLists {
 		String combinedString = "";
 		
 		for(ConceptLink link : links){
-			linkString += "Parent: " + link.getParentNode().getConcept().getConceptTitle() + "\n" + 
-					"Child: " + link.getChildNode().getConcept().getConceptTitle() + "\n\n";
+			linkString += "Parent: " + link.getParent().getConcept().getConceptTitle() + "\n" + 
+					"Child: " + link.getChild().getConcept().getConceptTitle() + "\n\n";
 		}
 		
 		for(ConceptNode node : nodes){

@@ -12,11 +12,11 @@ public class ConceptLink {
 		
 	}
 	
-	public ConceptNode getParentNode(){
+	public ConceptNode getParent(){
 		return parent;
 	}
 	
-	public ConceptNode getChildNode(){
+	public ConceptNode getChild(){
 		return child;
 	}
 }
