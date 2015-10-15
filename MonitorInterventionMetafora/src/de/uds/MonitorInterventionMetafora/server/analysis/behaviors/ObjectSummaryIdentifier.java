@@ -102,7 +102,8 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		NodeAndLinkLists lists =  graph.buildNodeAndLinkLists(graph.getRoot());
 		
 		ObjectMapper mapper = new ObjectMapper();
-		
+	
+		// example of changing code that doesn't matter
 		// to write to JSON
 //        try {
 //
