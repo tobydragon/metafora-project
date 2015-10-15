@@ -1,3 +1,4 @@
+
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph;
 
 import java.util.ArrayList;
@@ -9,6 +10,10 @@ public class ConceptNode {
 	
 	Concept concept;
 	List<ConceptNode> children;
+	
+	public ConceptNode() {
+		children = new ArrayList<ConceptNode>();
+	}
 	
 	public ConceptNode(Concept concept){
 		this.concept = concept;

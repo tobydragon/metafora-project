@@ -12,13 +12,17 @@ import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgra
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
 public class Book implements Concept {
-	private String title;
+	private String conceptTitle;
 	private List<Chapter> chaps = new ArrayList<Chapter>();
+	
+	public Book() {
+		super();
+	}
 	
 	//constructor
 	//takes a string that's the title and a file path as parameters
 	public Book(String t, String filePath) {
-		title = t;
+		conceptTitle = t;
 		List<String> chapsAndSubs = getFile(filePath);
 		List<String> subjects = new ArrayList<String>();
 		for (int i = 0; i < chapsAndSubs.size(); i++) {
@@ -47,7 +51,7 @@ public class Book implements Concept {
 		return chapters;
 	}
 	public String toString(){
-		String book = title;
+		String book = conceptTitle;
 		for (int i=0; i<chaps.size();i++){
 			book += "\n"+"\t"+chaps.get(i).toString();
 		}
@@ -89,7 +93,7 @@ public class Book implements Concept {
 	}
 	
 	public String getConceptTitle(){
-		return title;
+		return conceptTitle;
 	}
 	
 	@JsonIgnore

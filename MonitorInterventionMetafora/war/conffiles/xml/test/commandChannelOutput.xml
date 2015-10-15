@@ -8879,6 +8879,114 @@
         </properties>
       </content>
     </action>
+    <action time="1444746796833">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="student16" role="originator" />
+      <user id="student9" role="originator" />
+      <user id="student13" role="originator" />
+      <user id="student19" role="originator" />
+      <user id="student23" role="originator" />
+      <user id="student8" role="originator" />
+      <user id="student4" role="originator" />
+      <user id="student10" role="originator" />
+      <user id="student11" role="originator" />
+      <user id="student1" role="originator" />
+      <user id="student25" role="originator" />
+      <user id="student3" role="originator" />
+      <user id="student24" role="originator" />
+      <user id="student15" role="originator" />
+      <user id="student12" role="originator" />
+      <user id="student5" role="originator" />
+      <user id="student22" role="originator" />
+      <user id="student2" role="originator" />
+      <user id="student7" role="originator" />
+      <user id="student21" role="originator" />
+      <user id="student14" role="originator" />
+      <user id="student17" role="originator" />
+      <user id="student20" role="originator" />
+      <user id="student6" role="originator" />
+      <user id="student18" role="originator" />
+      <user id="student0" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+          <property name="GROUP_ID" value="All Groups" />
+        </properties>
+      </content>
+    </action>
+    <action time="1444754691178">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="student16" role="originator" />
+      <user id="student9" role="originator" />
+      <user id="student13" role="originator" />
+      <user id="student19" role="originator" />
+      <user id="student23" role="originator" />
+      <user id="student8" role="originator" />
+      <user id="student4" role="originator" />
+      <user id="student10" role="originator" />
+      <user id="student11" role="originator" />
+      <user id="student1" role="originator" />
+      <user id="student25" role="originator" />
+      <user id="student3" role="originator" />
+      <user id="student24" role="originator" />
+      <user id="student15" role="originator" />
+      <user id="student12" role="originator" />
+      <user id="student5" role="originator" />
+      <user id="student22" role="originator" />
+      <user id="student2" role="originator" />
+      <user id="student7" role="originator" />
+      <user id="student21" role="originator" />
+      <user id="student14" role="originator" />
+      <user id="student17" role="originator" />
+      <user id="student20" role="originator" />
+      <user id="student6" role="originator" />
+      <user id="student18" role="originator" />
+      <user id="student0" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+          <property name="GROUP_ID" value="All Groups" />
+        </properties>
+      </content>
+    </action>
+    <action time="1444754846383">
+      <actiontype type="REQUEST_ANALYSIS" classification="other" succeed="false" />
+      <user id="student16" role="originator" />
+      <user id="student9" role="originator" />
+      <user id="student13" role="originator" />
+      <user id="student19" role="originator" />
+      <user id="student23" role="originator" />
+      <user id="student8" role="originator" />
+      <user id="student4" role="originator" />
+      <user id="student10" role="originator" />
+      <user id="student11" role="originator" />
+      <user id="student1" role="originator" />
+      <user id="student25" role="originator" />
+      <user id="student3" role="originator" />
+      <user id="student24" role="originator" />
+      <user id="student15" role="originator" />
+      <user id="student12" role="originator" />
+      <user id="student5" role="originator" />
+      <user id="student22" role="originator" />
+      <user id="student2" role="originator" />
+      <user id="student7" role="originator" />
+      <user id="student21" role="originator" />
+      <user id="student14" role="originator" />
+      <user id="student17" role="originator" />
+      <user id="student20" role="originator" />
+      <user id="student6" role="originator" />
+      <user id="student18" role="originator" />
+      <user id="student0" role="originator" />
+      <content>
+        <description><![CDATA[Analysis Request]]></description>
+        <properties>
+          <property name="SENDING_TOOL" value="ANAYLSIS_MANAGER" />
+          <property name="GROUP_ID" value="All Groups" />
+        </properties>
+      </content>
+    </action>
   </actions>
 </interactiondata>
 

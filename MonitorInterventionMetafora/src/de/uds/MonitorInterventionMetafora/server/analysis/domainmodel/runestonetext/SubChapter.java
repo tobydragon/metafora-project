@@ -11,24 +11,28 @@ import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgra
 
 
 public class SubChapter implements Concept{
-	private String title;
+	private String conceptTitle;
 	private String fileName;
 	private String filePath;
 	private List<Question> questions = new ArrayList<Question>();
 	
+	
+	public SubChapter() {
+		super();
+	}
 	//constructor
 	//takes a title for the subchapter, and the chapter title
 	public SubChapter(String t, String title2, String path)throws FileNotFoundException{
 		//deletes the ".rst" from the SubChapter title
 		t = t.replace(".rst",  "");
-		this.title = t;
+		this.conceptTitle = t;
 		this.fileName = title2;
 		this.filePath = path;
-		getQs(title,fileName, filePath);
+		getQs(conceptTitle,fileName, filePath);
 	}
 
 	public String toString(){
-		String subAndQuestions = title;
+		String subAndQuestions = conceptTitle;
 		for (int i=0;i<questions.size();i++){
 			subAndQuestions+="\n"+"\t\t\t"+questions.get(i).toString();
 		}
@@ -56,7 +60,7 @@ public class SubChapter implements Concept{
 	}
 	
 	public String getConceptTitle(){
-		return title;
+		return conceptTitle;
 	}
 
 	@JsonIgnore

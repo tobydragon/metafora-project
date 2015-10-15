@@ -6,6 +6,10 @@ public class ConceptLink {
 	public ConceptNode parent;
 	public ConceptNode child;
 	
+	public ConceptLink() {
+		
+	}
+	
 	public ConceptLink(ConceptNode parentIn, ConceptNode childIn){
 		this.parent = parentIn;
 		this.child = childIn;

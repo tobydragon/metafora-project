@@ -5,13 +5,17 @@ import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgra
 
 public class Question implements Concept{
 	private QuestionType type;
-	private String title;
+	private String conceptTitle;
 	
+	
+	public Question() {
+		super();
+	}
 	//constructor
 	//takes in the line and the question type
 	public Question(String line, QuestionType type) {
 		this.type = type;
-		this.title = getQuestion(line).trim();
+		this.conceptTitle = getQuestion(line).trim();
 		
 	}
 	//strips the line of the extra symbols
@@ -25,12 +29,12 @@ public class Question implements Concept{
 		 return question;
 	}
 	public String toString(){
-		String typeAndTitle = type +" "+ title;
+		String typeAndTitle = type +" "+ conceptTitle;
 		return typeAndTitle;
 	}
 	
 	public String getConceptTitle(){
-		return title;
+		return conceptTitle;
 	}
 	
 	public SummaryInfo getSummaryInfo(){

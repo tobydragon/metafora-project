@@ -7,6 +7,10 @@ public class NodeAndLinkLists {
 	public List<ConceptNode> nodes;
 	public List<ConceptLink> links;
 	
+	public NodeAndLinkLists() {
+		
+	}
+	
 	public NodeAndLinkLists(List<ConceptNode> nodesIn, List<ConceptLink> linksIn){
 		this.nodes = nodesIn;
 		this.links = linksIn;

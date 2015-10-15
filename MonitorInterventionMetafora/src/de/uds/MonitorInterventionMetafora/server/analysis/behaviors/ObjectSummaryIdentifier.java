@@ -1,5 +1,6 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.behaviors;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -100,28 +101,42 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 
 		NodeAndLinkLists lists =  graph.buildNodeAndLinkLists(graph.getRoot());
 		
-		
-		
-		
 		ObjectMapper mapper = new ObjectMapper();
-		try {
-			
-			String jsonString = mapper.writeValueAsString(lists);
-			System.out.println(jsonString);
-//			PrintWriter writer = new PrintWriter("nodesAndLinks.txt", "UTF-8");
-//			writer.println(jsonString);
-//			writer.close();
-		} catch (JsonGenerationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
+		// to write to JSON
+//        try {
+//
+//            // convert user object to json string, and save to a file
+//            mapper.writeValue(new File("nodesAndEdges.json"), lists);
+//
+//            // display to console
+//            System.out.println(mapper.writeValueAsString(lists));
+//
+//        } catch (JsonGenerationException e) {
+//
+//            e.printStackTrace();
+//
+//        }  catch (IOException e) {
+//
+//            e.printStackTrace();
+//
+//        }
+		
+// Read in JSON and build nodes and edges lists (class)
+        try {
+        	NodeAndLinkLists lists2 = mapper.readValue(new File("/Users/David/Desktop/nodesAndEdgesBasic.json"), NodeAndLinkLists.class);
+        	ConceptGraph graph2 = new ConceptGraph(lists2);
+        	System.out.println(graph2);
+        	
+        } catch (JsonGenerationException e) {
+
+            e.printStackTrace();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
 		
 		
 		

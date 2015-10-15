@@ -51,6 +51,33 @@ public class ConceptGraph {
 			}
 		}		
 	}
+	public ConceptGraph(NodeAndLinkLists lists) {
+		this.nodes = lists.getNodes();
+		this.links = lists.getLinks();
+		this.root = findRoot();
+		addChildren(root);
+	}
+	
+	private void addChildren(ConceptNode current) {
+		// optimization needed
+		for (ConceptLink link : links) {
+			if (link.getParent() == current) {
+				current.addChild(link.getChild());
+				addChildren(link.getChild());
+			}
+		}
+	}
+	
+ 	private ConceptNode findRoot() {
+		List<ConceptNode> runningTotal = new ArrayList<ConceptNode>();
+		for (ConceptNode node: nodes) {
+			runningTotal.add(node);
+		}
+		for (ConceptLink link : links) {
+			runningTotal.remove(link.getChild());
+		}
+		return runningTotal.get(0);
+	}
 	
 	public String toString(){
 		return root.toString();
