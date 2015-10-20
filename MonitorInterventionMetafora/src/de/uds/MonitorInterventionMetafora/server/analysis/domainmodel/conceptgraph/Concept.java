@@ -2,10 +2,8 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
 
-
-@JsonDeserialize(as=Book.class)
+@JsonDeserialize(as=ConceptImpl.class)
 public interface Concept {
 	
 	public String getConceptTitle();

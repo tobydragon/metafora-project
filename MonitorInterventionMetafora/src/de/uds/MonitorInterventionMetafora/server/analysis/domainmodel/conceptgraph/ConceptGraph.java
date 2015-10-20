@@ -1,13 +1,12 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
+import java.util.ArrayList;
+import java.util.List;
+
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Chapter;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Question;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.SubChapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ConceptGraph {
 	
