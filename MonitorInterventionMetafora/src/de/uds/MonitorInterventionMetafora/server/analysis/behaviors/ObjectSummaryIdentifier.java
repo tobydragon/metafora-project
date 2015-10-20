@@ -1,22 +1,15 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.behaviors;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptGraph;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptNode;
-import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptLink;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.NodeAndLinkLists;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
+import de.uds.MonitorInterventionMetafora.server.json.JsonImportExport;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
@@ -101,61 +94,14 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 
 		NodeAndLinkLists lists =  graph.buildNodeAndLinkLists(graph.getRoot());
 		
+		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
 		
+		// Need to test making concept graph from JSON
+		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
+		addSummariesToGraph(graphFromJson.getRoot(), perUserPerProblemSummaries);
+		System.out.println(graphFromJson);
 		
-		
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println();
-
-		ConceptGraph testGraph = new ConceptGraph("Functions");
-		
-		addSummariesToGraph(testGraph.getRoot(), perUserPerProblemSummaries);
-		System.out.println(testGraph);
-		
-		ObjectMapper mapper = new ObjectMapper();
-	
-		// example of changing code that doesn't matter
-		// to write to JSON
-//        try {
-//
-//            // convert user object to json string, and save to a file
-//            mapper.writeValue(new File("nodesAndEdges.json"), lists);
-//
-//            // display to console
-//            System.out.println(mapper.writeValueAsString(lists));
-//
-//        } catch (JsonGenerationException e) {
-//
-//            e.printStackTrace();
-//
-//        }  catch (IOException e) {
-//
-//            e.printStackTrace();
-//
-//        }
-		
-// Read in JSON and build nodes and edges lists (class)
-        try {
-        	NodeAndLinkLists lists2 = mapper.readValue(new File("/Users/David/Desktop/nodesAndEdgesBasic.json"), NodeAndLinkLists.class);
-        	ConceptGraph graph2 = new ConceptGraph(lists2);
-        	System.out.println(graph2);
-        	
-        } catch (JsonGenerationException e) {
-
-            e.printStackTrace();
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-
-        }
-		
-		
-		
+						
 		
 		//currently this sends in the list of all the objectIds for which there exists a summary for - so any objectId that
 		//at least one student has submitted an action for
@@ -352,7 +298,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 	
 	
 	//rename to reflect purpose
-	private static void addSummariesToGraph(ConceptNode node, List<PerUserPerProblemSummary> summaries){
+	public static void addSummariesToGraph(ConceptNode node, List<PerUserPerProblemSummary> summaries){
 
 		//go through each child of the node
 		for(ConceptNode child : node.getChildren()){

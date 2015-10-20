@@ -43,7 +43,6 @@ public class ConceptImpl implements Concept{
 
 	@Override
 	public SummaryInfo getSummaryInfo() {
-		// TODO Auto-generated method stub
 		return new SummaryInfo();
 	}
 

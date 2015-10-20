@@ -69,15 +69,25 @@ public class ConceptGraph {
 		this.nodes = lists.getNodes();
 		this.links = lists.getLinks();
 		this.root = findRoot();
+		
 		addChildren(root);
+		
+//		System.out.println(root.getConcept().getConceptTitle());
+//		System.out.println(root.getChildren().get(0).getConcept().getConceptTitle());
+//		System.out.println(root.getChildren().get(1).getConcept().getConceptTitle());
+//		
+//		System.out.println(root.getChildren().get(0).getChildren().get(0).getConcept().getConceptTitle());
+//		System.out.println(root.getChildren().get(0).getChildren().get(1).getConcept().getConceptTitle());
+//		System.out.println(root.getChildren().get(1).getChildren().get(0).getConcept().getConceptTitle());
+//		System.out.println(root.getChildren().get(1).getChildren().get(1).getConcept().getConceptTitle());
 	}
 	
 	private void addChildren(ConceptNode current) {
 		// optimization needed
 		for (ConceptLink link : links) {
-			if (link.getParent() == current) {
-				current.addChild(link.getChild());
+			if (link.getParent().getConcept().getConceptTitle().equals(current.getConcept().getConceptTitle()) ) {
 				addChildren(link.getChild());
+				current.addChild(link.getChild());
 			}
 		}
 	}
@@ -141,7 +151,9 @@ public class ConceptGraph {
 			runningTotal.add(node);
 		}
 		for (ConceptLink link : links) {
-			runningTotal.remove(link.getChild());
+			if (runningTotal.contains(link.getChild())) {
+				runningTotal.remove(link.getChild());
+			}
 		}
 		return runningTotal.get(0);
 	}
@@ -176,5 +188,5 @@ public class ConceptGraph {
 		//creates the LinksAndNodes object to hold on to both lists, then returns that object
 		NodeAndLinkLists finalLists = new NodeAndLinkLists(nodes, links);
 		return finalLists;
-	}	
+	}
 }
