@@ -96,10 +96,25 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		Book b = new Book("Interacitve Python", bookPath);
 		//create a ConceptGraph of the book and then call createConceptGraph in order to add the summaries to the graph
 		ConceptGraph graph = new ConceptGraph(b);
-		createConceptGraph(graph.getRoot(), perUserPerProblemSummaries);
+		addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
 		System.out.println(graph);
 
 		NodeAndLinkLists lists =  graph.buildNodeAndLinkLists(graph.getRoot());
+		
+		
+		
+		
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+
+		ConceptGraph testGraph = new ConceptGraph("Functions");
+		
+		addSummariesToGraph(testGraph.getRoot(), perUserPerProblemSummaries);
+		System.out.println(testGraph);
 		
 		ObjectMapper mapper = new ObjectMapper();
 	
@@ -337,7 +352,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 	
 	
 	//rename to reflect purpose
-	private static void createConceptGraph(ConceptNode node, List<PerUserPerProblemSummary> summaries){
+	private static void addSummariesToGraph(ConceptNode node, List<PerUserPerProblemSummary> summaries){
 
 		//go through each child of the node
 		for(ConceptNode child : node.getChildren()){
@@ -350,7 +365,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 				}
 			}
 			//recursively call the function with a child as the root
-			createConceptGraph(child, summaries);
+			addSummariesToGraph(child, summaries);
 		}
 	}
 }
