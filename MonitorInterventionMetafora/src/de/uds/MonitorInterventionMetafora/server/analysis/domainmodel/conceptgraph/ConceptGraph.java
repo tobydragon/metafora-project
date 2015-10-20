@@ -16,6 +16,20 @@ public class ConceptGraph {
 	List<ConceptLink> links;
 
 	
+	
+	
+	public ConceptGraph(String rootTitle){
+		
+		
+		//root = new ConceptNode(concept);
+		nodes = new ArrayList<ConceptNode>();
+		links = new ArrayList<ConceptLink>();
+
+		buildGraph(rootTitle);
+	}
+	
+	
+	
 	/*
 	 *Takes in a book, starts at the root, then goes through each level (chapters, sub chapters, questions) and creates
 	 *a node for each concept, and adds it as a child.
@@ -50,6 +64,7 @@ public class ConceptGraph {
 			}
 		}		
 	}
+	
 	public ConceptGraph(NodeAndLinkLists lists) {
 		this.nodes = lists.getNodes();
 		this.links = lists.getLinks();
@@ -66,6 +81,59 @@ public class ConceptGraph {
 			}
 		}
 	}
+	
+	
+	private void buildGraph(String rootTitle){
+		
+		//hard coding questions as the last level of tree
+		//had to 
+		ConceptImpl impl1 = new ConceptImpl("test_question5_1_1");
+		ConceptNode node1 = new ConceptNode(impl1);
+		
+		ConceptImpl impl2 = new ConceptImpl("test_question5_1_2");
+		ConceptNode node2 = new ConceptNode(impl2);
+		
+		
+		List<ConceptImpl> list1 =  new ArrayList<ConceptImpl>();
+		list1.add(impl1);
+		list1.add(impl2);
+		
+		ConceptImpl impl3 = new ConceptImpl("test_question5_1_3");
+		ConceptNode node3 = new ConceptNode(impl3);
+		
+		ConceptImpl impl4 = new ConceptImpl("test_question5_1_5");
+		ConceptNode node4 = new ConceptNode(impl4);
+		
+		List<ConceptImpl> list2 =  new ArrayList<ConceptImpl>();
+		list1.add(impl3);
+		list1.add(impl4);
+		
+		ConceptImpl impl5 = new ConceptImpl("Function Purpose", list1);
+		ConceptNode node5 = new ConceptNode(impl5);
+		
+		ConceptImpl impl6 = new ConceptImpl("Function Syntax", list2);
+		ConceptNode node6 = new ConceptNode(impl6);
+		
+		
+		List<ConceptImpl> list3 =  new ArrayList<ConceptImpl>();
+		list3.add(impl5);
+		list3.add(impl6);
+		ConceptImpl rootImpl = new ConceptImpl(rootTitle, list3);
+		this.root = new ConceptNode(rootImpl);
+		
+		
+		node5.addChild(node1);
+		node5.addChild(node2);
+		
+		node6.addChild(node3);
+		node6.addChild(node4);
+		
+		root.addChild(node5);
+		root.addChild(node6);
+		
+	}
+	
+	
 	
  	private ConceptNode findRoot() {
 		List<ConceptNode> runningTotal = new ArrayList<ConceptNode>();

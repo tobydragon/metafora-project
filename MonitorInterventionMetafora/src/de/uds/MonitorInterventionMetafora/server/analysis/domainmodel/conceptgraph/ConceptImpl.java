@@ -1,5 +1,6 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ConceptImpl implements Concept{
@@ -8,6 +9,11 @@ public class ConceptImpl implements Concept{
 	
 	public ConceptImpl() {
 		super();
+	}
+	
+	public ConceptImpl(String conceptTitle){
+		this.conceptTitle = conceptTitle;
+		this.children = new ArrayList<ConceptImpl>();
 	}
 
 	public ConceptImpl(String conceptTitle, List<ConceptImpl> children) {
@@ -38,7 +44,7 @@ public class ConceptImpl implements Concept{
 	@Override
 	public SummaryInfo getSummaryInfo() {
 		// TODO Auto-generated method stub
-		return null;
+		return new SummaryInfo();
 	}
 
 	
