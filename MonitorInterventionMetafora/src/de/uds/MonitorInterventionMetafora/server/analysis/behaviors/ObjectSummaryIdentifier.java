@@ -92,8 +92,10 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
 		System.out.println(graph);
 
-		NodeAndLinkLists lists =  graph.buildNodeAndLinkLists(graph.getRoot());
+		NodeAndLinkLists lists =  graph.buildNodesAndLinks();
 		
+		
+		// here down
 		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
 		
 		// Need to test making concept graph from JSON
@@ -101,6 +103,10 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		addSummariesToGraph(graphFromJson.getRoot(), perUserPerProblemSummaries);
 		System.out.println(graphFromJson);
 		
+		NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
+		System.out.println(toBeJsoned);
+		
+		JsonImportExport.toJson("smallJsonWithSummaried", toBeJsoned);
 						
 		
 		//currently this sends in the list of all the objectIds for which there exists a summary for - so any objectId that
