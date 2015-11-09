@@ -95,17 +95,18 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		ConceptGraph graph = new ConceptGraph(b);
 		
 		List<String> users = new Vector<String>();
-//		users.add("student24");
-//		users.add("student0");
-//		users.add("student1");
+		users.add("student24");
+		users.add("student0");
+		users.add("student1");
 		List<PerUserPerProblemSummary> filteredSummaries = filterSummariesByUser(users, perUserPerProblemSummaries);
 		
 		//addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
 		addSummariesToGraph(graph.getRoot(), filteredSummaries);
 		System.out.println(graph);
 
-		
-		
+
+		NodeAndLinkLists lists =  graph.buildNodesAndLinks();
+
 		
 		
 		
@@ -113,12 +114,19 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		//NodeAndLinkLists lists =  graph.buildNodeAndLinkLists(graph.getRoot());
 		
 		//NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
+
+		// here down
+		//NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
 		
 		// Need to test making concept graph from JSON
 		//ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
 		//addSummariesToGraph(graphFromJson.getRoot(), perUserPerProblemSummaries);
 		//System.out.println(graphFromJson);
 		
+		//NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
+		//System.out.println(toBeJsoned);
+		
+		//JsonImportExport.toJson("smallJsonWithSummaried", toBeJsoned);
 						
 		
 		//currently this sends in the list of all the objectIds for which there exists a summary for - so any objectId that

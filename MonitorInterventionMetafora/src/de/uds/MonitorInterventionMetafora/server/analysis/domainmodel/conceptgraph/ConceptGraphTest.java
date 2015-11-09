@@ -1,6 +1,5 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.ObjectSummaryIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
 import de.uds.MonitorInterventionMetafora.server.json.JsonImportExport;
 
@@ -15,7 +14,7 @@ public class ConceptGraphTest {
 		ConceptGraph graph = new ConceptGraph(b);
 
 		// the actual printing to JSON
-		NodeAndLinkLists lists =  graph.buildNodeAndLinkLists(graph.getRoot());
+		NodeAndLinkLists lists =  graph.buildNodesAndLinks();
 		JsonImportExport.toJson("testing", lists);
 		
 		
