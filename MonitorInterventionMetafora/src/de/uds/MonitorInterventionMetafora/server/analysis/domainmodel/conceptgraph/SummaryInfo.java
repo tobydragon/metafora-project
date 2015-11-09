@@ -10,7 +10,7 @@ public class SummaryInfo {
 
 	private List<String> users;
 	public long time;
-	private List<String> objectIds;
+	private List<String> answeredObjectIds;
 	private List<String> unansweredObjectIds;
 	
 	//represents the number of assessable questions that exist in that section of the graph
@@ -28,7 +28,7 @@ public class SummaryInfo {
 
 		users = userList;
 		time = timeIn;
-		objectIds = objectIdList;
+		answeredObjectIds = objectIdList;
 		unansweredObjectIds = new ArrayList<String>();
 		numAssessable = numAssessableIn;
 		totalTimesFalse = numTimesFalse;
@@ -39,7 +39,7 @@ public class SummaryInfo {
 	public SummaryInfo(){
 		users = new ArrayList<String>();
 		time = 0;
-		objectIds = new ArrayList<String>();
+		answeredObjectIds = new ArrayList<String>();
 		unansweredObjectIds = new ArrayList<String>();
 		numAssessable = 0;
 		totalTimesFalse = 0;
@@ -56,7 +56,7 @@ public class SummaryInfo {
 		return time;
 	}
 	public List<String> getObjectIds(){
-		return objectIds;
+		return answeredObjectIds;
 	}
 	public List<String> getUnansweredObjectIds(){
 		return unansweredObjectIds;
@@ -76,8 +76,8 @@ public class SummaryInfo {
 		users.removeAll(currentSumInfo.getUsers());
 		users.addAll(currentSumInfo.getUsers());
 		
-		objectIds.removeAll(currentSumInfo.getObjectIds());
-		objectIds.addAll(currentSumInfo.getObjectIds());
+		answeredObjectIds.removeAll(currentSumInfo.getObjectIds());
+		answeredObjectIds.addAll(currentSumInfo.getObjectIds());
 		
 		
 			
@@ -87,8 +87,8 @@ public class SummaryInfo {
 			}
 		}
 		
-		//unansweredObjectIds.removeAll(currentSumInfo.getObjectIds());
-		unansweredObjectIds.addAll(currentSumInfo.getObjectIds());
+		unansweredObjectIds.removeAll(currentSumInfo.getUnansweredObjectIds());
+		unansweredObjectIds.addAll(currentSumInfo.getUnansweredObjectIds());
 		
 		time = time + currentSumInfo.getTime();		
 		numAssessable = numAssessable + currentSumInfo.getNumAssessable();
@@ -99,7 +99,7 @@ public class SummaryInfo {
 	public String toString(){
 		
 		String stringToReturn = " numAsses " + numAssessable + " False: " + totalTimesFalse + " Users: "
-				+ users.size() + " ObjectIds: " + objectIds.size() + " UnansweredObjectIds: " + unansweredObjectIds.size()+ " Time: " + time;
+				+ users.size() + " answeredObjectIds: " + answeredObjectIds.size() + " unansweredObjectIds: " + unansweredObjectIds.size()+ " Time: " + time;
 		return stringToReturn;
 	}
 }

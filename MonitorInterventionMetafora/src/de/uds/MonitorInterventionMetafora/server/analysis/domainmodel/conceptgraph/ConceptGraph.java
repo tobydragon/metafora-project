@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 import java.util.ArrayList;
 import java.util.List;
 
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Chapter;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Question;
@@ -15,18 +16,6 @@ public class ConceptGraph {
 	List<ConceptNode> nodes;
 	List<ConceptLink> links;
 
-	
-	
-	
-	public ConceptGraph(String rootTitle){
-		
-		
-		//root = new ConceptNode(concept);
-		nodes = new ArrayList<ConceptNode>();
-		links = new ArrayList<ConceptLink>();
-
-		buildGraph(rootTitle);
-	}
 	
 	
 	
@@ -93,7 +82,7 @@ public class ConceptGraph {
 	}
 	
 	
-	private void buildGraph(String rootTitle){
+	/*private void buildGraph(String rootTitle){
 		
 		//hard coding questions as the last level of tree
 		//had to 
@@ -142,7 +131,7 @@ public class ConceptGraph {
 		root.addChild(node6);
 		
 	}
-	
+	*/
 	
 	
  	private ConceptNode findRoot() {

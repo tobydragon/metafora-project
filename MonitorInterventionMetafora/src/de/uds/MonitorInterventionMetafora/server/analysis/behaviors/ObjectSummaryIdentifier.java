@@ -84,22 +84,40 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		}	
 		
 
+		
+		
+		
+
 		//get the path of the book and then create a Book object
 		String bookPath = GeneralUtil.getRealPath("conffiles/domainfiles/thinkcspy/");
 		Book b = new Book("Interacitve Python", bookPath);
 		//create a ConceptGraph of the book and then call createConceptGraph in order to add the summaries to the graph
 		ConceptGraph graph = new ConceptGraph(b);
-		addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
+		
+		List<String> users = new Vector<String>();
+//		users.add("student24");
+//		users.add("student0");
+//		users.add("student1");
+		List<PerUserPerProblemSummary> filteredSummaries = filterSummariesByUser(users, perUserPerProblemSummaries);
+		
+		//addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
+		addSummariesToGraph(graph.getRoot(), filteredSummaries);
 		System.out.println(graph);
 
-		NodeAndLinkLists lists =  graph.buildNodeAndLinkLists(graph.getRoot());
 		
-		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
+		
+		
+		
+		
+		
+		//NodeAndLinkLists lists =  graph.buildNodeAndLinkLists(graph.getRoot());
+		
+		//NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
 		
 		// Need to test making concept graph from JSON
-		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
-		addSummariesToGraph(graphFromJson.getRoot(), perUserPerProblemSummaries);
-		System.out.println(graphFromJson);
+		//ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
+		//addSummariesToGraph(graphFromJson.getRoot(), perUserPerProblemSummaries);
+		//System.out.println(graphFromJson);
 		
 						
 		
@@ -292,6 +310,31 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		}
 		
 		return userBehaviors;
+	}
+	
+	
+	//takes in a list of users to filter by and a list of PerUserPerProblemSummaries
+	//if userList is empty or null, it returns the original list of summaries
+	public static List<PerUserPerProblemSummary> filterSummariesByUser(List<String> userList, List<PerUserPerProblemSummary> summaries){
+		
+		//if the user list is null, or empty, return the original list of summaries
+		if(userList == null){
+			return summaries;
+		}
+		else if(userList.isEmpty() == true){
+			return summaries;
+		}
+		
+		//initialize a list of summaries to return
+		List<PerUserPerProblemSummary> filteredSummaries = new Vector<PerUserPerProblemSummary>();
+		
+		//go through each summary and compare the user to the list of users, if the summary user is in the user list, add that summary to filteredSummaries
+		for(PerUserPerProblemSummary summary : summaries){
+			if(userList.contains(summary.getUser())){
+				filteredSummaries.add(summary);
+			}
+		}
+		return filteredSummaries;
 	}
 	
 	
