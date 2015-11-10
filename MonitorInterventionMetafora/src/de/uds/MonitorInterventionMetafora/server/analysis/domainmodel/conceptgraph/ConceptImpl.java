@@ -15,8 +15,6 @@ public class ConceptImpl implements Concept{
 		this.conceptTitle = conceptTitle;
 	}
 
-
-
 	public String getConceptTitle() {
 		return conceptTitle;
 	}

@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class ConceptNode {
 	
-	int color;
+	int level;
 	Concept concept;
 	List<ConceptNode> children;
 	
@@ -55,12 +55,12 @@ public class ConceptNode {
 	
 	//getting SummaryInfo objects from the Nodes and then combining into one SummaryInfo object
 	
-	public int getColor() {
-		return color;
+	public int getLevel() {
+		return level;
 	}
 
-	public void setColor(int color) {
-		this.color = color;
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 	public SummaryInfo getSummaryInfo() {

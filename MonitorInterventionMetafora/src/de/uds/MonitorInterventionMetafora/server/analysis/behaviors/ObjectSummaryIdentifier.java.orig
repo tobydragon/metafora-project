@@ -103,22 +103,42 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		//addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
 		addSummariesToGraph(graph.getRoot(), filteredSummaries);
 		System.out.println(graph);
+<<<<<<< HEAD
+=======
 
 
 		NodeAndLinkLists lists =  graph.buildNodesAndLinks();
+
 		
+>>>>>>> branch 'Development' of https://github.com/tobydragon/metafora-project.git
+		
+		
+		
+		//NodeAndLinkLists lists =  graph.buildNodeAndLinkLists(graph.getRoot());
+		
+		//NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
+
 		// here down
-		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
+		//NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
 		
 		// Need to test making concept graph from JSON
+<<<<<<< HEAD
 		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
 		addSummariesToGraph(graphFromJson.getRoot(), perUserPerProblemSummaries);
-		System.out.println(graphFromJson);
+=======
+		//ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
+		//addSummariesToGraph(graphFromJson.getRoot(), perUserPerProblemSummaries);
+		//System.out.println(graphFromJson);
+>>>>>>> branch 'Development' of https://github.com/tobydragon/metafora-project.git
 		
+<<<<<<< HEAD
 		NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
-		System.out.println(toBeJsoned);
+=======
+		//NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
+		//System.out.println(toBeJsoned);
+>>>>>>> branch 'Development' of https://github.com/tobydragon/metafora-project.git
 		
-		JsonImportExport.toJson("smallJsonWithSummaried", toBeJsoned);
+		//JsonImportExport.toJson("smallJsonWithSummaried", toBeJsoned);
 						
 		
 		//currently this sends in the list of all the objectIds for which there exists a summary for - so any objectId that
@@ -154,6 +174,8 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		return identifiedBehaviors;
 	}
 	
+	
+
 	private List <BehaviorInstance> buildAllUsersPerObjectSummaries(List<PerUserPerProblemSummary> perUserPerProblemSummaries){
 		
 		List<BehaviorInstance> userBehaviors = new Vector<BehaviorInstance>();
