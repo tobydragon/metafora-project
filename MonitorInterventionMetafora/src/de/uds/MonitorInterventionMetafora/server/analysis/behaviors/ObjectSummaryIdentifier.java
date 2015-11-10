@@ -349,7 +349,15 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 				if(child.getConcept().getConceptTitle().equalsIgnoreCase(summary.getObjectId())){
 					ConceptNode summaryNode = new ConceptNode(summary);
 					child.addChild(summaryNode);
+					
 				}
+				//attempting to add summaries that aren't directly correlated to a question in the tree
+				//still has bugs - adds some more than once
+				else if(summary.getObjectId().endsWith((child.getConcept().getConceptTitle()+".html"))){
+					ConceptNode summaryNode = new ConceptNode(summary);
+					child.addChild(summaryNode);			
+				}
+				
 			}
 			//recursively call the function with a child as the root
 			addSummariesToGraph(child, summaries);
