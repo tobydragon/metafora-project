@@ -1,26 +1,20 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 public class ConceptImpl implements Concept{
 	private String conceptTitle;
-	private List<ConceptImpl> children;
 	
 	public ConceptImpl() {
 		super();
 	}
 	
 	public ConceptImpl(String conceptTitle){
-		this.conceptTitle = conceptTitle;
-		this.children = new ArrayList<ConceptImpl>();
-	}
-
-	public ConceptImpl(String conceptTitle, List<ConceptImpl> children) {
 		super();
 		this.conceptTitle = conceptTitle;
-		this.children = children;
 	}
+
 
 
 	public String getConceptTitle() {
@@ -31,22 +25,9 @@ public class ConceptImpl implements Concept{
 		this.conceptTitle = conceptTitle;
 	}
 
-
-	public List<ConceptImpl> getChildren() {
-		return children;
-	}
-
-	public void setChildren(List<ConceptImpl> children) {
-		this.children = children;
-	}
-
-
 	@Override
 	public SummaryInfo getSummaryInfo() {
 		return new SummaryInfo();
 	}
-
-	
-	
 
 }

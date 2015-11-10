@@ -8,17 +8,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class ConceptNode {
 	
+	int color;
 	Concept concept;
 	List<ConceptNode> children;
-	SummaryInfo summaryInfo;
 	
 	public ConceptNode() {
-		summaryInfo = new SummaryInfo();
 		children = new ArrayList<ConceptNode>();
 	}
 	
 	public ConceptNode(Concept concept){
-		summaryInfo = new SummaryInfo();
 		this.concept = concept;
 		children = new ArrayList<ConceptNode>();
 	}
@@ -55,18 +53,24 @@ public class ConceptNode {
 	}
 	
 	
-	
-
 	//getting SummaryInfo objects from the Nodes and then combining into one SummaryInfo object
 	
+	public int getColor() {
+		return color;
+	}
+
+	public void setColor(int color) {
+		this.color = color;
+	}
+
 	public SummaryInfo getSummaryInfo() {
-		return summaryInfo;
+		return calcSummaryInfo();
 	}
 
 	public SummaryInfo calcSummaryInfo(){
 		
 		//need to use the return object from the recursive call
-		summaryInfo = getConcept().getSummaryInfo();
+		SummaryInfo summaryInfo = getConcept().getSummaryInfo();
 		
 		for (ConceptNode child : getChildren()){
 			SummaryInfo childSumInfo = child.calcSummaryInfo();
