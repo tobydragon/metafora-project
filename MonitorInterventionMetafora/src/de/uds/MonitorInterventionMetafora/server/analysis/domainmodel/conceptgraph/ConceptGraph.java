@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
 
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Chapter;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Question;
@@ -18,17 +19,6 @@ public class ConceptGraph {
 	List<ConceptNode> nodes;
 	List<ConceptLink> links;
 
-	
-	
-	
-	public ConceptGraph(String rootTitle){
-		
-		
-		//root = new ConceptNode(concept);
-		nodes = new ArrayList<ConceptNode>();
-		links = new ArrayList<ConceptLink>();
-
-	}
 	
 	
 	
@@ -69,7 +59,6 @@ public class ConceptGraph {
 	
 	public ConceptGraph(NodeAndLinkLists lists) {
 		this.nodes = lists.getNodes();
-
 		this.links = lists.getLinks();
 		this.root = findRoot();
 		
@@ -120,7 +109,6 @@ public class ConceptGraph {
 		//if not then it adds it
 		for(ConceptNode child : currNode.getChildren()){
 			ConceptLink linkToAdd = new ConceptLink (currNode, child);
-					
 			if(links.contains(linkToAdd) == false){
 				links.add(linkToAdd);
 				
