@@ -43,7 +43,7 @@ public class ConceptGraphTest {
 	}
 	
 	public static void testGraphFromRunestoneData(){
-		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/analysisChannelInput.xml");
+		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/runestoneXml/DavidCaitlinExample.xml");
 		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
 		logger.info(CfInteractionDataParser.toXml(testCf));
 		List<CfAction> allActions = testCf.getCfActions();
