@@ -106,27 +106,19 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 
 
 		NodeAndLinkLists lists =  graph.buildNodesAndLinks();
-
 		
-		
-		
-		
-		//NodeAndLinkLists lists =  graph.buildNodeAndLinkLists(graph.getRoot());
-		
-		//NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
-
 		// here down
-		//NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
+		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
 		
 		// Need to test making concept graph from JSON
-		//ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
-		//addSummariesToGraph(graphFromJson.getRoot(), perUserPerProblemSummaries);
-		//System.out.println(graphFromJson);
+		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
+		addSummariesToGraph(graphFromJson.getRoot(), perUserPerProblemSummaries);
+		System.out.println(graphFromJson);
 		
-		//NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
-		//System.out.println(toBeJsoned);
+		NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
+		System.out.println(toBeJsoned);
 		
-		//JsonImportExport.toJson("smallJsonWithSummaried", toBeJsoned);
+		JsonImportExport.toJson("smallJsonWithSummaried", toBeJsoned);
 						
 		
 		//currently this sends in the list of all the objectIds for which there exists a summary for - so any objectId that
@@ -162,8 +154,6 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		return identifiedBehaviors;
 	}
 	
-	
-
 	private List <BehaviorInstance> buildAllUsersPerObjectSummaries(List<PerUserPerProblemSummary> perUserPerProblemSummaries){
 		
 		List<BehaviorInstance> userBehaviors = new Vector<BehaviorInstance>();
@@ -359,7 +349,15 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 				if(child.getConcept().getConceptTitle().equalsIgnoreCase(summary.getObjectId())){
 					ConceptNode summaryNode = new ConceptNode(summary);
 					child.addChild(summaryNode);
+					
 				}
+				//attempting to add summaries that aren't directly correlated to a question in the tree
+				//still has bugs - adds some more than once
+				else if(summary.getObjectId().endsWith((child.getConcept().getConceptTitle()+".html"))){
+					ConceptNode summaryNode = new ConceptNode(summary);
+					child.addChild(summaryNode);			
+				}
+				
 			}
 			//recursively call the function with a child as the root
 			addSummariesToGraph(child, summaries);

@@ -2,6 +2,9 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Stack;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
@@ -60,19 +63,9 @@ public class ConceptGraph {
 		this.root = findRoot();
 		
 		addChildren(root);
-		
-//		System.out.println(root.getConcept().getConceptTitle());
-//		System.out.println(root.getChildren().get(0).getConcept().getConceptTitle());
-//		System.out.println(root.getChildren().get(1).getConcept().getConceptTitle());
-//		
-//		System.out.println(root.getChildren().get(0).getChildren().get(0).getConcept().getConceptTitle());
-//		System.out.println(root.getChildren().get(0).getChildren().get(1).getConcept().getConceptTitle());
-//		System.out.println(root.getChildren().get(1).getChildren().get(0).getConcept().getConceptTitle());
-//		System.out.println(root.getChildren().get(1).getChildren().get(1).getConcept().getConceptTitle());
 	}
 	
 	private void addChildren(ConceptNode current) {
-		// optimization needed
 		for (ConceptLink link : links) {
 			if (link.getParent().getConcept().getConceptTitle().equals(current.getConcept().getConceptTitle()) ) {
 				addChildren(link.getChild());
@@ -80,59 +73,6 @@ public class ConceptGraph {
 			}
 		}
 	}
-	
-	
-	/*private void buildGraph(String rootTitle){
-		
-		//hard coding questions as the last level of tree
-		//had to 
-//		ConceptImpl impl1 = new ConceptImpl("test_question5_1_1");
-//		ConceptNode node1 = new ConceptNode(impl1);
-//		
-//		ConceptImpl impl2 = new ConceptImpl("test_question5_1_2");
-//		ConceptNode node2 = new ConceptNode(impl2);
-//		
-//		
-//		List<ConceptImpl> list1 =  new ArrayList<ConceptImpl>();
-//		list1.add(impl1);
-//		list1.add(impl2);
-//		
-//		ConceptImpl impl3 = new ConceptImpl("test_question5_1_3");
-//		ConceptNode node3 = new ConceptNode(impl3);
-//		
-//		ConceptImpl impl4 = new ConceptImpl("test_question5_1_5");
-//		ConceptNode node4 = new ConceptNode(impl4);
-//		
-//		List<ConceptImpl> list2 =  new ArrayList<ConceptImpl>();
-//		list1.add(impl3);
-//		list1.add(impl4);
-		
-//		ConceptImpl impl5 = new ConceptImpl("Function Purpose", list1);
-//		ConceptNode node5 = new ConceptNode(impl5);
-//		
-//		ConceptImpl impl6 = new ConceptImpl("Function Syntax", list2);
-//		ConceptNode node6 = new ConceptNode(impl6);
-//		
-//		
-//		List<ConceptImpl> list3 =  new ArrayList<ConceptImpl>();
-//		list3.add(impl5);
-//		list3.add(impl6);
-//		ConceptImpl rootImpl = new ConceptImpl(rootTitle, list3);
-//		this.root = new ConceptNode(rootImpl);
-		
-		
-//		node5.addChild(node1);
-//		node5.addChild(node2);
-//		
-//		node6.addChild(node3);
-//		node6.addChild(node4);
-//		
-//		root.addChild(node5);
-//		root.addChild(node6);
-		
-	}
-	*/
-	
 	
  	private ConceptNode findRoot() {
 		List<ConceptNode> runningTotal = new ArrayList<ConceptNode>();
@@ -146,6 +86,7 @@ public class ConceptGraph {
 		}
 		return runningTotal.get(0);
 	}
+
 	
 	public String toString(){
 		return root.toString();
@@ -156,10 +97,11 @@ public class ConceptGraph {
 	
 	
 	//takes in a ConceptNode and creates an object to hold on to two lists - a list of nodes and a list of links
-	private NodeAndLinkLists buildNodeAndLinkLists(ConceptNode currNode){
-		
+	private NodeAndLinkLists buildNodeAndLinkLists(ConceptNode currNode, int level){
+		currNode.setLevel(level);
 		//checks to see if the current node is already in the list, if not it adds it
-		if(nodes.contains(currNode) == false){
+
+		if(nodes.contains(currNode) == false) {
 			nodes.add(currNode);
 		}
 		
@@ -169,17 +111,35 @@ public class ConceptGraph {
 			ConceptLink linkToAdd = new ConceptLink (currNode, child);
 			if(links.contains(linkToAdd) == false){
 				links.add(linkToAdd);
+				
+				//recursively calls the function again with the child as the current node
+				buildNodeAndLinkLists(child, level+1);
 			}
-			//recursively calls the function again with the child as the current node
-			buildNodeAndLinkLists(child);
+			
+			
+		}
+		List<ConceptNode> finalNodes = new ArrayList<ConceptNode>();
+		List<ConceptLink> finalLinks = new ArrayList<ConceptLink>();
+		
+		for	(ConceptNode node : nodes) {
+			if (node.getLevel() != 0) {
+				finalNodes.add(node);
+			}
+		}
+		for (ConceptLink link : links) {
+			if (link.getParent().getLevel() != 0 && link.getChild().getLevel() != 0) {
+				finalLinks.add(link);
+			}
 		}
 		
 		//creates the LinksAndNodes object to hold on to both lists, then returns that object
-		NodeAndLinkLists finalLists = new NodeAndLinkLists(nodes, links);
+		NodeAndLinkLists finalLists = new NodeAndLinkLists(finalNodes, finalLinks);
+		
+		
 		return finalLists;
 	}
 	
 	public NodeAndLinkLists buildNodesAndLinks() {
-		return buildNodeAndLinkLists(root);
+		return buildNodeAndLinkLists(root, 1);
 	}
 }
