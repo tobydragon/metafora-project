@@ -1,5 +1,6 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +15,15 @@ import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
+=======
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.ObjectSummaryIdentifier;
+>>>>>>> 34724f0b97c06722af880b798ef94fa030fc3f3e
 
 public class ConceptGraphTest {
 	static Logger logger = Logger.getLogger(ConceptGraphTest.class);
 
 	public static void main(String[] args) throws Exception {
+<<<<<<< HEAD
 		testGraphFromRunestoneData();
 	}
 	
@@ -40,10 +45,19 @@ public class ConceptGraphTest {
 		// Need to test making concept graph from JSON
 		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
 		System.out.println(graphFromJson);
+=======
+		ObjectSummaryIdentifier objectSummary = new ObjectSummaryIdentifier();
+		
+		
+//		objectSummary.identifyBehaviors(actionsToConsider, users, properties);
+
+
+		
+>>>>>>> 34724f0b97c06722af880b798ef94fa030fc3f3e
 	}
 	
 	public static void testGraphFromRunestoneData(){
-		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/runestoneXml/DavidCaitlinExample.xml");
+		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/analysisChannelInput.xml");
 		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
 		logger.info(CfInteractionDataParser.toXml(testCf));
 		List<CfAction> allActions = testCf.getCfActions();

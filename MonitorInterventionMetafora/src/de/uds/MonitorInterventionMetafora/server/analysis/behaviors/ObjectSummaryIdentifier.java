@@ -19,8 +19,8 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 	Logger log = Logger.getLogger(this.getClass());
 	
-	ActionFilter userFilter;
-	ActionFilter objectIdFilter;
+//	ActionFilter userFilter;
+//	ActionFilter objectIdFilter;
 
 	@Override
 	public List<BehaviorInstance> identifyBehaviors(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties){
@@ -47,7 +47,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		//goes through each user
 		for(String user : involvedUsers){
 			
-			userFilter = BehaviorFilters.createUserFilter(user);		
+			ActionFilter userFilter = BehaviorFilters.createUserFilter(user);		
 			
 			//list of all the actions for the current user
 			List<CfAction> actionsFilteredByUser = userFilter.getFilteredList(actionsToConsider);
@@ -55,7 +55,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 			    //goes through each objectId for each user
 				for(String objectId : objectIds){	
 					
-					objectIdFilter = BehaviorFilters.createObjectIdFilter(objectId);
+					ActionFilter objectIdFilter = BehaviorFilters.createObjectIdFilter(objectId);
 					
 					//list of all actions for the current user for the current objectId
 					List<CfAction> actionsFilteredByObjectId = objectIdFilter.getFilteredList(actionsFilteredByUser);

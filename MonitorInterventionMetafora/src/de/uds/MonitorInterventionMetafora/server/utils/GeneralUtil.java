@@ -43,8 +43,13 @@ public class GeneralUtil {
 	}
 	
 	public static String getRealPath(String string){
-		//return string;
-		return InitServlet.getStaticServletContext().getRealPath(string);
+		//if running a server, get path from the servletContext, otherwise just return default path
+		if (InitServlet.getStaticServletContext() != null){
+			return InitServlet.getStaticServletContext().getRealPath(string);
+		}
+		else {
+			return "war/"+string;
+		}
 	}
 	
 	public static String getCurrentDate(){
