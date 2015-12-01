@@ -95,7 +95,6 @@ public class ConceptGraph {
 		return root;
 	}
 	
-	
 	//takes in a ConceptNode and creates an object to hold on to two lists - a list of nodes and a list of links
 	private NodeAndLinkLists buildNodeAndLinkLists(ConceptNode currNode, int level){
 		currNode.setLevel(level);
@@ -141,5 +140,28 @@ public class ConceptGraph {
 	
 	public NodeAndLinkLists buildNodesAndLinks() {
 		return buildNodeAndLinkLists(root, 1);
+	}
+	
+	public void calcPredictedScores() {
+		// Need to address! lets say we go with this for the top's predicted, well
+		// calling getSummary calls calc summary, it seems like this should just be
+		// saved in the node or something
+		
+		NodeAndLinkLists lists = buildNodesAndLinks();
+		for (ConceptNode node : lists.getNodes()) {
+			double total = 0;
+			double numParents = 0;
+			for (ConceptLink link : lists.getLinks()) {
+				// go through and find all of the current node's parents
+				if (link.getChild().getConcept().getConceptTitle().equals(node.getConcept().getConceptTitle())) {
+					// is this the right summary info?
+					total += link.getParent().getConcept().getSummaryInfo().getActualComp();
+					numParents += 1;
+				}
+			}
+			// not sure if this is what we really want, but the idea is that
+			node.getConcept().getSummaryInfo().setPredictedComp(total/numParents);
+			
+		}
 	}
 }
