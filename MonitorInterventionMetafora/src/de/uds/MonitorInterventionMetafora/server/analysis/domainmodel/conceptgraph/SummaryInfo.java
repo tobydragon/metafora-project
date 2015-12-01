@@ -138,7 +138,17 @@ public class SummaryInfo {
 		return stringToReturn;
 	}
 	
-	private int getRealScore() {
+
+
+	public void setActualComp(double actualComp) {
+		this.actualComp = actualComp;
+	}
+
+	public void setPredictedComp(double predictedComp) {
+		this.predictedComp = predictedComp;
+	}
+	
+	private double getRealScore() {
 		// not sure if this goes here, but it needs to be only called on the lowest tier
 		// of nodes (the one's going up will be calculated by taking averages)
 		
@@ -163,18 +173,8 @@ public class SummaryInfo {
 		// else
 		//     calculate score from below
 		
-		
 		return 0;
 	}
-
-	public void setActualComp(double actualComp) {
-		this.actualComp = actualComp;
-	}
-
-	public void setPredictedComp(double predictedComp) {
-		this.predictedComp = predictedComp;
-	}
-	
 	
 }
 

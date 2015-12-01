@@ -29,7 +29,7 @@ public class ConceptGraphTest {
 		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/analysisChannelInput.xml");
 		
 		// this line is simply making an empty testCf, and inturn we get no summaries
-		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
+		CfInteractionData testCf = CfInteractionDataParser.fromXml(runestoneFrag);
 		
 		logger.info(CfInteractionDataParser.toXml(testCf));
 		List<CfAction> allActions = testCf.getCfActions();

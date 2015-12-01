@@ -182,6 +182,5 @@ public abstract class PerUserPerProblemSummary implements Concept{
 		
 		return info;
 	}
-
 	
 }
