@@ -131,6 +131,8 @@ public class SummaryInfo {
 	}
 
 	public String toString(){
+		// TODO
+		
 		String stringToReturn = ("Actual Comp: " + actualComp);
 //		String stringToReturn = " numAsses " + numAssessable + " False: " + totalTimesFalse + " Users: "
 //				+ users.size() + " answeredObjectIds: " + answeredObjectIds.size() + " unansweredObjectIds: " + unansweredObjectIds.size()+ " Time: " + time 
@@ -149,6 +151,7 @@ public class SummaryInfo {
 	}
 	
 	private double getRealScore() {
+		// TODO
 		// not sure if this goes here, but it needs to be only called on the lowest tier
 		// of nodes (the one's going up will be calculated by taking averages)
 		

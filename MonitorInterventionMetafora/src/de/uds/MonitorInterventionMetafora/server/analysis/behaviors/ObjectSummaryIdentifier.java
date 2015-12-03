@@ -313,7 +313,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 	
 	//takes in a list of users to filter by and a list of PerUserPerProblemSummaries
 	//if userList is empty or null, it returns the original list of summaries
-	public static List<PerUserPerProblemSummary> filterSummariesByUser(List<String> userList, List<PerUserPerProblemSummary> summaries){
+	public List<PerUserPerProblemSummary> filterSummariesByUser(List<String> userList, List<PerUserPerProblemSummary> summaries){
 		
 		//if the user list is null, or empty, return the original list of summaries
 		if(userList == null){
@@ -362,18 +362,13 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		}
 	}
 	
-	public List<PerUserPerProblemSummary> getSummaries(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties) {
+	public List<PerUserPerProblemSummary> getAllSummaries(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties) {
 		// I didn't want to break anything from indentify Summaries, so this is a new method
 		// that only returns the PerUserPerProblemSummaries
 		
 		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
 		List<PerUserPerProblemSummary> perUserPerProblemSummaries = new Vector<PerUserPerProblemSummary>();
-		
-		
-		//TODO @Caitlin: this is where we get all the actions (actions to consider) and you return a list of BehaviorInstances, one for each object (problem)
-		//create instance for each student each problem
-		
-		
+			
 		
 		List<String> objectIds = new Vector<String>();
 		for (CfAction action : actionsToConsider){

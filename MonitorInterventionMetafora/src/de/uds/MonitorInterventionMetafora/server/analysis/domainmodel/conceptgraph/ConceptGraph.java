@@ -2,11 +2,7 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Stack;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Chapter;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Question;
@@ -98,6 +94,7 @@ public class ConceptGraph {
 	//takes in a ConceptNode and creates an object to hold on to two lists - a list of nodes and a list of links
 	private NodeAndLinkLists buildNodeAndLinkLists(ConceptNode currNode, int level){
 		currNode.setLevel(level);
+		currNode.setComps();
 		//checks to see if the current node is already in the list, if not it adds it
 
 		if(nodes.contains(currNode) == false) {
@@ -143,25 +140,38 @@ public class ConceptGraph {
 	}
 	
 	public void calcPredictedScores() {
-		// Need to address! lets say we go with this for the top's predicted, well
-		// calling getSummary calls calc summary, it seems like this should just be
-		// saved in the node or something
 		
-		NodeAndLinkLists lists = buildNodesAndLinks();
-		for (ConceptNode node : lists.getNodes()) {
-			double total = 0;
-			double numParents = 0;
-			for (ConceptLink link : lists.getLinks()) {
-				// go through and find all of the current node's parents
-				if (link.getChild().getConcept().getConceptTitle().equals(node.getConcept().getConceptTitle())) {
-					// is this the right summary info?
-					total += link.getParent().getConcept().getSummaryInfo().getActualComp();
-					numParents += 1;
-				}
-			}
-			// not sure if this is what we really want, but the idea is that
-			node.getConcept().getSummaryInfo().setPredictedComp(total/numParents);
-			
+		// TODO just to get the "made up" scores in this line will be deleted
+		buildNodesAndLinks();
+		
+		
+		calcPredictedScores(root, root.getActualComp());
+	}
+	
+	// pre order traversal
+	private void calcPredictedScores(ConceptNode current, double passedDown) {
+		
+		// TODO this is the like actual person's answers or whatever. IDK what the exact thing to do is so I'm ignoring for now
+		if (current.getActualComp() == -1) {
+			return;
 		}
+		
+		// TODO Not working exactly correct, one error that is apparent is when it goes to print the same node multiple times
+		// there's different answers for predicted comps...
+		
+		if (current == root) {
+			current.setPredictedComp(current.getActualComp());
+		} else {
+			current.setNumParents(current.getNumParents() + 1);
+			current.setPredictedComp((passedDown * (1/current.getNumParents())) + (current.getPredictedComp() * (1-(1/current.getNumParents()))));
+		}
+		for (ConceptNode child : current.getChildren()) {
+			if (current.getActualComp() == 0) {
+				calcPredictedScores(child, current.getPredictedComp()/2);
+			} else {
+				calcPredictedScores(child, current.getActualComp());
+			}
+		}
+		
 	}
 }

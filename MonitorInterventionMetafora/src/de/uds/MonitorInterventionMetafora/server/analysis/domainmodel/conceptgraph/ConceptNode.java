@@ -12,16 +12,25 @@ public class ConceptNode {
 	Concept concept;
 	List<ConceptNode> children;
 	
+	// used for AI scores
+	private double actualComp;
+	private double predictedComp;
+	private int numParents;
+	
 	public ConceptNode() {
 		children = new ArrayList<ConceptNode>();
+		numParents = 0;
+		predictedComp = 0;
+		actualComp = 0;
 	}
 	
 	public ConceptNode(Concept concept){
 		this.concept = concept;
 		children = new ArrayList<ConceptNode>();
+		numParents = 0;
+		actualComp = 0;
+		predictedComp = 0;
 	}
-	
-	
 	
 	public void addChild(ConceptNode child){
 		children.add(child);
@@ -44,7 +53,12 @@ public class ConceptNode {
 	//Currently printing with the time spent on all children gotten from calcSummaryInfo
 	public String toString(String indent){
 		 
-		String stringToReturn = indent + getConcept().getConceptTitle() +  "\t" + calcSummaryInfo(); 
+//		String stringToReturn = indent + getConcept().getConceptTitle() +  "\t" + calcSummaryInfo(); 
+//		for (ConceptNode child :getChildren()){
+//			stringToReturn += child.toString(indent + "\t");
+//		}
+//		return stringToReturn;
+		String stringToReturn = indent + getConcept().getConceptTitle() +  "\t actual: " + getActualComp() + " pred: " +getPredictedComp(); 
 		for (ConceptNode child :getChildren()){
 			stringToReturn += child.toString(indent + "\t");
 		}
@@ -99,5 +113,53 @@ public class ConceptNode {
 		
 		return false;
 	}
+
+	public double getActualComp() {
+		return Math.round(actualComp*100.0)/100.0;
+	}
+
+	public void setActualComp(double actualComp) {
+		this.actualComp = actualComp;
+	}
+
+	public double getPredictedComp() {
+		return Math.round(predictedComp*100.0)/100.0;
+	}
+
+	public void setPredictedComp(double predictedComp) {
+		this.predictedComp = predictedComp;
+	}
+	
+	// temp method to set comps to specific things
+	public void setComps() {
+		// TODO
+		predictedComp = 0;
+		if (concept.getConceptTitle().equals("Functions")) {
+			actualComp = .225;
+		} else if (concept.getConceptTitle().equals("Function Purpose")) {
+			actualComp = .45;
+		} else if (concept.getConceptTitle().equals("Function Syntax")) {
+			actualComp = 0;
+		} else if (concept.getConceptTitle().equals("test_question5_1_1")) {
+			actualComp = .9;
+		} else if (concept.getConceptTitle().equals("test_question5_1_2")) {
+			actualComp = 0;
+		} else if (concept.getConceptTitle().equals("test_question5_1_3")) {
+			actualComp = 0;
+		} else if (concept.getConceptTitle().equals("test_question5_1_5")) {
+			actualComp = 0;
+		} else {
+			actualComp = -1;
+		}
+	}
+
+	public int getNumParents() {
+		return numParents;
+	}
+
+	public void setNumParents(int numParents) {
+		this.numParents = numParents;
+	}
+	
 	
 }

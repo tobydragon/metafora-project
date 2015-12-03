@@ -2,6 +2,7 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
@@ -26,16 +27,28 @@ public class ConceptGraphTest {
 	public static void testBookGraphToJson(){
 		
 		// Needed to get behaviors (end result is we get the per user per problem summaries)
+//		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/runestoneXml/DavidCaitlinExample.xml");
+//		
+//		// this line is simply making an empty testCf, and inturn we get no summaries
+//		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
+		
 		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/analysisChannelInput.xml");
 		
 		// this line is simply making an empty testCf, and inturn we get no summaries
 		CfInteractionData testCf = CfInteractionDataParser.fromXml(runestoneFrag);
 		
+		
 		logger.info(CfInteractionDataParser.toXml(testCf));
 		List<CfAction> allActions = testCf.getCfActions();
 		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
 		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
-		List<PerUserPerProblemSummary> summaries = myIdentifier.getSummaries(allActions, involvedUsers, new ArrayList<CfProperty>());
+		List<PerUserPerProblemSummary> summaries = myIdentifier.getAllSummaries(allActions, involvedUsers, new ArrayList<CfProperty>());
+		
+		// filter down the number of summaries to one user
+		List<String> users = new Vector<String>();
+		users.add("student24");
+		List<PerUserPerProblemSummary> filteredSummaries = myIdentifier.filterSummariesByUser(users, summaries);
+		
 		
 		// test building Nodes and Edges lists from JSON "small json"
 		String thisString = GeneralUtil.getRealPath("nodesAndEdgesBasicFull.json");
@@ -45,8 +58,8 @@ public class ConceptGraphTest {
 		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
 		
 		// Add summary info to it
-		myIdentifier.addSummariesToGraph(graphFromJson.getRoot(), summaries);
-		
+		myIdentifier.addSummariesToGraph(graphFromJson.getRoot(), filteredSummaries);
+		graphFromJson.calcPredictedScores();
 		System.out.println(graphFromJson);
 	}
 	
