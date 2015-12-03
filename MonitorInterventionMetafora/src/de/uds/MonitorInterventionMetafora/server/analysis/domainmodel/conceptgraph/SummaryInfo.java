@@ -19,10 +19,14 @@ public class SummaryInfo {
 	private int totalTimesFalse;
 //	private String conceptType;
 	
+	private double actualComp;
+	private double predictedComp;
+	private int numSummaries;
 	
 	
 	
-	public SummaryInfo(List<String> userList, long timeIn, List<String> objectIdList, int numAssessableIn, int numTimesFalse) {
+	
+	public SummaryInfo(List<String> userList, long timeIn, List<String> objectIdList, int numAssessableIn, int numTimesFalse, double actualCompIn, double predictedCompIn, int numSummariesIn) {
 		
 		// TODO Auto-generated constructor stub
 
@@ -32,6 +36,9 @@ public class SummaryInfo {
 		unansweredObjectIds = new ArrayList<String>();
 		numAssessable = numAssessableIn;
 		totalTimesFalse = numTimesFalse;
+		actualComp = actualCompIn;
+		predictedComp = predictedCompIn;
+		numSummaries = numSummariesIn;
 	}
 	
 	
@@ -43,6 +50,9 @@ public class SummaryInfo {
 		unansweredObjectIds = new ArrayList<String>();
 		numAssessable = 0;
 		totalTimesFalse = 0;
+		actualComp = 0;
+		predictedComp = 0;
+		numSummaries = 0;
 		
 		
 	}
@@ -67,6 +77,15 @@ public class SummaryInfo {
 	}
 	public int getTotalFalseEntries(){
 		return totalTimesFalse;
+	}
+	public double getActualComp(){
+		return actualComp;
+	}
+	public double getPredictedComp(){
+		return predictedComp;
+	}
+	public int getNumSummaries(){
+		return  numSummaries;
 	}
 	
 
@@ -93,13 +112,36 @@ public class SummaryInfo {
 		time = time + currentSumInfo.getTime();		
 		numAssessable = numAssessable + currentSumInfo.getNumAssessable();
 		totalTimesFalse = totalTimesFalse + currentSumInfo.getTotalFalseEntries();
+		numSummaries = numSummaries + currentSumInfo.getNumSummaries();
 		
+		
+		
+		double tempActual = 0;
+		double tempPredicted = 0;
+		if(nodeIn.getChildren().size() == 0){
+			actualComp = currentSumInfo.getActualComp();
+			predictedComp = currentSumInfo.getPredictedComp();
 		}
+		else{
+			System.out.println("NodeIn: " + nodeIn.getConcept().getConceptTitle());
+			
+			for(ConceptNode child : nodeIn.getChildren()){
+				tempActual = tempActual + child.getSummaryInfo().getActualComp();
+				tempPredicted += child.getSummaryInfo().getPredictedComp();	
+			}
+			
+			System.out.println("tempActual: " + tempActual + " nodeIn.children/size: " + nodeIn.getChildren().size());
+			actualComp = tempActual / (nodeIn.getChildren().size());
+			System.out.println("actualComp: " + actualComp  + "\n");
+			predictedComp = tempPredicted / (nodeIn.getChildren().size());
+		}
+	}
 
 	public String toString(){
-		
-		String stringToReturn = " numAsses " + numAssessable + " False: " + totalTimesFalse + " Users: "
-				+ users.size() + " answeredObjectIds: " + answeredObjectIds.size() + " unansweredObjectIds: " + unansweredObjectIds.size()+ " Time: " + time;
+		String stringToReturn = ("Actual Comp: " + actualComp);
+//		String stringToReturn = " numAsses " + numAssessable + " False: " + totalTimesFalse + " Users: "
+//				+ users.size() + " answeredObjectIds: " + answeredObjectIds.size() + " unansweredObjectIds: " + unansweredObjectIds.size()+ " Time: " + time 
+//				+ " ActualComp: " + actualComp + " PredictedComp: " + predictedComp + " NumSummaries: " + numSummaries;
 		return stringToReturn;
 	}
 }

@@ -19,6 +19,8 @@ public abstract class PerUserPerProblemSummary implements Concept{
 	private String type;
 	private String description;
 	private static long timeInterval = 30;
+	private int actualCompetency;
+	private int predictedCompetency;
 
 	
 	public PerUserPerProblemSummary(List<CfAction> actionsFilteredByObjectId, String currentUser, String currentObjectId){
@@ -176,7 +178,7 @@ public abstract class PerUserPerProblemSummary implements Concept{
 
 		
 		//sends in 0 for numAssesable and for timesFalse
-		SummaryInfo info = new SummaryInfo(users, time, objectIds, 0, 0);
+		SummaryInfo info = new SummaryInfo(users, time, objectIds, 0, 0, .5, 0, 1);
 		
 		return info;
 	}

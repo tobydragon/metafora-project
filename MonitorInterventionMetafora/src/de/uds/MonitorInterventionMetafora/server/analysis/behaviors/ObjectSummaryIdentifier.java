@@ -100,25 +100,29 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		users.add("student1");
 		List<PerUserPerProblemSummary> filteredSummaries = filterSummariesByUser(users, perUserPerProblemSummaries);
 		
-		//addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
-		addSummariesToGraph(graph.getRoot(), filteredSummaries);
-		System.out.println(graph);
+		addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
+		//addSummariesToGraph(graph.getRoot(), filteredSummaries);
+		//System.out.println(graph);
 
 
-		NodeAndLinkLists lists =  graph.buildNodesAndLinks();
+		//NodeAndLinkLists lists =  graph.buildNodesAndLinks();
+		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/Caitlin/Desktop/basicGraph.json");		
+		ConceptGraph basicGraph = new ConceptGraph(fromJsonLists);
+		addSummariesToGraph(basicGraph.getRoot(), perUserPerProblemSummaries);
+		System.out.println(basicGraph);
 		
 		// here down
-		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
+		//NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
 		
 		// Need to test making concept graph from JSON
-		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
-		addSummariesToGraph(graphFromJson.getRoot(), perUserPerProblemSummaries);
-		System.out.println(graphFromJson);
+		//ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
+		//addSummariesToGraph(graphFromJson.getRoot(), perUserPerProblemSummaries);
+		//System.out.println(graphFromJson);
 		
-		NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
-		System.out.println(toBeJsoned);
+		//NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
+		//System.out.println(toBeJsoned);
 		
-		JsonImportExport.toJson("smallJsonWithSummaried", toBeJsoned);
+		//JsonImportExport.toJson("smallJsonWithSummaried", toBeJsoned);
 						
 		
 		//currently this sends in the list of all the objectIds for which there exists a summary for - so any objectId that
@@ -353,10 +357,10 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 				}
 				//attempting to add summaries that aren't directly correlated to a question in the tree
 				//still has bugs - adds some more than once
-				else if(summary.getObjectId().endsWith((child.getConcept().getConceptTitle()+".html"))){
-					ConceptNode summaryNode = new ConceptNode(summary);
-					child.addChild(summaryNode);			
-				}
+//				else if(summary.getObjectId().endsWith((child.getConcept().getConceptTitle()+".html"))){
+//					ConceptNode summaryNode = new ConceptNode(summary);
+//					child.addChild(summaryNode);			
+//				}
 				
 			}
 			//recursively call the function with a child as the root
