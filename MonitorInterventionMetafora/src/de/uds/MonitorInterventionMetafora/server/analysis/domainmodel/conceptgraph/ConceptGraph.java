@@ -177,8 +177,10 @@ public class ConceptGraph {
 			current.setPredictedComp(current.getActualComp());
 		} else {
 			current.setNumParents(current.getNumParents() + 1);
-			double oldPred = current.getPredictedComp() * (1.0 - (1.0/current.getNumParents()));
 			
+			// Calculating the new predicted, take the the old predicted with the weight it has based off of the number of parents
+			// calculate the new pred from the new information passed down and the adding it to old pred
+			double oldPred = current.getPredictedComp() * (1.0 - (1.0/current.getNumParents()));
 			double newPred = (passedDown * (1.0/current.getNumParents())) + oldPred;
 			
 			current.setPredictedComp(newPred);

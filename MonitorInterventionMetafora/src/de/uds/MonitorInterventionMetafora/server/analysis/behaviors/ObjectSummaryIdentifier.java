@@ -107,6 +107,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		System.out.println(graph);
 
 
+		// TODO the false isn't needed once we don't add the summaries via building nodes and links
 		NodeAndLinkLists lists =  graph.buildNodesAndLinks(false);
 		
 		// here down
