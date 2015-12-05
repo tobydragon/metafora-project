@@ -135,21 +135,29 @@ public class ConceptNode {
 		// TODO
 		predictedComp = 0;
 		if (concept.getConceptTitle().equals("Functions")) {
-			actualComp = .225;
+			actualComp = .62;
 		} else if (concept.getConceptTitle().equals("Function Purpose")) {
-			actualComp = .45;
-		} else if (concept.getConceptTitle().equals("Function Syntax")) {
-			actualComp = 0;
-		} else if (concept.getConceptTitle().equals("test_question5_1_1")) {
 			actualComp = .9;
+		} else if (concept.getConceptTitle().equals("Function Syntax")) {
+			actualComp = .33;
+		} else if (concept.getConceptTitle().equals("test_question5_1_1")) {
+			actualComp = .8;
 		} else if (concept.getConceptTitle().equals("test_question5_1_2")) {
-			actualComp = 0;
+			actualComp = 1;
 		} else if (concept.getConceptTitle().equals("test_question5_1_3")) {
 			actualComp = 0;
 		} else if (concept.getConceptTitle().equals("test_question5_1_5")) {
 			actualComp = 0;
-		} else {
+		} else if (concept.getConceptTitle().equals("student24 spent 30 seconds on test_question5_1_1 and answered incorrectly 0 time(s), before answering correct")) {
 			actualComp = .8;
+		} else if (concept.getConceptTitle().equals("student24 spent 30 seconds on test_question5_1_2 and answered incorrectly 0 time(s), before answering correct")) {
+			actualComp = 1;
+		} else if (concept.getConceptTitle().equals("student24 spent 5 seconds on test_question5_1_3 and answered incorrectly 0 time(s), before answering correct")) {
+			actualComp = 0;
+		} else if (concept.getConceptTitle().equals("student24 spent 30 seconds on test_question5_1_5 and answered incorrectly 0 time(s), before answering correct")) {
+			actualComp = 0;
+		} else {
+			actualComp = 999;
 		}
 	}
 

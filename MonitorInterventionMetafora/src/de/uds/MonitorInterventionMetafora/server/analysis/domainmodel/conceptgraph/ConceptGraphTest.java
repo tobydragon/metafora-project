@@ -58,15 +58,14 @@ public class ConceptGraphTest {
 		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
 		
 		// Add summary info to it
-		myIdentifier.addSummariesToGraph(graphFromJson.getRoot(), filteredSummaries);
+		myIdentifier.addSummariesToGraph(graphFromJson.getRoot(), filteredSummaries, new ArrayList<String>());
 		
 		// calculate the predicted scores
 		graphFromJson.calcPredictedScores();
 		
 		System.out.println(graphFromJson);
 		
-		NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
-		System.out.println(toBeJsoned);
+		NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks(false);
 		
 		JsonImportExport.toJson("smallJsonWithSummariedForOneStudent", toBeJsoned);
 	}

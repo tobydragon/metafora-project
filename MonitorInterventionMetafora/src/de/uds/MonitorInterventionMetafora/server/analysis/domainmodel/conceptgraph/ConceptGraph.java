@@ -64,8 +64,26 @@ public class ConceptGraph {
 	private void addChildren(ConceptNode current) {
 		for (ConceptLink link : links) {
 			if (link.getParent().getConcept().getConceptTitle().equals(current.getConcept().getConceptTitle()) ) {
-				addChildren(link.getChild());
-				current.addChild(link.getChild());
+				
+				for (ConceptNode node: nodes) {
+					if (node.getConcept().getConceptTitle().equals(link.getChild().getConcept().getConceptTitle())) {
+						addChildren(node);
+						break;
+					}			
+				}
+				
+				// TODO fix this, implementation below didn't work (ugghhhhh)
+				// error line, we shouldn't add the links child (Jackson made the nodes for the links ends, but they won't be the same
+				// node if two links have the a same end. Instead we need to go get the node from nodes that matches it
+			
+				//current.addChild(link.getChild());
+				
+				for (ConceptNode node: nodes) {
+					if (node.getConcept().getConceptTitle().equals(link.getChild().getConcept().getConceptTitle())) {
+						current.addChild(node);
+						break;
+					}			
+				}
 			}
 		}
 	}
@@ -92,11 +110,13 @@ public class ConceptGraph {
 	}
 	
 	//takes in a ConceptNode and creates an object to hold on to two lists - a list of nodes and a list of links
-	private NodeAndLinkLists buildNodeAndLinkLists(ConceptNode currNode, int level){
+	private NodeAndLinkLists buildNodeAndLinkLists(ConceptNode currNode, int level, boolean check){
 		currNode.setLevel(level);
 		
 		// TODO set Comps (not needed)
-		currNode.setComps();
+		if (check) {
+			currNode.setComps();
+		}
 		//checks to see if the current node is already in the list, if not it adds it
 
 		if(nodes.contains(currNode) == false) {
@@ -111,7 +131,7 @@ public class ConceptGraph {
 				links.add(linkToAdd);
 				
 				//recursively calls the function again with the child as the current node
-				buildNodeAndLinkLists(child, level+1);
+				buildNodeAndLinkLists(child, level+1, check);
 			}
 			
 			
@@ -137,15 +157,14 @@ public class ConceptGraph {
 		return finalLists;
 	}
 	
-	public NodeAndLinkLists buildNodesAndLinks() {
-		return buildNodeAndLinkLists(root, 1);
+	public NodeAndLinkLists buildNodesAndLinks(boolean check) {
+		return buildNodeAndLinkLists(root, 1, check);
 	}
 	
 	public void calcPredictedScores() {
 		
 		// TODO just to get the "made up" scores in this line will be deleted
-		buildNodesAndLinks();
-		
+		buildNodesAndLinks(true);
 		
 		calcPredictedScores(root, root.getActualComp());
 	}
@@ -153,20 +172,18 @@ public class ConceptGraph {
 	// pre order traversal
 	private void calcPredictedScores(ConceptNode current, double passedDown) {
 		
-		// TODO this is the like actual person's answers or whatever. IDK what the exact thing to do is so I'm ignoring for now
-		if (current.getActualComp() == -1) {
-			return;
-		}
-		
-		// TODO Not working exactly correct, one error that is apparent is when it goes to print the same node multiple times
-		// there's different answers for predicted comps...
-		
+		// simple check for if we're dealing with the root, which has its own rule
 		if (current == root) {
 			current.setPredictedComp(current.getActualComp());
 		} else {
 			current.setNumParents(current.getNumParents() + 1);
-			current.setPredictedComp((passedDown * (1/current.getNumParents())) + (current.getPredictedComp() * (1-(1/current.getNumParents()))));
+			double oldPred = current.getPredictedComp() * (1.0 - (1.0/current.getNumParents()));
+			
+			double newPred = (passedDown * (1.0/current.getNumParents())) + oldPred;
+			
+			current.setPredictedComp(newPred);
 		}
+		
 		for (ConceptNode child : current.getChildren()) {
 			if (current.getActualComp() == 0) {
 				calcPredictedScores(child, current.getPredictedComp()/2);
@@ -176,4 +193,5 @@ public class ConceptGraph {
 		}
 		
 	}
+	
 }
