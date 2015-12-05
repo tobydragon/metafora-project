@@ -94,6 +94,8 @@ public class ConceptGraph {
 	//takes in a ConceptNode and creates an object to hold on to two lists - a list of nodes and a list of links
 	private NodeAndLinkLists buildNodeAndLinkLists(ConceptNode currNode, int level){
 		currNode.setLevel(level);
+		
+		// TODO set Comps (not needed)
 		currNode.setComps();
 		//checks to see if the current node is already in the list, if not it adds it
 

@@ -149,7 +149,7 @@ public class ConceptNode {
 		} else if (concept.getConceptTitle().equals("test_question5_1_5")) {
 			actualComp = 0;
 		} else {
-			actualComp = -1;
+			actualComp = .8;
 		}
 	}
 
