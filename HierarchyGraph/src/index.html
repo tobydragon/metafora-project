@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Runestone Book Representation</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="static/js/bookCustom.js"></script>
+    <script type="text/javascript" src="static/js/bookCustomThree.js"></script>
+    <script type="text/javascript" src="static/js/bookCustomOne.js"></script>
+    <script type="text/javascript" src="static/js/bootstrap.js"></script>
+    <script type="text/javascript" src="static/js/vivagraph.js"></script>
+    <script type="text/javascript" src="static/js/build_graph.js"></script>
+    <script type="text/javascript" src="static/js/get_nodes.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+
+<body onload="build_graph()">
+<h1>Runestone Interactive</h1>
+
+<center>
+    <img src="static/images/scale.jpg" class="img-responsive" alt="" style="width:500px;height:30px;">
+</center>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <div id="false"></div>
+                <div id="time"></div>
+                <div id="actual"></div>
+                <div id="pred"></div>
+                <div id="assessable"></div>
+                <div id="students"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
