@@ -177,11 +177,14 @@ public abstract class PerUserPerProblemSummary implements Concept{
 		objectIds.add(objectId);
 
 		
-		//sends in 0 for numAssesable and for timesFalse
-		SummaryInfo info = new SummaryInfo(users, time, objectIds, 0, 0, .5, 0, 1);
+		//deafault values for SummaryInfo as this is a non assessable summary
+		int numAssessable = 0;
+		int numTimesFalse = 0;
+		int numCorrect = 1;
+		int numSummaries = 1;
+		SummaryInfo info = new SummaryInfo(users, time, objectIds, numAssessable, numTimesFalse, numCorrect, numSummaries);
 		
 		return info;
 	}
-
 	
 }

@@ -2,11 +2,7 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Stack;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Chapter;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Question;
@@ -95,10 +91,10 @@ public class ConceptGraph {
 		return root;
 	}
 	
-	
 	//takes in a ConceptNode and creates an object to hold on to two lists - a list of nodes and a list of links
 	private NodeAndLinkLists buildNodeAndLinkLists(ConceptNode currNode, int level){
 		currNode.setLevel(level);
+		//currNode.setComps();
 		//checks to see if the current node is already in the list, if not it adds it
 
 		if(nodes.contains(currNode) == false) {
@@ -141,5 +137,65 @@ public class ConceptGraph {
 	
 	public NodeAndLinkLists buildNodesAndLinks() {
 		return buildNodeAndLinkLists(root, 1);
+	}
+	
+
+	
+	//should be a functno of the node
+	//if have children then recursivly call the function on the children
+	//node computes actual value that takes in a summary info object 
+	public void calcActualComp(){
+		root.calcActualComp();
+	}
+	
+	/*
+	public SummaryInfo calcSummaryInfo(){
+		
+		//need to use the return object from the recursive call
+		SummaryInfo summaryInfo = getConcept().getSummaryInfo();
+		
+		for (ConceptNode child : getChildren()){
+			SummaryInfo childSumInfo = child.calcSummaryInfo();
+			//include one update function in summaryinfo
+			summaryInfo.update(child, childSumInfo);			
+		}
+		return summaryInfo;
+	}*/
+	
+	
+	public void calcPredictedScores() {
+		
+		// TODO just to get the "made up" scores in this line will be deleted
+		buildNodesAndLinks();
+		
+		
+		calcPredictedScores(root, root.getActualComp());
+	}
+	
+	// pre order traversal
+	private void calcPredictedScores(ConceptNode current, double passedDown) {
+		
+		// TODO this is the like actual person's answers or whatever. IDK what the exact thing to do is so I'm ignoring for now
+		if (current.getActualComp() == -1) {
+			return;
+		}
+		
+		// TODO Not working exactly correct, one error that is apparent is when it goes to print the same node multiple times
+		// there's different answers for predicted comps...
+		
+		if (current == root) {
+			current.setPredictedComp(current.getActualComp());
+		} else {
+			current.setNumParents(current.getNumParents() + 1);
+			current.setPredictedComp((passedDown * (1/current.getNumParents())) + (current.getPredictedComp() * (1-(1/current.getNumParents()))));
+		}
+		for (ConceptNode child : current.getChildren()) {
+			if (current.getActualComp() == 0) {
+				calcPredictedScores(child, current.getPredictedComp()/2);
+			} else {
+				calcPredictedScores(child, current.getActualComp());
+			}
+		}
+		
 	}
 }

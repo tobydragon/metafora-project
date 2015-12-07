@@ -19,8 +19,8 @@ import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 	Logger log = Logger.getLogger(this.getClass());
 	
-	ActionFilter userFilter;
-	ActionFilter objectIdFilter;
+//	ActionFilter userFilter;
+//	ActionFilter objectIdFilter;
 
 	@Override
 	public List<BehaviorInstance> identifyBehaviors(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties){
@@ -47,7 +47,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		//goes through each user
 		for(String user : involvedUsers){
 			
-			userFilter = BehaviorFilters.createUserFilter(user);		
+			ActionFilter userFilter = BehaviorFilters.createUserFilter(user);		
 			
 			//list of all the actions for the current user
 			List<CfAction> actionsFilteredByUser = userFilter.getFilteredList(actionsToConsider);
@@ -55,7 +55,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 			    //goes through each objectId for each user
 				for(String objectId : objectIds){	
 					
-					objectIdFilter = BehaviorFilters.createObjectIdFilter(objectId);
+					ActionFilter objectIdFilter = BehaviorFilters.createObjectIdFilter(objectId);
 					
 					//list of all actions for the current user for the current objectId
 					List<CfAction> actionsFilteredByObjectId = objectIdFilter.getFilteredList(actionsFilteredByUser);
@@ -96,8 +96,6 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		
 		List<String> users = new Vector<String>();
 		users.add("student24");
-		users.add("student0");
-		users.add("student1");
 		List<PerUserPerProblemSummary> filteredSummaries = filterSummariesByUser(users, perUserPerProblemSummaries);
 		
 		addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
@@ -108,7 +106,8 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		//NodeAndLinkLists lists =  graph.buildNodesAndLinks();
 		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/Caitlin/Desktop/basicGraph.json");		
 		ConceptGraph basicGraph = new ConceptGraph(fromJsonLists);
-		addSummariesToGraph(basicGraph.getRoot(), perUserPerProblemSummaries);
+		addSummariesToGraph(basicGraph.getRoot(), filteredSummaries);
+		basicGraph.calcActualComp();
 		System.out.println(basicGraph);
 		
 		// here down
@@ -317,7 +316,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 	
 	//takes in a list of users to filter by and a list of PerUserPerProblemSummaries
 	//if userList is empty or null, it returns the original list of summaries
-	public static List<PerUserPerProblemSummary> filterSummariesByUser(List<String> userList, List<PerUserPerProblemSummary> summaries){
+	public List<PerUserPerProblemSummary> filterSummariesByUser(List<String> userList, List<PerUserPerProblemSummary> summaries){
 		
 		//if the user list is null, or empty, return the original list of summaries
 		if(userList == null){
@@ -340,10 +339,8 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 	}
 	
 	
-	
-	
 	//rename to reflect purpose
-	public static void addSummariesToGraph(ConceptNode node, List<PerUserPerProblemSummary> summaries){
+	public void addSummariesToGraph(ConceptNode node, List<PerUserPerProblemSummary> summaries){
 
 		//go through each child of the node
 		for(ConceptNode child : node.getChildren()){
@@ -367,4 +364,67 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 			addSummariesToGraph(child, summaries);
 		}
 	}
+	
+	public List<PerUserPerProblemSummary> getAllSummaries(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties) {
+		// I didn't want to break anything from indentify Summaries, so this is a new method
+		// that only returns the PerUserPerProblemSummaries
+		
+		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
+		List<PerUserPerProblemSummary> perUserPerProblemSummaries = new Vector<PerUserPerProblemSummary>();
+			
+		
+		List<String> objectIds = new Vector<String>();
+		for (CfAction action : actionsToConsider){
+					
+				//This creates a list of all the object Ids
+				String currectObjectId = action.getCfObjects().get(0).getId();
+				
+				if ((objectIds.contains(currectObjectId)) == false){
+					objectIds.add(action.getCfObjects().get(0).getId());
+				}
+		}
+		
+		//goes through each user
+		for(String user : involvedUsers){
+			
+			ActionFilter userFilter = BehaviorFilters.createUserFilter(user);		
+			
+			//list of all the actions for the current user
+			List<CfAction> actionsFilteredByUser = userFilter.getFilteredList(actionsToConsider);
+			
+			    //goes through each objectId for each user
+				for(String objectId : objectIds){	
+					
+					ActionFilter objectIdFilter = BehaviorFilters.createObjectIdFilter(objectId);
+					
+					//list of all actions for the current user for the current objectId
+					List<CfAction> actionsFilteredByObjectId = objectIdFilter.getFilteredList(actionsFilteredByUser);
+					
+					//if there is at least one action in the list, create a PerUserPerProblemSummary 
+					if (actionsFilteredByObjectId.size() > 0){
+
+						
+						//get the first action in the list and check the correct field, if it is null then the question is non assessable
+						//only need to check the first entry as the list is filtered by objectId
+						//if non assessable then create a PerUserPerProblemSummary
+						PerUserPerProblemSummary summary;
+						if(actionsFilteredByObjectId.get(0).getCfContent().getPropertyValue(RunestoneStrings.CORRECT_STRING) == null){
+							summary =  new PerUserPerProblemSummary(actionsFilteredByObjectId, user, objectId){};
+						}
+						//if the field isn't null then it is assessable, so create an AssessablePerUserPerProblemSummary
+						else{
+							summary = new AssessablePerUserPerProblemSummary(actionsFilteredByObjectId, user, objectId);
+						}
+
+						perUserPerProblemSummaries.add(summary);
+						identifiedBehaviors.add(summary.buildBehaviorInstance());
+
+					}
+				}
+		}
+		return perUserPerProblemSummaries;
+	}
 }
+
+
+	

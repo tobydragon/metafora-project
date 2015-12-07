@@ -1,0 +1,1983 @@
+<rows>
+  <row>
+    <timestamp>2015-11-17 15:18:46</timestamp>    
+    <act>run</act>    
+    <div_id>welcome</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-17 15:18:43</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-15 20:11:32</timestamp>    
+    <act>run</act>    
+    <div_id>welcome</div_id>    
+    <event>activecode</event>    
+    <sid>davidtesting</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-15 20:11:29</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>davidtesting</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-15 20:10:10</timestamp>    
+    <act>run</act>    
+    <div_id>welcome</div_id>    
+    <event>activecode</event>    
+    <sid>davidtesting</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-15 20:10:06</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>davidtesting</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-15 20:10:04</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>davidtesting</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-15 20:09:53</timestamp>    
+    <act>run</act>    
+    <div_id>welcome</div_id>    
+    <event>activecode</event>    
+    <sid>davidtesting</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-15 20:09:50</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>davidtesting</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-15 20:09:40</timestamp>    
+    <act>run</act>    
+    <div_id>welcome</div_id>    
+    <event>activecode</event>    
+    <sid>davidtesting</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-15 20:09:30</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>davidtesting</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:06:06</timestamp>    
+    <act>answer:0:correct</act>    
+    <div_id>test_question6_6_1</div_id>    
+    <event>mChoice</event>    
+    <sid>dlesnef1</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:06:05</timestamp>    
+    <act>answer:1:no</act>    
+    <div_id>test_question6_6_1</div_id>    
+    <event>mChoice</event>    
+    <sid>dlesnef1</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:06:03</timestamp>    
+    <act>answer:0:correct</act>    
+    <div_id>test_question6_6_1</div_id>    
+    <event>mChoice</event>    
+    <sid>dlesnef1</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:05:58</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/Nestedconditionals.html</div_id>    
+    <event>page</event>    
+    <sid>dlesnef1</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:05:54</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/toc.html</div_id>    
+    <event>page</event>    
+    <sid>dlesnef1</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:05:52</timestamp>    
+    <act>run</act>    
+    <div_id>welcome</div_id>    
+    <event>activecode</event>    
+    <sid>dlesnef1</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:05:49</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>dlesnef1</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:05:00</timestamp>    
+    <act>edit</act>    
+    <div_id>scratch_03</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:04:58</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/PythonTurtle/SummaryofTurtleMethods.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:04:50</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/toc.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:03:23</timestamp>    
+    <act>run</act>    
+    <div_id>welcome</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:03:20</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:02:22</timestamp>    
+    <act>run</act>    
+    <div_id>welcome</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:02:19</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:01:44</timestamp>    
+    <act>run</act>    
+    <div_id>welcome</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:01:41</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:01:04</timestamp>    
+    <act>edit</act>    
+    <div_id>scratch_01</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:00:48</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/GeneralIntro/Comments.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:00:43</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/toc.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:00:40</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/GeneralIntro/Glossary.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 20:00:32</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/toc.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:58:40</timestamp>    
+    <act>edit</act>    
+    <div_id>ex_3_6</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:58:06</timestamp>    
+    <act>run</act>    
+    <div_id>ex_3_5</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:58:04</timestamp>    
+    <act>run</act>    
+    <div_id>ex_6_3</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:58:03</timestamp>    
+    <act>edit</act>    
+    <div_id>ex_3_5</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:57:33</timestamp>    
+    <act>edit</act>    
+    <div_id>ex_6_3</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:57:25</timestamp>    
+    <act>run</act>    
+    <div_id>ex_3_4</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:56:16</timestamp>    
+    <act>view</act>    
+    <div_id>ex_3_3</div_id>    
+    <event>codelens</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:56:12</timestamp>    
+    <act>run</act>    
+    <div_id>ex_3_3</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:56:11</timestamp>    
+    <act>run</act>    
+    <div_id>ex_6_3</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:55:48</timestamp>    
+    <act>edit</act>    
+    <div_id>ex_3_3</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:55:33</timestamp>    
+    <act>run</act>    
+    <div_id>ex_3_3</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:55:18</timestamp>    
+    <act>run</act>    
+    <div_id>q3_question</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:55:05</timestamp>    
+    <act>run</act>    
+    <div_id>ex_6_1</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:54:56</timestamp>    
+    <act>run</act>    
+    <div_id>ex_6_1</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:54:54</timestamp>    
+    <act>run</act>    
+    <div_id>ex_6_1</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:54:53</timestamp>    
+    <act>run</act>    
+    <div_id>q1_answer</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:54:52</timestamp>    
+    <act>edit</act>    
+    <div_id>q1_answer</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:54:45</timestamp>    
+    <act>run</act>    
+    <div_id>q1_answer</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:54:38</timestamp>    
+    <act>edit</act>    
+    <div_id>ex_6_1</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:54:15</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/PythonTurtle/Exercises.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:54:10</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/PythonTurtle/Glossary.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:54:03</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/PythonTurtle/SummaryofTurtleMethods.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:59</timestamp>    
+    <act>run</act>    
+    <div_id>ex_6_1</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:57</timestamp>    
+    <act>run</act>    
+    <div_id>ex_6_1</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:53</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/Exercises.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:52</timestamp>    
+    <act>0_0-1_0-2_0-4_0-3_1-5_1-6_1-7_0</act>    
+    <div_id>3_11</div_id>    
+    <event>parsons</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:48</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/Glossary.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:47</timestamp>    
+    <act>0_0-1_0-2_0-4_0-5_1-3_1-6_1-7_0</act>    
+    <div_id>3_11</div_id>    
+    <event>parsons</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:44</timestamp>    
+    <act>0_0-1_0-2_0-4_0-5_1-3_1-6_1-7_0</act>    
+    <div_id>3_11</div_id>    
+    <event>parsons</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:42</timestamp>    
+    <act>run</act>    
+    <div_id>scratch_06_03</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:41</timestamp>    
+    <act>0_0-1_0-2_0-4_0-5_1-3_1-6_1-7_0</act>    
+    <div_id>3_11</div_id>    
+    <event>parsons</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:37</timestamp>    
+    <act>answer:0:correct</act>    
+    <div_id>test_question6_8_2</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:34</timestamp>    
+    <act>answer:0:correct</act>    
+    <div_id>test_question6_8_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:28</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/BooleanFunctions.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:24</timestamp>    
+    <act>answer:2:correct</act>    
+    <div_id>test_question6_7_2</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:23</timestamp>    
+    <act>answer:1:no</act>    
+    <div_id>test_question6_7_2</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:21</timestamp>    
+    <act>answer:0:no</act>    
+    <div_id>test_question6_7_2</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:17</timestamp>    
+    <act>answer:1:correct</act>    
+    <div_id>test_question6_7_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:15</timestamp>    
+    <act>answer:2:no</act>    
+    <div_id>test_question6_7_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:10</timestamp>    
+    <act>run</act>    
+    <div_id>scratch_06_02</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:08</timestamp>    
+    <act>yes</act>    
+    <div_id>3_10</div_id>    
+    <event>parsons</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:07</timestamp>    
+    <act>run</act>    
+    <div_id>sel4</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:06</timestamp>    
+    <act>0_0-1_0-2_2-4_2-5_2-3_2-6_0</act>    
+    <div_id>3_10</div_id>    
+    <event>parsons</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:53:05</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/Chainedconditionals.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:55</timestamp>    
+    <act>answer:0:correct</act>    
+    <div_id>test_question6_6_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:53</timestamp>    
+    <act>answer:1:no</act>    
+    <div_id>test_question6_6_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:47</timestamp>    
+    <act>fwd</act>    
+    <div_id>sel1</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:46</timestamp>    
+    <act>fwd</act>    
+    <div_id>sel1</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:46</timestamp>    
+    <act>fwd</act>    
+    <div_id>sel1</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:45</timestamp>    
+    <act>fwd</act>    
+    <div_id>sel1</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:44</timestamp>    
+    <act>fwd</act>    
+    <div_id>sel1</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:40</timestamp>    
+    <act>run</act>    
+    <div_id>sel2</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:37</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/PythonTurtle/AFewMoreturtleMethodsandObservations.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:36</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/Nestedconditionals.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:32</timestamp>    
+    <act>answer:1:correct</act>    
+    <div_id>test_question6_5_2</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:31</timestamp>    
+    <act>answer:0:correct</act>    
+    <div_id>test_question3_5_3</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:29</timestamp>    
+    <act>answer:1:correct</act>    
+    <div_id>test_question6_5_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:28</timestamp>    
+    <act>answer:0:no</act>    
+    <div_id>test_question6_5_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:25</timestamp>    
+    <act>answer:2:correct</act>    
+    <div_id>test_question3_5_2</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:25</timestamp>    
+    <act>run</act>    
+    <div_id>ch05_unaryselection</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:22</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/OmittingtheelseClauseUnarySelection.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:18</timestamp>    
+    <act>answer:2:correct</act>    
+    <div_id>test_question6_4_3</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:17</timestamp>    
+    <act>answer:3:no</act>    
+    <div_id>test_question6_4_3</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:15</timestamp>    
+    <act>answer:0:no</act>    
+    <div_id>test_question3_5_2</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:14</timestamp>    
+    <act>answer:1:no</act>    
+    <div_id>test_question6_4_3</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:10</timestamp>    
+    <act>answer:1:correct</act>    
+    <div_id>test_question6_4_2</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:08</timestamp>    
+    <act>answer:0:no</act>    
+    <div_id>test_question6_4_2</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:06</timestamp>    
+    <act>answer:0:correct</act>    
+    <div_id>test_question3_5_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:05</timestamp>    
+    <act>answer:2:correct</act>    
+    <div_id>test_question6_4_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:04</timestamp>    
+    <act>answer:3:no</act>    
+    <div_id>test_question6_4_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:02</timestamp>    
+    <act>answer:1:no</act>    
+    <div_id>test_question6_4_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:52:00</timestamp>    
+    <act>answer:0:no</act>    
+    <div_id>test_question6_4_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:51:58</timestamp>    
+    <act>answer:1:no</act>    
+    <div_id>test_question3_5_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:51:55</timestamp>    
+    <act>run</act>    
+    <div_id>ch05_4</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:51:51</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/ConditionalExecutionBinarySelection.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:51:44</timestamp>    
+    <act>answer:3:no</act>    
+    <div_id>test_question6_3_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:51:42</timestamp>    
+    <act>answer:1:no</act>    
+    <div_id>test_question6_3_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:51:39</timestamp>    
+    <act>answer:2:no</act>    
+    <div_id>test_question6_3_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:51:35</timestamp>    
+    <act>answer:0:correct</act>    
+    <div_id>test_question6_3_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:51:30</timestamp>    
+    <act>run</act>    
+    <div_id>scratch_06_01</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:51:26</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/PrecedenceofOperators.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:51:05</timestamp>    
+    <act>play</act>    
+    <div_id>advrange</div_id>    
+    <event>video</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:50:56</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/PythonTurtle/TherangeFunction.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:50:50</timestamp>    
+    <act>answer:2:correct</act>    
+    <div_id>test_question3_4_4</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:50:44</timestamp>    
+    <act>answer:1:no</act>    
+    <div_id>test_question3_4_4</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:50:28</timestamp>    
+    <act>answer:1:correct</act>    
+    <div_id>test_question3_4_3</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:50:18</timestamp>    
+    <act>answer:0:correct</act>    
+    <div_id>test_question3_4_2</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:50:07</timestamp>    
+    <act>answer:2:correct</act>    
+    <div_id>test_question3_4_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:49:59</timestamp>    
+    <act>answer:1:no</act>    
+    <div_id>test_question3_4_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:49:43</timestamp>    
+    <act>yes</act>    
+    <div_id>3_9</div_id>    
+    <event>parsons</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:49:09</timestamp>    
+    <act>yes</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:49:01</timestamp>    
+    <act>0_0-1_0-2_0-3_0-4_0-5_0</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:48:51</timestamp>    
+    <act>0_0-1_0-3_0-4_0-2_0-5_0</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:48:51</timestamp>    
+    <act>0_0-1_0-3_0-4_0-2_0-5_0</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:47:59</timestamp>    
+    <act>run</act>    
+    <div_id>colorlist</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:47:42</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_forcolor</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:47:23</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_forcolor</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:46:46</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_forcolor</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:46:26</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_forcolor</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:45:51</timestamp>    
+    <act>edit</act>    
+    <div_id>ch03_forcolor</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:45:27</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_forcolor</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:45:16</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_for1</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:45:00</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_for1</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:44:56</timestamp>    
+    <act>edit</act>    
+    <div_id>ch03_for1</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:44:14</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/PythonTurtle/IterationSimplifiesourTurtleProgram.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:54</timestamp>    
+    <act>last</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:53</timestamp>    
+    <act>back</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:53</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/Logicaloperators.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:52</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:52</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:51</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:49</timestamp>    
+    <act>back</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:48</timestamp>    
+    <act>answer:0,1,3:correct</act>    
+    <div_id>test_question6_1_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:48</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:47</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:46</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:41</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/PythonTurtle/FlowofExecutionoftheforLoop.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:40</timestamp>    
+    <act>answer:0,1,2,3:correct</act>    
+    <div_id>test_question6_1_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:38</timestamp>    
+    <act>answer:1,2,3:no</act>    
+    <div_id>test_question6_1_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:36</timestamp>    
+    <act>answer:1,3:no</act>    
+    <div_id>test_question6_1_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:29</timestamp>    
+    <act>answer:0,2,3:no</act>    
+    <div_id>test_question6_1_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:28</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_4</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:26</timestamp>    
+    <act>edit</act>    
+    <div_id>ch03_4</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:24</timestamp>    
+    <act>save</act>    
+    <div_id>ch03_4</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:24</timestamp>    
+    <act>edit</act>    
+    <div_id>ch03_4</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:23</timestamp>    
+    <act>answer:0,1,2,3,4:correct</act>    
+    <div_id>test_question6_1_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:20</timestamp>    
+    <act>edit</act>    
+    <div_id>ch03_4</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:16</timestamp>    
+    <act>answer:1,2:no</act>    
+    <div_id>test_question6_1_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:09</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/PythonTurtle/TheforLoop.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:43:01</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/toc.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:42:47</timestamp>    
+    <act>answer:1:correct</act>    
+    <div_id>test_question6_5_2</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:42:44</timestamp>    
+    <act>edit</act>    
+    <div_id>ch05_2</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:42:39</timestamp>    
+    <act>edit</act>    
+    <div_id>ch05_1a</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:42:36</timestamp>    
+    <act>run</act>    
+    <div_id>ch05_1a</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:42:35</timestamp>    
+    <act>answer:1:correct</act>    
+    <div_id>test_question6_5_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:42:24</timestamp>    
+    <act>run</act>    
+    <div_id>ch05_1</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:42:22</timestamp>    
+    <act>edit</act>    
+    <div_id>ch05_1</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:42:20</timestamp>    
+    <act>answer:0:no</act>    
+    <div_id>test_question6_5_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:42:16</timestamp>    
+    <act>run</act>    
+    <div_id>ch05_1</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:42:13</timestamp>    
+    <act>play</act>    
+    <div_id>booleanexpressions</div_id>    
+    <event>video</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:42:10</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/BooleanValuesandBooleanExpressions.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:41:54</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/toc.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:41:50</timestamp>    
+    <act>run</act>    
+    <div_id>welcome</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:41:47</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:41:27</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/OmittingtheelseClauseUnarySelection.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:40:59</timestamp>    
+    <act>answer:2:correct</act>    
+    <div_id>test_question6_4_3</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:40:54</timestamp>    
+    <act>answer:1:no</act>    
+    <div_id>test_question6_4_3</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:40:44</timestamp>    
+    <act>answer:1:correct</act>    
+    <div_id>test_question6_4_2</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:40:36</timestamp>    
+    <act>answer:2:correct</act>    
+    <div_id>test_question6_4_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:40:32</timestamp>    
+    <act>answer:0:no</act>    
+    <div_id>test_question6_4_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:40:26</timestamp>    
+    <act>answer:1:no</act>    
+    <div_id>test_question6_4_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:40:17</timestamp>    
+    <act>run</act>    
+    <div_id>ch05_4</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:40:09</timestamp>    
+    <act>edit</act>    
+    <div_id>ch05_4</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:39:58</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/ConditionalExecutionBinarySelection.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:39:52</timestamp>    
+    <act>answer:0:correct</act>    
+    <div_id>test_question6_3_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:39:25</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/PrecedenceofOperators.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:39:18</timestamp>    
+    <act>answer:3:correct</act>    
+    <div_id>test_question6_2_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:39:07</timestamp>    
+    <act>answer:1:no</act>    
+    <div_id>test_question6_2_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:39:01</timestamp>    
+    <act>answer:0:no</act>    
+    <div_id>test_question6_2_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:48</timestamp>    
+    <act>answer:2:correct</act>    
+    <div_id>test_question3_4_4</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:46</timestamp>    
+    <act>answer:0:no</act>    
+    <div_id>test_question3_4_4</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:46</timestamp>    
+    <act>run</act>    
+    <div_id>chp05_3</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:43</timestamp>    
+    <act>answer:3:no</act>    
+    <div_id>test_question3_4_3</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:40</timestamp>    
+    <act>answer:2:no</act>    
+    <div_id>test_question3_4_3</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:39</timestamp>    
+    <act>answer:1:correct</act>    
+    <div_id>test_question3_4_3</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:35</timestamp>    
+    <act>edit</act>    
+    <div_id>chp05_3</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:34</timestamp>    
+    <act>answer:0:correct</act>    
+    <div_id>test_question3_4_2</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:33</timestamp>    
+    <act>answer:2:no</act>    
+    <div_id>test_question3_4_2</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:32</timestamp>    
+    <act>run</act>    
+    <div_id>chp05_3</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:31</timestamp>    
+    <act>answer:1:no</act>    
+    <div_id>test_question3_4_2</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:26</timestamp>    
+    <act>view</act>    
+    <div_id>chp05_3</div_id>    
+    <event>codelens</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:26</timestamp>    
+    <act>answer:0:no</act>    
+    <div_id>test_question3_4_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:23</timestamp>    
+    <act>answer:2:correct</act>    
+    <div_id>test_question3_4_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:20</timestamp>    
+    <act>answer:1:no</act>    
+    <div_id>test_question3_4_1</div_id>    
+    <event>mChoice</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:18</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/Logicaloperators.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:11</timestamp>    
+    <act>yes</act>    
+    <div_id>3_9</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:10</timestamp>    
+    <act>run</act>    
+    <div_id>ch05_2</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:06</timestamp>    
+    <act>0_0-1_0-2_1-3_1-4_0-5_0</act>    
+    <div_id>3_9</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:05</timestamp>    
+    <act>run</act>    
+    <div_id>ch05_1a</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:38:01</timestamp>    
+    <act>edit</act>    
+    <div_id>ch05_1a</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:57</timestamp>    
+    <act>0_0-1_0-3_1-2_0-4_0-5_0</act>    
+    <div_id>3_9</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:49</timestamp>    
+    <act>answer:0,1,3:correct</act>    
+    <div_id>test_question6_1_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:46</timestamp>    
+    <act>0_0-3_0-1_1-2_0-4_0-5_0</act>    
+    <div_id>3_9</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:45</timestamp>    
+    <act>answer:1,2,3:no</act>    
+    <div_id>test_question6_1_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:41</timestamp>    
+    <act>0_0-3_0-1_0-2_0-4_0-5_0</act>    
+    <div_id>3_9</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:39</timestamp>    
+    <act>0_0-1_0-3_0-2_0-4_0-5_0</act>    
+    <div_id>3_9</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:34</timestamp>    
+    <act>0_0-1_0-3_0-4_0-2_0-5_0</act>    
+    <div_id>3_9</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:33</timestamp>    
+    <act>answer:0,1,2,3:correct</act>    
+    <div_id>test_question6_1_1</div_id>    
+    <event>mChoice</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:32</timestamp>    
+    <act>0_0-3_0-1_0-4_0-2_0-5_0</act>    
+    <div_id>3_9</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:18</timestamp>    
+    <act>yes</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:16</timestamp>    
+    <act>0_0-1_0-2_0-3_1-4_0-5_0</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:09</timestamp>    
+    <act>0_0-1_0-2_0-3_0-4_0-5_0</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:07</timestamp>    
+    <act>0_0-1_0-2_0-4_0-3_0-5_0</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:05</timestamp>    
+    <act>0_0-1_0-2_0-4_0-3_0-5_0</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:37:01</timestamp>    
+    <act>0_0-1_0-2_0-5_0-4_0-3_0</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:36:58</timestamp>    
+    <act>4_0-0_0-1_0-2_0-5_0-3_0</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:36:56</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/BooleanValuesandBooleanExpressions.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:36:41</timestamp>    
+    <act>4_0-1_0-2_0-0_0-5_0-3_0</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:36:27</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/toc.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:36:13</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/Selection/Logicaloperators.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:36:10</timestamp>    
+    <act>-</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:36:10</timestamp>    
+    <act>-</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:36:06</timestamp>    
+    <act>-</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:36:01</timestamp>    
+    <act>-</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:35:49</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/toc.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:35:40</timestamp>    
+    <act>run</act>    
+    <div_id>colorlist</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:35:37</timestamp>    
+    <act>run</act>    
+    <div_id>ch07_summation</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:35:33</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_forcolor</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:35:20</timestamp>    
+    <act>edit</act>    
+    <div_id>ch03_forcolor</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:35:09</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_forcolor</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:35:05</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_forcolor</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:35:00</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_for1</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:57</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_for1</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:52</timestamp>    
+    <act>0_0-1_0-2_0-4_0-3_0-5_0</act>    
+    <div_id>3_8</div_id>    
+    <event>parsons</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:52</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/PythonTurtle/IterationSimplifiesourTurtleProgram.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:45</timestamp>    
+    <act>edit</act>    
+    <div_id>ch07_summation</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:44</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:44</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:44</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:43</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:43</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:43</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:43</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:42</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:42</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:42</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:41</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:41</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:40</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:40</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:40</timestamp>    
+    <act>run</act>    
+    <div_id>ch07_for1</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:40</timestamp>    
+    <act>fwd</act>    
+    <div_id>vtest</div_id>    
+    <event>codelens</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:36</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/PythonTurtle/FlowofExecutionoftheforLoop.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:34:29</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/MoreAboutIteration/Theforlooprevisited.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:33:56</timestamp>    
+    <act>run</act>    
+    <div_id>welcome</div_id>    
+    <event>activecode</event>    
+    <sid>dlesnef1</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:33:53</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_4</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:33:53</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>dlesnef1</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:33:50</timestamp>    
+    <act>edit</act>    
+    <div_id>ch03_4</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:33:44</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_4</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:33:42</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_4</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:33:41</timestamp>    
+    <act>run</act>    
+    <div_id>ch03_4</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:33:33</timestamp>    
+    <act>play</act>    
+    <div_id>forloopvid</div_id>    
+    <event>video</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:33:32</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/toc.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:33:30</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/PythonTurtle/TheforLoop.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:33:11</timestamp>    
+    <act>run</act>    
+    <div_id>welcome</div_id>    
+    <event>activecode</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:33:07</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>cwormsley</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:31:52</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/toc.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:31:44</timestamp>    
+    <act>run</act>    
+    <div_id>welcome</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:31:41</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:29:55</timestamp>    
+    <act>run</act>    
+    <div_id>welcome</div_id>    
+    <event>activecode</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+  <row>
+    <timestamp>2015-11-12 19:29:52</timestamp>    
+    <act>view</act>    
+    <div_id>/runestone/static/IthacaTesting-2015/index.html</div_id>    
+    <event>page</event>    
+    <sid>tdragon@ithaca.edu</sid>
+  </row>
+</rows>
