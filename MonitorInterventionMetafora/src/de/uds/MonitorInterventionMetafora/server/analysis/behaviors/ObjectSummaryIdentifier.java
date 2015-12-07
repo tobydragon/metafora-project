@@ -89,63 +89,61 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		
 		
 
-		//get the path of the book and then create a Book object
-		String bookPath = GeneralUtil.getRealPath("conffiles/domainfiles/thinkcspy/");
-		Book b = new Book("Interacitve Python", bookPath);
-		//create a ConceptGraph of the book and then call createConceptGraph in order to add the summaries to the graph
-		ConceptGraph graph = new ConceptGraph(b);
+//		//get the path of the book and then create a Book object
+//		String bookPath = GeneralUtil.getRealPath("conffiles/domainfiles/thinkcspy/");
+//		Book b = new Book("Interacitve Python", bookPath);
+//		//create a ConceptGraph of the book and then call createConceptGraph in order to add the summaries to the graph
+//		ConceptGraph graph = new ConceptGraph(b);
 		
 		List<String> users = new Vector<String>();
 		users.add("student24");
-		users.add("student0");
-		users.add("student1");
 		List<PerUserPerProblemSummary> filteredSummaries = filterSummariesByUser(users, perUserPerProblemSummaries);
 		
-		//addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
+//		//addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
 		List<String> sums = new ArrayList<String>();
-		addSummariesToGraph(graph.getRoot(), filteredSummaries, sums);
-		System.out.println(graph);
-
-
-		// TODO the false isn't needed once we don't add the summaries via building nodes and links
-		NodeAndLinkLists lists =  graph.buildNodesAndLinks(false);
+//		addSummariesToGraph(graph.getRoot(), filteredSummaries, sums);
+//		System.out.println(graph);
+//
+//		NodeAndLinkLists lists =  graph.buildNodesAndLinks();
 		
 		// here down
-		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
+		String thisString = GeneralUtil.getRealPath("nodesAndEdgesBasicFull.json");
+		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);
 		
 		// Need to test making concept graph from JSON
 		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
 		sums.clear();
-		addSummariesToGraph(graphFromJson.getRoot(), perUserPerProblemSummaries, sums);
+		addSummariesToGraph(graphFromJson.getRoot(), filteredSummaries, sums);
+		graphFromJson.calcActualComp();
 		System.out.println(graphFromJson);
 		
-		NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks(false);
-		System.out.println(toBeJsoned);
-		
-		JsonImportExport.toJson("smallJsonWithSummaried", toBeJsoned);
+//		NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
+//		System.out.println(toBeJsoned);
+//		
+//		JsonImportExport.toJson("smallJsonWithSummaried", toBeJsoned);
 						
 		
 		//currently this sends in the list of all the objectIds for which there exists a summary for - so any objectId that
 		//at least one student has submitted an action for
 		//this calls the searchGraph function for each id and if found it adds it to the found list and if not, then its added to the not found list
-		List<String> notFoundObjectIds = new Vector<String>();
-		List<String> foundObjectIds = new Vector<String>();
-		for(String currObjectId : objectIds){
-			boolean isFound = graph.getRoot().searchGraph(currObjectId);
-			if(isFound == false){
-				notFoundObjectIds.add(currObjectId);
-			}
-			else{
-				foundObjectIds.add(currObjectId);
-			}
-		}
+//		List<String> notFoundObjectIds = new Vector<String>();
+//		List<String> foundObjectIds = new Vector<String>();
+//		for(String currObjectId : objectIds){
+//			boolean isFound = graph.getRoot().searchGraph(currObjectId);
+//			if(isFound == false){
+//				notFoundObjectIds.add(currObjectId);
+//			}
+//			else{
+//				foundObjectIds.add(currObjectId);
+//			}
+//		}
 		
-		System.out.println("All object ids: " + objectIds.toString());
-		System.out.println();
-		System.out.println("Not found object Ids: " + notFoundObjectIds.toString());
-		System.out.println();
-		System.out.println("Found object ids: " + foundObjectIds.toString());
-		System.out.println();
+//		System.out.println("All object ids: " + objectIds.toString());
+//		System.out.println();
+//		System.out.println("Not found object Ids: " + notFoundObjectIds.toString());
+//		System.out.println();
+//		System.out.println("Found object ids: " + foundObjectIds.toString());
+//		System.out.println();
 		
 		
 		

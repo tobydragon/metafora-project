@@ -157,9 +157,16 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 		
 		//since this is an assessable summary it should always send in 1 for numAssessable
 		int numAssessable = 1;
+		//set numCorrect and only change to 1 if isCorrect is true
+		int numCorrect = 0;
+		if(isCorrect == true){
+			numCorrect = 1;
+		}
+		int numSummaries = 1;
 		
-		SummaryInfo info = new SummaryInfo(users, time, objectIds, numAssessable, numberTimesFalse, .75, 0, 1);
+		SummaryInfo info = new SummaryInfo(users, time, objectIds, numAssessable, numberTimesFalse, numCorrect, 1);
 		
 		return info;
 	}
+
 }

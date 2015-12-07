@@ -72,12 +72,6 @@ public class ConceptGraph {
 					}			
 				}
 				
-				// TODO fix this, implementation below didn't work (ugghhhhh)
-				// error line, we shouldn't add the links child (Jackson made the nodes for the links ends, but they won't be the same
-				// node if two links have the a same end. Instead we need to go get the node from nodes that matches it
-			
-				//current.addChild(link.getChild());
-				
 				for (ConceptNode node: nodes) {
 					if (node.getConcept().getConceptTitle().equals(link.getChild().getConcept().getConceptTitle())) {
 						current.addChild(node);
@@ -110,13 +104,9 @@ public class ConceptGraph {
 	}
 	
 	//takes in a ConceptNode and creates an object to hold on to two lists - a list of nodes and a list of links
-	private NodeAndLinkLists buildNodeAndLinkLists(ConceptNode currNode, int level, boolean check){
+	private NodeAndLinkLists buildNodeAndLinkLists(ConceptNode currNode, int level){
 		currNode.setLevel(level);
 		
-		// TODO set Comps (not needed)
-		if (check) {
-			currNode.setComps();
-		}
 		//checks to see if the current node is already in the list, if not it adds it
 
 		if(nodes.contains(currNode) == false) {
@@ -131,7 +121,7 @@ public class ConceptGraph {
 				links.add(linkToAdd);
 				
 				//recursively calls the function again with the child as the current node
-				buildNodeAndLinkLists(child, level+1, check);
+				buildNodeAndLinkLists(child, level+1);
 			}
 			
 			
@@ -157,14 +147,11 @@ public class ConceptGraph {
 		return finalLists;
 	}
 	
-	public NodeAndLinkLists buildNodesAndLinks(boolean check) {
-		return buildNodeAndLinkLists(root, 1, check);
+	public NodeAndLinkLists buildNodesAndLinks() {
+		return buildNodeAndLinkLists(root, 1);
 	}
 	
 	public void calcPredictedScores() {
-		
-		// TODO just to get the "made up" scores in this line will be deleted
-		buildNodesAndLinks(true);
 		
 		calcPredictedScores(root, root.getActualComp());
 	}
@@ -195,5 +182,9 @@ public class ConceptGraph {
 		}
 		
 	}
+	public void calcActualComp(){
+		root.calcActualComp();
+	}
+
 	
 }
