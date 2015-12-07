@@ -1,5 +1,6 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.behaviors;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -88,63 +89,61 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		
 		
 
-		//get the path of the book and then create a Book object
-		String bookPath = GeneralUtil.getRealPath("conffiles/domainfiles/thinkcspy/");
-		Book b = new Book("Interacitve Python", bookPath);
-		//create a ConceptGraph of the book and then call createConceptGraph in order to add the summaries to the graph
-		ConceptGraph graph = new ConceptGraph(b);
+//		//get the path of the book and then create a Book object
+//		String bookPath = GeneralUtil.getRealPath("conffiles/domainfiles/thinkcspy/");
+//		Book b = new Book("Interacitve Python", bookPath);
+//		//create a ConceptGraph of the book and then call createConceptGraph in order to add the summaries to the graph
+//		ConceptGraph graph = new ConceptGraph(b);
 		
 		List<String> users = new Vector<String>();
 		users.add("student24");
 		List<PerUserPerProblemSummary> filteredSummaries = filterSummariesByUser(users, perUserPerProblemSummaries);
 		
-		addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
-		//addSummariesToGraph(graph.getRoot(), filteredSummaries);
-		//System.out.println(graph);
-
-
-		//NodeAndLinkLists lists =  graph.buildNodesAndLinks();
-		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/Caitlin/Desktop/basicGraph.json");		
-		ConceptGraph basicGraph = new ConceptGraph(fromJsonLists);
-		addSummariesToGraph(basicGraph.getRoot(), filteredSummaries);
-		basicGraph.calcActualComp();
-		System.out.println(basicGraph);
+//		//addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
+		List<String> sums = new ArrayList<String>();
+//		addSummariesToGraph(graph.getRoot(), filteredSummaries, sums);
+//		System.out.println(graph);
+//
+//		NodeAndLinkLists lists =  graph.buildNodesAndLinks();
 		
 		// here down
-		//NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
+		String thisString = GeneralUtil.getRealPath("nodesAndEdgesBasicFull.json");
+		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);
 		
 		// Need to test making concept graph from JSON
-		//ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
-		//addSummariesToGraph(graphFromJson.getRoot(), perUserPerProblemSummaries);
-		//System.out.println(graphFromJson);
+		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
+		sums.clear();
+		addSummariesToGraph(graphFromJson.getRoot(), filteredSummaries, sums);
+		graphFromJson.calcActualComp();
+		System.out.println(graphFromJson);
 		
-		//NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
-		//System.out.println(toBeJsoned);
-		
-		//JsonImportExport.toJson("smallJsonWithSummaried", toBeJsoned);
+//		NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
+//		System.out.println(toBeJsoned);
+//		
+//		JsonImportExport.toJson("smallJsonWithSummaried", toBeJsoned);
 						
 		
 		//currently this sends in the list of all the objectIds for which there exists a summary for - so any objectId that
 		//at least one student has submitted an action for
 		//this calls the searchGraph function for each id and if found it adds it to the found list and if not, then its added to the not found list
-		List<String> notFoundObjectIds = new Vector<String>();
-		List<String> foundObjectIds = new Vector<String>();
-		for(String currObjectId : objectIds){
-			boolean isFound = graph.getRoot().searchGraph(currObjectId);
-			if(isFound == false){
-				notFoundObjectIds.add(currObjectId);
-			}
-			else{
-				foundObjectIds.add(currObjectId);
-			}
-		}
+//		List<String> notFoundObjectIds = new Vector<String>();
+//		List<String> foundObjectIds = new Vector<String>();
+//		for(String currObjectId : objectIds){
+//			boolean isFound = graph.getRoot().searchGraph(currObjectId);
+//			if(isFound == false){
+//				notFoundObjectIds.add(currObjectId);
+//			}
+//			else{
+//				foundObjectIds.add(currObjectId);
+//			}
+//		}
 		
-		System.out.println("All object ids: " + objectIds.toString());
-		System.out.println();
-		System.out.println("Not found object Ids: " + notFoundObjectIds.toString());
-		System.out.println();
-		System.out.println("Found object ids: " + foundObjectIds.toString());
-		System.out.println();
+//		System.out.println("All object ids: " + objectIds.toString());
+//		System.out.println();
+//		System.out.println("Not found object Ids: " + notFoundObjectIds.toString());
+//		System.out.println();
+//		System.out.println("Found object ids: " + foundObjectIds.toString());
+//		System.out.println();
 		
 		
 		
@@ -340,7 +339,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 	
 	
 	//rename to reflect purpose
-	public void addSummariesToGraph(ConceptNode node, List<PerUserPerProblemSummary> summaries){
+	public void addSummariesToGraph(ConceptNode node, List<PerUserPerProblemSummary> summaries, List<String> addedSummaries){
 
 		//go through each child of the node
 		for(ConceptNode child : node.getChildren()){
@@ -349,19 +348,23 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 				//if the object Id for the concept and for the summary match then create node from the summary and add as a child
 				if(child.getConcept().getConceptTitle().equalsIgnoreCase(summary.getObjectId())){
 					ConceptNode summaryNode = new ConceptNode(summary);
-					child.addChild(summaryNode);
-					
+					if (!addedSummaries.contains(summaryNode.getConcept().getConceptTitle())) {
+						child.addChild(summaryNode);
+						addedSummaries.add(summaryNode.getConcept().getConceptTitle());
+					}	
 				}
 				//attempting to add summaries that aren't directly correlated to a question in the tree
 				//still has bugs - adds some more than once
-//				else if(summary.getObjectId().endsWith((child.getConcept().getConceptTitle()+".html"))){
-//					ConceptNode summaryNode = new ConceptNode(summary);
-//					child.addChild(summaryNode);			
-//				}
-				
+				else if(summary.getObjectId().endsWith((child.getConcept().getConceptTitle()+".html"))){
+					ConceptNode summaryNode = new ConceptNode(summary);
+					if (!addedSummaries.contains(summaryNode.getConcept().getConceptTitle())) {
+						child.addChild(summaryNode);
+						addedSummaries.add(summaryNode.getConcept().getConceptTitle());
+					}
+				}
 			}
 			//recursively call the function with a child as the root
-			addSummariesToGraph(child, summaries);
+			addSummariesToGraph(child, summaries, addedSummaries);
 		}
 	}
 	

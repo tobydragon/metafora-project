@@ -55,6 +55,7 @@ public class SummaryInfo {
 		
 		
 	}
+
 	
 	public List<String> getUsers(){
 		return users;
@@ -75,12 +76,7 @@ public class SummaryInfo {
 	public int getTotalFalseEntries(){
 		return totalTimesFalse;
 	}
-//	public double getActualComp(){
-//		return actualComp;
-//	}
-//	public double getPredictedComp(){
-//		return predictedComp;
-//	}
+
 	public int getNumSummaries(){
 		return  numSummaries;
 	}
@@ -189,7 +185,6 @@ public class SummaryInfo {
 	}
 	
 }
-
 
 
 	
