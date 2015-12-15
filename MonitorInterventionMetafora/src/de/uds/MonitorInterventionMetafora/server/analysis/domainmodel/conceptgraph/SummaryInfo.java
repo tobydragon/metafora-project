@@ -145,45 +145,6 @@ public class SummaryInfo {
 		return stringToReturn;
 	}
 	
-
-
-//	public void setActualComp(double actualComp) {
-//		this.actualComp = actualComp;
-//	}
-//
-//	public void setPredictedComp(double predictedComp) {
-//		this.predictedComp = predictedComp;
-//	}
-	
-	private double getRealScore(){
-		// TODO
-		// not sure if this goes here, but it needs to be only called on the lowest tier
-		// of nodes (the one's going up will be calculated by taking averages)
-		
-		// also need to make sure it actually was answered, otherwise we should return
-		// 0 as its actual score will be 0 (predicted will be based on stuff above)
-		
-		// sudo code until we have a better idea of how this will work
-		// if lowest tier
-		//     if hasBeenAnswered
-		//         score = 0
-		//		   if gotItCorrect
-		//             score += .5
-		//		   if totalTimesWrong == 0
-		//			   score += .4
-		//		   if totalTimesWrong == 1
-		//			   score += .3
-		//		   if totalTimesWrong == 2
-		//			   score += .15
-		//	       
-		//     else
-		//         return 0
-		// else
-		//     calculate score from below
-		
-		return 0;
-	}
-	
 }
 
 

@@ -10,14 +10,12 @@ import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonet
 
 public class ConceptGraph {
 	
+	public static final Integer DIVISION_FACTOR = 2;
 	ConceptNode root;
 	String stringToReturn = "";
 	List<ConceptNode> nodes;
 	List<ConceptLink> links;
 
-	
-	
-	
 	/*
 	 *Takes in a book, starts at the root, then goes through each level (chapters, sub chapters, questions) and creates
 	 *a node for each concept, and adds it as a child.
@@ -150,16 +148,7 @@ public class ConceptGraph {
 	public NodeAndLinkLists buildNodesAndLinks() {
 		return buildNodeAndLinkLists(root, 1);
 	}
-	
-
-	
-	//should be a functno of the node
-	//if have children then recursivly call the function on the children
-	//node computes actual value that takes in a summary info object 
-	public void calcActualComp(){
-		root.calcActualComp();
-	}
-	
+		
 	/*
 	public SummaryInfo calcSummaryInfo(){
 		
@@ -173,18 +162,19 @@ public class ConceptGraph {
 		}
 		return summaryInfo;
 	}*/
-	
-	
 	public void calcPredictedScores() {
-		
-		calcPredictedScores(root, root.getActualComp());
+		calcPredictedScores(root);
+	}
+	
+	private void calcPredictedScores(ConceptNode currentRoot) {
+		calcPredictedScores(root, root.getActualComp(), root);
 	}
 	
 	// pre order traversal
-	private void calcPredictedScores(ConceptNode current, double passedDown) {
+	private static void calcPredictedScores(ConceptNode current, double passedDown, ConceptNode currentRoot) {
 		
 		// simple check for if we're dealing with the root, which has its own rule
-		if (current == root) {
+		if (current == currentRoot) {
 			current.setPredictedComp(current.getActualComp());
 		} else {
 			current.setNumParents(current.getNumParents() + 1);
@@ -199,9 +189,10 @@ public class ConceptGraph {
 		
 		for (ConceptNode child : current.getChildren()) {
 			if (current.getActualComp() == 0) {
-				calcPredictedScores(child, current.getPredictedComp()/2);
+				
+				calcPredictedScores(child, current.getPredictedComp()/ DIVISION_FACTOR, currentRoot);
 			} else {
-				calcPredictedScores(child, current.getActualComp());
+				calcPredictedScores(child, current.getActualComp(), currentRoot);
 			}
 		}
 		

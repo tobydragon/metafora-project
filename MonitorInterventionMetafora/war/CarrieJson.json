@@ -1,0 +1,103 @@
+{"nodes":
+	[
+		{"concept":{"conceptTitle": "General Info"}},
+        {"concept":{"conceptTitle": "Simple Python Data"}},
+        {"concept":{"conceptTitle": "Debugging"}},
+        {"concept":{"conceptTitle": "Input"}},
+        {"concept":{"conceptTitle": "Functions"}},
+        {"concept":{"conceptTitle": "Recursion"}},
+        {"concept":{"conceptTitle": "Classes & Objects"}},
+        {"concept":{"conceptTitle": "Selection"}},
+        {"concept":{"conceptTitle": "If"}},
+        {"concept":{"conceptTitle": "For"}},
+        {"concept":{"conceptTitle": "While"}},
+        {"concept":{"conceptTitle": "Iteration"}},
+        {"concept":{"conceptTitle": "Strings"}},
+        {"concept":{"conceptTitle": "Lists"}},
+        {"concept":{"conceptTitle": "Dictionaries"}},
+        {"concept":{"conceptTitle": "General Info"}},
+        {"concept":{"conceptTitle": "Files"}}
+	],
+"links":
+[
+	{
+		"parent":{"concept":{"conceptTitle": "General Info"}},
+		"child":{"concept":{"conceptTitle": "Simple Python Data"}}
+	},
+
+	{
+		"parent":{"concept":{"conceptTitle": "Simple Python Data"}},
+		"child":{"concept":{"conceptTitle": "Debugging"}}
+	},
+
+	{
+		"parent":{"concept":{"conceptTitle": "Debugging"}},
+		"child":{"concept":{"conceptTitle": "Input"}}
+	},
+
+    {
+		"parent":{"concept":{"conceptTitle": "Debugging"}},
+		"child":{"concept":{"conceptTitle": "Functions"}}
+	},
+
+    {
+		"parent":{"concept":{"conceptTitle": "Debugging"}},
+		"child":{"concept":{"conceptTitle": "Selection"}}
+	},
+
+    {
+		"parent":{"concept":{"conceptTitle": "Functions"}},
+		"child":{"concept":{"conceptTitle": "Recursion"}}
+	},
+
+    {
+		"parent":{"concept":{"conceptTitle": "Functions"}},
+		"child":{"concept":{"conceptTitle": "Classes & Objects"}}
+	},
+
+    {
+		"parent":{"concept":{"conceptTitle": "Selection"}},
+		"child":{"concept":{"conceptTitle": "If"}}
+	},
+
+    {
+		"parent":{"concept":{"conceptTitle": "Selection"}},
+		"child":{"concept":{"conceptTitle": "For"}}
+	},
+
+    {
+		"parent":{"concept":{"conceptTitle": "If"}},
+		"child":{"concept":{"conceptTitle": "While"}}
+	},
+
+    {
+		"parent":{"concept":{"conceptTitle": "For"}},
+		"child":{"concept":{"conceptTitle": "Iteration"}}
+	},
+
+    {
+		"parent":{"concept":{"conceptTitle": "While"}},
+		"child":{"concept":{"conceptTitle": "Iteration"}}
+	},
+
+    {
+		"parent":{"concept":{"conceptTitle": "Iteration"}},
+		"child":{"concept":{"conceptTitle": "Strings"}}
+	},
+
+    {
+		"parent":{"concept":{"conceptTitle": "Iteration"}},
+		"child":{"concept":{"conceptTitle": "Lists"}}
+	},
+
+    {
+		"parent":{"concept":{"conceptTitle": "Lists"}},
+		"child":{"concept":{"conceptTitle": "Dictionaries"}}
+	},
+
+	{
+		"parent":{"concept":{"conceptTitle": "Lists"}},
+		"child":{"concept":{"conceptTitle": "Files"}}
+	}
+]
+}

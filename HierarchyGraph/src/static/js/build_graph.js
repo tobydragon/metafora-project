@@ -16,8 +16,8 @@ function build_graph() {
                 "title": nodes[j]["concept"]["conceptTitle"],
                 "time": nodes[j]["summaryInfo"]["time"],
                 "objectIds": nodes[j]["summaryInfo"]["objectId"],
-                "false" : nodes[j]["summaryInfo"]['totalFalseEntries'],
-                "color" : nodes[j]["level"],
+                "false": nodes[j]["summaryInfo"]['totalFalseEntries'],
+                "color": nodes[j]["level"],
                 "students": nodes[j]["summaryInfo"]["users"],
                 "aptitude": nodes[j]["actualComp"],
                 "pred": nodes[j]["predictedComp"]
@@ -60,16 +60,16 @@ function build_graph() {
         color = String(node.data.color);
         aptitude = (node.data.aptitude);
         if (aptitude >= 0 && aptitude < .25) {
-            return 'static/images/red' +  color+'.jpg';
+            return 'static/images/red' + color + '.jpg';
         }
         if (aptitude >= .25 && aptitude < .5) {
-            return 'static/images/orange' +  color+'.jpg';
+            return 'static/images/orange' + color + '.jpg';
         }
         if (aptitude >= .5 && aptitude < .75) {
-            return 'static/images/yellow' +  color+'.jpg';
+            return 'static/images/yellow' + color + '.jpg';
         }
         if (aptitude >= .75 && aptitude <= 1) {
-            return 'static/images/green' +  color+'.jpg';
+            return 'static/images/green' + color + '.jpg';
         }
 
 
@@ -78,12 +78,13 @@ function build_graph() {
     function setStudents(node) {
         var students = parseInt(node.data.students.length);
         var studentsString = "";
-        for (k =0;  k <students; k++) {
+        for (k = 0; k < students; k++) {
             studentsString += (node.data.students[k] + "\n");
             console.log(node.data.students[k]);
         }
         return studentsString;
     }
+
     // Render the graph
     var renderer = Viva.Graph.View.renderer(graph, {
         graphics: graphics
