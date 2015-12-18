@@ -46,7 +46,7 @@ public class ConceptGraphTest {
 		
 		// filter down the number of summaries to one user
 		List<String> users = new Vector<String>();
-		users.add("student1");
+		users.add("student24");
 		List<PerUserPerProblemSummary> filteredSummaries = myIdentifier.filterSummariesByUser(users, summaries);
 		
 		
@@ -57,8 +57,16 @@ public class ConceptGraphTest {
 		// Make the concept graph from the Json
 		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
 		
+		List<ConceptNode> summaryNodeList = new ArrayList<ConceptNode>();
 		// Add summary info to it
-		myIdentifier.addSummariesToGraph(graphFromJson.getRoot(), filteredSummaries, new ArrayList<String>());
+		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
+		for(PerUserPerProblemSummary summary : filteredSummaries){
+			System.out.println(summary.getObjectId());
+			ConceptNode sumNode = new ConceptNode(summary);
+			graphSummaryNodeList.add(sumNode);
+		}
+		
+		myIdentifier.addSummariesToGraph(graphFromJson.getRoot(), summaryNodeList);
 
 		// calculate "up" the graph the actual scores
 		graphFromJson.calcActualComp();

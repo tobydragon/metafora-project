@@ -167,7 +167,8 @@ public abstract class PerUserPerProblemSummary implements Concept{
 	}
 	public String getConceptTitle(){
 		buildDescription();
-		return description;
+		String title = objectId + ": description: " + description;
+		return title;
 	}
 	public SummaryInfo getSummaryInfo(){
 		List <String> users = new ArrayList<String> ();

@@ -150,12 +150,16 @@ public class ConceptGraph {
 	}
 		
 
+	public void calcActualComp(){
+		root.calcActualComp();
+	}
+
 	public void calcPredictedScores() {
 		calcPredictedScores(root);
 	}
 	
 	private void calcPredictedScores(ConceptNode currentRoot) {
-		calcPredictedScores(root, root.getActualComp(), root);
+		calcPredictedScores(currentRoot, root.getActualComp(), currentRoot);
 	}
 	
 	// pre order traversal
@@ -185,9 +189,7 @@ public class ConceptGraph {
 		}
 		
 	}
-	public void calcActualComp(){
-		root.calcActualComp();
-	}
+
 
 	
 }
