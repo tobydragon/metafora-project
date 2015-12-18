@@ -89,33 +89,68 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		
 		
 
-//		//get the path of the book and then create a Book object
-//		String bookPath = GeneralUtil.getRealPath("conffiles/domainfiles/thinkcspy/");
-//		Book b = new Book("Interacitve Python", bookPath);
-//		//create a ConceptGraph of the book and then call createConceptGraph in order to add the summaries to the graph
-//		ConceptGraph graph = new ConceptGraph(b);
+		//get the path of the book and then create a Book object
+		String bookPath = GeneralUtil.getRealPath("conffiles/domainfiles/thinkcspy/");
+		Book b = new Book("Interacitve Python", bookPath);
+		//create a ConceptGraph of the book and then call createConceptGraph in order to add the summaries to the graph
+		ConceptGraph graph = new ConceptGraph(b);
 		
 		List<String> users = new Vector<String>();
-		users.add("student24");
+		users.add("student1");
 		List<PerUserPerProblemSummary> filteredSummaries = filterSummariesByUser(users, perUserPerProblemSummaries);
-		
-//		//addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
+
 		List<String> sums = new ArrayList<String>();
-//		addSummariesToGraph(graph.getRoot(), filteredSummaries, sums);
+
+		
+		
+		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
+		// Add summary info to it
+		for(PerUserPerProblemSummary summary : filteredSummaries){
+			System.out.println(summary.getObjectId());
+			ConceptNode sumNode = new ConceptNode(summary);
+			graphSummaryNodeList.add(sumNode);
+		}
+		
+		addSummariesToGraph(graph.getRoot(), graphSummaryNodeList);
+		graph.calcActualComp();
+		graph.calcPredictedScores();
+		System.out.println(graph);
+		
+		
 //		System.out.println(graph);
 //
 //		NodeAndLinkLists lists =  graph.buildNodesAndLinks();
 		
 		// here down
-		String thisString = GeneralUtil.getRealPath("nodesAndEdgesBasicFull.json");
+		/*String thisString = GeneralUtil.getRealPath("nodesAndEdgesBasicFull.json");
 		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);
 		
 		// Need to test making concept graph from JSON
 		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
 		sums.clear();
-		addSummariesToGraph(graphFromJson.getRoot(), filteredSummaries, sums);
+		
+		
+		List<ConceptNode> summaryNodeList = new ArrayList<ConceptNode>();
+		// Add summary info to it
+		for(PerUserPerProblemSummary summary : filteredSummaries){
+			ConceptNode sumNode = new ConceptNode(summary);
+			summaryNodeList.add(sumNode);
+		}
+		
+		addSummariesToGraph(graphFromJson.getRoot(), summaryNodeList);
+
+		
+		
+		
 		graphFromJson.calcActualComp();
+		graphFromJson.calcPredictedScores();
 		System.out.println(graphFromJson);
+		*/
+
+		
+		
+		
+		
 		
 //		NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
 //		System.out.println(toBeJsoned);
@@ -338,35 +373,53 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 	}
 	
 	
-	//rename to reflect purpose
-	public void addSummariesToGraph(ConceptNode node, List<PerUserPerProblemSummary> summaries, List<String> addedSummaries){
+	
+	
+	
+	
+public void addSummariesToGraph(ConceptNode node, List<ConceptNode> summaryNodes){
+	//call the recursive function addSummaryNode - send in node and a single summary (loop through summaryList to call that function)
 
-		//go through each child of the node
-		for(ConceptNode child : node.getChildren()){
-			//go through each summary in the list passed in as a parameter
-			for(PerUserPerProblemSummary summary : summaries){	
-				//if the object Id for the concept and for the summary match then create node from the summary and add as a child
-				if(child.getConcept().getConceptTitle().equalsIgnoreCase(summary.getObjectId())){
-					ConceptNode summaryNode = new ConceptNode(summary);
-					if (!addedSummaries.contains(summaryNode.getConcept().getConceptTitle())) {
-						child.addChild(summaryNode);
-						addedSummaries.add(summaryNode.getConcept().getConceptTitle());
-					}	
-				}
-				//attempting to add summaries that aren't directly correlated to a question in the tree
-				//still has bugs - adds some more than once
-				else if(summary.getObjectId().endsWith((child.getConcept().getConceptTitle()+".html"))){
-					ConceptNode summaryNode = new ConceptNode(summary);
-					if (!addedSummaries.contains(summaryNode.getConcept().getConceptTitle())) {
-						child.addChild(summaryNode);
-						addedSummaries.add(summaryNode.getConcept().getConceptTitle());
-					}
-				}
+	for(ConceptNode summaryNode : summaryNodes){
+		addSummaryNode(node, summaryNode);
+	}
+
+}	
+		
+
+			
+
+public void addSummaryNode(ConceptNode node, ConceptNode summaryNode){
+	//System.out.println(node.getConcept().getConceptTitle());
+	//System.out.println(node.getConcept().getConceptTitle().isEmpty());
+	
+	if(node.getConcept().getConceptTitle().isEmpty()==false){
+		//System.out.println("test");
+		//System.out.println(summaryNode.getConcept().getConceptTitle());
+		//System.out.println(node.getConcept().getConceptTitle());
+		//System.out.println();
+		if(summaryNode.getConcept().getConceptTitle().startsWith(node.getConcept().getConceptTitle())){	
+			//System.out.println("test2");
+			if(!(node.getChildren().contains(summaryNode))){
+				//System.out.println("tes3");
+				node.addChild(summaryNode);
+				//System.out.println();
+				//System.out.println("SumNode: " +summaryNode.getConcept().getConceptTitle());
+				//System.out.println("Node on tree :" + node.getConcept().getConceptTitle());
+				//System.out.println();
+			}						
+		}
+	
+		else{
+			for(ConceptNode child : node.getChildren()){
+				addSummaryNode(child, summaryNode);
 			}
-			//recursively call the function with a child as the root
-			addSummariesToGraph(child, summaries, addedSummaries);
+		
 		}
 	}
+}
+	
+
 	
 	public List<PerUserPerProblemSummary> getAllSummaries(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties) {
 		// I didn't want to break anything from indentify Summaries, so this is a new method

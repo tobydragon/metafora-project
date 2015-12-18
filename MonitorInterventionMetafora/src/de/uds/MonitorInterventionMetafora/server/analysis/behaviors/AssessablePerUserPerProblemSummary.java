@@ -143,7 +143,8 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 	
 	public String getConceptTitle(){
 		buildDescription();
-		return description;
+		String title = objectId + ": description: " + description;
+		return title;
 	}
 	
 	public SummaryInfo getSummaryInfo(){

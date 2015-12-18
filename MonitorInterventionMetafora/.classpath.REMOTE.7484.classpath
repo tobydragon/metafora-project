@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" output="test-classes" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/GXT"/>
+	<classpathentry kind="lib" path="lib/gwt-visualization-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/gwt-visualization.jar"/>
+	<classpathentry kind="lib" path="lib/gxt-2.2.5-gwt22.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdom-1.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/junit-4.6.jar"/>
+	<classpathentry kind="lib" path="lib/smack.jar"/>
+	<classpathentry kind="lib" path="lib/smackx.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/gwt-log-3.1.8.jar"/>
+	<classpathentry kind="lib" path="lib/uibinder-bridge-2.4.0.jar"/>
+	<classpathentry kind="lib" path="lib/gwt-table-to-excel-0.0.2.jar"/>
+	<classpathentry kind="lib" path="lib/gxt-3.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/gxt-chart-3.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/xmppbridge.jar"/>
+	<classpathentry kind="lib" path="lib/commons-fileupload-1.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-annotations-2.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-core-2.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-databind-2.0.4.jar"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/2.5.1"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>

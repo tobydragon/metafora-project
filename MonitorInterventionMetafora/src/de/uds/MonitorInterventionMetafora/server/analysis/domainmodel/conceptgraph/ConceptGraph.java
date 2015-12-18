@@ -152,10 +152,6 @@ public class ConceptGraph {
 	}
 	
 
-	
-	//should be a functno of the node
-	//if have children then recursivly call the function on the children
-	//node computes actual value that takes in a summary info object 
 	public void calcActualComp(){
 		root.calcActualComp();
 	}
@@ -206,9 +202,7 @@ public class ConceptGraph {
 		}
 		
 	}
-	public void calcActualComp(){
-		root.calcActualComp();
-	}
+
 
 	
 }
