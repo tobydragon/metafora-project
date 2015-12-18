@@ -149,19 +149,7 @@ public class ConceptGraph {
 		return buildNodeAndLinkLists(root, 1);
 	}
 		
-	/*
-	public SummaryInfo calcSummaryInfo(){
-		
-		//need to use the return object from the recursive call
-		SummaryInfo summaryInfo = getConcept().getSummaryInfo();
-		
-		for (ConceptNode child : getChildren()){
-			SummaryInfo childSumInfo = child.calcSummaryInfo();
-			//include one update function in summaryinfo
-			summaryInfo.update(child, childSumInfo);			
-		}
-		return summaryInfo;
-	}*/
+
 	public void calcPredictedScores() {
 		calcPredictedScores(root);
 	}

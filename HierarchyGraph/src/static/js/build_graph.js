@@ -31,6 +31,7 @@ function build_graph() {
 
     graphics.node(function (node) {
         var ui = Viva.Graph.svg('g'),
+            svgText = Viva.Graph.svg('text').attr('y', '-4px').text(ridStudentActions(node)),
             img = Viva.Graph.svg('image')
                 .attr('width', nodeSize)
                 .attr('height', nodeSize)
@@ -47,6 +48,7 @@ function build_graph() {
             document.getElementById("students").innerHTML = "Students = " + setStudents(node);
         });
 
+        ui.append(svgText);
         ui.append(img);
         return ui;
     }).placeNode(function (nodeUI, pos) {
@@ -83,6 +85,15 @@ function build_graph() {
             console.log(node.data.students[k]);
         }
         return studentsString;
+    }
+
+    // super hacky solution just to make visual better
+    function ridStudentActions(node) {
+        if (!node.data.title.toString().substring(0,2).localeCompare("st") || !node.data.title.toString().substring(0,2).localeCompare("te")) {
+            return "";
+        }
+
+        return node.data.title.toString();
     }
 
     // Render the graph
