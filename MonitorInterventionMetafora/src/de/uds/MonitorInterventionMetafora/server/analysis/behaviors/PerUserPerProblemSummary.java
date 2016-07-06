@@ -188,4 +188,8 @@ public abstract class PerUserPerProblemSummary implements Concept{
 		return info;
 	}
 	
+	public String toString(){
+		return getConceptTitle();
+	}
+	
 }
