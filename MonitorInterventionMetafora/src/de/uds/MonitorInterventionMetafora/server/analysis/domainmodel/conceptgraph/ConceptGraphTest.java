@@ -26,46 +26,49 @@ public class ConceptGraphTest {
 	
 	public static void testBookGraphToJson(){
 		
-		// Needed to get behaviors (end result is we get the per user per problem summaries)
+		//Get behaviors from runsetone xml
 //		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/runestoneXml/DavidCaitlinExample.xml");
-//		
-//		// this line is simply making an empty testCf, and inturn we get no summaries
 //		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
 		
+		//Get behaviors from cf xml
 		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/analysisChannelInput.xml");
-		
-		// this line is simply making an empty testCf, and inturn we get no summaries
 		CfInteractionData testCf = CfInteractionDataParser.fromXml(runestoneFrag);
 		
 		
-		//logger.debug(CfInteractionDataParser.toXml(testCf));
+//		logger.debug(CfInteractionDataParser.toXml(testCf));
 		List<CfAction> allActions = testCf.getCfActions();
+		
+		//Creates problem summaries from user actions
 		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
 		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
 		List<PerUserPerProblemSummary> summaries = myIdentifier.getAllSummaries(allActions, involvedUsers, new ArrayList<CfProperty>());
-		
 		// filter down the number of summaries to one user
 		List<String> users = new Vector<String>();
 		users.add("student24");
-		List<PerUserPerProblemSummary> filteredSummaries = myIdentifier.filterSummariesByUser(users, summaries);
-		
-		
-		// test building Nodes and Edges lists from JSON "small json"
+		summaries = myIdentifier.filterSummariesByUser(users, summaries);
+		logger.debug(summaries);
+		for (PerUserPerProblemSummary summary : summaries){
+			if (summary.toString() != null && summary.toString().contains("5_1_1")){
+				logger.debug(summary);
+			}
+		}
+		// Make the concept graph from Json
+		//TODO: files should be read from within war file...
 		String thisString = GeneralUtil.getRealPath("nodesAndEdgesBasicFull.json");
 		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);		
-		
-		// Make the concept graph from the Json
 		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
 		
 		//List<ConceptNode> summaryNodeList = new ArrayList<ConceptNode>();
 		// Add summary info to it
 		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
-		for(PerUserPerProblemSummary summary : filteredSummaries){
-			logger.debug("Printing summary ids:"+summary.getObjectId());
+		for(PerUserPerProblemSummary summary : summaries){
+			//System.out.println(summary.getObjectId());
 			ConceptNode sumNode = new ConceptNode(summary);
 			graphSummaryNodeList.add(sumNode);
 		}
 		
+		//TODO: TD - Does this code belong in ObjectSummaryIdentifier? Doesn't seem like its job...
+		//Also, should probably identify whether connection was made or not
 		myIdentifier.addSummariesToGraph(graphFromJson.getRoot(), graphSummaryNodeList);
 
 		// calculate "up" the graph the actual scores
@@ -74,7 +77,7 @@ public class ConceptGraphTest {
 		// calculate "down" the graph the predicted scores
 		graphFromJson.calcPredictedScores();
 		
-		//System.out.println(graphFromJson);
+		System.out.println(graphFromJson);
 		
 		NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
 		

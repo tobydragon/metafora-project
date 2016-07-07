@@ -1,5 +1,6 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.behaviors;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -95,53 +96,22 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		ConceptGraph graph = new ConceptGraph(b);
 		
 		List<String> users = new Vector<String>();
-		users.add("student24");
-		users.add("student0");
 		users.add("student1");
 		List<PerUserPerProblemSummary> filteredSummaries = filterSummariesByUser(users, perUserPerProblemSummaries);
-		
-		//addSummariesToGraph(graph.getRoot(), perUserPerProblemSummaries);
-		addSummariesToGraph(graph.getRoot(), filteredSummaries);
-		System.out.println(graph);
 
-
-		NodeAndLinkLists lists =  graph.buildNodesAndLinks();
 		
-		// here down
-		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson("/Users/David/Documents/2015/SeniorProject/nodesAndEdgesBasicFull.json");		
-		
-		// Need to test making concept graph from JSON
-		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
-		addSummariesToGraph(graphFromJson.getRoot(), perUserPerProblemSummaries);
-		System.out.println(graphFromJson);
-		
-		NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
-		System.out.println(toBeJsoned);
-		
-		JsonImportExport.toJson("smallJsonWithSummaried", toBeJsoned);
-						
-		
-		//currently this sends in the list of all the objectIds for which there exists a summary for - so any objectId that
-		//at least one student has submitted an action for
-		//this calls the searchGraph function for each id and if found it adds it to the found list and if not, then its added to the not found list
-		List<String> notFoundObjectIds = new Vector<String>();
-		List<String> foundObjectIds = new Vector<String>();
-		for(String currObjectId : objectIds){
-			boolean isFound = graph.getRoot().searchGraph(currObjectId);
-			if(isFound == false){
-				notFoundObjectIds.add(currObjectId);
-			}
-			else{
-				foundObjectIds.add(currObjectId);
-			}
+		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
+		// Add summary info to it
+		for(PerUserPerProblemSummary summary : filteredSummaries){
+			System.out.println(summary.getObjectId());
+			ConceptNode sumNode = new ConceptNode(summary);
+			graphSummaryNodeList.add(sumNode);
 		}
 		
-		System.out.println("All object ids: " + objectIds.toString());
-		System.out.println();
-		System.out.println("Not found object Ids: " + notFoundObjectIds.toString());
-		System.out.println();
-		System.out.println("Found object ids: " + foundObjectIds.toString());
-		System.out.println();
+		addSummariesToGraph(graph.getRoot(), graphSummaryNodeList);
+		graph.calcActualComp();
+		graph.calcPredictedScores();
+		System.out.println(graph);
 		
 		
 		
@@ -313,7 +283,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 	
 	//takes in a list of users to filter by and a list of PerUserPerProblemSummaries
 	//if userList is empty or null, it returns the original list of summaries
-	public static List<PerUserPerProblemSummary> filterSummariesByUser(List<String> userList, List<PerUserPerProblemSummary> summaries){
+	public List<PerUserPerProblemSummary> filterSummariesByUser(List<String> userList, List<PerUserPerProblemSummary> summaries){
 		
 		//if the user list is null, or empty, return the original list of summaries
 		if(userList == null){
@@ -335,45 +305,56 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		return filteredSummaries;
 	}
 	
-	
-	//rename to reflect purpose
-	public void addSummariesToGraph(ConceptNode node, List<PerUserPerProblemSummary> summaries){
+public void addSummariesToGraph(ConceptNode node, List<ConceptNode> summaryNodes){
+	//call the recursive function addSummaryNode - send in node and a single summary (loop through summaryList to call that function)
+	for(ConceptNode summaryNode : summaryNodes){
+		addSummaryNode(node, summaryNode);
+	}
+}	
 
-		//go through each child of the node
-		for(ConceptNode child : node.getChildren()){
-			//go through each summary in the list passed in as a parameter
-			for(PerUserPerProblemSummary summary : summaries){	
-				//if the object Id for the concept and for the summary match then create node from the summary and add as a child
-				if(child.getConcept().getConceptTitle().equalsIgnoreCase(summary.getObjectId())){
-					ConceptNode summaryNode = new ConceptNode(summary);
-					child.addChild(summaryNode);
-					
-				}
-				//attempting to add summaries that aren't directly correlated to a question in the tree
-				//still has bugs - adds some more than once
-				else if(summary.getObjectId().endsWith((child.getConcept().getConceptTitle()+".html"))){
-					ConceptNode summaryNode = new ConceptNode(summary);
-					child.addChild(summaryNode);			
-				}
-				
+//recursive function that adds a single summary as a child of the node with the matching name
+public void addSummaryNode(ConceptNode node, ConceptNode summaryNode){
+	//System.out.println(node.getConcept().getConceptTitle());
+	//System.out.println(node.getConcept().getConceptTitle().isEmpty());
+	
+	//if there is a title
+	if(node.getConcept().getConceptTitle().isEmpty()==false){
+		//System.out.println("test");
+		//System.out.println(summaryNode.getConcept().getConceptTitle());
+		//System.out.println(node.getConcept().getConceptTitle());
+		//System.out.println();
+		//if titles match
+		if(summaryNode.getConcept().getConceptTitle().startsWith(node.getConcept().getConceptTitle())){	
+			//System.out.println("test2");
+			//if this summary node is not already in children list, add it
+			if(!(node.getChildren().contains(summaryNode))){
+				//System.out.println("tes3");
+				node.addChild(summaryNode);
+				//System.out.println();
+				System.out.println("SumNode: " +summaryNode.getConcept().getConceptTitle());
+				System.out.println("Node on tree :" + node.getConcept().getConceptTitle());
+				System.out.println();
+			}						
+		}
+		//else titles don't match, check all your children for a match
+		else{
+			for(ConceptNode child : node.getChildren()){
+				addSummaryNode(child, summaryNode);
 			}
-			//recursively call the function with a child as the root
-			addSummariesToGraph(child, summaries);
+		
 		}
 	}
+}
 	
-	public List<PerUserPerProblemSummary> getSummaries(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties) {
+
+	
+	public List<PerUserPerProblemSummary> getAllSummaries(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties) {
 		// I didn't want to break anything from indentify Summaries, so this is a new method
 		// that only returns the PerUserPerProblemSummaries
 		
 		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
 		List<PerUserPerProblemSummary> perUserPerProblemSummaries = new Vector<PerUserPerProblemSummary>();
-		
-		
-		//TODO @Caitlin: this is where we get all the actions (actions to consider) and you return a list of BehaviorInstances, one for each object (problem)
-		//create instance for each student each problem
-		
-		
+			
 		
 		List<String> objectIds = new Vector<String>();
 		for (CfAction action : actionsToConsider){
