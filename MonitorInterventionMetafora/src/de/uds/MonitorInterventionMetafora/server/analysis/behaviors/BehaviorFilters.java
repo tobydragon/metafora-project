@@ -71,6 +71,13 @@ public class BehaviorFilters {
 		return userFilter;
 	}
 	
+	public static ActionFilter createUsersFilter(String usersToFilterBy){
+		List<ActionPropertyRule> newUserRules = new Vector<ActionPropertyRule>();
+		newUserRules.add(new ActionPropertyRule(CommonFormatStrings.ID_STRING, usersToFilterBy, PropertyLocation.USER, OperationType.CONTAINS_ONE_OF));
+		ActionFilter userFilter = new ActionFilter("Users", true, newUserRules);
+		return userFilter;
+	}
+	
 	public static ActionFilter createObjectIdFilter(String idToFilterBy){
 		List<ActionPropertyRule> newObjectIdRules = new Vector<ActionPropertyRule>();
 		newObjectIdRules.add(new ActionPropertyRule(CommonFormatStrings.ID_STRING, idToFilterBy, PropertyLocation.OBJECT, OperationType.EQUALS));

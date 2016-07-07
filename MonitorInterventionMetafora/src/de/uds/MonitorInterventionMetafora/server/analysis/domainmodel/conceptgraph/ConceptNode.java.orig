@@ -53,7 +53,21 @@ public class ConceptNode {
 	//Currently printing with the time spent on all children gotten from calcSummaryInfo
 	public String toString(String indent){
 		 
+<<<<<<< HEAD
+		String stringToReturn = indent + getConcept().getConceptTitle() +  "\t" + calcSummaryInfo() + " ActualComp: " + actualComp + " PredictedComp: " + predictedComp; 
+		for (ConceptNode child :getChildren()){
+			stringToReturn += child.toString(indent + "\t");
+		}
+		return stringToReturn;
 		
+//		String stringToReturn = indent + getConcept().getConceptTitle() +  "\t actual: " + getActualComp() + " pred: " +getPredictedComp(); 
+=======
+//		String stringToReturn = indent + getConcept().getConceptTitle() +  "\t" + calcSummaryInfo() + " ActualComp: " + actualComp; 
+>>>>>>> 95d65cbb6438ae0fd4e191af67f59ae94cae45ec
+//		for (ConceptNode child :getChildren()){
+//			stringToReturn += child.toString(indent + "\t");
+//		}
+//		return stringToReturn;
 		
 		String stringToReturn = indent + getConcept().getConceptTitle() +  "\t actual: " + getActualComp() + " pred: " +getPredictedComp(); 
 		for (ConceptNode child :getChildren()){
@@ -139,12 +153,16 @@ public class ConceptNode {
 		if(getChildren().size() == 0){
 			//then take in the summaryInfo information and calculate the actualComp
 			SummaryInfo sumInfo = getConcept().getSummaryInfo();
+<<<<<<< HEAD
+			actualComp = (sumInfo.getNumCorrect() * .5) + (.5 - .1* sumInfo.getTotalFalseEntries());
+=======
 			if((sumInfo.getNumCorrect() == 0) && (sumInfo.getTotalFalseEntries()==0)){
 				actualComp = 0;
 			}
 			else{
 				actualComp = sumInfo.getNumCorrect() * .5 + (.5 - .1* sumInfo.getTotalFalseEntries());	
 			}
+>>>>>>> 95d65cbb6438ae0fd4e191af67f59ae94cae45ec
 			return actualComp;
 		}
 

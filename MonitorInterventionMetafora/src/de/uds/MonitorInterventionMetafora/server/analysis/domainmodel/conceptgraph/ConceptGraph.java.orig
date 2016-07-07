@@ -2,11 +2,7 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Stack;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Chapter;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Question;
@@ -14,28 +10,12 @@ import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonet
 
 public class ConceptGraph {
 	
+	public static final Integer DIVISION_FACTOR = 2;
 	ConceptNode root;
 	String stringToReturn = "";
 	List<ConceptNode> nodes;
 	List<ConceptLink> links;
 
-<<<<<<< HEAD
-	
-	
-	
-	public ConceptGraph(String rootTitle){
-		
-		
-		//root = new ConceptNode(concept);
-		nodes = new ArrayList<ConceptNode>();
-		links = new ArrayList<ConceptLink>();
-
-	}
-=======
->>>>>>> branch 'Development' of https://github.com/tobydragon/metafora-project.git
-	
-	
-	
 	/*
 	 *Takes in a book, starts at the root, then goes through each level (chapters, sub chapters, questions) and creates
 	 *a node for each concept, and adds it as a child.
@@ -73,7 +53,6 @@ public class ConceptGraph {
 	
 	public ConceptGraph(NodeAndLinkLists lists) {
 		this.nodes = lists.getNodes();
-
 		this.links = lists.getLinks();
 		this.root = findRoot();
 		
@@ -83,67 +62,23 @@ public class ConceptGraph {
 	private void addChildren(ConceptNode current) {
 		for (ConceptLink link : links) {
 			if (link.getParent().getConcept().getConceptTitle().equals(current.getConcept().getConceptTitle()) ) {
-				addChildren(link.getChild());
-				current.addChild(link.getChild());
+				
+				for (ConceptNode node: nodes) {
+					if (node.getConcept().getConceptTitle().equals(link.getChild().getConcept().getConceptTitle())) {
+						addChildren(node);
+						break;
+					}			
+				}
+				
+				for (ConceptNode node: nodes) {
+					if (node.getConcept().getConceptTitle().equals(link.getChild().getConcept().getConceptTitle())) {
+						current.addChild(node);
+						break;
+					}			
+				}
 			}
 		}
 	}
-<<<<<<< HEAD
-=======
-	
-	
-	/*private void buildGraph(String rootTitle){
-		
-		//hard coding questions as the last level of tree
-		//had to 
-//		ConceptImpl impl1 = new ConceptImpl("test_question5_1_1");
-//		ConceptNode node1 = new ConceptNode(impl1);
-//		
-//		ConceptImpl impl2 = new ConceptImpl("test_question5_1_2");
-//		ConceptNode node2 = new ConceptNode(impl2);
-//		
-//		
-//		List<ConceptImpl> list1 =  new ArrayList<ConceptImpl>();
-//		list1.add(impl1);
-//		list1.add(impl2);
-//		
-//		ConceptImpl impl3 = new ConceptImpl("test_question5_1_3");
-//		ConceptNode node3 = new ConceptNode(impl3);
-//		
-//		ConceptImpl impl4 = new ConceptImpl("test_question5_1_5");
-//		ConceptNode node4 = new ConceptNode(impl4);
-//		
-//		List<ConceptImpl> list2 =  new ArrayList<ConceptImpl>();
-//		list1.add(impl3);
-//		list1.add(impl4);
-		
-//		ConceptImpl impl5 = new ConceptImpl("Function Purpose", list1);
-//		ConceptNode node5 = new ConceptNode(impl5);
-//		
-//		ConceptImpl impl6 = new ConceptImpl("Function Syntax", list2);
-//		ConceptNode node6 = new ConceptNode(impl6);
-//		
-//		
-//		List<ConceptImpl> list3 =  new ArrayList<ConceptImpl>();
-//		list3.add(impl5);
-//		list3.add(impl6);
-//		ConceptImpl rootImpl = new ConceptImpl(rootTitle, list3);
-//		this.root = new ConceptNode(rootImpl);
-		
-		
-//		node5.addChild(node1);
-//		node5.addChild(node2);
-//		
-//		node6.addChild(node3);
-//		node6.addChild(node4);
-//		
-//		root.addChild(node5);
-//		root.addChild(node6);
-		
-	}
-	*/
-	
->>>>>>> branch 'Development' of https://github.com/tobydragon/metafora-project.git
 	
  	private ConceptNode findRoot() {
 		List<ConceptNode> runningTotal = new ArrayList<ConceptNode>();
@@ -166,10 +101,10 @@ public class ConceptGraph {
 		return root;
 	}
 	
-	
 	//takes in a ConceptNode and creates an object to hold on to two lists - a list of nodes and a list of links
 	private NodeAndLinkLists buildNodeAndLinkLists(ConceptNode currNode, int level){
-		currNode.setColor(level);
+		currNode.setLevel(level);
+		
 		//checks to see if the current node is already in the list, if not it adds it
 
 		if(nodes.contains(currNode) == false) {
@@ -180,7 +115,6 @@ public class ConceptGraph {
 		//if not then it adds it
 		for(ConceptNode child : currNode.getChildren()){
 			ConceptLink linkToAdd = new ConceptLink (currNode, child);
-					
 			if(links.contains(linkToAdd) == false){
 				links.add(linkToAdd);
 				
@@ -190,13 +124,73 @@ public class ConceptGraph {
 			
 			
 		}
+		List<ConceptNode> finalNodes = new ArrayList<ConceptNode>();
+		List<ConceptLink> finalLinks = new ArrayList<ConceptLink>();
+		
+		for	(ConceptNode node : nodes) {
+			if (node.getLevel() != 0) {
+				finalNodes.add(node);
+			}
+		}
+		for (ConceptLink link : links) {
+			if (link.getParent().getLevel() != 0 && link.getChild().getLevel() != 0) {
+				finalLinks.add(link);
+			}
+		}
 		
 		//creates the LinksAndNodes object to hold on to both lists, then returns that object
-		NodeAndLinkLists finalLists = new NodeAndLinkLists(nodes, links);
+		NodeAndLinkLists finalLists = new NodeAndLinkLists(finalNodes, finalLinks);
+		
+		
 		return finalLists;
 	}
 	
 	public NodeAndLinkLists buildNodesAndLinks() {
 		return buildNodeAndLinkLists(root, 1);
 	}
+		
+
+<<<<<<< HEAD
+	public void calcPredictedScores() {
+		calcPredictedScores(root);
+=======
+	public void calcActualComp(){
+		root.calcActualComp();
+>>>>>>> 95d65cbb6438ae0fd4e191af67f59ae94cae45ec
+	}
+	
+	private void calcPredictedScores(ConceptNode currentRoot) {
+		calcPredictedScores(root, root.getActualComp(), root);
+	}
+	
+	// pre order traversal
+	private static void calcPredictedScores(ConceptNode current, double passedDown, ConceptNode currentRoot) {
+		
+		// simple check for if we're dealing with the root, which has its own rule
+		if (current == currentRoot) {
+			current.setPredictedComp(current.getActualComp());
+		} else {
+			current.setNumParents(current.getNumParents() + 1);
+			
+			// Calculating the new predicted, take the the old predicted with the weight it has based off of the number of parents
+			// calculate the new pred from the new information passed down and the adding it to old pred
+			double oldPred = current.getPredictedComp() * (1.0 - (1.0/current.getNumParents()));
+			double newPred = (passedDown * (1.0/current.getNumParents())) + oldPred;
+			
+			current.setPredictedComp(newPred);
+		}
+		
+		for (ConceptNode child : current.getChildren()) {
+			if (current.getActualComp() == 0) {
+				
+				calcPredictedScores(child, current.getPredictedComp()/ DIVISION_FACTOR, currentRoot);
+			} else {
+				calcPredictedScores(child, current.getActualComp(), currentRoot);
+			}
+		}
+		
+	}
+
+
+	
 }

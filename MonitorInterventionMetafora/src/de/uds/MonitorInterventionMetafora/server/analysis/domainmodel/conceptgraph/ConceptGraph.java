@@ -2,11 +2,7 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Stack;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Chapter;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Question;
@@ -14,14 +10,12 @@ import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonet
 
 public class ConceptGraph {
 	
+	public static final Integer DIVISION_FACTOR = 2;
 	ConceptNode root;
 	String stringToReturn = "";
 	List<ConceptNode> nodes;
 	List<ConceptLink> links;
 
-	
-	
-	
 	/*
 	 *Takes in a book, starts at the root, then goes through each level (chapters, sub chapters, questions) and creates
 	 *a node for each concept, and adds it as a child.
@@ -68,8 +62,20 @@ public class ConceptGraph {
 	private void addChildren(ConceptNode current) {
 		for (ConceptLink link : links) {
 			if (link.getParent().getConcept().getConceptTitle().equals(current.getConcept().getConceptTitle()) ) {
-				addChildren(link.getChild());
-				current.addChild(link.getChild());
+				
+				for (ConceptNode node: nodes) {
+					if (node.getConcept().getConceptTitle().equals(link.getChild().getConcept().getConceptTitle())) {
+						addChildren(node);
+						break;
+					}			
+				}
+				
+				for (ConceptNode node: nodes) {
+					if (node.getConcept().getConceptTitle().equals(link.getChild().getConcept().getConceptTitle())) {
+						current.addChild(node);
+						break;
+					}			
+				}
 			}
 		}
 	}
@@ -98,6 +104,7 @@ public class ConceptGraph {
 	//takes in a ConceptNode and creates an object to hold on to two lists - a list of nodes and a list of links
 	private NodeAndLinkLists buildNodeAndLinkLists(ConceptNode currNode, int level){
 		currNode.setLevel(level);
+		
 		//checks to see if the current node is already in the list, if not it adds it
 
 		if(nodes.contains(currNode) == false) {
@@ -141,27 +148,48 @@ public class ConceptGraph {
 	public NodeAndLinkLists buildNodesAndLinks() {
 		return buildNodeAndLinkLists(root, 1);
 	}
-	
-	public void calcPredictedScores() {
-		// Need to address! lets say we go with this for the top's predicted, well
-		// calling getSummary calls calc summary, it seems like this should just be
-		// saved in the node or something
 		
-		NodeAndLinkLists lists = buildNodesAndLinks();
-		for (ConceptNode node : lists.getNodes()) {
-			double total = 0;
-			double numParents = 0;
-			for (ConceptLink link : lists.getLinks()) {
-				// go through and find all of the current node's parents
-				if (link.getChild().getConcept().getConceptTitle().equals(node.getConcept().getConceptTitle())) {
-					// is this the right summary info?
-					total += link.getParent().getConcept().getSummaryInfo().getActualComp();
-					numParents += 1;
-				}
-			}
-			// not sure if this is what we really want, but the idea is that
-			node.getConcept().getSummaryInfo().setPredictedComp(total/numParents);
-			
-		}
+
+	public void calcActualComp(){
+		root.calcActualComp();
 	}
+
+	public void calcPredictedScores() {
+		calcPredictedScores(root);
+	}
+	
+	private void calcPredictedScores(ConceptNode currentRoot) {
+		calcPredictedScores(currentRoot, root.getActualComp(), currentRoot);
+	}
+	
+	// pre order traversal
+	private static void calcPredictedScores(ConceptNode current, double passedDown, ConceptNode currentRoot) {
+		
+		// simple check for if we're dealing with the root, which has its own rule
+		if (current == currentRoot) {
+			current.setPredictedComp(current.getActualComp());
+		} else {
+			current.setNumParents(current.getNumParents() + 1);
+			
+			// Calculating the new predicted, take the the old predicted with the weight it has based off of the number of parents
+			// calculate the new pred from the new information passed down and the adding it to old pred
+			double oldPred = current.getPredictedComp() * (1.0 - (1.0/current.getNumParents()));
+			double newPred = (passedDown * (1.0/current.getNumParents())) + oldPred;
+			
+			current.setPredictedComp(newPred);
+		}
+		
+		for (ConceptNode child : current.getChildren()) {
+			if (current.getActualComp() == 0) {
+				
+				calcPredictedScores(child, current.getPredictedComp()/ DIVISION_FACTOR, currentRoot);
+			} else {
+				calcPredictedScores(child, current.getActualComp(), currentRoot);
+			}
+		}
+		
+	}
+
+
+	
 }

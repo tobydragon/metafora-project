@@ -90,9 +90,8 @@ public class CfContent implements Serializable  {
 	}
 
 	public void replaceStringInDescription(String oldName, String newName) {
-		
 		description = description.replaceAll(oldName, newName);
-		System.out.println("Old: " + oldName + "\tNew: " + newName + "\tDesc: " + description);
+		//System.out.println("Old: " + oldName + "\tNew: " + newName + "\tDesc: " + description);
 	}
 	
 }

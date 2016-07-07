@@ -153,16 +153,18 @@ public class CfAction implements Serializable, Comparable<CfAction>{
 		return users;
 	}
 
-	public void replaceUserIds(Map<String, String> old2newId){
+	public void replaceUserIds(Map<String, String> old2newId, boolean replaceAll){
 		List <CfUser> users = getCfUsers();
 		for (CfUser user : users){
 			String newName = old2newId.get(user.getid());
-			if (newName != null){
+			if (newName != null ){
 				cfContent.replaceStringInDescription(user.getid(), newName);
 				user.setid(newName);
 			}
 			else {
-				System.err.println("No new name for " + user.getid());
+				if (replaceAll){
+					System.err.println("ERROR: In CfAction.replaceUserIds: No new name for " + user.getid());
+				}
 			}
 		}
 	}

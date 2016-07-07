@@ -62,13 +62,13 @@ public class CfInteractionDataParser {
 		//logger.info(testActions.toString());
 		//logger.info(CfInteractionDataParser.toXml(testActions));
 		
-		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/runestoneXml/oneWeek.xml");
-		//logger.info(runestoneFrag.toString());
-		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
-		testCf.replaceAllIds();
-		XmlFragment cfFrag = CfInteractionDataParser.toXml(testCf);
-		logger.info(cfFrag);
-		cfFrag.overwriteFile("war/conffiles/xml/test/runestoneXml/oneWeekCF.xml");
+//		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/runestoneXml/oneWeek.xml");
+//		//logger.info(runestoneFrag.toString());
+//		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
+//		//testCf.replaceAllIds();
+//		XmlFragment cfFrag = CfInteractionDataParser.toXml(testCf);
+//		logger.info(cfFrag);
+//		cfFrag.overwriteFile("war/conffiles/xml/test/runestoneXml/oneWeekCF.xml");
 	
 	}
 

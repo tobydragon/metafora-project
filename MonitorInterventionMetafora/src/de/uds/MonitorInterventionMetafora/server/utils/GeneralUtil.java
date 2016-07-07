@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.server.utils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -60,15 +61,12 @@ public class GeneralUtil {
 		return dateFormat.format(date);
 	}
 	
-	public static String readFileToString(String filename){
-		try {
-			String text = new Scanner( new File(filename) ).useDelimiter("\\A").next();
-			return text;
-		}
-		catch (Exception e){
-			log.error("[GeneralUtil.readFileToString] error: " + ErrorUtil.getStackTrace(e));
-			return null;
-		}
+	public static String readFileToString(String filename) throws FileNotFoundException{
+		Scanner scanner = new Scanner( new File(filename) );
+		scanner.useDelimiter("\\A");
+		String text = scanner.next();
+		scanner.close();
+		return text;
 	}
 	
 }
