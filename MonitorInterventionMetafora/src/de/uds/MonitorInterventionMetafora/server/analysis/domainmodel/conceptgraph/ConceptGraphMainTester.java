@@ -17,8 +17,8 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 
-public class ConceptGraphTest {
-	static Logger logger = Logger.getLogger(ConceptGraphTest.class);
+public class ConceptGraphMainTester {
+	static Logger logger = Logger.getLogger(ConceptGraphMainTester.class);
 
 	public static void main(String[] args) throws Exception {
 		testBookGraphToJson();
