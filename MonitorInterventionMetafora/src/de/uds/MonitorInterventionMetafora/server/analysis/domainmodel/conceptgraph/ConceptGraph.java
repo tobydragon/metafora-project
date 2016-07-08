@@ -63,7 +63,7 @@ public class ConceptGraph {
 		//call the recursive function addSummaryNode - send in node and a single summary (loop through summaryList to call that function)
 		for(ConceptNode summaryNode : summaryNodes){
 			this.root.addSummaryNode(summaryNode);
-		//TODO: If this ever returns false, print a warning
+		//TODO: If this ever returns false, return false
 		}
 	}	
 

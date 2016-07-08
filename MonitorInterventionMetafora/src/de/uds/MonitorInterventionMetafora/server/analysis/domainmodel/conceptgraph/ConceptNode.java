@@ -52,26 +52,15 @@ public class ConceptNode {
 
 	//recursive function that adds a single summary as a child of the node with the matching name
 	public boolean addSummaryNode(ConceptNode summaryNode){
-		//System.out.println(node.getConcept().getConceptTitle());
-		//System.out.println(node.getConcept().getConceptTitle().isEmpty());
-		
+	
 		//if there is a title
 		if(this.getConcept().getConceptTitle().isEmpty()==false){
-			//System.out.println("test");
-			//System.out.println(summaryNode.getConcept().getConceptTitle());
-			//System.out.println(node.getConcept().getConceptTitle());
-			//System.out.println();
+
 			//if titles match
 			if(summaryNode.getConcept().getConceptTitle().startsWith(this.getConcept().getConceptTitle())){	
-				//System.out.println("test2");
 				//if this summary node is not already in children list, add it
 				if(!(this.getChildren().contains(summaryNode))){
-					//System.out.println("tes3");
 					this.addChild(summaryNode);
-//					System.out.println();
-//					System.out.println("SumNode: " +summaryNode.getConcept().getConceptTitle());
-//					System.out.println("Node on tree :" + node.getConcept().getConceptTitle());
-//					System.out.println();
 					return true;
 				}						
 			}

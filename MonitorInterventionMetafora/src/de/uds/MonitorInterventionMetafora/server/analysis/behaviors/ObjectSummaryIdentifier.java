@@ -304,57 +304,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		}
 		return filteredSummaries;
 	}
-//	
-//public void addSummariesToGraph(ConceptNode node, List<ConceptNode> summaryNodes){
-//	//call the recursive function addSummaryNode - send in node and a single summary (loop through summaryList to call that function)
-//	for(ConceptNode summaryNode : summaryNodes){
-//		addSummaryNode(node, summaryNode);
-//	//TODO: If this ever returns false, print a warning
-//	}
-//}	
 
-//
-////recursive function that adds a single summary as a child of the node with the matching name
-//public boolean addSummaryNode(ConceptNode node, ConceptNode summaryNode){
-//	//System.out.println(node.getConcept().getConceptTitle());
-//	//System.out.println(node.getConcept().getConceptTitle().isEmpty());
-//	
-//	//if there is a title
-//	if(node.getConcept().getConceptTitle().isEmpty()==false){
-//		//System.out.println("test");
-//		//System.out.println(summaryNode.getConcept().getConceptTitle());
-//		//System.out.println(node.getConcept().getConceptTitle());
-//		//System.out.println();
-//		//if titles match
-//		if(summaryNode.getConcept().getConceptTitle().startsWith(node.getConcept().getConceptTitle())){	
-//			//System.out.println("test2");
-//			//if this summary node is not already in children list, add it
-//			if(!(node.getChildren().contains(summaryNode))){
-//				//System.out.println("tes3");
-//				node.addChild(summaryNode);
-////				System.out.println();
-////				System.out.println("SumNode: " +summaryNode.getConcept().getConceptTitle());
-////				System.out.println("Node on tree :" + node.getConcept().getConceptTitle());
-////				System.out.println();
-//				return true;
-//			}						
-//		}
-//		//else titles don't match, check all your children for a match
-//		else{
-//			for(ConceptNode child : node.getChildren()){
-//				boolean addedToChild = addSummaryNode(child, summaryNode);
-//				if(addedToChild){
-//					return true; 
-//				}
-//			}
-//			return false;
-//		
-//		}
-//	}
-//	
-//	return false;
-//}
-	
 
 	
 	public List<PerUserPerProblemSummary> getAllSummaries(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties) {
