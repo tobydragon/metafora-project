@@ -63,18 +63,18 @@ public class ConceptGraphMainTester {
 		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);		
 		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
 		
-		//List<ConceptNode> summaryNodeList = new ArrayList<ConceptNode>();
-		// Add summary info to it
-		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
-		for(PerUserPerProblemSummary summary : summaries){
-			//System.out.println(summary.getObjectId());
-			ConceptNode sumNode = new ConceptNode(summary);
-			graphSummaryNodeList.add(sumNode);
-		}
+//		//List<ConceptNode> summaryNodeList = new ArrayList<ConceptNode>();
+//		// Add summary info to it
+//		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
+//		for(PerUserPerProblemSummary summary : summaries){
+//			//System.out.println(summary.getObjectId());
+//			ConceptNode sumNode = new ConceptNode(summary);
+//			graphSummaryNodeList.add(sumNode);
+//		}
 		
 		//TODO: TD - Does this code belong in ObjectSummaryIdentifier? Doesn't seem like its job...
 		//Also, should probably identify whether connection was made or not
-		graphFromJson.addSummariesToGraph(graphSummaryNodeList);
+		graphFromJson.addSummariesToGraph(summaries);
 
 		// calculate "up" the graph the actual scores
 		graphFromJson.calcActualComp();

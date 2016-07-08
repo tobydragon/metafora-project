@@ -100,15 +100,7 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		List<PerUserPerProblemSummary> filteredSummaries = filterSummariesByUser(users, perUserPerProblemSummaries);
 
 		
-		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
-		// Add summary info to it
-		for(PerUserPerProblemSummary summary : filteredSummaries){
-			System.out.println(summary.getObjectId());
-			ConceptNode sumNode = new ConceptNode(summary);
-			graphSummaryNodeList.add(sumNode);
-		}
-		
-		graph.addSummariesToGraph(graphSummaryNodeList);
+		graph.addSummariesToGraph(filteredSummaries);
 		graph.calcActualComp();
 		graph.calcPredictedScores();
 		System.out.println(graph);

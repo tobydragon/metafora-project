@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 import java.util.ArrayList;
 import java.util.List;
 
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Chapter;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Question;
@@ -59,9 +60,17 @@ public class ConceptGraph {
 		addChildren(root);
 	}
 	
-	public void addSummariesToGraph(List<ConceptNode> summaryNodes){
+	public void addSummariesToGraph(List<PerUserPerProblemSummary> summaries){
+
+		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
+		for(PerUserPerProblemSummary summary : summaries){
+			//System.out.println(summary.getObjectId());
+			ConceptNode sumNode = new ConceptNode(summary);
+			graphSummaryNodeList.add(sumNode);
+		}
+		
 		//call the recursive function addSummaryNode - send in node and a single summary (loop through summaryList to call that function)
-		for(ConceptNode summaryNode : summaryNodes){
+		for(ConceptNode summaryNode : graphSummaryNodeList){
 			this.root.addSummaryNode(summaryNode);
 		//TODO: If this ever returns false, return false
 		}
