@@ -59,10 +59,21 @@ public class ConceptGraph {
 		addChildren(root);
 	}
 	
+	public void addSummariesToGraph(List<ConceptNode> summaryNodes){
+		//call the recursive function addSummaryNode - send in node and a single summary (loop through summaryList to call that function)
+		for(ConceptNode summaryNode : summaryNodes){
+			this.root.addSummaryNode(summaryNode);
+		//TODO: If this ever returns false, print a warning
+		}
+	}	
+
+	
 	private void addChildren(ConceptNode current) {
-		for (ConceptLink link : links) {
+		//for every link
+		for (ConceptLink link : links) { 
+			//if this node is the parent
 			if (link.getParent().getConcept().getConceptTitle().equals(current.getConcept().getConceptTitle()) ) {
-				
+				//add the child to the current node's list of children
 				for (ConceptNode node: nodes) {
 					if (node.getConcept().getConceptTitle().equals(link.getChild().getConcept().getConceptTitle())) {
 						addChildren(node);
@@ -80,6 +91,20 @@ public class ConceptGraph {
 		}
 	}
 	
+//	
+//	//side effect, current will be complete after the call
+//	private void makeGraph(ConceptNode current, List<ConceptLink> inputLinks){
+//		for (ConceptLink link : links) { 
+//			//if this node is the parent
+//			if (link.getParent().getConcept().getConceptTitle().equals(current.getConcept().getConceptTitle()) ) {
+//		
+//				
+//			}
+//		}
+//		
+//		
+//	}
+	
  	private ConceptNode findRoot() {
 		List<ConceptNode> runningTotal = new ArrayList<ConceptNode>();
 		for (ConceptNode node: nodes) {
@@ -90,6 +115,7 @@ public class ConceptGraph {
 				runningTotal.remove(link.getChild());
 			}
 		}
+		//TODO: give warning if runningTotal has more than one entry, meaning more than one root 
 		return runningTotal.get(0);
 	}
 
