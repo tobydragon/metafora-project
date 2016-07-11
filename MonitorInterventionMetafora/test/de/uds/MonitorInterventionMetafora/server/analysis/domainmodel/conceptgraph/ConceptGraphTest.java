@@ -19,6 +19,7 @@ import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
+import junit.framework.Assert;
 
 public class ConceptGraphTest {
 
@@ -44,12 +45,14 @@ public class ConceptGraphTest {
 		
 		// Make the concept graph from Json
 		String thisString = GeneralUtil.getRealPath(inputStructure);
-		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);		
+		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);
 		this.graphFromJson = new ConceptGraph(fromJsonLists);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		//this.graphFromJson = null;
+		//this.summaries = null;
 	}
 	
 	@Test
@@ -59,8 +62,16 @@ public class ConceptGraphTest {
 		graphFromJson.calcActualComp();
 		
 		graphFromJson.calcPredictedScores();
+	}
+	
+	@Test
+	public void graphToTreeTest(){
+			System.out.println("ORIG______________________");
+			System.out.println(this.graphFromJson);
+			System.out.println("TREE______________________");
+		ConceptGraph myTree = this.graphFromJson.graphToTree();
+			System.out.println(myTree);
 		
-		System.out.println(graphFromJson);
 	}
 
 }

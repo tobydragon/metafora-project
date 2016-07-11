@@ -225,6 +225,22 @@ public class ConceptGraph {
 		
 	}
 
-
+	public ConceptGraph graphToTree(){
+		List<ConceptNode> nodesTree = new ArrayList<ConceptNode>();
+		List<ConceptLink> linksTree = new ArrayList<ConceptLink>();
+		
+		for(ConceptNode currNode : this.nodes){
+			ConceptNode tempNode = new ConceptNode(currNode.getConcept());
+			nodesTree.add(tempNode);
+		}
+		//TODO CL: This currently makes links of references to the old nodes. This should make new links between the new children and parents
+		for(ConceptLink currLink : this.links){
+			ConceptLink tempLink = new ConceptLink(currLink.getParent(), currLink.getChild());
+			linksTree.add(tempLink);
+		}
+		NodeAndLinkLists tempNodeAndLinkList = new NodeAndLinkLists(nodesTree, linksTree);
+		
+		return new ConceptGraph(tempNodeAndLinkList);
+	}
 	
 }
