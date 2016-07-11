@@ -1,6 +1,7 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
@@ -226,20 +227,68 @@ public class ConceptGraph {
 	}
 
 	public ConceptGraph graphToTree(){
+		
 		List<ConceptNode> nodesTree = new ArrayList<ConceptNode>();
 		List<ConceptLink> linksTree = new ArrayList<ConceptLink>();
+		HashMap<ConceptNode, ArrayList<ConceptNode>> multCopies = new HashMap<ConceptNode, ArrayList<ConceptNode>>();
 		
-		for(ConceptNode currNode : this.nodes){
-			ConceptNode tempNode = new ConceptNode(currNode.getConcept());
-			nodesTree.add(tempNode);
-		}
-		//TODO CL: This currently makes links of references to the old nodes. This should make new links between the new children and parents
+		//how do I make them not reference the links that are passed in?
+		
 		for(ConceptLink currLink : this.links){
-			ConceptLink tempLink = new ConceptLink(currLink.getParent(), currLink.getChild());
-			linksTree.add(tempLink);
-		}
-		NodeAndLinkLists tempNodeAndLinkList = new NodeAndLinkLists(nodesTree, linksTree);
+			ConceptNode child = currLink.getChild();
+			ConceptNode parent = currLink.getParent();
+			ConceptNode replace = null;
+			
+			if(nodesTree.contains(child)){
+				ConceptNode newChild = new ConceptNode(child.getConcept());
+				nodesTree.add(newChild);
+				replace = newChild;
+				try{
+		            ArrayList<ConceptNode> temp = multCopies.get(child);
+		            temp.add(newChild);
+		            multCopies.put(child, temp);
+		        } catch (NullPointerException e){
+		            ArrayList<ConceptNode> temp = new ArrayList<ConceptNode>();
+		            temp.add(newChild);
+		            multCopies.put(child, temp);
+		        }
+			}//end if outputNodes contains child
+			
+			if(!nodesTree.contains(parent) && parent != null){
+				nodesTree.add(parent);
+			}
+			
+			if(!nodesTree.contains(child)){
+				nodesTree.add(child);
+			}
+			
+			if(replace == null){
+				linksTree.add(new ConceptLink(parent, child));
+			}else{
+				linksTree.add(new ConceptLink(parent, replace));
+			}
+			
+			if(multCopies.containsKey(parent)){
+				ArrayList<ConceptNode> temp = multCopies.get(parent);
+				for(ConceptNode currNode : temp){
+					ConceptNode childCopy = new ConceptNode(child.getConcept());
+					nodesTree.add(childCopy);
+					linksTree.add(new ConceptLink(parent,childCopy));
+					try{
+			            ArrayList<ConceptNode> tempValue = multCopies.get(child);
+			            tempValue.add(childCopy);
+			            multCopies.put(child, tempValue);
+			        } catch (NullPointerException e){
+			            ArrayList<ConceptNode> tempValue = new ArrayList<ConceptNode>();
+			            tempValue.add(childCopy);
+			            multCopies.put(child, tempValue);
+			        }
+				}
+			}
 		
+		}
+		System.out.println(nodesTree);
+		NodeAndLinkLists tempNodeAndLinkList = new NodeAndLinkLists(nodesTree, linksTree);
 		return new ConceptGraph(tempNodeAndLinkList);
 	}
 	
