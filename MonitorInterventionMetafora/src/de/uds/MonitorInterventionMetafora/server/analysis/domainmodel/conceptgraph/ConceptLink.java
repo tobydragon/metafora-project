@@ -23,4 +23,8 @@ public class ConceptLink {
 	public ConceptNode getChild(){
 		return child;
 	}
+	
+	public String toString(){
+		return"[Parent: " + this.parent.getID() + " Child: " + this.child.getID() + "]\n";
+	}
 }

@@ -31,10 +31,7 @@ public class ConceptGraphTest {
 	public void setUp() throws Exception {
 		makeSummaries();
 		makeGraph();
-		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
-		List<ConceptLink> clList = new ArrayList<ConceptLink>();
-
-		NodeAndLinkLists bothLists = new NodeAndLinkLists();
+		
 		
 		
 	}
@@ -47,7 +44,7 @@ public class ConceptGraphTest {
 	
 	@Test
 	public void makingConceptGraphTest(){
-		System.out.println(this.graphFromJson);
+		//System.out.println(this.graphFromJson);
 	}
 	
 	@Test
@@ -56,8 +53,35 @@ public class ConceptGraphTest {
 	}
 	
 	@Test
-	public void graphToTreeTest(){
+	public void graphToTreeSimpleTest(){
+		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
+		List<ConceptLink> clList = new ArrayList<ConceptLink>();
+		
+		Concept c = new ConceptImpl("A");
+		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+		c = new ConceptImpl("B");
+		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+		c = new ConceptImpl("C");
+		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+		c = new ConceptImpl("D");
+		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+		
+		clList.add(new ConceptLink(cnList.get(0),cnList.get(1))); //A -> B
+		clList.add(new ConceptLink(cnList.get(0),cnList.get(2))); //A -> C
+		clList.add(new ConceptLink(cnList.get(1),cnList.get(2))); //B -> C
+//		clList.add(new ConceptLink(cnList.get(1),cnList.get(3))); //B -> D
+//		clList.add(new ConceptLink(cnList.get(2),cnList.get(3))); //C -> D
+//		clList.add(new ConceptLink(cnList.get(0),cnList.get(3))); //A -> D
+		
+		
+		NodeAndLinkLists bothLists = new NodeAndLinkLists(cnList,clList);
+		
+		this.simpleTree = new ConceptGraph(bothLists);
 
+		this.madeTree = this.simpleTree.graphToTree();
+		System.out.println("Made Tree__________________");
+		System.out.println(this.madeTree.getNodes());
+		System.out.println(this.madeTree.getLinks());
 	}
 	
 	@Test

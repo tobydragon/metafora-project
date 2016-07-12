@@ -61,6 +61,14 @@ public class ConceptGraph {
 		addChildren();
 	}
 	
+	public List<ConceptNode> getNodes(){
+		return this.nodes;
+	}
+	
+	public List<ConceptLink> getLinks(){
+		return this.links;
+	}
+	
 	public void addSummariesToGraph(List<PerUserPerProblemSummary> summaries){
 
 		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
@@ -204,70 +212,97 @@ public class ConceptGraph {
 	}
 
 	public ConceptGraph graphToTree(){
-		
+		System.out.println(this.nodes);
+		System.out.println(this.links);
 		List<ConceptNode> nodesTree = new ArrayList<ConceptNode>();
 		List<ConceptLink> linksTree = new ArrayList<ConceptLink>();
-		HashMap<ConceptNode, ArrayList<ConceptNode>> multCopies = new HashMap<ConceptNode, ArrayList<ConceptNode>>();
-		
-		//how do I make them not reference the links that are passed in?
-		
+		HashMap<String, ArrayList<ConceptNode>> multCopies = new HashMap<String, ArrayList<ConceptNode>>();
+
 		for(ConceptLink currLink : this.links){
 			ConceptNode child = currLink.getChild();
 			ConceptNode parent = currLink.getParent();
-			ConceptNode replace = null;
+			ConceptNode replaceChild = null;
+			ConceptNode replaceParent = null;
 			
-			if(nodesTree.contains(child)){
-				ConceptNode newChild = new ConceptNode(child.getConcept());
-				nodesTree.add(newChild);
-				replace = newChild;
-				try{
-		            ArrayList<ConceptNode> temp = multCopies.get(child);
-		            temp.add(newChild);
-		            multCopies.put(child, temp);
-		        } catch (NullPointerException e){
-		            ArrayList<ConceptNode> temp = new ArrayList<ConceptNode>();
-		            temp.add(newChild);
-		            multCopies.put(child, temp);
-		        }
-			}//end if outputNodes contains child
-			
-			if(!nodesTree.contains(parent) && parent != null){
-				nodesTree.add(new ConceptNode(parent.getConcept()));
-			}
-			
-			if(!nodesTree.contains(child)){
-				nodesTree.add(new ConceptNode(child.getConcept()));
-			}
-			//TODO: Fix this so that it makes links between the new items, not the references to the inputLinks
-			if(replace == null){
-				linksTree.add(new ConceptLink(parent, child));
+			if(! checkNodeInListByConceptTitle(nodesTree, child)){
+				replaceChild = new ConceptNode(child.getConcept(), makeName(child.getID()));
+				nodesTree.add(replaceChild);
 			}else{
-				linksTree.add(new ConceptLink(parent, replace));
+				if(multCopies.get(child.getConcept().getConceptTitle()) == null){
+					replaceChild = new ConceptNode(child.getConcept(), makeName(child.getID()+"1"));
+					ArrayList<ConceptNode> temp = new ArrayList<ConceptNode>();
+					temp.add(replaceChild);
+					multCopies.put(child.getConcept().getConceptTitle(), temp);
+				}else{
+					ArrayList<ConceptNode> temp = multCopies.get(child.getConcept().getConceptTitle());
+					replaceChild = new ConceptNode(child.getConcept(), makeName(temp.get(temp.size() - 1).getID()));
+					temp.add(replaceChild);
+					multCopies.put(child.getConcept().getConceptTitle(), temp);
+				}
+				nodesTree.add(replaceChild);
 			}
 			
-			//TODO: find a way to make multCopies work.
-			if(multCopies.containsKey(parent)){
-				ArrayList<ConceptNode> temp = multCopies.get(parent);
-				for(ConceptNode currNode : temp){
-					ConceptNode childCopy = new ConceptNode(child.getConcept());
-					nodesTree.add(childCopy);
-					linksTree.add(new ConceptLink(parent,childCopy));
-					try{
-			            ArrayList<ConceptNode> tempValue = multCopies.get(child);
-			            tempValue.add(childCopy);
-			            multCopies.put(child, tempValue);
-			        } catch (NullPointerException e){
-			            ArrayList<ConceptNode> tempValue = new ArrayList<ConceptNode>();
-			            tempValue.add(childCopy);
-			            multCopies.put(child, tempValue);
-			        }
-				}
+			if(! checkNodeInListByConceptTitle(nodesTree,parent)){
+				replaceParent = new ConceptNode(parent.getConcept(), makeName(parent.getID()));
+				nodesTree.add(replaceParent);
+				linksTree.add(new ConceptLink(replaceParent, replaceChild));
+			}else{
+				//Fix this
+				List<ConceptNode> temp = multCopies.get(parent.getConcept().getConceptTitle());
+				
 			}
-		
+			
+			
+			
 		}
+		System.out.println("Made in func__________");
 		System.out.println(nodesTree);
+		System.out.println(linksTree);
 		NodeAndLinkLists tempNodeAndLinkList = new NodeAndLinkLists(nodesTree, linksTree);
 		return new ConceptGraph(tempNodeAndLinkList);
 	}
+	
+	public boolean checkNodeInListByID(List<ConceptNode> listToCheck, ConceptNode nodeToCheck){
+		for( ConceptNode currNode : listToCheck){
+			if(currNode.getID().equals(nodeToCheck.getID())){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean checkNodeInListByConceptTitle(List<ConceptNode> listToCheck, ConceptNode nodeToCheck){
+		for( ConceptNode currNode : listToCheck){
+			if(currNode.getConcept().getConceptTitle().equals(nodeToCheck.getConcept().getConceptTitle())){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static String makeName(String prevName) {
+        if(prevName != "" && prevName != null) {
+            String[] nameList = prevName.split("");
+            String name = "";
+            String num = "";
+            for (int i = 0; i < nameList.length; i++) {
+                try {
+                    Integer.parseInt(nameList[i]);
+                    num += nameList[i];
+                } catch (NumberFormatException e) {
+                    name += nameList[i];
+                }
+            }
+            if (num.equals("")) {
+                return name + "1";
+            } else {
+                int number = Integer.parseInt(num);
+                number += 1;
+                name += number;
+                return name;
+            }
+        }
+        return "";
+    }
 	
 }

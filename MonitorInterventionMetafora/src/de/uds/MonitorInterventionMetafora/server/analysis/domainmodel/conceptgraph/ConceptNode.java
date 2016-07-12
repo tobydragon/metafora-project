@@ -92,13 +92,13 @@ public class ConceptNode {
 	
 	//Currently printing with the time spent on all children gotten from calcSummaryInfo
 	public String toString(String indent){
-		 
 		
+//		String stringToReturn = indent + getConcept().getConceptTitle() +  "\t actual: " + getActualComp() + " pred: " +getPredictedComp(); 
+//		for (ConceptNode child :getChildren()){
+//			stringToReturn += child.toString(indent + "\t");
+//		}
 		
-		String stringToReturn = indent + getConcept().getConceptTitle() +  "\t actual: " + getActualComp() + " pred: " +getPredictedComp(); 
-		for (ConceptNode child :getChildren()){
-			stringToReturn += child.toString(indent + "\t");
-		}
+		String stringToReturn = "Concept: " + this.getConcept().getConceptTitle() + " ID: " + this.getID()+"\n";
 		return stringToReturn;
 		 
 	}
