@@ -58,7 +58,7 @@ public class ConceptGraph {
 		this.links = lists.getLinks();
 		this.root = findRoot();
 		
-		addChildren(root);
+		addChildren();
 	}
 	
 	public void addSummariesToGraph(List<PerUserPerProblemSummary> summaries){
@@ -77,43 +77,20 @@ public class ConceptGraph {
 		}
 	}	
 
-	
-	private void addChildren(ConceptNode current) {
-		//for every link
-		for (ConceptLink link : links) { 
-			//if this node is the parent
-			if (link.getParent().getConcept().getConceptTitle().equals(current.getConcept().getConceptTitle()) ) {
-				//add the child to the current node's list of children
-				for (ConceptNode node: nodes) {
-					if (node.getConcept().getConceptTitle().equals(link.getChild().getConcept().getConceptTitle())) {
-						addChildren(node);
-						break;
-					}			
-				}
-				
-				for (ConceptNode node: nodes) {
-					if (node.getConcept().getConceptTitle().equals(link.getChild().getConcept().getConceptTitle())) {
-						current.addChild(node);
-						break;
-					}			
-				}
-			}
+	private void addChildren(){
+		//TODO: Make take nodes and links as parameters
+		//TODO: change to get ID instead of concept title
+		HashMap<String, ConceptNode> fullNodesMap = new HashMap<String, ConceptNode>();
+		for( ConceptNode currNode : this.nodes){
+			fullNodesMap.put(currNode.getConcept().getConceptTitle(), currNode);
+		}
+		
+		for( ConceptLink currLink : this.links){
+			ConceptNode currParent = fullNodesMap.get(currLink.getParent().getConcept().getConceptTitle());
+			currParent.addChild(fullNodesMap.get(currLink.getChild().getConcept().getConceptTitle()));
 		}
 	}
-	
-//	
-//	//side effect, current will be complete after the call
-//	private void makeGraph(ConceptNode current, List<ConceptLink> inputLinks){
-//		for (ConceptLink link : links) { 
-//			//if this node is the parent
-//			if (link.getParent().getConcept().getConceptTitle().equals(current.getConcept().getConceptTitle()) ) {
-//		
-//				
-//			}
-//		}
-//		
-//		
-//	}
+
 	
  	private ConceptNode findRoot() {
 		List<ConceptNode> runningTotal = new ArrayList<ConceptNode>();
@@ -255,19 +232,20 @@ public class ConceptGraph {
 			}//end if outputNodes contains child
 			
 			if(!nodesTree.contains(parent) && parent != null){
-				nodesTree.add(parent);
+				nodesTree.add(new ConceptNode(parent.getConcept()));
 			}
 			
 			if(!nodesTree.contains(child)){
-				nodesTree.add(child);
+				nodesTree.add(new ConceptNode(child.getConcept()));
 			}
-			
+			//TODO: Fix this so that it makes links between the new items, not the references to the inputLinks
 			if(replace == null){
 				linksTree.add(new ConceptLink(parent, child));
 			}else{
 				linksTree.add(new ConceptLink(parent, replace));
 			}
 			
+			//TODO: find a way to make multCopies work.
 			if(multCopies.containsKey(parent)){
 				ArrayList<ConceptNode> temp = multCopies.get(parent);
 				for(ConceptNode currNode : temp){

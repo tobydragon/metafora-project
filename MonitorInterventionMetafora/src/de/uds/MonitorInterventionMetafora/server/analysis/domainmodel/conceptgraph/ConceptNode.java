@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class ConceptNode {
 	
 	int level;
+	String id;
 	Concept concept;
 	List<ConceptNode> children;
 	
@@ -25,11 +26,16 @@ public class ConceptNode {
 	}
 	
 	public ConceptNode(Concept concept){
-		this.concept = concept;
+		this (concept, concept.getConceptTitle());
+	}
+	
+	public ConceptNode(Concept concept, String newID){
 		children = new ArrayList<ConceptNode>();
 		numParents = 0;
-		actualComp = 0;
 		predictedComp = 0;
+		actualComp = 0;
+		this.concept = concept;
+		this.id = newID;	
 	}
 	
 	public void addChild(ConceptNode child){
@@ -43,6 +49,10 @@ public class ConceptNode {
 
 	public Concept getConcept(){
 		return concept;
+	}
+	
+	public String getID(){
+		return id;
 	}
 	
 	public String toString(){
