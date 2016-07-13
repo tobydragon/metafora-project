@@ -116,7 +116,10 @@ public class ConceptGraph {
 
 	
 	public String toString(){
-		return root.toString();
+		
+		return "Nodes:\n"+this.nodes+"\nLinks:\n"+this.links;
+		
+		//return root.toString();
 	}
 	public ConceptNode getRoot(){
 		return root;
@@ -212,9 +215,6 @@ public class ConceptGraph {
 	}
 
 	public ConceptGraph graphToTree(){
-		System.out.println(this.nodes);
-		System.out.println(this.links);
-		
 		List<ConceptNode> treeNodesList = new ArrayList<ConceptNode>();
 		List<ConceptLink> treeLinksList = new ArrayList<ConceptLink>();
 		HashMap<String, List<ConceptNode>> multCopies = new HashMap<String, List<ConceptNode>>();
@@ -255,7 +255,8 @@ public class ConceptGraph {
 				treeNodesList.add(replaceParent);
 				treeLinksList.add(new ConceptLink(replaceParent, replaceChild));
 			}else{
-				for( ConceptNode currNode : copiesList){
+				treeLinksList.add((new ConceptLink(copiesList.get(0), replaceChild)));
+				for(int i = 1; i < copiesList.size(); i++){
 					List<ConceptNode> childCopiesList = multCopies.get(child.getConcept().getConceptTitle());
 					ConceptNode replaceChildCopy = new ConceptNode(child.getConcept(),makeName(childCopiesList.get(childCopiesList.size() - 1).getID()));
 					
@@ -264,24 +265,11 @@ public class ConceptGraph {
 					
 					treeNodesList.add(replaceChildCopy);
 					
-					treeLinksList.add(new ConceptLink(currNode, replaceChildCopy));
-					
-					
+					treeLinksList.add(new ConceptLink(copiesList.get(i), replaceChildCopy));			
 				}
-//				for ( ConceptNode currNode : treeNodesList){
-//					if(currNode.getConcept().getConceptTitle().equals(parent.getConcept().getConceptTitle())){
-//						//TODO: Fix that this does not make new replaceChildren for every copy of the parent!
-//						treeLinksList.add(new ConceptLink(currNode, replaceChild));
-//					}
-//				}
 			}
-			
-			
-			
 		}
-		System.out.println("Made in func__________");
-		System.out.println(treeNodesList);
-		System.out.println(treeLinksList);
+
 		NodeAndLinkLists tempNodeAndLinkList = new NodeAndLinkLists(treeNodesList, treeLinksList);
 		return new ConceptGraph(tempNodeAndLinkList);
 	}
