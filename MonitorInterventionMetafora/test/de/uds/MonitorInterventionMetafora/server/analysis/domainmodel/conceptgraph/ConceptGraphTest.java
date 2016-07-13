@@ -68,10 +68,10 @@ public class ConceptGraphTest {
 		
 		clList.add(new ConceptLink(cnList.get(0),cnList.get(1))); //A -> B
 		clList.add(new ConceptLink(cnList.get(0),cnList.get(2))); //A -> C
-//		clList.add(new ConceptLink(cnList.get(1),cnList.get(2))); //B -> C
+		clList.add(new ConceptLink(cnList.get(1),cnList.get(2))); //B -> C
 		clList.add(new ConceptLink(cnList.get(1),cnList.get(3))); //B -> D
 		clList.add(new ConceptLink(cnList.get(2),cnList.get(3))); //C -> D
-//		clList.add(new ConceptLink(cnList.get(0),cnList.get(3))); //A -> D
+		clList.add(new ConceptLink(cnList.get(0),cnList.get(3))); //A -> D
 		
 		
 		NodeAndLinkLists bothLists = new NodeAndLinkLists(cnList,clList);

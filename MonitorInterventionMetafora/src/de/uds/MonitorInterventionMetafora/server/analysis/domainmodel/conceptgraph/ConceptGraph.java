@@ -249,6 +249,7 @@ public class ConceptGraph {
 			}else{
 				for ( ConceptNode currNode : nodesTree){
 					if(currNode.getConcept().getConceptTitle().equals(parent.getConcept().getConceptTitle())){
+						//TODO: Fix that this does not make new replaceChildren for every copy of the parent!
 						linksTree.add(new ConceptLink(currNode, replaceChild));
 					}
 				}
