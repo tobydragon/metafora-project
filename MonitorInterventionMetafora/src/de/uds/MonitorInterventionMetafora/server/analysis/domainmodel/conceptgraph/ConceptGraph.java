@@ -247,9 +247,11 @@ public class ConceptGraph {
 				nodesTree.add(replaceParent);
 				linksTree.add(new ConceptLink(replaceParent, replaceChild));
 			}else{
-				//Fix this
-				List<ConceptNode> temp = multCopies.get(parent.getConcept().getConceptTitle());
-				
+				for ( ConceptNode currNode : nodesTree){
+					if(currNode.getConcept().getConceptTitle().equals(parent.getConcept().getConceptTitle())){
+						linksTree.add(new ConceptLink(currNode, replaceChild));
+					}
+				}
 			}
 			
 			
