@@ -14,9 +14,13 @@ public class ConceptGraph {
 	
 	public static final Integer DIVISION_FACTOR = 2;
 	ConceptNode root;
+	List<ConceptNode> roots;
 	String stringToReturn = "";
 	List<ConceptNode> nodes;
 	List<ConceptLink> links;
+	
+	HashMap<String, ConceptNode> nodesMap;
+	List<IDLink> idLinks;
 
 	/*
 	 *Takes in a book, starts at the root, then goes through each level (chapters, sub chapters, questions) and creates
@@ -56,9 +60,14 @@ public class ConceptGraph {
 	public ConceptGraph(NodeAndLinkLists lists) {
 		this.nodes = lists.getNodes();
 		this.links = lists.getLinks();
-		this.root = findRoot();
+		this.roots = findRoot();
 		
 		addChildren();
+	}
+	
+	public ConceptGraph(HashMap<String, ConceptNode> nodesMapIn, List<IDLink> idLinksIn){
+		this.nodesMap = nodesMapIn;
+		this.idLinks = idLinksIn;
 	}
 	
 	public List<ConceptNode> getNodes(){
@@ -67,6 +76,10 @@ public class ConceptGraph {
 	
 	public List<ConceptLink> getLinks(){
 		return this.links;
+	}
+	
+	public List<IDLink> getIDLinks(){
+		return this.idLinks;
 	}
 	
 	public void addSummariesToGraph(List<PerUserPerProblemSummary> summaries){
@@ -100,7 +113,7 @@ public class ConceptGraph {
 	}
 
 	
- 	private ConceptNode findRoot() {
+ 	private List<ConceptNode> findRoot() {
 		List<ConceptNode> runningTotal = new ArrayList<ConceptNode>();
 		for (ConceptNode node: nodes) {
 			runningTotal.add(node);
@@ -111,7 +124,7 @@ public class ConceptGraph {
 			}
 		}
 		//TODO: give warning if runningTotal has more than one entry, meaning more than one root 
-		return runningTotal.get(0);
+		return runningTotal;
 	}
 
 	
@@ -226,37 +239,37 @@ public class ConceptGraph {
 			ConceptNode replaceChild = null;
 			ConceptNode replaceParent = null;
 			
+			List<ConceptNode> copiesOfChild = multCopies.get(child.getConcept().getConceptTitle());
+			
 			//If node has never been copied before
-			if(! checkNodeInListByConceptTitle(treeNodesList, child)){
+			if(copiesOfChild == null){
 				replaceChild = new ConceptNode(child.getConcept(), makeName(child.getID()));
-				ArrayList<ConceptNode> temp = new ArrayList<ConceptNode>();
-				temp.add(replaceChild);
-				multCopies.put(child.getConcept().getConceptTitle(), temp);
+				copiesOfChild = new ArrayList<ConceptNode>();
+				copiesOfChild.add(replaceChild);
+				multCopies.put(child.getConcept().getConceptTitle(), copiesOfChild);
 				treeNodesList.add(replaceChild);
 			}else{
-				List<ConceptNode> temp = multCopies.get(child.getConcept().getConceptTitle());
-				replaceChild = new ConceptNode(child.getConcept(), makeName(temp.get(temp.size() - 1).getID()));
-				temp.add(replaceChild);
-				multCopies.put(child.getConcept().getConceptTitle(), temp);
+				replaceChild = new ConceptNode(child.getConcept(), makeName(copiesOfChild.get(copiesOfChild.size() - 1).getID()));
+				copiesOfChild.add(replaceChild);
+				multCopies.put(child.getConcept().getConceptTitle(), copiesOfChild);
 				
 				treeNodesList.add(replaceChild);
 			}
 			
 			//If parent is not in treeNodesList
 			//Find or create replaceParent
-			List<ConceptNode> copiesList = multCopies.get(parent.getConcept().getConceptTitle());
-			if(copiesList == null){
+			List<ConceptNode> copiesOfParentsList = multCopies.get(parent.getConcept().getConceptTitle());
+			if(copiesOfParentsList == null){
+				copiesOfParentsList = new ArrayList<ConceptNode>();
 				replaceParent = new ConceptNode(parent.getConcept(), makeName(parent.getID()));
-				
-				ArrayList<ConceptNode> temp = new ArrayList<ConceptNode>();
-				temp.add(replaceParent);
-				multCopies.put(parent.getConcept().getConceptTitle(), temp);
+				copiesOfParentsList.add(replaceParent);
+				multCopies.put(parent.getConcept().getConceptTitle(), copiesOfParentsList);
 				
 				treeNodesList.add(replaceParent);
 				treeLinksList.add(new ConceptLink(replaceParent, replaceChild));
 			}else{
-				treeLinksList.add((new ConceptLink(copiesList.get(0), replaceChild)));
-				for(int i = 1; i < copiesList.size(); i++){
+				treeLinksList.add((new ConceptLink(copiesOfParentsList.get(0), replaceChild)));
+				for(int i = 1; i < copiesOfParentsList.size(); i++){
 					List<ConceptNode> childCopiesList = multCopies.get(child.getConcept().getConceptTitle());
 					ConceptNode replaceChildCopy = new ConceptNode(child.getConcept(),makeName(childCopiesList.get(childCopiesList.size() - 1).getID()));
 					
@@ -265,7 +278,7 @@ public class ConceptGraph {
 					
 					treeNodesList.add(replaceChildCopy);
 					
-					treeLinksList.add(new ConceptLink(copiesList.get(i), replaceChildCopy));			
+					treeLinksList.add(new ConceptLink(copiesOfParentsList.get(i), replaceChildCopy));			
 				}
 			}
 		}
@@ -274,22 +287,64 @@ public class ConceptGraph {
 		return new ConceptGraph(tempNodeAndLinkList);
 	}
 	
-	public boolean checkNodeInListByID(List<ConceptNode> listToCheck, ConceptNode nodeToCheck){
-		for( ConceptNode currNode : listToCheck){
-			if(currNode.getID().equals(nodeToCheck.getID())){
-				return true;
+	public ConceptGraph graphToTreeNewLinks(){
+		List<IDLink> treeLinksList = new ArrayList<IDLink>();
+		HashMap<String,ConceptNode> treeNodesList = new HashMap<String,ConceptNode>();
+		HashMap<String, List<ConceptNode>> multCopies = new HashMap<String, List<ConceptNode>>();
+
+		
+		for(IDLink currLink : this.idLinks){
+			ConceptNode child = this.nodesMap.get(currLink.getChild());
+			ConceptNode parent = this.nodesMap.get(currLink.getParent());
+			ConceptNode replaceChild = null;
+			ConceptNode replaceParent = null;
+			
+			List<ConceptNode> copiesOfChild = multCopies.get(child.getConcept().getConceptTitle());
+			
+			//If node has never been copied before
+			if(copiesOfChild == null){
+				replaceChild = new ConceptNode(child.getConcept(), makeName(child.getID()));
+				copiesOfChild = new ArrayList<ConceptNode>();
+				copiesOfChild.add(replaceChild);
+				multCopies.put(child.getConcept().getConceptTitle(), copiesOfChild);
+				treeNodesList.put(child.getConcept().getConceptTitle(),replaceChild);
+			}else{
+				replaceChild = new ConceptNode(child.getConcept(), makeName(copiesOfChild.get(copiesOfChild.size() - 1).getID()));
+				copiesOfChild.add(replaceChild);
+				multCopies.put(child.getConcept().getConceptTitle(), copiesOfChild);
+				
+				treeNodesList.put(child.getConcept().getConceptTitle(),replaceChild);
+			}
+			
+			//If parent is not in treeNodesList
+			//Find or create replaceParent
+			List<ConceptNode> copiesOfParentsList = multCopies.get(parent.getConcept().getConceptTitle());
+			if(copiesOfParentsList == null){
+				copiesOfParentsList = new ArrayList<ConceptNode>();
+				replaceParent = new ConceptNode(parent.getConcept(), makeName(parent.getID()));
+				copiesOfParentsList.add(replaceParent);
+				multCopies.put(parent.getConcept().getConceptTitle(), copiesOfParentsList);
+				
+				treeNodesList.put(parent.getConcept().getConceptTitle(),replaceParent);
+				treeLinksList.add(new IDLink(replaceParent.getID(), replaceChild.getID()));
+			}else{
+				treeLinksList.add((new IDLink(copiesOfParentsList.get(0).getID(), replaceChild.getID())));
+				for(int i = 1; i < copiesOfParentsList.size(); i++){
+					List<ConceptNode> childCopiesList = multCopies.get(child.getConcept().getConceptTitle());
+					ConceptNode replaceChildCopy = new ConceptNode(child.getConcept(),makeName(childCopiesList.get(childCopiesList.size() - 1).getID()));
+					
+					childCopiesList.add(replaceChildCopy);
+					multCopies.put(child.getConcept().getConceptTitle(), childCopiesList);
+					
+					treeNodesList.put(child.getConcept().getConceptTitle(),replaceChildCopy);
+					
+					treeLinksList.add(new IDLink(copiesOfParentsList.get(i).getID(), replaceChildCopy.getID()));			
+				}
 			}
 		}
-		return false;
-	}
-	
-	public boolean checkNodeInListByConceptTitle(List<ConceptNode> listToCheck, ConceptNode nodeToCheck){
-		for( ConceptNode currNode : listToCheck){
-			if(currNode.getConcept().getConceptTitle().equals(nodeToCheck.getConcept().getConceptTitle())){
-				return true;
-			}
-		}
-		return false;
+
+		
+		return new ConceptGraph(treeNodesList, treeLinksList);
 	}
 	
 	public static String makeName(String prevName) {
