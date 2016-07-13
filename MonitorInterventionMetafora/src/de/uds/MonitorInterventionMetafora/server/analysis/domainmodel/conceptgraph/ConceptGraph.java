@@ -214,54 +214,75 @@ public class ConceptGraph {
 	public ConceptGraph graphToTree(){
 		System.out.println(this.nodes);
 		System.out.println(this.links);
-		List<ConceptNode> nodesTree = new ArrayList<ConceptNode>();
-		List<ConceptLink> linksTree = new ArrayList<ConceptLink>();
-		HashMap<String, ArrayList<ConceptNode>> multCopies = new HashMap<String, ArrayList<ConceptNode>>();
+		
+		List<ConceptNode> treeNodesList = new ArrayList<ConceptNode>();
+		List<ConceptLink> treeLinksList = new ArrayList<ConceptLink>();
+		HashMap<String, List<ConceptNode>> multCopies = new HashMap<String, List<ConceptNode>>();
 
+		
 		for(ConceptLink currLink : this.links){
 			ConceptNode child = currLink.getChild();
 			ConceptNode parent = currLink.getParent();
 			ConceptNode replaceChild = null;
 			ConceptNode replaceParent = null;
 			
-			if(! checkNodeInListByConceptTitle(nodesTree, child)){
+			//If node has never been copied before
+			if(! checkNodeInListByConceptTitle(treeNodesList, child)){
 				replaceChild = new ConceptNode(child.getConcept(), makeName(child.getID()));
-				nodesTree.add(replaceChild);
+				ArrayList<ConceptNode> temp = new ArrayList<ConceptNode>();
+				temp.add(replaceChild);
+				multCopies.put(child.getConcept().getConceptTitle(), temp);
+				treeNodesList.add(replaceChild);
 			}else{
-				if(multCopies.get(child.getConcept().getConceptTitle()) == null){
-					replaceChild = new ConceptNode(child.getConcept(), makeName(child.getID()+"1"));
-					ArrayList<ConceptNode> temp = new ArrayList<ConceptNode>();
-					temp.add(replaceChild);
-					multCopies.put(child.getConcept().getConceptTitle(), temp);
-				}else{
-					ArrayList<ConceptNode> temp = multCopies.get(child.getConcept().getConceptTitle());
-					replaceChild = new ConceptNode(child.getConcept(), makeName(temp.get(temp.size() - 1).getID()));
-					temp.add(replaceChild);
-					multCopies.put(child.getConcept().getConceptTitle(), temp);
-				}
-				nodesTree.add(replaceChild);
+				List<ConceptNode> temp = multCopies.get(child.getConcept().getConceptTitle());
+				replaceChild = new ConceptNode(child.getConcept(), makeName(temp.get(temp.size() - 1).getID()));
+				temp.add(replaceChild);
+				multCopies.put(child.getConcept().getConceptTitle(), temp);
+				
+				treeNodesList.add(replaceChild);
 			}
 			
-			if(! checkNodeInListByConceptTitle(nodesTree,parent)){
+			//If parent is not in treeNodesList
+			//Find or create replaceParent
+			List<ConceptNode> copiesList = multCopies.get(parent.getConcept().getConceptTitle());
+			if(copiesList == null){
 				replaceParent = new ConceptNode(parent.getConcept(), makeName(parent.getID()));
-				nodesTree.add(replaceParent);
-				linksTree.add(new ConceptLink(replaceParent, replaceChild));
+				
+				ArrayList<ConceptNode> temp = new ArrayList<ConceptNode>();
+				temp.add(replaceParent);
+				multCopies.put(parent.getConcept().getConceptTitle(), temp);
+				
+				treeNodesList.add(replaceParent);
+				treeLinksList.add(new ConceptLink(replaceParent, replaceChild));
 			}else{
-				for ( ConceptNode currNode : nodesTree){
-					if(currNode.getConcept().getConceptTitle().equals(parent.getConcept().getConceptTitle())){
-						//TODO: Fix that this does not make new replaceChildren for every copy of the parent!
-						linksTree.add(new ConceptLink(currNode, replaceChild));
-					}
+				for( ConceptNode currNode : copiesList){
+					List<ConceptNode> childCopiesList = multCopies.get(child.getConcept().getConceptTitle());
+					ConceptNode replaceChildCopy = new ConceptNode(child.getConcept(),makeName(childCopiesList.get(childCopiesList.size() - 1).getID()));
+					
+					childCopiesList.add(replaceChildCopy);
+					multCopies.put(child.getConcept().getConceptTitle(), childCopiesList);
+					
+					treeNodesList.add(replaceChildCopy);
+					
+					treeLinksList.add(new ConceptLink(currNode, replaceChildCopy));
+					
+					
 				}
+//				for ( ConceptNode currNode : treeNodesList){
+//					if(currNode.getConcept().getConceptTitle().equals(parent.getConcept().getConceptTitle())){
+//						//TODO: Fix that this does not make new replaceChildren for every copy of the parent!
+//						treeLinksList.add(new ConceptLink(currNode, replaceChild));
+//					}
+//				}
 			}
 			
 			
 			
 		}
 		System.out.println("Made in func__________");
-		System.out.println(nodesTree);
-		System.out.println(linksTree);
-		NodeAndLinkLists tempNodeAndLinkList = new NodeAndLinkLists(nodesTree, linksTree);
+		System.out.println(treeNodesList);
+		System.out.println(treeLinksList);
+		NodeAndLinkLists tempNodeAndLinkList = new NodeAndLinkLists(treeNodesList, treeLinksList);
 		return new ConceptGraph(tempNodeAndLinkList);
 	}
 	
