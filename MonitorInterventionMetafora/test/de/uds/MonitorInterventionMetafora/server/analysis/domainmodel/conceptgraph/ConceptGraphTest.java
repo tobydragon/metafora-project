@@ -351,8 +351,8 @@ public class ConceptGraphTest {
 	
 	@Test
 	public void addSummariesTest() {		
-		makeSummaries();
-		makeGraph();
+//		makeSummaries();
+//		makeGraph();
 	}
 
 	public void makeSummaries(){
@@ -370,12 +370,13 @@ public class ConceptGraphTest {
 	}
 	
 	public void makeGraph(){
-		String inputStructure = "conffiles/xml/test/graphTests/simpleGraphTest/simpleGraph.json";
-		// Make the concept graph from Json
-		String thisString = GeneralUtil.getRealPath(inputStructure);
-		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);
-		this.graphFromJson = new ConceptGraph(fromJsonLists);
+//		String inputStructure = "conffiles/xml/test/graphTests/simpleGraphTest/simpleGraph.json";
+//		// Make the concept graph from Json
+//		String thisString = GeneralUtil.getRealPath(inputStructure);
+//		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);
+//		this.graphFromJson = new ConceptGraph(fromJsonLists);
 	}
+	
 //	public void makeSimpleOld(){
 //		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
 //		List<ConceptLink> clList = new ArrayList<ConceptLink>();
