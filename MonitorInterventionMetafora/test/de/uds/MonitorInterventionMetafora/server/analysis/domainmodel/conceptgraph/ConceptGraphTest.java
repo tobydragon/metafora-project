@@ -1,6 +1,9 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -33,117 +36,13 @@ public class ConceptGraphTest {
 	
 	List<PerUserPerProblemSummary> summaries;
 	
-	public void makeSimple(){
-		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
-		List<ConceptLink> clList = new ArrayList<ConceptLink>();
-		
-		
-		//Make simple tree
-		Concept c = new ConceptImpl("A");
-		cnList.add(new ConceptNode(c, c.getConceptTitle()));
-		c = new ConceptImpl("B");
-		cnList.add(new ConceptNode(c, c.getConceptTitle()));
-		c = new ConceptImpl("C");
-		cnList.add(new ConceptNode(c, c.getConceptTitle()));
-		
-		
-		clList.add(new ConceptLink(cnList.get(0),cnList.get(1))); //A -> B
-		clList.add(new ConceptLink(cnList.get(0),cnList.get(2))); //A -> C
-		clList.add(new ConceptLink(cnList.get(1),cnList.get(2))); //B -> C
-		
-		NodeAndLinkLists bothLists = new NodeAndLinkLists(cnList,clList);
-		
-		this.simpleGraph = new ConceptGraph(bothLists);
-		this.simpleTree = simpleGraph.graphToTree();
-		
-		logger.debug(simpleGraph);
-		logger.debug(simpleTree);
-	}
-	
-	public void makeMedium(){
-		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
-		List<ConceptLink> clList = new ArrayList<ConceptLink>();
-		
-		
-		//Make simple tree
-		Concept c = new ConceptImpl("A");
-		cnList.add(new ConceptNode(c, c.getConceptTitle()));
-		c = new ConceptImpl("B");
-		cnList.add(new ConceptNode(c, c.getConceptTitle()));
-		c = new ConceptImpl("C");
-		cnList.add(new ConceptNode(c, c.getConceptTitle()));
-		
-		
-		clList.add(new ConceptLink(cnList.get(0),cnList.get(1))); //A -> B
-		clList.add(new ConceptLink(cnList.get(0),cnList.get(2))); //A -> C
-		clList.add(new ConceptLink(cnList.get(1),cnList.get(2))); //B -> C
-		
-		//make medium graph
-		c = new ConceptImpl("D");
-		cnList.add(new ConceptNode(c, c.getConceptTitle()));
-		clList.add(new ConceptLink(cnList.get(1),cnList.get(3))); //B -> D
-		clList.add(new ConceptLink(cnList.get(2),cnList.get(3))); //C -> D
-		
-		NodeAndLinkLists bothLists = new NodeAndLinkLists(cnList, clList);
-		
-		this.mediumGraph = new ConceptGraph(bothLists);
-		
-		this.mediumTree = this.mediumGraph.graphToTree();
-		
-		logger.debug(mediumGraph);
-		logger.debug(mediumTree);
-	}
-	
-	public void makeComplex(){
-		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
-		List<ConceptLink> clList = new ArrayList<ConceptLink>();
-		
-		
-		//Make simple tree
-		Concept c = new ConceptImpl("A");
-		cnList.add(new ConceptNode(c, c.getConceptTitle()));
-		c = new ConceptImpl("B");
-		cnList.add(new ConceptNode(c, c.getConceptTitle()));
-		c = new ConceptImpl("C");
-		cnList.add(new ConceptNode(c, c.getConceptTitle()));
-		
-		
-		clList.add(new ConceptLink(cnList.get(0),cnList.get(1))); //A -> B
-		clList.add(new ConceptLink(cnList.get(0),cnList.get(2))); //A -> C
-		clList.add(new ConceptLink(cnList.get(1),cnList.get(2))); //B -> C
-		
-		//make medium graph
-		c = new ConceptImpl("D");
-		cnList.add(new ConceptNode(c, c.getConceptTitle()));
-		clList.add(new ConceptLink(cnList.get(1),cnList.get(3))); //B -> D
-		clList.add(new ConceptLink(cnList.get(2),cnList.get(3))); //C -> D
-		
-		c = new ConceptImpl("E");
-		cnList.add(new ConceptNode(c, c.getConceptTitle()));
-		clList.add(new ConceptLink(cnList.get(0), cnList.get(4))); //A -> E
-		clList.add(new ConceptLink(cnList.get(2), cnList.get(4))); //C -> E
-		clList.add(new ConceptLink(cnList.get(3), cnList.get(4))); //D -> E
-
-		NodeAndLinkLists bothLists = new NodeAndLinkLists(cnList, clList);
-		
-		this.complexGraph = new ConceptGraph(bothLists);
-		
-		this.complexTree = complexGraph.graphToTree();
-		
-		logger.debug(complexGraph);
-		logger.debug(complexTree);
-	}
-	
 	@Before
 	public void setUp() throws Exception {
 		makeSimple();
 		makeMedium();
 		makeComplex();
 		//makeSummaries();
-		//makeGraph();
-		
-		//logger.debug("SimpleGraph in setup: " + this.simpleGraph.nodes);
-		
+		//makeGraph();	
 	}
 
 	@After
@@ -156,10 +55,134 @@ public class ConceptGraphTest {
 		this.complexTree = null;
 	}
 	
+	
+	public void makeSimple(){
+		HashMap<String, List<ConceptNode>> cnList = new HashMap<String, List<ConceptNode>>();
+		List<IDLink> clList = new ArrayList<IDLink>();
+		
+		
+		//Make simple tree
+		List<ConceptNode> tempValue= new ArrayList<ConceptNode>();
+		Concept c = new ConceptImpl("A");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		tempValue= new ArrayList<ConceptNode>();
+		c = new ConceptImpl("B");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		tempValue= new ArrayList<ConceptNode>();
+		c = new ConceptImpl("C");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		
+		
+		clList.add(new IDLink("A","B")); //A -> B
+		clList.add(new IDLink("A","C")); //A -> C
+		clList.add(new IDLink("B","C")); //B -> C
+		
+		this.simpleGraph = new ConceptGraph(cnList,clList);
+		this.simpleTree = simpleGraph.graphToTreeNewLinks();
+	}
+	
+	public void makeMedium(){
+		HashMap<String, List<ConceptNode>> cnList = new HashMap<String, List<ConceptNode>>();
+		List<IDLink> clList = new ArrayList<IDLink>();
+		
+		
+		//Make simple tree
+		List<ConceptNode> tempValue= new ArrayList<ConceptNode>();
+		Concept c = new ConceptImpl("A");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		tempValue = null;
+		tempValue= new ArrayList<ConceptNode>();
+		c = new ConceptImpl("B");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		tempValue = null;
+		tempValue= new ArrayList<ConceptNode>();
+		c = new ConceptImpl("C");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		tempValue= new ArrayList<ConceptNode>();
+		c = new ConceptImpl("D");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		
+		
+		clList.add(new IDLink("A","B")); //A -> B
+		clList.add(new IDLink("A","C")); //A -> C
+		clList.add(new IDLink("B","C")); //B -> C
+		clList.add(new IDLink("B","D")); //B -> D
+		clList.add(new IDLink("C","D")); //C -> D
+		
+		this.mediumGraph = new ConceptGraph(cnList,clList);
+		this.mediumTree = mediumGraph.graphToTreeNewLinks();
+		
+		logger.debug(mediumTree);
+	}
+	public void makeComplex(){
+		HashMap<String, List<ConceptNode>> cnList = new HashMap<String, List<ConceptNode>>();
+		List<IDLink> clList = new ArrayList<IDLink>();
+		
+		
+		//Make simple tree
+		List<ConceptNode> tempValue= new ArrayList<ConceptNode>();
+		Concept c = new ConceptImpl("A");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		tempValue = null;
+		tempValue= new ArrayList<ConceptNode>();
+		c = new ConceptImpl("B");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		tempValue = null;
+		tempValue= new ArrayList<ConceptNode>();
+		c = new ConceptImpl("C");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		tempValue= new ArrayList<ConceptNode>();
+		c = new ConceptImpl("D");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		tempValue= new ArrayList<ConceptNode>();
+		c = new ConceptImpl("E");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		
+		
+		clList.add(new IDLink("A","B")); //A -> B
+		clList.add(new IDLink("A","C")); //A -> C
+		clList.add(new IDLink("B","C")); //B -> C
+		clList.add(new IDLink("B","D")); //B -> D
+		clList.add(new IDLink("C","D")); //C -> D
+		clList.add(new IDLink("A","E")); //A -> E
+		clList.add(new IDLink("C","E")); //C -> E
+		clList.add(new IDLink("D","E")); //D -> E
+		
+		this.complexGraph = new ConceptGraph(cnList,clList);
+		this.complexTree = complexGraph.graphToTreeNewLinks();
+	}
+	
 	@Test
 	public void simpleGraphCheckNodesNumbersTest(){
-		int numNodesInput = simpleGraph.nodes.size();
-		int numNodesOutput = simpleTree.nodes.size();
+		int numNodesInput = 0;
+		int numNodesOutput = 0;
+		
+		Iterator it = simpleGraph.nodesMap.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry pair = (Map.Entry)it.next();
+	        logger.debug(pair.getValue());
+	        numNodesInput += ((List<ConceptNode>) pair.getValue()).size();
+	        it.remove(); // avoids a ConcurrentModificationException
+	    }
+	    
+	    it = simpleTree.nodesMap.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry pair = (Map.Entry)it.next();
+	        numNodesOutput += ((List<ConceptNode>) pair.getValue()).size();
+	        it.remove(); // avoids a ConcurrentModificationException
+	    }
 		
 		Assert.assertEquals(3,numNodesInput);
 		Assert.assertEquals(4, numNodesOutput);
@@ -167,8 +190,8 @@ public class ConceptGraphTest {
 	
 	@Test
 	public void simpleGraphCheckLinksNumbersTest(){
-		int numLinksInput = simpleGraph.links.size();
-		int numLinksOutput = simpleTree.links.size();
+		int numLinksInput = simpleGraph.idLinks.size();
+		int numLinksOutput = simpleTree.idLinks.size();
 		
 		Assert.assertEquals(3, numLinksInput);
 		Assert.assertEquals(3, numLinksOutput);
@@ -176,8 +199,24 @@ public class ConceptGraphTest {
 	
 	@Test
 	public void mediumGraphCheckNodesNumbersTest(){
-		int numNodesInput = mediumGraph.nodes.size();
-		int numNodesOutput = mediumTree.nodes.size();
+		int numNodesInput = 0;
+		int numNodesOutput = 0;
+		
+		Iterator it = mediumGraph.nodesMap.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry pair = (Map.Entry)it.next();
+	        logger.debug(pair.getValue());
+	        numNodesInput += ((List<ConceptNode>) pair.getValue()).size();
+	        it.remove(); // avoids a ConcurrentModificationException
+	    }
+	    
+	    it = mediumTree.nodesMap.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry pair = (Map.Entry)it.next();
+	        numNodesOutput += ((List<ConceptNode>) pair.getValue()).size();
+	        it.remove(); // avoids a ConcurrentModificationException
+	    }
+		
 		
 		Assert.assertEquals(4,numNodesInput);
 		Assert.assertEquals(7, numNodesOutput);
@@ -185,8 +224,8 @@ public class ConceptGraphTest {
 	
 	@Test
 	public void mediumGraphCheckLinksNumbersTest(){
-		int numLinksInput = mediumGraph.links.size();
-		int numLinksOutput = mediumTree.links.size();
+		int numLinksInput = mediumGraph.idLinks.size();
+		int numLinksOutput = mediumTree.idLinks.size();
 		
 		Assert.assertEquals(5, numLinksInput);
 		Assert.assertEquals(6, numLinksOutput);
@@ -194,8 +233,23 @@ public class ConceptGraphTest {
 	
 	@Test
 	public void complexGraphCheckNodesNumbersTest(){
-		int numNodesInput = complexGraph.nodes.size();
-		int numNodesOutput = complexTree.nodes.size();
+		int numNodesInput = 0;
+		int numNodesOutput = 0;
+		
+		Iterator it = complexGraph.nodesMap.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry pair = (Map.Entry)it.next();
+	        logger.debug(pair.getValue());
+	        numNodesInput += ((List<ConceptNode>) pair.getValue()).size();
+	        it.remove(); // avoids a ConcurrentModificationException
+	    }
+	    
+	    it = complexTree.nodesMap.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry pair = (Map.Entry)it.next();
+	        numNodesOutput += ((List<ConceptNode>) pair.getValue()).size();
+	        it.remove(); // avoids a ConcurrentModificationException
+	    }
 		
 		Assert.assertEquals(5,numNodesInput);
 		Assert.assertEquals(13, numNodesOutput);
@@ -203,8 +257,8 @@ public class ConceptGraphTest {
 	
 	@Test
 	public void complexGraphCheckLinksNumbersTest(){
-		int numLinksInput = complexGraph.links.size();
-		int numLinksOutput = complexTree.links.size();
+		int numLinksInput = complexGraph.idLinks.size();
+		int numLinksOutput = complexTree.idLinks.size();
 		
 		Assert.assertEquals(8, numLinksInput);
 		Assert.assertEquals(12, numLinksOutput);
@@ -215,15 +269,19 @@ public class ConceptGraphTest {
 		int numA = 0;
 		int numB = 0;
 		int numC = 0;
-		for( ConceptNode currNode : simpleTree.nodes){
-			if(currNode.getConcept().getConceptTitle().equals("A")){
-				numA++;
-			}else if(currNode.getConcept().getConceptTitle().equals("B")){
-				numB++;
-			}else if(currNode.getConcept().getConceptTitle().equals("C")){
-				numC++;
+		
+		Iterator it = simpleTree.nodesMap.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry pair = (Map.Entry)it.next();
+	        if(pair.getKey().equals("A")){
+				numA += ((List<ConceptNode>) pair.getValue()).size();
+			}else if(pair.getKey().equals("B")){
+				numB += ((List<ConceptNode>) pair.getValue()).size();
+			}else if(pair.getKey().equals("C")){
+				numC += ((List<ConceptNode>) pair.getValue()).size();
 			}
-		}
+	        it.remove(); // avoids a ConcurrentModificationException
+	    }
 		
 		Assert.assertEquals(1, numA);
 		Assert.assertEquals(1, numB);
@@ -236,17 +294,21 @@ public class ConceptGraphTest {
 		int numB = 0;
 		int numC = 0;
 		int numD = 0;
-		for( ConceptNode currNode : mediumTree.nodes){
-			if(currNode.getConcept().getConceptTitle().equals("A")){
-				numA++;
-			}else if(currNode.getConcept().getConceptTitle().equals("B")){
-				numB++;
-			}else if(currNode.getConcept().getConceptTitle().equals("C")){
-				numC++;
-			}else if(currNode.getConcept().getConceptTitle().equals("D")){
-				numD++;
+		
+		Iterator it = mediumTree.nodesMap.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry pair = (Map.Entry)it.next();
+	        if(pair.getKey().equals("A")){
+				numA += ((List<ConceptNode>) pair.getValue()).size();
+			}else if(pair.getKey().equals("B")){
+				numB += ((List<ConceptNode>) pair.getValue()).size();
+			}else if(pair.getKey().equals("C")){
+				numC += ((List<ConceptNode>) pair.getValue()).size();
+			}else if(pair.getKey().equals("D")){
+				numD += ((List<ConceptNode>) pair.getValue()).size();
 			}
-		}
+	        it.remove(); // avoids a ConcurrentModificationException
+	    }
 		
 		Assert.assertEquals(1, numA);
 		Assert.assertEquals(1, numB);
@@ -261,20 +323,24 @@ public class ConceptGraphTest {
 		int numC = 0;
 		int numD = 0;
 		int numE = 0;
-		for( ConceptNode currNode : complexTree.nodes){
-			if(currNode.getConcept().getConceptTitle().equals("A")){
-				numA++;
-			}else if(currNode.getConcept().getConceptTitle().equals("B")){
-				numB++;
-			}else if(currNode.getConcept().getConceptTitle().equals("C")){
-				numC++;
-			}else if(currNode.getConcept().getConceptTitle().equals("D")){
-				numD++;
-			}else if(currNode.getConcept().getConceptTitle().equals("E")){
-				numE++;
-			}
-		}
 		
+		Iterator it = complexTree.nodesMap.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry pair = (Map.Entry)it.next();
+	        if(pair.getKey().equals("A")){
+				numA += ((List<ConceptNode>) pair.getValue()).size();
+			}else if(pair.getKey().equals("B")){
+				numB += ((List<ConceptNode>) pair.getValue()).size();
+			}else if(pair.getKey().equals("C")){
+				numC += ((List<ConceptNode>) pair.getValue()).size();
+			}else if(pair.getKey().equals("D")){
+				numD += ((List<ConceptNode>) pair.getValue()).size();
+			}else if(pair.getKey().equals("E")){
+				numE += ((List<ConceptNode>) pair.getValue()).size();
+			}
+	        it.remove(); // avoids a ConcurrentModificationException
+	    }
+	    
 		Assert.assertEquals(1, numA);
 		Assert.assertEquals(1, numB);
 		Assert.assertEquals(2, numC);
@@ -282,31 +348,130 @@ public class ConceptGraphTest {
 		Assert.assertEquals(6, numE);
 	}
 	
-	@Test
-	public void addSummariesTest() {		
-
-	}
-
-	public void makeSummaries(){
-		String inputXML = "conffiles/xml/test/graphTests/simpleGraphTest/simpleGraphTestRunestone.xml";
-		
-		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(GeneralUtil.getRealPath(inputXML));
-		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
-		
-//		logger.debug(CfInteractionDataParser.toXml(testCf));
-		List<CfAction> allActions = testCf.getCfActions();
-		//Creates problem summaries from user actions
-		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
-		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
-		this.summaries = myIdentifier.getAllSummaries(allActions, involvedUsers, new ArrayList<CfProperty>());
-	}
-	
-	public void makeGraph(){
-		String inputStructure = "conffiles/xml/test/graphTests/simpleGraphTest/simpleGraph.json";
-		// Make the concept graph from Json
-		String thisString = GeneralUtil.getRealPath(inputStructure);
-		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);
-		this.graphFromJson = new ConceptGraph(fromJsonLists);
-	}
-
+//	@Test
+//	public void addSummariesTest() {		
+//
+//	}
+//
+//	public void makeSummaries(){
+//		String inputXML = "conffiles/xml/test/graphTests/simpleGraphTest/simpleGraphTestRunestone.xml";
+//		
+//		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(GeneralUtil.getRealPath(inputXML));
+//		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
+//		
+////		logger.debug(CfInteractionDataParser.toXml(testCf));
+//		List<CfAction> allActions = testCf.getCfActions();
+//		//Creates problem summaries from user actions
+//		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
+//		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
+//		this.summaries = myIdentifier.getAllSummaries(allActions, involvedUsers, new ArrayList<CfProperty>());
+//	}
+//	
+//	public void makeGraph(){
+//		String inputStructure = "conffiles/xml/test/graphTests/simpleGraphTest/simpleGraph.json";
+//		// Make the concept graph from Json
+//		String thisString = GeneralUtil.getRealPath(inputStructure);
+//		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);
+//		this.graphFromJson = new ConceptGraph(fromJsonLists);
+//	}
+//	public void makeSimpleOld(){
+//		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
+//		List<ConceptLink> clList = new ArrayList<ConceptLink>();
+//		
+//		
+//		//Make simple tree
+//		Concept c = new ConceptImpl("A");
+//		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+//		c = new ConceptImpl("B");
+//		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+//		c = new ConceptImpl("C");
+//		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+//		
+//		
+//		clList.add(new ConceptLink(cnList.get(0),cnList.get(1))); //A -> B
+//		clList.add(new ConceptLink(cnList.get(0),cnList.get(2))); //A -> C
+//		clList.add(new ConceptLink(cnList.get(1),cnList.get(2))); //B -> C
+//		
+//		NodeAndLinkLists bothLists = new NodeAndLinkLists(cnList,clList);
+//		
+//		this.simpleGraph = new ConceptGraph(bothLists);
+//		this.simpleTree = simpleGraph.graphToTree();
+//		
+//		logger.debug(simpleGraph);
+//		logger.debug(simpleTree);
+//	}
+//	
+//	public void makeMediumOld(){
+//		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
+//		List<ConceptLink> clList = new ArrayList<ConceptLink>();
+//		
+//		
+//		//Make simple tree
+//		Concept c = new ConceptImpl("A");
+//		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+//		c = new ConceptImpl("B");
+//		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+//		c = new ConceptImpl("C");
+//		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+//		
+//		
+//		clList.add(new ConceptLink(cnList.get(0),cnList.get(1))); //A -> B
+//		clList.add(new ConceptLink(cnList.get(0),cnList.get(2))); //A -> C
+//		clList.add(new ConceptLink(cnList.get(1),cnList.get(2))); //B -> C
+//		
+//		//make medium graph
+//		c = new ConceptImpl("D");
+//		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+//		clList.add(new ConceptLink(cnList.get(1),cnList.get(3))); //B -> D
+//		clList.add(new ConceptLink(cnList.get(2),cnList.get(3))); //C -> D
+//		
+//		NodeAndLinkLists bothLists = new NodeAndLinkLists(cnList, clList);
+//		
+//		this.mediumGraph = new ConceptGraph(bothLists);
+//		
+//		this.mediumTree = this.mediumGraph.graphToTree();
+//		
+//		logger.debug(mediumGraph);
+//		logger.debug(mediumTree);
+//	}
+//	
+//	public void makeComplexOld(){
+//		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
+//		List<ConceptLink> clList = new ArrayList<ConceptLink>();
+//		
+//		
+//		//Make simple tree
+//		Concept c = new ConceptImpl("A");
+//		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+//		c = new ConceptImpl("B");
+//		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+//		c = new ConceptImpl("C");
+//		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+//		
+//		
+//		clList.add(new ConceptLink(cnList.get(0),cnList.get(1))); //A -> B
+//		clList.add(new ConceptLink(cnList.get(0),cnList.get(2))); //A -> C
+//		clList.add(new ConceptLink(cnList.get(1),cnList.get(2))); //B -> C
+//		
+//		//make medium graph
+//		c = new ConceptImpl("D");
+//		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+//		clList.add(new ConceptLink(cnList.get(1),cnList.get(3))); //B -> D
+//		clList.add(new ConceptLink(cnList.get(2),cnList.get(3))); //C -> D
+//		
+//		c = new ConceptImpl("E");
+//		cnList.add(new ConceptNode(c, c.getConceptTitle()));
+//		clList.add(new ConceptLink(cnList.get(0), cnList.get(4))); //A -> E
+//		clList.add(new ConceptLink(cnList.get(2), cnList.get(4))); //C -> E
+//		clList.add(new ConceptLink(cnList.get(3), cnList.get(4))); //D -> E
+//
+//		NodeAndLinkLists bothLists = new NodeAndLinkLists(cnList, clList);
+//		
+//		this.complexGraph = new ConceptGraph(bothLists);
+//		
+//		this.complexTree = complexGraph.graphToTree();
+//		
+//		logger.debug(complexGraph);
+//		logger.debug(complexTree);
+//	}
 }

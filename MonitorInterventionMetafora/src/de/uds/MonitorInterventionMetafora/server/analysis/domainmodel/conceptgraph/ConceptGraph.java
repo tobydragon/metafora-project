@@ -19,7 +19,7 @@ public class ConceptGraph {
 	List<ConceptNode> nodes;
 	List<ConceptLink> links;
 	
-	HashMap<String, ConceptNode> nodesMap;
+	HashMap<String, List<ConceptNode>> nodesMap;
 	List<IDLink> idLinks;
 
 	/*
@@ -65,7 +65,7 @@ public class ConceptGraph {
 		addChildren();
 	}
 	
-	public ConceptGraph(HashMap<String, ConceptNode> nodesMapIn, List<IDLink> idLinksIn){
+	public ConceptGraph(HashMap<String, List<ConceptNode>> nodesMapIn, List<IDLink> idLinksIn){
 		this.nodesMap = nodesMapIn;
 		this.idLinks = idLinksIn;
 	}
@@ -130,7 +130,7 @@ public class ConceptGraph {
 	
 	public String toString(){
 		
-		return "Nodes:\n"+this.nodes+"\nLinks:\n"+this.links;
+		return "Nodes:\n"+this.nodesMap+"\nLinks:\n"+this.idLinks;
 		
 		//return root.toString();
 	}
@@ -294,8 +294,8 @@ public class ConceptGraph {
 
 		
 		for(IDLink currLink : this.idLinks){
-			ConceptNode child = this.nodesMap.get(currLink.getChild());
-			ConceptNode parent = this.nodesMap.get(currLink.getParent());
+			ConceptNode child = this.nodesMap.get(currLink.getChild()).get(0);
+			ConceptNode parent = this.nodesMap.get(currLink.getParent()).get(0);
 			ConceptNode replaceChild = null;
 			ConceptNode replaceParent = null;
 			
@@ -344,7 +344,7 @@ public class ConceptGraph {
 		}
 
 		
-		return new ConceptGraph(treeNodesList, treeLinksList);
+		return new ConceptGraph(multCopies, treeLinksList);
 	}
 	
 	public static String makeName(String prevName) {
@@ -371,5 +371,34 @@ public class ConceptGraph {
         }
         return "";
     }
+	
+	public static void main(String args[]){
+		HashMap<String, List<ConceptNode>> cnList = new HashMap<String, List<ConceptNode>>();
+		List<IDLink> clList = new ArrayList<IDLink>();
+		
+		
+		//Make simple tree
+		List<ConceptNode> tempValue= new ArrayList<ConceptNode>();
+		Concept c = new ConceptImpl("A");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		tempValue= new ArrayList<ConceptNode>();
+		c = new ConceptImpl("B");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		tempValue= new ArrayList<ConceptNode>();
+		c = new ConceptImpl("C");
+		tempValue.add(new ConceptNode(c, c.getConceptTitle()));
+		cnList.put(c.getConceptTitle(), tempValue);
+		
+		
+		clList.add(new IDLink("A","B")); //A -> B
+		clList.add(new IDLink("A","C")); //A -> C
+		clList.add(new IDLink("B","C")); //B -> C
+		
+		ConceptGraph simpleGraph = new ConceptGraph(cnList,clList);
+		ConceptGraph simpleTree = simpleGraph.graphToTreeNewLinks();
+		System.out.println(simpleTree);
+	}
 	
 }
