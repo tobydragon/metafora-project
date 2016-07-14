@@ -288,14 +288,15 @@ public class ConceptGraph {
 	}
 	
 	public ConceptGraph graphToTreeNewLinks(){
+		
+		
 		List<IDLink> treeLinksList = new ArrayList<IDLink>();
-		HashMap<String,ConceptNode> treeNodesList = new HashMap<String,ConceptNode>();
 		HashMap<String, List<ConceptNode>> multCopies = new HashMap<String, List<ConceptNode>>();
 
-		
+		//for every link in the idLinks
 		for(IDLink currLink : this.idLinks){
-			ConceptNode child = this.nodesMap.get(currLink.getChild()).get(0);
-			ConceptNode parent = this.nodesMap.get(currLink.getParent()).get(0);
+			ConceptNode child = this.nodesMap.get(currLink.getChild()).get(0); // assign to first item mapped to that concept title
+			ConceptNode parent = this.nodesMap.get(currLink.getParent()).get(0); // assign to first item mapped to that concept title
 			ConceptNode replaceChild = null;
 			ConceptNode replaceParent = null;
 			
@@ -303,17 +304,17 @@ public class ConceptGraph {
 			
 			//If node has never been copied before
 			if(copiesOfChild == null){
+				//make new conceptNode that is a copy of child
 				replaceChild = new ConceptNode(child.getConcept(), makeName(child.getID()));
 				copiesOfChild = new ArrayList<ConceptNode>();
 				copiesOfChild.add(replaceChild);
+				//put new list with just the first copy in it as the value to the concept title key
 				multCopies.put(child.getConcept().getConceptTitle(), copiesOfChild);
-				treeNodesList.put(child.getConcept().getConceptTitle(),replaceChild);
 			}else{
+				//node has multiple instances, make a new copy with a new id and add to multCopies
 				replaceChild = new ConceptNode(child.getConcept(), makeName(copiesOfChild.get(copiesOfChild.size() - 1).getID()));
 				copiesOfChild.add(replaceChild);
 				multCopies.put(child.getConcept().getConceptTitle(), copiesOfChild);
-				
-				treeNodesList.put(child.getConcept().getConceptTitle(),replaceChild);
 			}
 			
 			//If parent is not in treeNodesList
@@ -325,7 +326,7 @@ public class ConceptGraph {
 				copiesOfParentsList.add(replaceParent);
 				multCopies.put(parent.getConcept().getConceptTitle(), copiesOfParentsList);
 				
-				treeNodesList.put(parent.getConcept().getConceptTitle(),replaceParent);
+				//make link
 				treeLinksList.add(new IDLink(replaceParent.getID(), replaceChild.getID()));
 			}else{
 				treeLinksList.add((new IDLink(copiesOfParentsList.get(0).getID(), replaceChild.getID())));
@@ -335,9 +336,7 @@ public class ConceptGraph {
 					
 					childCopiesList.add(replaceChildCopy);
 					multCopies.put(child.getConcept().getConceptTitle(), childCopiesList);
-					
-					treeNodesList.put(child.getConcept().getConceptTitle(),replaceChildCopy);
-					
+					//make link
 					treeLinksList.add(new IDLink(copiesOfParentsList.get(i).getID(), replaceChildCopy.getID()));			
 				}
 			}

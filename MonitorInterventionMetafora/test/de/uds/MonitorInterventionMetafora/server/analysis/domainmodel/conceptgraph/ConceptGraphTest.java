@@ -119,7 +119,6 @@ public class ConceptGraphTest {
 		this.mediumGraph = new ConceptGraph(cnList,clList);
 		this.mediumTree = mediumGraph.graphToTreeNewLinks();
 		
-		logger.debug(mediumTree);
 	}
 	public void makeComplex(){
 		HashMap<String, List<ConceptNode>> cnList = new HashMap<String, List<ConceptNode>>();
@@ -162,6 +161,8 @@ public class ConceptGraphTest {
 		
 		this.complexGraph = new ConceptGraph(cnList,clList);
 		this.complexTree = complexGraph.graphToTreeNewLinks();
+		
+		logger.debug(complexTree);
 	}
 	
 	@Test
@@ -348,32 +349,33 @@ public class ConceptGraphTest {
 		Assert.assertEquals(6, numE);
 	}
 	
-//	@Test
-//	public void addSummariesTest() {		
-//
-//	}
-//
-//	public void makeSummaries(){
-//		String inputXML = "conffiles/xml/test/graphTests/simpleGraphTest/simpleGraphTestRunestone.xml";
-//		
-//		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(GeneralUtil.getRealPath(inputXML));
-//		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
-//		
-////		logger.debug(CfInteractionDataParser.toXml(testCf));
-//		List<CfAction> allActions = testCf.getCfActions();
-//		//Creates problem summaries from user actions
-//		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
-//		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
-//		this.summaries = myIdentifier.getAllSummaries(allActions, involvedUsers, new ArrayList<CfProperty>());
-//	}
-//	
-//	public void makeGraph(){
-//		String inputStructure = "conffiles/xml/test/graphTests/simpleGraphTest/simpleGraph.json";
-//		// Make the concept graph from Json
-//		String thisString = GeneralUtil.getRealPath(inputStructure);
-//		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);
-//		this.graphFromJson = new ConceptGraph(fromJsonLists);
-//	}
+	@Test
+	public void addSummariesTest() {		
+		makeSummaries();
+		makeGraph();
+	}
+
+	public void makeSummaries(){
+		String inputXML = "conffiles/xml/test/graphTests/simpleGraphTest/simpleGraphTestRunestone.xml";
+		
+		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(GeneralUtil.getRealPath(inputXML));
+		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
+		
+//		logger.debug(CfInteractionDataParser.toXml(testCf));
+		List<CfAction> allActions = testCf.getCfActions();
+		//Creates problem summaries from user actions
+		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
+		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
+		this.summaries = myIdentifier.getAllSummaries(allActions, involvedUsers, new ArrayList<CfProperty>());
+	}
+	
+	public void makeGraph(){
+		String inputStructure = "conffiles/xml/test/graphTests/simpleGraphTest/simpleGraph.json";
+		// Make the concept graph from Json
+		String thisString = GeneralUtil.getRealPath(inputStructure);
+		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);
+		this.graphFromJson = new ConceptGraph(fromJsonLists);
+	}
 //	public void makeSimpleOld(){
 //		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
 //		List<ConceptLink> clList = new ArrayList<ConceptLink>();
