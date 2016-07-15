@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class SummaryInfo {
 	
 

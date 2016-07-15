@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.media.jfxmedia.logging.Logger;
+import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
@@ -16,8 +16,9 @@ import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonet
 
 public class ConceptGraph {
 	
+	static Logger logger = Logger.getLogger(ConceptGraph.class);
 	public static final Integer DIVISION_FACTOR = 2;
-	ConceptNode root;
+	//ConceptNode root;
 	List<ConceptNode> roots;
 	String stringToReturn = "";
 	//List<ConceptNode> nodes;
@@ -31,7 +32,7 @@ public class ConceptGraph {
 	 *a node for each concept, and adds it as a child.
 	 */
 	public ConceptGraph(Book b){
-		root = new ConceptNode(b);
+		ConceptNode root = new ConceptNode(b);
 		List<ConceptNode> nodes = new ArrayList<ConceptNode>();
 		List<ConceptLink> links = new ArrayList<ConceptLink>();
 		
@@ -58,10 +59,12 @@ public class ConceptGraph {
 					subChapNode.addChild(quesNode);
 				}
 			}
-		}		
+		}
+		this.roots = new ArrayList<ConceptNode>();
+		this.roots.add(root);
 	}
 	
-	public ConceptGraph(NodeAndIDLink lists) {
+	public ConceptGraph(NodesAndIDLinks lists) {
 		List<ConceptNode> nodes = lists.getNodes();
 		List<IDLink> links = lists.getLinks();
 		this.roots = findRoot(nodes, links);
@@ -69,11 +72,11 @@ public class ConceptGraph {
 		addChildren(nodes, links);
 	}
 	
-	public ConceptGraph(List<ConceptNode> nodes, List<IDLink> links){
-		this.roots = findRoot(nodes, links);
-		
-		addChildren(nodes, links);
-	}
+//	public ConceptGraph(List<ConceptNode> nodes, List<IDLink> links){
+//		this.roots = findRoot(nodes, links);
+//		
+//		addChildren(nodes, links);
+//	}
 	
 	public List<ConceptNode> getNodes(){
 		return null;
@@ -98,8 +101,13 @@ public class ConceptGraph {
 		
 		//call the recursive function addSummaryNode - send in node and a single summary (loop through summaryList to call that function)
 		for(ConceptNode summaryNode : graphSummaryNodeList){
-			this.root.addSummaryNode(summaryNode);
-		//TODO: If this ever returns false, return false
+			boolean hasAdded = false;
+			for(ConceptNode currRoot : this.roots){
+				if(hasAdded == false){
+					hasAdded = currRoot.addSummaryNode(summaryNode);
+				}
+			}
+			logger.warn("Summary not added, no matching parent found for summary node " + summaryNode);
 		}
 	}	
 
@@ -127,10 +135,6 @@ public class ConceptGraph {
 				runningTotal.remove(link.getChild());
 			}
 		}
-		//TODO: give warning if runningTotal has more than one entry, meaning more than one root 
-//		if(runningTotal.size() > 1){
-//			Logger.WARNING("runningTotal: "+runningTotal);
-//		}
 		return runningTotal;
 	}
 
@@ -139,56 +143,53 @@ public class ConceptGraph {
 		
 		//return "Nodes:\n"+this.nodesMap+"\nLinks:\n"+this.idLinks;
 		
-		return root.toString();
+		return roots.toString();
 		
 	}
-	public ConceptNode getRoot(){
-		return root;
-	}
 	
-	//takes in a ConceptNode and creates an object to hold on to two lists - a list of nodes and a list of links
-		private NodeAndIDLink buildNodeAndLinkLists(ConceptNode currNode, int level, List<ConceptNode> nodes, List<IDLink> links){
-			currNode.setLevel(level);
-			
-			//checks to see if the current node is already in the list, if not it adds it
-
-			if(nodes.contains(currNode) == false) {
-				nodes.add(currNode);
-			}
-			
-			//goes through each child of the current node and checks to see if there is a link already for that parent/child pair
-			//if not then it adds it
-			for(ConceptNode child : currNode.getChildren()){
-				IDLink linkToAdd = new IDLink (currNode.getID(), child.getID());
-				if(links.contains(linkToAdd) == false){
-					links.add(linkToAdd);
-					
-					//recursively calls the function again with the child as the current node
-					buildNodeAndLinkLists(child, level+1, nodes, links);
-				}
-				
-				
-			}
-			List<ConceptNode> finalNodes = new ArrayList<ConceptNode>();
-			List<IDLink> finalLinks = new ArrayList<IDLink>();
-			
-			for	(ConceptNode node : nodes) {
-				if (node.getLevel() != 0) {
-					finalNodes.add(node);
-				}
-			}
-			for (IDLink link : links) {
-				if (getNodeLevel(link.getParent(), nodes) != 0 && getNodeLevel(link.getChild(), nodes) != 0) {
-					finalLinks.add(link);
-				}
-			}
-			
-			//creates the LinksAndNodes object to hold on to both lists, then returns that object
-			NodeAndIDLink finalLists = new NodeAndIDLink(finalNodes, finalLinks);
-			
-			
-			return finalLists;
-		}
+//	//takes in a ConceptNode and creates an object to hold on to two lists - a list of nodes and a list of links
+//		private NodesAndIDLinks buildNodeAndLinkLists(ConceptNode currNode, int level, List<ConceptNode> nodes, List<IDLink> links){
+//			currNode.setLevel(level);
+//			
+//			//checks to see if the current node is already in the list, if not it adds it
+//
+//			if(nodes.contains(currNode) == false) {
+//				nodes.add(currNode);
+//			}
+//			
+//			//goes through each child of the current node and checks to see if there is a link already for that parent/child pair
+//			//if not then it adds it
+//			for(ConceptNode child : currNode.getChildren()){
+//				IDLink linkToAdd = new IDLink (currNode.getID(), child.getID());
+//				if(links.contains(linkToAdd) == false){
+//					links.add(linkToAdd);
+//					
+//					//recursively calls the function again with the child as the current node
+//					buildNodeAndLinkLists(child, level+1, nodes, links);
+//				}
+//				
+//				
+//			}
+//			List<ConceptNode> finalNodes = new ArrayList<ConceptNode>();
+//			List<IDLink> finalLinks = new ArrayList<IDLink>();
+//			
+//			for	(ConceptNode node : nodes) {
+//				if (node.getLevel() != 0) {
+//					finalNodes.add(node);
+//				}
+//			}
+//			for (IDLink link : links) {
+//				if (getNodeLevel(link.getParent(), nodes) != 0 && getNodeLevel(link.getChild(), nodes) != 0) {
+//					finalLinks.add(link);
+//				}
+//			}
+//			
+//			//creates the LinksAndNodes object to hold on to both lists, then returns that object
+//			NodesAndIDLinks finalLists = new NodesAndIDLinks(finalNodes, finalLinks);
+//			
+//			
+//			return finalLists;
+//		}
 		
 		public int getNodeLevel(String id, List<ConceptNode> nodes){
 			for(ConceptNode currNode : nodes){
@@ -199,23 +200,33 @@ public class ConceptGraph {
 			return -1;
 		}
 		
-		public NodeAndIDLink buildNodesAndLinks() {
+		public NodesAndIDLinks buildNodesAndLinks() {
 			List<ConceptNode> tempNodes = new ArrayList<ConceptNode>();
 			List<IDLink> tempLinks = new ArrayList<IDLink>();
-			return buildNodeAndLinkLists(root, 1, tempNodes, tempLinks);
+			for(ConceptNode currRoot : this.roots){
+				currRoot.addToNodesAndLinksLists(tempNodes,tempLinks);
+			}
+			NodesAndIDLinks outputLists = new NodesAndIDLinks(tempNodes, tempLinks);
+			return outputLists;
 		}
 		
 
 	public void calcActualComp(){
-		root.calcActualComp();
+		for(ConceptNode root : this.roots){
+			root.calcActualComp();
+		}
 	}
 
 	public void calcPredictedScores() {
-		calcPredictedScores(root);
+		for(ConceptNode root : this.roots){
+			calcPredictedScores(root);
+		}
+		
 	}
 	
+	//TODO: currentRoot.getActualComp used to be this.root.getActualComp, analyze how this changed things
 	private void calcPredictedScores(ConceptNode currentRoot) {
-		calcPredictedScores(currentRoot, root.getActualComp(), currentRoot);
+		calcPredictedScores(currentRoot, currentRoot.getActualComp(), currentRoot);
 	}
 	
 	// pre order traversal
@@ -306,10 +317,11 @@ public class ConceptGraph {
 //		return new ConceptGraph(tempNodeAndLinkList);
 //	}
 	
-	public ConceptGraph graphToTreeNewLinks(List<ConceptNode> nodes, List<IDLink> links){
+	public ConceptGraph graphToTreeNewLinks(){
+		NodesAndIDLinks currentGraphNodesAndLinksList = this.buildNodesAndLinks();
 		
 		HashMap<String, ArrayList<ConceptNode>> nodesMap = new HashMap<String,ArrayList<ConceptNode>>();
-		for( ConceptNode currNode : nodes){
+		for( ConceptNode currNode : currentGraphNodesAndLinksList.getNodes()){
 			ArrayList<ConceptNode> temp = new ArrayList<ConceptNode>();
 			temp.add(currNode);
 			nodesMap.put(currNode.getConcept().getConceptTitle(), temp);
@@ -321,7 +333,7 @@ public class ConceptGraph {
 		HashMap<String, List<ConceptNode>> multCopies = new HashMap<String, List<ConceptNode>>();
 
 		//for every link in the idLinks
-		for(IDLink currLink : links){
+		for(IDLink currLink : currentGraphNodesAndLinksList.getLinks()){
 			ConceptNode child = nodesMap.get(currLink.getChild()).get(0); // assign to first item mapped to that concept title
 			ConceptNode parent = nodesMap.get(currLink.getParent()).get(0); // assign to first item mapped to that concept title
 			ConceptNode replaceChild = null;
@@ -377,7 +389,9 @@ public class ConceptGraph {
 	        }
 	    }
 	    
-		return new ConceptGraph(treeNodesList, treeLinksList);
+	    logger.debug(treeNodesList);
+	    logger.debug(treeLinksList);
+		return new ConceptGraph(new NodesAndIDLinks(treeNodesList, treeLinksList));
 	}
 	
 	public static String makeName(String prevName) {
@@ -411,7 +425,6 @@ public class ConceptGraph {
 		
 		
 		//Make simple tree
-		List<ConceptNode> tempValue= new ArrayList<ConceptNode>();
 		Concept c = new ConceptImpl("A");
 		ConceptNode cn = new ConceptNode(c, c.getConceptTitle());
 		cnList.add(cn);
@@ -427,10 +440,12 @@ public class ConceptGraph {
 		clList.add(new IDLink("A","C")); //A -> C
 		clList.add(new IDLink("B","C")); //B -> C
 		
-		ConceptGraph simpleGraph = new ConceptGraph(cnList,clList);
-		//TODO: Fix this part!
-		//ConceptGraph simpleTree = simpleGraph.graphToTreeNewLinks();
-		//System.out.println(simpleTree);
+		
+		ConceptGraph simpleGraph = new ConceptGraph(new NodesAndIDLinks(cnList,clList));
+		//logger.debug(simpleGraph);
+		ConceptGraph simpleTree = simpleGraph.graphToTreeNewLinks();
+		NodesAndIDLinks treeLists = simpleTree.buildNodesAndLinks();
+		//logger.debug(treeLists);
 	}
 	
 }

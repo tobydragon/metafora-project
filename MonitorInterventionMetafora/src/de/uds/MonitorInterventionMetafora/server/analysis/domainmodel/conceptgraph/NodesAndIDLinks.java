@@ -2,13 +2,13 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 
 import java.util.List;
 
-public class NodeAndIDLink {
+public class NodesAndIDLinks {
 	
 	private List<ConceptNode> nodes;
 	private List<IDLink> links;
 	
 	
-	public NodeAndIDLink(List<ConceptNode> nodesIn, List<IDLink> linksIn){
+	public NodesAndIDLinks(List<ConceptNode> nodesIn, List<IDLink> linksIn){
 		this.nodes = nodesIn;
 		this.links = linksIn;
 		

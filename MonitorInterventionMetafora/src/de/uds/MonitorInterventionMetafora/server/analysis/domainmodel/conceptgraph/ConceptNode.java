@@ -59,6 +59,20 @@ public class ConceptNode {
 		return toString("\n");
 	}
 	
+	public void addToNodesAndLinksLists(List<ConceptNode> nodes, List<IDLink> links){
+		//if I am not in the list
+		if(!nodes.contains(this)){
+			for(ConceptNode child : this.children){
+				//recurse call on children
+				child.addToNodesAndLinksLists(nodes,links);
+				//add the links between me and my children to link list
+				links.add(new IDLink(this.getID(),child.getID()));
+			}
+			//add me to the nodes list
+			nodes.add(this);
+		}
+	
+	}
 
 	//recursive function that adds a single summary as a child of the node with the matching name
 	public boolean addSummaryNode(ConceptNode summaryNode){
