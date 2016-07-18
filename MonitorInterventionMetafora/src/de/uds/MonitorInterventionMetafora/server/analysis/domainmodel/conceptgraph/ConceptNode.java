@@ -2,6 +2,7 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -62,18 +63,67 @@ public class ConceptNode {
 	public void addToNodesAndLinksLists(List<ConceptNode> nodes, List<IDLink> links){
 		//if I am not in the list
 		if(!nodes.contains(this)){
+			//add me to the nodes list
+			nodes.add(this);
 			for(ConceptNode child : this.children){
 				//recurse call on children
 				child.addToNodesAndLinksLists(nodes,links);
 				//add the links between me and my children to link list
 				links.add(new IDLink(this.getID(),child.getID()));
 			}
-			//add me to the nodes list
-			nodes.add(this);
+			
 		}
 	
 	}
+	
+	public ConceptNode makeTree(HashMap<String, List<String>> multCopies){
+		ConceptNode nodeCopy;
+		List<String> nodeCopies = multCopies.get(this.getConcept().getConceptTitle());
+		if(nodeCopies == null){
+			nodeCopy = new ConceptNode(this.getConcept(),makeName(this.getConcept().getConceptTitle()));
+			nodeCopies = new ArrayList<String>();
+			nodeCopies.add(nodeCopy.getID());
+			multCopies.put(nodeCopy.getConcept().getConceptTitle(), nodeCopies);
+		}else{
+			String prevName = nodeCopies.get(nodeCopies.size()-1);
+			nodeCopy = new ConceptNode(this.getConcept(), makeName(prevName));
+			nodeCopies.add(nodeCopy.getID());
+			multCopies.put(nodeCopy.getConcept().getConceptTitle(), nodeCopies);
+		}
+		
+		for(ConceptNode origChild : this.getChildren()){
+			ConceptNode childCopy = origChild.makeTree(multCopies);
+			nodeCopy.addChild(childCopy);
+		}
+		
+		return nodeCopy;
+	}
 
+	public static String makeName(String prevName) {
+        if(prevName != "" && prevName != null) {
+            String[] nameList = prevName.split("");
+            String name = "";
+            String num = "";
+            for (int i = 0; i < nameList.length; i++) {
+                try {
+                    Integer.parseInt(nameList[i]);
+                    num += nameList[i];
+                } catch (NumberFormatException e) {
+                    name += nameList[i];
+                }
+            }
+            if (num.equals("")) {
+                return name + "1";
+            } else {
+                int number = Integer.parseInt(num);
+                number += 1;
+                name += number;
+                return name;
+            }
+        }
+        return "";
+    }
+	
 	//recursive function that adds a single summary as a child of the node with the matching name
 	public boolean addSummaryNode(ConceptNode summaryNode){
 	

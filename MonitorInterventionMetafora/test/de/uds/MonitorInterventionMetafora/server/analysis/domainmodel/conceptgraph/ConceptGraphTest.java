@@ -30,9 +30,11 @@ public class ConceptGraphTest {
 	ConceptGraph simpleGraph;
 	ConceptGraph mediumGraph;
 	ConceptGraph complexGraph;
+	ConceptGraph superComplexGraph;
 	ConceptGraph simpleTree;
 	ConceptGraph mediumTree;
 	ConceptGraph complexTree;
+	ConceptGraph superComplexTree;
 	
 	List<PerUserPerProblemSummary> summaries;
 	
@@ -41,6 +43,7 @@ public class ConceptGraphTest {
 		makeSimple();
 		makeMedium();
 		makeComplex();
+		makeSuperComplex();
 		//makeSummaries();
 		//makeGraph();	
 	}
@@ -53,6 +56,8 @@ public class ConceptGraphTest {
 		this.mediumTree = null;
 		this.complexGraph = null;
 		this.complexTree = null;
+		this.superComplexGraph = null;
+		this.superComplexTree = null;
 	}
 	
 	
@@ -80,7 +85,7 @@ public class ConceptGraphTest {
 		
 		NodesAndIDLinks inputNodesAndLinks = new NodesAndIDLinks(cnList,clList);
 		this.simpleGraph = new ConceptGraph(inputNodesAndLinks);
-		this.simpleTree = simpleGraph.graphToTreeNewLinks();
+		this.simpleTree = simpleGraph.graphToTree();
 	}
 	
 	public void makeMedium(){
@@ -111,15 +116,13 @@ public class ConceptGraphTest {
 		
 		NodesAndIDLinks inputNodesAndLinks = new NodesAndIDLinks(cnList,clList);
 		this.mediumGraph = new ConceptGraph(inputNodesAndLinks);
-		this.mediumTree = mediumGraph.graphToTreeNewLinks();
+		this.mediumTree = mediumGraph.graphToTree();
 	}
 	public void makeComplex(){
 		
 		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
 		List<IDLink> clList = new ArrayList<IDLink>();
 		
-		
-		//Make simple tree
 		Concept c = new ConceptImpl("A");
 		ConceptNode cn = (new ConceptNode(c, c.getConceptTitle()));
 		cnList.add(cn);
@@ -147,9 +150,47 @@ public class ConceptGraphTest {
 		
 		NodesAndIDLinks inputNodesAndLinks = new NodesAndIDLinks(cnList,clList);
 		this.complexGraph = new ConceptGraph(inputNodesAndLinks);
-		this.complexTree = complexGraph.graphToTreeNewLinks();
+		this.complexTree = complexGraph.graphToTree();
+	}
+	
+	public void makeSuperComplex(){
+		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
+		List<IDLink> clList = new ArrayList<IDLink>();
 		
-		logger.debug(complexTree);
+		Concept c = new ConceptImpl("A");
+		ConceptNode cn = (new ConceptNode(c, c.getConceptTitle()));
+		cnList.add(cn);
+		c = new ConceptImpl("B");
+		cn = (new ConceptNode(c, c.getConceptTitle()));
+		cnList.add(cn);
+		c = new ConceptImpl("C");
+		cn = (new ConceptNode(c, c.getConceptTitle()));
+		cnList.add(cn);
+		c = new ConceptImpl("D");
+		cn = (new ConceptNode(c, c.getConceptTitle()));
+		cnList.add(cn);
+		c = new ConceptImpl("E");
+		cn = (new ConceptNode(c, c.getConceptTitle()));
+		cnList.add(cn);
+		c = new ConceptImpl("F");
+		cn = (new ConceptNode(c, c.getConceptTitle()));
+		cnList.add(cn);
+		
+		clList.add(new IDLink("A","B"));
+		clList.add(new IDLink("A","C"));
+		clList.add(new IDLink("A","E"));
+		clList.add(new IDLink("B","C"));
+		clList.add(new IDLink("B","D"));
+		clList.add(new IDLink("B","E"));
+		clList.add(new IDLink("C","D"));
+		clList.add(new IDLink("C","E"));
+		clList.add(new IDLink("D","E"));
+		clList.add(new IDLink("D","F"));
+		clList.add(new IDLink("E","F"));
+		
+		NodesAndIDLinks inputNodesAndLinks = new NodesAndIDLinks(cnList,clList);
+		this.superComplexGraph = new ConceptGraph(inputNodesAndLinks);
+		this.superComplexTree = superComplexGraph.graphToTree();
 	}
 	
 	@Test
@@ -159,7 +200,7 @@ public class ConceptGraphTest {
 		NodesAndIDLinks treeLists = this.simpleTree.buildNodesAndLinks();
 		
 		Assert.assertEquals(3, graphLists.getNodes().size());
-		//Assert.assertEquals(4, treeLists.getNodes().size());
+		Assert.assertEquals(4, treeLists.getNodes().size());
 	}
 	
 	@Test
@@ -168,18 +209,16 @@ public class ConceptGraphTest {
 		NodesAndIDLinks treeLists = this.simpleTree.buildNodesAndLinks();
 		
 		Assert.assertEquals(3, graphLists.getLinks().size());
-		//Assert.assertEquals(3, treeLists.getLinks().size());
+		Assert.assertEquals(3, treeLists.getLinks().size());
 	}
 	
 	@Test
 	public void mediumGraphCheckNodesNumbersTest(){
 		NodesAndIDLinks graphLists = this.mediumGraph.buildNodesAndLinks();
 		NodesAndIDLinks treeLists = this.mediumTree.buildNodesAndLinks();
-		logger.debug(graphLists.getNodes());
-		logger.debug(treeLists.getNodes());
-		
+	
 		Assert.assertEquals(4, graphLists.getNodes().size());
-		//Assert.assertEquals(7, treeLists.getNodes().size());
+		Assert.assertEquals(7, treeLists.getNodes().size());
 	}
 	
 	@Test
@@ -187,10 +226,8 @@ public class ConceptGraphTest {
 		NodesAndIDLinks graphLists = this.mediumGraph.buildNodesAndLinks();
 		NodesAndIDLinks treeLists = this.mediumTree.buildNodesAndLinks();
 		
-		logger.debug(graphLists.getLinks());
-		logger.debug(treeLists.getLinks());
 		Assert.assertEquals(5, graphLists.getLinks().size());
-		//Assert.assertEquals(6, treeLists.getLinks().size());
+		Assert.assertEquals(6, treeLists.getLinks().size());
 	}
 	
 	@Test
@@ -199,7 +236,7 @@ public class ConceptGraphTest {
 		NodesAndIDLinks treeLists = this.complexTree.buildNodesAndLinks();
 
 		Assert.assertEquals(5, graphLists.getNodes().size());
-		//Assert.assertEquals(13, treeLists.getNodes().size());
+		Assert.assertEquals(13, treeLists.getNodes().size());
 	}
 	
 	@Test
@@ -208,7 +245,28 @@ public class ConceptGraphTest {
 		NodesAndIDLinks treeLists = this.complexTree.buildNodesAndLinks();
 		
 		Assert.assertEquals(8, graphLists.getLinks().size());
-		//Assert.assertEquals(12, treeLists.getLinks().size());
+		Assert.assertEquals(12, treeLists.getLinks().size());
+	}
+	
+	@Test
+	public void superComplexGraphCheckNodesNumbersTest(){
+		NodesAndIDLinks graphLists = this.superComplexGraph.buildNodesAndLinks();
+		NodesAndIDLinks treeLists = this.superComplexTree.buildNodesAndLinks();
+		
+		logger.debug(graphLists);
+		logger.debug(treeLists);
+
+		Assert.assertEquals(6, graphLists.getNodes().size());
+		Assert.assertEquals(24, treeLists.getNodes().size());
+	}
+	
+	@Test
+	public void superComplexGraphCheckLinksNumbersTest(){
+		NodesAndIDLinks graphLists = this.superComplexGraph.buildNodesAndLinks();
+		NodesAndIDLinks treeLists = this.superComplexTree.buildNodesAndLinks();
+		
+		Assert.assertEquals(11, graphLists.getLinks().size());
+		Assert.assertEquals(23, treeLists.getLinks().size());
 	}
 	
 	@Test
@@ -234,66 +292,7 @@ public class ConceptGraphTest {
 		Assert.assertEquals(1, numB);
 		Assert.assertEquals(2, numC);
 	}
-//	
-//	@Test
-//	public void mediumCheckNumEachIDTest(){
-//		int numA = 0;
-//		int numB = 0;
-//		int numC = 0;
-//		int numD = 0;
-//		
-//		Iterator it = mediumTree.nodesMap.entrySet().iterator();
-//	    while (it.hasNext()) {
-//	        Map.Entry pair = (Map.Entry)it.next();
-//	        if(pair.getKey().equals("A")){
-//				numA += ((List<ConceptNode>) pair.getValue()).size();
-//			}else if(pair.getKey().equals("B")){
-//				numB += ((List<ConceptNode>) pair.getValue()).size();
-//			}else if(pair.getKey().equals("C")){
-//				numC += ((List<ConceptNode>) pair.getValue()).size();
-//			}else if(pair.getKey().equals("D")){
-//				numD += ((List<ConceptNode>) pair.getValue()).size();
-//			}
-//	        it.remove(); // avoids a ConcurrentModificationException
-//	    }
-//		
-//		Assert.assertEquals(1, numA);
-//		Assert.assertEquals(1, numB);
-//		Assert.assertEquals(2, numC);
-//		Assert.assertEquals(3, numD);
-//	}
-//	
-//	@Test
-//	public void complexCheckNumEachIDTest(){
-//		int numA = 0;
-//		int numB = 0;
-//		int numC = 0;
-//		int numD = 0;
-//		int numE = 0;
-//		
-//		Iterator it = complexTree.nodesMap.entrySet().iterator();
-//	    while (it.hasNext()) {
-//	        Map.Entry pair = (Map.Entry)it.next();
-//	        if(pair.getKey().equals("A")){
-//				numA += ((List<ConceptNode>) pair.getValue()).size();
-//			}else if(pair.getKey().equals("B")){
-//				numB += ((List<ConceptNode>) pair.getValue()).size();
-//			}else if(pair.getKey().equals("C")){
-//				numC += ((List<ConceptNode>) pair.getValue()).size();
-//			}else if(pair.getKey().equals("D")){
-//				numD += ((List<ConceptNode>) pair.getValue()).size();
-//			}else if(pair.getKey().equals("E")){
-//				numE += ((List<ConceptNode>) pair.getValue()).size();
-//			}
-//	        it.remove(); // avoids a ConcurrentModificationException
-//	    }
-//	    
-//		Assert.assertEquals(1, numA);
-//		Assert.assertEquals(1, numB);
-//		Assert.assertEquals(2, numC);
-//		Assert.assertEquals(3, numD);
-//		Assert.assertEquals(6, numE);
-//	}
+
 	
 	@Test
 	public void addSummariesTest() {		
