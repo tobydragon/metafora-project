@@ -126,17 +126,18 @@ public class ConceptGraph {
 	
  	private List<ConceptNode> findRoot(List<ConceptNode> nodes, List<IDLink> links) {
 		List<ConceptNode> runningTotal = new ArrayList<ConceptNode>();
-		for (ConceptNode node: nodes) {
+		for (ConceptNode node : nodes) {
 			runningTotal.add(node);
 		}
 		for (IDLink link : links) {
-			if (runningTotal.contains(link.getChild())) {
-				runningTotal.remove(link.getChild());
-			}
+			for(ConceptNode node : nodes){
+	 			if(node.getID().equals(link.getChild())){
+	 				runningTotal.remove(node);
+	 			}
+	 		}
 		}
 		return runningTotal;
 	}
-
 	
 	public String toString(){
 		NodesAndIDLinks thisGraph = this.buildNodesAndLinks();
@@ -293,11 +294,10 @@ public class ConceptGraph {
 	public ConceptGraph graphToTree(){
 		List<ConceptNode> newRoots = new ArrayList<ConceptNode>();
 		HashMap<String, List<String>> initMultCopies = new HashMap<String, List<String>>();
-//		for(ConceptNode root : this.roots){
-//			newRoots.add(root.makeTree(initMultCopies));
-//		}
+		for(ConceptNode root : this.roots){
+			newRoots.add(root.makeTree(initMultCopies));
+		}
 		
-		newRoots.add(roots.get(0).makeTree(initMultCopies));
 		return new ConceptGraph(newRoots);
 		
 	}

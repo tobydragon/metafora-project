@@ -28,7 +28,7 @@ public class JsonImportExportTest {
 
 	@Before
 	public void setUp() throws Exception {
-		setSuperComplex();
+		setMedium();
 	}
 
 	@After
