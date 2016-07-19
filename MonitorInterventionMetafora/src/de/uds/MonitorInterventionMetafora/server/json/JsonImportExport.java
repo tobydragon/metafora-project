@@ -7,17 +7,18 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.NodeAndLinkLists;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.NodesAndIDLinks;
 
 public class JsonImportExport {
-	public static void toJson(String fileName, NodeAndLinkLists lists) {
+	public static void toJson(String fileName, NodesAndIDLinks toBeJsoned) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 
 			// convert user object to json string, and save to a file
-			mapper.writeValue(new File(fileName+".json"), lists);
+			mapper.writeValue(new File(fileName+".json"), toBeJsoned);
 
 			// display to console (temp)
-			System.out.println(mapper.writeValueAsString(lists));
+			System.out.println(mapper.writeValueAsString(toBeJsoned));
 
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();

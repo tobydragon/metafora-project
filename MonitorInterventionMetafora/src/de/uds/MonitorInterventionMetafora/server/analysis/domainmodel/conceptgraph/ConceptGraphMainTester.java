@@ -60,7 +60,7 @@ public class ConceptGraphMainTester {
 		// Make the concept graph from Json
 		//TODO: files should be read from within war file...
 		String thisString = GeneralUtil.getRealPath(inputStructure);
-		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);		
+		NodesAndIDLinks fromJsonLists =  JsonImportExport.fromJson(thisString);		
 		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
 		
 //		//List<ConceptNode> summaryNodeList = new ArrayList<ConceptNode>();
@@ -84,7 +84,7 @@ public class ConceptGraphMainTester {
 		
 		System.out.println(graphFromJson);
 		
-		NodeAndLinkLists toBeJsoned =  graphFromJson.buildNodesAndLinks();
+		NodesAndIDLinks toBeJsoned =  graphFromJson.buildNodesAndLinks();
 		
 		JsonImportExport.toJson("smallJsonWithSummaries", toBeJsoned);
 	}
