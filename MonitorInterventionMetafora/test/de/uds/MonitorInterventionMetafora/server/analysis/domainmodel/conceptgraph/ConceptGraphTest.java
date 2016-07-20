@@ -1,9 +1,6 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -15,13 +12,11 @@ import org.junit.Test;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.ObjectSummaryIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfInteractionDataParser;
-import de.uds.MonitorInterventionMetafora.server.json.JsonImportExport;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
-import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 
 public class ConceptGraphTest {
 

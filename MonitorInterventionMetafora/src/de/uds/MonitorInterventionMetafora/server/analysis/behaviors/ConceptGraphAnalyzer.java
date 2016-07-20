@@ -8,10 +8,8 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 public class ConceptGraphAnalyzer implements BehaviorIdentifier{
 
 	@Override
-	public List<BehaviorInstance> identifyBehaviors(
-			List<CfAction> actionsToConsider, List<String> involvedUsers,
-			List<CfProperty> groupProperties) {
-		// TODO Auto-generated method stub
+	public List<BehaviorInstance> identifyBehaviors(List<CfAction> actionsToConsider, List<String> involvedUsers, List<CfProperty> groupProperties) {
+		// TODO create ConceptGraph, use ObjectSummaryIdentifier to get summaries, add summaries to conceptGraph, create a summary for each node in the concept graph  
 		return null;
 	}
 
