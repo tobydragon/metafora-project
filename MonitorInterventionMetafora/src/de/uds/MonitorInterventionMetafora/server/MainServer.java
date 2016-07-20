@@ -239,16 +239,20 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		}
 		
 	}
+	
+	@Override
 	public UpdateResponse requestDataFromFile(String filename){
 		return requestDataFromFile(generalConfiguration.getDefaultXmppServer(), filename);
 	}
 	
+	@Override
 	public UpdateResponse requestDataFromFile(XmppServerType xmppServerType, String filename){
 		String path = GeneralUtil.getRealPath("upload/"+filename);
 		XmlFragment xmlFrag = XmlFragment.getFragmentFromLocalFile(path);
 		
 		List<CfAction> cfActions = new ArrayList<CfAction>();
 		for (XmlFragment cfActionElement : xmlFrag.getChildren(RunestoneStrings.ROW_STRING)){
+			//TODO: make generic for different types of xml, this assumes data from file will be runestone xml...
 			cfActions.add(CfActionParser.fromRunsetoneXml(cfActionElement));
 		}
 		logger.info("requestDataFromFile:\t\t read " +cfActions.size() + " indicators from "+ path);		 

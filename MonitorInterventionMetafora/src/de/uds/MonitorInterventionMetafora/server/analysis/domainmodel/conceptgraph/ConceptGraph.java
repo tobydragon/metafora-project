@@ -147,24 +147,15 @@ public class ConceptGraph {
 		
 	}
 		
-		public int getNodeLevel(String id, List<ConceptNode> nodes){
-			for(ConceptNode currNode : nodes){
-				if(currNode.getID().equals(id)){
-					return currNode.getLevel();
-				}
-			}
-			return -1;
+	public NodesAndIDLinks buildNodesAndLinks() {
+		List<ConceptNode> tempNodes = new ArrayList<ConceptNode>();
+		List<IDLink> tempLinks = new ArrayList<IDLink>();
+		for(ConceptNode currRoot : this.roots){
+			currRoot.addToNodesAndLinksLists(tempNodes,tempLinks);
 		}
-		
-		public NodesAndIDLinks buildNodesAndLinks() {
-			List<ConceptNode> tempNodes = new ArrayList<ConceptNode>();
-			List<IDLink> tempLinks = new ArrayList<IDLink>();
-			for(ConceptNode currRoot : this.roots){
-				currRoot.addToNodesAndLinksLists(tempNodes,tempLinks);
-			}
-			NodesAndIDLinks outputLists = new NodesAndIDLinks(tempNodes, tempLinks);
-			return outputLists;
-		}
+		NodesAndIDLinks outputLists = new NodesAndIDLinks(tempNodes, tempLinks);
+		return outputLists;
+	}
 		
 
 	public void calcActualComp(){

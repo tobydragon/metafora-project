@@ -62,6 +62,7 @@ public class UploadFormPanel extends FormPanel{
 		         
 		         // strip filename out of result html
 		         String result = event.getResults();
+		         //TODO: Handle if the file couldn't be written (it is a 500 error seen thus far)
 		         String filename = result.substring(result.indexOf('>')+1,result.lastIndexOf('<'));
 		         if (filename.length() > 0){
 		        	 UploadFormPanel.this.updater.getDataFromFile(filename);

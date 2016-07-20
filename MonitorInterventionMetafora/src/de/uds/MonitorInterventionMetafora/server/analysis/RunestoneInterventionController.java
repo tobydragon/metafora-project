@@ -24,7 +24,7 @@ import de.uds.MonitorInterventionMetafora.shared.suggestedmessages.Locale;
 
 public class RunestoneInterventionController implements InterventionController{
 	
-	Logger log = Logger.getLogger(this.getClass());
+	Logger logger = Logger.getLogger(this.getClass());
 	CfAgentCommunicationManager analysisChannelManager;
 	
 	public RunestoneInterventionController(CfAgentCommunicationManager analysisChannelManagaer){
@@ -43,10 +43,14 @@ public class RunestoneInterventionController implements InterventionController{
 			actions.add(buildCFAction(behaviorInstance));		
 		}
 		
-		for(CfAction cfAction : actions){
-			analysisChannelManager.sendMessage(cfAction);
-		}
-		System.out.println(CfInteractionDataParser.toXml(new CfInteractionData(actions)));
+		logger.debug("Sending interventions:\n" + CfInteractionDataParser.toXml(new CfInteractionData(actions)));
+		//old way to broadcast results
+//		for(CfAction cfAction : actions){
+//			analysisChannelManager.sendMessage(cfAction);
+//		}
+		
+		//new way to send results directly to graph
+		
 	
 	}
 

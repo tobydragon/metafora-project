@@ -8,20 +8,12 @@ import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Store;
 import com.extjs.gxt.ui.client.store.StoreEvent;
-import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.MessageBox;
-import com.extjs.gxt.ui.client.widget.form.ComboBox;
-import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
-import com.extjs.gxt.ui.client.widget.form.TextField;
-import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
-
 import de.uds.MonitorInterventionMetafora.client.logger.ComponentType;
 import de.uds.MonitorInterventionMetafora.client.logger.UserLog;
 import de.uds.MonitorInterventionMetafora.client.logger.Logger;
 import de.uds.MonitorInterventionMetafora.client.logger.UserActionType;
 import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.ClientMonitorDataModel;
-import de.uds.MonitorInterventionMetafora.client.monitor.datamodel.OperationsComboBoxModel;
-import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.DataViewPanelType;
 import de.uds.MonitorInterventionMetafora.client.monitor.dataview.GroupedDataViewPanel;
 import de.uds.MonitorInterventionMetafora.client.monitor.filter.FilterGridRow;
@@ -49,94 +41,68 @@ public class ClientMonitorController {
 	
 	public void addFilterModelListeners(ListStore<FilterGridRow> filterGridStore){
 		
-		
 		storeAddListener=new Listener<StoreEvent<FilterGridRow>>() {
-		        public void handleEvent(StoreEvent<FilterGridRow> be) {
-		        	Log.debug("A new filter is added to the grid:");
-		        	filtersUpdated();
-		        	UserLog userActionLog=new UserLog();
-		        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
-		        	userActionLog.setDescription("New Filter Rule is added to the filter.",be.getModels().get(0).getActionPropertyRule());
-		        	userActionLog.setTriggeredBy(be.getModels().get(0).getActionPropertyRule().getOrigin());
-		        	userActionLog.setUserActionType(UserActionType.FILTER_ADDED);	
-		        	Logger.getLoggerInstance().log(userActionLog);
-		        	}
-		      };
+			public void handleEvent(StoreEvent<FilterGridRow> be) {
+	        	Log.debug("A new filter is added to the grid:");
+	        	filtersUpdated();
+	        	UserLog userActionLog=new UserLog();
+	        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
+	        	userActionLog.setDescription("New Filter Rule is added to the filter.",be.getModels().get(0).getActionPropertyRule());
+	        	userActionLog.setTriggeredBy(be.getModels().get(0).getActionPropertyRule().getOrigin());
+	        	userActionLog.setUserActionType(UserActionType.FILTER_ADDED);	
+	        	Logger.getLoggerInstance().log(userActionLog);
+			}
+		};
 		
-		      storeRemoveListener=new Listener<StoreEvent<FilterGridRow>>() {
-			        public void handleEvent(StoreEvent<FilterGridRow> be) {
-			        	Log.debug("A Filter is removed!");
-			        	filtersUpdated();
-			        	UserLog userActionLog=new UserLog();
-			        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
-			        	userActionLog.setDescription("Filter Rule is removed from the filter.",be.getModel().getActionPropertyRule());
-			        	userActionLog.setTriggeredBy(be.getModel().getActionPropertyRule().getOrigin());
-			        	userActionLog.setUserActionType(UserActionType.FILTER_REMOVED);
-			        	Logger.getLoggerInstance().log(userActionLog);
-			        }
-			      };
+        storeRemoveListener=new Listener<StoreEvent<FilterGridRow>>() {
+	        public void handleEvent(StoreEvent<FilterGridRow> be) {
+	        	Log.debug("A Filter is removed!");
+	        	filtersUpdated();
+	        	UserLog userActionLog=new UserLog();
+	        	userActionLog.setComponentType(ComponentType.FILTER_TABLE);
+	        	userActionLog.setDescription("Filter Rule is removed from the filter.",be.getModel().getActionPropertyRule());
+	        	userActionLog.setTriggeredBy(be.getModel().getActionPropertyRule().getOrigin());
+	        	userActionLog.setUserActionType(UserActionType.FILTER_REMOVED);
+	        	Logger.getLoggerInstance().log(userActionLog);
+	        }
+	    };
 		
 		filterGridStore.addListener(Store.Add,storeAddListener);
 		filterGridStore.addListener(Store.Remove,storeRemoveListener);
-		
-		
-		
 	}
 	
-	
 	public void setOnlyRefreshTable(boolean onlyRefreshTable){
-		
 		this.onlyRefreshTable=onlyRefreshTable;
 	}
 	
 	public void removeFilterModelListeners(ListStore<FilterGridRow> filterGridStore){
-		
 		filterGridStore.removeListener(Store.Add,storeAddListener);
 		filterGridStore.removeListener(Store.Remove,storeRemoveListener);
-		
 	}
-	
-	
-	
-	
-	
-	
+
 	public void addMainFilterListeners(ListStore<FilterGridRow> filterGridStore){
 		
 		filterGridStore.addListener(Store.Add, new Listener<StoreEvent<FilterGridRow>>() {
 	        public void handleEvent(StoreEvent<FilterGridRow> be) {
-	        
-	     
-	        	
 	        	UserLog userActionLog=new UserLog();
 	        	userActionLog.setComponentType(ComponentType.MAIN_CONFIGURATION_TABLE);
 	        	userActionLog.setDescription("New Filter Rule is added to the Main Configuration.",be.getModels().get(0).getActionPropertyRule());
 	        	userActionLog.setTriggeredBy(be.getModels().get(0).getActionPropertyRule().getOrigin());
 	        	userActionLog.setUserActionType(UserActionType.CONFIGURATION_RULE_ADDED);
-	        
-	        	
 	        	Logger.getLoggerInstance().log(userActionLog);
-	      
 	        }
-	      });
-
+	    });
 	
 		filterGridStore.addListener(Store.Remove, new Listener<StoreEvent<FilterGridRow>>() {
 	        public void handleEvent(StoreEvent<FilterGridRow> be) {
-	       
 	        	UserLog userActionLog=new UserLog();
 	        	userActionLog.setComponentType(ComponentType.MAIN_CONFIGURATION_TABLE);
 	        	userActionLog.setDescription("Filter Rule is removed from the Main Configuration.",be.getModel().getActionPropertyRule());
 	        	userActionLog.setTriggeredBy(be.getModel().getActionPropertyRule().getOrigin());
 	        	userActionLog.setUserActionType(UserActionType.CONFIGURATION_RULE_REMOVED);
 	        	Logger.getLoggerInstance().log(userActionLog);
-	        	
-	        	
 	        }
-	      });
-		
-		
-		
+	    });
 	}
 	
 	public void addDataView(GroupedDataViewPanel panel){
@@ -150,18 +116,16 @@ public class ClientMonitorController {
 			
 			Log.debug(panel.getDataViewType()+" is refreshed");
 		}
-		
 		if (updaterToolbar != null){
 			updaterToolbar.updateView(groups);
 		}
 		else {
-			Log.error("[ClientMonitorController.refreshViews] no UPdateToolbar present");
+			Log.error("[ClientMonitorController.refreshViews] no UpdateToolbar present");
 		}
 		Log.debug("Refreshing View is completed");
 	}
 	
 	public void filtersUpdated(){
-		
 		Log.debug("onlyRefreshTable:"+onlyRefreshTable);
 		dataModel.updateFilteredList();
 		if(onlyRefreshTable){
@@ -172,7 +136,6 @@ public class ClientMonitorController {
 			}
 		}
 	
-	
 	public void refreshTableView() {
 		for (GroupedDataViewPanel panel : dataViewPanels){
 			if(panel.getDataViewType()==DataViewPanelType.TABLE){
@@ -182,8 +145,7 @@ public class ClientMonitorController {
 		}
 		Log.debug("Refreshing  Table View is completed");
 	}
-	
-	
+
 	
 //	 ------------------------ TODO: Code that should be moved  to filter class ---------------------------//
 

@@ -1,5 +1,7 @@
-MonitorInterventionMetafora/logs/
+git addMonitorInterventionMetafora/logs/
 MonitorInterventionMetafora/gwt-unitCache/
 logs/
 MonitorInterventionMetafora/war/useractionlogs/
 MonitorInterventionMetafora/.gwt/
+MonitorInterventionMetafora/war/upload/
+MonitorInterventionMetafora/war/realData/
