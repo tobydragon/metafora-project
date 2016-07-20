@@ -46,7 +46,7 @@ public class ConceptGraphMainTester {
 		//Creates problem summaries from user actions
 		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
 		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
-		List<PerUserPerProblemSummary> summaries = myIdentifier.getAllSummaries(allActions, involvedUsers, new ArrayList<CfProperty>());
+		List<PerUserPerProblemSummary> summaries = myIdentifier.buildPerUserPerProblemSummaries(allActions, involvedUsers);
 		// filter down the number of summaries to one user
 //		List<String> users = new Vector<String>();
 //		users.add("student24");

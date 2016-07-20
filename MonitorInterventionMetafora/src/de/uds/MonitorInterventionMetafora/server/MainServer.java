@@ -241,6 +241,9 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 	}
 	
 	@Override
+	/**
+	 * gets data from file
+	 */
 	public UpdateResponse requestDataFromFile(String filename){
 		return requestDataFromFile(generalConfiguration.getDefaultXmppServer(), filename);
 	}
@@ -259,9 +262,11 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 		
 		if (xmppServerType == XmppServerType.METAFORA){
 			 mainServer.replaceAllMonitorActions(cfActions);
+			 mainServer.requestAnalysis();
 		}
 		else {
 			 testServer.replaceAllMonitorActions(cfActions);
+			 mainServer.requestAnalysis();
 		}
 		
 		return new UpdateResponse(cfActions, null);

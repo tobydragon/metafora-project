@@ -81,6 +81,12 @@ public class ServerInstance {
 		}
 	}
 
+	public void requestAnalysis (){
+		if (analysisController != null){
+			analysisController.analyzeAll();
+		}
+	}
+	
 	public void requestAnalysis(String groupId, Locale locale) {
 		if (analysisController != null){
 			analysisController.analyzeGroup(groupId, locale);

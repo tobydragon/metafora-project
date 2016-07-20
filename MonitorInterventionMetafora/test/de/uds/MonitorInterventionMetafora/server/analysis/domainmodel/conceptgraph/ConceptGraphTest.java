@@ -311,7 +311,7 @@ public class ConceptGraphTest {
 		//Creates problem summaries from user actions
 		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
 		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
-		this.summaries = myIdentifier.getAllSummaries(allActions, involvedUsers, new ArrayList<CfProperty>());
+		this.summaries = myIdentifier.buildPerUserPerProblemSummaries(allActions, involvedUsers);
 	}
 	
 	public void makeGraph(){

@@ -8,7 +8,6 @@ import java.util.Vector;
 
 import com.allen_sauer.gwt.log.client.Log;
 
-import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.MetaforaStrings;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;

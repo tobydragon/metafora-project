@@ -40,6 +40,11 @@ public abstract class AnalysisController {
 
 	protected abstract List<BehaviorIdentifier> createIdentifiers();
 	
+	
+	public void analyzeAll( ){
+		analyzeGroup(MetaforaStrings.ALL_GROUPS, null);
+	}
+	
 	public void analyzeGroup(String groupName, Locale locale){
 		List <CfAction> groupActions = null;
 		//if all groups, analyze everything together

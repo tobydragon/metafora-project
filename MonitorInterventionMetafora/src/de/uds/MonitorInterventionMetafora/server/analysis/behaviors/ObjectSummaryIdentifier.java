@@ -1,38 +1,45 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.behaviors;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptGraph;
-import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptNode;
-import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.NodeAndLinkLists;
-import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
-import de.uds.MonitorInterventionMetafora.server.json.JsonImportExport;
-import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 import de.uds.MonitorInterventionMetafora.shared.monitor.filter.ActionFilter;
 
 public class ObjectSummaryIdentifier implements BehaviorIdentifier{
-	Logger log = Logger.getLogger(this.getClass());
-	
-//	ActionFilter userFilter;
-//	ActionFilter objectIdFilter;
+	Logger logger = Logger.getLogger(this.getClass());
 
 	@Override
+	/**
+	 * runs all available object analysis, and returns all corresponding behavior
+	 */
 	public List<BehaviorInstance> identifyBehaviors(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties){
 		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
+		
+		List<PerUserPerProblemSummary> perUserPerProblemSummaries = buildPerUserPerProblemSummaries(actionsToConsider, involvedUsers);
+		for (PerUserPerProblemSummary summary : perUserPerProblemSummaries){
+			identifiedBehaviors.add(summary.buildBehaviorInstance());
+		}
+		
+		List<AllUsersPerProblemSummary> allUserPerObjectSummaries = buildAllUsersPerObjectSummaries(perUserPerProblemSummaries);
+		for (AllUsersPerProblemSummary summary : allUserPerObjectSummaries){
+			identifiedBehaviors.add(summary.buildBehaviorInstance());
+		}
+		
+		List<PerUserAllProblemsSummary> perUserAllObjectsSummaries = buildPerUserAllObjectsSummaries(perUserPerProblemSummaries);
+		for (PerUserAllProblemsSummary summary : perUserAllObjectsSummaries){
+			identifiedBehaviors.add(summary.buildBehaviorInstance());
+		}
+		
+		return identifiedBehaviors;
+	}
+	
+	public List<PerUserPerProblemSummary> buildPerUserPerProblemSummaries(List<CfAction> actionsToConsider, List<String> involvedUsers){
 		List<PerUserPerProblemSummary> perUserPerProblemSummaries = new Vector<PerUserPerProblemSummary>();
-		
-		
-		//TODO @Caitlin: this is where we get all the actions (actions to consider) and you return a list of BehaviorInstances, one for each object (problem)
-		//create instance for each student each problem
-		
-		
 		
 		List<String> objectIds = new Vector<String>();
 		for (CfAction action : actionsToConsider){
@@ -53,72 +60,39 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 			//list of all the actions for the current user
 			List<CfAction> actionsFilteredByUser = userFilter.getFilteredList(actionsToConsider);
 			
-			    //goes through each objectId for each user
-				for(String objectId : objectIds){	
-					
-					ActionFilter objectIdFilter = BehaviorFilters.createObjectIdFilter(objectId);
-					
-					//list of all actions for the current user for the current objectId
-					List<CfAction> actionsFilteredByObjectId = objectIdFilter.getFilteredList(actionsFilteredByUser);
-					
-					//if there is at least one action in the list, create a PerUserPerProblemSummary 
-					if (actionsFilteredByObjectId.size() > 0){
+		    //goes through each objectId for each user
+			for(String objectId : objectIds){	
+				
+				ActionFilter objectIdFilter = BehaviorFilters.createObjectIdFilter(objectId);
+				
+				//list of all actions for the current user for the current objectId
+				List<CfAction> actionsFilteredByObjectId = objectIdFilter.getFilteredList(actionsFilteredByUser);
+				
+				//if there is at least one action in the list, create a PerUserPerProblemSummary 
+				if (actionsFilteredByObjectId.size() > 0){
 
-						
-						//get the first action in the list and check the correct field, if it is null then the question is non assessable
-						//only need to check the first entry as the list is filtered by objectId
-						//if non assessable then create a PerUserPerProblemSummary
-						PerUserPerProblemSummary summary;
-						if(actionsFilteredByObjectId.get(0).getCfContent().getPropertyValue(RunestoneStrings.CORRECT_STRING) == null){
-							summary =  new PerUserPerProblemSummary(actionsFilteredByObjectId, user, objectId){};
-						}
-						//if the field isn't null then it is assessable, so create an AssessablePerUserPerProblemSummary
-						else{
-							summary = new AssessablePerUserPerProblemSummary(actionsFilteredByObjectId, user, objectId);
-						}
-
-						perUserPerProblemSummaries.add(summary);
-						identifiedBehaviors.add(summary.buildBehaviorInstance());
-
+					
+					//get the first action in the list and check the correct field, if it is null then the question is non assessable
+					//only need to check the first entry as the list is filtered by objectId
+					//if non assessable then create a PerUserPerProblemSummary
+					PerUserPerProblemSummary summary;
+					if(actionsFilteredByObjectId.get(0).getCfContent().getPropertyValue(RunestoneStrings.CORRECT_STRING) == null){
+						summary =  new PerUserPerProblemSummary(actionsFilteredByObjectId, user, objectId){};
 					}
+					//if the field isn't null then it is assessable, so create an AssessablePerUserPerProblemSummary
+					else{
+						summary = new AssessablePerUserPerProblemSummary(actionsFilteredByObjectId, user, objectId);
+					}
+
+					perUserPerProblemSummaries.add(summary);
 				}
-		}	
-		
-
-		
-		
-		
-
-		//get the path of the book and then create a Book object
-		String bookPath = GeneralUtil.getRealPath("conffiles/domainfiles/thinkcspy/");
-		Book b = new Book("Interacitve Python", bookPath);
-		//create a ConceptGraph of the book and then call createConceptGraph in order to add the summaries to the graph
-		ConceptGraph graph = new ConceptGraph(b);
-		
-		List<String> users = new Vector<String>();
-		users.add("student1");
-		List<PerUserPerProblemSummary> filteredSummaries = filterSummariesByUser(users, perUserPerProblemSummaries);
-
-		
-		graph.addSummariesToGraph(filteredSummaries);
-		graph.calcActualComp();
-		graph.calcPredictedScores();
-		System.out.println(graph);
-		
-		
-		
-		List <BehaviorInstance> perUserSummary = buildPerUserAllObjectsSummaries(perUserPerProblemSummaries);
-		identifiedBehaviors.addAll(perUserSummary);
-		
-		List <BehaviorInstance> perObjectSummary = buildAllUsersPerObjectSummaries(perUserPerProblemSummaries);
-		identifiedBehaviors.addAll(perObjectSummary);
-		
-		return identifiedBehaviors;
+			}
+		}
+		return perUserPerProblemSummaries;
 	}
 	
-	private List <BehaviorInstance> buildAllUsersPerObjectSummaries(List<PerUserPerProblemSummary> perUserPerProblemSummaries){
+	public List<AllUsersPerProblemSummary> buildAllUsersPerObjectSummaries(List<PerUserPerProblemSummary> perUserPerProblemSummaries){
 		
-		List<BehaviorInstance> userBehaviors = new Vector<BehaviorInstance>();
 		List<AllUsersPerProblemSummary> allUsersPerProblemSummaries = new Vector<AllUsersPerProblemSummary>();
 
 
@@ -188,20 +162,13 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 			
 		}
 		
-		log.debug(allUsersPerProblemSummaries);
-		for(AllUsersPerProblemSummary newSummary: allUsersPerProblemSummaries){
-			//makes summary a behavior instance
-			userBehaviors.add(newSummary.buildBehaviorInstance());
-		}
-		
-		return userBehaviors;
+		logger.debug(allUsersPerProblemSummaries);
+		return allUsersPerProblemSummaries;
 	}	
 	
-	private List <BehaviorInstance> buildPerUserAllObjectsSummaries(List<PerUserPerProblemSummary> perUserPerProblemSummaries){
+	public List <PerUserAllProblemsSummary> buildPerUserAllObjectsSummaries(List<PerUserPerProblemSummary> perUserPerProblemSummaries){
 		
-		List<BehaviorInstance> userBehaviors = new Vector<BehaviorInstance>();
-		List<PerUserAllProblemsSummary> perUserAllProblemsSummaries = new Vector<PerUserAllProblemsSummary>();
-		
+		List<PerUserAllProblemsSummary> perUserAllProblemsSummaries = new Vector<PerUserAllProblemsSummary>();		
 		PerUserAllProblemsSummary firstSummary;
 
 		//check the class name to determine if the summary is for an assessable question or not and call the corresponding constructor
@@ -263,15 +230,9 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 			}	
 		}
 		
-		log.debug(perUserAllProblemsSummaries);
-		for(PerUserAllProblemsSummary newSummary: perUserAllProblemsSummaries){
-			//makes summary a behavior instance
-			userBehaviors.add(newSummary.buildBehaviorInstance());
-		}
-		
-		return userBehaviors;
+		logger.debug(perUserAllProblemsSummaries);
+		return perUserAllProblemsSummaries;
 	}
-	
 	
 	//takes in a list of users to filter by and a list of PerUserPerProblemSummaries
 	//if userList is empty or null, it returns the original list of summaries
@@ -297,67 +258,6 @@ public class ObjectSummaryIdentifier implements BehaviorIdentifier{
 		return filteredSummaries;
 	}
 
-
-	
-	public List<PerUserPerProblemSummary> getAllSummaries(List<CfAction> actionsToConsider, List<String> involvedUsers,List<CfProperty> groupProperties) {
-		// I didn't want to break anything from indentify Summaries, so this is a new method
-		// that only returns the PerUserPerProblemSummaries
-		
-		List<BehaviorInstance> identifiedBehaviors = new Vector<BehaviorInstance>();
-		List<PerUserPerProblemSummary> perUserPerProblemSummaries = new Vector<PerUserPerProblemSummary>();
-			
-		
-		List<String> objectIds = new Vector<String>();
-		for (CfAction action : actionsToConsider){
-					
-				//This creates a list of all the object Ids
-				String currectObjectId = action.getCfObjects().get(0).getId();
-				
-				if ((objectIds.contains(currectObjectId)) == false){
-					objectIds.add(action.getCfObjects().get(0).getId());
-				}
-		}
-		
-		//goes through each user
-		for(String user : involvedUsers){
-			
-			ActionFilter userFilter = BehaviorFilters.createUserFilter(user);		
-			
-			//list of all the actions for the current user
-			List<CfAction> actionsFilteredByUser = userFilter.getFilteredList(actionsToConsider);
-			
-			    //goes through each objectId for each user
-				for(String objectId : objectIds){	
-					
-					ActionFilter objectIdFilter = BehaviorFilters.createObjectIdFilter(objectId);
-					
-					//list of all actions for the current user for the current objectId
-					List<CfAction> actionsFilteredByObjectId = objectIdFilter.getFilteredList(actionsFilteredByUser);
-					
-					//if there is at least one action in the list, create a PerUserPerProblemSummary 
-					if (actionsFilteredByObjectId.size() > 0){
-
-						
-						//get the first action in the list and check the correct field, if it is null then the question is non assessable
-						//only need to check the first entry as the list is filtered by objectId
-						//if non assessable then create a PerUserPerProblemSummary
-						PerUserPerProblemSummary summary;
-						if(actionsFilteredByObjectId.get(0).getCfContent().getPropertyValue(RunestoneStrings.CORRECT_STRING) == null){
-							summary =  new PerUserPerProblemSummary(actionsFilteredByObjectId, user, objectId){};
-						}
-						//if the field isn't null then it is assessable, so create an AssessablePerUserPerProblemSummary
-						else{
-							summary = new AssessablePerUserPerProblemSummary(actionsFilteredByObjectId, user, objectId);
-						}
-
-						perUserPerProblemSummaries.add(summary);
-						identifiedBehaviors.add(summary.buildBehaviorInstance());
-
-					}
-				}
-		}
-		return perUserPerProblemSummaries;
-	}
 }
 
 
