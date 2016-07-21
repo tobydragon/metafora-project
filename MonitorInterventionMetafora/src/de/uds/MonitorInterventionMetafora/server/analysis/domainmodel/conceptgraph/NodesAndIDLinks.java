@@ -2,11 +2,14 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 public class NodesAndIDLinks {
 	
 	private List<ConceptNode> nodes;
 	private List<IDLink> links;
 	
+	public NodesAndIDLinks(){}
 	
 	public NodesAndIDLinks(List<ConceptNode> nodesIn, List<IDLink> linksIn){
 		this.nodes = nodesIn;

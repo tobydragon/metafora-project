@@ -5,6 +5,8 @@ public class IDLink {
 	private String parent;
 	private String child;
 	
+	public IDLink(){}
+	
 	public IDLink(String parentIn, String childIn){
 		this.parent = parentIn;
 		this.child = childIn;
