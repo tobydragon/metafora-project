@@ -184,4 +184,55 @@ public class JsonExportTest {
 		Assert.assertEquals(23, numLink);
 		
 	}
+	
+	@Test
+	public void JSONNodeNumSuperComplexTest() {
+		//Populates lists with the simple tree
+		lists = JsonCreationLibrary.createSuperComplex();
+		try {
+			//writes JSON to file
+			mapper.writeValue(new File("CarrieJsonGraph.json"), this.lists);
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String jsonString = "";
+		//reads json from file
+		try {
+			for (String line : Files.readAllLines(Paths.get("CarrieJsonGraph.json"))) {
+			    jsonString += line;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String[] temp = jsonString.split("\"id\":\"A");
+		int numIDA = temp.length-1;
+		temp = jsonString.split("\"id\":\"B");
+		int numIDB = temp.length-1;
+		temp = jsonString.split("\"id\":\"C");
+		int numIDC = temp.length-1;
+		temp = jsonString.split("\"id\":\"D");
+		int numIDD = temp.length-1;
+		temp = jsonString.split("\"id\":\"E");
+		int numIDE = temp.length-1;
+		temp = jsonString.split("\"id\":\"F");
+		int numIDF = temp.length-1;
+		
+		Assert.assertEquals(1, numIDA);
+		Assert.assertEquals(1, numIDB);
+		Assert.assertEquals(2, numIDC);
+		Assert.assertEquals(3, numIDD);
+		Assert.assertEquals(7, numIDE);
+		Assert.assertEquals(10, numIDF);
+		
+	}
 }
