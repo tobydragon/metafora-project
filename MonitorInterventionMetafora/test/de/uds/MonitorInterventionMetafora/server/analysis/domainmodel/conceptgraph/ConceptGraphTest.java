@@ -293,13 +293,13 @@ public class ConceptGraphTest {
 	public void addSummariesTest() {		
 		makeSummaries();
 		makeGraph();
-		System.out.println(this.graphFromJson);
+		System.out.println(this.summaries);
 	}
 
 	public void makeSummaries(){
-		String inputXML = "conffiles/xml/test/graphTests/simpleGraphTest/simpleGraphTestRunestone.xml";
+		String inputXML = "simple.xml";
 		
-		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(GeneralUtil.getRealPath(inputXML));
+		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(inputXML);
 		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
 		
 //		logger.debug(CfInteractionDataParser.toXml(testCf));
@@ -312,11 +312,11 @@ public class ConceptGraphTest {
 	}
 	
 	public void makeGraph(){
-//		String inputStructure = "conffiles/xml/test/graphTests/simpleGraphTest/simpleGraph.json";
-//		// Make the concept graph from Json
-//		String thisString = GeneralUtil.getRealPath(inputStructure);
-//		NodesAndIDLinks fromJsonLists =  JsonImportExport.fromJson(thisString);
-//		this.graphFromJson = new ConceptGraph(fromJsonLists);
+		String inputStructure = "selection.json";
+		// Make the concept graph from Json
+		String thisString = GeneralUtil.getRealPath(inputStructure);
+		NodesAndIDLinks fromJsonLists =  JsonImportExport.fromJson(inputStructure);
+		this.graphFromJson = new ConceptGraph(fromJsonLists);
 	}
 	
 

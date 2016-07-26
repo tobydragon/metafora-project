@@ -103,28 +103,23 @@ public class ConceptNode {
 	}
 
 	public static String makeName(String prevName) {
-        if(prevName != "" && prevName != null) {
-            String[] nameList = prevName.split("");
-            String name = "";
-            String num = "";
-            for (int i = 0; i < nameList.length; i++) {
-                try {
-                    Integer.parseInt(nameList[i]);
-                    num += nameList[i];
-                } catch (NumberFormatException e) {
-                    name += nameList[i];
-                }
-            }
-            if (num.equals("")) {
-                return name + "1";
-            } else {
-                int number = Integer.parseInt(num);
-                number += 1;
-                name += number;
-                return name;
-            }
-        }
-        return "";
+		if(prevName != "" && prevName != null){
+			String[] nameList = prevName.split("-");
+			String name = nameList[0];
+			int num = 0;
+			try{
+			String numString = nameList[1];
+			num = Integer.parseInt(numString);
+			num += 1;
+			}catch(ArrayIndexOutOfBoundsException e){
+				num = 1;
+			}
+			
+			String fullName = name+"-"+num;
+			return fullName;
+		}else{
+			return "";
+		}
     }
 	
 	//recursive function that adds a single summary as a child of the node with the matching name
