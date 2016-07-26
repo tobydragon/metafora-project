@@ -12,6 +12,7 @@ import org.junit.Test;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.ObjectSummaryIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfInteractionDataParser;
+import de.uds.MonitorInterventionMetafora.server.json.JsonImportExport;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
@@ -21,7 +22,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
 public class ConceptGraphTest {
 
 	static Logger logger = Logger.getLogger(ConceptGraphTest.class);
-	ConceptGraph graphFromJson;
+	
 	ConceptGraph simpleGraph;
 	ConceptGraph mediumGraph;
 	ConceptGraph complexGraph;
@@ -31,6 +32,7 @@ public class ConceptGraphTest {
 	ConceptGraph complexTree;
 	ConceptGraph superComplexTree;
 	
+	ConceptGraph graphFromJson;
 	List<PerUserPerProblemSummary> summaries;
 	
 	@Before
@@ -39,8 +41,6 @@ public class ConceptGraphTest {
 		makeMedium();
 		makeComplex();
 		makeSuperComplex();
-		//makeSummaries();
-		//makeGraph();	
 	}
 
 	@After
@@ -291,8 +291,9 @@ public class ConceptGraphTest {
 	
 	@Test
 	public void addSummariesTest() {		
-//		makeSummaries();
-//		makeGraph();
+		makeSummaries();
+		makeGraph();
+		System.out.println(this.graphFromJson);
 	}
 
 	public void makeSummaries(){
@@ -307,13 +308,14 @@ public class ConceptGraphTest {
 		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
 		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
 		this.summaries = myIdentifier.buildPerUserPerProblemSummaries(allActions, involvedUsers);
+		
 	}
 	
 	public void makeGraph(){
 //		String inputStructure = "conffiles/xml/test/graphTests/simpleGraphTest/simpleGraph.json";
 //		// Make the concept graph from Json
 //		String thisString = GeneralUtil.getRealPath(inputStructure);
-//		NodeAndLinkLists fromJsonLists =  JsonImportExport.fromJson(thisString);
+//		NodesAndIDLinks fromJsonLists =  JsonImportExport.fromJson(thisString);
 //		this.graphFromJson = new ConceptGraph(fromJsonLists);
 	}
 	

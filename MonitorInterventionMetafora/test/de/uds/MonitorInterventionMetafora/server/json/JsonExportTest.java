@@ -18,7 +18,7 @@ public class JsonExportTest {
 
 	@Before
 	public void setUp() throws Exception {
-		lists = JsonCreationLibrary.createMedium();
+		lists = JsonCreationLibrary.createDomainModel();
 		mapper = new ObjectMapper();
 	}
 

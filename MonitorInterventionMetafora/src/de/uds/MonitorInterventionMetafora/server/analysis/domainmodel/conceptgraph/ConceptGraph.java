@@ -120,6 +120,7 @@ public class ConceptGraph {
 		for( IDLink currLink : links){
 			ConceptNode currParent = fullNodesMap.get(currLink.getParent());
 			currParent.addChild(fullNodesMap.get(currLink.getChild()));
+			
 		}
 	}
 
@@ -179,7 +180,7 @@ public class ConceptGraph {
 	// pre order traversal
 	private static void calcPredictedScores(ConceptNode current, double passedDown, ConceptNode currentRoot) {
 		
-		// simple check for if we're dealing with the root, which has its own rule
+		// simple check for if we"re dealing with the root, which has its own rule
 		if (current == currentRoot) {
 			current.setPredictedComp(current.getActualComp());
 		} else {
@@ -274,6 +275,7 @@ public class ConceptGraph {
 		ConceptGraph simpleTree = simpleGraph.graphToTree();
 		NodesAndIDLinks treeLists = simpleTree.buildNodesAndLinks();
 		logger.debug(simpleTree);
+		
 	}
 	
 }

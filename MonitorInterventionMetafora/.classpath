@@ -23,7 +23,7 @@
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/com.google.gwt.eclipse.sdkbundle_2.5.1"/>
 	<classpathentry kind="lib" path="lib/jackson-annotations-2.0.4.jar"/>
 	<classpathentry kind="lib" path="lib/jackson-core-2.0.4.jar"/>
-	<classpathentry kind="lib" path="lib/jackson-databind-2.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-databind-2.0.4.jar" sourcepath="lib/jackson-databind-2.0.4.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

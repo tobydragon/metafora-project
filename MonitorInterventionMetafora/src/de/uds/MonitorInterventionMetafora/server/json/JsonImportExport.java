@@ -27,11 +27,12 @@ public class JsonImportExport {
 		}
 	}
 	
-	public static NodeAndLinkLists fromJson (String fullFileName) {
+	public static NodesAndIDLinks fromJson (String fullFileName) {
 		ObjectMapper mapper = new ObjectMapper();
 		// Read in JSON and build nodes and edges lists (class)
+		File test = new File(fullFileName);
         try {
-        	NodeAndLinkLists lists = mapper.readValue(new File(fullFileName), NodeAndLinkLists.class);
+        	NodesAndIDLinks lists = mapper.readValue(new File(fullFileName), NodesAndIDLinks.class);
         	return lists;
         } 
         catch (JsonGenerationException e) {

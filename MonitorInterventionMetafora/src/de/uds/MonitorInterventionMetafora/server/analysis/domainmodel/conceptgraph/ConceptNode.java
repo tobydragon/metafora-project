@@ -90,9 +90,13 @@ public class ConceptNode {
 			multCopies.put(nodeCopy.getConcept().getConceptTitle(), nodeCopies);
 		}
 		
+		try{
 		for(ConceptNode origChild : this.getChildren()){
 			ConceptNode childCopy = origChild.makeTree(multCopies);
 			nodeCopy.addChild(childCopy);
+		}
+		}catch(NullPointerException e){
+			System.out.println("Broke on this node: "+this.getID());
 		}
 		
 		return nodeCopy;
