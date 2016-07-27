@@ -80,12 +80,16 @@ public class ConceptNode {
 		List<String> nodeCopies = multCopies.get(this.getConcept().getConceptTitle());
 		if(nodeCopies == null){
 			nodeCopy = new ConceptNode(this.getConcept(),makeName(this.getConcept().getConceptTitle()));
+			nodeCopy.setActualComp(this.actualComp);
+			nodeCopy.setPredictedComp(this.predictedComp);
 			nodeCopies = new ArrayList<String>();
 			nodeCopies.add(nodeCopy.getID());
 			multCopies.put(nodeCopy.getConcept().getConceptTitle(), nodeCopies);
 		}else{
 			String prevName = nodeCopies.get(nodeCopies.size()-1);
 			nodeCopy = new ConceptNode(this.getConcept(), makeName(prevName));
+			nodeCopy.setActualComp(this.actualComp);
+			nodeCopy.setPredictedComp(this.predictedComp);
 			nodeCopies.add(nodeCopy.getID());
 			multCopies.put(nodeCopy.getConcept().getConceptTitle(), nodeCopies);
 		}

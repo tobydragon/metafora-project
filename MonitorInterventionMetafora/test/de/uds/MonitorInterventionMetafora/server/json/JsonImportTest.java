@@ -23,8 +23,6 @@ public class JsonImportTest {
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		
         try {
-//        	NodesAndIDLinks lists = JsonCreationLibrary.createSimple();
-//        	logger.debug(mapper.writeValueAsString(lists));
 			NodesAndIDLinks lists = mapper.readValue(new File("test/testdata/ABCSimple.json"), NodesAndIDLinks.class);
 			
 			Assert.assertEquals(11, lists.getNodes().size());
@@ -34,8 +32,25 @@ public class JsonImportTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-        	
        
+	}
+	
+	@Test 
+	public void ReadSelectionJsonFromFileTest(){
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		
+        try {
+			NodesAndIDLinks lists = mapper.readValue(new File("selection.json"), NodesAndIDLinks.class);
+			
+			Assert.assertEquals(33, lists.getNodes().size());
+			Assert.assertEquals(32, lists.getLinks().size());
+//			logger.debug("\n"+lists);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

@@ -297,26 +297,12 @@ public class ConceptGraphTest {
 	}
 
 	public void makeSummaries(){
-		String inputXML = "simple.xml";
-		
-		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(inputXML);
-		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
-		
-//		logger.debug(CfInteractionDataParser.toXml(testCf));
-		List<CfAction> allActions = testCf.getCfActions();
-		//Creates problem summaries from user actions
-		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
-		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
-		this.summaries = myIdentifier.buildPerUserPerProblemSummaries(allActions, involvedUsers);
-		
+
 	}
 	
 	public void makeGraph(){
-		String inputStructure = "selection.json";
-		// Make the concept graph from Json
-		String thisString = GeneralUtil.getRealPath(inputStructure);
-		NodesAndIDLinks fromJsonLists =  JsonImportExport.fromJson(inputStructure);
-		this.graphFromJson = new ConceptGraph(fromJsonLists);
+		
+		
 	}
 	
 

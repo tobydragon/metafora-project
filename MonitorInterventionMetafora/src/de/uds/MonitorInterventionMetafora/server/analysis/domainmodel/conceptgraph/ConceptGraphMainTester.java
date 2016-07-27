@@ -60,33 +60,33 @@ public class ConceptGraphMainTester {
 		// Make the concept graph from Json
 		//TODO: files should be read from within war file...
 		String thisString = GeneralUtil.getRealPath(inputStructure);
-		//NodesAndIDLinks fromJsonLists =  JsonImportExport.fromJson(thisString);		
-		//ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
+		NodesAndIDLinks fromJsonLists =  JsonImportExport.fromJson(thisString);		
+		ConceptGraph graphFromJson = new ConceptGraph(fromJsonLists);
 		
-//		//List<ConceptNode> summaryNodeList = new ArrayList<ConceptNode>();
-//		// Add summary info to it
-//		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
-//		for(PerUserPerProblemSummary summary : summaries){
-//			//System.out.println(summary.getObjectId());
-//			ConceptNode sumNode = new ConceptNode(summary);
-//			graphSummaryNodeList.add(sumNode);
-//		}
+		//List<ConceptNode> summaryNodeList = new ArrayList<ConceptNode>();
+		// Add summary info to it
+		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
+		for(PerUserPerProblemSummary summary : summaries){
+			//System.out.println(summary.getObjectId());
+			ConceptNode sumNode = new ConceptNode(summary);
+			graphSummaryNodeList.add(sumNode);
+		}
 		
 		//TODO: TD - Does this code belong in ObjectSummaryIdentifier? Doesn't seem like its job...
-//		//Also, should probably identify whether connection was made or not
-//		graphFromJson.addSummariesToGraph(summaries);
-//
-//		// calculate "up" the graph the actual scores
-//		graphFromJson.calcActualComp();
-//		
-//		// calculate "down" the graph the predicted scores
-//		graphFromJson.calcPredictedScores();
-//		
-//		System.out.println(graphFromJson);
-//		
-//		NodesAndIDLinks toBeJsoned =  graphFromJson.buildNodesAndLinks();
-//		
-//		JsonImportExport.toJson("smallJsonWithSummaries", toBeJsoned);
+		//Also, should probably identify whether connection was made or not
+		graphFromJson.addSummariesToGraph(summaries);
+
+		// calculate "up" the graph the actual scores
+		graphFromJson.calcActualComp();
+		
+		// calculate "down" the graph the predicted scores
+		graphFromJson.calcPredictedScores();
+		
+		System.out.println(graphFromJson);
+		
+		NodesAndIDLinks toBeJsoned =  graphFromJson.buildNodesAndLinks();
+		
+		JsonImportExport.toJson("smallJsonWithSummaries", toBeJsoned);
 	}
 	
 	public static void testGraphFromRunestoneData(){
