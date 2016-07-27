@@ -1,5 +1,9 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,9 +13,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.ObjectSummaryIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfInteractionDataParser;
+import de.uds.MonitorInterventionMetafora.server.json.JsonCreationLibrary;
 import de.uds.MonitorInterventionMetafora.server.json.JsonImportExport;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
@@ -288,22 +298,120 @@ public class ConceptGraphTest {
 		Assert.assertEquals(2, numC);
 	}
 
+	@Test
+	public void makeConceptGraphFromFileTest(){
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		
+        try {
+			NodesAndIDLinks lists = mapper.readValue(new File("test/testdata/ABCSimple.json"), NodesAndIDLinks.class);
+			Assert.assertEquals(11, lists.getNodes().size());
+			Assert.assertEquals(11, lists.getLinks().size());
+			
+			ConceptGraph myGraph = new ConceptGraph(lists);
+			ConceptGraph myTree = myGraph.graphToTree();
+			
+			NodesAndIDLinks listsFromTree = myTree.buildNodesAndLinks();
+			
+			Assert.assertEquals(16, listsFromTree.getNodes().size());
+			Assert.assertEquals(15, listsFromTree.getLinks().size());
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	@Test
-	public void addSummariesTest() {		
-		makeSummaries();
-		makeGraph();
-		System.out.println(this.summaries);
-	}
+	public void makeJSONfromConceptGraphTest(){
 
-	public void makeSummaries(){
-
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		
+		String outputLocation = "CarrieJsonGraph.json";
+		
+        try {
+			NodesAndIDLinks lists = mapper.readValue(new File("test/testdata/ABCSimple.json"), NodesAndIDLinks.class);
+			try{
+			mapper.writeValue(new File(outputLocation), lists);
+			}catch (JsonGenerationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        } catch (IOException e) {
+			e.printStackTrace();
+		}
+				
+		String jsonString = "";
+		//reads json from file
+		try {
+			for (String line : Files.readAllLines(Paths.get(outputLocation))) {
+			    jsonString += line;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int numID = jsonString.split("id").length-1;
+		jsonString = new String(jsonString);
+		int numLink = jsonString.split("parent").length-1;
+		
+		Assert.assertEquals(11, numID);
+		Assert.assertEquals(11, numLink);
 	}
 	
-	public void makeGraph(){
+	@Test
+	public void makeJSONfromConceptGraphTreeTest(){
+
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		
+		String outputLocation = "CarrieJsonGraph.json";
 		
+        try {
+			NodesAndIDLinks lists = mapper.readValue(new File("test/testdata/ABCSimple.json"), NodesAndIDLinks.class);
+			ConceptGraph tree = new ConceptGraph(lists).graphToTree();
+			
+			try{
+			mapper.writeValue(new File(outputLocation), tree.buildNodesAndLinks());
+			}catch (JsonGenerationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        } catch (IOException e) {
+			e.printStackTrace();
+		}
+				
+		String jsonString = "";
+		//reads json from file
+		try {
+			for (String line : Files.readAllLines(Paths.get(outputLocation))) {
+			    jsonString += line;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int numID = jsonString.split("id").length-1;
+		jsonString = new String(jsonString);
+		int numLink = jsonString.split("parent").length-1;
+		
+		Assert.assertEquals(16, numID);
+		Assert.assertEquals(15, numLink);
 	}
-	
 
 }
