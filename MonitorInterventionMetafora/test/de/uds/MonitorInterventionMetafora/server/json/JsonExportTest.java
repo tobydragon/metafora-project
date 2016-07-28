@@ -14,6 +14,9 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptImpl;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptNode;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.NodesAndIDLinks;
 
 
@@ -316,12 +319,42 @@ public class JsonExportTest {
 				Assert.assertEquals(1, numIDExp);				
 	}
 	
-	public static void main(String[] args){
-		NodesAndIDLinks lists = StructureCreationLibrary.createSimpleSelection();
+	@Test
+	public void ConceptImplToJsonTest(){
+		ObjectMapper mapper = new ObjectMapper();
+		Concept test = new ConceptImpl("Test Title");
+		
+		try {
+			String output = mapper.writeValueAsString(test);
+			//System.out.println(output);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void ConceptNodeToJsonTest(){
+		ObjectMapper mapper = new ObjectMapper();
+		
+		Concept c = new ConceptImpl("Test Title");
+		ConceptNode test = new ConceptNode(c);
+		
+		try {
+			String output = mapper.writeValueAsString(test);
+			System.out.println(output);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void generateSimpleSelectionJson(){
+		NodesAndIDLinks lists = StructureCreationLibrary.createDomainModel();
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			//writes JSON to file
-			mapper.writeValue(new File("selectionOutput.json"), lists);
+			mapper.writeValue(new File("test.json"), lists);
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -333,4 +366,6 @@ public class JsonExportTest {
 			e.printStackTrace();
 		}
 	}
+	
+	
 }

@@ -171,6 +171,7 @@ public class ConceptNode {
 	
 	
 	//getting SummaryInfo objects from the Nodes and then combining into one SummaryInfo object
+	
 	public SummaryInfo getSummaryInfo() {
 		return calcSummaryInfo();
 	}
@@ -206,7 +207,7 @@ public class ConceptNode {
 		
 		return false;
 	}
-
+	
 	public double getActualComp() {
 		return Math.round(actualComp*100.0)/100.0;
 	}
@@ -214,7 +215,7 @@ public class ConceptNode {
 	public void setActualComp(double actualComp) {
 		this.actualComp = actualComp;
 	}
-
+	
 	public double getPredictedComp() {
 		return Math.round(predictedComp*100.0)/100.0;
 	}

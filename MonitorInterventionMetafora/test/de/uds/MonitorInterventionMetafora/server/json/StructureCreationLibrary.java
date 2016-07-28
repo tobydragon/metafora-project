@@ -314,9 +314,7 @@ public class StructureCreationLibrary {
 		
 		NodesAndIDLinks inputNodesAndLinks = new NodesAndIDLinks(cnList,clList);
 		
-		ConceptGraph inputGraph = new ConceptGraph(inputNodesAndLinks);
-		ConceptGraph inputTree = inputGraph.graphToTree();
-		return inputTree.buildNodesAndLinks();
+		return inputNodesAndLinks;
 	}
 
 	public static NodesAndIDLinks createSimpleSelection(){
