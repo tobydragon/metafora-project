@@ -24,7 +24,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
 public class SelectionWorkflow {
 
 	public static void main(String[] args) {
-		NodesAndIDLinks selectionLists = JsonCreationLibrary.createSelection();
+		NodesAndIDLinks selectionLists = StructureCreationLibrary.createSelection();
 		ConceptGraph selectionGraph = new ConceptGraph(selectionLists);
 				
 		String inputXML = "test/testdata/simple.xml";

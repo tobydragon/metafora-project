@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.ObjectSummaryIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfInteractionDataParser;
-import de.uds.MonitorInterventionMetafora.server.json.JsonCreationLibrary;
+import de.uds.MonitorInterventionMetafora.server.json.StructureCreationLibrary;
 import de.uds.MonitorInterventionMetafora.server.json.JsonImportExport;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
@@ -41,9 +41,6 @@ public class ConceptGraphTest {
 	ConceptGraph mediumTree;
 	ConceptGraph complexTree;
 	ConceptGraph superComplexTree;
-	
-	ConceptGraph graphFromJson;
-	List<PerUserPerProblemSummary> summaries;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -413,5 +410,129 @@ public class ConceptGraphTest {
 		Assert.assertEquals(16, numID);
 		Assert.assertEquals(15, numLink);
 	}
+	
+	
+	@Test
+	public void makeSimpleSelectionGraphTest(){
+				
+		ConceptGraph selectionGraph = new ConceptGraph(StructureCreationLibrary.createSimpleSelection());		
+		NodesAndIDLinks selectionLists =  selectionGraph.buildNodesAndLinks();
+		
+		Assert.assertEquals(14, selectionLists.getNodes().size());
+		Assert.assertEquals(17, selectionLists.getLinks().size());
+		
+		
+	}
+	
+	@Test
+	public void makeSimpleSelectionTreeTest(){
+				
+		ConceptGraph selectionGraph = new ConceptGraph(StructureCreationLibrary.createSimpleSelection());
+		ConceptGraph selectionTree = selectionGraph.graphToTree();
+		NodesAndIDLinks selectionLists =  selectionTree.buildNodesAndLinks();
+		
+		Assert.assertEquals(22, selectionLists.getNodes().size());
+		Assert.assertEquals(21, selectionLists.getLinks().size());		
+	}
+	@Test
+	public void makeSummariesSimpleSelectionGraphTest(){
+				
+		String inputXML = "test/testdata/simple.xml";
+		
+		//Get behaviors from runsetone xml
+		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(inputXML);
+		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
+				
+		List<CfAction> allActions = testCf.getCfActions();
+		
+		//Creates problem summaries from user actions
+		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
+		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
+		List<PerUserPerProblemSummary> summaries = myIdentifier.buildPerUserPerProblemSummaries(allActions, involvedUsers);
+		
+		for (PerUserPerProblemSummary summary : summaries){
+			if (summary.toString() != null && summary.toString().contains("5_1_1")){
+				logger.debug(summary);
+			}
+		}
+		// Make the concept graph from Json
+		//TODO: files should be read from within war file...
+		NodesAndIDLinks selectionListsInput =  StructureCreationLibrary.createSimpleSelection();		
+		ConceptGraph selectionGraph = new ConceptGraph(selectionListsInput);
+		
+		// Add summary info to it
+		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
+		for(PerUserPerProblemSummary summary : summaries){
+			//System.out.println(summary.getObjectId());
+			ConceptNode sumNode = new ConceptNode(summary);
+			graphSummaryNodeList.add(sumNode);
+		}
+		
+		//TODO: TD - Does this code belong in ObjectSummaryIdentifier? Doesn't seem like its job...
+		//Also, should probably identify whether connection was made or not
+		selectionGraph.addSummariesToGraph(summaries);
 
+		// calculate "up" the graph the actual scores
+		selectionGraph.calcActualComp();
+		
+		// calculate "down" the graph the predicted scores
+		selectionGraph.calcPredictedScores();
+		
+		NodesAndIDLinks selectionLists =  selectionGraph.buildNodesAndLinks();
+		
+		Assert.assertEquals(16, selectionLists.getNodes().size());
+		Assert.assertEquals(19, selectionLists.getLinks().size());
+	}
+
+	@Test
+	public void makeSummariesSimpleSelectionGraphToTreeTest(){
+				
+		String inputXML = "test/testdata/simple.xml";
+		
+		//Get behaviors from runsetone xml
+		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(inputXML);
+		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
+				
+		List<CfAction> allActions = testCf.getCfActions();
+		
+		//Creates problem summaries from user actions
+		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
+		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
+		List<PerUserPerProblemSummary> summaries = myIdentifier.buildPerUserPerProblemSummaries(allActions, involvedUsers);
+		
+		for (PerUserPerProblemSummary summary : summaries){
+			if (summary.toString() != null && summary.toString().contains("5_1_1")){
+				logger.debug(summary);
+			}
+		}
+		// Make the concept graph from Json
+		//TODO: files should be read from within war file...
+		NodesAndIDLinks selectionListsInput =  StructureCreationLibrary.createSimpleSelection();		
+		ConceptGraph selectionGraph = new ConceptGraph(selectionListsInput);
+		
+		// Add summary info to it
+		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
+		for(PerUserPerProblemSummary summary : summaries){
+			//System.out.println(summary.getObjectId());
+			ConceptNode sumNode = new ConceptNode(summary);
+			graphSummaryNodeList.add(sumNode);
+		}
+		
+		//TODO: TD - Does this code belong in ObjectSummaryIdentifier? Doesn't seem like its job...
+		//Also, should probably identify whether connection was made or not
+		selectionGraph.addSummariesToGraph(summaries);
+
+		// calculate "up" the graph the actual scores
+		selectionGraph.calcActualComp();
+		
+		// calculate "down" the graph the predicted scores
+		selectionGraph.calcPredictedScores();
+		
+		ConceptGraph selectionTree = selectionGraph.graphToTree();
+		NodesAndIDLinks selectionLists =  selectionTree.buildNodesAndLinks();
+		
+		Assert.assertEquals(24, selectionLists.getNodes().size());
+		Assert.assertEquals(23, selectionLists.getLinks().size());
+	}
+	
 }

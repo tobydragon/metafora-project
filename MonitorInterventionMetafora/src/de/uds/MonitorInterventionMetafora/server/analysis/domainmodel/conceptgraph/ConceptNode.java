@@ -46,7 +46,7 @@ public class ConceptNode {
 	public List<ConceptNode> getChildren(){
 		return children;
 	}
-
+	
 	public Concept getConcept(){
 		return concept;
 	}

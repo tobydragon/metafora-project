@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
@@ -170,6 +172,7 @@ public abstract class PerUserPerProblemSummary implements Concept{
 		String title = objectId + ": description: " + description;
 		return title;
 	}
+	
 	public SummaryInfo getSummaryInfo(){
 		List <String> users = new ArrayList<String> ();
 		users.add(user);

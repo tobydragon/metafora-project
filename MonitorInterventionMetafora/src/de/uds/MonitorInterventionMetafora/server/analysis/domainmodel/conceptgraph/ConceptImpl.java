@@ -1,6 +1,6 @@
 package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class ConceptImpl implements Concept{
 	private String conceptTitle;

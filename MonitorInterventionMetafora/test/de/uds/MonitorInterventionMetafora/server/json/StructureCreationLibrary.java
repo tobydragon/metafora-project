@@ -17,7 +17,7 @@ import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgra
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.IDLink;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.NodesAndIDLinks;
 
-public class JsonCreationLibrary {
+public class StructureCreationLibrary {
 	
 	public static NodesAndIDLinks createSimple(){
 		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
@@ -319,106 +319,171 @@ public class JsonCreationLibrary {
 		return inputTree.buildNodesAndLinks();
 	}
 
-	public static NodesAndIDLinks createSelection(){
-//		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
-//		List<IDLink> clList = new ArrayList<IDLink>();
-//		
-//		
-//		//Make Domain Model
-//		Concept c = new ConceptImpl("Intro CS");
-//		ConceptNode cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("Structure");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("Expressions");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("Data");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("Assignment");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("Boolean Expressions");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("Boolean");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("Data Types");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("Control");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("If Statement");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("Loops");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("While Loop");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("test_question6_4_3");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("test_question6_4_2");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);		
-//		c = new ConceptImpl("test_question6_4_1");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("test_question6_3_1");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("test_question6_2_1");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//		c = new ConceptImpl("test_question6_1_1");
-//		cn = new ConceptNode(c, c.getConceptTitle());
-//		cnList.add(cn);
-//				
-//		clList.add(new IDLink("Intro CS","Structure"));
-//		clList.add(new IDLink("Intro CS","Data"));
-//		clList.add(new IDLink("Intro CS","Control"));
-//		clList.add(new IDLink("Structure","Expressions"));
-//		clList.add(new IDLink("Data","Assignment"));
-//		clList.add(new IDLink("Data","Data Types"));
-//		clList.add(new IDLink("Control","If Statement"));
-//		clList.add(new IDLink("Control","Loops"));
-//		clList.add(new IDLink("Expressions","Boolean Expressions"));
-//		clList.add(new IDLink("Assignment","Expressions"));
-//		clList.add(new IDLink("Data Types","Boolean"));
-//		clList.add(new IDLink("If Statement","Boolean Expressions"));
-//		clList.add(new IDLink("Loops","While Loop"));
-//		clList.add(new IDLink("Boolean Expressions","Boolean"));
-//		clList.add(new IDLink("While Loop","Boolean Expressions"));
-//		
-//		clList.add(new IDLink("Boolean Expressions","test_question6_1_1"));
-//		clList.add(new IDLink("Boolean Expressions","test_question6_2_1"));
-//		clList.add(new IDLink("Expressions","test_question6_3_1"));
-//		clList.add(new IDLink("If Statement","test_question6_4_1"));
-//		clList.add(new IDLink("If Statement","test_question6_4_2"));
-//		clList.add(new IDLink("If Statement","test_question6_4_3"));
+	public static NodesAndIDLinks createSimpleSelection(){
+		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
+		List<IDLink> clList = new ArrayList<IDLink>();
 		
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		NodesAndIDLinks inputNodesAndLinks = null;
-        try {
-			inputNodesAndLinks = mapper.readValue(new File("test/testdata/Selection.json"), NodesAndIDLinks.class);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Concept c = new ConceptImpl("Intro CS");
+		ConceptNode cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Structure");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Expressions");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Data");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Assignment");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Boolean Expressions");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Boolean");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Data Types");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Control");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("If Statement");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Loops");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("While Loop");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("test_question6_4_2");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);		
+		c = new ConceptImpl("test_question6_4_1");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+				
+		clList.add(new IDLink("Intro CS","Structure"));
+		clList.add(new IDLink("Intro CS","Data"));
+		clList.add(new IDLink("Intro CS","Control"));
+		clList.add(new IDLink("Structure","Expressions"));
+		clList.add(new IDLink("Data","Assignment"));
+		clList.add(new IDLink("Data","Data Types"));
+		clList.add(new IDLink("Control","If Statement"));
+		clList.add(new IDLink("Control","Loops"));
+		clList.add(new IDLink("Expressions","Boolean Expressions"));
+		clList.add(new IDLink("Assignment","Expressions"));
+		clList.add(new IDLink("Data Types","Boolean"));
+		clList.add(new IDLink("If Statement","Boolean Expressions"));
+		clList.add(new IDLink("Loops","While Loop"));
+		clList.add(new IDLink("Boolean Expressions","Boolean"));
+		clList.add(new IDLink("While Loop","Boolean Expressions"));
 		
-		ConceptGraph inputGraph = new ConceptGraph(inputNodesAndLinks);
-		return inputGraph.buildNodesAndLinks();
+		clList.add(new IDLink("If Statement","test_question6_4_1"));
+		clList.add(new IDLink("If Statement","test_question6_4_2"));
+		
+		NodesAndIDLinks inputNodesAndLinks= new NodesAndIDLinks(cnList,clList);
+		return inputNodesAndLinks;
 	}
 	
-	public static void main(String args[]){
-		NodesAndIDLinks test = createSelection();
-		System.out.println(test);
+	public static NodesAndIDLinks createSelection(){
+		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
+		List<IDLink> clList = new ArrayList<IDLink>();
+		
+		Concept c = new ConceptImpl("Intro CS");
+		ConceptNode cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Structure");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Expressions");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Data");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Assignment");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Boolean Expressions");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Boolean");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Data Types");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Control");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("If Statement");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("Loops");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("While Loop");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("test_question6_4_3");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("test_question6_4_2");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);		
+		c = new ConceptImpl("test_question6_4_1");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("test_question6_3_1");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("test_question6_2_1");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+		c = new ConceptImpl("test_question6_1_1");
+		cn = new ConceptNode(c, c.getConceptTitle());
+		cnList.add(cn);
+				
+		clList.add(new IDLink("Intro CS","Structure"));
+		clList.add(new IDLink("Intro CS","Data"));
+		clList.add(new IDLink("Intro CS","Control"));
+		clList.add(new IDLink("Structure","Expressions"));
+		clList.add(new IDLink("Data","Assignment"));
+		clList.add(new IDLink("Data","Data Types"));
+		clList.add(new IDLink("Control","If Statement"));
+		clList.add(new IDLink("Control","Loops"));
+		clList.add(new IDLink("Expressions","Boolean Expressions"));
+		clList.add(new IDLink("Assignment","Expressions"));
+		clList.add(new IDLink("Data Types","Boolean"));
+		clList.add(new IDLink("If Statement","Boolean Expressions"));
+		clList.add(new IDLink("Loops","While Loop"));
+		clList.add(new IDLink("Boolean Expressions","Boolean"));
+		clList.add(new IDLink("While Loop","Boolean Expressions"));
+		
+		clList.add(new IDLink("Boolean Expressions","test_question6_1_1"));
+		clList.add(new IDLink("Boolean Expressions","test_question6_2_1"));
+		clList.add(new IDLink("Expressions","test_question6_3_1"));
+		clList.add(new IDLink("If Statement","test_question6_4_1"));
+		clList.add(new IDLink("If Statement","test_question6_4_2"));
+		clList.add(new IDLink("If Statement","test_question6_4_3"));
+		
+		NodesAndIDLinks inputNodesAndLinks= new NodesAndIDLinks(cnList,clList);
+		
+//		ObjectMapper mapper = new ObjectMapper();
+//		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//		NodesAndIDLinks inputNodesAndLinks = null;
+//        try {
+//			inputNodesAndLinks = mapper.readValue(new File("test/testdata/Selection.json"), NodesAndIDLinks.class);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
+		return inputNodesAndLinks;
 	}
+	
 	
 }
