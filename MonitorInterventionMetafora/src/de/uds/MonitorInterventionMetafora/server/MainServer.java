@@ -12,12 +12,14 @@ import org.apache.log4j.Logger;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.uds.MonitorInterventionMetafora.client.communication.CommunicationService;
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.ConceptGraphAnalyzer;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfActionParser;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfInteractionDataParser;
 import de.uds.MonitorInterventionMetafora.server.utils.ErrorUtil;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlConfigParser;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
+import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfCommunicationMethodType;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
@@ -258,15 +260,17 @@ public class MainServer extends RemoteServiceServlet implements CommunicationSer
 			//TODO: make generic for different types of xml, this assumes data from file will be runestone xml...
 			cfActions.add(CfActionParser.fromRunsetoneXml(cfActionElement));
 		}
-		logger.info("requestDataFromFile:\t\t read " +cfActions.size() + " indicators from "+ path);		 
+		logger.info("requestDataFromFile:\t\t read " +cfActions.size() + " indicators from "+ path);
+		//TODO: This is runestone specific, should be set by flag...(along with previous todo)
+		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(cfActions);
+		ConceptGraphAnalyzer.addAnalysisAndCreateVisualiztionHtml(cfActions, involvedUsers);
 		
 		if (xmppServerType == XmppServerType.METAFORA){
 			 mainServer.replaceAllMonitorActions(cfActions);
-			 mainServer.requestAnalysis();
+			 
 		}
 		else {
 			 testServer.replaceAllMonitorActions(cfActions);
-			 mainServer.requestAnalysis();
 		}
 		
 		return new UpdateResponse(cfActions, null);
