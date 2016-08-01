@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,7 +25,17 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
 public class SelectionWorkflow {
 
 	public static void main(String[] args) {
-		NodesAndIDLinks selectionLists = StructureCreationLibrary.createSelection();
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		NodesAndIDLinks selectionLists = null;
+		try {
+			selectionLists = mapper.readValue(new File("war/conffiles/domainfiles/conceptgraph/selectionStructure.json"), NodesAndIDLinks.class);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		ConceptGraph selectionGraph = new ConceptGraph(selectionLists);
 				
 		String inputXML = "test/testdata/simple.xml";
@@ -46,20 +57,20 @@ public class SelectionWorkflow {
 		}
 		
 		//Also, should probably identify whether connection was made or not
-				selectionGraph.addSummariesToGraph(summaries);
+		selectionGraph.addSummariesToGraph(summaries);
 
-				// calculate "up" the graph the actual scores
-				selectionGraph.calcActualComp();
-				
-				// calculate "down" the graph the predicted scores
-				selectionGraph.calcPredictedScores();
-				
-				System.out.println(selectionGraph);
-				ConceptGraph selectionTree = selectionGraph.graphToTree();
-				
-				NodesAndIDLinks toBeJsoned =  selectionTree.buildNodesAndLinks();
-				
-				JsonImportExport.toJson("selectionOutput", toBeJsoned);
+		// calculate "up" the graph the actual scores
+		selectionGraph.calcActualComp();
+		
+		// calculate "down" the graph the predicted scores
+		selectionGraph.calcPredictedScores();
+		
+		System.out.println(selectionGraph);
+		ConceptGraph selectionTree = selectionGraph.graphToTree();
+		
+		NodesAndIDLinks toBeJsoned =  selectionTree.buildNodesAndLinks();
+		
+		JsonImportExport.toJson("selectionOutput", toBeJsoned);
 
 		
 	}

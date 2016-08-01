@@ -3,6 +3,7 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 import static org.junit.Assert.*;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,8 +18,8 @@ public class ConceptNodeTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void makeNameWithInitialInputTest() {
+		Assert.assertEquals("Title-1", ConceptNode.makeName("Title"));
 	}
 
 }

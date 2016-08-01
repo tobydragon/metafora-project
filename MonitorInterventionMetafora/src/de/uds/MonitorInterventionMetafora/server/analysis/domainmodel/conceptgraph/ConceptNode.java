@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class ConceptNode {
 	
+	private static final String symbol = "-";
 	String id;
 	Concept concept;
 	List<ConceptNode> children;
@@ -106,9 +107,14 @@ public class ConceptNode {
 		return nodeCopy;
 	}
 
+	/***
+	 * makes next name based on prevName, everything before "-" symbol is the name and the number after it will iterate
+	 * @param prevName
+	 * @return String next name
+	 */
 	public static String makeName(String prevName) {
 		if(prevName != "" && prevName != null){
-			String[] nameList = prevName.split("-");
+			String[] nameList = prevName.split(symbol);
 			String name = nameList[0];
 			int num = 0;
 			try{
