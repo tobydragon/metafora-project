@@ -115,15 +115,26 @@ public class ConceptNode {
 	public static String makeName(String prevName) {
 		if(prevName != "" && prevName != null){
 			String[] nameList = prevName.split(symbol);
-			String name = nameList[0];
-			int num = 0;
-			try{
-			String numString = nameList[1];
-			num = Integer.parseInt(numString);
-			num += 1;
-			}catch(ArrayIndexOutOfBoundsException e){
-				num = 1;
+			String name = "";
+			for(int i = 0; i < nameList.length-1; i++){
+				name += nameList[i];
 			}
+			int num = 0;
+			
+			if(nameList.length <= 1){
+				String fullName = nameList[0] + "-1";
+				return fullName;
+			}else{
+				try{
+					String numString = nameList[nameList.length-1];
+					num = Integer.parseInt(numString);
+					num += 1;
+				}catch(NumberFormatException e){
+					name += nameList[nameList.length-1];
+					num = 1;
+				}
+			}
+			
 			
 			String fullName = name+"-"+num;
 			return fullName;
