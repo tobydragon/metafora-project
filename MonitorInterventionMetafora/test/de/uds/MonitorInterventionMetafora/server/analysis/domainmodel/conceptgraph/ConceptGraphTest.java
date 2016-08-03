@@ -42,6 +42,8 @@ public class ConceptGraphTest {
 	ConceptGraph mediumTree;
 	ConceptGraph complexTree;
 	ConceptGraph superComplexTree;
+	ConceptGraph graphFromBook;
+	ConceptGraph bookTree;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -49,6 +51,7 @@ public class ConceptGraphTest {
 		makeMedium();
 		makeComplex();
 		makeSuperComplex();
+		makeBookGraph();
 	}
 
 	@After
@@ -61,8 +64,15 @@ public class ConceptGraphTest {
 		this.complexTree = null;
 		this.superComplexGraph = null;
 		this.superComplexTree = null;
+		this.graphFromBook = null;
+		this.bookTree = null;
 	}
 	
+	public void makeBookGraph(){
+		Book b = new Book("Interacitve Python","war/conffiles/domainfiles/thinkcspy/");
+		graphFromBook = new ConceptGraph(b);
+		bookTree = graphFromBook.graphToTree();
+	}
 	
 	public void makeSimple(){
 		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
@@ -537,10 +547,44 @@ public class ConceptGraphTest {
 	}
 	
 	@Test
-	public void ConceptGraphFromBookTest(){
-		Book b = new Book("Interacitve Python","war/conffiles/domainfiles/thinkcspy/");
-		ConceptGraph graphFromBook = new ConceptGraph(b);
-		System.out.println(graphFromBook);
+	public void ConceptGraphFromBookNodesTest(){
+		NodesAndIDLinks lists = graphFromBook.buildNodesAndLinks();
+		Assert.assertEquals(217, lists.getNodes().size());
 	}
 	
+	@Test
+	public void ConceptGraphFromBookLinksTest(){
+		NodesAndIDLinks lists = graphFromBook.buildNodesAndLinks();
+		Assert.assertEquals(216, lists.getLinks().size());
+	}
+	
+	@Test
+	public void ConceptGraphFromBookSelectionTest(){
+		NodesAndIDLinks lists = graphFromBook.buildNodesAndLinks();
+		String[] selectionTitles = {"BooleanValuesandBooleanExpressions", "Logicaloperators", "PrecedenceofOperators", "ConditionalExecutionBinarySelection", "OmittingtheelseClauseUnarySelection", "Nestedconditionals", "Chainedconditionals", "BooleanFunctions"};
+		List<ConceptNode> nodes = lists.getNodes();
+		List<ConceptNode> selectionNodes = new ArrayList<ConceptNode>();
+		
+		ConceptNode selectionNode = null;
+				
+		for(int i = 0; i < nodes.size(); i++){
+			if(nodes.get(i).getConcept().getConceptTitle().equals("Selection")){
+				selectionNode = nodes.get(i);
+			}
+		}
+		
+		List<ConceptNode> selectionChildren = selectionNode.getChildren(); 
+		
+		for(int i = 0; i < nodes.size(); i++){
+			for(int j = 0; j < selectionTitles.length; j++){
+				if(nodes.get(i).getID().contains(selectionTitles[j])){
+					selectionNodes.add(nodes.get(i));
+				}
+			}
+		}
+		System.out.println(selectionNodes);
+		Assert.assertEquals(8, selectionChildren.size()-2);
+		Assert.assertEquals(8, selectionNodes.size()-1);
+		
+	}
 }
