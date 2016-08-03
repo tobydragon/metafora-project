@@ -48,7 +48,8 @@ public class Chapter implements Concept{
 //					//change filePath
 //					subChapters.add(new SubChapter(subjectList.get(i), conceptTitle, filePath));
 				} catch(FileNotFoundException e) {
-					System.out.println("WARN Subchapter missing: " + parts[1]);
+					subChapters.add(new SubChapter(parts[1]));
+					//System.out.println("WARN Subchapter missing: " + parts[1]);
 				}
 			}
 		}

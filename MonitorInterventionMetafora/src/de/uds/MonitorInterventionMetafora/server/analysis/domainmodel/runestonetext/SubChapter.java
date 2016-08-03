@@ -31,6 +31,10 @@ public class SubChapter implements Concept{
 		getQs(conceptTitle,fileName, filePath);
 	}
 
+	public SubChapter(String t){
+		this.conceptTitle = t;
+	}
+	
 	public String toString(){
 		String subAndQuestions = conceptTitle;
 		for (int i=0;i<questions.size();i++){

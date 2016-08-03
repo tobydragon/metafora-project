@@ -503,7 +503,7 @@ public class ConceptGraphTest {
 		
 		for (PerUserPerProblemSummary summary : summaries){
 			if (summary.toString() != null && summary.toString().contains("5_1_1")){
-				logger.debug(summary);
+				//logger.debug(summary);
 			}
 		}
 		// Make the concept graph from Json
@@ -539,7 +539,8 @@ public class ConceptGraphTest {
 	@Test
 	public void ConceptGraphFromBookTest(){
 		Book b = new Book("Interacitve Python","war/conffiles/domainfiles/thinkcspy/");
-		//ConceptGraph graphFromBook = new ConceptGraph(b);
+		ConceptGraph graphFromBook = new ConceptGraph(b);
+		System.out.println(graphFromBook);
 	}
 	
 }
