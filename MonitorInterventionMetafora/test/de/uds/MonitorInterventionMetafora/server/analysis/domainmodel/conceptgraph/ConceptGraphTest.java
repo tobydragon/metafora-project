@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.ObjectSummaryIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfInteractionDataParser;
 import de.uds.MonitorInterventionMetafora.server.json.StructureCreationLibrary;
 import de.uds.MonitorInterventionMetafora.server.json.JsonImportExport;
@@ -533,6 +534,12 @@ public class ConceptGraphTest {
 		
 		Assert.assertEquals(24, selectionLists.getNodes().size());
 		Assert.assertEquals(23, selectionLists.getLinks().size());
+	}
+	
+	@Test
+	public void ConceptGraphFromBookTest(){
+		Book b = new Book("Interacitve Python","war/conffiles/domainfiles/thinkcspy/");
+		//ConceptGraph graphFromBook = new ConceptGraph(b);
 	}
 	
 }

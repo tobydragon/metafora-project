@@ -15,10 +15,6 @@ public class Book implements Concept {
 	private String conceptTitle;
 	private List<Chapter> chaps = new ArrayList<Chapter>();
 	
-	public Book() {
-		super();
-	}
-	
 	//constructor
 	//takes a string that's the title and a file path as parameters
 	public Book(String t, String filePath) {
@@ -31,7 +27,8 @@ public class Book implements Concept {
 		}
 		List<String> chapters = getChapters(chapsAndSubs);
 		for(int i=0; i<chapters.size();i++){
-			chaps.add(newChapter(chapters.get(i),chapsAndSubs,subjects, filePath));
+			chaps.add(new Chapter(chapters.get(i), subjects, chapsAndSubs, filePath));
+			//chaps.add(newChapter(chapters.get(i),chapsAndSubs,subjects, filePath));
 		}
 	}
 	//creates a string list of the chapters
@@ -41,10 +38,12 @@ public class Book implements Concept {
 		int currentChap = 0;
 		for (int i = 0; i<allLines.size();i++){
 			if(i == 0){
-				chapters.add(allLines.get(i).split("/")[0]);
+				String temp = allLines.get(i).split("/")[0];
+				chapters.add(temp.replaceAll("\\s+",""));
 			}
 			if (!(allLines.get(i).contains(chapters.get(currentChap)))){
-				chapters.add(allLines.get(i).split("/")[0]);
+				String temp = allLines.get(i).split("/")[0];
+				chapters.add(temp.replaceAll("\\s+",""));
 				currentChap++;
 			}
 		}
@@ -58,22 +57,6 @@ public class Book implements Concept {
 		return book;
 	}
 	
-	//creates a new chapter object
-	//takes the chapter title, the allChapterFile list, and list of chapters and returns a chapter object
-	public Chapter newChapter(String chap, List<String> fileList, List<String> allSubChap, String filePath){
-		List<Integer> position = new ArrayList<Integer>();
-		List<String> subChap = new ArrayList<String>();
-		for (int i=0; i<fileList.size(); i++){
-			if (fileList.get(i).contains(chap)){
-				position.add(i);
-			}
-		}
-		for (int i=0;i<position.size();i++){
-			subChap.add(allSubChap.get(position.get(i)));
-		}
-		return new Chapter(chap,subChap, filePath);
-		
-	}
 	//gets a string list of all the lines of the allChapterFiles text file
 	public List<String> getFile(String filePath){
 		List<String> chapsAndSubs = new ArrayList<String>();

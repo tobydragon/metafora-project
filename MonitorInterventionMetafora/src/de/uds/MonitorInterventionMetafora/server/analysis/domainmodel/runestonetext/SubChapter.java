@@ -22,11 +22,11 @@ public class SubChapter implements Concept{
 	}
 	//constructor
 	//takes a title for the subchapter, and the chapter title
-	public SubChapter(String t, String title2, String path)throws FileNotFoundException{
+	public SubChapter(String t, String chap, String path)throws FileNotFoundException{
 		//deletes the ".rst" from the SubChapter title
 		t = t.replace(".rst",  "");
 		this.conceptTitle = t;
-		this.fileName = title2;
+		this.fileName = chap;
 		this.filePath = path;
 		getQs(conceptTitle,fileName, filePath);
 	}

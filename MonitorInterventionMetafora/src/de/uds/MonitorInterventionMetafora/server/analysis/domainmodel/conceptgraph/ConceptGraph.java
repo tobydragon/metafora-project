@@ -18,14 +18,8 @@ public class ConceptGraph {
 	
 	static Logger logger = Logger.getLogger(ConceptGraph.class);
 	public static final Integer DIVISION_FACTOR = 2;
-	//ConceptNode root;
 	List<ConceptNode> roots;
 	String stringToReturn = "";
-	//List<ConceptNode> nodes;
-	//List<ConceptLink> links;
-	
-	//HashMap<String, List<ConceptNode>> nodesMap;
-	//List<IDLink> idLinks;
 
 	/*
 	 *Takes in a book, starts at the root, then goes through each level (chapters, sub chapters, questions) and creates
@@ -34,9 +28,6 @@ public class ConceptGraph {
 	
 	public ConceptGraph(Book b){
 		ConceptNode root = new ConceptNode(b);
-		List<ConceptNode> nodes = new ArrayList<ConceptNode>();
-		List<ConceptLink> links = new ArrayList<ConceptLink>();
-		
 		
 		//get the list of chapters of the book
 		//create a new node for each chapter
@@ -48,6 +39,7 @@ public class ConceptGraph {
 			//get the list of sub chapters for each chapter
 			//create a new node for each sub chapter
 			List<SubChapter> subChaps = chap.getSubChapters();
+			
 			for (SubChapter subChap : subChaps){
 				ConceptNode subChapNode = new ConceptNode(subChap);
 				chapNode.addChild(subChapNode);
@@ -106,7 +98,7 @@ public class ConceptGraph {
 					hasAdded = currRoot.addSummaryNode(summaryNode);
 				}
 			}
-			logger.warn("Summary not added, no matching parent found for summary node " + summaryNode);
+			//logger.warn("Summary not added, no matching parent found for summary node " + summaryNode);
 		}
 	}	
 
