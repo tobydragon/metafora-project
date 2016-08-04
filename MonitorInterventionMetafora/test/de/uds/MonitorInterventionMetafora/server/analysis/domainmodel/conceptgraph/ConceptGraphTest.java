@@ -44,6 +44,8 @@ public class ConceptGraphTest {
 	ConceptGraph superComplexTree;
 	ConceptGraph graphFromBook;
 	ConceptGraph bookTree;
+	ConceptGraph simpleInputTree;
+	ConceptGraph complexInputTree;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -52,6 +54,8 @@ public class ConceptGraphTest {
 		makeComplex();
 		makeSuperComplex();
 		makeBookGraph();
+		makeSimpleInputTree();
+		makeComplexInputTree();
 	}
 
 	@After
@@ -66,6 +70,94 @@ public class ConceptGraphTest {
 		this.superComplexTree = null;
 		this.graphFromBook = null;
 		this.bookTree = null;
+		this.simpleInputTree = null;
+		this.complexInputTree = null;
+	}
+	
+	public void makeSimpleInputTree(){
+		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
+		List<IDLink> linkList = new ArrayList<IDLink>(); 
+		
+		Concept c = new ConceptImpl("A");
+		ConceptNode cn = new ConceptNode(c);
+		cnList.add(cn);
+		c = new ConceptImpl("B");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		c = new ConceptImpl("C");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		c = new ConceptImpl("D");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		c = new ConceptImpl("E");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		
+		IDLink link = new IDLink("A","B");
+		linkList.add(link);
+		link = new IDLink("A","C");
+		linkList.add(link);
+		link = new IDLink("B","D");
+		linkList.add(link);
+		link = new IDLink("C","E");
+		linkList.add(link);
+		
+		NodesAndIDLinks lists = new NodesAndIDLinks(cnList, linkList);
+		simpleInputTree = new ConceptGraph(lists);
+	}
+	
+	public void makeComplexInputTree(){
+		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
+		List<IDLink> linkList = new ArrayList<IDLink>(); 
+		
+		Concept c = new ConceptImpl("A");
+		ConceptNode cn = new ConceptNode(c);
+		cnList.add(cn);
+		c = new ConceptImpl("B");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		c = new ConceptImpl("C");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		c = new ConceptImpl("D");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		c = new ConceptImpl("E");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		c = new ConceptImpl("F");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		c = new ConceptImpl("G");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		c = new ConceptImpl("H");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		c = new ConceptImpl("I");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		
+		IDLink link = new IDLink("A","B");
+		linkList.add(link);
+		link = new IDLink("A","C");
+		linkList.add(link);
+		link = new IDLink("B","D");
+		linkList.add(link);
+		link = new IDLink("C","E");
+		linkList.add(link);
+		link = new IDLink("C","F");
+		linkList.add(link);
+		link = new IDLink("D","G");
+		linkList.add(link);
+		link = new IDLink("G","H");
+		linkList.add(link);
+		link = new IDLink("G","I");
+		linkList.add(link);
+		
+		NodesAndIDLinks lists = new NodesAndIDLinks(cnList, linkList);
+		complexInputTree = new ConceptGraph(lists);
 	}
 	
 	public void makeBookGraph(){
@@ -583,15 +675,47 @@ public class ConceptGraphTest {
 			}
 		}
 		
-		System.out.println(selectionChildren);
-		System.out.println(selectionNodes);
-		
 		Assert.assertEquals(8, selectionChildren.size()-2-1); //sub 2 for exercises and glossary, sub 1 for intro page
 		Assert.assertEquals(8, selectionNodes.size()-1); //sub for duplicate BooleanFunctions	
 	}
 	
 	@Test
-	public void OutputFromBookTest(){
+	public void SimpleInputTreeToTreeTest(){
+		ConceptGraph treeFromTree = this.simpleInputTree.graphToTree();
+		NodesAndIDLinks initialLists = this.simpleInputTree.buildNodesAndLinks();
+		NodesAndIDLinks postLists = treeFromTree.buildNodesAndLinks();
+		Assert.assertEquals(postLists.getNodes().size(), initialLists.getNodes().size());
+		Assert.assertEquals(postLists.getLinks().size(), initialLists.getLinks().size());
+	}
+	
+	@Test
+	public void ComplexInputTreeToTreeTest(){
+		ConceptGraph treeFromTree = this.complexInputTree.graphToTree();
+		NodesAndIDLinks initialLists = this.complexInputTree.buildNodesAndLinks();
+		NodesAndIDLinks postLists = treeFromTree.buildNodesAndLinks();
+		Assert.assertEquals(postLists.getNodes().size(), initialLists.getNodes().size());
+		Assert.assertEquals(postLists.getLinks().size(), initialLists.getLinks().size());
+	}
+	
+	@Test
+	public void MediumReTreeTest(){
+		ConceptGraph myGraph = this.mediumGraph.graphToTree();
+		ConceptGraph myTree = myGraph.graphToTree();
+		ConceptGraph myTree2 = myTree.graphToTree();
+		
+		NodesAndIDLinks lists1 = myGraph.buildNodesAndLinks();
+		NodesAndIDLinks lists2 = myTree.buildNodesAndLinks();
+		NodesAndIDLinks lists3 = myTree2.buildNodesAndLinks();
+		
+		Assert.assertEquals(lists2.getNodes().size(), lists3.getNodes().size());
+		
+		Assert.assertEquals(lists2.getLinks().size(), lists3.getLinks().size());
+		
+		Assert.assertEquals(lists3.getLinks().size() + 1, lists3.getNodes().size());
+	}
+	
+	@Test
+	public void JSONOutputFromBookTest(){
 		//TODO: Json does not work with visualization because there are duplicate row names.
 		NodesAndIDLinks lists = graphFromBook.buildNodesAndLinks();
 		JsonImportExport.toJson("test", lists);
