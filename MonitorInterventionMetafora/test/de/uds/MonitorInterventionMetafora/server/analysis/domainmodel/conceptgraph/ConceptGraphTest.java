@@ -582,9 +582,18 @@ public class ConceptGraphTest {
 				}
 			}
 		}
-		System.out.println(selectionNodes);
-		Assert.assertEquals(8, selectionChildren.size()-2);
-		Assert.assertEquals(8, selectionNodes.size()-1);
 		
+		System.out.println(selectionChildren);
+		System.out.println(selectionNodes);
+		
+		Assert.assertEquals(8, selectionChildren.size()-2-1); //sub 2 for exercises and glossary, sub 1 for intro page
+		Assert.assertEquals(8, selectionNodes.size()-1); //sub for duplicate BooleanFunctions	
+	}
+	
+	@Test
+	public void OutputFromBookTest(){
+		//TODO: Json does not work with visualization because there are duplicate row names.
+		NodesAndIDLinks lists = graphFromBook.buildNodesAndLinks();
+		JsonImportExport.toJson("test", lists);
 	}
 }
