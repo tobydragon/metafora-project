@@ -718,6 +718,18 @@ public class ConceptGraphTest {
 	public void JSONOutputFromBookTest(){
 		//TODO: Json does not work with visualization because there are duplicate row names.
 		NodesAndIDLinks lists = graphFromBook.buildNodesAndLinks();
-		JsonImportExport.toJson("test", lists);
+		
+	}
+	
+	@Test
+	public void makingGraphFromBookTest(){
+		Book b = new Book("Interacitve Python","war/conffiles/domainfiles/thinkcspy/");
+		ConceptGraph graphFromBookForTest = new ConceptGraph(b);
+		ConceptNode book = graphFromBookForTest.roots.get(0); //interactive python
+		ConceptNode chapter = book.getChildren().get(1); //Simple Python Data
+		ConceptNode subchapter = chapter.getChildren().get(6); //Variables
+		List<ConceptNode> questions = subchapter.getChildren();
+		
+		Assert.assertEquals(1, questions.size());
 	}
 }

@@ -49,7 +49,7 @@ public class SubChapter implements Concept{
 		chap = chap.trim();	
 		//takes the filepath passed down from BookTest and appends the necessary add ons to it
 		//need to add the ".rst" back in since it was deleted from the title
-		filePath = filePath+"source/"+chap+"/"+sub + ".rst";
+		filePath = filePath+"_sources/"+chap+"/"+sub + ".rst";
 		Scanner findQs;
 		findQs = new Scanner(new File(filePath));
 			while (findQs.hasNextLine()==true){

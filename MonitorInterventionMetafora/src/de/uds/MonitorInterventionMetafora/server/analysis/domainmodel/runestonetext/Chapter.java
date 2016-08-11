@@ -21,6 +21,8 @@ public class Chapter implements Concept{
 	//constructor
 	//takes parameters of a title and list of subjects
 	public Chapter(String t, List<String> subjectList, List<String> chapsAndSubs, String filePath) {
+		
+		//old code
 //		subChapters = new ArrayList<SubChapter>();
 //		conceptTitle = t;
 //		for (int i=0;i<subjectList.size();i++){
@@ -37,19 +39,21 @@ public class Chapter implements Concept{
 //		}
 		subChapters = new ArrayList<SubChapter>();
 		conceptTitle = t;	
+		
+		//TODO: Figure what is causing the errors here
 		for(int i = 0; i < chapsAndSubs.size(); i++){
 			String[] parts = chapsAndSubs.get(i).split("/");
 			if(parts[0].contains(t)){
 				try {
 				subChapters.add(new SubChapter(parts[1], parts[0], filePath));
-//					String filePathTest = filePath + "_sources/" + this.conceptTitle+"/" + parts[1];
-//					filePathTest = filePathTest.replaceAll("\\s+","");
-//					
-//					//change filePath
-//					subChapters.add(new SubChapter(subjectList.get(i), conceptTitle, filePath));
+					String filePathTest = filePath + "_sources/" + this.conceptTitle+"/" + parts[1];
+					filePathTest = filePathTest.replaceAll("\\s+","");
+					
+					//change filePath
+					subChapters.add(new SubChapter(subjectList.get(i), conceptTitle, filePath));
 				} catch(FileNotFoundException e) {
 					subChapters.add(new SubChapter(parts[1]));
-					//System.out.println("WARN Subchapter missing: " + parts[1]);
+					System.out.println("WARN Subchapter missing: " + parts[1]);
 				}
 			}
 		}
