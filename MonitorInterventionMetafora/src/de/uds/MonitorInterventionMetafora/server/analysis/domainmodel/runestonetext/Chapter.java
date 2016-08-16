@@ -5,14 +5,17 @@ import java.util.List;
 import java.io.FileNotFoundException;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptGraphTest;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
 public class Chapter implements Concept{
 	
 	private String conceptTitle;
 	private List<SubChapter> subChapters;
+	static Logger logger = Logger.getLogger(Chapter.class);
 
 	
 	public Chapter() {
@@ -52,8 +55,7 @@ public class Chapter implements Concept{
 					//change filePath
 					subChapters.add(new SubChapter(subjectList.get(i), conceptTitle, filePath));
 				} catch(FileNotFoundException e) {
-					subChapters.add(new SubChapter(parts[1]));
-					System.out.println("WARN Subchapter missing: " + parts[1]);
+					logger.warn("WARN Subchapter missing: " + parts[1], e);
 				}
 			}
 		}
