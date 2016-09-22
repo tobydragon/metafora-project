@@ -217,6 +217,21 @@ public class ConceptGraph {
 		return null;
 	}
 	
+	public void addingQLinks(Question questionIn){
+		NodesAndIDLinks fullNLList = this.buildNodesAndLinks();
+		List<ConceptNode> cnList = fullNLList.getNodes();
+		List<IDLink> linkList = fullNLList.getLinks();
+		
+		for(IDLink link : questionIn.tagsToAdd()){
+			linkList.add(link);
+		}
+		
+		
+		fullNLList = new NodesAndIDLinks(cnList,linkList);
+		
+		//lol what do I do now?
+	}
+	
 	
 	public static void main(String args[]){
 		List<ConceptNode> cnList = new ArrayList<ConceptNode>();

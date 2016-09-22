@@ -10,7 +10,7 @@ var dataObject = JSON.parse(request.responseText);
 var roots = findRoot(dataObject);
 for(var i = 0; i < roots.length; i++){
     var row1 = [];
-    row1.push(roots[i].id);
+    row1.push(roots[i].id + " Score: "  + roots[i].actualComp);
     row1.push(null);
     row1.push(roots[i].actualComp);
     visualizationList.push(row1);
