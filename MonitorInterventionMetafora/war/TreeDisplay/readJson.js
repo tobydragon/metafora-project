@@ -10,7 +10,7 @@ var dataObject = JSON.parse(request.responseText);
 var roots = findRoot(dataObject);
 for(var i = 0; i < roots.length; i++){
     var row1 = [];
-    row1.push(roots[i].id + " Score: "  + roots[i].actualComp);
+    row1.push(roots[i].id);
     row1.push(null);
     row1.push(roots[i].actualComp);
     visualizationList.push(row1);
@@ -22,7 +22,7 @@ for(var i = 0; i < dataObject.links.length; i++){
     row.push(dataObject.links[i].parent);
     for(var j = 0; j < dataObject.nodes.length; j++){
         if(dataObject.nodes[j].id == dataObject.links[i].child){
-            row.push(dataObject.nodes[i].actualComp);
+            row.push(dataObject.nodes[j].actualComp);
         }
     }
     visualizationList.push(row);
