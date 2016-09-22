@@ -18,13 +18,16 @@ for(var i = 0; i < roots.length; i++){
 
 for(var i = 0; i < dataObject.links.length; i++){
     var row = [];
-    row.push(dataObject.links[i].child);
-    row.push(dataObject.links[i].parent);
+    var c = dataObject.links[i].child;
+    var p = dataObject.links[i].parent;
     for(var j = 0; j < dataObject.nodes.length; j++){
         if(dataObject.nodes[j].id == dataObject.links[i].child){
-            row.push(dataObject.nodes[j].actualComp);
+            var s = dataObject.nodes[j].actualComp;
         }
     }
+    row.push(c + " SCORE: " + s);
+    row.push(p);
+    row.push(s);
     visualizationList.push(row);
 }
 
