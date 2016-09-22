@@ -6,7 +6,7 @@ public enum QuestionType {
 	//these exercise types don't appear in log because log keeps them as plain active code. see issue #14
 	ACTIVE_CODE_EXERCISE("actex", "actex"),
 	DRAG_AND_DROP("parsonsprob", "parsons"),
-	MULT_CHOICE ("mchoicemf", "mChoice");
+	MULT_CHOICE ("mchoice", "mchoice");
 	
 	String sourceString;
 	String logString;

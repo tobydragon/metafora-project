@@ -49,15 +49,19 @@ public class SubChapter implements Concept{
 		chap = chap.trim();	
 		//takes the filepath passed down from BookTest and appends the necessary add ons to it
 		//need to add the ".rst" back in since it was deleted from the title
-		filePath = filePath+"_sources/"+chap+"/"+sub + ".rst";
+		//TODO: Fix this comment
+		//filePath = filePath+"_sources/"+chap+"/"+sub + ".rst";
 		Scanner findQs;
-		findQs = new Scanner(new File(filePath));
+		findQs = new Scanner(new File(path));
 			while (findQs.hasNextLine()==true){
 				String line = findQs.nextLine();
 				for (QuestionType questionType : QuestionType.values()){
 					if (line.contains(questionType.getSourceString())){
 						questions.add(new Question(line.replaceAll(questionType.getSourceString(), ""),questionType));
 					}
+				}
+				if(line.contains(".. tag")){
+					questions.get(questions.size()-1).setTags(Question.createTags(line));
 				}
 			}
 		findQs.close();
