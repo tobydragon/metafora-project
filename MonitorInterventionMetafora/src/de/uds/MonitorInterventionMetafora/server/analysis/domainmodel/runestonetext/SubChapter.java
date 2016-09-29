@@ -50,7 +50,7 @@ public class SubChapter implements Concept{
 		//takes the filepath passed down from BookTest and appends the necessary add ons to it
 		//need to add the ".rst" back in since it was deleted from the title
 		//TODO: Fix this comment
-		filePath = filePath+"_sources/"+chap+"/"+sub + ".rst";
+		filePath = filePath+"_sources/"+chap+"/"+sub+".rst";
 		Scanner findQs;
 		File fIn = new File(filePath);
 		findQs = new Scanner(fIn);

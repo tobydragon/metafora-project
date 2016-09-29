@@ -25,7 +25,7 @@ for(var i = 0; i < dataObject.links.length; i++){
             var s = dataObject.nodes[j].actualComp;
         }
     }
-    row.push(c + " SCORE: " + s);
+    row.push(c);// + " SCORE: " + s);
     row.push(p);
     row.push(s);
     visualizationList.push(row);

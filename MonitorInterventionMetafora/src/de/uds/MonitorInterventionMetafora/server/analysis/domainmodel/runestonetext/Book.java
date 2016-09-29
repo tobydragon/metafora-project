@@ -9,6 +9,7 @@ import java.util.Scanner;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.IDLink;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
 public class Book implements Concept {
@@ -71,6 +72,20 @@ public class Book implements Concept {
 			e.printStackTrace();
 		}
 		return chapsAndSubs;
+	}
+	
+	public List<IDLink> buildTagLinks(){
+//		
+//		for(Chapter c : chaps){
+//			List<SubChapter> subChaps = c.getSubChapters();
+//			for(SubChapter s: subChaps){
+//				List<Question> currQs = s.getQuestions();
+//				for(Question q: currQs){
+//					questions.add(q);
+//					//q.addTag(s.getConceptTitle());
+//				}
+//			}
+//		}
 	}
 	
 	public String getConceptTitle(){

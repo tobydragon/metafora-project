@@ -54,7 +54,7 @@ public class Question implements Concept{
 		return tempArray;
 	}
 	
-	public List<IDLink> linksToAdd(){
+	public List<IDLink> buildTagLinks(){
 		ArrayList<IDLink> listOfLinks = new ArrayList<IDLink>();
 		for(String tag: tags){
 			listOfLinks.add(new IDLink(tag,conceptTitle));

@@ -73,6 +73,9 @@ public class ConceptGraph {
 		addChildren(nodes, links);
 		
 		List<Question> questions = new ArrayList<Question>();
+		
+		//replace with Book function (build Question List) and have it return list of Qs
+		//make this all book work
 		List<Chapter> chaps = b.getChapters();
 		for(Chapter c : chaps){
 			List<SubChapter> subChaps = c.getSubChapters();
@@ -80,13 +83,13 @@ public class ConceptGraph {
 				List<Question> currQs = s.getQuestions();
 				for(Question q: currQs){
 					questions.add(q);
-					q.addTag(s.getConceptTitle());
+					//q.addTag(s.getConceptTitle());
 				}
 			}
 		}
 		
 		for(Question q : questions){
-			List<IDLink> myLinks = q.linksToAdd();
+			List<IDLink> myLinks = q.buildTagLinks();
 			for(IDLink link : myLinks){
 				links.add(link);
 			}

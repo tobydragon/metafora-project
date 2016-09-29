@@ -19,7 +19,7 @@ public class CGandQTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		this.testBook = new Book("My Test Book", "test/MyTestBook/");
+		this.testBook = new Book("My Test Book", "war/MyTestBook/");
 		this.testGraphLinks = createSimpleCG();
 	}
 
