@@ -65,6 +65,10 @@ public class ConceptGraph {
 		addChildren(nodes, links);
 	}
 	
+	public ConceptGraph(Book b, NodesAndIDLinks lists){
+		
+	}
+	
 	public ConceptGraph(List<ConceptNode> rootsIn){
 		this.roots = rootsIn;
 	}
@@ -111,7 +115,18 @@ public class ConceptGraph {
 		
 		for( IDLink currLink : links){
 			ConceptNode currParent = fullNodesMap.get(currLink.getParent());
-			currParent.addChild(fullNodesMap.get(currLink.getChild()));
+			if(currParent == null){
+				logger.warn("In ConceptGraph.addChildren(): " + currLink.getParent()+" node not found in nodes list for link " + currLink);
+			}
+			else{
+				ConceptNode currChild = fullNodesMap.get(currLink.getChild());
+				if(currChild == null){
+					logger.warn("In ConceptGraph.addChildren(): " + currLink.getChild()+" node not found in nodes list for link " + currLink);
+				}
+				else{
+					currParent.addChild(currChild);
+				}
+			}
 			
 		}
 	}
@@ -215,21 +230,6 @@ public class ConceptGraph {
 			}
 		}
 		return null;
-	}
-	
-	public void addingQLinks(Question questionIn){
-		NodesAndIDLinks fullNLList = this.buildNodesAndLinks();
-		List<ConceptNode> cnList = fullNLList.getNodes();
-		List<IDLink> linkList = fullNLList.getLinks();
-		
-		for(IDLink link : questionIn.tagsToAdd()){
-			linkList.add(link);
-		}
-		
-		
-		fullNLList = new NodesAndIDLinks(cnList,linkList);
-		
-		//lol what do I do now?
 	}
 	
 	

@@ -26,7 +26,6 @@ public class QuestionTest {
 	public Question q1 = null;
 	public String testString;
 	public SubChapter subChap;
-	public ConceptGraph cg;
 
 	@Before
 	public void setUp() throws Exception {
@@ -34,7 +33,6 @@ public class QuestionTest {
 		 q1 = null;
 		 subChap = new SubChapter("Test","sampleChapter","test/testdata/sampleChapter.rst");
 		 testString = ".. tag test_questions6_1_2:Boolean, Boolean Expression, Data Types";
-		 createSimpleCG();
 	}
 
 	@After
@@ -43,11 +41,10 @@ public class QuestionTest {
 		q1 = null;
 		subChap = null;
 		testString = null;
-		cg = null;
 		
 	}
 
-	public void createSimpleCG(){
+	public NodesAndIDLinks createSimpleCG(){
 		ArrayList<ConceptNode> cnList = new ArrayList<ConceptNode>();
 		Concept c = new ConceptImpl("Boolean");
 		ConceptNode cn = new ConceptNode(c);
@@ -61,7 +58,7 @@ public class QuestionTest {
 		cn = new ConceptNode(c);
 		cnList.add(cn);
 		
-		c = new ConceptImpl("Expression");
+		c = new ConceptImpl("Expressions");
 		cn = new ConceptNode(c);
 		cnList.add(cn);
 		
@@ -73,16 +70,32 @@ public class QuestionTest {
 		cn = new ConceptNode(c);
 		cnList.add(cn);
 		
+		c = new ConceptImpl("test_question6_1_1");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		
+		c = new ConceptImpl("test_question6_1_2");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		
+		c = new ConceptImpl("test_question6_1_3");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		
+		c = new ConceptImpl("test_question6_1_4");
+		cn = new ConceptNode(c);
+		cnList.add(cn);
+		
 		ArrayList<IDLink> linkList = new ArrayList<IDLink>();
 		linkList.add(new IDLink("B","Boolean"));
 		linkList.add(new IDLink("B","Boolean Expression"));
-		linkList.add(new IDLink("B","DataTypes"));
-		linkList.add(new IDLink("B","Expression"));
+		linkList.add(new IDLink("B","Data Types"));
+		linkList.add(new IDLink("B","Expressions"));
 		linkList.add(new IDLink("A","B"));
 		
 		NodesAndIDLinks simpleLists = new NodesAndIDLinks(cnList, linkList);
 		
-		this.cg = new ConceptGraph(simpleLists);
+		return simpleLists;
 		
 		
 	}
@@ -155,7 +168,11 @@ public class QuestionTest {
 	@Test
 	public void testAddToCG(){
 		
-		NodesAndIDLinks fullNLList = cg.buildNodesAndLinks();
+//		ConceptGraph current = new ConceptGraph(createSimpleCG());
+//		NodesAndIDLinks fullNLList = current.buildNodesAndLinks();
+		
+		NodesAndIDLinks fullNLList = createSimpleCG();
+		
 		List<ConceptNode> cnList = fullNLList.getNodes();
 		List<IDLink> linkList = fullNLList.getLinks();
 		
@@ -175,7 +192,9 @@ public class QuestionTest {
 		
 		fullNLList = new NodesAndIDLinks(cnList,linkList);
 		ConceptGraph fullCG = new ConceptGraph(fullNLList);
-		
+		NodesAndIDLinks test = fullCG.buildNodesAndLinks();
+		Assert.assertEquals(13, test.getLinks().size());
+		Assert.assertEquals(fullNLList.getNodes().size(),test.getNodes().size());
 		
 	}
 

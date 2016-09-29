@@ -22,13 +22,11 @@ public class Book implements Concept {
 		List<String> chapsAndSubs = getFile(filePath);
 		List<String> subjects = new ArrayList<String>();
 		for (int i = 0; i < chapsAndSubs.size(); i++) {
-			String parts[] = chapsAndSubs.get(i).split("/");
-			subjects.add(parts[1]);
+			subjects.add(chapsAndSubs.get(i).split("/")[1]);
 		}
 		List<String> chapters = getChapters(chapsAndSubs);
 		for(int i=0; i<chapters.size();i++){
 			chaps.add(new Chapter(chapters.get(i), subjects, chapsAndSubs, filePath));
-			//chaps.add(newChapter(chapters.get(i),chapsAndSubs,subjects, filePath));
 		}
 	}
 	//creates a string list of the chapters
