@@ -75,17 +75,27 @@ public class Book implements Concept {
 	}
 	
 	public List<IDLink> buildTagLinks(){
-//		
-//		for(Chapter c : chaps){
-//			List<SubChapter> subChaps = c.getSubChapters();
-//			for(SubChapter s: subChaps){
-//				List<Question> currQs = s.getQuestions();
-//				for(Question q: currQs){
-//					questions.add(q);
-//					//q.addTag(s.getConceptTitle());
-//				}
-//			}
-//		}
+		
+		List<Question> questions = new ArrayList<Question>();
+		for(Chapter c : chaps){
+			List<SubChapter> subChaps = c.getSubChapters();
+			for(SubChapter s: subChaps){
+				List<Question> currQs = s.getQuestions();
+				for(Question q: currQs){
+					questions.add(q);
+					//q.addTag(s.getConceptTitle());
+				}
+			}
+		}
+		
+		List<IDLink> myLinks = new ArrayList<IDLink>();
+		for(Question q : questions){
+			List<IDLink> linksIn = q.buildTagLinks();
+			for(IDLink link : linksIn){
+				myLinks.add(link);
+			}
+		}
+		return myLinks;
 	}
 	
 	public String getConceptTitle(){
