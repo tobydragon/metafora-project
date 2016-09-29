@@ -20,7 +20,12 @@ public abstract class PerUserPerProblemSummary implements Concept{
 	public String objectId;
 	private String type;
 	private String description;
-	private static long timeInterval = 30;
+	//time interval is so that we wait longer between answering questions before we assume it only took 30 seconds
+	public final static long TIME_INTERVAL = 180;
+	//standard time is our "old" timeInterval, changed to standard time because it is now our standard go to if it seems
+	//like there was too much time taken between questions to assume that the user was still trying to answer them the
+	//whole time
+	public final static long STANDARD_TIME = 30;
 	private int actualCompetency;
 	private int predictedCompetency;
 
@@ -82,7 +87,7 @@ public abstract class PerUserPerProblemSummary implements Concept{
 			}
 			//if the list only has one action that use the time constant for the total time
 			else if(actionsList.size() == 1){
-				return timeInterval;
+				return STANDARD_TIME;
 			}
 			//if there are at least two actions in the list compare the time of the first action to the time of the next action
 			//else if(actionsList.size() > 1){
@@ -92,30 +97,40 @@ public abstract class PerUserPerProblemSummary implements Concept{
 					//get the time for the current action and the time for the following action
 					long tempTime1 = actionsList.get(i).getTime();
 					long tempTime2 = actionsList.get(i+1).getTime();
-					//determine the difference in the times and convert to seconds
-					long timeDiff = (tempTime2 - tempTime1)/1000;
-				
 					
-					//System.out.println("Time Diff: " + timeDiff + " - user: " + getUser() + " - objectId: " + getObjectId());
-					//shouldn't happen but if the larger time is subtracted from the smaller time convert to a positive number
-					if(timeDiff < 0){
-						timeDiff = timeDiff * -1;
-					}
-					//if the time difference is less than the time interval constant than add the difference to the total time
-					if(timeDiff < timeInterval){
-						tempTime = tempTime + timeDiff;
-					}
-					//if the time difference is greater than the time interval constant the constant to the total time
-					else{
-						tempTime = tempTime + timeInterval;
-					}
+					//Begins totaling the time for all actions
+					//System.out.println("Time 1: "+tempTime1+"  Time 2: "+tempTime2);
+					tempTime += calcTime(tempTime1, tempTime2);
+					//System.out.println("tempTime = "+tempTime);
+					
 				}
 				
 				return tempTime;
 			}		
 		}
 
-	
+	public static long calcTime(long time1, long time2){
+		
+		//determine the difference in the times and convert to seconds
+		long timeDiff = (time2 - time1)/1000;
+		
+		//System.out.println("Time Diff: " + timeDiff + " - user: " + getUser() + " - objectId: " + getObjectId());
+		//shouldn't happen but if the larger time is subtracted from the smaller time convert to a positive number
+		if(timeDiff < 0){
+			timeDiff = timeDiff * -1;
+		}
+		//if the time difference is less than the time interval constant than add the difference to the total time
+		if(timeDiff < TIME_INTERVAL){
+			//System.out.println("Time returned: "+timeDiff);
+			return timeDiff;
+		}
+		//if the time difference is greater than the time interval constant 
+		//then return our standard question time we created. 
+		else{
+			//System.out.println("Time returned: "+STANDARD_TIME);
+			return STANDARD_TIME;
+		}
+	}
 	
 	
 	

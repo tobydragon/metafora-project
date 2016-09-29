@@ -2,7 +2,9 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -71,5 +73,13 @@ public class NodesAndIDLinks {
 		combinedString = linkString + "\n\n\n" + nodeString;
 
 		return combinedString;
+	}
+	
+	public Map<String, ConceptNode> buildNodeMap(){
+		Map<String, ConceptNode> nodeMap = new HashMap<String, ConceptNode>();
+		for(ConceptNode node : nodes){
+			nodeMap.put(node.getID(), node);
+		}
+		return nodeMap;
 	}
 }

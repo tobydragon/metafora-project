@@ -96,10 +96,10 @@ public class ConceptNode {
 		}
 		
 		try{
-		for(ConceptNode origChild : this.getChildren()){
-			ConceptNode childCopy = origChild.makeTree(multCopies);
-			nodeCopy.addChild(childCopy);
-		}
+			for(ConceptNode origChild : this.getChildren()){
+				ConceptNode childCopy = origChild.makeTree(multCopies);
+				nodeCopy.addChild(childCopy);
+			}
 		}catch(NullPointerException e){
 			System.out.println("Broke on this node: "+this.getID());
 		}
@@ -258,10 +258,21 @@ public class ConceptNode {
 				actualComp = 0;
 			}
 			else{
-				actualComp = sumInfo.getNumCorrect() * .5 + (.5 - .1* sumInfo.getTotalFalseEntries());	
+				//Full Credit if right on first try. Half if right on second. 1/5th if right on third. no credit after that.
+				if((sumInfo.getTotalFalseEntries() == 0) && (sumInfo.getNumCorrect() == 1)){
+					actualComp = 1;	
+				} else if((sumInfo.getTotalFalseEntries()==1) && (sumInfo.getNumCorrect() == 1)){
+					actualComp = .5;
+				} else if ((sumInfo.getTotalFalseEntries()==2) && (sumInfo.getNumCorrect() == 1)){
+					actualComp = .2;
+				}else {
+					actualComp = -1;
+				}
+				
 			}
+			//System.out.println("Actual Comp = "+actualComp);
 			return actualComp;
-		}
+		} else {
 
 			//recursively call this on each child of the node
 			double tempComp;
@@ -274,7 +285,9 @@ public class ConceptNode {
 			actualComp = tempComp;
 			return actualComp;
 		}
+		
 	}
+}
 	
 	
 
