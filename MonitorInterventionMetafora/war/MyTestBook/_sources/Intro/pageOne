@@ -8,7 +8,7 @@ is legal and ``7 = a`` is not. (Can you explain why?)
 
 **Check your understanding**
 
-.. mchoice:: test_question6_1_1
+.. mchoice:: test_question1_1_1
    :multiple_answers:
    :answer_a: &quot;True&quot;
    :answer_b: true
@@ -24,11 +24,11 @@ is legal and ``7 = a`` is not. (Can you explain why?)
 
    Which of the following is a Boolean?  Select all that apply.
    
-   .. tag test_question6_1_1:Boolean
+   .. tag:Boolean
    
 
 
-.. mchoice:: test_question6_1_2
+.. mchoice:: test_question1_1_2
    :multiple_answers:
    :answer_a: True
    :answer_b: 3 == 4
@@ -44,11 +44,11 @@ is legal and ``7 = a`` is not. (Can you explain why?)
 
    Which of the following is a Boolean expression?  Select all that apply.
    
-   .. tag test_question6_1_2:Boolean, Boolean Expression, Data Types
+   .. tag:Boolean, Boolean Expression, Data Types
    
    
    
-.. mchoice:: test_question6_1_3
+.. mchoice:: test_question1_1_3
    :multiple_answers:
    :answer_a: 6 <= 9
    :answer_b: True == &quot;True&quot;
@@ -64,10 +64,10 @@ is legal and ``7 = a`` is not. (Can you explain why?)
 
    Which of these expressions evaluates to True? Select all that apply.
 
-   .. tag test_question6_1_3:Boolean, Boolean Expression, Expressions
+   .. tag:Boolean, Boolean Expression, Expressions
    
    
-.. mchoice:: test_question6_1_4
+.. mchoice:: test_question1_1_4
    :answer_a: when comparing Strings to see if they are equal
    :answer_b: when assessing whether a number is greater than another number
    :answer_c: when assigning a number to a variable
@@ -80,7 +80,7 @@ is legal and ``7 = a`` is not. (Can you explain why?)
 
    When would you NOT use a Boolean expression?
 
-   .. tag test_question6_1_4:Boolean Expression
+   .. tag:Boolean Expression
    
 .. index::
     single: logical operator

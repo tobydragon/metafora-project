@@ -9,6 +9,7 @@ import java.util.Scanner;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.IDLink;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
 public class Book implements Concept {
@@ -22,13 +23,11 @@ public class Book implements Concept {
 		List<String> chapsAndSubs = getFile(filePath);
 		List<String> subjects = new ArrayList<String>();
 		for (int i = 0; i < chapsAndSubs.size(); i++) {
-			String parts[] = chapsAndSubs.get(i).split("/");
-			subjects.add(parts[1]);
+			subjects.add(chapsAndSubs.get(i).split("/")[1]);
 		}
 		List<String> chapters = getChapters(chapsAndSubs);
 		for(int i=0; i<chapters.size();i++){
 			chaps.add(new Chapter(chapters.get(i), subjects, chapsAndSubs, filePath));
-			//chaps.add(newChapter(chapters.get(i),chapsAndSubs,subjects, filePath));
 		}
 	}
 	//creates a string list of the chapters
@@ -73,6 +72,30 @@ public class Book implements Concept {
 			e.printStackTrace();
 		}
 		return chapsAndSubs;
+	}
+	
+	public List<IDLink> buildTagLinks(){
+		
+		List<Question> questions = new ArrayList<Question>();
+		for(Chapter c : chaps){
+			List<SubChapter> subChaps = c.getSubChapters();
+			for(SubChapter s: subChaps){
+				List<Question> currQs = s.getQuestions();
+				for(Question q: currQs){
+					questions.add(q);
+					//q.addTag(s.getConceptTitle());
+				}
+			}
+		}
+		
+		List<IDLink> myLinks = new ArrayList<IDLink>();
+		for(Question q : questions){
+			List<IDLink> linksIn = q.buildTagLinks();
+			for(IDLink link : linksIn){
+				myLinks.add(link);
+			}
+		}
+		return myLinks;
 	}
 	
 	public String getConceptTitle(){
