@@ -54,7 +54,7 @@ public class Question implements Concept{
 		return tempArray;
 	}
 	
-	public List<IDLink> tagsToAdd(){
+	public List<IDLink> linksToAdd(){
 		ArrayList<IDLink> listOfLinks = new ArrayList<IDLink>();
 		for(String tag: tags){
 			listOfLinks.add(new IDLink(tag,conceptTitle));
@@ -66,6 +66,9 @@ public class Question implements Concept{
 		tags = tagsIn;
 	}
 	
+	public void addTag(String tagIn){
+		tags.add(tagIn);
+	}
 	public List getTags(){
 		return tags;
 	}

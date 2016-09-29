@@ -52,7 +52,8 @@ public class SubChapter implements Concept{
 		//TODO: Fix this comment
 		filePath = filePath+"_sources/"+chap+"/"+sub + ".rst";
 		Scanner findQs;
-		findQs = new Scanner(new File(path));
+		File fIn = new File(filePath);
+		findQs = new Scanner(fIn);
 			while (findQs.hasNextLine()==true){
 				String line = findQs.nextLine();
 				for (QuestionType questionType : QuestionType.values()){

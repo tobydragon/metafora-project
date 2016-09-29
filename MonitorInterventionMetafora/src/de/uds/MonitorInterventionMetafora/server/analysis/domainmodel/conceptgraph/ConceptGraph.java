@@ -66,7 +66,31 @@ public class ConceptGraph {
 	}
 	
 	public ConceptGraph(Book b, NodesAndIDLinks lists){
+		List<ConceptNode> nodes = lists.getNodes();
+		List<IDLink> links = lists.getLinks();
+		this.roots = findRoot(nodes, links);
 		
+		addChildren(nodes, links);
+		
+		List<Question> questions = new ArrayList<Question>();
+		List<Chapter> chaps = b.getChapters();
+		for(Chapter c : chaps){
+			List<SubChapter> subChaps = c.getSubChapters();
+			for(SubChapter s: subChaps){
+				List<Question> currQs = s.getQuestions();
+				for(Question q: currQs){
+					questions.add(q);
+					q.addTag(s.getConceptTitle());
+				}
+			}
+		}
+		
+		for(Question q : questions){
+			List<IDLink> myLinks = q.linksToAdd();
+			for(IDLink link : myLinks){
+				links.add(link);
+			}
+		}
 	}
 	
 	public ConceptGraph(List<ConceptNode> rootsIn){

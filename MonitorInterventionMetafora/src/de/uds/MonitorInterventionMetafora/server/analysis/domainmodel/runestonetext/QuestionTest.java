@@ -96,8 +96,6 @@ public class QuestionTest {
 		NodesAndIDLinks simpleLists = new NodesAndIDLinks(cnList, linkList);
 		
 		return simpleLists;
-		
-		
 	}
 	
 	@Test
@@ -184,7 +182,7 @@ public class QuestionTest {
 		}
 		
 		for(Question q : mcQs){
-			List<IDLink> myLinks = q.tagsToAdd();
+			List<IDLink> myLinks = q.linksToAdd();
 			for(IDLink link : myLinks){
 				linkList.add(link);
 			}
