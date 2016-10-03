@@ -19,7 +19,7 @@ public class CGandQTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		this.testBook = new Book("My Test Book", "war/MyTestBook/");
+		//this.testBook = new Book("My Test Book", "war/MyTestBook/");
 		this.testGraphLinks = createSimpleCG();
 	}
 
@@ -84,7 +84,7 @@ public class CGandQTest {
 		return simpleLists;
 	}
 	
-	@Test
+	//@Test
 	public void newConstructorTest() {
 		ConceptGraph simpleCG = new ConceptGraph(this.testBook, this.testGraphLinks);
 		NodesAndIDLinks newNodesAndLinks = simpleCG.buildNodesAndLinks();
@@ -93,6 +93,7 @@ public class CGandQTest {
 		Assert.assertEquals(this.testGraphLinks.getNodes().size(), newNodesAndLinks.getNodes().size());
 		//expect 48 extra links
 	}
+	
 	
 	@Test
 	public void gettingFile(){

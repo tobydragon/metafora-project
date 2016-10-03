@@ -62,8 +62,8 @@ public class Question implements Concept{
 		return listOfLinks;
 	}
 	
-	public void setTags(List tagsIn){
-		tags = tagsIn;
+	public void setTags(String tagsIn){
+		tags = createTags(tagsIn);
 	}
 	
 	public void addTag(String tagIn){
