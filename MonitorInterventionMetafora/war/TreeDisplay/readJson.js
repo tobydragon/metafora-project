@@ -1,36 +1,67 @@
 var dataObject;
+
+var names = [];
 var visualizationList = [];
 
  var request = new XMLHttpRequest();
    request.open("GET", "input.json", false);
    request.send(null)
    
-var dataObject = JSON.parse(request.responseText);
+var objectsArray = JSON.parse(request.responseText);
 
-var roots = findRoot(dataObject);
-for(var i = 0; i < roots.length; i++){
-    var row1 = [];
-    row1.push(roots[i].id);
-    row1.push(null);
-    row1.push(roots[i].actualComp);
-    visualizationList.push(row1);
+for(var i = 0; i < objectsArray.length; i++){
+    names.push(objectsArray[i].name);
 }
 
-for(var i = 0; i < dataObject.links.length; i++){
-    var row = [];
-    var c = dataObject.links[i].child;
-    var p = dataObject.links[i].parent;
-    for(var j = 0; j < dataObject.nodes.length; j++){
-        if(dataObject.nodes[j].id == dataObject.links[i].child){
-            var s = dataObject.nodes[j].actualComp;
+writeMenu(names);
+
+function writeMenu(names){
+    var newCode = "<ul style='list-style: none;'>";
+    for(var i = 0; i < names.length; i++){
+        newCode += "<li><button type='button' onclick='makeChart(&quot;" + names[i] + "&quot;)'>" + names[i] + "</button></li>";
+    }
+    newCode += "</ul>";
+    document.getElementById("menu").innerHTML = newCode;
+}
+
+function makeChart(currName){
+    visualizationList = [];
+    console.log(currName);
+    document.getElementById("section").innerHTML = "";
+    for(var i = 0; i < objectsArray.length; i++){
+    names.push(objectsArray[i].name);
+        if(String(objectsArray[i].name) == currName){
+            dataObject = objectsArray[i].cg;
         }
     }
-    row.push(c);// + " SCORE: " + s);
-    row.push(p);
-    row.push(s);
-    visualizationList.push(row);
-}
+    console.log("dataobject" + dataObject);
+    var roots = findRoot(dataObject);
+    for(var i = 0; i < roots.length; i++){
+        var row1 = [];
+        row1.push(roots[i].id);
+        row1.push(null);
+        row1.push(roots[i].actualComp);
+        visualizationList.push(row1);
+    }
 
+    for(var i = 0; i < dataObject.links.length; i++){
+        var row = [];
+        var c = dataObject.links[i].child;
+        var p = dataObject.links[i].parent;
+        for(var j = 0; j < dataObject.nodes.length; j++){
+            if(dataObject.nodes[j].id == dataObject.links[i].child){
+                var s = dataObject.nodes[j].actualComp;
+            }
+        }
+        row.push({v:c, f:stripTitle(c)+'<div style="color:blue; font-style:italic">Score: '+s+'</div>'});
+        //row.push(c);
+        row.push(p);
+        row.push(s);
+        visualizationList.push(row);
+    }
+    
+    drawOrgChart(visualizationList);
+}
 //visualizationList = removeQ(visualizationList);
 //console.log(visualizationList);
 
@@ -67,4 +98,14 @@ function findRoot(dataList){
     }
     console.log(roots);
     return roots;
+}
+
+function stripTitle(title) {
+  for (var i = 0; i < title.length; i++) {
+    if (title[i] == "-") {
+      title = title.slice(0, i);
+      i = title.length+1;
+    }
+  }
+  return title;
 }

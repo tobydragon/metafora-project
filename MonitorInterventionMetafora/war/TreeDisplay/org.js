@@ -82,7 +82,7 @@ function calcScorePerc(max, min, score){
 function drawOrgChart(dataInput){
 google.charts.load('current', {packages:["orgchart"]});
       google.charts.setOnLoadCallback(drawChart);
-
+        
       function drawChart() {
           
         var colorList = makeColorsList(dataInput);
@@ -132,4 +132,4 @@ google.charts.load('current', {packages:["orgchart"]});
 }
 
 
-drawOrgChart(visualizationList);
+//drawOrgChart(visualizationList);
