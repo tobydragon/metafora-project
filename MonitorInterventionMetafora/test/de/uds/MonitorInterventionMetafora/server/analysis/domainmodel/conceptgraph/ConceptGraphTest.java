@@ -785,12 +785,43 @@ public class ConceptGraphTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Assert.assertEquals(.0, selectionListMap.get("Boolean").getActualComp(),.09);
-		//for (int i = 0; i < selectionLists.getNodes().size(); i++) {
-		//	Assert.assertEquals(.0,selectionLists.getNodes().get(i).getActualComp(),.6);
-		//}
+		
+		float delta = (float) .01;
+		
+		//Checks children on If Statement to make sure their actualComps are correct 
+		//(gotten from visualized graph)
+		//file:///Users/willsuchanek/git/metafora-project/MonitorInterventionMetafora/war/TreeDisplay/index.html
+		Assert.assertEquals(0, selectionListMap.get("Boolean").getActualComp(),delta);
+		Assert.assertEquals(1, selectionListMap.get("test_question6_4_2").getActualComp(),delta);
+		Assert.assertEquals(1, selectionListMap.get("test_question6_4_1").getActualComp(),delta);
 		
 		
+		//Calculates the actualComp for If statements children
+		float sumOfChildren = 0;
+		int childCounter = 0;
+		for(ConceptNode node :selectionListMap.get("If Statement").getChildren()){
+			sumOfChildren+=node.getActualComp();
+			childCounter++;
+		}
+		//makes sure the calculated number is equal to the number stored in If Statements
+		Assert.assertEquals(sumOfChildren/childCounter, selectionListMap.get("If Statement").getActualComp(),delta);
+		
+		//Checks children on Control to make sure their actualComps are correct 
+		//(gotten from visualized graph)
+		//file:///Users/willsuchanek/git/metafora-project/MonitorInterventionMetafora/war/TreeDisplay/index.html
+		Assert.assertEquals(.67, selectionListMap.get("If Statement").getActualComp(),delta);
+		Assert.assertEquals(0, selectionListMap.get("Loops").getActualComp(),delta);
+		
+		//Calculates the actualComp for Control children
+		sumOfChildren = 0;
+		childCounter = 0;
+		for(ConceptNode node :selectionListMap.get("Control").getChildren()){
+			sumOfChildren+=node.getActualComp();
+			childCounter++;
+		}
+		
+		//makes sure the calculated number is equal to the number stored in If Statements
+		Assert.assertEquals(sumOfChildren/childCounter, selectionListMap.get("Control").getActualComp(),delta);
 		
 	}
 }
