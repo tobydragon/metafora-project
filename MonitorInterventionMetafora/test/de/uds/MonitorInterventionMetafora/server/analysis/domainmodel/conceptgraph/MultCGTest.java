@@ -9,16 +9,16 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.Student;
+import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.output.NamedGraph;
 
 public class MultCGTest {
 
 	ConceptGraph cgA;
 	ConceptGraph cgB;
 	ConceptGraph cgC;
-	Student studA;
-	Student studB;
-	Student studC;
+	NamedGraph studA;
+	NamedGraph studB;
+	NamedGraph studC;
 	List students;
 	
 	ObjectMapper mapper = new ObjectMapper();
@@ -27,9 +27,9 @@ public class MultCGTest {
 	
 	public MultCGTest(){
 		setCG();
-		studA = new Student("StudentA", cgA);
-		studB = new Student("StudentB", cgB);
-		studC = new Student("StudentC", cgC);
+		studA = new NamedGraph("StudentA", cgA);
+		studB = new NamedGraph("StudentB", cgB);
+		studC = new NamedGraph("StudentC", cgC);
 		students = new ArrayList();
 		students.add(studA);
 		students.add(studB);
