@@ -5,6 +5,13 @@ var objectArray; //the object that the json file gets parsed to, an array of "st
 var names = []; //list of names of the students
 var visualizationList = []; //the formatted list of data
 
+//node object made to hold the root node information.
+//used in findRoots
+function RootNode(idIn, scoreIn){
+    this.id = idIn;
+    this.score = scoreIn;
+}
+
 //reads in JSON file and parses it to objectsArray
 function readJson(fileName){
  var request = new XMLHttpRequest();
@@ -45,17 +52,16 @@ function makeChart(currName){
         }
     }
     
-    //assigns roots to an array of the IDs of the roots of the tree
-    //FIX ROOT CALC
+    //assigns roots of the tree to an array of RootNode objects
     var roots = findRoot(dataObject);
     //iterate through all of the roots and add them to the visualizationList
     for(var i = 0; i < roots.length; i++){
-        console.log("String"+ roots[i]);
         var row1 = [];//make an empty row
-        var c = roots[i];
+        var c = roots[i].id;
+        var s = roots[i].score;
         row1.push({v:c, f:stripTitle(c)+'<div style="color:blue; font-style:italic">Score: '+s+'</div>'});//add the topic
-        row1.push(null);        //add the parent
-        row1.push(roots[i].actualComp);//add the score
+        row1.push(null);//add the parent, null for roots
+        row1.push(s);//add the score
         visualizationList.push(row1);//push row to the list
     }
     
@@ -73,7 +79,7 @@ function makeChart(currName){
                 var s = dataObject.nodes[j].actualComp;
             }
         }
-        //add Topic (this is formatted to show the node ID without the iterative tag at the end and the score
+        //add Topic (this is formatted to show the node ID without the iterative tag at the end and the score)
         row.push({v:c, f:stripTitle(c)+'<div style="color:blue; font-style:italic">Score: '+s+'</div>'});
         row.push(p); //add parent
         row.push(s); //add score
@@ -107,23 +113,19 @@ function findRoot(dataList){
     var roots = []; 
     //add all of the node IDs to the roots array
     for(var i = 0; i < dataList.nodes.length; i++){
-        roots.push(dataList.nodes[i].id);
+        roots.push(new RootNode(dataList.nodes[i].id, dataList.nodes[i].actualComp));
     }
-    
     //loop through all of the links
     for(var i = 0; i < dataList.links.length; i++){
         //loop through all of the nodes
-        for(var j = 0; j < dataList.nodes.length; j++){
+        for(var j = 0; j < roots.length; j++){
             //current link's child is equal to the current node
-            if(dataObject.links[i].child == dataList.nodes[j].id){
-                //find the index in roots of the node that is a child
-                var index = roots.indexOf(dataList.nodes[j].id);
-                //remove that id from the roots list
-                roots.splice(index, 1);
+            if(dataObject.links[i].child == roots[j].id){
+                roots.splice(j, 1);
+                j = roots.length+1;
             }
         }
     }
-    console.log(roots);
     return roots;
 }
 

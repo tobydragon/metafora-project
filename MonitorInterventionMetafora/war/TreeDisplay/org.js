@@ -125,7 +125,6 @@ function drawOrgChart(dataInput){
           
         // Add all of the rows that were primed in readJson file.
         data.addRows(dataInput);
-          
         // Create the chart in the html div called "section" and assign it to variable chart
         var chart = new google.visualization.OrgChart(document.getElementById('section'));
           
@@ -135,9 +134,14 @@ function drawOrgChart(dataInput){
             
           }
         // Draw the chart, setting the allowHtml option to true for the selection.
-         chart.draw(data, {allowHtml:true,ready:true,selectionColor:'#999999'});
+         chart.draw(data, {allowHtml:true,ready:true,selectionColor:'#999999',allowCollapse:true});
           //enable the chart to listen for selection of nodes
           google.visualization.events.addListener(chart, 'select', selectHandler);
+          //iterate through each row of the data and collapse it except the first two rows.
+          for(var i = dataInput.length-1; i > 0; i--){
+            //collapse the row at index i in the chart data
+            chart.collapse(i,true);  
+          }
         
         //define the select handler
         //what should happen when a given node is selected
@@ -162,7 +166,7 @@ function drawOrgChart(dataInput){
               }
             //if the user has selected a node, set the div with the id "text" to the following string
             if(topic != null && score != null){
-                document.getElementById("text").innerHTML = "Topic: " + topic + " Score: " + score;
+                document.getElementById("text").innerHTML = "Topic: " + topic;
             }else{
                 document.getElementById("text").innerHTML = "Select a topic to see the overall score";
             }
