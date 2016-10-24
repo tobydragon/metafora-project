@@ -2,12 +2,15 @@ package de.uds.MonitorInterventionMetafora.server.analysis.behaviors;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfInteractionDataParser;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
+import de.uds.MonitorInterventionMetafora.shared.analysis.AnalysisActions;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
 
@@ -42,6 +45,66 @@ public class PerUserPerProblemSummaryTest {
 		
 		Assert.assertEquals(456, PerUserPerProblemSummary.calculateTime(allActions));
 		
+	}
+	
+
+	@Test
+	public void getUsersTest(){
+		String inputXML = "test/testdata/PUPPSTest.xml";
+		
+		//Get behaviors from runsetone xml
+		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(inputXML);
+		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
+				
+		List<CfAction> allActions = testCf.getCfActions();
+		
+		//Creates problem summaries from user actions
+		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
+		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
+		List<PerUserPerProblemSummary> summaries = myIdentifier.buildPerUserPerProblemSummaries(allActions, involvedUsers);
+		
+		SortedSet<String> testUsers = new TreeSet<String>();
+		testUsers.add("user2");
+		testUsers.add("user1");
+		
+		//Why isn't this working when it normally does??
+		Assert.assertEquals(testUsers, PerUserPerProblemSummary.getUsers(summaries));
+		
+	}
+	
+	@Test
+	public void getUserSummariesTest(){
+		
+		//Move to SetUp instead of in each file
+		String inputXML = "test/testdata/PUPPSTest.xml";
+		
+		//Get behaviors from runsetone xml
+		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(inputXML);
+		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
+				
+		List<CfAction> allActions = testCf.getCfActions();
+		
+		//Creates problem summaries from user actions
+		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
+		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
+		List<PerUserPerProblemSummary> summaries = myIdentifier.buildPerUserPerProblemSummaries(allActions, involvedUsers);
+		
+		int summaryCounter = 0;
+		List<PerUserPerProblemSummary> user1Sums = PerUserPerProblemSummary.getUserSummaries(summaries, "user1");
+		
+		for(PerUserPerProblemSummary summary: user1Sums){
+			Assert.assertEquals("user1", summary.getUser());
+			summaryCounter++;
+		}
+		Assert.assertEquals(4, summaryCounter);
+		
+		summaryCounter = 0;
+		List<PerUserPerProblemSummary> user2Sums = PerUserPerProblemSummary.getUserSummaries(summaries, "user2");
+		for(PerUserPerProblemSummary summary: user2Sums){
+			Assert.assertEquals("user2", summary.getUser());
+			summaryCounter++;
+		}
+		Assert.assertEquals(3, summaryCounter);
 	}
 }
 

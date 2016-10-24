@@ -44,12 +44,28 @@ public class GroupConceptGraphsTest {
 	ConceptGraph simpleTree;
 	ConceptGraph mediumTree;
 	ConceptGraph simpleInputTree;
+	List<PerUserPerProblemSummary> test_summaries;
 	
 	@Before
 	public void setUp() throws Exception {
 		makeSimple();
 		makeMedium();
 		makeSimpleInputTree();
+		//Move to SetUp instead of in each file
+		String inputXML = "test/testdata/GroupConceptGraphsTest.xml";
+		
+		//Get behaviors from runsetone xml
+		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(inputXML);
+		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
+				
+		List<CfAction> allActions = testCf.getCfActions();
+		
+		//Creates problem summaries from user actions
+		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
+		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
+		test_summaries = myIdentifier.buildPerUserPerProblemSummaries(allActions, involvedUsers);
+		
+		
 	}
 
 	@After
@@ -59,6 +75,7 @@ public class GroupConceptGraphsTest {
 		this.mediumGraph = null;
 		this.mediumTree = null;
 		this.simpleInputTree = null;
+		this.test_summaries = null;
 	}
 	
 	public void makeSimpleInputTree(){
@@ -153,53 +170,18 @@ public class GroupConceptGraphsTest {
 	}
 	
 	@Test
-	public void createGroupConceptGraphTest() {
+	public void userCountTest(){
+		GroupConceptGraphs group = new GroupConceptGraphs(simpleGraph,test_summaries);
 		
+		Assert.assertEquals(2,group.userCount());
 	}
 	
 	@Test
-	public void getUsersTest(){
-		String inputXML = "test/testdata/CSVOutputterTest.xml";
+	public void getAllGraphsTest(){
+		GroupConceptGraphs group = new GroupConceptGraphs(simpleGraph,test_summaries);
+		Map<String, ConceptGraph> userGraphMap = group.getUserToGraphMap();
 		
-		//Get behaviors from runsetone xml
-		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(inputXML);
-		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
-				
-		List<CfAction> allActions = testCf.getCfActions();
-		
-		//Creates problem summaries from user actions
-		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
-		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
-		List<PerUserPerProblemSummary> summaries = myIdentifier.buildPerUserPerProblemSummaries(allActions, involvedUsers);
-		
-		SortedSet<String> testUsers = new TreeSet<String>();
-		testUsers.add("CLTestStudent2");
-		testUsers.add("CLTestStudent1");
-		
-		//Why isn't this working when it normally does??
-		//Assert.assertEquals(testUsers, GroupConceptGraphs.getUsers(summaries));
-		
-	}
-	
-	@Test
-	public void getUserSummariesTest(){
-		
-		//Move to SetUp instead of in each file
-		String inputXML = "test/testdata/GroupConceptGraphsTest.xml";
-		
-		//Get behaviors from runsetone xml
-		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(inputXML);
-		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
-				
-		List<CfAction> allActions = testCf.getCfActions();
-		
-		//Creates problem summaries from user actions
-		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
-		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
-		List<PerUserPerProblemSummary> summaries = myIdentifier.buildPerUserPerProblemSummaries(allActions, involvedUsers);
-		
-		//how can I create a list of PUPPS on my own without just using the file to do it? 
-		//Test for certain conditions about the list don't test for the exact list
+		//Assert.assertEquals("user2",userGraphMap.keySet());
 		
 	}
 	

@@ -1,0 +1,51 @@
+<rows>
+  <row>
+    <timestamp>2016-07-25 18:43:20</timestamp>    
+    <act>answer:2:correct</act>    
+    <div_id>A</div_id>    
+    <event>mChoice</event>    
+    <sid>user2</sid>
+  </row>
+  <row>
+    <timestamp>2016-07-25 18:43:24</timestamp>    
+    <act>answer:1:correct</act>    
+    <div_id>B</div_id>    
+    <event>mChoice</event>    
+    <sid>user2</sid>
+  </row>
+  <row>
+    <timestamp>2016-07-25 18:45:45</timestamp>    
+    <act>answer:2:correct</act>    
+    <div_id>C</div_id>    
+    <event>mChoice</event>    
+    <sid>user2</sid>
+  </row>
+  <row>
+    <timestamp>2016-07-25 18:50:00</timestamp>    
+    <act>answer:3:correct</act>    
+    <div_id>A</div_id>    
+    <event>mChoice</event>    
+    <sid>user1</sid>
+  </row>
+  <row>
+    <timestamp>2016-07-25 18:54:00</timestamp>    
+    <act>answer:0,1,3:no</act>    
+    <div_id>B</div_id>    
+    <event>mChoice</event>    
+    <sid>user1</sid>
+  </row>
+  <row>
+    <timestamp>2016-07-25 18:57:00</timestamp>    
+    <act>answer:0,1,2,3:no</act>    
+    <div_id>C</div_id>    
+    <event>mChoice</event>    
+    <sid>user1</sid>
+  </row>
+  <row>
+    <timestamp>2016-07-25 18:58:00</timestamp>    
+    <act>answer:0:no</act>    
+    <div_id>D</div_id>    
+    <event>mChoice</event>    
+    <sid>user1</sid>
+  </row>
+</rows>
