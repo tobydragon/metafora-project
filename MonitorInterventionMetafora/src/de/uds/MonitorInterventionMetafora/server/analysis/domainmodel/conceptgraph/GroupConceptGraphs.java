@@ -22,9 +22,8 @@ public class GroupConceptGraphs {
 	
 	
 	public GroupConceptGraphs(ConceptGraph structureGraph,List<PerUserPerProblemSummary> summaries){
-		NodesAndIDLinks tempLinks = structureGraph.buildNodesAndLinks();
 		
-		averageGraph = new ConceptGraph(tempLinks);
+		averageGraph = new ConceptGraph(structureGraph);
 		averageGraph.addSummariesToGraph(summaries);
 		
 		SortedSet<String> users = new TreeSet<String>();
@@ -35,11 +34,13 @@ public class GroupConceptGraphs {
 		userToGraph = new HashMap<String, ConceptGraph>();
 		
 		for(String user: users){
-			ConceptGraph structureCopy = new ConceptGraph(tempLinks);
+			ConceptGraph structureCopy = new ConceptGraph(structureGraph);
 			List<PerUserPerProblemSummary> userSummaries = PerUserPerProblemSummary.getUserSummaries(summaries, user);			
 			
 			structureCopy.addSummariesToGraph(userSummaries);
 			System.out.println(structureCopy);
+			structureCopy.calcActualComp();
+			structureCopy.calcPredictedScores();
 			userToGraph.put(user, structureCopy);
 		}
 		

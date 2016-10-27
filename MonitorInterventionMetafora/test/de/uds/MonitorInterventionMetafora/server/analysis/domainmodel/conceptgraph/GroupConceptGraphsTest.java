@@ -135,7 +135,7 @@ public class GroupConceptGraphsTest {
 		this.mediumTree = mediumGraph.graphToTree();
 	}
 	
-	//@Test
+	@Test
 	public void userCountTest(){
 		GroupConceptGraphs group = new GroupConceptGraphs(simpleGraph,test_summaries);
 		
@@ -155,7 +155,7 @@ public class GroupConceptGraphsTest {
 	}
 	
 	
-	//@Test
+	@Test
 	public void getAllGraphsTest(){
 		GroupConceptGraphs group = new GroupConceptGraphs(simpleGraph,test_summaries);
 		Map<String, ConceptGraph> userGraphMap = group.getUserToGraphMap();
@@ -172,13 +172,29 @@ public class GroupConceptGraphsTest {
 		NodesAndIDLinks user2Nodes = user2Tree.buildNodesAndLinks();
 		
 		
-		//Assert.assertEquals(,.size());
+		Assert.assertEquals(8,user2Nodes.getNodes().size());
+		Assert.assertEquals(7,user2Nodes.getLinks().size());
 	}
 	
-	//@Test
+	@Test
 	public void jsonOutputTest(){
+		
 		GroupConceptGraphs group = new GroupConceptGraphs("war/TreeDisplay/input",simpleGraph,test_summaries);
-		//Assert.assertEquals(1,1);
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
+		
+		try {
+			GroupConceptGraphs gcg = mapper.readValue(new File("war/TreeDisplay/input.json"), GroupConceptGraphs.class);
+			
+			Assert.assertEquals(2,gcg.getUserToGraphMap().keySet().size());
+			Assert.assertEquals(7, gcg.getAllGraphs().get(0).getIDLinks().size());
+			Assert.assertEquals(8, gcg.getAllGraphs().get(0).getNodes().size());
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	

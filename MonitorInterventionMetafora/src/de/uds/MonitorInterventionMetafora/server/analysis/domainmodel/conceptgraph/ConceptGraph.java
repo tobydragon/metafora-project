@@ -72,7 +72,8 @@ public class ConceptGraph {
 		List<ConceptNode> nodes = new ArrayList<ConceptNode>();
 		List<ConceptNode> nodesin = lists.getNodes();
 		for(ConceptNode node: nodesin){
-			nodes.add(node);
+			ConceptNode tempNode = new ConceptNode(node.getConcept());
+			nodes.add(tempNode);
 		}
 		
 		//?????????????????
@@ -80,12 +81,13 @@ public class ConceptGraph {
 		List<IDLink> links = new ArrayList<IDLink>();
 		List<IDLink> linksin = lists.getLinks();
 		for(IDLink link: linksin){
-			links.add(link);
+			IDLink tempLink = new IDLink(link.getParent(),link.getChild());
+			links.add(tempLink);
 		}
 		
 		this.roots = findRoot(nodes, links);
 		
-		//addChildren(nodes, links);
+		addChildren(nodes, links);
 		NodesAndIDLinks testthing = this.buildNodesAndLinks();
 	}
 	
