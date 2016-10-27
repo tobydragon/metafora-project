@@ -50,7 +50,6 @@ public class GroupConceptGraphsTest {
 	public void setUp() throws Exception {
 		makeSimple();
 		makeMedium();
-		makeSimpleInputTree();
 		//Move to SetUp instead of in each file
 		String inputXML = "test/testdata/GroupConceptGraphsTest.xml";
 		
@@ -76,39 +75,6 @@ public class GroupConceptGraphsTest {
 		this.mediumTree = null;
 		this.simpleInputTree = null;
 		this.test_summaries = null;
-	}
-	
-	public void makeSimpleInputTree(){
-		List<ConceptNode> cnList = new ArrayList<ConceptNode>();
-		List<IDLink> linkList = new ArrayList<IDLink>(); 
-		
-		Concept c = new ConceptImpl("A");
-		ConceptNode cn = new ConceptNode(c);
-		cnList.add(cn);
-		c = new ConceptImpl("B");
-		cn = new ConceptNode(c);
-		cnList.add(cn);
-		c = new ConceptImpl("C");
-		cn = new ConceptNode(c);
-		cnList.add(cn);
-		c = new ConceptImpl("D");
-		cn = new ConceptNode(c);
-		cnList.add(cn);
-		c = new ConceptImpl("E");
-		cn = new ConceptNode(c);
-		cnList.add(cn);
-		
-		IDLink link = new IDLink("A","B");
-		linkList.add(link);
-		link = new IDLink("A","C");
-		linkList.add(link);
-		link = new IDLink("B","D");
-		linkList.add(link);
-		link = new IDLink("C","E");
-		linkList.add(link);
-		
-		NodesAndIDLinks lists = new NodesAndIDLinks(cnList, linkList);
-		simpleInputTree = new ConceptGraph(lists);
 	}
 	
 	public void makeSimple(){
@@ -169,7 +135,7 @@ public class GroupConceptGraphsTest {
 		this.mediumTree = mediumGraph.graphToTree();
 	}
 	
-	@Test
+	//@Test
 	public void userCountTest(){
 		GroupConceptGraphs group = new GroupConceptGraphs(simpleGraph,test_summaries);
 		
@@ -177,13 +143,44 @@ public class GroupConceptGraphsTest {
 	}
 	
 	@Test
+	public void addSummariesTest(){
+		GroupConceptGraphs group = new GroupConceptGraphs(simpleGraph,test_summaries);
+		Map<String, ConceptGraph> userGraphMap = group.getUserToGraphMap();
+		
+		ConceptGraph user2Graph = userGraphMap.get("CLTestStudent1");
+		NodesAndIDLinks user2Nodes = user2Graph.buildNodesAndLinks();
+		
+		Assert.assertEquals(6,user2Nodes.getNodes().size());
+		Assert.assertEquals(6,user2Nodes.getLinks().size());
+	}
+	
+	
+	//@Test
 	public void getAllGraphsTest(){
 		GroupConceptGraphs group = new GroupConceptGraphs(simpleGraph,test_summaries);
 		Map<String, ConceptGraph> userGraphMap = group.getUserToGraphMap();
 		
-		//Assert.assertEquals("user2",userGraphMap.keySet());
+		List<String> namesList = new ArrayList<String>();
+		for (String name: userGraphMap.keySet()){
+			namesList.add(name);
+		}
+		Assert.assertEquals("CLTestStudent2",namesList.get(0));
+		Assert.assertEquals("CLTestStudent1",namesList.get(1));
+		Assert.assertEquals(2,namesList.size());
 		
+		ConceptGraph user2Tree = userGraphMap.get("CLTestStudent2").graphToTree();
+		NodesAndIDLinks user2Nodes = user2Tree.buildNodesAndLinks();
+		
+		
+		//Assert.assertEquals(,.size());
 	}
+	
+	//@Test
+	public void jsonOutputTest(){
+		GroupConceptGraphs group = new GroupConceptGraphs("war/TreeDisplay/input",simpleGraph,test_summaries);
+		//Assert.assertEquals(1,1);
+	}
+	
 	
 }
 
