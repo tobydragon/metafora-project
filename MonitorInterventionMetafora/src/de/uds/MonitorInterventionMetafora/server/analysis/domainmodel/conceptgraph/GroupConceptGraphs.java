@@ -25,6 +25,8 @@ public class GroupConceptGraphs {
 		
 		averageGraph = new ConceptGraph(structureGraph);
 		averageGraph.addSummariesToGraph(summaries);
+		averageGraph.calcActualComp();
+		averageGraph.calcPredictedScores();
 		
 		SortedSet<String> users = new TreeSet<String>();
 		for(String user : PerUserPerProblemSummary.getUsers(summaries)){
@@ -38,11 +40,12 @@ public class GroupConceptGraphs {
 			List<PerUserPerProblemSummary> userSummaries = PerUserPerProblemSummary.getUserSummaries(summaries, user);			
 			
 			structureCopy.addSummariesToGraph(userSummaries);
-			System.out.println(structureCopy);
+			//System.out.println(structureCopy);
 			structureCopy.calcActualComp();
 			structureCopy.calcPredictedScores();
 			userToGraph.put(user, structureCopy);
 		}
+		calcDistanceFromAvg();
 		
 		//Build a new concept graph that is the average graph
 		//Take the structure graph and make a copy with each student's data
@@ -54,6 +57,22 @@ public class GroupConceptGraphs {
 	public GroupConceptGraphs(String filename,ConceptGraph structureGraph,List<PerUserPerProblemSummary> summaries){
 		this(structureGraph,summaries);
 		namedGraphToJSON(filename);
+	}
+	
+	public void calcDistanceFromAvg(){
+		NodesAndIDLinks avgLinks = averageGraph.buildNodesAndLinks();
+		for(String user: userToGraph.keySet()){
+			NodesAndIDLinks tempLinks = userToGraph.get(user).buildNodesAndLinks();
+			
+			for(ConceptNode tempNode: tempLinks.getNodes()){
+				for(ConceptNode avgNode: avgLinks.getNodes()){
+					if(tempNode.getConcept().getConceptTitle().equals(avgNode.getConcept().getConceptTitle())){
+						double avgCalc = avgNode.getActualComp();
+						tempNode.setDistanceFromAverage(avgCalc);
+					}
+				}
+			}
+		}
 	}
 	
 	public int userCount(){
@@ -83,6 +102,8 @@ public class GroupConceptGraphs {
 	
 	public List<NamedGraph> toNamedGraph(){
 		List<NamedGraph> namedGraphs = new ArrayList<NamedGraph>();
+		NamedGraph avgGraph = new NamedGraph("Average Graph", averageGraph);
+		namedGraphs.add(avgGraph);
 		for(String user: userToGraph.keySet()){
 			
 			NamedGraph temp = new NamedGraph(user, getUserGraph(user));

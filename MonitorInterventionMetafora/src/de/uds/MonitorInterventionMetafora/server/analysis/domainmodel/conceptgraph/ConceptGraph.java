@@ -141,9 +141,7 @@ public class ConceptGraph {
 	public void addSummariesToGraph(List<PerUserPerProblemSummary> summaries){
 
 		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
-		System.out.println();
 		for(PerUserPerProblemSummary summary : summaries){
-			System.out.println(summary.getObjectId());
 			ConceptNode sumNode = new ConceptNode(summary);
 			graphSummaryNodeList.add(sumNode);
 		}

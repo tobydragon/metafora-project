@@ -18,12 +18,14 @@ public class ConceptNode {
 	private double actualComp;
 	private double predictedComp;
 	private int numParents;
+	private double distanceFromAvg;
 	
 	public ConceptNode() {
 		children = new ArrayList<ConceptNode>();
 		numParents = 0;
 		predictedComp = 0;
 		actualComp = 0;
+		distanceFromAvg = 0;
 	}
 	
 	public ConceptNode(Concept concept){
@@ -231,6 +233,15 @@ public class ConceptNode {
 
 	public void setActualComp(double actualComp) {
 		this.actualComp = actualComp;
+	}
+	
+	public void setDistanceFromAverage(double avgCalc){
+	
+		this.distanceFromAvg = this.actualComp - avgCalc;
+	}
+	
+	public double getDistanceFromAverage(){
+		return distanceFromAvg;
 	}
 	
 	public double getPredictedComp() {
