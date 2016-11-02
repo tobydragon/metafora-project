@@ -7,9 +7,10 @@ var visualizationList = []; //the formatted list of data
 
 //node object made to hold the root node information.
 //used in findRoots
-function RootNode(idIn, scoreIn){
+function RootNode(idIn, scoreIn, distIn){
     this.id = idIn;
     this.score = scoreIn;
+    this.dist = distIn;
 }
 
 //reads in JSON file and parses it to objectsArray
@@ -30,8 +31,10 @@ function writeMenu(){
     //defines a line of HTML to inject into the DOM
     //creates a list of button objects. The button click calls makeChart and passes the argument of the student's name
     var newCode = "<ul style='list-style: none;'>";
-    for(var i = 0; i < names.length; i++){
-        newCode += "<li><button type='button' onclick='makeChart(&quot;" + names[i] + "&quot;)'>" + names[i] + "</button></li>";
+    newCode += "<li><button type='button' onclick='makeChart(&quot;" + names[0] + "&quot;,&quot;reg&quot;)'>" + names[0] + "</button>";
+    for(var i = 1; i < names.length; i++){
+        newCode += "<li><button type='button' onclick='makeChart(&quot;" + names[i] + "&quot;,&quot;reg&quot;)'>" + names[i] + "</button>";
+        newCode +="<button type='button' onclick='makeChart(&quot;" + names[i] + "&quot;,&quot;avg&quot;)'>" + "DistAvg" + "</button></li>";
     }
     newCode += "</ul>";
     //insert the HTML code into the div with the ID "menu"
@@ -39,7 +42,8 @@ function writeMenu(){
 }
 
 //takes the name of the student whose org chart should be drawn
-function makeChart(currName){
+function makeChart(currName,typeGraph){
+    
     //initializes visualizationList
     visualizationList = [];
     console.log(currName);
@@ -58,8 +62,14 @@ function makeChart(currName){
     for(var i = 0; i < roots.length; i++){
         var row1 = [];//make an empty row
         var c = roots[i].id;
-        var s = roots[i].score;
-        row1.push({v:c, f:stripTitle(c)+'<div style="color:blue; font-style:italic">Score: '+s+'</div>'});//add the topic
+        if(typeGraph == "reg"){
+            var s = roots[i].score;
+            row1.push({v:c, f:stripTitle(c)+'<div style="color:blue; font-style:italic">Score: '+s+'</div>'});//add the topic
+        }else{
+            var s = roots[i].dist;
+            console.log(s);
+            row1.push({v:c, f:stripTitle(c)+'<div style="color:blue; font-style:italic">Distance: '+s+'</div>'});//add the topic
+        }
         row1.push(null);//add the parent, null for roots
         row1.push(s);//add the score
         visualizationList.push(row1);//push row to the list
@@ -76,11 +86,17 @@ function makeChart(currName){
             //if the node ID matches the name in the link
             if(dataObject.nodes[j].id == dataObject.links[i].child){
                 //def Score
-                var s = dataObject.nodes[j].actualComp;
+                if(typeGraph == "reg"){
+                    var s = dataObject.nodes[j].actualComp;
+                    //add Topic (this is formatted to show the node ID without the iterative tag at the end and the score)
+        row.push({v:c, f:stripTitle(c)+'<div style="color:blue; font-style:italic">Score: '+s+'</div>'});
+                }else{
+                    var s = dataObject.nodes[j].distanceFromAverage;
+                    //add Topic (this is formatted to show the node ID without the iterative tag at the end and the score)
+        row.push({v:c, f:stripTitle(c)+'<div style="color:blue; font-style:italic">Distance: '+s+'</div>'});
+                }
             }
         }
-        //add Topic (this is formatted to show the node ID without the iterative tag at the end and the score)
-        row.push({v:c, f:stripTitle(c)+'<div style="color:blue; font-style:italic">Score: '+s+'</div>'});
         row.push(p); //add parent
         row.push(s); //add score
         visualizationList.push(row); //push row to the list
@@ -113,7 +129,7 @@ function findRoot(dataList){
     var roots = []; 
     //add all of the node IDs to the roots array
     for(var i = 0; i < dataList.nodes.length; i++){
-        roots.push(new RootNode(dataList.nodes[i].id, dataList.nodes[i].actualComp));
+        roots.push(new RootNode(dataList.nodes[i].id, dataList.nodes[i].actualComp, dataList.nodes[i].distanceFromAverage));
     }
     //loop through all of the links
     for(var i = 0; i < dataList.links.length; i++){

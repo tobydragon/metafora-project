@@ -36,6 +36,54 @@ function findMin(listIn){
 function makeColorsList(dataList){
     
     var colorsList = [];
+    
+    var max = findMax(dataList);
+    var min = findMin(dataList);
+    
+    //this is where you assign the color for the highest score
+    var maxColor = new NodeColor(0,0,255);
+    //this is where you assign the color for the lowest score
+    var minColor = new NodeColor(255,0,0);
+    
+    for(var i = 0; i < dataList.length; i++){
+        if(dataList[i][2] >= 0){   
+            min = 0;
+            max = 1
+            maxColor = new NodeColor(0,200,0);
+            minColor = new NodeColor(0,0,180);
+            var scorePer = calcScorePerc(max, min, dataList[i][2]);
+
+            //assigns new values to each color channel based on how the score is compared to the max and min.
+            var r = getNewColorValue(maxColor.red, minColor.red, scorePer);
+            var g = getNewColorValue(maxColor.green, minColor.green, scorePer);
+            var b = getNewColorValue(maxColor.blue, minColor.blue, scorePer);
+
+            var currNodeColor = new NodeColor(r,g,b);
+            colorsList.push("#"+RGBToHex(currNodeColor));
+        }else{
+            min = -1;
+            max = 0
+            maxColor = new NodeColor(0,0,255);
+            minColor = new NodeColor(255,0,0);
+            var scorePer = calcScorePerc(max, min, dataList[i][2]);
+
+            //assigns new values to each color channel based on how the score is compared to the max and min.
+            var r = getNewColorValue(maxColor.red, minColor.red, scorePer);
+            var g = getNewColorValue(maxColor.green, minColor.green, scorePer);
+            var b = getNewColorValue(maxColor.blue, minColor.blue, scorePer);
+
+            var currNodeColor = new NodeColor(r,g,b);
+            colorsList.push("#"+RGBToHex(currNodeColor));
+        }
+    
+    }
+    
+    return colorsList;
+}
+
+function makeColorsList2(dataList){
+    
+    var colorsList = [];
     var max = findMax(dataList);
     var min = findMin(dataList);
     
