@@ -91,7 +91,7 @@ function makeChart(currName,typeGraph){
                     //add Topic (this is formatted to show the node ID without the iterative tag at the end and the score)
         row.push({v:c, f:stripTitle(c)+'<div style="color:blue; font-style:italic">Score: '+s+'</div>'});
                 }else{
-                    var s = dataObject.nodes[j].distanceFromAverage;
+                    var s = dataObject.nodes[j].distanceFromAvg;
                     //add Topic (this is formatted to show the node ID without the iterative tag at the end and the score)
         row.push({v:c, f:stripTitle(c)+'<div style="color:blue; font-style:italic">Distance: '+s+'</div>'});
                 }
@@ -129,7 +129,7 @@ function findRoot(dataList){
     var roots = []; 
     //add all of the node IDs to the roots array
     for(var i = 0; i < dataList.nodes.length; i++){
-        roots.push(new RootNode(dataList.nodes[i].id, dataList.nodes[i].actualComp, dataList.nodes[i].distanceFromAverage));
+        roots.push(new RootNode(dataList.nodes[i].id, dataList.nodes[i].actualComp, dataList.nodes[i].distanceFromAvg));
     }
     //loop through all of the links
     for(var i = 0; i < dataList.links.length; i++){
