@@ -72,11 +72,11 @@ public class ConceptGraph {
 		List<ConceptNode> nodes = new ArrayList<ConceptNode>();
 		List<ConceptNode> nodesin = lists.getNodes();
 		for(ConceptNode node: nodesin){
-			ConceptNode tempNode = new ConceptNode(node.getConcept());
+			ConceptNode tempNode = new ConceptNode(node);
 			nodes.add(tempNode);
 		}
 		
-		//?????????????????
+		
 		//List<IDLink> links = lists.getLinks();
 		List<IDLink> links = new ArrayList<IDLink>();
 		List<IDLink> linksin = lists.getLinks();

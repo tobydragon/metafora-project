@@ -68,7 +68,7 @@ public class GroupConceptGraphs {
 				for(ConceptNode avgNode: avgLinks.getNodes()){
 					if(tempNode.getConcept().getConceptTitle().equals(avgNode.getConcept().getConceptTitle())){
 						double avgCalc = avgNode.getActualComp();
-						tempNode.setDistanceFromAverage(avgCalc);
+						tempNode.calcDistanceFromAvg(avgCalc);
 					}
 				}
 			}

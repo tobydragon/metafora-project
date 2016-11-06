@@ -184,11 +184,11 @@ public class GroupConceptGraphsTest {
 		ConceptGraph user2 = userGraphMap.get("CLTestStudent2");
 		NodesAndIDLinks user2NL = user2.buildNodesAndLinks();
 		ConceptNode testNode = user2NL.getNodes().get(0);
-		Assert.assertEquals(.5, testNode.getDistanceFromAverage(),0);
-		System.out.println(testNode.getDistanceFromAverage());
+		Assert.assertEquals(.5, testNode.getDistanceFromAvg(),0);
+		System.out.println(testNode.getDistanceFromAvg());
 		ConceptNode testNode2 = user2NL.getNodes().get(2);
-		System.out.println(testNode2.getDistanceFromAverage());
-		Assert.assertEquals(1, testNode2.getDistanceFromAverage(),0);
+		System.out.println(testNode2.getDistanceFromAvg());
+		Assert.assertEquals(1, testNode2.getDistanceFromAvg(),0);
 		
 		
 	}
@@ -201,22 +201,22 @@ public class GroupConceptGraphsTest {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
 		
+		Assert.assertEquals(2, group.getUserToGraphMap().keySet().size());
+		Assert.assertEquals(8, group.getAllGraphs().get(1).buildNodesAndLinks().getNodes().size());
+		Assert.assertEquals(7, group.getAllGraphs().get(1).buildNodesAndLinks().getLinks().size());
+		
 		try {
 			//Reads in the file that was written earlier
 			GroupConceptGraphs gcg = mapper.readValue(new File("war/TreeDisplay/input.json"), GroupConceptGraphs.class);
 			
-			Assert.assertEquals(3,gcg.getUserToGraphMap().keySet().size());
+			Assert.assertEquals(2,gcg.getUserToGraphMap().keySet().size());
 			Assert.assertEquals(7, gcg.getAllGraphs().get(1).getIDLinks().size());
 			Assert.assertEquals(8, gcg.getAllGraphs().get(1).getNodes().size());
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
-	
-	
 }
 
 

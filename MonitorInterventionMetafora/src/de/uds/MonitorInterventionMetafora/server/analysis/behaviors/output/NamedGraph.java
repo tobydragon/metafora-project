@@ -2,6 +2,7 @@ package de.uds.MonitorInterventionMetafora.server.analysis.behaviors.output;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptGraph;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.NodesAndIDLinks;
+import java.util.Map;
 
 public class NamedGraph {
 	public String name;
