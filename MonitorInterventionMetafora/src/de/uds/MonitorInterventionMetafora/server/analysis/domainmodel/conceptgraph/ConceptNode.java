@@ -18,24 +18,39 @@ public class ConceptNode {
 	private double actualComp;
 	private double predictedComp;
 	private int numParents;
+	private double distanceFromAvg;
 	
 	public ConceptNode() {
 		children = new ArrayList<ConceptNode>();
 		numParents = 0;
 		predictedComp = 0;
 		actualComp = 0;
+		distanceFromAvg = 0;
+	}
+	
+	
+	public ConceptNode(Concept concept, String newID){
+		this();
+		this.concept = concept;
+		this.id = newID;	
 	}
 	
 	public ConceptNode(Concept concept){
 		this (concept, concept.getConceptTitle());
 	}
 	
-	public ConceptNode(Concept concept, String newID){
-		children = new ArrayList<ConceptNode>();
-		numParents = 0;
-		predictedComp = 0;
-		actualComp = 0;
-		this.concept = concept;
+	public ConceptNode(ConceptNode copyNode){
+		this.children = new ArrayList<ConceptNode>();
+		this.numParents = copyNode.getNumParents();
+		this.actualComp = copyNode.getActualComp();
+		this.predictedComp = copyNode.getPredictedComp();
+		this.distanceFromAvg = copyNode.getDistanceFromAvg();
+		this.concept = copyNode.getConcept();
+		this.id = copyNode.getID();
+	}
+	
+	public ConceptNode(ConceptNode cn, String newID){
+		this(cn);
 		this.id = newID;	
 	}
 	
@@ -80,26 +95,33 @@ public class ConceptNode {
 		ConceptNode nodeCopy;
 		List<String> nodeCopies = multCopies.get(this.getConcept().getConceptTitle());
 		if(nodeCopies == null){
-			nodeCopy = new ConceptNode(this.getConcept(),makeName(this.getConcept().getConceptTitle()));
+			nodeCopy = new ConceptNode(this,makeName(this.getConcept().getConceptTitle()));
+			/*
 			nodeCopy.setActualComp(this.actualComp);
 			nodeCopy.setPredictedComp(this.predictedComp);
+			nodeCopy.setDistanceFromAvg(this.distanceFromAvg);
+			*/
 			nodeCopies = new ArrayList<String>();
 			nodeCopies.add(nodeCopy.getID());
 			multCopies.put(nodeCopy.getConcept().getConceptTitle(), nodeCopies);
+			
 		}else{
 			String prevName = nodeCopies.get(nodeCopies.size()-1);
-			nodeCopy = new ConceptNode(this.getConcept(), makeName(prevName));
+			nodeCopy = new ConceptNode(this, makeName(prevName));
+			/*
 			nodeCopy.setActualComp(this.actualComp);
 			nodeCopy.setPredictedComp(this.predictedComp);
+			nodeCopy.setDistanceFromAvg(this.distanceFromAvg);
+			*/
 			nodeCopies.add(nodeCopy.getID());
 			multCopies.put(nodeCopy.getConcept().getConceptTitle(), nodeCopies);
 		}
 		
 		try{
-		for(ConceptNode origChild : this.getChildren()){
-			ConceptNode childCopy = origChild.makeTree(multCopies);
-			nodeCopy.addChild(childCopy);
-		}
+			for(ConceptNode origChild : this.getChildren()){
+				ConceptNode childCopy = origChild.makeTree(multCopies);
+				nodeCopy.addChild(childCopy);
+			}
 		}catch(NullPointerException e){
 			System.out.println("Broke on this node: "+this.getID());
 		}
@@ -233,6 +255,19 @@ public class ConceptNode {
 		this.actualComp = actualComp;
 	}
 	
+	public void calcDistanceFromAvg(double avgCalc){
+	
+		this.distanceFromAvg = this.actualComp - avgCalc;
+	}
+	
+	public void setDistanceFromAvg(double setTo){
+		this.distanceFromAvg = setTo;
+	}
+	
+	public double getDistanceFromAvg(){
+		return distanceFromAvg;
+	}
+	
 	public double getPredictedComp() {
 		return Math.round(predictedComp*100.0)/100.0;
 	}
@@ -258,10 +293,21 @@ public class ConceptNode {
 				actualComp = 0;
 			}
 			else{
-				actualComp = sumInfo.getNumCorrect() * .5 + (.5 - .1* sumInfo.getTotalFalseEntries());	
+				//Full Credit if right on first try. Half if right on second. 1/5th if right on third. no credit after that.
+				if((sumInfo.getTotalFalseEntries() == 0) && (sumInfo.getNumCorrect() == 1)){
+					actualComp = 1;	
+				} else if((sumInfo.getTotalFalseEntries()==1) && (sumInfo.getNumCorrect() == 1)){
+					actualComp = .5;
+				} else if ((sumInfo.getTotalFalseEntries()==2) && (sumInfo.getNumCorrect() == 1)){
+					actualComp = .2;
+				}else {
+					actualComp = -1;
+				}
+				
 			}
+			//System.out.println("Actual Comp = "+actualComp);
 			return actualComp;
-		}
+		} else {
 
 			//recursively call this on each child of the node
 			double tempComp;
@@ -274,7 +320,9 @@ public class ConceptNode {
 			actualComp = tempComp;
 			return actualComp;
 		}
+		
 	}
+}
 	
 	
 

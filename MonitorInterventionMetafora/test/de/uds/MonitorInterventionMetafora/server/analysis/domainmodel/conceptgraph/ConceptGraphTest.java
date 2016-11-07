@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.junit.After;
@@ -726,4 +727,103 @@ public class ConceptGraphTest {
 		
 		Assert.assertEquals(1, questions.size());
 	}
+	
+	@Test
+	public void calcActualCompTest() {
+		String inputXML = "test/testdata/timeTest.xml";
+		
+		//Get behaviors from runsetone xml
+		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(inputXML);
+		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
+				
+		List<CfAction> allActions = testCf.getCfActions();
+		
+		//Creates problem summaries from user actions
+		ObjectSummaryIdentifier myIdentifier = new ObjectSummaryIdentifier();
+		List<String> involvedUsers = AnalysisActions.getOriginatingUsernames(allActions);
+		List<PerUserPerProblemSummary> summaries = myIdentifier.buildPerUserPerProblemSummaries(allActions, involvedUsers);
+		
+		for (PerUserPerProblemSummary summary : summaries){
+			if (summary.toString() != null && summary.toString().contains("5_1_1")){
+				logger.debug(summary);
+			}
+		}
+		// Make the concept graph from Json
+		//TODO: files should be read from within war file...
+		NodesAndIDLinks selectionListsInput =  StructureCreationLibrary.createSimpleSelection();		
+		ConceptGraph selectionGraph = new ConceptGraph(selectionListsInput);
+		
+		// Add summary info to it
+		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
+		for(PerUserPerProblemSummary summary : summaries){
+			//System.out.println(summary.getObjectId());
+			ConceptNode sumNode = new ConceptNode(summary);
+			graphSummaryNodeList.add(sumNode);
+		}
+		
+		//TODO: TD - Does this code belong in ObjectSummaryIdentifier? Doesn't seem like its job...
+		//Also, should probably identify whether connection was made or not
+		selectionGraph.addSummariesToGraph(summaries);
+
+		// calculate "up" the graph the actual scores
+		selectionGraph.calcActualComp();
+		
+		// calculate "down" the graph the predicted scores
+		selectionGraph.calcPredictedScores();
+		
+		
+		NodesAndIDLinks selectionLists =  selectionGraph.buildNodesAndLinks();
+		Map<String, ConceptNode> selectionListMap= selectionLists.buildNodeMap();
+		
+		
+		ConceptGraph treeGraph = selectionGraph.graphToTree();
+		NodesAndIDLinks treeLists = treeGraph.buildNodesAndLinks();
+		
+		try {
+			treeLists.writeToJson(GeneralUtil.getRealPath("TreeDisplay/calcActualCompTest.json"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		float delta = (float) .01;
+		
+		//Checks children on If Statement to make sure their actualComps are correct 
+		//(gotten from visualized graph)
+		//file:///Users/willsuchanek/git/metafora-project/MonitorInterventionMetafora/war/TreeDisplay/index.html
+		Assert.assertEquals(0, selectionListMap.get("Boolean").getActualComp(),delta);
+		Assert.assertEquals(1, selectionListMap.get("test_question6_4_2").getActualComp(),delta);
+		Assert.assertEquals(1, selectionListMap.get("test_question6_4_1").getActualComp(),delta);
+		
+		
+		//Calculates the actualComp for If statements children
+		float sumOfChildren = 0;
+		int childCounter = 0;
+		for(ConceptNode node :selectionListMap.get("If Statement").getChildren()){
+			sumOfChildren+=node.getActualComp();
+			childCounter++;
+		}
+		//makes sure the calculated number is equal to the number stored in If Statements
+		Assert.assertEquals(sumOfChildren/childCounter, selectionListMap.get("If Statement").getActualComp(),delta);
+		
+		//Checks children on Control to make sure their actualComps are correct 
+		//(gotten from visualized graph)
+		//file:///Users/willsuchanek/git/metafora-project/MonitorInterventionMetafora/war/TreeDisplay/index.html
+		Assert.assertEquals(.67, selectionListMap.get("If Statement").getActualComp(),delta);
+		Assert.assertEquals(0, selectionListMap.get("Loops").getActualComp(),delta);
+		
+		//Calculates the actualComp for Control children
+		sumOfChildren = 0;
+		childCounter = 0;
+		for(ConceptNode node :selectionListMap.get("Control").getChildren()){
+			sumOfChildren+=node.getActualComp();
+			childCounter++;
+		}
+		
+		//makes sure the calculated number is equal to the number stored in If Statements
+		Assert.assertEquals(sumOfChildren/childCounter, selectionListMap.get("Control").getActualComp(),delta);
+		
+	}
 }
+
+	

@@ -65,6 +65,32 @@ public class ConceptGraph {
 		addChildren(nodes, links);
 	}
 	
+	public ConceptGraph(ConceptGraph graph){
+		NodesAndIDLinks lists = graph.buildNodesAndLinks();
+		
+		//List<ConceptNode> nodes = lists.getNodes();
+		List<ConceptNode> nodes = new ArrayList<ConceptNode>();
+		List<ConceptNode> nodesin = lists.getNodes();
+		for(ConceptNode node: nodesin){
+			ConceptNode tempNode = new ConceptNode(node);
+			nodes.add(tempNode);
+		}
+		
+		
+		//List<IDLink> links = lists.getLinks();
+		List<IDLink> links = new ArrayList<IDLink>();
+		List<IDLink> linksin = lists.getLinks();
+		for(IDLink link: linksin){
+			IDLink tempLink = new IDLink(link.getParent(),link.getChild());
+			links.add(tempLink);
+		}
+		
+		this.roots = findRoot(nodes, links);
+		
+		addChildren(nodes, links);
+		NodesAndIDLinks testthing = this.buildNodesAndLinks();
+	}
+	
 	public ConceptGraph(Book b, NodesAndIDLinks lists){
 		List<ConceptNode> nodes = lists.getNodes();
 		List<IDLink> links = lists.getLinks();
@@ -99,7 +125,6 @@ public class ConceptGraph {
 
 		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
 		for(PerUserPerProblemSummary summary : summaries){
-			//System.out.println(summary.getObjectId());
 			ConceptNode sumNode = new ConceptNode(summary);
 			graphSummaryNodeList.add(sumNode);
 		}
