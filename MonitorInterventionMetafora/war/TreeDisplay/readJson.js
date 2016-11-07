@@ -1,5 +1,5 @@
 //Define some global variables
-var fileName = "input.json"; //fileName of JSON file to read in
+var fileName = "domainInput.json"; //fileName of JSON file to read in
 var dataObject; //the object that one concept graph gets saved to when a student button is clicked
 var objectArray; //the object that the json file gets parsed to, an array of "student objects"
 var names = []; //list of names of the students
