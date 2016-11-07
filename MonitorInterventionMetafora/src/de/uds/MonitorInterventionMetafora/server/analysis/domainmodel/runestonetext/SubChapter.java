@@ -62,7 +62,7 @@ public class SubChapter implements Concept{
 					}
 				}
 				if(line.contains(".. tag")){
-					questions.get(questions.size()-1).setTags(Question.createTags(line));
+					questions.get(questions.size()-1).setTags(line);
 				}
 			}
 		findQs.close();

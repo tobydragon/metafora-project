@@ -68,32 +68,15 @@ public class ConceptGraph {
 	public ConceptGraph(Book b, NodesAndIDLinks lists){
 		List<ConceptNode> nodes = lists.getNodes();
 		List<IDLink> links = lists.getLinks();
+		
+		List<IDLink> newLinks = b.buildTagLinks();
+		for(IDLink link : newLinks){
+			links.add(link);
+		}
+		
 		this.roots = findRoot(nodes, links);
 		
 		addChildren(nodes, links);
-		
-		List<Question> questions = new ArrayList<Question>();
-		
-		//replace with Book function (build Question List) and have it return list of Qs
-		//make this all book work
-		List<Chapter> chaps = b.getChapters();
-		for(Chapter c : chaps){
-			List<SubChapter> subChaps = c.getSubChapters();
-			for(SubChapter s: subChaps){
-				List<Question> currQs = s.getQuestions();
-				for(Question q: currQs){
-					questions.add(q);
-					//q.addTag(s.getConceptTitle());
-				}
-			}
-		}
-		
-		for(Question q : questions){
-			List<IDLink> myLinks = q.buildTagLinks();
-			for(IDLink link : myLinks){
-				links.add(link);
-			}
-		}
 	}
 	
 	public ConceptGraph(List<ConceptNode> rootsIn){
