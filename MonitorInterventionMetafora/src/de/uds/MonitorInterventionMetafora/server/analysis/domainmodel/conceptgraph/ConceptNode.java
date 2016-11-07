@@ -18,24 +18,39 @@ public class ConceptNode {
 	private double actualComp;
 	private double predictedComp;
 	private int numParents;
+	private double distanceFromAvg;
 	
 	public ConceptNode() {
 		children = new ArrayList<ConceptNode>();
 		numParents = 0;
 		predictedComp = 0;
 		actualComp = 0;
+		distanceFromAvg = 0;
+	}
+	
+	
+	public ConceptNode(Concept concept, String newID){
+		this();
+		this.concept = concept;
+		this.id = newID;	
 	}
 	
 	public ConceptNode(Concept concept){
 		this (concept, concept.getConceptTitle());
 	}
 	
-	public ConceptNode(Concept concept, String newID){
-		children = new ArrayList<ConceptNode>();
-		numParents = 0;
-		predictedComp = 0;
-		actualComp = 0;
-		this.concept = concept;
+	public ConceptNode(ConceptNode copyNode){
+		this.children = new ArrayList<ConceptNode>();
+		this.numParents = copyNode.getNumParents();
+		this.actualComp = copyNode.getActualComp();
+		this.predictedComp = copyNode.getPredictedComp();
+		this.distanceFromAvg = copyNode.getDistanceFromAvg();
+		this.concept = copyNode.getConcept();
+		this.id = copyNode.getID();
+	}
+	
+	public ConceptNode(ConceptNode cn, String newID){
+		this(cn);
 		this.id = newID;	
 	}
 	
@@ -80,17 +95,24 @@ public class ConceptNode {
 		ConceptNode nodeCopy;
 		List<String> nodeCopies = multCopies.get(this.getConcept().getConceptTitle());
 		if(nodeCopies == null){
-			nodeCopy = new ConceptNode(this.getConcept(),makeName(this.getConcept().getConceptTitle()));
+			nodeCopy = new ConceptNode(this,makeName(this.getConcept().getConceptTitle()));
+			/*
 			nodeCopy.setActualComp(this.actualComp);
 			nodeCopy.setPredictedComp(this.predictedComp);
+			nodeCopy.setDistanceFromAvg(this.distanceFromAvg);
+			*/
 			nodeCopies = new ArrayList<String>();
 			nodeCopies.add(nodeCopy.getID());
 			multCopies.put(nodeCopy.getConcept().getConceptTitle(), nodeCopies);
+			
 		}else{
 			String prevName = nodeCopies.get(nodeCopies.size()-1);
-			nodeCopy = new ConceptNode(this.getConcept(), makeName(prevName));
+			nodeCopy = new ConceptNode(this, makeName(prevName));
+			/*
 			nodeCopy.setActualComp(this.actualComp);
 			nodeCopy.setPredictedComp(this.predictedComp);
+			nodeCopy.setDistanceFromAvg(this.distanceFromAvg);
+			*/
 			nodeCopies.add(nodeCopy.getID());
 			multCopies.put(nodeCopy.getConcept().getConceptTitle(), nodeCopies);
 		}
@@ -231,6 +253,19 @@ public class ConceptNode {
 
 	public void setActualComp(double actualComp) {
 		this.actualComp = actualComp;
+	}
+	
+	public void calcDistanceFromAvg(double avgCalc){
+	
+		this.distanceFromAvg = this.actualComp - avgCalc;
+	}
+	
+	public void setDistanceFromAvg(double setTo){
+		this.distanceFromAvg = setTo;
+	}
+	
+	public double getDistanceFromAvg(){
+		return distanceFromAvg;
 	}
 	
 	public double getPredictedComp() {
