@@ -12,6 +12,7 @@ import java.util.TreeSet;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.output.NamedGraph;
@@ -19,6 +20,7 @@ import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.output.Named
 public class GroupConceptGraphs {
 	ConceptGraph averageGraph;
 	Map<String, ConceptGraph> userToGraph;
+	List<NamedGraph> allNamedGraphs;
 	
 	
 	public GroupConceptGraphs(ConceptGraph structureGraph,List<PerUserPerProblemSummary> summaries){
@@ -46,6 +48,7 @@ public class GroupConceptGraphs {
 			userToGraph.put(user, structureCopy);
 		}
 		calcDistanceFromAvg();
+		buildNamedGraph();
 		
 		//Build a new concept graph that is the average graph
 		//Take the structure graph and make a copy with each student's data
@@ -75,6 +78,10 @@ public class GroupConceptGraphs {
 		}
 	}
 	
+	public List<NamedGraph> getAllNamedGraphs(){
+		return this.allNamedGraphs;
+	}
+	
 	public int userCount(){
 		int count = 0;
 		for(String user: userToGraph.keySet()){
@@ -87,6 +94,7 @@ public class GroupConceptGraphs {
 		return userToGraph.get(user);
 	}
 	
+	@JsonIgnore
 	public List<ConceptGraph> getAllGraphs(){
 		List<ConceptGraph> allGraphs = new ArrayList<ConceptGraph>();
 		for(String user: userToGraph.keySet()){
@@ -100,17 +108,15 @@ public class GroupConceptGraphs {
 		return userToGraph;
 	}
 	
-	public List<NamedGraph> toNamedGraph(){
-		List<NamedGraph> namedGraphs = new ArrayList<NamedGraph>();
+	public void buildNamedGraph(){
+		allNamedGraphs = new ArrayList<NamedGraph>();
 		NamedGraph avgGraph = new NamedGraph("Average Graph", averageGraph);
-		namedGraphs.add(avgGraph);
+		allNamedGraphs.add(avgGraph);
 		for(String user: userToGraph.keySet()){
 			
 			NamedGraph temp = new NamedGraph(user, getUserGraph(user));
-			namedGraphs.add(temp);
+			allNamedGraphs.add(temp);
 		}
-		
-		return namedGraphs;
 	}
 	
 	public void namedGraphToJSON(String filename){
@@ -118,7 +124,7 @@ public class GroupConceptGraphs {
 		
 		try {
 			//writes JSON to file
-			mapper.writeValue(new File(filename+".json"), toNamedGraph());
+			mapper.writeValue(new File(filename+".json"), allNamedGraphs);
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

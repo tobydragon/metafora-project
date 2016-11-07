@@ -194,17 +194,89 @@ public class GroupConceptGraphsTest {
 	}
 	
 	@Test
+	public void jsonTester(){
+		ObjectMapper mapper = new ObjectMapper();
+		
+		GroupConceptGraphs group = new GroupConceptGraphs(simpleGraph,test_summaries);
+		
+		
+		
+		try {
+			//writes JSON to file
+			mapper.writeValue(new File("war/TreeDisplay/inputFromTest"+".json"), group.getAllNamedGraphs());
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/*
+		try {
+			//Reads in the file that was written earlier
+			GroupConceptGraphs gcg = mapper.readValue(new File("test1.json"), GroupConceptGraphs.class);
+			
+			Assert.assertEquals(2,gcg.getUserToGraphMap().keySet().size());
+			Assert.assertEquals(7, gcg.getAllGraphs().get(1).getIDLinks().size());
+			Assert.assertEquals(8, gcg.getAllGraphs().get(1).getNodes().size());
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}*/
+	}
+	
+	@Test
+	public void jsonTesterWithBigData(){
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			//Reads in the file that was written earlier
+			
+			List<PerUserPerProblemSummary> sums = new ArrayList<PerUserPerProblemSummary>();
+			NodesAndIDLinks nodes = mapper.readValue(new File("war/conffiles/domainfiles/conceptgraph/domainStructure.json"), NodesAndIDLinks.class);
+			ConceptGraph graph = new ConceptGraph(nodes);
+			GroupConceptGraphs group = new GroupConceptGraphs(graph,sums);
+			try {
+				//writes JSON to file
+				mapper.writeValue(new File("war/TreeDisplay/inputBigData"+".json"), group.getAllNamedGraphs());
+			} catch (JsonGenerationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	
+	@Test
 	public void jsonOutputTest(){
 		
 		//Writes the JSON File for GCG
-		GroupConceptGraphs group = new GroupConceptGraphs("war/TreeDisplay/input",simpleGraph,test_summaries);
+		GroupConceptGraphs group = new GroupConceptGraphs("war/TreeDisplay/inputFromClass",simpleGraph,test_summaries);
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
 		
-		Assert.assertEquals(2, group.getUserToGraphMap().keySet().size());
-		Assert.assertEquals(8, group.getAllGraphs().get(1).buildNodesAndLinks().getNodes().size());
-		Assert.assertEquals(7, group.getAllGraphs().get(1).buildNodesAndLinks().getLinks().size());
+		ConceptGraph user2Tree = group.getAllGraphs().get(1).graphToTree();
+		NodesAndIDLinks user2Nodes = user2Tree.buildNodesAndLinks();
 		
+		Assert.assertEquals(2, group.getUserToGraphMap().keySet().size());
+		Assert.assertEquals(8, user2Nodes.getNodes().size());
+		Assert.assertEquals(7, user2Nodes.getLinks().size());
+		/*
 		try {
 			//Reads in the file that was written earlier
 			GroupConceptGraphs gcg = mapper.readValue(new File("war/TreeDisplay/input.json"), GroupConceptGraphs.class);
@@ -215,7 +287,7 @@ public class GroupConceptGraphsTest {
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 }
 
