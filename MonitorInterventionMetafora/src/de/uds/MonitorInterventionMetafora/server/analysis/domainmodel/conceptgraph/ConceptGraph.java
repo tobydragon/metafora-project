@@ -65,6 +65,20 @@ public class ConceptGraph {
 		addChildren(nodes, links);
 	}
 	
+	public ConceptGraph(NodesAndIDLinks structure, NodesAndIDLinks lists) {
+		List<ConceptNode> nodes = lists.getNodes();
+		List<IDLink> links = lists.getLinks();
+		for(ConceptNode node: structure.getNodes()){
+			nodes.add(node);
+		}
+		for(IDLink link: structure.getLinks()){
+			links.add(link);
+		}
+		this.roots = findRoot(nodes, links);
+		
+		addChildren(nodes, links);
+	}
+	
 	public ConceptGraph(ConceptGraph graph){
 		NodesAndIDLinks lists = graph.buildNodesAndLinks();
 		
