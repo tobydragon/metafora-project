@@ -824,6 +824,17 @@ public class ConceptGraphTest {
 		Assert.assertEquals(sumOfChildren/childCounter, selectionListMap.get("Control").getActualComp(),delta);
 		
 	}
+	
+	@Test
+	public void multifileConstructorTest(){
+		NodesAndIDLinks struct = JsonImportExport.fromJson("war/conffiles/domainfiles/conceptgraph/structureConcept.json");
+		NodesAndIDLinks lists = JsonImportExport.fromJson("war/conffiles/domainfiles/conceptgraph/learningOutcomes.json");
+		ConceptGraph graph = new ConceptGraph(struct,lists);
+		NodesAndIDLinks links = graph.buildNodesAndLinks();
+		
+		Assert.assertEquals(9, links.getLinks().size());
+		Assert.assertEquals(10, links.getNodes().size());
+	}
 }
 
 	

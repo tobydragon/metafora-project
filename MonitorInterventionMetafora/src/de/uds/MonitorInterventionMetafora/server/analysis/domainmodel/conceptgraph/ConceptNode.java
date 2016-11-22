@@ -293,13 +293,20 @@ public class ConceptNode {
 				actualComp = 0;
 			}
 			else{
-				//Full Credit if right on first try. Half if right on second. 1/5th if right on third. no credit after that.
+				//Score of 1 is if you get it right first try
+				//score of .5 if you get it wrong once but right on the second try
+				//-.5 if you get it right on the third try
+				//-1 any time after that 
+				//rational behing this is that getting something write second try is not as bad as the third since if it takes 3 tries you could be guessing
+				//and obviously are not showing a mastery of the topic
+				//if no correct answer is ever given, automatic -1 
+				//never touching the question results it in a 0 (see 'if' above)
 				if((sumInfo.getTotalFalseEntries() == 0) && (sumInfo.getNumCorrect() == 1)){
 					actualComp = 1;	
 				} else if((sumInfo.getTotalFalseEntries()==1) && (sumInfo.getNumCorrect() == 1)){
 					actualComp = .5;
 				} else if ((sumInfo.getTotalFalseEntries()==2) && (sumInfo.getNumCorrect() == 1)){
-					actualComp = .2;
+					actualComp = -.5;
 				}else {
 					actualComp = -1;
 				}
@@ -311,13 +318,36 @@ public class ConceptNode {
 
 			//recursively call this on each child of the node
 			double tempComp;
+			
+			//These two variables are used to track the number of children for a given node,
+			//and how many children have scores of 0
+			int numChildren = 0;
+			int numChildrenZero = 0;
+			
 			tempComp = 0;
 			for(ConceptNode child : getChildren()){
 				double childComp = child.calcActualComp();
+				if(childComp == 0){
+					numChildrenZero++;
+				}
 				child.setNumParents(child.getNumParents() + 1);
 				tempComp = tempComp + (childComp / getChildren().size());
+				numChildren++;
 			}
 			actualComp = tempComp;
+			//this is so we can't end up with a score being 0 unless all it's children are 0
+			//which is useful because a 0 displays that they haven't answered something
+			//so if the average score of something ends up being 0, it will change to -.1 showing that
+			//improvements in this topic are possible and not that it is unanswered.
+			
+			/*System.out.println("AC: "+actualComp+", Num c: "+numChildren+", Num c z: "+numChildrenZero);
+			if(actualComp == 0 && numChildren != numChildrenZero){
+				actualComp = -.1;
+				System.out.println("hit");
+			}*/
+			
+			//can't do this without making averages look weird because if you get a 0 average on something it shows up as -1 but it's an average so you don't want to change that
+			
 			return actualComp;
 		}
 		
