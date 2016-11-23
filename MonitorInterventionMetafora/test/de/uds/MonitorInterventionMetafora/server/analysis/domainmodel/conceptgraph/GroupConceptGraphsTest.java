@@ -241,7 +241,7 @@ public class GroupConceptGraphsTest {
 			GroupConceptGraphs group = new GroupConceptGraphs(graph,sums);
 			try {
 				//writes JSON to file
-				mapper.writeValue(new File("war/TreeDisplay/inputBigData"+".json"), group.getAllNamedGraphs());
+				mapper.writeValue(new File("war/TreeDisplay/testInput/inputBigData"+".json"), group.getAllNamedGraphs());
 			} catch (JsonGenerationException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

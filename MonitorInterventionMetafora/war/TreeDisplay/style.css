@@ -40,6 +40,13 @@ body {
     float:left;
     padding:10px; 
 }
+
+#title {
+    text-align: center;
+    width:900px;
+    float:left;
+    padding:10px; 
+}
 #footer {
     background-color:black;
     color:white;

@@ -1,5 +1,5 @@
 //Define some global variables
-var fileName = "domainInput.json"; //fileName of JSON file to read in
+var fileName = "experimentInput/fullExperimentFile.json"; //fileName of JSON file to read in
 var dataObject; //the object that one concept graph gets saved to when a student button is clicked
 var objectArray; //the object that the json file gets parsed to, an array of "student objects"
 var names = []; //list of names of the students
@@ -43,6 +43,11 @@ function writeMenu(){
 
 //takes the name of the student whose org chart should be drawn
 function makeChart(currName,typeGraph){
+    if(typeGraph == "reg"){
+        document.getElementById("title").innerHTML = currName;
+    }else{
+        document.getElementById("title").innerHTML = currName + " Distance from Average Graph";
+    }
     
     //initializes visualizationList
     visualizationList = [];
@@ -79,6 +84,7 @@ function makeChart(currName,typeGraph){
     for(var i = 0; i < dataObject.links.length; i++){
         var row = [];                              //make empty row
         var c = dataObject.links[i].child;         //def Topic
+        
         var p = dataObject.links[i].parent;        //def parents
         
         //search through the list of nodes to find the node that correspondes with the child in the link
@@ -89,7 +95,18 @@ function makeChart(currName,typeGraph){
                 if(typeGraph == "reg"){
                     var s = dataObject.nodes[j].actualComp;
                     //add Topic (this is formatted to show the node ID without the iterative tag at the end and the score)
-        row.push({v:c, f:stripTitle(c)+'<div style="color:blue; font-style:italic">Score: '+s+'</div>'});
+                    var qIdx = c.indexOf(": description");
+                    var endIdx = c.indexOf("-");
+                    var q;
+                    if(qIdx >= 0){
+                        var title = c.slice(0,qIdx);
+                        var end = c.slice(endIdx,c.length);
+                        q = title.concat(" Q");
+                        q = q.concat(end);
+                    }else{
+                        q = c;   
+                    }
+        row.push({v:c, f:stripTitle(q)+'<div style="color:blue; font-style:italic">Score: '+s+'</div>'});
                 }else{
                     var s = dataObject.nodes[j].distanceFromAvg;
                     //add Topic (this is formatted to show the node ID without the iterative tag at the end and the score)

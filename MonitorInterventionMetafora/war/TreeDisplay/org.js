@@ -173,8 +173,9 @@ function drawOrgChart(dataInput){
           
         // Add all of the rows that were primed in readJson file.
         data.addRows(dataInput);
-        // Create the chart in the html div called "section" and assign it to variable chart
+        // Create the chart in the html div called "chart" and assign it to variable chart
         var chart = new google.visualization.OrgChart(document.getElementById('section'));
+          
           
           //for every node in the chart, set the color property to the corresponding color.
           for(var i = 0; i < dataInput.length; i++){
