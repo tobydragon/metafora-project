@@ -63,7 +63,7 @@ function makeColorsList(dataList){
         }else{
             min = -1;
             max = 0
-            maxColor = new NodeColor(0,0,255);
+            maxColor = new NodeColor(0,0,180);
             minColor = new NodeColor(255,0,0);
             var scorePer = calcScorePerc(max, min, dataList[i][2]);
 
@@ -183,7 +183,7 @@ function drawOrgChart(dataInput){
             
           }
         // Draw the chart, setting the allowHtml option to true for the selection.
-         chart.draw(data, {allowHtml:true,ready:true,selectionColor:'#999999',allowCollapse:true});
+         chart.draw(data, {allowHtml:true,ready:true,selectionColor:'#999999',allowCollapse:true,size:'small'});
           //enable the chart to listen for selection of nodes
           google.visualization.events.addListener(chart, 'select', selectHandler);
           //iterate through each row of the data and collapse it except the first two rows.

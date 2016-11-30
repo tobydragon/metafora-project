@@ -162,13 +162,13 @@
 	}],
 	"links": [{
 		"parent": "Intro CS",
-		"child": "Structure"
-	}, {
-		"parent": "Intro CS",
 		"child": "Data"
 	}, {
 		"parent": "Intro CS",
 		"child": "Control"
+	}, {
+		"parent": "Intro CS",
+		"child": "Structure"
 	}, {
 		"parent": "Structure",
 		"child": "Scope"

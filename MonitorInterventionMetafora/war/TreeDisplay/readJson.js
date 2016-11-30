@@ -1,7 +1,7 @@
 //Define some global variables
 var fileName = "experimentInput/fullExperimentFile.json"; //fileName of JSON file to read in
 var dataObject; //the object that one concept graph gets saved to when a student button is clicked
-var objectArray; //the object that the json file gets parsed to, an array of "student objects"
+var objectsArray; //the object that the json file gets parsed to, an array of "student objects"
 var names = []; //list of names of the students
 var visualizationList = []; //the formatted list of data
 
@@ -30,33 +30,38 @@ function writeMenu(){
     }
     //defines a line of HTML to inject into the DOM
     //creates a list of button objects. The button click calls makeChart and passes the argument of the student's name
-    var newCode = "<ul style='list-style: none;'>";
+    //and a term "reg" or "avg" to tell whether the graph should display actualcomp or distfromavg
+    var newCode = "<button class='accordion'>Section 1</button><div class='panel'><ul style='list-style: none;'>";
     newCode += "<li><button type='button' onclick='makeChart(&quot;" + names[0] + "&quot;,&quot;reg&quot;)'>" + names[0] + "</button>";
     for(var i = 1; i < names.length; i++){
         newCode += "<li><button type='button' onclick='makeChart(&quot;" + names[i] + "&quot;,&quot;reg&quot;)'>" + names[i] + "</button>";
         newCode +="<button type='button' onclick='makeChart(&quot;" + names[i] + "&quot;,&quot;avg&quot;)'>" + "DistAvg" + "</button></li>";
     }
-    newCode += "</ul>";
+    newCode += "</ul></div>";
     //insert the HTML code into the div with the ID "menu"
     document.getElementById("menu").innerHTML = newCode;
 }
 
 //takes the name of the student whose org chart should be drawn
 function makeChart(currName,typeGraph){
+    var currTitle = "";
     if(typeGraph == "reg"){
-        document.getElementById("title").innerHTML = currName;
+        currTitle += "<h3>"+currName+"</h3>"; 
+        currTitle+="<figure><img src='scaleImg.png'><figcaption>Poor  -  Moderate  -  Good</figcaption></figure>"
     }else{
-        document.getElementById("title").innerHTML = currName + " Distance from Average Graph";
-    }
+        currTitle += "<h3>"+currName + " Distance from Average Graph</h3>";
+        currTitle+="<figure><img src='scaleImg.png'><figcaption>Below  -  Average  -  Above</figcaption></figure>"
+    }  
+    document.getElementById("title").innerHTML = currTitle;
     
     //initializes visualizationList
     visualizationList = [];
-    console.log(currName);
     //clears the "seciton" HTML
     document.getElementById("section").innerHTML = "";
     //iterates through the master array of objects and assigns the matching student object to dataObject
     for(var i = 0; i < objectsArray.length; i++){
         if(String(objectsArray[i].name) == currName){
+            console.log("FOUND: "+objectsArray[i].name);
             dataObject = objectsArray[i].cg;
         }
     }
@@ -91,26 +96,22 @@ function makeChart(currName,typeGraph){
         for(var j = 0; j < dataObject.nodes.length; j++){
             //if the node ID matches the name in the link
             if(dataObject.nodes[j].id == dataObject.links[i].child){
+                var q = stripQ(c);
+                
                 //def Score
                 if(typeGraph == "reg"){
                     var s = dataObject.nodes[j].actualComp;
                     //add Topic (this is formatted to show the node ID without the iterative tag at the end and the score)
-                    var qIdx = c.indexOf(": description");
-                    var endIdx = c.indexOf("-");
-                    var q;
-                    if(qIdx >= 0){
-                        var title = c.slice(0,qIdx);
-                        var end = c.slice(endIdx,c.length);
-                        q = title.concat(" Q");
-                        q = q.concat(end);
-                    }else{
-                        q = c;   
-                    }
+                    
         row.push({v:c, f:stripTitle(q)+'<div style="color:blue; font-style:italic">Score: '+s+'</div>'});
                 }else{
                     var s = dataObject.nodes[j].distanceFromAvg;
                     //add Topic (this is formatted to show the node ID without the iterative tag at the end and the score)
-        row.push({v:c, f:stripTitle(c)+'<div style="color:blue; font-style:italic">Distance: '+s+'</div>'});
+                    if(q.indexOf("_Q") > 0){
+        row.push({v:c, f:stripTitle(q)+'<div style="color:blue; font-style:italic"></div>'});
+                    }else{
+                        row.push({v:c, f:stripTitle(q)+'<div style="color:blue; font-style:italic">Distance: '+s+'</div>'});
+                    }
                 }
             }
         }
@@ -173,6 +174,21 @@ function stripTitle(title) {
     }
   }
     return "invalid node title";
+}
+
+function stripQ(c){
+    var qIdx = c.indexOf(": description:");
+    var endIdx = c.indexOf("-");
+    var q;
+    if(qIdx >= 0){
+        var title = c.slice(0,qIdx);
+        var end = c.slice(endIdx,c.length);
+        q = title.concat("_Q");
+        q = q.concat(end);
+    }else{
+        q = c;   
+    }   
+    return q;
 }
 
 //calls functions

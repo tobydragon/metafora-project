@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style2.css">
     <!-- Load the file of funcitons that have to do with creating the org chart -->
     <script type="text/javascript" src="org.js"></script>
 </head>
@@ -29,6 +29,17 @@
     
     <!-- Load the JS file that reads in the JSON file and parses it to the data that is usable by the org functions -->
     <script src="readJson.js"></script> 
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].onclick = function(){
+                this.classList.toggle("active");
+                this.nextElementSibling.classList.toggle("show");
+            }
+        }
+    </script>
     
     
 </html>
