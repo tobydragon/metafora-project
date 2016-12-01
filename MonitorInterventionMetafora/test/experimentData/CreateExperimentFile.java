@@ -55,7 +55,7 @@ public class CreateExperimentFile {
 		GroupConceptGraphs group = new GroupConceptGraphs(graph,sums);
 		
 		try {
-			mapper.writeValue(new File("war/TreeDisplay/experimentInput/fullExperimentFile"+".json"), group.getAllNamedGraphs());
+			mapper.writeValue(new File("war/ExperimentDisplay/experimentInput/fullExperimentFile"+".json"), group.getAllNamedGraphs());
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
