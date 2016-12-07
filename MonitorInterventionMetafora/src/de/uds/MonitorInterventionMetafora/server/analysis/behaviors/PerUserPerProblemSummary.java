@@ -200,10 +200,10 @@ public abstract class PerUserPerProblemSummary implements Concept{
 		
 		//deafault values for SummaryInfo as this is a non assessable summary
 		int numAssessable = 0;
-		int numTimesFalse = 0;
+		int numTimesWrongBeforeRight = 0;
 		int numCorrect = 1;
 		int numSummaries = 1;
-		SummaryInfo info = new SummaryInfo(users, time, objectIds, numAssessable, numTimesFalse, numCorrect, numSummaries);
+		SummaryInfo info = new SummaryInfo(users, time, objectIds, numAssessable, numTimesWrongBeforeRight, numCorrect, numSummaries);
 		
 		return info;
 	}

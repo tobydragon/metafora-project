@@ -52,14 +52,11 @@ public class CSVOutputter {
 				studentsToQuestions.put(summary.getUser(), questionsToAnswer);
 			}
 			
-			//If there is more than one false entry this deems the answer to the question as incorrect
-			//sets "correct" variable to 0 if incorrect and 1 if correct
-			int correct;
-			if(summary.getSummaryInfo().getTotalFalseEntries()>0 && summary.getSummaryInfo().getNumCorrect()!=1){
+			//If there are any wrong attempts before correct answer, the question is considered wrong
+			// we might want to look closer into wrong after right answers, but not written in SummaryInfo yet.
+			int correct = 1;
+			if(summary.getSummaryInfo().getTotalWrongAttemptsBeforeRight()>0){
 				correct = 0;
-			}
-			else{ 
-				correct = 1;
 			}
 			//gets the right map for the current user of this summary and adds to it
 			questionsToAnswer.put(summary.getObjectId(),correct);	
@@ -110,11 +107,18 @@ public class CSVOutputter {
 		csvString+="\n";
 		//Goes through all the students now and and then goes through the questions and adds whether
 		//they got the question right or wrong and leaves a blank if they didn't answer it
+		//TEMP: an int or sanity check of wrong answers
+		int wrongAnswerCount=0;
 		for(String student: studentsToQuestions.keySet()){
 			csvString+=student+",";
 			for(String question: questionSet){
 				for(String stuQuestion: getValueinStudentsMap(student).keySet()){
 					if(question == stuQuestion){
+						//TEMP continued
+						int answerBool = studentsToQuestions.get(student).get(question);
+						if (answerBool == 0){
+							wrongAnswerCount++;
+						}
 						csvString+=studentsToQuestions.get(student).get(question);
 					}
 				}
@@ -122,6 +126,8 @@ public class CSVOutputter {
 			}
 			csvString+="\n";
 		}
+		//TEMP final
+		System.out.println("Total Wrong answers:" + wrongAnswerCount);
 		return csvString;
 	}
 	/**

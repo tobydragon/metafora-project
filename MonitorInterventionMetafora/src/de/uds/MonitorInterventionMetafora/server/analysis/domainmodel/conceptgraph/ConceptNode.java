@@ -289,16 +289,16 @@ public class ConceptNode {
 		if(getChildren().size() == 0){
 			//then take in the summaryInfo information and calculate the actualComp
 			SummaryInfo sumInfo = getConcept().getSummaryInfo();
-			if((sumInfo.getNumCorrect() == 0) && (sumInfo.getTotalFalseEntries()==0)){
+			if((sumInfo.getNumCorrect() == 0) && (sumInfo.getTotalWrongAttemptsBeforeRight()==0)){
 				actualComp = 0;
 			}
 			else{
 				//Full Credit if right on first try. Half if right on second. 1/5th if right on third. no credit after that.
-				if((sumInfo.getTotalFalseEntries() == 0) && (sumInfo.getNumCorrect() == 1)){
+				if((sumInfo.getTotalWrongAttemptsBeforeRight() == 0) && (sumInfo.getNumCorrect() == 1)){
 					actualComp = 1;	
-				} else if((sumInfo.getTotalFalseEntries()==1) && (sumInfo.getNumCorrect() == 1)){
+				} else if((sumInfo.getTotalWrongAttemptsBeforeRight()==1) && (sumInfo.getNumCorrect() == 1)){
 					actualComp = .5;
-				} else if ((sumInfo.getTotalFalseEntries()==2) && (sumInfo.getNumCorrect() == 1)){
+				} else if ((sumInfo.getTotalWrongAttemptsBeforeRight()==2) && (sumInfo.getNumCorrect() == 1)){
 					actualComp = .2;
 				}else {
 					actualComp = -1;

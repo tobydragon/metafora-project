@@ -11,6 +11,7 @@ public class Question implements Concept{
 	private QuestionType type;
 	private String conceptTitle;
 	List<String> tags;
+	String questionText;             
 	
 	
 	public Question() {
