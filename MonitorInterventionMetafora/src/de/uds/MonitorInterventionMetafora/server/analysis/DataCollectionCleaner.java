@@ -18,6 +18,7 @@ import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.BehaviorFilt
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.ObjectSummaryIdentifier;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.output.CSVOutputter;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.runestonetext.Book;
 import de.uds.MonitorInterventionMetafora.server.commonformatparser.CfInteractionDataParser;
 import de.uds.MonitorInterventionMetafora.server.utils.GeneralUtil;
 import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
@@ -102,7 +103,8 @@ public class DataCollectionCleaner {
 			}
 		}
 		try {
-			new CSVOutputter("war/realData/"+filename,assessableSummaries);
+			Book b =  new Book("Interacitve Python","war/conffiles/domainfiles/thinkcspy/"); 
+			new CSVOutputter("war/realData/"+filename,assessableSummaries, b);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -175,7 +177,7 @@ public class DataCollectionCleaner {
 		//									<string> with string
 		//									'/act> with ' </act>
 		//					remove 'Indentation error' feedback
-		printNamesForManualPermissionsFileCreation("03-171-2014-FA-03-John");
+		//printNamesForManualPermissionsFileCreation("03-171-2014-FA-03-John");
 		
 		int startingId=0;
 		try {

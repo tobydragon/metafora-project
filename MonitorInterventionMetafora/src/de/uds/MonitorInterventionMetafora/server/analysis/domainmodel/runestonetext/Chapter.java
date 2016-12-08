@@ -5,6 +5,7 @@ import java.util.List;
 import java.io.FileNotFoundException;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
@@ -66,6 +67,17 @@ public class Chapter implements Concept{
 	
 	public SummaryInfo getSummaryInfo(){
 		return new SummaryInfo();
+	}
+
+	public Question findQuestion(String questionId) {
+		Question theQuestion = null;
+		for (SubChapter chapter : subChapters){
+			Question chapQuestion = chapter.findQuestion(questionId);
+			if (chapQuestion != null){
+				theQuestion = chapQuestion;
+			}
+		}
+		return theQuestion;
 	}
 	
 }

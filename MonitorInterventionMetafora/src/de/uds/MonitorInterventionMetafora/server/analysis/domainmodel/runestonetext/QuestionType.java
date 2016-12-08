@@ -8,8 +8,8 @@ public enum QuestionType {
 	DRAG_AND_DROP("parsonsprob", "parsons"),
 	MULT_CHOICE ("mchoice", "mchoice");
 	
-	String sourceString;
-	String logString;
+	String sourceString; //string written in the book source
+	String logString;	//string written in the log xml of actions
 	
 	private QuestionType(String sourceString, String logString){
 		this.sourceString = sourceString;

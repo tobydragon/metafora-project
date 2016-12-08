@@ -114,13 +114,24 @@ public class Book implements Concept, LearningObjectSource {
 	
 	@Override
 	public String getDescription(String learningObjectId) {
-		String description;
 		Question learningObject = findQuestion(learningObjectId);
-		return null;
+		return learningObject == null ? "" : learningObject.getQuestionText();
+	}
+	
+	public String getLearningObjectType(String learningObjectId) {
+		Question learningObject = findQuestion(learningObjectId);
+		return learningObject == null ? "" : learningObject.getType().name();
 	}
 	
 	private Question findQuestion(String questionId){
-		return null;
+		Question theQuestion = null;
+		for (Chapter chapter : chaps){
+			Question chapQuestion = chapter.findQuestion(questionId);
+			if (chapQuestion != null){
+				theQuestion = chapQuestion;
+			}
+		}
+		return theQuestion;
 	}
 	
 
