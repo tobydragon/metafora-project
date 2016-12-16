@@ -4,6 +4,7 @@ package de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgr
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,6 +20,7 @@ public class ConceptNode {
 	private double predictedComp;
 	private int numParents;
 	private double distanceFromAvg;
+	private double dataImportance;
 	
 	public ConceptNode() {
 		children = new ArrayList<ConceptNode>();
@@ -26,13 +28,15 @@ public class ConceptNode {
 		predictedComp = 0;
 		actualComp = 0;
 		distanceFromAvg = 0;
+		
 	}
 	
 	
 	public ConceptNode(Concept concept, String newID){
 		this();
 		this.concept = concept;
-		this.id = newID;	
+		this.id = newID;
+		dataImportance = concept.getDataImportance();
 	}
 	
 	public ConceptNode(Concept concept){
@@ -69,6 +73,10 @@ public class ConceptNode {
 	
 	public String getID(){
 		return id;
+	}
+	
+	public double getDataImportance(){
+		return dataImportance;
 	}
 	
 	public String toString(){
@@ -283,9 +291,26 @@ public class ConceptNode {
 	public void setNumParents(int numParents) {
 		this.numParents = numParents;
 	}
+	
+	/* a + (x - A) (b - a) / (B - A)
+	 * B is original data set max, A is original data set min
+	 * b is normalize range max, a is normalized range min
+	 * x is the number being normalized
+	 * 
+	 */
+	public double normalizeDataImportance(){
+		double myDI = 0;
+		double totalDI = 0;
+		for(ConceptNode child : getChildren()){
+			double childDI = child.concept.getDataImportance();
+		
+			totalDI = totalDI + (childDI);
+		}
+		myDI = totalDI / getChildren().size();
+		return myDI;
+	}
 
 	public double calcActualComp() {
-	
 		if(getChildren().size() == 0){
 			//then take in the summaryInfo information and calculate the actualComp
 			SummaryInfo sumInfo = getConcept().getSummaryInfo();
@@ -321,20 +346,24 @@ public class ConceptNode {
 			
 			//These two variables are used to track the number of children for a given node,
 			//and how many children have scores of 0
-			int numChildren = 0;
-			int numChildrenZero = 0;
+			//int numChildren = 0;
+			//int numChildrenZero = 0;
 			
 			tempComp = 0;
+			int idCounter = 0;
+			double childDI = 0;
 			for(ConceptNode child : getChildren()){
+				String id = Integer.toString(idCounter);
 				double childComp = child.calcActualComp();
-				if(childComp == 0){
-					numChildrenZero++;
-				}
+				
+				dataImportance+=child.getDataImportance();
+				
 				child.setNumParents(child.getNumParents() + 1);
-				tempComp = tempComp + (childComp / getChildren().size());
-				numChildren++;
+				tempComp = tempComp + (childComp / getChildren().size());// * normalizedDI;
+				//numChildren++;
 			}
-			actualComp = tempComp;
+			//double dataImportance = normalizeDataImportance();
+			actualComp = tempComp; //* dataImportance;
 			//this is so we can't end up with a score being 0 unless all it's children are 0
 			//which is useful because a 0 displays that they haven't answered something
 			//so if the average score of something ends up being 0, it will change to -.1 showing that

@@ -794,7 +794,10 @@ public class ConceptGraphTest {
 		Assert.assertEquals(0, selectionListMap.get("Boolean").getActualComp(),delta);
 		Assert.assertEquals(1, selectionListMap.get("test_question6_4_2").getActualComp(),delta);
 		Assert.assertEquals(1, selectionListMap.get("test_question6_4_1").getActualComp(),delta);
+		Assert.assertEquals(1, selectionListMap.get("test_question6_4_1").getDataImportance(),delta);
 		
+		Assert.assertEquals(2, selectionListMap.get("Boolean").getDataImportance(),delta);
+		Assert.assertEquals(1, selectionListMap.get("test_question6_4_2").getDataImportance(),delta);
 		
 		//Calculates the actualComp for If statements children
 		float sumOfChildren = 0;

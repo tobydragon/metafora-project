@@ -9,5 +9,6 @@ public interface Concept {
 	
 	public String getConceptTitle();
 	public SummaryInfo getSummaryInfo();
+	public double getDataImportance();
 
 }

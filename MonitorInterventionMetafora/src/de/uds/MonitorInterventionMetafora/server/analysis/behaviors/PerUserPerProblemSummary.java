@@ -13,6 +13,7 @@ import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 import de.uds.MonitorInterventionMetafora.shared.datamodels.attributes.BehaviorType;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.GraphConstants;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
 public abstract class PerUserPerProblemSummary implements Concept{
@@ -74,42 +75,46 @@ public abstract class PerUserPerProblemSummary implements Concept{
 	
 	
 	
-	
-	 
-		//determines the time taken for a single question
-		//takes in the list of actions which is filtered by user and objectId 
-		public static long calculateTime(List<CfAction> actionsList){
-			
-			long tempTime = 0;
-			//time = timeInterval;
-			//check this size of the list, make sure it is not empty
-			if(actionsList.size() <= 0){
-				System.out.println ("List is empty");
-				return 0;
-			}
-			//if the list only has one action that use the time constant for the total time
-			else if(actionsList.size() == 1){
-				return STANDARD_TIME;
-			}
-			//if there are at least two actions in the list compare the time of the first action to the time of the next action
-			//else if(actionsList.size() > 1){
-			else{	
-				// go through list of actions
-				for(int i = 0; i < actionsList.size() - 1; i++){
-					//get the time for the current action and the time for the following action
-					long tempTime1 = actionsList.get(i).getTime();
-					long tempTime2 = actionsList.get(i+1).getTime();
-					
-					//Begins totaling the time for all actions
-					//System.out.println("Time 1: "+tempTime1+"  Time 2: "+tempTime2);
-					tempTime += calcTime(tempTime1, tempTime2);
-					//System.out.println("tempTime = "+tempTime);
-					
-				}
-				
-				return tempTime;
-			}		
+
+ 
+	//determines the time taken for a single question
+	//takes in the list of actions which is filtered by user and objectId 
+	public static long calculateTime(List<CfAction> actionsList){
+		
+		long tempTime = 0;
+		//time = timeInterval;
+		//check this size of the list, make sure it is not empty
+		if(actionsList.size() <= 0){
+			System.out.println ("List is empty");
+			return 0;
 		}
+		//if the list only has one action that use the time constant for the total time
+		else if(actionsList.size() == 1){
+			return STANDARD_TIME;
+		}
+		//if there are at least two actions in the list compare the time of the first action to the time of the next action
+		//else if(actionsList.size() > 1){
+		else{	
+			// go through list of actions
+			for(int i = 0; i < actionsList.size() - 1; i++){
+				//get the time for the current action and the time for the following action
+				long tempTime1 = actionsList.get(i).getTime();
+				long tempTime2 = actionsList.get(i+1).getTime();
+				
+				//Begins totaling the time for all actions
+				//System.out.println("Time 1: "+tempTime1+"  Time 2: "+tempTime2);
+				tempTime += calcTime(tempTime1, tempTime2);
+				//System.out.println("tempTime = "+tempTime);
+				
+			}
+			
+			return tempTime;
+		}		
+	}
+	
+	public double getDataImportance(){
+		return GraphConstants.NON_ASSESSABLE_PROBLEM_SUMMARIES_WEIGHT;
+	}
 
 	public static long calcTime(long time1, long time2){
 		

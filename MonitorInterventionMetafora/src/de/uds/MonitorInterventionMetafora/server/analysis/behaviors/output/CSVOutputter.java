@@ -54,12 +54,9 @@ public class CSVOutputter {
 			
 			//If there is more than one false entry this deems the answer to the question as incorrect
 			//sets "correct" variable to 0 if incorrect and 1 if correct
-			int correct;
-			if(summary.getSummaryInfo().getTotalFalseEntries()>0 && summary.getSummaryInfo().getNumCorrect()!=1){
+			int correct = 1;
+			if(summary.getSummaryInfo().getTotalFalseEntries()>0){
 				correct = 0;
-			}
-			else{ 
-				correct = 1;
 			}
 			//gets the right map for the current user of this summary and adds to it
 			questionsToAnswer.put(summary.getObjectId(),correct);	

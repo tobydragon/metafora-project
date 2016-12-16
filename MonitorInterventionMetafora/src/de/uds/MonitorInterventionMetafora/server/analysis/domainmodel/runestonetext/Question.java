@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.GraphConstants;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.IDLink;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
@@ -60,6 +61,10 @@ public class Question implements Concept{
 			listOfLinks.add(new IDLink(tag,conceptTitle));
 		}
 		return listOfLinks;
+	}
+	
+	public double getDataImportance(){
+		return GraphConstants.QUESTION_WEIGHT;
 	}
 	
 	public void setTags(String tagsIn){

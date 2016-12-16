@@ -9,6 +9,7 @@ import java.util.Scanner;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.GraphConstants;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.IDLink;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
@@ -105,6 +106,10 @@ public class Book implements Concept {
 	@JsonIgnore
 	public List<Chapter> getChapters(){
 		return chaps;
+	}
+	
+	public double getDataImportance(){
+		return GraphConstants.BOOK_WEIGHT;
 	}
 	
 	public SummaryInfo getSummaryInfo(){

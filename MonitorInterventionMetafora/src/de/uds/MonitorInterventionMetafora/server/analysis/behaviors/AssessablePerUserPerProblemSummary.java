@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.GraphConstants;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfProperty;
@@ -168,6 +169,10 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 		SummaryInfo info = new SummaryInfo(users, time, objectIds, numAssessable, numberTimesFalse, numCorrect, 1);
 		
 		return info;
+	}
+	
+	public double getDataImportance(){
+		return GraphConstants.ASSESSABLE_PROBLEM_SUMMARIES_WEIGHT;
 	}
 
 }

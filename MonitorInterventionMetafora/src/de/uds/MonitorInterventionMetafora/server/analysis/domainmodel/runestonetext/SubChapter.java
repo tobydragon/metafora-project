@@ -7,6 +7,7 @@ import java.util.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.GraphConstants;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
 
@@ -66,6 +67,10 @@ public class SubChapter implements Concept{
 				}
 			}
 		findQs.close();
+	}
+	
+	public double getDataImportance(){
+		return GraphConstants.SUBCHAPTER_WEIGHT;
 	}
 	
 	public String getConceptTitle(){

@@ -5,10 +5,12 @@ import java.util.List;
 import java.io.FileNotFoundException;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.apache.log4j.Logger;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptGraphTest;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.GraphConstants;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
 public class Chapter implements Concept{
@@ -77,6 +79,10 @@ public class Chapter implements Concept{
 	public List<SubChapter> getSubChapters() {
 		// TODO Auto-generated method stub
 		return subChapters;
+	}
+	
+	public double getDataImportance(){
+		return GraphConstants.CHAPTER_WEIGHT;
 	}
 	
 	public SummaryInfo getSummaryInfo(){

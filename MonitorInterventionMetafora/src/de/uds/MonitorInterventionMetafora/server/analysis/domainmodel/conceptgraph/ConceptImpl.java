@@ -21,6 +21,10 @@ public class ConceptImpl implements Concept{
 	public void setConceptTitle(String conceptTitle) {
 		this.conceptTitle = conceptTitle;
 	}
+	
+	public double getDataImportance(){
+		return GraphConstants.CONCEPT_IMPL_WEIGHT;
+	}
 
 	@Override
 	public SummaryInfo getSummaryInfo() {
