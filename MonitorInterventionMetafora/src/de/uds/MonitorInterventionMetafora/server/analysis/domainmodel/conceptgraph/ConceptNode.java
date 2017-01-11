@@ -219,7 +219,7 @@ public class ConceptNode {
 	
 	//getting SummaryInfo objects from the Nodes and then combining into one SummaryInfo object
 	
-	public SummaryInfo getSummaryInfo() {
+	/*public SummaryInfo getSummaryInfo() {
 		return calcSummaryInfo();
 	}
 
@@ -233,7 +233,7 @@ public class ConceptNode {
 			summaryInfo.update(child, childSumInfo);			
 		}
 		return summaryInfo;
-	}
+	}*/
 	
 	
 	//searches for a certain objectId in the graph
@@ -312,31 +312,7 @@ public class ConceptNode {
 
 	public double calcActualComp() {
 		if(getChildren().size() == 0){
-			//then take in the summaryInfo information and calculate the actualComp
-			SummaryInfo sumInfo = getConcept().getSummaryInfo();
-			if((sumInfo.getNumCorrect() == 0) && (sumInfo.getTotalFalseEntries()==0)){
-				actualComp = 0;
-			}
-			else{
-				//Score of 1 is if you get it right first try
-				//score of .5 if you get it wrong once but right on the second try
-				//-.5 if you get it right on the third try
-				//-1 any time after that 
-				//rational behing this is that getting something write second try is not as bad as the third since if it takes 3 tries you could be guessing
-				//and obviously are not showing a mastery of the topic
-				//if no correct answer is ever given, automatic -1 
-				//never touching the question results it in a 0 (see 'if' above)
-				if((sumInfo.getTotalFalseEntries() == 0) && (sumInfo.getNumCorrect() == 1)){
-					actualComp = 1;	
-				} else if((sumInfo.getTotalFalseEntries()==1) && (sumInfo.getNumCorrect() == 1)){
-					actualComp = .5;
-				} else if ((sumInfo.getTotalFalseEntries()==2) && (sumInfo.getNumCorrect() == 1)){
-					actualComp = -.5;
-				}else {
-					actualComp = -1;
-				}
-				
-			}
+			actualComp = getConcept().getScore();
 			//System.out.println("Actual Comp = "+actualComp);
 			return actualComp;
 		} else {
@@ -344,10 +320,6 @@ public class ConceptNode {
 			//recursively call this on each child of the node
 			double tempComp;
 			
-			//These two variables are used to track the number of children for a given node,
-			//and how many children have scores of 0
-			//int numChildren = 0;
-			//int numChildrenZero = 0;
 			
 			tempComp = 0;
 			int idCounter = 0;

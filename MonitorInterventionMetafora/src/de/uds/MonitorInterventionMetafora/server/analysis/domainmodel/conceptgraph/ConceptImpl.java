@@ -27,8 +27,8 @@ public class ConceptImpl implements Concept{
 	}
 
 	@Override
-	public SummaryInfo getSummaryInfo() {
-		return new SummaryInfo();
+	public double getScore() {
+		return 0;
 	}
 
 }

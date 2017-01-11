@@ -135,10 +135,10 @@ public class ConceptGraph {
 		return null;
 	}
 	
-	public void addSummariesToGraph(List<PerUserPerProblemSummary> summaries){
+	public void addSummariesToGraph(List<Concept> summaries){
 
 		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
-		for(PerUserPerProblemSummary summary : summaries){
+		for(Concept summary : summaries){
 			ConceptNode sumNode = new ConceptNode(summary);
 			graphSummaryNodeList.add(sumNode);
 		}

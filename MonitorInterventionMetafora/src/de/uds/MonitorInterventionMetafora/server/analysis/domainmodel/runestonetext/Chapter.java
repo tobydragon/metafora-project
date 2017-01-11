@@ -85,8 +85,8 @@ public class Chapter implements Concept{
 		return GraphConstants.CHAPTER_WEIGHT;
 	}
 	
-	public SummaryInfo getSummaryInfo(){
-		return new SummaryInfo();
+	public double getScore(){
+		return 0;
 	}
 	
 }

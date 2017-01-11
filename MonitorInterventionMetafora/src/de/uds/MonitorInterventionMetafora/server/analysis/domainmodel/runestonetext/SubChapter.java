@@ -82,7 +82,7 @@ public class SubChapter implements Concept{
 		return questions;
 	}
 	
-	public SummaryInfo getSummaryInfo(){
-		return new SummaryInfo();
+	public double getScore(){
+		return 0;
 	}
 }

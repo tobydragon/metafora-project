@@ -112,8 +112,8 @@ public class Book implements Concept {
 		return GraphConstants.BOOK_WEIGHT;
 	}
 	
-	public SummaryInfo getSummaryInfo(){
-		return new SummaryInfo();
+	public double getScore(){
+		return 0;
 	}
 	
 

@@ -82,8 +82,8 @@ public class Question implements Concept{
 		return type;
 	}
 	
-	public SummaryInfo getSummaryInfo(){
-		return new SummaryInfo();
+	public double getScore(){
+		return 0;
 	}
 
 }

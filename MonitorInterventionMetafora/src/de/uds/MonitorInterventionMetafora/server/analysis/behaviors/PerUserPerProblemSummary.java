@@ -213,6 +213,37 @@ public abstract class PerUserPerProblemSummary implements Concept{
 		return info;
 	}
 	
+	public double getScore(){
+		//then take in the summaryInfo information and calculate the actualComp
+		SummaryInfo sumInfo = getSummaryInfo();
+		double score;
+		
+		if((sumInfo.getNumCorrect() == 0) && (sumInfo.getTotalFalseEntries()==0)){
+			score = 0;
+		}
+		else{
+			//Score of 1 is if you get it right first try
+			//score of .5 if you get it wrong once but right on the second try
+			//-.5 if you get it right on the third try
+			//-1 any time after that 
+			//rational behing this is that getting something write second try is not as bad as the third since if it takes 3 tries you could be guessing
+			//and obviously are not showing a mastery of the topic
+			//if no correct answer is ever given, automatic -1 
+			//never touching the question results it in a 0 (see 'if' above)
+			if((sumInfo.getTotalFalseEntries() == 0) && (sumInfo.getNumCorrect() == 1)){
+				score = 1;	
+			} else if((sumInfo.getTotalFalseEntries()==1) && (sumInfo.getNumCorrect() == 1)){
+				score = .5;
+			} else if ((sumInfo.getTotalFalseEntries()==2) && (sumInfo.getNumCorrect() == 1)){
+				score = -.5;
+			}else {
+				score = -1;
+			}
+			
+		}
+		return score;
+	}
+	
 	//Move to PUPPS File and make Public Static, create tests in PUPPS Test file
 	public static SortedSet<String> getUsers(List<PerUserPerProblemSummary> puppsList){
 		SortedSet<String> users = new TreeSet<>();

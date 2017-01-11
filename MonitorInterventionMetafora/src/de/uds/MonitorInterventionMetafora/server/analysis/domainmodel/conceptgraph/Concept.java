@@ -8,7 +8,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 public interface Concept {
 	
 	public String getConceptTitle();
-	public SummaryInfo getSummaryInfo();
+	//public SummaryInfo getSummaryInfo();
 	public double getDataImportance();
+	public double getScore();
 
 }
