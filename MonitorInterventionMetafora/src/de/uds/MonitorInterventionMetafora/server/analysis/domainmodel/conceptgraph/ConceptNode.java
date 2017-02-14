@@ -289,24 +289,17 @@ public class ConceptNode {
 		if(getChildren().size() == 0){
 			//then take in the summaryInfo information and calculate the actualComp
 			SummaryInfo sumInfo = getConcept().getSummaryInfo();
-			if((sumInfo.getNumCorrect() == 0) && (sumInfo.getTotalFalseEntries()==0)){
+			if((sumInfo.getNumCorrect() == 0) && (sumInfo.getTotalWrongAttemptsBeforeRight()==0)){
 				actualComp = 0;
 			}
 			else{
-				//Score of 1 is if you get it right first try
-				//score of .5 if you get it wrong once but right on the second try
-				//-.5 if you get it right on the third try
-				//-1 any time after that 
-				//rational behing this is that getting something write second try is not as bad as the third since if it takes 3 tries you could be guessing
-				//and obviously are not showing a mastery of the topic
-				//if no correct answer is ever given, automatic -1 
-				//never touching the question results it in a 0 (see 'if' above)
-				if((sumInfo.getTotalFalseEntries() == 0) && (sumInfo.getNumCorrect() == 1)){
+				//Full Credit if right on first try. Half if right on second. 1/5th if right on third. no credit after that.
+				if((sumInfo.getTotalWrongAttemptsBeforeRight() == 0) && (sumInfo.getNumCorrect() == 1)){
 					actualComp = 1;	
-				} else if((sumInfo.getTotalFalseEntries()==1) && (sumInfo.getNumCorrect() == 1)){
+				} else if((sumInfo.getTotalWrongAttemptsBeforeRight()==1) && (sumInfo.getNumCorrect() == 1)){
 					actualComp = .5;
-				} else if ((sumInfo.getTotalFalseEntries()==2) && (sumInfo.getNumCorrect() == 1)){
-					actualComp = -.5;
+				} else if ((sumInfo.getTotalWrongAttemptsBeforeRight()==2) && (sumInfo.getNumCorrect() == 1)){
+					actualComp = .2;
 				}else {
 					actualComp = -1;
 				}

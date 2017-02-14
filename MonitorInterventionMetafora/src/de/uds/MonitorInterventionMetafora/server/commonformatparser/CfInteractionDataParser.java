@@ -9,9 +9,11 @@ import de.uds.MonitorInterventionMetafora.server.xml.XmlFragment;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfAction;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CfInteractionData;
 import de.uds.MonitorInterventionMetafora.shared.commonformat.CommonFormatStrings;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+
 import de.uds.MonitorInterventionMetafora.shared.commonformat.RunestoneStrings;
 
 
@@ -54,6 +56,12 @@ public class CfInteractionDataParser {
 	
 	public static CfInteractionData getTestableInstance(){
 		return CfInteractionDataParser.fromXml(XmlFragment.getFragmentFromLocalFile("war/conffiles/xml/test/runestoneXml/commonFormatExample.xml"));
+	}
+	
+	public static List<CfAction> getRunestoneActionListFromFile(String file){
+		XmlFragment runestoneFrag = XmlFragment.getFragmentFromLocalFile(file);
+		CfInteractionData testCf = CfInteractionDataParser.fromRunestoneXml(runestoneFrag);
+		return testCf.getCfActions();
 	}
 	
 	public static void main(String []args){

@@ -82,9 +82,9 @@ public class CSVOutputterTest{
 		String testString = ",test_question6_1_1,test_question6_2_1,test_question6_3_1,test_question6_4_1,test_question6_4_2,test_question6_4_3,\n"
 				+"CLTestStudent2,,,1,1,1,1,\n"
 				+"CLTestStudent1,0,1,,0,,,\n";
-		System.out.println(sumSet.makeCSV());
+		System.out.println(sumSet.makeCSV(null));
 		System.out.println(testString);
-		Assert.assertEquals(testString, sumSet.makeCSV());
+		Assert.assertEquals(testString, sumSet.makeCSV(null));
 	}
 	
 	public static void main(String[] args){

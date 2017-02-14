@@ -14,7 +14,7 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 
 	private boolean isCorrect;
 	private boolean assessable;
-	private int numberTimesFalse;
+	private int numTimesWrongBeforeRight;
 	private String falseEntries;
 	private String description;
 	
@@ -30,7 +30,7 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 		//sets the assessable properties to these initial values, they will be updated as needed 
 		isCorrect = false;
 		assessable = true;
-		numberTimesFalse = 0;
+		numTimesWrongBeforeRight = 0;
 		falseEntries = "";
 	
 	
@@ -41,7 +41,7 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 			determineisCorrect(action);
 			
 			if(isCorrect == false){
-				numberTimesFalse++;
+				numTimesWrongBeforeRight++;
 				constructFalseEntries(action);	
 			}
 		}	
@@ -56,7 +56,7 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 		instanceProperties.add(new CfProperty(RunestoneStrings.TIME_SPENT_STRING, String.valueOf(getTime())));
 		instanceProperties.add(new CfProperty(RunestoneStrings.IS_EVER_CORRECT_STRING,String.valueOf(isCorrect)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.IS_ASSESSABLE_STRING,String.valueOf(assessable)));
-		instanceProperties.add(new CfProperty(RunestoneStrings.TIMES_FALSE_STRING, String.valueOf(numberTimesFalse)));
+		instanceProperties.add(new CfProperty(RunestoneStrings.TIMES_FALSE_STRING, String.valueOf(numTimesWrongBeforeRight)));
 		instanceProperties.add(new CfProperty(RunestoneStrings.FALSE_ENTRIES_STRING, falseEntries));
 		instanceProperties.add(new CfProperty(RunestoneStrings.OBJECT_ID_STRING, getObjectId()));
 		instanceProperties.add(new CfProperty(RunestoneStrings.TYPE_STRING, getType()));
@@ -113,7 +113,7 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 	private void buildDescription(){
 		
 		description = getUser() + " spent " + getTime() + " seconds on " + getObjectId() + " and answered incorrectly "
-				+ numberTimesFalse + " time(s), "; 
+				+ numTimesWrongBeforeRight + " time(s), "; 
 		//description depends on whether the user answered the question correct
 		if(isCorrect == true){
 		
@@ -134,7 +134,7 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 	}
 	
 	public int getNumberTimesFalse() {
-		return numberTimesFalse;
+		return numTimesWrongBeforeRight;
 	}
 
 	public String getFalseEntries() {
@@ -165,7 +165,7 @@ public class AssessablePerUserPerProblemSummary extends PerUserPerProblemSummary
 		}
 		int numSummaries = 1;
 		
-		SummaryInfo info = new SummaryInfo(users, time, objectIds, numAssessable, numberTimesFalse, numCorrect, 1);
+		SummaryInfo info = new SummaryInfo(users, time, objectIds, numAssessable, numTimesWrongBeforeRight, numCorrect, 1);
 		
 		return info;
 	}

@@ -13,13 +13,13 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.behaviors.PerUserPerProblemSummary;
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.LearningObjectSource;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.ConceptNode;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
 public class CSVOutputter {
 	
-	Map<String, Map<String, Integer>> studentsToQuestions;
-	
+	Map<String, Map<String, Integer>> studentsToQuestions;	
 	
 	/**
 	 * Constructor used for actually creating a CSV File, calls the second constructor
@@ -29,8 +29,14 @@ public class CSVOutputter {
 	 */
 	public CSVOutputter(String filename, List<PerUserPerProblemSummary> summaries) throws IOException{
 		this(summaries);
-		toCSV(filename);
+		toCSV(filename, null);
 	}
+	
+	public CSVOutputter(String filename, List<PerUserPerProblemSummary> summaries, LearningObjectSource learningObjectInfo) throws IOException{
+		this(summaries);
+		toCSV(filename, learningObjectInfo);
+	}
+	
 	/**
 	 * Takes the list of PUPPS and converts them all into a CSV file based on whether or not they were answered 
 	 * correctly. Read functions to find out more about the formatting (makeCSV())
@@ -52,14 +58,11 @@ public class CSVOutputter {
 				studentsToQuestions.put(summary.getUser(), questionsToAnswer);
 			}
 			
-			//If there is more than one false entry this deems the answer to the question as incorrect
-			//sets "correct" variable to 0 if incorrect and 1 if correct
-			int correct;
-			if(summary.getSummaryInfo().getTotalFalseEntries()>0 && summary.getSummaryInfo().getNumCorrect()!=1){
+			//If there are any wrong attempts before correct answer, the question is considered wrong
+			// we might want to look closer into wrong after right answers, but not written in SummaryInfo yet.
+			int correct = 1;
+			if(summary.getSummaryInfo().getTotalWrongAttemptsBeforeRight()>0){
 				correct = 0;
-			}
-			else{ 
-				correct = 1;
 			}
 			//gets the right map for the current user of this summary and adds to it
 			questionsToAnswer.put(summary.getObjectId(),correct);	
@@ -100,21 +103,29 @@ public class CSVOutputter {
 	 * blank means they have no data for it
 	 * @return csvString - string getting put in the CSV file
 	 */
-	public String makeCSV(){
+	public String makeCSV(LearningObjectSource learningObjectInfo){
 		String csvString = ",";
 		//puts the questions across the top in alphabetical order
 		SortedSet<String> questionSet = questionsToSortedSet(studentsToQuestions);
+		csvString += makeLearningObjectInfoRows(questionSet, learningObjectInfo);
 		for(String question: questionSet){
 			csvString+=question+",";
 		}
 		csvString+="\n";
 		//Goes through all the students now and and then goes through the questions and adds whether
 		//they got the question right or wrong and leaves a blank if they didn't answer it
+		//TEMP: an int or sanity check of wrong answers
+		int wrongAnswerCount=0;
 		for(String student: studentsToQuestions.keySet()){
 			csvString+=student+",";
 			for(String question: questionSet){
 				for(String stuQuestion: getValueinStudentsMap(student).keySet()){
 					if(question == stuQuestion){
+						//TEMP continued
+						int answerBool = studentsToQuestions.get(student).get(question);
+						if (answerBool == 0){
+							wrongAnswerCount++;
+						}
 						csvString+=studentsToQuestions.get(student).get(question);
 					}
 				}
@@ -122,8 +133,37 @@ public class CSVOutputter {
 			}
 			csvString+="\n";
 		}
+		//TEMP final
+		System.out.println("Total Wrong answers:" + wrongAnswerCount);
 		return csvString;
 	}
+	
+	private String makeLearningObjectInfoRows(SortedSet<String> questionSet, LearningObjectSource learningObjectInfo) {
+		String csvString = "";
+		if (learningObjectInfo != null){
+			
+			for(String question: questionSet){
+				String learningObjectDescription = learningObjectInfo.getDescription(question);
+				if (learningObjectDescription != null){
+					csvString+=learningObjectDescription.replaceAll(",", "");
+				}
+				csvString+=question+",";
+			}
+			//extra comma because there is the name column to leave blank
+			csvString += "\n,";
+			for(String question: questionSet){
+				String learningObjectType = learningObjectInfo.getLearningObjectType(question);
+				if (learningObjectType != null){
+					csvString+=learningObjectType.replaceAll(",", "");;
+				}
+				csvString+=question+",";
+			}
+			//extra comma because there is the name column to leave blank
+			csvString += "\n,";
+		}
+		return csvString;
+	}
+	
 	/**
 	 * writes the CSV file of students to questions 
 	 * see makeCSV() for more information about the string
@@ -131,11 +171,11 @@ public class CSVOutputter {
 	 * @throws IOException
 	 */
 	//filename should not include the extension
-	public void toCSV(String filename) throws IOException{
+	public void toCSV(String filename, LearningObjectSource learningObjectInfo) throws IOException{
 		
 		Path file = Paths.get(filename+".csv");
 
-		String input = makeCSV();
+		String input = makeCSV(learningObjectInfo);
 		
 		List<String> lines = Arrays.asList(input);
 		Files.write(file, lines, Charset.forName("UTF-8"));

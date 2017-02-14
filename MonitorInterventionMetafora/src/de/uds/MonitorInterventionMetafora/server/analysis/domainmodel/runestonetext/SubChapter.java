@@ -8,13 +8,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
+import de.uds.MonitorInterventionMetafora.shared.utils.PeekableScanner;
 
 
 public class SubChapter implements Concept{
 	private String conceptTitle;
 	private String fileName;
 	private String filePath;
-	private List<Question> questions = new ArrayList<Question>();
+	private List<Question> questions;
 	
 	
 	public SubChapter() {
@@ -26,13 +27,17 @@ public class SubChapter implements Concept{
 		//deletes the ".rst" from the SubChapter title
 		t = t.replace(".rst",  "");
 		this.conceptTitle = t;
-		this.fileName = chap;
+		this.fileName = chap.trim();
 		this.filePath = path;
-		getQs(conceptTitle,fileName, filePath);
+		//getQs(conceptTitle,fileName, filePath);
+		filePath = filePath+"_sources/"+chap.trim()+"/"+conceptTitle+".rst";
+		questions = parseFileForQuestions(filePath);
+		
 	}
 
 	public SubChapter(String t){
 		this.conceptTitle = t;
+		questions = new ArrayList<Question>();
 	}
 	
 	public String toString(){
@@ -43,7 +48,32 @@ public class SubChapter implements Concept{
 		return subAndQuestions;
 	}
 
-	//adds question objects to the list of questions
+	//returns list of question objects from a given file
+	public static List<Question> parseFileForQuestions (String path) throws FileNotFoundException{
+		List<Question> questions = new ArrayList<Question>();
+		
+		File fIn = new File(path);
+		PeekableScanner scanner = new PeekableScanner(fIn);
+		while (scanner.hasNextLine()){
+			//Either we find a question, and the builder takes all the question lines, or we throw the line away (not a question)
+			String nextLineToCome = scanner.peek();
+			boolean notQuestionLine = true;
+			for (QuestionType questionType : QuestionType.values()){
+				if (nextLineToCome.contains(questionType.getSourceString())){
+					List<String> questionLines = Question.buildQuestionTextList(scanner);
+					questions.add(new Question(questionLines));
+					notQuestionLine = false;
+				}
+			}
+			if (notQuestionLine){
+				scanner.nextLine();
+			}
+		}
+		scanner.close();
+		return questions;
+	}
+	
+	//TODO: old version that has tag stuff, which shoudl be functional in new version
 	//takes in the subject and chapter
 	public void getQs (String sub, String chap, String path)throws FileNotFoundException{
 		chap = chap.trim();	
@@ -54,7 +84,7 @@ public class SubChapter implements Concept{
 		Scanner findQs;
 		File fIn = new File(filePath);
 		findQs = new Scanner(fIn);
-			while (findQs.hasNextLine()==true){
+			while (findQs.hasNextLine()){
 				String line = findQs.nextLine();
 				for (QuestionType questionType : QuestionType.values()){
 					if (line.contains(questionType.getSourceString())){
@@ -79,5 +109,15 @@ public class SubChapter implements Concept{
 	
 	public SummaryInfo getSummaryInfo(){
 		return new SummaryInfo();
+	}
+	
+	public Question findQuestion(String questionId) {
+		Question theQuestion = null;
+		for (Question question : questions){
+			if (questionId.equals(question.getConceptTitle())){
+				theQuestion = question;
+			}
+		}
+		return theQuestion;
 	}
 }

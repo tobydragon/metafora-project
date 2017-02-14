@@ -14,8 +14,8 @@ public class SummaryInfo {
 	
 	//represents the number of assessable questions that exist in that section of the graph
 	private int numAssessable;
-	//represents the number of times a false entry was submitted in that section of the graph
-	private int totalTimesFalse;
+	//represents the number of times a false entry was submitted before a correct entry was submitted 
+	private int totalWrongAttemptsBeforeCorrectAnswers;
 //	private String conceptType;
 	int numCorrect;
 //	private double actualComp;
@@ -35,7 +35,7 @@ public class SummaryInfo {
 		unansweredObjectIds = new ArrayList<String>();
 		numAssessable = numAssessableIn;
 		
-		totalTimesFalse = numTimesFalse;
+		totalWrongAttemptsBeforeCorrectAnswers = numTimesFalse;
 		numCorrect = numCorrectIn;
 //		actualComp = actualCompIn;
 //		predictedComp = predictedCompIn;
@@ -48,7 +48,7 @@ public class SummaryInfo {
 		answeredObjectIds = new ArrayList<String>();
 		unansweredObjectIds = new ArrayList<String>();
 		numAssessable = 0;
-		totalTimesFalse = 0;
+		totalWrongAttemptsBeforeCorrectAnswers = 0;
 		numCorrect = 0;
 //		actualComp = 0;
 //		predictedComp = 0;
@@ -74,8 +74,8 @@ public class SummaryInfo {
 	public int getNumAssessable(){
 		return numAssessable;
 	}
-	public int getTotalFalseEntries(){
-		return totalTimesFalse;
+	public int getTotalWrongAttemptsBeforeRight(){
+		return totalWrongAttemptsBeforeCorrectAnswers;
 	}
 
 	public int getNumSummaries(){
@@ -108,7 +108,7 @@ public class SummaryInfo {
 		
 		time = time + currentSumInfo.getTime();		
 		numAssessable = numAssessable + currentSumInfo.getNumAssessable();
-		totalTimesFalse = totalTimesFalse + currentSumInfo.getTotalFalseEntries();
+		totalWrongAttemptsBeforeCorrectAnswers = totalWrongAttemptsBeforeCorrectAnswers + currentSumInfo.getTotalWrongAttemptsBeforeRight();
 		numCorrect = numCorrect + currentSumInfo.getNumCorrect();
 		numSummaries = numSummaries + currentSumInfo.getNumSummaries();
 		
@@ -137,7 +137,7 @@ public class SummaryInfo {
 
 	public String toString(){
 
-		String stringToReturn = "NumFalse: " + totalTimesFalse + " NumCorrect: " + numCorrect;
+		String stringToReturn = "NumWrongAttemptsBeforeRight: " + totalWrongAttemptsBeforeCorrectAnswers + " NumCorrect: " + numCorrect;
 		
 //		String stringToReturn = ("Actual Comp: " + actualComp);
 //		String stringToReturn = " numAsses " + numAssessable + " False: " + totalTimesFalse + " Users: "

@@ -8,11 +8,12 @@ import java.util.Scanner;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.LearningObjectSource;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.Concept;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.IDLink;
 import de.uds.MonitorInterventionMetafora.server.analysis.domainmodel.conceptgraph.SummaryInfo;
 
-public class Book implements Concept {
+public class Book implements Concept, LearningObjectSource {
 	private String conceptTitle;
 	private List<Chapter> chaps = new ArrayList<Chapter>();
 	
@@ -109,6 +110,28 @@ public class Book implements Concept {
 	
 	public SummaryInfo getSummaryInfo(){
 		return new SummaryInfo();
+	}
+	
+	@Override
+	public String getDescription(String learningObjectId) {
+		Question learningObject = findQuestion(learningObjectId);
+		return learningObject == null ? "" : learningObject.getQuestionText();
+	}
+	
+	public String getLearningObjectType(String learningObjectId) {
+		Question learningObject = findQuestion(learningObjectId);
+		return learningObject == null ? "" : learningObject.getType().name();
+	}
+	
+	private Question findQuestion(String questionId){
+		Question theQuestion = null;
+		for (Chapter chapter : chaps){
+			Question chapQuestion = chapter.findQuestion(questionId);
+			if (chapQuestion != null){
+				theQuestion = chapQuestion;
+			}
+		}
+		return theQuestion;
 	}
 	
 
