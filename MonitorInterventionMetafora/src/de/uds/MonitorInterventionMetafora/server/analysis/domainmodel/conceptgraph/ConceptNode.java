@@ -18,9 +18,11 @@ public class ConceptNode {
 	// used for AI scores
 	private double actualComp;
 	private double predictedComp;
+	private double normalizedComp;
 	private int numParents;
 	private double distanceFromAvg;
 	private double dataImportance;
+	private double normalizedDI;
 	
 	public ConceptNode() {
 		children = new ArrayList<ConceptNode>();
@@ -81,6 +83,10 @@ public class ConceptNode {
 	
 	public String toString(){
 		return toString("\n");
+	}
+	
+	public double getNormalizedDI(){
+		return normalizedDI;
 	}
 	
 	public void addToNodesAndLinksLists(List<ConceptNode> nodes, List<IDLink> links){
@@ -298,23 +304,36 @@ public class ConceptNode {
 	 * x is the number being normalized
 	 * 
 	 */
-	public double normalizeDataImportance(){
-		double myDI = 0;
-		double totalDI = 0;
-		for(ConceptNode child : getChildren()){
-			double childDI = child.concept.getDataImportance();
-		
-			totalDI = totalDI + (childDI);
+	/*
+	 * This gets called when Calc actual comp is called because you want to make sure all information is in the tree before
+	 * we normalize the data importance 
+	 * 
+	 */
+	public void normalizeDataImportance(){
+		if(getChildren().size() == 0){
+			normalizedDI = dataImportance;
+		}else{
+			double myDI = 0;
+			double totalDI = 0;
+			for(ConceptNode child : getChildren()){
+				double childDI = child.concept.getDataImportance();
+			
+				totalDI = totalDI + (childDI);
+			}
+			myDI = totalDI / getChildren().size();
+			normalizedDI = myDI;
 		}
-		myDI = totalDI / getChildren().size();
-		return myDI;
 	}
-
+	/*
+	 * When you calc actual comp you get 3 values out of it:
+	 * actualComp
+	 * normalizedDI
+	 * normalizedComp
+	 */
 	public double calcActualComp() {
 		if(getChildren().size() == 0){
 			actualComp = getConcept().getScore();
 			//System.out.println("Actual Comp = "+actualComp);
-			return actualComp;
 		} else {
 
 			//recursively call this on each child of the node
@@ -322,36 +341,24 @@ public class ConceptNode {
 			
 			
 			tempComp = 0;
-			int idCounter = 0;
-			double childDI = 0;
 			for(ConceptNode child : getChildren()){
-				String id = Integer.toString(idCounter);
 				double childComp = child.calcActualComp();
 				
 				dataImportance+=child.getDataImportance();
 				
 				child.setNumParents(child.getNumParents() + 1);
-				tempComp = tempComp + (childComp / getChildren().size());// * normalizedDI;
-				//numChildren++;
+				tempComp = tempComp + (childComp / getChildren().size());
+				
 			}
-			//double dataImportance = normalizeDataImportance();
-			actualComp = tempComp; //* dataImportance;
-			//this is so we can't end up with a score being 0 unless all it's children are 0
-			//which is useful because a 0 displays that they haven't answered something
-			//so if the average score of something ends up being 0, it will change to -.1 showing that
-			//improvements in this topic are possible and not that it is unanswered.
+			actualComp = tempComp; 
 			
-			/*System.out.println("AC: "+actualComp+", Num c: "+numChildren+", Num c z: "+numChildrenZero);
-			if(actualComp == 0 && numChildren != numChildrenZero){
-				actualComp = -.1;
-				System.out.println("hit");
-			}*/
-			
-			//can't do this without making averages look weird because if you get a 0 average on something it shows up as -1 but it's an average so you don't want to change that
-			
-			return actualComp;
+						
 		}
+		//Gets the normalized DI out the current node and then multiplies it by the actual comp to get a normalizedComp
+		normalizeDataImportance();
+		normalizedComp = normalizedDI * actualComp;
 		
+		return actualComp;
 	}
 }
 	

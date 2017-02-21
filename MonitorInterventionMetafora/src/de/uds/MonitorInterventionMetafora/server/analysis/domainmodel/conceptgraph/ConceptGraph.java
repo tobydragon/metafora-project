@@ -135,7 +135,10 @@ public class ConceptGraph {
 		return null;
 	}
 	
-	public void addSummariesToGraph(List<Concept> summaries){
+	/*
+	 * May want to change Concept to something lower like ConceptData if it is a Concept with actual data in it rather than a high level concept
+	 */
+	public void addSummariesToGraph(List<? extends Concept> summaries){
 
 		List<ConceptNode> graphSummaryNodeList = new ArrayList<ConceptNode>();
 		for(Concept summary : summaries){

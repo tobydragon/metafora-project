@@ -10,6 +10,7 @@ public interface Concept {
 	public String getConceptTitle();
 	//public SummaryInfo getSummaryInfo();
 	public double getDataImportance();
+	//Score Needs
 	public double getScore();
 
 }
